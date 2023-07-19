@@ -9,6 +9,14 @@ obj/
 # Common node modules locations
 /node_modules
 /wwwroot/node_modules
+AAA_Releases/
+*/AAA_Releases/
+
+lib
+libs
+libs/
+libs/*
+*/libs
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:

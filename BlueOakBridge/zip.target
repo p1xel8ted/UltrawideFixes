@@ -1,0 +1,23 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">    
+
+  <ItemGroup>
+    <PackageReference Include="MSBuildTasks" Version="1.5.0.235">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  
+<Target Name="ZipOutputPath" AfterTargets="Build">
+        <PropertyGroup>
+            <TempDir>$(MSBuildProjectDirectory)\temp\plugins\$(MSBuildProjectName)</TempDir>
+        </PropertyGroup>
+        <MakeDir Directories="$(TempDir)" />
+        <MakeDir Directories="$(SolutionDir)\AAA_Releases" />
+        <Exec Command="xcopy /V &quot;$(OutputPath)&quot; &quot;$(TempDir)&quot; /E /I /Y" />
+        <Exec Command="del &quot;$(TempDir)\*.zip&quot; &quot;$(TempDir)\*.json&quot; &quot;$(TempDir)\*.pdb&quot;" />
+        <ZipDirectory Condition="'$(Configuration)'=='Release'" Overwrite="true"
+                SourceDirectory="$(MSBuildProjectDirectory)\temp"
+                DestinationFile="$(SolutionDir)\AAA_Releases\$(MSBuildProjectName)_v$(Version)_BepInEx.zip" />
+        <RemoveDir Directories="$(MSBuildProjectDirectory)\temp" />
+    </Target>
+</Project>

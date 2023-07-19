@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <!--User Configuration-->
+  <Import Condition=" Exists('Directory.Build.props.user') " Project="Directory.Build.props.user" />
+
+  <!--Base Settings-->
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <!--Default all references to CopyLocal False.-->
+  <ItemDefinitionGroup>
+    <Reference><Private>False</Private></Reference>
+    <ProjectReference><Private>False</Private></ProjectReference>
+    <PackageReference><Private>False</Private></PackageReference>
+  </ItemDefinitionGroup>
+
+
+</Project>

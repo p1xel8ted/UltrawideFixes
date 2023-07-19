@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>SoPUltraWide</AssemblyName>
+    <Version>1.0.0</Version>
+    <FileVersion>$(Version)</FileVersion>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <RootNamespace>SoPUltraWide</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Remove="BepInEx.PluginInfoProps" />
+  </ItemGroup>
+
+
+</Project>

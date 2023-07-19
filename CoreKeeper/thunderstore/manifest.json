@@ -1,0 +1,9 @@
+{
+    "name": "Core_Keeper_Ultra_Wide",
+    "version_number": "0.0.2",
+    "website_url": "https://github.com/p1xel8ted/CoreKeeper",
+    "description": "Removes pillar boxing in menus and expands the viewport. Viewport width is customizable to find a balance between width and seeing the world de-spawn around you...",
+    "dependencies": [
+        "BepInEx-BepInExPack_Core_Keeper-2.1.0"
+    ]
+}

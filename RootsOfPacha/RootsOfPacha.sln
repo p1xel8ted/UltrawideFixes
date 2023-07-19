@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CavemanGoggles", "CavemanGoggles\CavemanGoggles.csproj", "{07832759-23C7-4362-870F-049C4B7ADEF0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{150A2991-02E5-4E35-9331-A5231B93FA31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CavemanQoL", "CavemanQoL\CavemanQoL.csproj", "{C25ED12B-E1CC-4D2B-91EB-84B41E530440}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07832759-23C7-4362-870F-049C4B7ADEF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07832759-23C7-4362-870F-049C4B7ADEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07832759-23C7-4362-870F-049C4B7ADEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07832759-23C7-4362-870F-049C4B7ADEF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C25ED12B-E1CC-4D2B-91EB-84B41E530440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C25ED12B-E1CC-4D2B-91EB-84B41E530440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C25ED12B-E1CC-4D2B-91EB-84B41E530440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C25ED12B-E1CC-4D2B-91EB-84B41E530440}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

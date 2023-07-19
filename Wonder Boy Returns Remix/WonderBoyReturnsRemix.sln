@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WonderBoyReturnsRemix", "WonderBoyReturnsRemix\WonderBoyReturnsRemix.csproj", "{AD821A4C-360A-4837-9729-A028308A8563}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD821A4C-360A-4837-9729-A028308A8563}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD821A4C-360A-4837-9729-A028308A8563}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD821A4C-360A-4837-9729-A028308A8563}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD821A4C-360A-4837-9729-A028308A8563}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
