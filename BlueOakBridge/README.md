@@ -3,11 +3,10 @@
 ![Game Logo](header.jpg)<br>
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
-[![Github All Releases](https://img.shields.io/github/downloads/p1xel8ted/BlueOakBridge/total.svg)](https://github.com/p1xel8ted/BlueOakBridge/releases)
 
 ## Note
 
-- Includes ConfigManager for easy in-game config. HideGameManagerObject in `BepInEx.cfg` must be set to `TRUE` for it to function.
+- Includes ConfigManager for easy in-game config. HideGameManagerObject in `BepInEx.cfg` must be set to `TRUE` to function.
 
 ## Features
 - Set whatever resolution and refresh rate (will also set the target framerate to this refresh rate) you want.
@@ -16,7 +15,6 @@
 - Change the scale of the UI.
 
 ## Installation
-- Grab the latest Blue Oak Bridge Display Tweaks release from [here.](https://github.com/p1xel8ted/BlueOakBridge/releases)
 - Extract the contents of the release zip into the game directory.<br />(e.g. `**steamapps\common\SteamBuild**` for Steam).
 
 ## Configuration
