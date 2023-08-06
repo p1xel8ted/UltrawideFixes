@@ -1,5 +1,7 @@
 # Ultrawide Fixes
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
+
 A collection of ultrawide fixes for various games. Click on the game title to access the specific fix.
 
 - [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
