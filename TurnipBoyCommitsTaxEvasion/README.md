@@ -3,7 +3,6 @@
 ![Game Logo](header.jpg)<br>
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)</br>
-[![Github All Releases](https://img.shields.io/github/downloads/p1xel8ted/TurnipBoyCommitsTaxEvasion/total.svg)](https://github.com/p1xel8ted/TurnipBoyCommitsTaxEvasion/releases)
 
 ## Features
 - Allows selection of main display resolution in the in-game resolution list.
@@ -14,7 +13,6 @@
 - Zooms through developer/publisher logos.
 
 ## Installation
-- Grab the latest Turnip Boy Commits Tax Evasion UW Fix release from [here.](https://github.com/p1xel8ted/TurnipBoyCommitsTaxEvasion/releases)
 - Extract the contents of the release zip into the game directory.<br />(e.g. "**steamapps\common\Turnip Boy Commits Tax Evasion**" for Steam).
 
 ## Configuration
