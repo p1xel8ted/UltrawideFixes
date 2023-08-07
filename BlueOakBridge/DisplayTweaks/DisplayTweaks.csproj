@@ -5,58 +5,181 @@
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BlueOakBridge">
-      <HintPath>..\libs\BlueOakBridge.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\libs\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>..\libs\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\libs\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>..\libs\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>..\libs\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>..\libs\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>..\libs\UnityEngine.SpriteShapeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreTextEngineModule">
-      <HintPath>..\libs\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>..\libs\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>..\libs\UnityEngine.TilemapModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>..\libs\UnityEngine.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>..\libs\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Remove="BepInEx.AssemblyPublicizer.MSBuild" />
     <PackageReference Remove="Resource.Embedder" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AstarPathfindingProject">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\AstarPathfindingProject.dll</HintPath>
+    </Reference>
+    <Reference Include="BlueOakBridge">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\BlueOakBridge.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween.Modules">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\DOTween.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\DOTweenPro.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTweenPro.Scripts">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\DOTweenPro.Scripts.dll</HintPath>
+    </Reference>
+    <Reference Include="FMODUnity">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\FMODUnity.dll</HintPath>
+    </Reference>
+    <Reference Include="InControl">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\InControl.dll</HintPath>
+    </Reference>
+    <Reference Include="MoreLinq">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\MoreLinq.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NotNull">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\NotNull.dll</HintPath>
+    </Reference>
+    <Reference Include="NoxLibrary">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\NoxLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="spine-unity">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\spine-unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="TFG_SP">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\TFG_SP.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem.RebindingUI">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Unity.InputSystem.RebindingUI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>F:\Games\steamapps\common\SteamBuild\BlueOakBridge_Data\Stripped\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="..\zip.target" />
 </Project>
