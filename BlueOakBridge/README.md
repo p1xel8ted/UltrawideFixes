@@ -16,6 +16,7 @@
 - Change the scale of the UI.
 
 ## Installation
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge).
 - Extract the contents of the release zip into the game directory.<br />(e.g. `**steamapps\common\SteamBuild**` for Steam).
 
 ## Configuration
