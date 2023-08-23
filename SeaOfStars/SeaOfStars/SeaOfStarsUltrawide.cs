@@ -22,22 +22,22 @@ public class SeaOfStarsUltrawide : MelonMod
         Screen.SetResolution(width, height, FullScreenMode.FullScreenWindow,
             maxRefresh);
         LoggerInstance.Warning($"Set resolution to {width}x{height}@{maxRefresh}Hz");
+        LoggerInstance.Warning($"Old FixedDeltaTime: {Time.fixedDeltaTime}");
+        Time.fixedDeltaTime = 1f / maxRefresh;
+        LoggerInstance.Warning($"New FixedDeltaTime: {Time.fixedDeltaTime}");
 
-        
-        
         var cameras = Resources.FindObjectsOfTypeAll(Il2CppType.Of<Camera>());
         foreach (var cam in cameras)
         {
             var c = cam.TryCast<Camera>();
             if (c == null) continue;
-            
-            c.pixelRect = new Rect(0, 0, 3440, 1440);
-            c.aspect = 3440f / 1440f;
-            
-            LoggerInstance.Warning($"Set camera {c.name} to 3440x1440");
-            
+
+            c.pixelRect = new Rect(0, 0, Display.main.systemWidth, Display.main.systemHeight);
+            c.aspect = Display.main.systemWidth / (float) Display.main.systemHeight;
+
+            LoggerInstance.Warning($"Set camera {c.name} to {Display.main.systemWidth}x{Display.main.systemHeight}");
         }
-        
+
         var pixelPerfects = Resources.FindObjectsOfTypeAll(Il2CppType.Of<PixelPerfectCamera>());
         foreach (var pp in pixelPerfects)
         {
