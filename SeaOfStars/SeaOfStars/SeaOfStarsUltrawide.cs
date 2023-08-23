@@ -5,7 +5,7 @@ using SeaOfStars;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-wide", "0.1.0", "p1xel8ted")]
+[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-wide", "0.1.2", "p1xel8ted")]
 [assembly: MelonGame("Sabotage Studio", "Sea of Stars Demo")]
 // [assembly: MelonGame("Sabotage Studio", "Sea of Stars")]
 
@@ -31,7 +31,7 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             var c = cam.TryCast<Camera>();
             if (c == null) continue;
-
+// if(c.name.StartsWith("UICamera")) continue;
             c.pixelRect = new Rect(0, 0, Display.main.systemWidth, Display.main.systemHeight);
             c.aspect = Display.main.systemWidth / (float) Display.main.systemHeight;
 
@@ -43,18 +43,12 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             var p = pp.TryCast<PixelPerfectCamera>();
             if (p == null) continue;
+            // if(p.name.StartsWith("UICamera")) continue;
             LoggerInstance.Warning($"Disabling PixelPerfectCamera {p.name}");
-            p.enabled = false;
+            p.cropFrameX = false;
+            p.cropFrameY = true;
         }
-
-        var stretchCameras = Resources.FindObjectsOfTypeAll(Il2CppType.Of<StretchCamera>());
-        foreach (var sc in stretchCameras)
-        {
-            var s = sc.TryCast<StretchCamera>();
-            if (s == null) continue;
-            LoggerInstance.Warning($"Disabling StretchCamera {s.name}");
-            s.enabled = false;
-        }
+        
 
         var ocean = GameObject.Find("SoSOcean");
         if (ocean == null) return;
