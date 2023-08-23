@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Company>p1xel8ted</Company>
+        <AssemblyVersion>0.1.0</AssemblyVersion>
+        <FileVersion>0.1.0</FileVersion>
+        <Product>Paleo Pine's Camera Jutter Fix</Product>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <OutputPath>F:\Games\steamapps\common\Paleo Pines Demo\Mods</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <OutputPath>F:\Games\steamapps\common\Paleo Pines Demo\Mods</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="AssetRipper.VersionUtilities">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\AssetRipper.VersionUtilities.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppInterop.Runtime">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="IndexRange">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\IndexRange.dll</HintPath>
+      </Reference>
+      <Reference Include="MelonLoader">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\MelonLoader.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+      </Reference>
+      <Reference Include="System.Security.Permissions">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\System.Security.Permissions.dll</HintPath>
+      </Reference>
+      <Reference Include="System.Text.Json">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\net6\System.Text.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\Games\steamapps\common\Paleo Pines Demo\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
