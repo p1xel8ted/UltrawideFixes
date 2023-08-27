@@ -5,8 +5,8 @@ using SeaOfStars;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
-[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-wide", "0.1.2", "p1xel8ted")]
-[assembly: MelonGame("Sabotage Studio", "Sea of Stars Demo")]
+[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-wide", "0.1.3", "p1xel8ted")]
+// [assembly: MelonGame("Sabotage Studio", "Sea of Stars Demo")]
 // [assembly: MelonGame("Sabotage Studio", "Sea of Stars")]
 
 namespace SeaOfStars;

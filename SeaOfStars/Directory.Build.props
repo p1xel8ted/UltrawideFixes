@@ -22,7 +22,7 @@
           https://nuget.samboy.dev/v3/index.json
       </RestoreAdditionalProjectSources>
   </PropertyGroup>
-
+    <Import Project="..\zip.target" />
   <!--Default all references to CopyLocal False.-->
   <ItemDefinitionGroup>
     <Reference><Private>False</Private></Reference>
