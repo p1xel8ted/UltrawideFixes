@@ -7,974 +7,530 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="0Harmony">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\0Harmony.dll</HintPath>
+      <Reference Include="Ak.Wwise.Api.WAAPI">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Ak.Wwise.Api.WAAPI.dll</HintPath>
       </Reference>
-      <Reference Include="Accessibility">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Accessibility.dll</HintPath>
+      <Reference Include="AK.Wwise.Unity.API">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\AK.Wwise.Unity.API.dll</HintPath>
       </Reference>
-      <Reference Include="AsmResolver">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\AsmResolver.dll</HintPath>
+      <Reference Include="AK.Wwise.Unity.API.WwiseTypes">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\AK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
       </Reference>
-      <Reference Include="AsmResolver.DotNet">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\AsmResolver.DotNet.dll</HintPath>
+      <Reference Include="AK.Wwise.Unity.MonoBehaviour">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\AK.Wwise.Unity.MonoBehaviour.dll</HintPath>
       </Reference>
-      <Reference Include="AsmResolver.PE">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\AsmResolver.PE.dll</HintPath>
+      <Reference Include="AK.Wwise.Unity.Timeline">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\AK.Wwise.Unity.Timeline.dll</HintPath>
       </Reference>
-      <Reference Include="AsmResolver.PE.File">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\AsmResolver.PE.File.dll</HintPath>
+      <Reference Include="AppleAuth">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\AppleAuth.dll</HintPath>
       </Reference>
       <Reference Include="Assembly-CSharp">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
       </Reference>
-      <Reference Include="AssetRipper.VersionUtilities">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\AssetRipper.VersionUtilities.dll</HintPath>
+      <Reference Include="Backtrace.Unity">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Backtrace.Unity.dll</HintPath>
       </Reference>
-      <Reference Include="AssetsTools.NET">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\AssetsTools.NET.dll</HintPath>
+      <Reference Include="CloudScripts">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\CloudScripts.dll</HintPath>
       </Reference>
-      <Reference Include="bHapticsLib">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\bHapticsLib.dll</HintPath>
+      <Reference Include="Coffee.UIParticle">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Coffee.UIParticle.dll</HintPath>
       </Reference>
-      <Reference Include="Boo.Lang">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Boo.Lang.dll</HintPath>
+      <Reference Include="Common">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Common.dll</HintPath>
       </Reference>
-      <Reference Include="Boo.Lang.Compiler">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Boo.Lang.Compiler.dll</HintPath>
+      <Reference Include="DefaultPlayables">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\DefaultPlayables.dll</HintPath>
       </Reference>
-      <Reference Include="Boo.Lang.Extensions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Boo.Lang.Extensions.dll</HintPath>
+      <Reference Include="deltadna">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\deltadna.dll</HintPath>
       </Reference>
-      <Reference Include="Boo.Lang.Parser">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Boo.Lang.Parser.dll</HintPath>
+      <Reference Include="DOTween">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\DOTween.dll</HintPath>
       </Reference>
-      <Reference Include="Boo.Lang.PatternMatching">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Boo.Lang.PatternMatching.dll</HintPath>
+      <Reference Include="EpicSdk">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\EpicSdk.dll</HintPath>
       </Reference>
-      <Reference Include="Boo.Lang.Useful">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Boo.Lang.Useful.dll</HintPath>
+      <Reference Include="Filesystem">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Filesystem.dll</HintPath>
       </Reference>
-      <Reference Include="Commons.Xml.Relaxng">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Commons.Xml.Relaxng.dll</HintPath>
+      <Reference Include="Game">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Game.dll</HintPath>
       </Reference>
-      <Reference Include="cscompmgd">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\cscompmgd.dll</HintPath>
+      <Reference Include="Gameloft.Federation.Client.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Federation.Client.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="CustomMarshalers">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\CustomMarshalers.dll</HintPath>
+      <Reference Include="Gameloft.Federation.Environment.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Federation.Environment.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="I18N">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\I18N.dll</HintPath>
+      <Reference Include="Gameloft.Federation.EveService.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Federation.EveService.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="I18N.CJK">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\I18N.CJK.dll</HintPath>
+      <Reference Include="Gameloft.GdidService.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.GdidService.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="I18N.MidEast">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\I18N.MidEast.dll</HintPath>
+      <Reference Include="Gameloft.Tracking.Core.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Tracking.Core.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="I18N.Other">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\I18N.Other.dll</HintPath>
+      <Reference Include="Gameloft.Tracking.Device.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Tracking.Device.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="I18N.Rare">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\I18N.Rare.dll</HintPath>
+      <Reference Include="Gameloft.Tracking.Pipeline.Standard.AutoEventPolicy.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Tracking.Pipeline.Standard.AutoEventPolicy.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="I18N.West">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\I18N.West.dll</HintPath>
+      <Reference Include="Gameloft.Tracking.Pipeline.Standard.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Tracking.Pipeline.Standard.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="IBM.Data.DB2">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\IBM.Data.DB2.dll</HintPath>
+      <Reference Include="Gameloft.Tracking.Pipeline.Standard.UnityComponent.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Tracking.Pipeline.Standard.UnityComponent.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Iced">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Iced.dll</HintPath>
+      <Reference Include="Gameloft.Tracking.Pipeline.Standard.UnityWebExtension.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Gameloft.Tracking.Pipeline.Standard.UnityWebExtension.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppAk.Wwise.Api.WAAPI">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppAk.Wwise.Api.WAAPI.dll</HintPath>
+      <Reference Include="GdkUtilities">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\GdkUtilities.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.API">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.dll</HintPath>
+      <Reference Include="glPlayFab">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\glPlayFab.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.API.WwiseTypes">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
+      <Reference Include="Google.Protobuf">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Google.Protobuf.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.MonoBehaviour">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.MonoBehaviour.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.Timeline">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppAppleAuth">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppAppleAuth.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppBacktrace.Unity">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppBacktrace.Unity.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppCloudScripts">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppCloudScripts.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppCoffee.UIParticle">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppCoffee.UIParticle.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppCommon">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppCommon.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppDefaultPlayables">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppDefaultPlayables.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2Cppdeltadna">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2Cppdeltadna.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppDOTween">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppDOTween.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppEpicSdk">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppEpicSdk.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppFilesystem">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppFilesystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGame">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGame.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Federation.Client.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Federation.Client.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Federation.Environment.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Federation.Environment.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Federation.EveService.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Federation.EveService.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.GdidService.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.GdidService.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Tracking.Core.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Tracking.Core.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Tracking.Device.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Tracking.Device.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Tracking.Pipeline.Standard.AutoEventPolicy.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Tracking.Pipeline.Standard.AutoEventPolicy.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Tracking.Pipeline.Standard.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Tracking.Pipeline.Standard.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Tracking.Pipeline.Standard.UnityComponent.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Tracking.Pipeline.Standard.UnityComponent.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGameloft.Tracking.Pipeline.Standard.UnityWebExtension.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGameloft.Tracking.Pipeline.Standard.UnityWebExtension.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGdkUtilities">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGdkUtilities.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppglPlayFab">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppglPlayFab.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppGoogle.Protobuf">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppGoogle.Protobuf.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppICSharpCode.SharpZipLib">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppICSharpCode.SharpZipLib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppImported">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppImported.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Common">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Generator">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Il2CppInterop.Generator.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppJsonSubTypes.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppJsonSubTypes.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppLocalization">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppLocalization.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppLog">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppLog.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMeta">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppMeta.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMeta.Definitions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppMeta.Definitions.dll</HintPath>
+      <Reference Include="ICSharpCode.SharpZipLib">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\ICSharpCode.SharpZipLib.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppMicrosoft.Extensions.FileSystemGlobbing">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppMicrosoft.Extensions.FileSystemGlobbing.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppMicrosoft.Extensions.FileSystemGlobbing.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppMono.Security">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppMono.Security.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppNativeGallery">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppNativeGallery.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppNaughtyAttributes.Core">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppNaughtyAttributes.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppNCrontab">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppNCrontab.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppNewtonsoft.Json">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppNewtonsoft.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppNodeCanvas">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppNodeCanvas.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppOSK">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppOSK.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppPerformanceMonitor">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppPerformanceMonitor.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppPlayFabAllSDK">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppPlayFabAllSDK.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppPolly.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppPolly.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppPurchasing.Common">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppPurchasing.Common.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppRewired_Core">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppRewired_Windows">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppRewired_Windows.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppRpc.Core">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppRpc.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppRpc.Transport.Queue">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppRpc.Transport.Queue.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSerilog">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSerilog.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSerilog.Formatting.Elasticsearch">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSerilog.Formatting.Elasticsearch.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSerilog.Sinks.Console">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSerilog.Sinks.Console.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSerilog.Sinks.Debug">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSerilog.Sinks.Debug.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSerilogElasticsearchSink">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSerilogElasticsearchSink.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSteamworks">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSteamworks.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Configuration.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Core">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Data">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Data.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.IO.Compression">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.IO.Compression.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.IO.Compression.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Net.Http">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Net.Http.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Net.Http.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Numerics.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Runtime.Serialization">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Xml">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Xml.Linq">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.Linq.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppUI">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppUI.dll</HintPath>
+      <Reference Include="Imported">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Imported.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppWind">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2CppWind.dll</HintPath>
+      <Reference Include="JsonSubTypes.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\JsonSubTypes.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Il2Cppzlib.net.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2Cppzlib.net.Runtime.dll</HintPath>
+      <Reference Include="Localization">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Localization.dll</HintPath>
       </Reference>
-      <Reference Include="Il2Cppzxing.unity">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Il2Cppzxing.unity.dll</HintPath>
+      <Reference Include="Log">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Log.dll</HintPath>
       </Reference>
-      <Reference Include="IndexRange">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\IndexRange.dll</HintPath>
+      <Reference Include="Meta">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Meta.dll</HintPath>
       </Reference>
-      <Reference Include="MelonLoader">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\MelonLoader.dll</HintPath>
+      <Reference Include="Meta.Definitions">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Meta.Definitions.dll</HintPath>
       </Reference>
-      <Reference Include="MelonLoader.NativeHost">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\MelonLoader.NativeHost.dll</HintPath>
+      <Reference Include="NativeGallery">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\NativeGallery.dll</HintPath>
       </Reference>
-      <Reference Include="MelonStartScreen">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\MelonStartScreen.dll</HintPath>
+      <Reference Include="NaughtyAttributes.Core">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\NaughtyAttributes.Core.dll</HintPath>
       </Reference>
-      <Reference Include="Microsoft.Bcl.AsyncInterfaces">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.CSharp">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Microsoft.CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Diagnostics.NETCore.Client">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Diagnostics.NETCore.Client.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Diagnostics.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Diagnostics.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Configuration">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Configuration.Binder">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Logging">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Logging.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Options">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Options.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Primitives">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Extensions.Primitives.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Web.Infrastructure">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Microsoft.Web.Infrastructure.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Win32.SystemEvents">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Microsoft.Win32.SystemEvents.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Cecil">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Mono.Cecil.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Cecil.Mdb">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Mono.Cecil.Mdb.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Cecil.Pdb">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Mono.Cecil.Pdb.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Cecil.Rocks">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Mono.Cecil.Rocks.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.CompilerServices.SymbolWriter">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.CompilerServices.SymbolWriter.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.CSharp">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Data.Sqlite">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.Data.Sqlite.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Data.Tds">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.Data.Tds.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Messaging">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.Messaging.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Posix">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.Posix.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Security">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.Security.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.WebBrowser">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Mono.WebBrowser.dll</HintPath>
-      </Reference>
-      <Reference Include="MonoMod.RuntimeDetour">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\MonoMod.RuntimeDetour.dll</HintPath>
-      </Reference>
-      <Reference Include="MonoMod.Utils">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\MonoMod.Utils.dll</HintPath>
-      </Reference>
-      <Reference Include="mscorlib">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\mscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="netstandard">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\netstandard.dll</HintPath>
+      <Reference Include="NCrontab">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\NCrontab.dll</HintPath>
       </Reference>
       <Reference Include="Newtonsoft.Json">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
       </Reference>
-      <Reference Include="Novell.Directory.Ldap">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\Novell.Directory.Ldap.dll</HintPath>
+      <Reference Include="NodeCanvas">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\NodeCanvas.dll</HintPath>
       </Reference>
-      <Reference Include="SMDiagnostics">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\SMDiagnostics.dll</HintPath>
+      <Reference Include="OSK">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\OSK.dll</HintPath>
       </Reference>
-      <Reference Include="System">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.dll</HintPath>
+      <Reference Include="PerformanceMonitor">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\PerformanceMonitor.dll</HintPath>
       </Reference>
-      <Reference Include="System.ComponentModel.Composition">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ComponentModel.Composition.dll</HintPath>
+      <Reference Include="PlayFabAllSDK">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\PlayFabAllSDK.dll</HintPath>
       </Reference>
-      <Reference Include="System.ComponentModel.DataAnnotations">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ComponentModel.DataAnnotations.dll</HintPath>
+      <Reference Include="Polly.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Polly.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="System.Configuration">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Configuration.dll</HintPath>
+      <Reference Include="Purchasing.Common">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Purchasing.Common.dll</HintPath>
       </Reference>
-      <Reference Include="System.Configuration.ConfigurationManager">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\System.Configuration.ConfigurationManager.dll</HintPath>
+      <Reference Include="Rewired_Core">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Rewired_Core.dll</HintPath>
       </Reference>
-      <Reference Include="System.Configuration.Install">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Configuration.Install.dll</HintPath>
+      <Reference Include="Rewired_Windows">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Rewired_Windows.dll</HintPath>
       </Reference>
-      <Reference Include="System.Core">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Core.dll</HintPath>
+      <Reference Include="Rpc.Core">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Rpc.Core.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.dll</HintPath>
+      <Reference Include="Rpc.Transport.Queue">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Rpc.Transport.Queue.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data.DataSetExtensions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.DataSetExtensions.dll</HintPath>
+      <Reference Include="Serilog">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Serilog.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data.Entity">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.Entity.dll</HintPath>
+      <Reference Include="Serilog.Formatting.Elasticsearch">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Serilog.Formatting.Elasticsearch.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data.Linq">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.Linq.dll</HintPath>
+      <Reference Include="Serilog.Sinks.Console">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Serilog.Sinks.Console.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data.OracleClient">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.OracleClient.dll</HintPath>
+      <Reference Include="Serilog.Sinks.Debug">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Serilog.Sinks.Debug.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data.Services">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.Services.dll</HintPath>
+      <Reference Include="SerilogElasticsearchSink">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\SerilogElasticsearchSink.dll</HintPath>
       </Reference>
-      <Reference Include="System.Data.Services.Client">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Data.Services.Client.dll</HintPath>
+      <Reference Include="Steamworks">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Steamworks.dll</HintPath>
       </Reference>
-      <Reference Include="System.Design">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Design.dll</HintPath>
-      </Reference>
-      <Reference Include="System.DirectoryServices">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.DirectoryServices.dll</HintPath>
-      </Reference>
-      <Reference Include="System.DirectoryServices.Protocols">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.DirectoryServices.Protocols.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Drawing">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Drawing.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Drawing.Common">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\System.Drawing.Common.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Drawing.Design">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Drawing.Design.dll</HintPath>
-      </Reference>
-      <Reference Include="System.EnterpriseServices">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.EnterpriseServices.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IdentityModel">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.IdentityModel.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IdentityModel.Selectors">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.IdentityModel.Selectors.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IO.Compression">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.IO.Compression.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IO.Compression.FileSystem">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.IO.Compression.FileSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Json">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Management">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Management.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Messaging">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Messaging.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Net">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Net.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Net.Http">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Net.Http.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Net.Http.Formatting">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Net.Http.Formatting.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Net.Http.WebRequest">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Net.Http.WebRequest.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Numerics">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Numerics.Vectors">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Numerics.Vectors.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Reflection.Context">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Reflection.Context.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Runtime.Caching">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Runtime.Caching.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Runtime.DurableInstancing">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Runtime.DurableInstancing.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Runtime.Remoting">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Runtime.Remoting.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Runtime.Serialization">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Runtime.Serialization.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Runtime.Serialization.Formatters.Soap">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Security">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Security.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Security.Cryptography.ProtectedData">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\System.Security.Cryptography.ProtectedData.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Security.Permissions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\System.Security.Permissions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceModel.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel.Activation">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceModel.Activation.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel.Discovery">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceModel.Discovery.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel.Internals">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceModel.Internals.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel.Routing">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceModel.Routing.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel.Web">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceModel.Web.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceProcess">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.ServiceProcess.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Text.Json">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\System.Text.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Transactions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Transactions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Abstractions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Abstractions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.ApplicationServices">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.ApplicationServices.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.DynamicData">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.DynamicData.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Extensions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Extensions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Extensions.Design">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Extensions.Design.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Http">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Http.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Http.SelfHost">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Http.SelfHost.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Http.WebHost">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Http.WebHost.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Mvc">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Mvc.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Razor">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Razor.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.RegularExpressions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.RegularExpressions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Routing">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Routing.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.Services">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.Services.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.WebPages">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.WebPages.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.WebPages.Deployment">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.WebPages.Deployment.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web.WebPages.Razor">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Web.WebPages.Razor.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Windows.Extensions">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\System.Windows.Extensions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Windows.Forms">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Windows.Forms.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Windows.Forms.DataVisualization">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Windows.Forms.DataVisualization.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Xaml">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Xaml.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Xml">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Xml.Linq">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\System.Xml.Linq.dll</HintPath>
-      </Reference>
-      <Reference Include="SystemWebTestShim">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\SystemWebTestShim.dll</HintPath>
-      </Reference>
-      <Reference Include="Tomlet">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\Tomlet.dll</HintPath>
+      <Reference Include="UI">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UI.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Burst">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Burst.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Burst.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Burst.Unsafe.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Collections">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Collections.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Collections.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Mathematics">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Mathematics.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Authentication">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Authentication.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Authentication.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Configuration">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Configuration.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Configuration.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Device">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Device.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Device.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Environments">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Environments.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Environments.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Environments.Internal">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Environments.Internal.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Environments.Internal.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Internal">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Internal.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Internal.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Registration">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Registration.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Registration.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Scheduler">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Scheduler.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Scheduler.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Telemetry">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Telemetry.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Telemetry.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.Core.Threading">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.Core.Threading.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.Core.Threading.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Services.RemoteConfig">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Services.RemoteConfig.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Services.RemoteConfig.dll</HintPath>
       </Reference>
       <Reference Include="Unity.TextMeshPro">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.Timeline.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.Timeline.dll</HintPath>
       </Reference>
       <Reference Include="Unity.VisualEffectGraph.Runtime">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.AccessibilityModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.AndroidJNIModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ARModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ARModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClothModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ClothModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ClusterInputModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ClusterRendererModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.CrashReportingModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.DirectorModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.DSPGraphModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.GameCenterModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GIModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.GIModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GridModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.GridModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.HotReloadModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.Il2CppAssetBundleManager">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.Il2CppImageConversionManager">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.InputModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.JSONSerializeModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.LocalizationModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ProfilerModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.AppleCore">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.AppleCore.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.AppleCore.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.AppleMacosStub">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.AppleMacosStub.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.AppleMacosStub.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.AppleStub">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.AppleStub.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.AppleStub.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.SecurityCore">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.SecurityStub">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.Stores">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.Stores.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.Stores.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.WinRTCore">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.WinRTCore.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.WinRTCore.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Purchasing.WinRTStub">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.Purchasing.WinRTStub.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.Purchasing.WinRTStub.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteMaskModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteShapeModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.StreamingModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.SubstanceModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.SubsystemsModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextCoreModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.TextCoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.TilemapModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TLSModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.TLSModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsNativeModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsNativeModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UmbraModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UNETModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UNETModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityConnectModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityCurlModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.VehiclesModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VFXModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.VirtualTexturingModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VRModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.VRModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.WindModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.WindModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.XRModule">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
-      <Reference Include="ValueTupleBridge">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\ValueTupleBridge.dll</HintPath>
-      </Reference>
-      <Reference Include="WebSocketDotNet">
-        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\net6\WebSocketDotNet.dll</HintPath>
+      <Reference Include="Wind">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\Wind.dll</HintPath>
       </Reference>
       <Reference Include="WindowsBase">
         <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\MelonLoader\Managed\WindowsBase.dll</HintPath>
+      </Reference>
+      <Reference Include="zlib.net.Runtime">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\zlib.net.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="zxing.unity">
+        <HintPath>F:\Games\steamapps\common\Disney Dreamlight Valley\BepInEx\interop\zxing.unity.dll</HintPath>
       </Reference>
     </ItemGroup>
 

@@ -2,7 +2,7 @@
 using MelonLoader;
 using UnityEngine;
 
-[assembly: MelonInfo(typeof(DisneyDreamlightMod), "Disney Dreamlight Ultra-wide Fix", "0.1.0", "p1xel8ted")]
+
 
 namespace DisneyDreamlight
 {

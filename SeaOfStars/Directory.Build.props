@@ -35,11 +35,11 @@
     </PropertyGroup>
 
       <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>F:\Games\steamapps\common\Sea of Stars Demo\Mods</OutputPath>
+      <OutputPath>F:\Games\steamapps\common\Sea of Stars\Mods</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>F:\Games\steamapps\common\Sea of Stars Demo\Mods</OutputPath>
+      <OutputPath>F:\Games\steamapps\common\Sea of Stars\Mods</OutputPath>
     </PropertyGroup>
 
 </Project>
