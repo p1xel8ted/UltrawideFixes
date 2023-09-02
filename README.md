@@ -52,6 +52,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 - [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=flat-square)
 
+- [Tormented Souls](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TormentedSouls)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TormentedSouls/total?label=downloads&style=flat-square)
+
 - [Train Valley 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TrainValley1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TrainValley1/total?label=downloads&style=flat-square)
 
