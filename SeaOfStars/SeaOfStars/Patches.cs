@@ -7,8 +7,6 @@ namespace SeaOfStars;
 [Harmony]
 public static class Patches
 {
-    
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(OptionsScreen), nameof(OptionsScreen.RefreshResolutionList))]
     [HarmonyPatch(typeof(OptionsScreen), nameof(OptionsScreen.CheckToUpdateResolutionList))]
@@ -17,6 +15,7 @@ public static class Patches
     {
         __instance.pixelPerfectBtn.IsEnabled = false;
         __instance.fullscreenBtn.IsEnabled = false;
+        __instance.resolutionBtn.IsEnabled = false;
         var ultrawide = new Resolution
         {
             width = Display.main.systemWidth,
@@ -30,5 +29,13 @@ public static class Patches
         __instance.resolutions = newResList;
         Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow,
             ultrawide.refreshRate);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(LocalInventoryPanel), nameof(LocalInventoryPanel.OnEnable))]
+    [HarmonyPatch(typeof(LocalInventoryPanel), nameof(LocalInventoryPanel.InitIcons))]
+    public static void LocalInventoryPanel_OnEnable(ref LocalInventoryPanel __instance)
+    {
+        __instance.gameObject.SetActive(false);
     }
 }

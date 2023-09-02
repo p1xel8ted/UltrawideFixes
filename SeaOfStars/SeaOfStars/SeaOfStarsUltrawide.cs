@@ -4,9 +4,10 @@ using MelonLoader;
 using SeaOfStars;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-Wide", "0.1.5", "p1xel8ted")]
+[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-Wide", "0.1.6", "p1xel8ted")]
 
 namespace SeaOfStars;
 
@@ -15,32 +16,42 @@ public class SeaOfStarsUltrawide : MelonMod
     private const string Overlay = "Overlay";
     private const string ScreenConst = "Screen";
     private const string CutsceneBarsClone = "CutsceneBars(Clone)";
+
     private const string LoadingScreen = "LoadingScreen";
     private const string Transition = "Transition";
+    private const string SosOcean = "SoSOcean";
+
+    private const string Fishing = "fishing";
+    private const string InitialScene = "InitialScene";
 
     private static float NormalWidth => Display.main.systemHeight * 16f / 9f;
     private static float UltraWidth => Display.main.systemWidth;
     private static float Difference => UltraWidth - NormalWidth;
     private static float SplitDifference => Difference / 2f;
 
+    private static float Height => Display.main.systemHeight;
+    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+
+    private bool FishingActive { get; set; }
+
     private static readonly List<CanvasUpscaleViewport> CanvasUpscaleViewports = new();
 
-    //private static GameObject LoadingScreenClone { get; set; }
+    private static GameObject LoadingScreenClone { get; set; }
     private static GameObject TransitionOneClone { get; set; }
     private static GameObject TransitionTwoClone { get; set; }
-    
+
     public override void OnUpdate()
     {
         base.OnUpdate();
-        
-        //LoadingScreenClone ??= GameObject.Find("UICanvas(Clone)/Modal/LoadingScreen(Clone)");
+
+        LoadingScreenClone ??= GameObject.Find("UICanvas(Clone)/Modal/LoadingScreen(Clone)");
         TransitionOneClone ??= GameObject.Find("UICanvas(Clone)/Modal/ColorFadeTransitionScreen(Clone)0");
         TransitionTwoClone ??= GameObject.Find("UICanvas(Clone)/Modal/ColorFadeTransitionScreen(Clone)1");
 
-        if (TransitionOneClone == null || TransitionTwoClone == null)
+        if (LoadingScreenClone == null || TransitionOneClone == null || TransitionTwoClone == null)
             return;
 
-        var anyActive = TransitionOneClone.activeSelf || TransitionTwoClone.activeSelf;
+        var anyActive = LoadingScreenClone.activeSelf || TransitionOneClone.activeSelf || TransitionTwoClone.activeSelf;
 
         foreach (var v in CanvasUpscaleViewports)
         {
@@ -48,16 +59,39 @@ public class SeaOfStarsUltrawide : MelonMod
         }
     }
 
+    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+    {
+        base.OnSceneWasLoaded(buildIndex, sceneName);
+        if (sceneName.Equals(InitialScene))
+        {
+            Time.timeScale = 10000f;
+        }
+    }
+
+    public override void OnSceneWasUnloaded(int buildIndex, string sceneName)
+    {
+        base.OnSceneWasUnloaded(buildIndex, sceneName);
+        if (sceneName.Equals(InitialScene))
+        {
+            Time.timeScale = 1f;
+        }
+    }
 
     public override void OnSceneWasInitialized(int buildIndex, string sceneName)
     {
         base.OnSceneWasInitialized(buildIndex, sceneName);
-        var width = Display.main.systemWidth;
-        var height = Display.main.systemHeight;
-        var maxRefresh = Screen.resolutions.Max(a => a.refreshRate);
-        Screen.SetResolution(width, height, FullScreenMode.FullScreenWindow,
-            maxRefresh);
-        Time.fixedDeltaTime = 1f / maxRefresh;
+
+        FishingActive = SceneManager.GetActiveScene().name.ToLowerInvariant().Contains(Fishing);
+        if (FishingActive)
+        {
+            Screen.SetResolution((int) NormalWidth, (int) Height, FullScreenMode.FullScreenWindow,
+                MaxRefresh);
+        }
+        else
+        {
+            Screen.SetResolution((int) UltraWidth, (int) Height, FullScreenMode.FullScreenWindow,
+                MaxRefresh);
+        }
 
         var images = Resources.FindObjectsOfTypeAll(Il2CppType.Of<Image>());
         foreach (var image in images)
@@ -74,8 +108,6 @@ public class SeaOfStarsUltrawide : MelonMod
                         i.transform.parent.name.Contains(Transition))
                     {
                         i.transform.localScale = new Vector3(10f, 1f, 1f);
-                        i.transform.position = new Vector3(i.transform.position.x - 440, i.transform.position.y,
-                            i.transform.position.z);
                     }
                     else
                     {
@@ -92,8 +124,10 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             var c = can.TryCast<Canvas>();
             if (c == null) continue;
-            if (!c.name.Equals(CutsceneBarsClone)) continue;
-            c.enabled = false;
+            if (c.name.Equals(CutsceneBarsClone))
+            {
+                c.enabled = false;
+            }
         }
 
 
@@ -102,8 +136,17 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             var v = vs.TryCast<CanvasUpscaleViewport>();
             if (v == null) continue;
-            v.customCanvasPos = new Vector2(SplitDifference, 0);
-            v.useCustomCanvasSize = true;
+            if (FishingActive)
+            {
+                v.useCustomCanvasSize = false;
+                v.customCanvasPos = new Vector2(0f, 0f);
+            }
+            else
+            {
+                v.useCustomCanvasSize = true;
+                v.customCanvasPos = new Vector2(SplitDifference, 0f);
+            }
+
             CanvasUpscaleViewports.Add(v);
         }
 
@@ -112,8 +155,16 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             var c = cam.TryCast<Camera>();
             if (c == null) continue;
-            c.aspect = (float) width / height;
-            c.pixelRect = new Rect(0, 0, width, height);
+            if (FishingActive)
+            {
+                c.aspect = NormalWidth / Height;
+                c.pixelRect = new Rect(0, 0, NormalWidth, Height);
+            }
+            else
+            {
+                c.aspect = UltraWidth / Height;
+                c.pixelRect = new Rect(0, 0, UltraWidth, Height);
+            }
         }
 
         var pixelPerfects = Resources.FindObjectsOfTypeAll(Il2CppType.Of<PixelPerfectCamera>());
@@ -121,11 +172,13 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             var p = pp.TryCast<PixelPerfectCamera>();
             if (p == null) continue;
-            p.refResolutionX = Display.main.systemWidth;
-            p.refResolutionY = Display.main.systemHeight;
-            p.enabled = true;
-            p.cropFrameX = false;
-            p.cropFrameY = false;
+            p.enabled = FishingActive;
+        }
+
+        var ocean = GameObject.Find(SosOcean);
+        if (ocean != null)
+        {
+            ocean.transform.localScale = new Vector3(10f, 1f, 1f);
         }
     }
 }
