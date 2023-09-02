@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using UnityEngine;
 
@@ -12,15 +13,17 @@ public static class Patches
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GraphicsBaseMenuController), nameof(GraphicsBaseMenuController.OnSResolutionPress))]
-    public static void GraphicsBaseMenuController_OnSResolutionPress_Prefix(ref GraphicsBaseMenuController __instance, ref int pos)
+    public static void GraphicsBaseMenuController_OnSResolutionPress_Prefix(ref GraphicsBaseMenuController __instance,
+        ref int pos)
     {
         if (__instance.sResolutionTextID.Exists(a => a.Equals(Uw))) return;
         __instance.sResolutionTextID.Add(Uw);
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(MultilanguageUIManager), nameof(MultilanguageUIManager.GetText))]
-    public static bool GetText(ref MultilanguageUIManager __instance, ref string id, ref Dictionary<SceneDataSO.LanguagesEnum, string> __result)
+    public static bool GetText(ref MultilanguageUIManager __instance, ref string id,
+        ref Dictionary<SceneDataSO.LanguagesEnum, string> __result)
     {
         if (!id.Equals(Uw)) return true;
         var dictionary = new Dictionary<SceneDataSO.LanguagesEnum, string>
@@ -40,8 +43,8 @@ public static class Patches
         __result = dictionary;
         return false;
     }
-    
-    
+
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GraphicsBaseMenuController), nameof(GraphicsBaseMenuController.OnSResolutionForceUpdate))]
     public static void GraphicsBaseMenuController_OnSResolutionForceUpdate(ref GraphicsBaseMenuController __instance)
@@ -52,7 +55,7 @@ public static class Patches
 
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(QualitySettingsManager), nameof(QualitySettingsManager.IterateResolution), new Type[]{})]
+    [HarmonyPatch(typeof(QualitySettingsManager), nameof(QualitySettingsManager.IterateResolution), new Type[] { })]
     public static bool QualitySettingsManager_IterateResolution(ref QualitySettingsManager __instance, ref int __result)
     {
         __instance.debugResolution =
@@ -80,22 +83,23 @@ public static class Patches
     [HarmonyPatch(typeof(QualitySettingsManager), nameof(QualitySettingsManager.SetupResolution))]
     public static bool QualitySettingsManager_SetupResolution(ref QualitySettingsManager __instance)
     {
+        var maxRefreshRate = Screen.resolutions.Max(a => a.refreshRate);
         switch (__instance.debugResolution)
         {
             case 4:
-                Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true);
+                Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, maxRefreshRate);
                 break;
             case 3:
-                Screen.SetResolution(3840, 2160, true);
+                Screen.SetResolution(3840, 2160, true, maxRefreshRate);
                 break;
             case 2:
-                Screen.SetResolution(2560, 1440, true);
+                Screen.SetResolution(2560, 1440, true, maxRefreshRate);
                 break;
             case 1:
-                Screen.SetResolution(1920, 1080, true);
+                Screen.SetResolution(1920, 1080, true, maxRefreshRate);
                 break;
             case 0:
-                Screen.SetResolution(1280, 720, true);
+                Screen.SetResolution(1280, 720, true, maxRefreshRate);
                 break;
         }
 
