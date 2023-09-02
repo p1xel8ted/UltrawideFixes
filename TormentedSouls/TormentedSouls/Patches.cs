@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using HarmonyLib;
 using UnityEngine;
 
@@ -61,6 +60,7 @@ public static class Patches
         __instance.debugResolution =
             (int) Mathf.Repeat(PersistentData.GetSettingsData().currentResolution + 1, 5f);
         __instance.SetupResolution();
+        __instance.latestFixedDeltaTime = 1f / 120f;
         PersistentData.GetSettingsData().currentResolution = __instance.debugResolution;
         __result = __instance.debugResolution;
         return false;
@@ -74,6 +74,7 @@ public static class Patches
         __instance.debugResolution =
             (int) Mathf.Repeat(PersistentData.GetSettingsData().currentResolution + pos, 5f);
         __instance.SetupResolution();
+        __instance.latestFixedDeltaTime = 1f / 120f;
         PersistentData.GetSettingsData().currentResolution = __instance.debugResolution;
         __result = __instance.debugResolution;
         return false;
@@ -83,26 +84,26 @@ public static class Patches
     [HarmonyPatch(typeof(QualitySettingsManager), nameof(QualitySettingsManager.SetupResolution))]
     public static bool QualitySettingsManager_SetupResolution(ref QualitySettingsManager __instance)
     {
-        var maxRefreshRate = Screen.resolutions.Max(a => a.refreshRate);
         switch (__instance.debugResolution)
         {
             case 4:
-                Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, maxRefreshRate);
+                Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, Plugin.MaxRefresh);
                 break;
             case 3:
-                Screen.SetResolution(3840, 2160, true, maxRefreshRate);
+                Screen.SetResolution(3840, 2160, true, Plugin.MaxRefresh);
                 break;
             case 2:
-                Screen.SetResolution(2560, 1440, true, maxRefreshRate);
+                Screen.SetResolution(2560, 1440, true, Plugin.MaxRefresh);
                 break;
             case 1:
-                Screen.SetResolution(1920, 1080, true, maxRefreshRate);
+                Screen.SetResolution(1920, 1080, true, Plugin.MaxRefresh);
                 break;
             case 0:
-                Screen.SetResolution(1280, 720, true, maxRefreshRate);
+                Screen.SetResolution(1280, 720, true, Plugin.MaxRefresh);
                 break;
         }
 
+        __instance.latestFixedDeltaTime = 1f / 120f;
         return false;
     }
 }

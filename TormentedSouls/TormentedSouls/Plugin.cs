@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -16,7 +18,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.tormentedsouls.ultrawide";
     private const string PluginName = "Tormented Souls Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
     private const string LogosInit = "LogosInit";
     private const string MenuInit = "MenuInit";
     private const string Background = "Background";
@@ -26,6 +28,8 @@ public class Plugin : BaseUnityPlugin
     private static GameObject CinematicBlackBarsTop { get; set; }
     private static GameObject CinematicBlackBarsBottom { get; set; }
     private static List<CanvasScaler> CanvasScalers { get; } = new();
+    
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
 
     private static float GetNewScale()
     {
@@ -57,6 +61,10 @@ public class Plugin : BaseUnityPlugin
 
     private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
+        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, MaxRefresh);
+        Time.fixedDeltaTime = 1f / 120f;
+        Application.targetFrameRate = MaxRefresh;
+        
         var canvasScalers = Resources.FindObjectsOfTypeAll<CanvasScaler>();
         foreach (var scaler in canvasScalers)
         {
