@@ -12,6 +12,7 @@ Tested against retail Steam version @ 3440x1440 and 3840x1080.
 - Removes top/bottom cutscene black bars.
 - UI scaling is calculated automatically and should be fine, but you can manually adjust via the F1 key.
 - UI is centered at 16:9.
+- Skips intro logos.
 
 ## Note
 - If you see a scene with black bars on either side, it is one of the following:
