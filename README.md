@@ -8,13 +8,13 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
 ### [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=flat-square)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=social)
 
 ### [Alwa's Legacy](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlwasLegacy)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlwasLegacy/total?label=downloads&style=flat-square)
 
 ### [Blue Oak Bridge](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=flat-square)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=flat)
 
 ### [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=flat-square)
