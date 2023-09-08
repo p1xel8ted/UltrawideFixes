@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using UnityEngine;
 
-namespace TormentedSouls;
+namespace Ultrawide;
 
 [Harmony]
 public static class Patches

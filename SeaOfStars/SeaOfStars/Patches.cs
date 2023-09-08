@@ -13,6 +13,8 @@ public static class Patches
     [HarmonyPatch(typeof(OptionsScreen), nameof(OptionsScreen.UpdateVideoSettings))]
     public static void OptionsScreen_Awake(ref OptionsScreen __instance)
     {
+        __instance.pixelPerfectBtn.selectedIdx = 1;
+        __instance.fullscreenBtn.selectedIdx = 1;
         __instance.pixelPerfectBtn.IsEnabled = false;
         __instance.fullscreenBtn.IsEnabled = false;
         __instance.resolutionBtn.IsEnabled = false;
