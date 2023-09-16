@@ -4,7 +4,8 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Sea of Stars Ultra-wide</Product>
-      <Version>0.1.8</Version>
+      <Version>0.1.9</Version>
+      <AssemblyName>SeaOfStarsUltraWide</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
