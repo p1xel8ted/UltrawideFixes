@@ -14,6 +14,8 @@ public static class Patches
     public static void OptionsScreen_Awake(ref OptionsScreen __instance)
     {
         //makes the main display resolution the only available
+        __instance.pixelPerfectBtn.IsEnabled = false;
+        __instance.pixelPerfectBtn.selectedIdx = 1;
         __instance.fullscreenBtn.selectedIdx = 1;
         __instance.fullscreenBtn.IsEnabled = false;
         __instance.resolutionBtn.IsEnabled = false;

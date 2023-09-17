@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
-[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-Wide", "0.1.9", "p1xel8ted")]
+[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-Wide", "0.2.0", "p1xel8ted")]
 
 namespace SeaOfStars;
 
@@ -91,8 +91,22 @@ public class SeaOfStarsUltrawide : MelonMod
     /// <summary>
     /// Calculates the canvas position based on the difference between ultra width and normal width.
     /// </summary>
-    private static float CanvasPosition => (UltraWidth - NormalWidth) / 2f;
+    private static float CanvasPosition => CalculateX(UltraWidth);
 
+    private static float CalculateX(float targetWidth)
+    {
+        // Hardcoded reference resolution
+        const float referenceWidth1 = 2560f;
+
+        // Hardcoded ratio based on the reference values
+        const float ratio = 110f / 880f; // 0.125
+
+        // Calculate the change in width for the target resolution
+        var targetDeltaWidth = targetWidth - referenceWidth1;
+
+        // Calculate and return the x value for the target resolution
+        return ratio * targetDeltaWidth;
+    }
 
     public override void OnInitializeMelon()
     {
@@ -522,8 +536,8 @@ public class SeaOfStarsUltrawide : MelonMod
             // If casting fails, skip to the next iteration
             if (p == null) continue;
 
-            // Adjust properties based on the scene name or the camera's name
-            // Removes the black bars on the left and right sides of the screen (except for the initial scene and videos).
+            // // Adjust properties based on the scene name or the camera's name
+            // // Removes the black bars on the left and right sides of the screen (except for the initial scene and videos).
             if (sceneName.Equals(InitialScene) || p.name.Equals(VideoPlayerCamera))
             {
                 p.upscaleRT = false;
@@ -537,7 +551,6 @@ public class SeaOfStarsUltrawide : MelonMod
                 p.cropFrameY = false;
             }
 
-            // Set reference resolutions for the camera
             p.refResolutionX = 640;
             p.refResolutionY = 360;
         }
