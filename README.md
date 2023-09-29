@@ -64,6 +64,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
 
+### [Witch Spring R *WIP*](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
+
 ### [Wonder Boy Returns Remix](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonderBoyReturnsRemix)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonderBoyReturnsRemix/total?label=downloads&style=for-the-badge)
 
