@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement>
+        <ui:ScrollView>
+            <ui:Label text="Loading...&#10;" display-tooltip-when-elided="true" name="TermsText" style="white-space: normal; font-size: 14px;" />
+            <ui:VisualElement name="Buttons" style="flex-direction: row; justify-content: space-between; margin-right: 75px; margin-left: 75px; margin-top: 25px; margin-bottom: 25px;">
+                <ui:Button text="Accept" display-tooltip-when-elided="true" name="AcceptButton" style="width: 75px; -unity-font-style: bold; font-size: 16px;" />
+                <ui:Button text="Deny" display-tooltip-when-elided="true" name="DenyButton" style="width: 75px; font-size: 16px; -unity-font-style: bold;" />
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

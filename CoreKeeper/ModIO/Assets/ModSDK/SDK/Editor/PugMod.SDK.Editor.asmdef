@@ -1,0 +1,26 @@
+{
+    "name": "ModSDK.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Unity.ScriptableBuildPipeline",
+        "Unity.ScriptableBuildPipeline.Editor",
+        "PugMod.SDK",
+        "PugMod.Importer",
+        "modio.UnityPlugin",
+        "SpriteInstancing"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "modio.UnityPlugin.dll",
+        "SpriteInstancing.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

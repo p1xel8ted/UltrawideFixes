@@ -12,6 +12,7 @@ public static class TransformExtensions
             current = current.parent;
             path = current.name + "/" + path;
         }
+
         return path;
     }
 }

@@ -1,0 +1,2051 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -299622337, guid: 404fb530f12db4741a129c183017f5b5, type: 3}
+  m_Name: ConditionsTable
+  m_EditorClassIdentifier: 
+  conditionCategories:
+  - category: Appearance
+    conditions:
+    - Id: 190
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 47
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 189
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 208
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Armor
+    conditions:
+    - Id: 185
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 11
+      effect: 9
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 48
+      effect: 37
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 68
+      effect: 52
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 169
+      effect: 9
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 11
+      isUnique: 0
+    - Id: 124
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 125
+      effect: 37
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 48
+      isUnique: 0
+    - Id: 186
+      effect: 37
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 48
+      isUnique: 0
+  - category: Attack Speed
+    conditions:
+    - Id: 173
+      effect: 65
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 51
+      effect: 40
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 52
+      effect: 41
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 191
+      effect: 65
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 173
+      isUnique: 0
+    - Id: 172
+      effect: 65
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 173
+      isUnique: 0
+    - Id: 209
+      effect: 65
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 173
+      isUnique: 0
+    - Id: 86
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 198
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 171
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 141
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 87
+      effect: 40
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 51
+      isUnique: 0
+    - Id: 142
+      effect: 40
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 51
+      isUnique: 0
+  - category: Burn
+    conditions:
+    - Id: 30
+      effect: 17
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 163
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 164
+      effect: 16
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 29
+      isUnique: 0
+    - Id: 29
+      effect: 16
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 194
+      effect: 72
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 224
+      effect: 88
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Charm
+    conditions:
+    - Id: 214
+      effect: 80
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 215
+      effect: 81
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 216
+      effect: 82
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Cooking
+    conditions:
+    - Id: 79
+      effect: 54
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 80
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 138
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Crafting
+    conditions:
+    - Id: 122
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 120
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 119
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 121
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 123
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Crit
+    conditions:
+    - Id: 12
+      effect: 10
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 88
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 158
+      effect: 10
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 12
+      isUnique: 0
+    - Id: 89
+      effect: 10
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 12
+      isUnique: 0
+    - Id: 154
+      effect: 10
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 12
+      isUnique: 0
+    - Id: 153
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 157
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 65
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 66
+      effect: 10
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Crit Damage
+    conditions:
+    - Id: 99
+      effect: 57
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 195
+      effect: 73
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 148
+      effect: 57
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 99
+      isUnique: 0
+    - Id: 149
+      effect: 57
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 99
+      isUnique: 0
+  - category: Damage
+    conditions:
+    - Id: 150
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 162
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 10
+      effect: 8
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 22
+      effect: 22
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 144
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 145
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 160
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 161
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 75
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 76
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 152
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 111
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 112
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 109
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 110
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 150
+      isUnique: 0
+    - Id: 90
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 92
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 151
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 82
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 94
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 95
+      effect: 8
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 10
+      isUnique: 0
+    - Id: 84
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 100
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 57
+      effect: 46
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 93
+      effect: 8
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 10
+      isUnique: 0
+    - Id: 91
+      effect: 22
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 22
+      isUnique: 0
+    - Id: 83
+      effect: 8
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 10
+      isUnique: 0
+    - Id: 166
+      effect: 8
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 10
+      isUnique: 0
+    - Id: 55
+      effect: 44
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 54
+      effect: 43
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 167
+      effect: 22
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 22
+      isUnique: 0
+    - Id: 85
+      effect: 22
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 22
+      isUnique: 0
+    - Id: 101
+      effect: 22
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 22
+      isUnique: 0
+    - Id: 222
+      effect: 86
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 223
+      effect: 87
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Damage vs Bosses
+    conditions:
+    - Id: 96
+      effect: 55
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 134
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 135
+      effect: 55
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 96
+      isUnique: 0
+  - category: Deal Damage
+    conditions:
+    - Id: 17
+      effect: 14
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 206
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 207
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 184
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 192
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 38
+      effect: 3
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Damage Taken
+    conditions:
+    - Id: 33
+      effect: 29
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 168
+      effect: 29
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 33
+      isUnique: 0
+    - Id: 245
+      effect: 97
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 244
+      isUnique: 0
+    - Id: 244
+      effect: 97
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Dodge
+    conditions:
+    - Id: 15
+      effect: 13
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 70
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 71
+      effect: 13
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Durability
+    conditions:
+    - Id: 118
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 117
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Faction Change
+    conditions:
+    - Id: 188
+      effect: 27
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 28
+      effect: 27
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Fishing
+    conditions:
+    - Id: 178
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 133
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 136
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 180
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 131
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 176
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 46
+      effect: 36
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 132
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Gardening
+    conditions:
+    - Id: 126
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 128
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 23
+      effect: 23
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 127
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Glow
+    conditions:
+    - Id: 1
+      effect: 1
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 45
+      effect: 1
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 217
+      effect: 1
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Heal
+    conditions:
+    - Id: 5
+      effect: 4
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 211
+      effect: 78
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 3
+      effect: 3
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 44
+      effect: 35
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 146
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 147
+      effect: 4
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 5
+      isUnique: 0
+    - Id: 97
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 106
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 113
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 114
+      effect: 4
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 5
+      isUnique: 0
+    - Id: 107
+      effect: 4
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 5
+      isUnique: 0
+    - Id: 105
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 19
+      effect: 19
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Hunger
+    conditions:
+    - Id: 8
+      effect: 6
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 67
+      effect: 51
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 143
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 129
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 42
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 40
+      effect: 34
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 7
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 43
+      effect: 33
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 41
+      effect: 34
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 32
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 139
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 140
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Immunity
+    conditions:
+    - Id: 37
+      effect: 32
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 159
+      effect: 63
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 187
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 81
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 36
+      effect: 31
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 34
+      effect: 30
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 20
+      effect: 20
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 62
+      effect: 49
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 103
+      effect: 60
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 213
+      effect: 79
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 243
+      effect: 96
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Max Health
+    conditions:
+    - Id: 6
+      effect: 5
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 115
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 116
+      effect: 5
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 0
+    - Id: 16
+      effect: 68
+      isAdditiveWithSelf: 1
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Mining
+    conditions:
+    - Id: 9
+      effect: 7
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 49
+      effect: 38
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 50
+      effect: 39
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 56
+      effect: 45
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 193
+      effect: 71
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 1
+    - Id: 60
+      effect: 47
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 53
+      effect: 42
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Movement
+    conditions:
+    - Id: 4
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 39
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 170
+      effect: 64
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 18
+      isUnique: 0
+    - Id: 183
+      effect: 69
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 63
+      effect: 50
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 98
+      effect: 56
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 18
+      effect: 18
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 2
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 77
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 78
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 72
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 35
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 74
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 58
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 179
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 4
+      isUnique: 0
+    - Id: 73
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 137
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 227
+      effect: 89
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 59
+      effect: 2
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 4
+      isUnique: 0
+    - Id: 61
+      effect: 48
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 64
+      effect: 48
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Spawn Object
+    conditions:
+    - Id: 31
+      effect: 28
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 202
+      effect: 75
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 197
+      effect: 70
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 203
+      effect: 76
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 177
+      effect: 67
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 204
+      effect: 77
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 175
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 1
+  - category: Stun and Snare
+    conditions:
+    - Id: 26
+      effect: 25
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 102
+      effect: 59
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 219
+      effect: 83
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 69
+      effect: 53
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 27
+      effect: 26
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 104
+      effect: 58
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 220
+      effect: 84
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 221
+      effect: 85
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Pet
+    conditions:
+    - Id: 228
+      effect: 8
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 10
+      isUnique: 0
+    - Id: 230
+      effect: 22
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 22
+      isUnique: 0
+    - Id: 229
+      effect: 40
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 51
+      isUnique: 0
+    - Id: 231
+      effect: 41
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 52
+      isUnique: 0
+    - Id: 233
+      effect: 10
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 12
+      isUnique: 0
+    - Id: 232
+      effect: 57
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 99
+      isUnique: 0
+    - Id: 234
+      effect: 95
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 235
+      effect: 90
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 238
+      effect: 93
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 237
+      effect: 92
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 236
+      effect: 91
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 239
+      effect: 94
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 240
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 241
+      effect: 34
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Poison
+    conditions:
+    - Id: 13
+      effect: 11
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 156
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 14
+      effect: 12
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 165
+      effect: 30
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 130
+      effect: 61
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Thorns
+    conditions:
+    - Id: 21
+      effect: 21
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 196
+      effect: 74
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: Unique
+    conditions:
+    - Id: 200
+      effect: 68
+      isAdditiveWithSelf: 0
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 1
+    - Id: 199
+      effect: 68
+      isAdditiveWithSelf: 0
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 1
+    - Id: 201
+      effect: 68
+      isAdditiveWithSelf: 0
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 1
+    - Id: 212
+      effect: 68
+      isAdditiveWithSelf: 0
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 1
+    - Id: 218
+      effect: 68
+      isAdditiveWithSelf: 0
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 1
+    - Id: 242
+      effect: 68
+      isAdditiveWithSelf: 0
+      isPermanent: 1
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 6
+      isUnique: 1
+  - category: Other
+    conditions:
+    - Id: 155
+      effect: 62
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 1
+    - Id: 25
+      effect: 24
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 108
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 174
+      effect: 66
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 182
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 205
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 181
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 24
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 1
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 210
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 225
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+    - Id: 226
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: None
+    conditions:
+    - Id: 0
+      effect: 0
+      isAdditiveWithSelf: 0
+      isPermanent: 0
+      isNegative: 0
+      icon: {fileID: 0}
+      useSameDescAsId: 0
+      isUnique: 0
+  - category: NEW (move these conditions to their corresponding category)
+    conditions: []

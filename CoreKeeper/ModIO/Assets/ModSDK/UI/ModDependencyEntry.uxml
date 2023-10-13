@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ModDependencyEntry" style="display: flex;">
+        <ui:TextField picking-mode="Ignore" label="Name" name="ModDependencyEntryName" tooltip="The name of the mod dependency" />
+        <ui:Toggle label="Required" name="ModDependencyEntryRequired" tooltip="Whether the dependency is required or not" />
+    </ui:VisualElement>
+</ui:UXML>

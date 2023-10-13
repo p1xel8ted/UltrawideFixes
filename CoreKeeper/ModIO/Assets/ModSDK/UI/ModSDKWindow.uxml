@@ -1,0 +1,69 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Main" style="flex-direction: row; flex-grow: 1;">
+        <ui:VisualElement name="Tabs" style="width: 170px; margin-right: 10px;">
+            <ui:Button text="Start" display-tooltip-when-elided="true" name="StartTabButton" />
+            <ui:Button text="Find game files" display-tooltip-when-elided="true" name="UpdateSDKTabButton" />
+            <ui:Button text="Mod settings" display-tooltip-when-elided="true" name="CreateModTabButton" style="display: flex;" />
+            <ui:Button text="Log in to mod.io" display-tooltip-when-elided="true" name="LogInTabButton" style="margin-top: 20px; margin-right: 15px; margin-left: 15px; min-width: 100px;" />
+            <ui:Button text="Search Mods" display-tooltip-when-elided="true" name="SearchModTabButton" style="display: none;" />
+            <ui:Button text="Upload Mod" display-tooltip-when-elided="true" name="UploadModTabButton" style="display: none;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Content" style="min-width: 350px;">
+            <ui:Label text="Core Keeper Mod SDK" name="Title" style="align-items: center; justify-content: center; -unity-text-align: upper-center; -unity-font-style: bold; font-size: 18px; color: rgb(210, 210, 210); margin-bottom: 10px;" />
+            <ui:VisualElement name="StartView" style="visibility: visible; flex-grow: 1; overflow: visible; display: flex;">
+                <ui:ScrollView name="StartViewScroll">
+                    <ui:Label text="&lt;b&gt;Welcome to the Core Keeper Mod SDK.&lt;/b&gt;&#10;&#10;First go to the &lt;link=UpdateSDKTabButton&gt;Find game files&lt;/link&gt; menu and update the SDK by pulling the necessary assets from the &lt;i&gt;Core Keeper&lt;/i&gt; game folder.&#10;&#10;You can create a mod in the &lt;link=ModTabButton&gt;Mod settings&lt;/link&gt; menu. The typical workflow is to name and create the mod, which will construct the basic mod structure in the project at e.g. &quot;Assets/My Mod&quot;. Then you can add and modify mod files as you wish to create the functionality you want.&#10;&#10;To test your mod, use the &quot;Install Mod&quot; button to export your mod to a local install of the game.&#10;&#10;After you are satisfied you can log in to mod.io which will allow you to upload the mod to the &lt;b&gt;mod.io&lt;/b&gt; page where it will be publicly accessible. Do the upload step again when you want to update the mod.&#10;&#10;Feel free to check out the examples (after updating the SDK from the &quot;Find game files menu&quot;) by extracting the Assets/Examples.zip file in the same folder.&#10;&#10;Find more information at the &lt;link=https://mod.io/g/corekeeper/&gt;Core Keeper mod.io page&lt;/link&gt;." display-tooltip-when-elided="true" name="StartViewText" enable-rich-text="true" style="-unity-font-style: normal; white-space: normal; -unity-text-align: upper-center; margin-right: 10px; margin-left: 10px;" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="UpdateSDKView" style="visibility: visible; flex-grow: 1; display: none;">
+                <ui:Label text="Choose a path from the drop down or press the button to manually select the path to the game install folder." display-tooltip-when-elided="true" name="UpdateSDKInfoText" style="white-space: normal; margin-bottom: 10px;" />
+                <ui:DropdownField label="Install Path" index="-1" name="UpdateSDKChooseGamePath" />
+                <ui:VisualElement name="UpdateSDKButtons" style="align-items: center; margin-top: 50px;">
+                    <ui:Button text="Select path to Core Keeper files" display-tooltip-when-elided="true" name="UpdateSDKChooseGamePathManually" style="margin-top: 10px; width: 50%; min-width: 100px; white-space: normal;" />
+                    <ui:Button text="Update" display-tooltip-when-elided="true" name="UpdateSDKUpdateButton" style="margin-top: 10px; width: 50%; min-width: 100px; white-space: normal;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="SearchModView" style="visibility: visible; flex-grow: 1; display: none;">
+                <ui:ListView focusable="true" />
+            </ui:VisualElement>
+            <ui:VisualElement name="UploadModView" style="visibility: visible; display: none;">
+                <ui:DropdownField label="Mod" index="-1" name="UploadModModList" style="margin-bottom: 10px;" />
+                <ui:VisualElement name="UploadModForm">
+                    <ui:VisualElement style="flex-direction: row;">
+                        <ui:VisualElement>
+                            <ui:TextField picking-mode="Ignore" label="ID" name="UploadModID" readonly="true" style="display: none;" />
+                            <ui:VisualElement style="flex-direction: column; justify-content: space-between; margin-bottom: 5px;">
+                                <ui:TextField picking-mode="Ignore" label="Name" name="UploadModName" readonly="false" style="display: none;" />
+                                <ui:TextField picking-mode="Ignore" text="Describe mod here with a short summary." name="UploadModSummary" multiline="true" style="margin-top: 5px; margin-bottom: 5px; width: 200px; height: auto; white-space: normal; min-height: 50px;" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement name="UploadModLogo" style="width: 80px; height: 45px; margin-left: 45px; margin-top: 7px;">
+                            <ui:Button display-tooltip-when-elided="true" tooltip="Press to change logo" name="UploadModLogoButton" style="display: flex; visibility: visible; height: 45px; width: 80px; opacity: 0;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:TextField picking-mode="Ignore" label="URL" name="UploadModURL" readonly="false" style="display: none;" />
+                    <ui:TextField picking-mode="Ignore" label="Tags" name="UploadModTags" readonly="false" style="display: none;" />
+                    <ui:Button text="Register at mod.io" display-tooltip-when-elided="true" name="CreateModProfile" />
+                    <ui:Button text="Upload to mod.io" display-tooltip-when-elided="true" name="UploadModButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="CreateModView" style="visibility: visible; display: none;">
+                <ui:DropdownField label="Mod" index="-1" name="CreateModModList" choices="New Mod" style="margin-bottom: 10px;" />
+                <ui:VisualElement name="CreateModForm">
+                    <ui:TextField picking-mode="Ignore" label="Name" name="CreateModName" readonly="false" style="min-width: 300px;" />
+                    <ui:VisualElement style="align-items: center; margin-top: 10px;">
+                        <ui:Button text="Create" display-tooltip-when-elided="true" name="CreateModButton" style="width: 50%;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="LocalExportForm">
+                    <ui:VisualElement name="ModSettings">
+                        <ui:Toggle label="Require for multiplayer" name="RequiredOnServerAndClient" tooltip="Will enforce the mod to be present for connecting clients as well" />
+                        <ui:ListView focusable="true" name="ModDependencies" show-foldout-header="true" show-add-remove-footer="true" header-title="Dependencies" reorderable="true" reorder-mode="Simple" show-border="true" virtualization-method="DynamicHeight" show-alternating-row-backgrounds="All" />
+                    </ui:VisualElement>
+                    <ui:Label display-tooltip-when-elided="true" name="LocalExportGamePath" text="Go to &apos;Find game files&apos; to set correct path for mod loading." style="margin-left: 5px;" />
+                    <ui:Button text="Install Mod" display-tooltip-when-elided="true" name="LocalExportButton" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

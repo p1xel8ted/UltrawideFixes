@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - SceneHandler
+  - Manager
+  - GlobalParent
+  - Agent
+  - Fences
+  - Edible
+  - IgnoreCarrotRay
+  - EditorJunk
+  - DontClearParticles
+  - ExcludeFromSpriteAutoSort
+  - Bullet
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Light
+  - Water
+  - UI
+  - StaticWorld
+  - FacingUpwards
+  - AgentPhysics
+  - Player
+  - FloatyBits
+  - Flocking
+  - PlayerDetector
+  - NoClip
+  - PlayerDamageable
+  - AgentPhysicsNonSelfCollide
+  - AgentDetector
+  - TransparentFXIndirect
+  - WorldUI
+  - ShadowsOnly
+  - ColorShadow
+  - IndirectOnly
+  - GroundShadow
+  - CeilingHole
+  - 
+  - HighRes
+  - UI Quad
+  - HUD
+  - Background
+  - 
+  - 
+  - NoCollisionNoRender
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 879445059
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Back
+    uniqueID: 1806931759
+    locked: 0
+  - name: Main
+    uniqueID: 1861650685
+    locked: 0
+  - name: Front
+    uniqueID: 2997796991
+    locked: 0
+  - name: PreGUI
+    uniqueID: 1627149839
+    locked: 0
+  - name: GUI
+    uniqueID: 1241602095
+    locked: 0

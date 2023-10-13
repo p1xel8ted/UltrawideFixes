@@ -1,0 +1,308 @@
+{
+    "enableSRPBatching": true,
+    "logRTCreation": false,
+    "logUtilityCameraCreation": false,
+    "showLightDebugInfo": false,
+    "hidePugSpriteRenderers": true,
+    "snappingAccountsForOrigin": true,
+    "sharedCullPass": true,
+    "pixelsPerMeter": 16.0,
+    "shadowResolution": 128,
+    "maxShadowUpdatesPerFrame": 4,
+    "m_RenderingLayerNames": [
+        "Default",
+        "Layer2",
+        "Layer3",
+        "Layer4",
+        "Layer5",
+        "Layer6",
+        "Layer7",
+        "Layer8",
+        "Layer9",
+        "Layer10",
+        "Layer11",
+        "Layer12",
+        "Layer13",
+        "Layer14",
+        "Layer15",
+        "Layer16",
+        "Layer17",
+        "Layer18",
+        "Layer19",
+        "Layer20",
+        "Layer21",
+        "Layer22",
+        "Layer23",
+        "Layer24",
+        "Layer25",
+        "Layer26",
+        "Layer27",
+        "Layer28",
+        "Layer29",
+        "Layer30",
+        "Layer31",
+        "Layer32"
+    ],
+    "shadowCastingLayers": {
+        "serializedVersion": "2",
+        "m_Bits": 524352
+    },
+    "indirectOnlyLayer": 21,
+    "lightFalloffCurve": {
+        "serializedVersion": "2",
+        "m_Curve": [
+            {
+                "serializedVersion": "3",
+                "time": 0.0025014355778694154,
+                "value": 1.0,
+                "inSlope": -2.0856308937072756,
+                "outSlope": -2.0856308937072756,
+                "tangentMode": 0,
+                "weightedMode": 0,
+                "inWeight": 0.0,
+                "outWeight": 0.17816312611103059
+            },
+            {
+                "serializedVersion": "3",
+                "time": 0.18533748388290406,
+                "value": 0.8870865702629089,
+                "inSlope": -0.010543142445385456,
+                "outSlope": -4.647226333618164,
+                "tangentMode": 1,
+                "weightedMode": 3,
+                "inWeight": 0.3333333432674408,
+                "outWeight": 0.16638925671577454
+            },
+            {
+                "serializedVersion": "3",
+                "time": 0.41057106852531435,
+                "value": 0.5231634378433228,
+                "inSlope": -0.08860716968774796,
+                "outSlope": -2.2612695693969728,
+                "tangentMode": 1,
+                "weightedMode": 3,
+                "inWeight": 0.7410608530044556,
+                "outWeight": 0.3333333432674408
+            },
+            {
+                "serializedVersion": "3",
+                "time": 1.0,
+                "value": 0.0,
+                "inSlope": -0.031021466478705407,
+                "outSlope": -0.031021466478705407,
+                "tangentMode": 0,
+                "weightedMode": 0,
+                "inWeight": 0.0830734595656395,
+                "outWeight": 0.0
+            }
+        ],
+        "m_PreInfinity": 2,
+        "m_PostInfinity": 2,
+        "m_RotationOrder": 4
+    },
+    "lightFalloffDither": 0.0,
+    "singlePassPointShadows": true,
+    "pointShadowBias": 1.0,
+    "pointShadowSamples": 1,
+    "pointShadowSoftness": 0.0,
+    "spotShadowBias": 1.0,
+    "spotShadowSamples": 1,
+    "spotShadowSoftness": 0.0,
+    "ditherTexture": {
+        "instanceID": 26532
+    },
+    "noiseTextures": [
+        {
+            "instanceID": 26534
+        },
+        {
+            "instanceID": 26536
+        },
+        {
+            "instanceID": 26538
+        },
+        {
+            "instanceID": 26540
+        },
+        {
+            "instanceID": 26542
+        },
+        {
+            "instanceID": 26544
+        },
+        {
+            "instanceID": 26546
+        },
+        {
+            "instanceID": 26548
+        },
+        {
+            "instanceID": 26550
+        },
+        {
+            "instanceID": 26552
+        },
+        {
+            "instanceID": 26554
+        },
+        {
+            "instanceID": 26556
+        },
+        {
+            "instanceID": 26558
+        },
+        {
+            "instanceID": 26560
+        },
+        {
+            "instanceID": 26562
+        },
+        {
+            "instanceID": 26564
+        },
+        {
+            "instanceID": 26566
+        },
+        {
+            "instanceID": 26568
+        },
+        {
+            "instanceID": 26570
+        },
+        {
+            "instanceID": 26572
+        },
+        {
+            "instanceID": 26574
+        },
+        {
+            "instanceID": 26576
+        },
+        {
+            "instanceID": 26578
+        },
+        {
+            "instanceID": 26580
+        },
+        {
+            "instanceID": 26582
+        },
+        {
+            "instanceID": 26584
+        },
+        {
+            "instanceID": 26586
+        },
+        {
+            "instanceID": 26588
+        },
+        {
+            "instanceID": 26590
+        },
+        {
+            "instanceID": 26592
+        },
+        {
+            "instanceID": 26594
+        },
+        {
+            "instanceID": 26596
+        },
+        {
+            "instanceID": 26598
+        },
+        {
+            "instanceID": 26600
+        },
+        {
+            "instanceID": 26602
+        },
+        {
+            "instanceID": 26604
+        },
+        {
+            "instanceID": 26606
+        },
+        {
+            "instanceID": 26608
+        },
+        {
+            "instanceID": 26610
+        },
+        {
+            "instanceID": 26612
+        },
+        {
+            "instanceID": 26614
+        },
+        {
+            "instanceID": 26616
+        },
+        {
+            "instanceID": 26618
+        },
+        {
+            "instanceID": 26620
+        },
+        {
+            "instanceID": 26622
+        },
+        {
+            "instanceID": 26624
+        },
+        {
+            "instanceID": 26626
+        },
+        {
+            "instanceID": 26628
+        },
+        {
+            "instanceID": 26630
+        },
+        {
+            "instanceID": 26632
+        },
+        {
+            "instanceID": 26634
+        },
+        {
+            "instanceID": 26636
+        },
+        {
+            "instanceID": 26638
+        },
+        {
+            "instanceID": 26640
+        },
+        {
+            "instanceID": 26642
+        },
+        {
+            "instanceID": 26644
+        },
+        {
+            "instanceID": 26646
+        },
+        {
+            "instanceID": 26648
+        },
+        {
+            "instanceID": 26650
+        },
+        {
+            "instanceID": 26652
+        },
+        {
+            "instanceID": 26654
+        },
+        {
+            "instanceID": 26656
+        },
+        {
+            "instanceID": 26658
+        },
+        {
+            "instanceID": 26660
+        }
+    ]
+}

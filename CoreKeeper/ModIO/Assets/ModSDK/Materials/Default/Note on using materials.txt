@@ -1,0 +1,8 @@
+-- NOTE ON UGC (USER-GENERATED CONTENT) MATERIALS --
+
+The materials in this folder are intended to be used with native Unity SpriteRenderers and Particle Systems.
+If you are making an Opaque (non-transparent/seethrough) sprite, try using the SpriteObject/SpriteAsset workflow instead!
+That system has been created to enable a very streamlined sprite animation workflow, plus SpriteObjects are much faster to drawn than SpriteRenderers!
+
+Note that these materials simply act as dummy materials for previewing user-generated content. During runtime they are swapped out for actual game materials.
+As such, if you make changes to the material/shader it will not carry over to the game. You should also avoid moving and/or deleting these materials.

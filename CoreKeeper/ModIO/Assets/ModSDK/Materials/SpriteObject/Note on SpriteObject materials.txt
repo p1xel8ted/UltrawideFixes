@@ -1,0 +1,9 @@
+-- NOTE ON SPRITE OBJECT MATERIALS --
+
+SpriteObjects are special renderers that are gathered in big lists and drawn together in very few draw calls.
+This makes them very efficient, but also means they are not sorted in any way before being drawn.
+Because of this, they only support opaque (non-transparent/seethrough) or certain special (ground shadow + indirect light) sprites.
+If you need to implement transparent effects, use the regular materials.
+
+Note that these materials simply act as dummy materials for previewing user-generated content. During runtime they are swapped out for actual game materials.
+As such, if you make changes to the material/shader it will not carry over to the game. You should also avoid moving and/or deleting these materials.
