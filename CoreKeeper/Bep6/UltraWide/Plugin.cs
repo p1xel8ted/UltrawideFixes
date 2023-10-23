@@ -19,6 +19,10 @@ public class Plugin : BaseUnityPlugin
 
     private const string LeftPillarBoxName = "Left";
     private const string RightPillarBoxName = "Right";
+    
+    private static float AspectRatio => Display.main.systemWidth / (float) Display.main.systemHeight;
+    private static float DisplayWidth => Display.main.systemWidth;
+    private static float DisplayHeight => Display.main.systemHeight;
     private static ConfigEntry<bool> UseCustomMaxWidth { get; set; }
     private static ConfigEntry<int> CustomMaxWidth { get; set; }
 
@@ -29,7 +33,6 @@ public class Plugin : BaseUnityPlugin
 
     private static int CalculateMaxWidth()
     {
-        var aspect = Display.main.systemWidth / (float) Display.main.systemHeight;
 
         // Define your reference points (16:9 and 3440x1440)
         const float minAspect = 16f / 9f;  
@@ -41,16 +44,16 @@ public class Plugin : BaseUnityPlugin
         float maxWidth;
 
         // If the aspect is less than or equal to the reference aspect (3440x1440)
-        if (aspect <= refAspect)
+        if (AspectRatio <= refAspect)
         {
             // Interpolate between minWidth (480) and refWidth (648) based on the aspect ratio
-            var t = (aspect - minAspect) / (refAspect - minAspect);
+            var t = (AspectRatio - minAspect) / (refAspect - minAspect);
             maxWidth = minWidth + (refWidth - minWidth) * t;
         }
         else
         {
             // If the aspect is larger than the reference aspect, scale proportionally
-            maxWidth = refWidth * (aspect / refAspect);
+            maxWidth = refWidth * (AspectRatio / refAspect);
         }
 
         // Increase by 2% and round
@@ -89,7 +92,7 @@ public class Plugin : BaseUnityPlugin
             
         };
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, 120);
+        Screen.SetResolution((int) DisplayWidth, (int) DisplayHeight, true, 120);
         Time.fixedDeltaTime = 1f / 120f;
 
     }
@@ -111,7 +114,7 @@ public class Plugin : BaseUnityPlugin
             }
             if (cam.camera != null)
             {
-                cam.camera.aspect = Display.main.systemWidth / (float) Display.main.systemHeight;
+                cam.camera.aspect = AspectRatio;
             }
 
             cam.outputSmoothing = true;
@@ -121,6 +124,14 @@ public class Plugin : BaseUnityPlugin
 
     private static void RemovePillars()
     {
+        
+        var ppb = Resources.FindObjectsOfTypeAll<PP_BlackBorders>();
+        foreach (var pp in ppb)
+        {
+            pp.aspectRatio = AspectRatio;
+            pp.letterboxHeight = DisplayHeight;
+            pp.letterboxWidth = DisplayWidth;
+        }
         var spr = Resources.FindObjectsOfTypeAll<SpriteRenderer>();
         foreach (var s in spr)
         {
@@ -128,7 +139,7 @@ public class Plugin : BaseUnityPlugin
             {
                 s.gameObject.SetActive(false);
             }
-
+        
             if (s.name == RightPillarBoxName)
             {
                 s.gameObject.SetActive(false);
@@ -164,14 +175,15 @@ public class Plugin : BaseUnityPlugin
         var cameras = Resources.FindObjectsOfTypeAll<Camera>();
         foreach (var cam in cameras)
         {
-            cam.aspect = Display.main.systemWidth / (float) Display.main.systemHeight;
-            cam.pixelRect = new Rect(0, 0, Display.main.systemWidth, Display.main.systemHeight);
+            cam.aspect = AspectRatio;
+            cam.pixelRect = new Rect(0, 0, DisplayWidth, DisplayHeight);
+            cam.rect = new Rect(0, 0, DisplayWidth, DisplayHeight);
         }
     }
 
     private static void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, 120);
+        Screen.SetResolution((int) DisplayWidth, (int) DisplayHeight, true, 120);
         UpdateCameras();
         UpdatePugCameras();
         RemovePillars();

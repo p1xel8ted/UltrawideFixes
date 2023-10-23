@@ -396,7 +396,7 @@ public class SeaOfStarsUltrawide : MelonMod
         Screen.SetResolution((int) UltraWidth, (int) Height, FullScreenMode.FullScreenWindow, MaxRefresh);
 
         // Process and modify properties of Image objects in the scene
-        ProcessImages();
+       // ProcessImages();
 
         // Process and modify properties of Canvas objects in the scene
         ProcessCanvas(sceneName);

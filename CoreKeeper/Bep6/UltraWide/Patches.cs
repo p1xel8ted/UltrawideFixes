@@ -1,93 +1,67 @@
-﻿// using HarmonyLib;
-//
-// namespace UltraWide;
-//
-// [HarmonyPatch]
-// public static class Patches
-// {
-    
-    // [HarmonyPrefix]
-    // [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.UpdateOrigoTransforms))]
-    // public static bool CameraManager_UpdateOrigoTransforms(ref CameraManager __instance, ref Vector3Int newRenderOrigo)
-    // {
+﻿using HarmonyLib;
+using PugRP;
+using PugTilemap;
+using Unity.Collections;
+using Unity.Entities;
+using Unity.Mathematics;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+namespace UltraWide;
+
+[HarmonyPatch]
+public static class Patches
+{
+    // public static int XSize = 18;
+    // public static int ZSize = 12;
     //     
-    //     foreach (Transform transform in __instance.origoTransformList)
-    //     {
-    //         transform.position -= newRenderOrigo - __instance.RenderOrigo;
-    //     }
-    //     if (__instance.OrigoTransform.localPosition.sqrMagnitude > 10)
-    //     {
-    //         int count = __instance.origoTransformList.Count;
-    //         __instance.origoTransformList.Add(new GameObject("OrigoTransform").transform);
-    //         __instance.origoTransformList[count].SetParent(__instance.transform);
-    //         __instance.origoTransformList[count].localPosition = Vector3.zero;
-    //     }
-    //     for (int i = __instance.origoTransformList.Count - 2; i >= 0; i--)
-    //     {
-    //         if (__instance.origoTransformList[i].localPosition.sqrMagnitude > 90)
-    //         {
-    //             foreach (object obj in __instance.origoTransformList[i])
-    //             {
-    //                 ((Transform)obj).SetParent(__instance.OrigoTransform, true);
-    //             }
-    //         }
-    //     }
-    //     for (int j = __instance.origoTransformList.Count - 2; j >= 0; j--)
-    //     {
-    //         if (__instance.origoTransformList[j].childCount == 0)
-    //         {
-    //             UnityEngine.Object.Destroy(__instance.origoTransformList[j].gameObject);
-    //             __instance.origoTransformList.RemoveAt(j);
-    //         }
-    //     }
-    //
-    //     return false;
-    // }
+    // private static int newMinX;
+    // private static int newMaxX;
+    // private static int newMinZ;
+    // private static int newMaxZ;
     
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.Init))]
-    // public static void CameraManager_Init(ref CameraManager __instance)
-    // {
-    //     Plugin.Log.LogWarning($"CameraManager.Awake {__instance}");
-    //     __instance.backgroundCameraRenderRate = 120;
-    // }
-    //
-    // [HarmonyPrefix]
-    // [HarmonyPatch(typeof(SinglePugMap), nameof(SinglePugMap.Clear))]
-    // [HarmonyPatch(typeof(SinglePugMap), nameof(SinglePugMap.ClearTileOfType))]
-    // [HarmonyPatch(typeof(SinglePugMap), nameof(SinglePugMap.ClearHiddenTileOfTypeAndTileset))]
-    // public static bool SinglePugMap_Clear(ref SinglePugMap __instance)
-    // {
-    //     return false;
-    // }
-    //
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.RenderOrigo), MethodType.Getter)]
-    // public static void CameraManager_RenderOrigo_Get(ref CameraManager __instance, ref Vector3Int __result)
-    // {
-    //     if (__result != Vector3Int.zero)
-    //     {
-    //         __result.x += 20;
-    //     }
-    //    Plugin.Log.LogWarning($"CameraManager.RenderOrigo GET {__result}");
-    //    Plugin.Log.LogWarning($"CameraManager backgroundCameraRenderRate {__instance.backgroundCameraRenderRate}");
-    // }
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ShaderTexturesSystem), nameof(ShaderTexturesSystem.OnUpdate))]
+    public static bool ShaderTexturesSystem_OnUpdate(ref ShaderTexturesSystem __instance)
+    {
+        if (Manager.sceneHandler.isInGame)
+        {
+
+            Vector3Int renderOrigo = Manager.camera.RenderOrigo;
+            int num = renderOrigo.x;
+            int num2 = renderOrigo.x;
+            int num3 = renderOrigo.z;
+            int num4 = renderOrigo.z;
+            NativeArray<Color32> rawTextureData = __instance.finalizeSystem.electricityTex.GetRawTextureData<Color32>();
+            NativeArray<Color32> rawTextureData2 = __instance.finalizeSystem.ignoreVertexOffsetTex.GetRawTextureData<Color32>();
+            BlobAssetReference<PugDatabase.PugDatabaseBank> blobAssetReference = __instance.database;
+            int num5 = 36;
+            //red
+            Color32 color = __instance.black;
+            __instance.ShaderTexturesSystem_LambdaJob_4_Execute(num, num2, num3, num4, rawTextureData2, color);
+            __instance.ShaderTexturesSystem_LambdaJob_0_Execute(num, num2, num3, num4, rawTextureData2, blobAssetReference, num5);
+             __instance.ShaderTexturesSystem_LambdaJob_5_Execute(num, num2, num3, num4, rawTextureData, color);
+            __instance.ShaderTexturesSystem_LambdaJob_1_Execute(num, num2, num3, num4, rawTextureData, num5);
+            __instance.ShaderTexturesSystem_LambdaJob_2_Execute(num, num2, num3, num4, rawTextureData, num5);
+            NativeArray<bool> nativeArray = CollectionHelper.CreateNativeArray<bool>(1, __instance.World.UpdateAllocator.Handle, NativeArrayOptions.ClearMemory);
+            nativeArray[0] = true;
+            __instance.ShaderTexturesSystem_LambdaJob_3_Execute(nativeArray);
+            int2 origo = Manager.multiMap.Origo;
+            NativeParallelMultiHashMap<int2, TileInfo> tileLookup = Manager.multiMap.tileLookup;
+            NativeArray<int> surfacePriorityLookup = TileTypeUtility.GetSurfacePriorityLookup(__instance.World.UpdateAllocator.Handle);
+            __instance.ShaderTexturesSystem_LambdaJob_6_Execute(renderOrigo, num, num2, num3, num4, rawTextureData2, blobAssetReference, nativeArray, origo, tileLookup, surfacePriorityLookup);
+            return false;
+        }
+
+        return true;
+    }
     
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.RenderOrigo), MethodType.Setter)]
-    // public static void CameraManager_RenderOrigo_Set(ref CameraManager __instance, ref Vector3Int value)
-    // {
-    //     if (value != Vector3Int.zero)
-    //     {
-    //         value.x += 10;
-    //     }
-    //     Plugin.Log.LogWarning($"CameraManager.RenderOrigo SET {value}");
-    // }
-    //
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.UpdateBackgroundCameras))]
-    // public static void CameraManager_UpdateBackgroundCameras(ref CameraManager __instance)
-    // {
-    //     Plugin.Log.LogWarning($"CameraManager.UpdateBackgroundCameras");
-    // }
-// }
+    [HarmonyPrefix]  
+    [HarmonyPatch(typeof(LoadingScene), nameof(LoadingScene.Awake))]
+    public static bool LoadingScene_Start(ref LoadingScene __instance)
+    {
+        Manager.InitializeGlobalManager();
+        Manager.load.LoadSceneImmediately(new LoadManager.LoadingQueueEntry("Title", 0f, 0f, FadePresets.blackToBlack, 0),false);
+        return false;
+    }
+}
