@@ -18,6 +18,7 @@ public class Plugin : BaseUnityPlugin
     private const string PluginName = "Agatha Christie - MoE Cutscene Fix";
     private const string PluginVersion = "0.0.1";
     private const string BlackBorders = "BlackBorders";
+    private const string Shoulder = "shoulder";
     private static ManualLogSource LOG { get; set; }
     private static List<AspectRatioFitter> AspectRatioFitters { get; } = new();
     private static List<AspectRatioFitterMax> AspectRatioFitterMaxs { get; } = new();
@@ -28,9 +29,9 @@ public class Plugin : BaseUnityPlugin
     private void Awake()
     {
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-        AspectModeConfig = Config.Bind("Video", "Aspect Mode", AspectRatioFitter.AspectMode.None);
+        AspectModeConfig = Config.Bind("Video", "Aspect Mode", AspectRatioFitter.AspectMode.None, new ConfigDescription("Suggest leaving this on None, but you can try other modes if you want to. You will need to restart the game to go back to None."));
         AspectModeConfig.SettingChanged += (_, _) => { UpdateAr(); };
-        GateFitConfig = Config.Bind("Video", "Gate Fit", Camera.GateFitMode.Horizontal);
+        GateFitConfig = Config.Bind("Video", "Gate Fit", Camera.GateFitMode.Vertical, new ConfigDescription("Switch between Hor+ etc. Vertical = Hor+ (default), Horizontal = Vert+, Overscan = Hor-, None = Vert-."));
         GateFitConfig.SettingChanged += (_, _) => { UpdateGateFit(); };
         LOG = new ManualLogSource("Agatha Christie - MoE Cutscene Fix");
         BepInEx.Logging.Logger.Sources.Add(LOG);
@@ -39,7 +40,7 @@ public class Plugin : BaseUnityPlugin
 
     private static void UpdateGateFit()
     {
-        ShoulderCam ??= Resources.FindObjectsOfTypeAll<CinemachineVirtualCamera>().FirstOrDefault(a => a.name.ToLowerInvariant().Contains("shoulder"));
+        ShoulderCam ??= Resources.FindObjectsOfTypeAll<CinemachineVirtualCamera>().FirstOrDefault(a => a.name.ToLowerInvariant().Contains(Shoulder));
         if (ShoulderCam == null) return;
         var lens = ShoulderCam.m_Lens;
         lens.GateFit = GateFitConfig.Value;
