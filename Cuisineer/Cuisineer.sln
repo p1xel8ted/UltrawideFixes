@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cuisineer", "Cuisineer\Cuisineer.csproj", "{CBC22BEC-5A6A-4C13-A803-DF6C624370D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBC22BEC-5A6A-4C13-A803-DF6C624370D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBC22BEC-5A6A-4C13-A803-DF6C624370D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBC22BEC-5A6A-4C13-A803-DF6C624370D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBC22BEC-5A6A-4C13-A803-DF6C624370D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

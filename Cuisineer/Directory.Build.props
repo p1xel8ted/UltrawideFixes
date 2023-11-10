@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <!--Base Settings-->
+  <PropertyGroup>
+     
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+<Company>p1xel8ted</Company>
+          <Authors>p1xel8ted</Authors>
+     <IsPackable>false</IsPackable>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>Publicizer001,CS1591</NoWarn>
+        <Nullable>disable</Nullable>
+      <Description>$(MSBuildProjectName)</Description>
+  </PropertyGroup>
+
+  <!--Default all references to CopyLocal False.-->
+  <ItemDefinitionGroup>
+    <Reference><Private>False</Private></Reference>
+    <ProjectReference><Private>False</Private></ProjectReference>
+    <PackageReference><Private>False</Private></PackageReference>
+  </ItemDefinitionGroup>
+    
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+      <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <OutputPath>F:\Games\steamapps\common\Cuisineer\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <OutputPath>F:\Games\steamapps\common\Cuisineer\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+
+
+</Project>
