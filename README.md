@@ -22,6 +22,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
 
+### [Cuisineer](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Cuisineer)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Cuisineer/total?label=downloads&style=for-the-badge)
+
 ### [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DarkestDungeon2/total?label=downloads&style=for-the-badge)
 
