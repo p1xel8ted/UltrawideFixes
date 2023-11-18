@@ -13,6 +13,9 @@ Tested against retail Steam version @ 3440x1440.
 - Added option to change the field of view.
 - Skip intro stuff.
 
+## Configuration
+- Press F1 in game
+
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome).
 - Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Smushi Come Home`** for Steam).
