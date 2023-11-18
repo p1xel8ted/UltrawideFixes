@@ -2,7 +2,7 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.Cuisineer.iml
-/projectSettingsUpdater.xml
-/modules.xml
 /contentModel.xml
+/.idea.SmushiComeHome.iml
+/modules.xml
+/projectSettingsUpdater.xml
