@@ -46,6 +46,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
+### [Smushi Come Home](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SmushiComeHome/total?label=downloads&style=for-the-badge)
+
 ### [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
 
