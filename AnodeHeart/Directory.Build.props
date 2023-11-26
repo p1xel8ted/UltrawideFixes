@@ -33,13 +33,12 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DebugType>portable</DebugType>
     </PropertyGroup>
-
-      <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <OutputPath>H:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>H:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <OutputPath>H:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>H:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

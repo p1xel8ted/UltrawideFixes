@@ -6,6 +6,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -24,13 +25,11 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<float> ConfigScale { get; set; }
     internal static ConfigEntry<float> ConfigZoom { get; private set; }
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-    private static float OriginalScale => Utils.GetNewScale(Utils.UiReferenceResolutionHeight);
 
     private void Awake()
     {
         Instance = this;
         Log = Logger;
-
         ConfigScale = Config.Bind("01. General", "UI Scale", 1f,
             new ConfigDescription("Scale of the UI.",
                 new AcceptableValueRange<float>(0.1f, 2f), new ConfigurationManagerAttributes {Order = 2}));

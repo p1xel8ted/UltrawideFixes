@@ -1,6 +1,6 @@
 ﻿using HarmonyLib;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Rendering;
 
 namespace AnodeHeart;
 
@@ -13,7 +13,7 @@ public static class Patches
     {
         __result = true;
     }
-
+    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CameraController), nameof(CameraController.LateUpdate))]
     public static void CameraController_Start(ref CameraController __instance)
