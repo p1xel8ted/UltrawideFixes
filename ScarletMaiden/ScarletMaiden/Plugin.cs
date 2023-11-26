@@ -1,9 +1,11 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ScarletMaiden
 {
@@ -12,7 +14,7 @@ namespace ScarletMaiden
     {
         private const string PluginGuid = "p1xel8ted.scarletmaiden.uwfixes";
         private const string PluginName = "Scarlet Maiden UltraWide Fixes";
-        private const string PluginVersion = "0.0.2";
+        private const string PluginVersion = "0.0.3";
         public static ManualLogSource LOG { get; private set; }
         internal static ConfigEntry<bool> EnableCustomOrthographicSize { get; set; }
         internal static ConfigEntry<float> CustomOrthographicSize { get; set; }
@@ -22,8 +24,11 @@ namespace ScarletMaiden
         internal static ConfigEntry<KeyboardShortcut> Reset { get; set; }
         public static float OriginalZoom { get; set; }
 
+        private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+
         private void Awake()
         {
+            SceneManager.sceneLoaded += OnSceneLoaded;
             LOG = new ManualLogSource("Log");
             BepInEx.Logging.Logger.Sources.Add(LOG);
             EnableCustomOrthographicSize = Config.Bind("Camera", "Enable Custom Camera Zoom", false, new ConfigDescription("Enable this if you are using an ultra-wide monitor and the camera is too close/far away for your liking.", null, new ConfigurationManagerAttributes {Order = 6}));
@@ -34,6 +39,11 @@ namespace ScarletMaiden
             Config.Bind("Camera", "Reset Camera Zoom", true, new ConfigDescription("Reset to original zoom level and disable custom zoom.", null, new ConfigurationManagerAttributes {CustomDrawer = ResetToDefault, Order = 1}));
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
             LOG.LogWarning($"Plugin {PluginName} is loaded!");
+        }
+
+        private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            Screen.SetResolution(Display.main.renderingWidth, Display.main.renderingHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
         }
 
         private static void ResetToDefault(ConfigEntryBase entry)

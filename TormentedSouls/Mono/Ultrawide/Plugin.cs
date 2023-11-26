@@ -25,7 +25,7 @@ public class Plugin : BaseUnityPlugin
     private const int DeathReferenceResolutionHeight = 1080;
     private static ManualLogSource Log { get; set; }
     private static ConfigEntry<float> ConfigScale { get; set; }
-    private static List<CanvasScaler> UiCanvasScalers { get; } = new();1
+    private static List<CanvasScaler> UiCanvasScalers { get; } = new();
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
 
     private static float GetNewScale(float reference)

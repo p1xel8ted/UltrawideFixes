@@ -234,31 +234,34 @@ public class SeaOfStarsUltrawide : MelonMod
         // If shift key is pressed, handle continuous key presses
         if (isShiftPressed)
         {
-            // If the minus key on the keypad is pressed, shift the viewport to the left
-            if (Input.GetKey(KeyCode.KeypadMinus)) ShiftViewportLeft();
+            // If the LeftBracket key is pressed, shift the viewport to the left
+            if (Input.GetKey(KeyCode.LeftBracket)) ShiftViewportLeft();
 
-            // If the plus key on the keypad is pressed, shift the viewport to the right
-            if (Input.GetKey(KeyCode.KeypadPlus)) ShiftViewportRight();
+            // If the RightBracket key is pressed, shift the viewport to the right
+            if (Input.GetKey(KeyCode.RightBracket)) ShiftViewportRight();
         }
         // If shift key is not pressed, handle single key presses
         else
         {
-            // If the minus key on the keypad is pressed once, shift the viewport to the left
-            if (Input.GetKeyDown(KeyCode.KeypadMinus)) ShiftViewportLeft();
+            // If the LeftBracket key is pressed once, shift the viewport to the left
+            if (Input.GetKeyDown(KeyCode.LeftBracket)) ShiftViewportLeft();
 
-            // If the plus key on the keypad is pressed once, shift the viewport to the right
-            if (Input.GetKeyDown(KeyCode.KeypadPlus)) ShiftViewportRight();
+            // If the RightBracket key is pressed once, shift the viewport to the right
+            if (Input.GetKeyDown(KeyCode.RightBracket)) ShiftViewportRight();
         }
     }
 
 
     /// <summary>
-    /// Checks if the multiply key on the keypad is pressed and, if so, resets the viewports.
+    /// Checks if the pipe key is pressed and, if so, resets the viewports.
     /// </summary>
     private void ResetViewportOnMultiplyKey()
     {
-        // If the multiply key on the keypad is pressed, call the ResetViewports method
-        if (Input.GetKeyDown(KeyCode.KeypadMultiply)) ResetViewports();
+        // If the pipe key is pressed, call the ResetViewports method
+        if (Input.GetKeyDown(KeyCode.Backslash) || Input.GetKeyDown(KeyCode.Pipe) || Input.GetKeyDown(KeyCode.Slash))
+        {
+            ResetViewports();
+        }
     }
 
 
