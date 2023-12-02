@@ -16,6 +16,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Alwa's Legacy](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlwasLegacy)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlwasLegacy/total?label=downloads&style=for-the-badge)
 
+### [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
+
 ### [Blue Oak Bridge](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
 
