@@ -25,10 +25,10 @@ public static class Patches
             height = Display.main.systemHeight,
             refreshRate = Screen.resolutions.Max(a => a.refreshRate)
         };
-    
+
         var newResList = new Il2CppSystem.Collections.Generic.List<Resolution>();
         newResList.Add(ultrawide);
-    
+
         __instance.resolutions = newResList;
         Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow,
             ultrawide.refreshRate);

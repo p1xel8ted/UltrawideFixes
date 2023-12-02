@@ -4,276 +4,276 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Sea of Stars Ultra-wide</Product>
-      <Version>0.2.0</Version>
-      <AssemblyName>SeaOfStarsUltraWide</AssemblyName>
+        <Version>0.2.0</Version>
+        <AssemblyName>SeaOfStarsUltraWide</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
     </PropertyGroup>
 
     <ItemGroup>
-      <Reference Include="0Harmony">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\net6\0Harmony.dll</HintPath>
-      </Reference>
-      <Reference Include="Assembly-CSharp">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.API">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.API.WwiseTypes">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppAK.Wwise.Unity.MonoBehaviour">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.MonoBehaviour.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Common">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Il2CppInterop.Common.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppInterop.Runtime">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Il2CppInterop.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMeshCombineStudio.Runtime">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppMeshCombineStudio.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2Cppmscorlib">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppRewired_Core">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Blackboard">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Blackboard.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.BlockGrid">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.BlockGrid.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Core">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.GameplayConditions">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.GameplayConditions.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Geometry">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Geometry.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.GlobalEmission">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.GlobalEmission.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Graph">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Graph.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.JobSystemBoids">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.JobSystemBoids.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Localization">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Localization.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Ocean">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Ocean.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.Pooling">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Pooling.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.RenderPass">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.RenderPass.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSabotage.StateMachine">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.StateMachine.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppTimeOfDay">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppTimeOfDay.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppVerletRope">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppVerletRope.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppWhinarn.UnityMeshSimplifier.Runtime">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppWhinarn.UnityMeshSimplifier.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="MelonLoader">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\net6\MelonLoader.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.CSharp">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\Microsoft.CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-      </Reference>
-      <Reference Include="mscorlib">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\mscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="netstandard">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\netstandard.dll</HintPath>
-      </Reference>
-      <Reference Include="System">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ComponentModel.DataAnnotations">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ComponentModel.DataAnnotations.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Configuration">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Core">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Data">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Data.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Data.DataSetExtensions">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Data.DataSetExtensions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Drawing">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Drawing.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IO.Compression">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.IO.Compression.dll</HintPath>
-      </Reference>
-      <Reference Include="System.IO.Compression.FileSystem">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.IO.Compression.FileSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Net">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Net.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Net.Http">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Net.Http.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Numerics">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Numerics.Vectors">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Numerics.Vectors.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Runtime.Serialization">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Runtime.Serialization.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Security">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Security.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceModel.Web">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ServiceModel.Web.dll</HintPath>
-      </Reference>
-      <Reference Include="System.ServiceProcess">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ServiceProcess.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Transactions">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Transactions.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Web">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Web.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Xml">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Xml.Linq">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Xml.Linq.dll</HintPath>
-      </Reference>
-      <Reference Include="Tomlet">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Tomlet.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Addressables">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Collections">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Collections.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.InternalAPIEngineBridge.021">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.InternalAPIEngineBridge.021.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Mathematics">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ResourceManager">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Splines">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Splines.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Timeline">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualEffectGraph.Runtime">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AIModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CoreModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UI">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UIModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VFXModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VideoModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.XRModule">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="WindowsBase">
-        <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\WindowsBase.dll</HintPath>
-      </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\net6\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppAK.Wwise.Unity.API">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppAK.Wwise.Unity.API.WwiseTypes">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppAK.Wwise.Unity.MonoBehaviour">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppAK.Wwise.Unity.MonoBehaviour.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppInterop.Common">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Il2CppInterop.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppInterop.Runtime">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Il2CppInterop.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppMeshCombineStudio.Runtime">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppMeshCombineStudio.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppRewired_Core">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Blackboard">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Blackboard.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.BlockGrid">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.BlockGrid.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Core">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.GameplayConditions">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.GameplayConditions.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Geometry">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Geometry.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.GlobalEmission">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.GlobalEmission.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Graph">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Graph.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.JobSystemBoids">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.JobSystemBoids.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Localization">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Localization.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Ocean">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Ocean.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.Pooling">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.Pooling.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.RenderPass">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.RenderPass.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSabotage.StateMachine">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSabotage.StateMachine.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Core">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppTimeOfDay">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppTimeOfDay.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppVerletRope">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppVerletRope.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppWhinarn.UnityMeshSimplifier.Runtime">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Il2CppWhinarn.UnityMeshSimplifier.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\net6\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\Microsoft.CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\mscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="netstandard">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\netstandard.dll</HintPath>
+        </Reference>
+        <Reference Include="System">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ComponentModel.DataAnnotations">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ComponentModel.DataAnnotations.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Configuration">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Configuration.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Core">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Data">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Data.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Data.DataSetExtensions">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Data.DataSetExtensions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Drawing">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Drawing.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.IO.Compression.dll</HintPath>
+        </Reference>
+        <Reference Include="System.IO.Compression.FileSystem">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.IO.Compression.FileSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Net.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Net.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Numerics.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Numerics.Vectors">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Numerics.Vectors.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime.Serialization">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Runtime.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceModel.Web">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ServiceModel.Web.dll</HintPath>
+        </Reference>
+        <Reference Include="System.ServiceProcess">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ServiceProcess.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Transactions">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Transactions.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Web">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Web.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Xml.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Xml.Linq">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Xml.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="Tomlet">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Dependencies\SupportModules\Tomlet.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Addressables">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Collections">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Collections.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.InternalAPIEngineBridge.021">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.InternalAPIEngineBridge.021.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Mathematics">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Core.Runtime">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ResourceManager">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Splines">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Splines.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.Timeline.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualEffectGraph.Runtime">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VFXModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.XRModule">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="WindowsBase">
+            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\WindowsBase.dll</HintPath>
+        </Reference>
     </ItemGroup>
 
 </Project>

@@ -22,6 +22,7 @@ public class SeaOfStarsUltrawide : MelonMod
     private const string InitialScene = "InitialScene";
     private const string Wizard = "Wizard";
     private const string VideoPlayerCamera = "VideoPlayerCamera";
+    private const string UiCanvasClone = "UICanvas(Clone)";
 
     /// <summary>
     /// Calculates the normal width based on the system height and a 16:9 aspect ratio.
@@ -32,6 +33,11 @@ public class SeaOfStarsUltrawide : MelonMod
     /// Retrieves the system's ultra width.
     /// </summary>
     private static float UltraWidth => Display.main.systemWidth;
+
+    /// <summary>
+    /// Calculates the new scale width based on the ultra width and the normal width.
+    /// </summary>
+    private static float NewScaleWidth => UltraWidth / NormalWidth;
 
     /// <summary>
     /// Retrieves the system's height.
@@ -51,12 +57,17 @@ public class SeaOfStarsUltrawide : MelonMod
     /// <summary>
     /// List of viewports used for canvas upscaling.
     /// </summary>
-    private static List<CanvasUpscaleViewport> CanvasUpscaleViewports { get; } = new();
+    private static List<CanvasUpscaleViewport> CanvasUpscaleViewports { get; } = [];
 
     /// <summary>
     /// Reference to the cloned loading screen game object.
     /// </summary>
     private static GameObject LoadingScreenClone { get; set; }
+
+    /// <summary>
+    /// Reference to the cloned dialogue cutscene game object.
+    /// </summary>
+    private static GameObject DialogueCutsceneGameObject { get; set; }
 
     /// <summary>
     /// Reference to the first cloned transition screen game object.
@@ -68,15 +79,18 @@ public class SeaOfStarsUltrawide : MelonMod
     /// </summary>
     private static GameObject TransitionTwoClone { get; set; }
 
+
     /// <summary>
     /// Reference to the fishing screen game object.
     /// </summary>
     private static GameObject FishingScreen { get; set; }
 
+
     /// <summary>
     /// Indicates whether the fishing viewports have been updated.
     /// </summary>
     private bool FishingViewPortUpdated { get; set; }
+
 
     /// <summary>
     /// Category for the Melon preferences related to "Sea of Stars".
@@ -92,6 +106,22 @@ public class SeaOfStarsUltrawide : MelonMod
     /// Calculates the canvas position based on the difference between ultra width and normal width.
     /// </summary>
     private static float CanvasPosition => CalculateX(UltraWidth);
+
+    /// <summary>
+    /// Reference to the CanvasUpscaleViewport UI element in the scene.
+    /// </summary>   
+    private static CanvasUpscaleViewport UiCanvasViewPort { get; set; }
+
+
+    /// <summary>
+    /// Reference to the DialogueCutsceneBox UI element in the scene.
+    /// </summary>
+    private static GameObject DialogueCutsceneBox => GameObject.Find("UICanvas(Clone)/Modal/NewDialogBox(Clone)");
+
+    /// <summary>
+    ///     List of PixelPerfectCamera objects in the scene.
+    /// </summary>
+    private static List<PixelPerfectCamera> PixelPerfectCameras { get; } = [];
 
     private static float CalculateX(float targetWidth)
     {
@@ -214,8 +244,11 @@ public class SeaOfStarsUltrawide : MelonMod
         // Find and cache references to specific UI elements in the scene
         FindUIElements();
 
+        // Adjust the scale of the loading screen and transition screens if they exist
+        AdjustLoadTransitionScale();
+
         // Update the state of CanvasUpscaleViewports based on the activity of certain UI elements
-        UpdateCanvasUpscaleViewports();
+        UpdateLoadTransitionCanvasUpscaleViewports();
 
         // Update fishing viewports if certain conditions are met
         UpdateFishingViewportsIfNeeded();
@@ -278,15 +311,24 @@ public class SeaOfStarsUltrawide : MelonMod
 
         // If TransitionTwoClone is null, find and assign the second ColorFadeTransitionScreen UI element in the scene
         TransitionTwoClone ??= GameObject.Find("UICanvas(Clone)/Modal/ColorFadeTransitionScreen(Clone)1");
-    }
 
+        // If DialogueCutsceneGameObject is null, find and assign the DialogueCutscene UI element in the scene
+        DialogueCutsceneGameObject ??= GameObject.Find("UICanvas(Clone)/Modal/NewDialogBox(Clone)");
+
+        // If UiCanvasViewPort is null, find and assign the CanvasUpscaleViewport UI element in the scene
+        var uiCanvas = GameObject.Find(UiCanvasClone);
+        if (uiCanvas != null)
+        {
+            UiCanvasViewPort = uiCanvas.GetComponent<CanvasUpscaleViewport>();
+        }
+    }
 
     /// <summary>
     /// Updates the state of CanvasUpscaleViewports based on the activity of certain UI elements.
     /// If any of the specified UI elements (LoadingScreen, TransitionOne, TransitionTwo) are active, 
     /// the viewports in CanvasUpscaleViewports are disabled.
     /// </summary>
-    private static void UpdateCanvasUpscaleViewports()
+    private static void UpdateLoadTransitionCanvasUpscaleViewports()
     {
         // Exit early if any of the UI elements are not found
         if (LoadingScreenClone == null || TransitionOneClone == null || TransitionTwoClone == null) return;
@@ -294,11 +336,33 @@ public class SeaOfStarsUltrawide : MelonMod
         // Check if any of the UI elements are currently active
         var anyActive = LoadingScreenClone.activeSelf || TransitionOneClone.activeSelf || TransitionTwoClone.activeSelf;
 
-        // Iterate through each viewport in CanvasUpscaleViewports that is not null
-        foreach (var v in CanvasUpscaleViewports.Where(a => a != null))
+        // Disable the viewports in CanvasUpscaleViewports if any of the UI elements are active
+        foreach (var viewport in CanvasUpscaleViewports)
         {
-            // Disable the viewport if any of the UI elements are active
-            v.enabled = !anyActive;
+            viewport.enabled = !anyActive;
+        }
+
+
+        // Disable the viewports in CanvasUpscaleViewports if the DialogueCutsceneBox is active
+        // This is used to ensure the dialogues in transitions are visible
+        if (UiCanvasViewPort != null && DialogueCutsceneBox != null && DialogueCutsceneBox.activeSelf)
+        {
+            UiCanvasViewPort.enabled = true;
+            UiCanvasViewPort.useCustomCanvasSize = false;
+            foreach (var pp in PixelPerfectCameras)
+            {
+                pp.refResolutionX = (int) UltraWidth;
+                pp.refResolutionY = (int) Height;
+            }
+        }
+        else
+        {
+            UiCanvasViewPort.useCustomCanvasSize = true;
+            foreach (var pp in PixelPerfectCameras)
+            {
+                pp.refResolutionX = 640;
+                pp.refResolutionY = 360;
+            }
         }
     }
 
@@ -364,12 +428,11 @@ public class SeaOfStarsUltrawide : MelonMod
     /// </summary>
     private void UpdateFishingViewports()
     {
-        // Set the screen resolution based on predefined values
-        Screen.SetResolution((int) NormalWidth, (int) Height, FullScreenMode.FullScreenWindow, MaxRefresh);
-
         // If fishing is active, update the properties of each valid viewport in CanvasUpscaleViewports
         if (FishingActive)
         {
+            // Set the screen resolution based on predefined values
+            Screen.SetResolution((int) NormalWidth, (int) Height, FullScreenMode.FullScreenWindow, MaxRefresh);
             foreach (var viewport in CanvasUpscaleViewports.Where(viewport => viewport != null))
             {
                 viewport.useCustomCanvasSize = false;
@@ -399,7 +462,7 @@ public class SeaOfStarsUltrawide : MelonMod
         Screen.SetResolution((int) UltraWidth, (int) Height, FullScreenMode.FullScreenWindow, MaxRefresh);
 
         // Process and modify properties of Image objects in the scene
-       // ProcessImages();
+        ProcessImages();
 
         // Process and modify properties of Canvas objects in the scene
         ProcessCanvas(sceneName);
@@ -412,6 +475,16 @@ public class SeaOfStarsUltrawide : MelonMod
 
         // Adjust the scale of the ocean game object if present
         AdjustOceanScale();
+
+
+        // Find and cache references to specific UI elements in the scene
+        FindUIElements();
+
+        // Adjust the scale of the loading screen and transition screens if they exist
+        AdjustLoadTransitionScale();
+
+        // Update the state of CanvasUpscaleViewports based on the activity of certain UI elements
+        UpdateLoadTransitionCanvasUpscaleViewports();
 
         // Update the FishingActive status based on the presence of the FishingScreen
         FishingActive = FishingScreen != null;
@@ -447,12 +520,13 @@ public class SeaOfStarsUltrawide : MelonMod
                     if (i.transform.parent.name.Contains(LoadingScreen) ||
                         i.transform.parent.name.Contains(Transition))
                     {
-                        i.transform.localScale = new Vector3(10f, 1f, 1f);
+                        i.transform.localScale = new Vector3(NewScaleWidth, 1f, 1f);
                     }
                     else
                     {
                         i.enabled = false;
                     }
+
                     break;
             }
         }
@@ -511,6 +585,7 @@ public class SeaOfStarsUltrawide : MelonMod
             // If casting fails, skip to the next iteration
             if (v == null) continue;
 
+            // if (UiCanvasViewPort != null && v.name.Equals(UiCanvasViewPort.name)) continue;
             // Adjust properties of the CanvasUpscaleViewport object
             // This component controls UI positioning and scaling.
             v.useCustomCanvasSize = true;
@@ -554,8 +629,30 @@ public class SeaOfStarsUltrawide : MelonMod
                 p.cropFrameY = false;
             }
 
-            p.refResolutionX = 640;
-            p.refResolutionY = 360;
+            PixelPerfectCameras.Add(p);
+            // p.refResolutionY= (int) Height;
+        }
+    }
+
+
+    /// <summary>
+    ///     Adjusts the scale of the loading screen and transition screens if they exist in the scene.
+    /// </summary>
+    private static void AdjustLoadTransitionScale()
+    {
+        if (LoadingScreenClone != null)
+        {
+            LoadingScreenClone.transform.localScale = new Vector3(NewScaleWidth, 1f, 1f);
+        }
+
+        if (TransitionOneClone != null)
+        {
+            TransitionOneClone.transform.localScale = new Vector3(NewScaleWidth, 1f, 1f);
+        }
+
+        if (TransitionTwoClone != null)
+        {
+            TransitionTwoClone.transform.localScale = new Vector3(NewScaleWidth, 1f, 1f);
         }
     }
 
@@ -567,12 +664,11 @@ public class SeaOfStarsUltrawide : MelonMod
     {
         // Find the ocean background game object in the scene
         var ocean = GameObject.Find(SosOcean);
-    
+
         // If the ocean game object is found, adjust its scale
         if (ocean != null)
         {
-            ocean.transform.localScale = new Vector3(10f, 1f, 1f);
+            ocean.transform.localScale = new Vector3(NewScaleWidth, 1f, 1f);
         }
     }
-
 }
