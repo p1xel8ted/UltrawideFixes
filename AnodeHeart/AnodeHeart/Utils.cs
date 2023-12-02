@@ -7,8 +7,8 @@ namespace AnodeHeart;
 public static class Utils
 {
     internal const int UiReferenceResolutionHeight = 135;
-    
-    internal static float GetNewScale(float reference)
+
+    private static float GetNewScale(float reference)
     {
         var displayHeight = Display.main.systemHeight;
         var scale = 1f / (reference / displayHeight);
