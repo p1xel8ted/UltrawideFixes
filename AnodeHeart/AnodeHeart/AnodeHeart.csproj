@@ -8,7 +8,7 @@
 
     </PropertyGroup>
 
-
+    <Import Project="..\zip.target"/>
     <ItemGroup>
       <Reference Include="Assembly-CSharp">
         <HintPath>..\libs\Assembly-CSharp.dll</HintPath>

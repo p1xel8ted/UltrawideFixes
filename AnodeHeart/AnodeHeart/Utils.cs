@@ -6,9 +6,7 @@ namespace AnodeHeart;
 
 public static class Utils
 {
-    internal const int UiReferenceResolutionHeight = 135;
-
-    private static float GetNewScale(float reference)
+    internal static float GetNewScale(float reference)
     {
         var displayHeight = Display.main.systemHeight;
         var scale = 1f / (reference / displayHeight);
@@ -22,9 +20,17 @@ public static class Utils
             if (a.name.ToLowerInvariant().Contains("sinai")) return;
             a.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
             a.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-            var newScale = GetNewScale(a.referenceResolution.y) * Plugin.ConfigScale.Value;
+            var newScale = GetNewScale(a.referenceResolution.y);
             a.scaleFactor = newScale;
         });
     }
 
+    public static void UpdateItemSlotScaling()
+    {
+        var slots = GameObject.Find("LevelBase/Canvas/Below Overlay/MainMenu/Inventory(Clone)/ItemSlots");
+        if (slots == null) return;
+        var normalWidth = Display.main.systemHeight * 16f / 9f;
+        var newScale = Display.main.systemWidth / normalWidth;
+        slots.transform.localScale = new Vector3(newScale, 1, 1);
+    }
 }
