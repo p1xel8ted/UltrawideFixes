@@ -19,6 +19,11 @@ libs/*
 */libs
 */lib
 lib/*
+TheLastFaith
+TheLastFaith/
+TheLastFaith/*
+*/TheLastFaith
+*/TheLastFaith/*
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
