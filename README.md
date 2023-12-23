@@ -40,6 +40,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
 
+### [Little Goody Two Shoes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LittleGoodyTwoShoes)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LittleGoodyTwoShoes/total?label=downloads&style=for-the-badge)
+
 ### [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
 

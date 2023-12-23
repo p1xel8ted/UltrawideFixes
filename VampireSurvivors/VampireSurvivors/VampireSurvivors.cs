@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using Il2CppCom.LuisPedroFonseca.ProCamera2D;
-
-[assembly: MelonInfo(typeof(VampireSurvivors.VampireSurvivors), "Vampire Survivors UltraWide Fixes", "0.0.5", "p1xel8ted")]
+﻿[assembly: MelonInfo(typeof(VampireSurvivors.VampireSurvivors), "Vampire Survivors UltraWide Fixes", "0.0.5", "p1xel8ted")]
 
 namespace VampireSurvivors;
 
