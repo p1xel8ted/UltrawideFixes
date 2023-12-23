@@ -1,12 +1,36 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
+using MelonLoader;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 namespace SeaOfStars;
 
 [Harmony]
 public static class Patches
 {
+    //credits Rose
+    internal static void CamFix(Camera cam)
+    {
+        if (cam.targetTexture == null) return;
+        
+        var targetTexture = cam.targetTexture;
+        var descriptor = targetTexture.descriptor;
+        if (descriptor.width == Display.main.systemWidth) return;
+        descriptor.width = Display.main.systemWidth;
+        descriptor.height = Display.main.systemHeight;
+        var renderTexture = new RenderTexture(descriptor)
+        {
+            filterMode = targetTexture.filterMode,
+            name = targetTexture.name
+        };
+        cam.targetTexture = renderTexture;
+        if (cam.targetTexture == renderTexture)
+        {
+            targetTexture.Release();
+        }
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(OptionsScreen), nameof(OptionsScreen.RefreshResolutionList))]
     [HarmonyPatch(typeof(OptionsScreen), nameof(OptionsScreen.CheckToUpdateResolutionList))]

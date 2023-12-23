@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.UI;
 
-[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-Wide", "0.2.0", "p1xel8ted")]
+[assembly: MelonInfo(typeof(SeaOfStarsUltrawide), "Sea of Stars Ultra-Wide", "0.2.1", "p1xel8ted")]
 
 namespace SeaOfStars;
 
@@ -245,10 +245,10 @@ public class SeaOfStarsUltrawide : MelonMod
         FindUIElements();
 
         // Adjust the scale of the loading screen and transition screens if they exist
-        AdjustLoadTransitionScale();
+       AdjustLoadTransitionScale();
 
         // Update the state of CanvasUpscaleViewports based on the activity of certain UI elements
-        UpdateLoadTransitionCanvasUpscaleViewports();
+       UpdateLoadTransitionCanvasUpscaleViewports();
 
         // Update fishing viewports if certain conditions are met
         UpdateFishingViewportsIfNeeded();
@@ -341,8 +341,7 @@ public class SeaOfStarsUltrawide : MelonMod
         {
             viewport.enabled = !anyActive;
         }
-
-
+        
         // Disable the viewports in CanvasUpscaleViewports if the DialogueCutsceneBox is active
         // This is used to ensure the dialogues in transitions are visible
         if (UiCanvasViewPort != null && DialogueCutsceneBox != null && DialogueCutsceneBox.activeSelf)
@@ -454,7 +453,7 @@ public class SeaOfStarsUltrawide : MelonMod
     {
         // Call the base OnSceneWasInitialized method for any inherited behavior
         base.OnSceneWasInitialized(buildIndex, sceneName);
-
+        
         // Set the application's target frame rate to the maximum refresh rate
         Application.targetFrameRate = MaxRefresh;
 
@@ -463,7 +462,10 @@ public class SeaOfStarsUltrawide : MelonMod
 
         // Process and modify properties of Image objects in the scene
         ProcessImages();
-
+        
+        //Process cameras
+        ProcessCameras();
+        
         // Process and modify properties of Canvas objects in the scene
         ProcessCanvas(sceneName);
 
@@ -475,8 +477,7 @@ public class SeaOfStarsUltrawide : MelonMod
 
         // Adjust the scale of the ocean game object if present
         AdjustOceanScale();
-
-
+        
         // Find and cache references to specific UI elements in the scene
         FindUIElements();
 
@@ -493,19 +494,13 @@ public class SeaOfStarsUltrawide : MelonMod
     /// <summary>
     /// Processes and adjusts properties of all Image objects in the scene based on their names and their parent's names.
     /// </summary>
-    private void ProcessImages()
+    private static void ProcessImages()
     {
         // Retrieve all Image objects in the scene
-        var images = Resources.FindObjectsOfTypeAll(Il2CppType.Of<Image>());
+        var images = Utils.FindIl2CppType<Image>();
 
-        foreach (var image in images)
+        foreach (var i in images)
         {
-            // Attempt to cast the object to Image type
-            var i = image.TryCast<Image>();
-
-            // If casting fails, skip to the next iteration
-            if (i == null) continue;
-
             // Adjust properties based on the Image object's name
             switch (i.name)
             {
@@ -540,16 +535,10 @@ public class SeaOfStarsUltrawide : MelonMod
     private static void ProcessCanvas(string sceneName)
     {
         // Retrieve all Canvas objects in the scene
-        var canvases = Resources.FindObjectsOfTypeAll(Il2CppType.Of<Canvas>());
+        var canvases = Utils.FindIl2CppType<Canvas>();
 
-        foreach (var can in canvases)
+        foreach (var c in canvases)
         {
-            // Attempt to cast the object to Canvas type
-            var c = can.TryCast<Canvas>();
-
-            // If casting fails, skip to the next iteration
-            if (c == null) continue;
-
             // Adjust properties based on the Canvas object's name
             switch (c.name)
             {
@@ -575,16 +564,10 @@ public class SeaOfStarsUltrawide : MelonMod
     private void ProcessViewportScaler()
     {
         // Retrieve all CanvasUpscaleViewport objects in the scene
-        var viewportScalers = Resources.FindObjectsOfTypeAll(Il2CppType.Of<CanvasUpscaleViewport>());
+        var viewportScalers = Utils.FindIl2CppType<CanvasUpscaleViewport>();
 
-        foreach (var vs in viewportScalers)
+        foreach (var v in viewportScalers)
         {
-            // Attempt to cast the object to CanvasUpscaleViewport type
-            var v = vs.TryCast<CanvasUpscaleViewport>();
-
-            // If casting fails, skip to the next iteration
-            if (v == null) continue;
-
             // if (UiCanvasViewPort != null && v.name.Equals(UiCanvasViewPort.name)) continue;
             // Adjust properties of the CanvasUpscaleViewport object
             // This component controls UI positioning and scaling.
@@ -597,6 +580,15 @@ public class SeaOfStarsUltrawide : MelonMod
     }
 
 
+    private static void ProcessCameras()
+    {
+        var cameras = Utils.FindIl2CppType<Camera>();
+        foreach (var camera in cameras)
+        {
+            Patches.CamFix(camera);
+        }
+    }
+
     /// <summary>
     /// Processes and adjusts properties of all PixelPerfectCamera objects in the scene based on the provided scene name.
     /// </summary>
@@ -604,16 +596,10 @@ public class SeaOfStarsUltrawide : MelonMod
     private static void ProcessPixelPerfectCameras(string sceneName)
     {
         // Retrieve all PixelPerfectCamera objects in the scene
-        var pixelPerfects = Resources.FindObjectsOfTypeAll(Il2CppType.Of<PixelPerfectCamera>());
+        var pixelPerfects = Utils.FindIl2CppType<PixelPerfectCamera>();
 
-        foreach (var pp in pixelPerfects)
+        foreach (var p in pixelPerfects)
         {
-            // Attempt to cast the object to PixelPerfectCamera type
-            var p = pp.TryCast<PixelPerfectCamera>();
-
-            // If casting fails, skip to the next iteration
-            if (p == null) continue;
-
             // // Adjust properties based on the scene name or the camera's name
             // // Removes the black bars on the left and right sides of the screen (except for the initial scene and videos).
             if (sceneName.Equals(InitialScene) || p.name.Equals(VideoPlayerCamera))
@@ -629,8 +615,9 @@ public class SeaOfStarsUltrawide : MelonMod
                 p.cropFrameY = false;
             }
 
+            p.pixelSnapping = true;
+            
             PixelPerfectCameras.Add(p);
-            // p.refResolutionY= (int) Height;
         }
     }
 
