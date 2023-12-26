@@ -1,58 +1,44 @@
-﻿using System.Reflection;
-using BepInEx;
-using BepInEx.Logging;
-using HarmonyLib;
-using UnityEngine;
+﻿namespace TrainValleyOne;
 
-namespace TrainValleyOne
+[HarmonyPatch]
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+public class Plugin : BaseUnityPlugin
 {
-    [HarmonyPatch]
-    [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
-    public class Plugin : BaseUnityPlugin
-    {
-        private static ManualLogSource _log;
+    private const string PluginGuid = "p1xel8ted.trainvalleyone.ultrawide";
+    private const string PluginName = "Train Valley Ultra-Wide";
+    private const string PluginVersion = "0.1.2";
+    private const string UIRootLeftBlackBar = "UI Root/leftBlackBar";
+    private const string UIRootRightBlackBar = "UI Root/rightBlackBar";
+    private static ManualLogSource Log { get; set; }
+    internal static ConfigEntry<bool> ExpandUI { get; private set; }
+    internal static ConfigEntry<int> GaugeAdjustment { get; private set; }
+    private GameObject LeftBar { get; set; }
+    private GameObject RightBar { get; set; }
 
-        private void Awake()
+    private void Awake()
+    {
+        ExpandUI = Config.Bind("General", "Expand UI", true, "Expand UI to fill the screen.");
+        GaugeAdjustment = Config.Bind("General", "Gauge Adjustment", 5, new ConfigDescription("Fine-tune the gauge position if needed. Default of 5 should be fine however.", new AcceptableValueRange<int>(-50, 50)));
+        Log = Logger;
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        LeftBar = GameObject.Find(UIRootLeftBlackBar);
+        RightBar = GameObject.Find(UIRootRightBlackBar);
+
+        if (LeftBar != null)
         {
-            _log = new ManualLogSource("Log");
-            BepInEx.Logging.Logger.Sources.Add(_log);
-            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), "p1xel8ted.WonderBoyReturnsRemix.fixes");
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            LeftBar.SetActive(false);
         }
 
-        private void Update()
+        if (RightBar != null)
         {
-            var leftBar = GameObject.Find("UI Root/leftBlackBar");
-            if (leftBar != null)
-            {
-                leftBar.SetActive(false);
-            }
-
-            var rightBar = GameObject.Find("UI Root/rightBlackBar");
-            if (rightBar != null)
-            {
-                rightBar.SetActive(false);
-            }
-
-            var leftToolbar = GameObject.Find("UI Root/Toolbar/Left");
-            if (leftToolbar != null)
-            {
-                leftToolbar.transform.position = new Vector3(0, Display.main.systemHeight, 0);
-            }
-
-            var rightToolbar = GameObject.Find("UI Root/Toolbar/Right");
-            if (rightToolbar != null)
-            {
-                rightToolbar.transform.position = new Vector3(Display.main.systemWidth, Display.main.systemHeight, 0);
-            }
-
-            var gauge = GameObject.Find("UI Root/Gauge/pcGauge");
-            if (gauge != null)
-            {
-                var position = gauge.transform.position;
-                position = new Vector3(Display.main.systemWidth - 50, position.y, position.z);
-                gauge.transform.position = position;
-            }
+            RightBar.SetActive(false);
         }
     }
+
 }
