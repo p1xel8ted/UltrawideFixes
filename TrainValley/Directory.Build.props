@@ -1,14 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
 
-  <!--User Configuration-->
-  <Import Condition=" Exists('Directory.Build.props.user') " Project="Directory.Build.props.user" />
 
   <!--Base Settings-->
   <PropertyGroup>
+     
+    <TargetFramework>net40</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+<Company>p1xel8ted</Company>
+          <Authors>p1xel8ted</Authors>
+     <IsPackable>false</IsPackable>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>Publicizer001,CS1591</NoWarn>
+        <Nullable>disable</Nullable>
+      <Description>$(MSBuildProjectName)</Description>
+      <RestoreAdditionalProjectSources>
+          https://api.nuget.org/v3/index.json;
+          https://nuget.bepinex.dev/v3/index.json;
+          https://nuget.samboy.dev/v3/index.json
+      </RestoreAdditionalProjectSources>
   </PropertyGroup>
 
   <!--Default all references to CopyLocal False.-->
@@ -17,6 +29,22 @@
     <ProjectReference><Private>False</Private></ProjectReference>
     <PackageReference><Private>False</Private></PackageReference>
   </ItemDefinitionGroup>
+    
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>F:\Games\steamapps\common\Train Valley\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>F:\Games\steamapps\common\Train Valley\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+        <PackageReference Include="BepInEx.BaseLib" Version="5.4.21" />
+        <PackageReference Include="Resource.Embedder" Version="2.2.0" />
+    </ItemGroup>
 
 </Project>
