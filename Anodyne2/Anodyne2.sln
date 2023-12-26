@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Anodyne2UltraWide", "Anodyne2UltraWide\Anodyne2UltraWide.csproj", "{26FCBD49-D7A5-4093-AB77-3707F6CA7A4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26FCBD49-D7A5-4093-AB77-3707F6CA7A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26FCBD49-D7A5-4093-AB77-3707F6CA7A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26FCBD49-D7A5-4093-AB77-3707F6CA7A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26FCBD49-D7A5-4093-AB77-3707F6CA7A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
