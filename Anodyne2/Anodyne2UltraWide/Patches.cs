@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Anodyne2UltraWide;
+﻿namespace Anodyne2UltraWide;
 
 [Harmony]
 public static class Patches
@@ -64,6 +62,81 @@ public static class Patches
         SaveSettings();
     }
 
+    private static GameObject BlackBackground { get; set; }
+    private static GameObject Vision1 { get; set; }
+    private static GameObject Vision2 { get; set; }
+    private static GameObject Vision3 { get; set; }
+    private static GameObject[] Visions { get; set; } = [Vision1, Vision2, Vision3];
+    private static float NegativeScaleFactor { get; set; }
+
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PauseMenu), nameof(PauseMenu.OnEnterInventory))]
+    public static void PauseMenu_OnEnterInventory(ref PauseMenu __instance)
+    {
+        var currentAspect = (float) Display.main.systemWidth / Display.main.systemHeight;
+        const float baseAspect = 16f / 9f;
+
+        if (!(currentAspect > baseAspect)) return;
+
+        var positiveScaleFactor = currentAspect / baseAspect;
+        NegativeScaleFactor = 1f / positiveScaleFactor;
+
+        Vision1 = GameObject.Find("UI/Dialogue/palvision1");
+        Vision2 = GameObject.Find("UI/Dialogue/palvision2");
+        Vision3 = GameObject.Find("UI/Dialogue/palvision3");
+        Visions = [Vision1, Vision2, Vision3];
+
+        if (BlackBackground == null && Vision1 != null)
+        {
+            Plugin.Log.LogInfo("BlackBackground instance is null - creating now.");
+            BlackBackground = UnityEngine.Object.Instantiate(Vision1, Vision1.transform.parent);
+            BlackBackground.name = "blackBackground";
+            var image = BlackBackground.GetComponent<Image>();
+            image.sprite = null;
+            image.color = Color.black;
+            BlackBackground.transform.localScale = new Vector3(10, 10, 1);
+            BlackBackground.SetActive(false);
+            BlackBackground.transform.SetAsFirstSibling();
+        }
+
+        foreach (var v in Visions.Where(a => a != null))
+        {
+            BlackBackground.SetActive(true);
+            v.transform.localScale = v.transform.localScale with {x = NegativeScaleFactor, y = NegativeScaleFactor};
+        }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(EntityState2D), nameof(EntityState2D.SetVelocityTowardsDestination))]
+    public static void EntityState2D_SetVelocityTowardsDestination(Rigidbody2D rb, Transform destinationTransform, float magnitude)
+    {
+        Plugin.Log.LogWarning($"RB: {rb.name}, Transform: {destinationTransform}, Magnitude: {magnitude}");
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PauseMenu), nameof(PauseMenu.Update))]
+    public static void PauseMenu_Update(ref PauseMenu __instance)
+    {
+        if (__instance == null) return;
+        if (BlackBackground == null) return;
+        if (__instance.doingInvVision)
+        {
+            // Vision1 = GameObject.Find("UI/Dialogue/palvision1");
+            // Vision2 = GameObject.Find("UI/Dialogue/palvision2");
+            // Vision3 = GameObject.Find("UI/Dialogue/palvision3");
+            // Visions = [Vision1, Vision2, Vision3];
+            BlackBackground.SetActive(true);
+            foreach (var v in Visions.Where(a => a != null))
+            {
+                v.transform.localScale = v.transform.localScale with {x = NegativeScaleFactor, y = NegativeScaleFactor};
+            }
+        }
+        else
+        {
+            BlackBackground.SetActive(false);
+        }
+    }
 
     /// <summary>
     /// Save settings to registry when the game is closed and force garbage collection to allow quicker exit.
