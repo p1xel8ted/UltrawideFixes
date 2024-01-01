@@ -11,10 +11,12 @@ public class Plugin : BaseUnityPlugin
 
     private readonly static string[] ObjectsToScale = ["mask", "overlay", "border", "mask1", "mask2", "border_3d", "overlay_new", "level_load", "level_load_alt"];
     private static float BaseAspect => 16f / 9f;
-    private static float CurrentAspect => (float) Screen.width / Screen.height;
+    private static float CurrentAspect => (float) Display.main.systemWidth / Display.main.systemHeight;
     private static float PositiveScaleFactor => CurrentAspect / BaseAspect;
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     private static ConfigEntry<bool> ExpandHudConfig { get; set; }
+    private static ConfigEntry<bool> IncreaseUpdateRate { get; set; }
+    private static ConfigEntry<bool> UseRefreshRateForUpdateRate { get; set; }
     private static ConfigEntry<bool> LoadSavePurpleEffect { get; set; }
     private static ManualLogSource LOG { get; set; }
     private static ConfigEntry<int> LeftSideAdjustment { get; set; }
@@ -41,7 +43,7 @@ public class Plugin : BaseUnityPlugin
         {
             ChangeScale();
         };
-        
+
         ExpandHudConfig = Config.Bind("03. HUD", "Expand Hud", true, new ConfigDescription("Expand the hud elements to the left and right of the screen.", null, new ConfigurationManagerAttributes {Order = 94}));
         ExpandHudConfig.SettingChanged += (_, _) =>
         {
@@ -73,9 +75,55 @@ public class Plugin : BaseUnityPlugin
         {
             TogglePurpleWave();
         };
+        IncreaseUpdateRate = Config.Bind("05. Performance", "Increase Update Rate", false, new ConfigDescription("Increases the update rate of physics to the lowest multiple of your refresh rate that is above 50Hz (the default). So at 120Hz, the update rate will be 60fps. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 90}));
+        IncreaseUpdateRate.SettingChanged += (_, _) =>
+        {
+            FixUpdateRate();
+        };
+        UseRefreshRateForUpdateRate = Config.Bind("05. Performance", "Use Refresh Rate For Update Rate", false, new ConfigDescription("Use the refresh rate of the monitor for the update rate. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 89}));
+        UseRefreshRateForUpdateRate.SettingChanged += (_, _) =>
+        {
+            if (UseRefreshRateForUpdateRate.Value)
+            {
+                IncreaseUpdateRate.Value = true; 
+            }
+            FixUpdateRate();
+        };
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private static int FindLowestFrameRateMultipleAboveFifty(int originalRate)
+    {
+        for (var rate = originalRate / 2; rate > 50; rate--)
+        {
+            if (originalRate % rate == 0)
+            {
+                return rate;
+            }
+        }
+
+        return originalRate;
+    }
+    private static void FixUpdateRate()
+    {
+        var newRate = FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
+        if (IncreaseUpdateRate.Value)
+        {
+            if (UseRefreshRateForUpdateRate.Value)
+            {
+                Time.fixedDeltaTime = 1f / MaxRefresh;
+            }
+            else
+            {
+                Time.fixedDeltaTime = 1f / newRate;
+            }
+        }
+        else
+        {
+            Time.fixedDeltaTime = 1f / 50f; //engine default
+        }
     }
     private static void TogglePurpleWave()
     {
@@ -159,9 +207,12 @@ public class Plugin : BaseUnityPlugin
     private static void SceneManagerOnSceneLoaded(Scene __arg0, LoadSceneMode __arg1)
     {
         Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
+        Application.targetFrameRate = MaxRefresh;
+
+        FixUpdateRate();
 
         UpdateCanvasScalers();
-        
+
         UpdateMasksAndOverlays();
 
         TogglePurpleWave();
@@ -180,7 +231,6 @@ public class Plugin : BaseUnityPlugin
         {
             RestoreHud();
         }
-        
     }
 
     private static void UpdateMasksAndOverlays()

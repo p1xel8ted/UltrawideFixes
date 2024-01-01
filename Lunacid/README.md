@@ -1,4 +1,4 @@
-### Lunacid Ultra-Wide
+### Lunacid Ultra-Wide Tweaks
 
 ![Game Logo](header.jpg)<br>
 

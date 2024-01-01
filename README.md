@@ -19,6 +19,9 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
 
+### [Anodyne 2: Return to Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Anodyne2)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Anodyne2/total?label=downloads&style=for-the-badge)
+
 ### [Blue Oak Bridge](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
 
