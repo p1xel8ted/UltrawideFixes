@@ -24,6 +24,9 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<bool> ConfigScaleConfig { get; set; }
     private static ConfigEntry<float> ConfigScale { get; set; }
     private static List<CanvasScaler> UiCanvasScalers { get; } = [];
+
+    private static ConfigEntry<bool> ModifyReticleTransparency { get; set; }
+    private static ConfigEntry<float> ReticleTransparency { get; set; }
     private static Dictionary<Transform, WriteOnce<float>> OriginalTransformPositions { get; set; } = [];
 
     private void Awake()
@@ -70,28 +73,63 @@ public class Plugin : BaseUnityPlugin
             RestoreHud();
             ExpandHud();
         };
-        LoadSavePurpleEffect = Config.Bind("04. UI Effects", "Purple Wave Effect", false, new ConfigDescription("Enable the purple wave effect on load and save screens.", null, new ConfigurationManagerAttributes {Order = 91}));
+        ModifyReticleTransparency = Config.Bind("04. Reticle", "Modify Reticle Transparency", false, new ConfigDescription("Modify the transparency of the reticle.", null, new ConfigurationManagerAttributes {Order = 91}));
+        ModifyReticleTransparency.SettingChanged += (_, _) =>
+        {
+            UpdateReticle();
+        };
+        ReticleTransparency = Config.Bind("04. Reticle", "Reticle Transparency", 0.25f, new ConfigDescription("Transparency of the reticle.", new AcceptableValueRange<float>(0.10f, 1f), new ConfigurationManagerAttributes {Order = 90}));
+        ReticleTransparency.SettingChanged += (_, _) =>
+        {
+            UpdateReticle();
+        };
+        LoadSavePurpleEffect = Config.Bind("05. UI Effects", "Purple Wave Effect", false, new ConfigDescription("Enable the purple wave effect on load and save screens.", null, new ConfigurationManagerAttributes {Order = 89}));
         LoadSavePurpleEffect.SettingChanged += (_, _) =>
         {
             TogglePurpleWave();
         };
-        IncreaseUpdateRate = Config.Bind("05. Performance", "Increase Update Rate", false, new ConfigDescription("Increases the update rate of physics to the lowest multiple of your refresh rate that is above 50Hz (the default). So at 120Hz, the update rate will be 60fps. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 90}));
+        IncreaseUpdateRate = Config.Bind("06. Performance", "Increase Update Rate", false, new ConfigDescription("Increases the update rate of physics to the lowest multiple of your refresh rate that is above 50Hz (the default). So at 120Hz, the update rate will be 60fps. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 88}));
         IncreaseUpdateRate.SettingChanged += (_, _) =>
         {
             FixUpdateRate();
         };
-        UseRefreshRateForUpdateRate = Config.Bind("05. Performance", "Use Refresh Rate For Update Rate", false, new ConfigDescription("Use the refresh rate of the monitor for the update rate. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 89}));
+        UseRefreshRateForUpdateRate = Config.Bind("06. Performance", "Use Refresh Rate For Update Rate", false, new ConfigDescription("Use the refresh rate of the monitor for the update rate. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 87}));
         UseRefreshRateForUpdateRate.SettingChanged += (_, _) =>
         {
             if (UseRefreshRateForUpdateRate.Value)
             {
-                IncreaseUpdateRate.Value = true; 
+                IncreaseUpdateRate.Value = true;
             }
             FixUpdateRate();
         };
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private static void UpdateReticle()
+    {
+        var always = GameObject.Find("PLAYER/Canvas/HUD/GAME/REDICLE/always");
+        var magic = GameObject.Find("PLAYER/Canvas/HUD/GAME/REDICLE/magic");
+        var bow = GameObject.Find("PLAYER/Canvas/HUD/GAME/REDICLE/bow");
+        var reticles = new[] {always, magic, bow};
+        foreach (var ret in reticles.Where(a => a != null))
+        {
+            var image = ret.GetComponent<Image>();
+            if (image == null) continue;
+            var color = image.color;
+            if (color.a <= 0) return;
+            if (ModifyReticleTransparency.Value)
+            {
+                var newColor = new Color(color.r, color.g, color.b, ReticleTransparency.Value);
+                image.color = newColor;
+            }
+            else
+            {
+                var newColor = new Color(color.r, color.g, color.b, 0.0314f); //games default value as of 1/1/2024
+                image.color = newColor;
+            }
+        }
     }
 
     private static int FindLowestFrameRateMultipleAboveFifty(int originalRate)
@@ -231,6 +269,8 @@ public class Plugin : BaseUnityPlugin
         {
             RestoreHud();
         }
+
+        UpdateReticle();
     }
 
     private static void UpdateMasksAndOverlays()
