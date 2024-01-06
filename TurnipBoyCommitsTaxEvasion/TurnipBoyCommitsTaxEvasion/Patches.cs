@@ -1,111 +1,98 @@
-﻿using System.Linq;
-using HarmonyLib;
-using UnityEngine;
-
-namespace TurnipBoyCommitsTaxEvasion;
+﻿namespace TurnipBoyCommitsTaxEvasion;
 
 [HarmonyPatch]
 public static class Patches
 {
 
+    private static MenuButtonController GitHubButton { get; set; }
+
     [HarmonyPrefix]
+    [HarmonyPatch(typeof(LifeBase), nameof(LifeBase.Move))]
+    public static void LifeBase_Move(ref LifeBase __instance, ref float _multiplier)
+    {
+        if (__instance is PlayerController)
+        {
+            _multiplier = 1f * Plugin.MoveSpeed.Value;
+        }
+    }
+
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(SplashController), nameof(SplashController.Start))]
-    [HarmonyPatch(typeof(SplashController), nameof(SplashController.Update))]
-    public static void SplashController_Start(ref SplashController __instance)
+    [HarmonyPatch(typeof(OptionsManager), nameof(OptionsManager.SetLanguage))]
+    public static void OptionsManager_SetLanguage()
     {
-        if (__instance == null) return;
-        __instance.inputSkips = true;
-        __instance.videoPlayer = null;
-        __instance.screenTime = 0;
-    }
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(OptionsManager), nameof(OptionsManager.GetResolutions))]
-    public static bool GetResolutionsPrefix(ref Resolution[] __result)
-    {
-        var resolutions = Screen.resolutions.ToList();
-        var newRes = new Resolution
+        if (GitHubButton != null)
         {
-            width = Display.main.systemWidth,
-            height = Display.main.systemHeight,
-            refreshRate = 120
-        };
-
-        var res = resolutions.Append(newRes);
-        __result = (Resolution[]) res;
-        return false;
-    }
-
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(OptionsManager), nameof(OptionsManager.GetResolutionStrings))]
-    public static bool GetResolutionStringsPrefix(ref string[] __result)
-    {
-        var resolutions = Screen.resolutions.ToList();
-        var newRes = new Resolution
-        {
-            width = Display.main.systemWidth,
-            height = Display.main.systemHeight,
-            refreshRate = 120
-        };
-
-        resolutions.Add(newRes);
-
-        __result = resolutions.Select(resolution => resolution.ToString()).ToArray();
-        return false;
-    }
-
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(OptionsManager), nameof(OptionsManager.GetResolution))]
-    public static bool GetResolutionPrefix(ref int __result)
-    {
-        var resolutions = Screen.resolutions.ToList();
-        var newRes = new Resolution
-        {
-            width = Display.main.systemWidth,
-            height = Display.main.systemHeight,
-            refreshRate = 120
-        };
-
-        resolutions.Add(newRes);
-
-        for (var i = 0; i < resolutions.Count; i++)
-        {
-            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height &&
-                resolutions[i].refreshRate == Screen.currentResolution.refreshRate)
-            {
-                __result = i;
-                return false;
-            }
+            GitHubButton.text.text = GetText();
         }
+    }
 
-        __result = 0;
-        return false;
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MenuController), nameof(MenuController.Start))]
+    public static void MenuController_Start(ref MenuController __instance)
+    {
+        var gitHubButton = Object.Instantiate(__instance.creditsButton, __instance.creditsButton.transform.parent);
+        gitHubButton.transform.SetAsLastSibling();
+        gitHubButton.transform.SetSiblingIndex(gitHubButton.transform.GetSiblingIndex() - 1);
+        gitHubButton.name = "GitHubButton";
+        GitHubButton = gitHubButton.GetComponent<MenuButtonController>();
+        var localize = gitHubButton.GetComponentsInChildren<Localize>();
+        foreach (var local in localize)
+        {
+            Object.DestroyImmediate(local);
+        }
+        GitHubButton.text.text = GetText();
+        gitHubButton.SetActive(true);
+
+        var ue = new UnityEvent();
+        ue.AddListener(OnPressed);
+
+        GitHubButton.OnPressed = ue;
+    }
+
+    private static string GetText()
+    {
+        return LocalizationManager.GetLanguageCode(LocalizationManager.CurrentLanguage) switch
+        {
+            "en" => "github" // English
+            ,
+            "fr" => "github" // French
+            ,
+            "de" => "github" // German
+            ,
+            "it" => "github" // Italian
+            ,
+            "pt-BR" => "github" // Brazilian Portuguese
+            ,
+            "es-US" => "github" // US Spanish
+            ,
+            "ru" => "гитхаб" // Transliterated in Russian
+            ,
+            "zh" => "github" // Simplified Chinese, usually not translated
+            ,
+            "ko" => "깃허브" // Transliterated in Korean
+            ,
+            "zh-TW" => "github" // Traditional Chinese, usually not translated
+            ,
+            "ja" => "ぎっとはぶ" // Transliterated in Japanese
+            ,
+            _ => "github"
+        };
+    }
+    
+    private static void OnPressed()
+    {
+        Application.OpenURL("https://github.com/p1xel8ted/UltrawideFixes");
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(OptionsManager), nameof(OptionsManager.SetResolution))]
-    public static bool SetResolutionPrefix(int _resolution)
+    [HarmonyPatch(typeof(DialoguePopupController), nameof(DialoguePopupController.Update))]
+    public static void DialoguePopupController_Update(ref DialoguePopupController __instance)
     {
-        var resolutions = Screen.resolutions.ToList();
-        var newRes = new Resolution
-        {
-            width = Display.main.systemWidth,
-            height = Display.main.systemHeight,
-            refreshRate = 120
-        };
+        var newScale = new Vector3(Plugin.NpcChatDialogScale.Value, Plugin.NpcChatDialogScale.Value, 1f);
+        __instance.rootRectTransform.localScale = newScale;
 
-        resolutions.Add(newRes);
-        var fullScreenMode = FullScreenMode.Windowed;
-        if (Screen.fullScreen)
-        {
-            fullScreenMode = FullScreenMode.FullScreenWindow;
-        }
-
-        Screen.SetResolution(resolutions[_resolution].width, resolutions[_resolution].height, fullScreenMode,
-            resolutions[_resolution].refreshRate);
-        return false;
+        __instance.rootRectTransform.localPosition = Plugin.NpcChatDialogPosition.Value > 0
+            ? new Vector3(0, -Plugin.NpcChatDialogPosition.Value, 0)
+            : new Vector3(0, Plugin.NpcChatDialogPosition.Value, 0);
     }
 }
