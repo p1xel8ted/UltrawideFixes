@@ -12,11 +12,15 @@
 - Option to increase player movement speed using a multiplier.
 - Zooms through developer/publisher logos.
 
-## Installation
-- Extract the contents of the release zip into the game directory.<br />(e.g. "**steamapps\common\Turnip Boy Commits Tax Evasion**" for Steam).
-
 ## Configuration
-Located at "**steamapps\common\Turnip Boy Commits Tax Evasion\BepInEx\config\TurnipBoyCommitsTaxEvasion.cfg**"
-- NPCDialogScale = 0.75 = Scale of the dialogues when talking to an NPC.
-- CameraZoom = 7 = Zoom of the camera. Default (5) feels a little close.
-- MoveSpeed = 1.5 = Base move speed multiplier of the player. 1.5 = 50% increase in speed. The default feels a little slow.
+- In-game UI provided by ConfigurationManager. Press F1 to open the menu and adjust settings as necessary.
+  ![Game Logo](settings.png)<br>
+
+## Installation
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TurnipBoyCommitsTaxEvasion).
+- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Turnip Boy Commits Tax Evasion`** for Steam).
+
+## Credits
+- [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
+- [ManlyMarco](https://github.com/ManlyMarco) for [ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager).
+- [Sinai]() for [Unity Explorer](https://github.com/sinai-dev/UnityExplorer).
