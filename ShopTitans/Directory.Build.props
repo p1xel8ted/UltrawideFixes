@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+  <!--Base Settings-->
+  <PropertyGroup>
+   <TargetFramework>net6.0</TargetFramework>
+   <Description>$(MSBuildProjectName)</Description>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+       <IsPackable>false</IsPackable>
+           <Authors>p1xel8ted</Authors>
+    <Company>$(Authors)</Company>
+    <Product>$(MSBuildProjectName)</Product>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+        <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+  </PropertyGroup>
+
+  <!--Default all references to CopyLocal False.-->
+  <ItemDefinitionGroup>
+    <Reference><Private>False</Private></Reference>
+    <ProjectReference><Private>False</Private></ProjectReference>
+    <PackageReference><Private>False</Private></PackageReference>
+  </ItemDefinitionGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>H:\Games\steamapps\common\ShopTitan\BepInEx\plugins</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>H:\Games\steamapps\common\ShopTitan\BepInEx\plugins</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+  </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Remove="BepInEx.PluginInfoProps" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="AppsFlyer">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\AppsFlyer.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="BestHTTP">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\BestHTTP.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\DOTween.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween.Modules">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\DOTween.Modules.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppMono.Security">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2Cppmscorlib">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Configuration">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Core">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Data">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Numerics">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Runtime.Serialization">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Xml">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppSystem.Xml.Linq">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
+        </Reference>
+        <Reference Include="kabam.crossconnect.Runtime.asmdef">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\kabam.crossconnect.Runtime.asmdef.dll</HintPath>
+        </Reference>
+        <Reference Include="Newtonsoft.Json">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="Opencoding.CommandHandlers">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Opencoding.CommandHandlers.dll</HintPath>
+        </Reference>
+        <Reference Include="Opencoding.Console">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Opencoding.Console.dll</HintPath>
+        </Reference>
+        <Reference Include="Opencoding.LogHistory">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Opencoding.LogHistory.dll</HintPath>
+        </Reference>
+        <Reference Include="Opencoding.Shared">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Opencoding.Shared.dll</HintPath>
+        </Reference>
+        <Reference Include="P31RestKit">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\P31RestKit.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.InputSystem">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.InputSystem.ForUI">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Unity.Timeline.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AccessibilityModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AndroidJNIModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClothModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterInputModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterRendererModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CrashReportingModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DSPGraphModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GameCenterModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GIModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GridModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.HotReloadModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.JSONSerializeModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.LocalizationModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PerformanceReportingModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ProfilerModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteMaskModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.StreamingModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubstanceModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubsystemsModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainPhysicsModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreFontEngineModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreTextEngineModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TilemapModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TLSModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsNativeModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UmbraModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UNETModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityConnectModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityCurlModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityTestProtocolModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VehiclesModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VFXModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VirtualTexturingModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VRModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.WindModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.XRModule">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="websocket-sharp">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\websocket-sharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Xpand">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Xpand.dll</HintPath>
+        </Reference>
+        <Reference Include="Xsolla">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\Xsolla.dll</HintPath>
+        </Reference>
+        <Reference Include="__Generated">
+            <HintPath>H:\Games\steamapps\common\ShopTitan\BepInEx\interop\__Generated.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+</Project>

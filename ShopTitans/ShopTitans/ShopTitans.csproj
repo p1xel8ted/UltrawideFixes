@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+        <Version>0.1.0</Version>
+        <FileVersion>$(Version)</FileVersion>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="..\..\..\P1xel8tedToolkit\BepInEx_IL2CPP\ConfigurationManagerAttributes.cs">
+        <Link>ConfigurationManagerAttributes.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\P1xel8tedToolkit\BepInEx_IL2CPP\GlobalUsings.cs">
+        <Link>GlobalUsings.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\P1xel8tedToolkit\BepInEx_IL2CPP\Shared.cs">
+        <Link>Shared.cs</Link>
+      </Compile>
+      <Compile Include="..\..\..\P1xel8tedToolkit\BepInEx_IL2CPP\Utils.cs">
+        <Link>Utils.cs</Link>
+      </Compile>
+    </ItemGroup>
+    
+</Project>
