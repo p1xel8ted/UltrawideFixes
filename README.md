@@ -54,6 +54,9 @@ I generally don't maintain them once released; I don't even play most of these; 
 ### [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
 
+### [Prince of Persia: The Lost Crown](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrinceOfPersiaTheLostCrown/total?label=downloads&style=for-the-badge)
+
 ### [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ScarletMaiden/total?label=downloads&style=for-the-badge)
 
