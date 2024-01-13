@@ -6,6 +6,9 @@
 
 Tested against the Ubisoft/UPlay version @ 3440x1440
 
+## Note
+- You must select 'Fullscreen Window'
+
 ## Features
 - Makes all resolutions and aspect ratios "valid".
 - Corrects UI scaling.
