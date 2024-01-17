@@ -34,11 +34,11 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>H:\Games\Prince of Persia The Lost Crown DEMO\BepInEx\plugins</OutputPath>
+        <OutputPath>H:\Games\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>H:\Games\Prince of Persia The Lost Crown DEMO\BepInEx\plugins</OutputPath>
+        <OutputPath>H:\Games\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

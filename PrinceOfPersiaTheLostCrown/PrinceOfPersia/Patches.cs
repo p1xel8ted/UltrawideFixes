@@ -1,4 +1,12 @@
-﻿namespace PrinceOfPersia;
+﻿using AK;
+using AK.Wwise;
+using Alkawa.Core;
+using Gameplay.UI.Menu;
+using Unity.Mathematics;
+using UnityEngine.Video;
+using Utils = BepInEx_IL2CPP.Utils;
+
+namespace PrinceOfPersia;
 
 [Harmony]
 public static class Patches
@@ -22,10 +30,12 @@ public static class Patches
     private static float BaseAspect => 16f / 9f;
     private static float CurrentAspect => (float) Screen.width / Screen.height;
     private static float PositiveScaleFactor => CurrentAspect / BaseAspect;
+    private static float NegativeScaleFactor => 1f / PositiveScaleFactor;
     private static float NormalWidth => CurrentHeight * BaseAspect;
     private static float CurrentWidth => Screen.width;
     private static float CurrentHeight => Screen.height;
     private static float AspectGap => (CurrentWidth - NormalWidth) / 2f;
+    private static int MaxRefreshRate => Screen.resolutions.Max(a => a.refreshRate);
 
     private static RectTransform UpperLeft1 { get; set; }
     private static RectTransform UpperLeft2 { get; set; }
@@ -80,7 +90,73 @@ public static class Patches
         }
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(UIManager), nameof(UIManager.OpenWorldMap))]
+    public static void UIManager_OpenWorldMap()
+    {
+        UIManager.Instance.m_playerMap.Config.m_autoDiscoverZone = true;
+        UIManager.Instance.m_playerMap.Config.m_autoDiscoverZoneSize = float.MaxValue;
+        UIManager.Instance.m_playerMap.m_activeRefresh = true;
+        UIManager.Instance.m_playerMap.UpdateAutoDiscover(true);
 
+        // Plugin.Logger.LogWarning("------------m_canvasWorldMap----------------");
+        // foreach (var comp in UIManager.Instance.m_canvasWorldMap.GetComponentsInChildren<Component>())
+        // {
+        //     var mb = comp.TryCast<MonoBehaviour>();
+        //     if (mb != null)
+        //     {
+        //         Plugin.Logger.LogWarning(mb.GetScriptClassName());
+        //         
+        //     }
+        // }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(UIManager), nameof(UIManager.OnMenuClosedBackToGameplay))]
+    public static void UIManager_OnMenuClosedBackToGameplay()
+    {
+        SwitchToUltra();
+    }
+
+    private static void SwitchToSixteenByNine()
+    {
+        Screen.SetResolution((int) (Display.main.systemHeight * (16f / 9f)), Display.main.systemHeight, FullScreenMode.FullScreenWindow, MaxRefreshRate);
+    }
+
+    private static void SwitchToUltra()
+    {
+        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow, MaxRefreshRate);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
+    public static void VideoPlayer_Play(ref VideoPlayer __instance)
+    {
+        var source = __instance.source == VideoSource.Url ? __instance.url : __instance.clip.name;
+        if (source.Contains("UBISOFTSWIRL"))
+        {
+            __instance.targetCameraAlpha = 0f;
+            __instance.playbackSpeed = 10000f;
+        }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(VideoController), nameof(VideoController.OnVideoPrepared))]
+    public static void VideoPlayer_ResumeVideo()
+    {
+        SwitchToSixteenByNine();
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Stop))]
+    [HarmonyPatch(typeof(VideoController), nameof(VideoController.StopVideo))]
+    public static void VideoController_StopVideo()
+    {
+        SwitchToUltra();
+    }
+
+    //can't SceneManager.sceneLoaded += action; because it crashes interop
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SceneController), nameof(SceneController.OnSceneLoaded))]
     public static void SceneController_OnSceneLoaded(Scene _scene)

@@ -12,7 +12,7 @@ Tested against the Ubisoft/UPlay version @ 3440x1440
 ## Features
 - Makes all resolutions and aspect ratios "valid".
 - Corrects UI scaling.
-- Option to keep UI at 16:9 positions instead of expanding.
+- Option to keep HUD at 16:9 positions instead of expanding.
 
 ## Configuration
 - The settings file can be found in `BepInEx/config/p1xel8ted.princeofpersia.ultrawide.cfg`.
