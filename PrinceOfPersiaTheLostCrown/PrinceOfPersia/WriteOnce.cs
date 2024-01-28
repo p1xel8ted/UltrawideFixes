@@ -1,5 +1,3 @@
-using System;
-
 namespace PrinceOfPersia;
 
 public sealed class WriteOnce<T>
