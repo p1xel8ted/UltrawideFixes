@@ -1,4 +1,5 @@
-﻿using UnityEngine.SceneManagement;
+﻿using AK;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 namespace PrinceOfPersia;
@@ -44,7 +45,6 @@ public static class Patches
     private static float CurrentWidth => Screen.width;
     private static float CurrentHeight => Screen.height;
     private static float AspectGap => (CurrentWidth - NormalWidth) / 2f;
-    private static int MaxRefreshRate => Screen.resolutions.Max(a => a.refreshRate);
 
 
     //can't SceneManager.sceneLoaded += action; because it crashes interop
@@ -55,11 +55,6 @@ public static class Patches
         if (UIManager.Instance == null) return;
 
         if (!(UIManager.Instance.m_canvasHUD != null & _scene.name.Equals(MainMenu))) return;
-
-        foreach(var t in UIManager.Instance.m_canvasHUD.GetComponentsInChildren<RectTransform>())
-        {
-            Plugin.Logger.LogInfo(t.name);
-        }
         
         UpperLeft2 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft2Const).GetComponent<RectTransform>(); //top left - appears to be just the potions
         UpperLeft1 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft1Const).GetComponent<RectTransform>(); //top left - health
@@ -166,9 +161,10 @@ public static class Patches
     {
         Plugin.Instance.Config.Reload();
         UIManager.Instance.PlayerMap.m_showFog = !Plugin.RemoveAllMapFog.Value;
+        UpdatePositions();
         
         SwitchToSixteenByNine(FullScreenMode.FullScreenWindow);
-        
+  
         // not sure if any of this is actually needed; hoping there is some resolution stuff buried in there
         UIManager.Instance.PlayerMap.OnStart();
         UIManager.Instance.PlayerMap.InitAfterUIManager();
