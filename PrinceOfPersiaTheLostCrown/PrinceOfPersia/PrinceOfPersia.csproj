@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>PrinceOfPersiaTheLostCrownUltraWide</AssemblyName>
         <Description>Prince of Persia: The Lost Crown Ultra-Wide</Description>
-        <Version>0.1.2</Version>
+        <Version>0.1.4</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
@@ -486,14 +486,5 @@
       <Reference Include="__Generated">
         <HintPath>H:\Games\Prince of Persia The Lost Crown\BepInEx\interop\__Generated.dll</HintPath>
       </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Include="..\..\..\P1xel8tedToolkit\BepInEx_IL2CPP\Utils.cs">
-        <Link>Utils.cs</Link>
-      </Compile>
-      <Compile Include="..\..\..\SunHavenMods\Shared\WriteOnce.cs">
-        <Link>WriteOnce.cs</Link>
-      </Compile>
     </ItemGroup>
 </Project>
