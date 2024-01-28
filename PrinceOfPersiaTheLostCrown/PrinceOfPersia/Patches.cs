@@ -62,8 +62,8 @@ public static class Patches
         }
         
         UpperLeft2 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft2Const).GetComponent<RectTransform>(); //top left - appears to be just the potions
-        UpperLeft1 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft1Const).GetComponent<RectTransform>(); //top left
-        UpperLeft3 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft3Const).GetComponent<RectTransform>(); //top left
+        UpperLeft1 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft1Const).GetComponent<RectTransform>(); //top left - health
+        UpperLeft3 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft3Const).GetComponent<RectTransform>(); //top left - amulets
         OriginalUpperLeft1.Value = UpperLeft1.anchoredPosition;
         OriginalUpperLeft2.Value = UpperLeft2.anchoredPosition;
         OriginalUpperLeft3.Value = UpperLeft3.anchoredPosition;

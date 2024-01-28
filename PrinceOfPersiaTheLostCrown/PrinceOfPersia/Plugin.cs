@@ -2,7 +2,7 @@
 /// <summary>
 /// Game is extremely sensitive to Harmony Patches. If you get random CTD's with no error, remove the Harmony patch you just added.
 /// Need to ensure Unity Log Listening is set to False in BepInEx.
-/// Custom build is also required to enable support for Ubisoft+ version. See GitHub repo.
+/// Custom build is also required to enable support for Ubisoft+ version. See GitHub repo. https://github.com/p1xel8ted/UltrawideFixes/tree/main/PrinceOfPersiaTheLostCrown/Custom%20BepInEx
 /// </summary>
 
 
