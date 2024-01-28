@@ -10,18 +10,7 @@ public static class Patches
     private const string CnvCharacter = "CNV_Character";
     private const string SargonSilhouette = "SargonSilhouette";
     private const float BaseAspect = 16f / 9f;
-    private static float CurrentAspect => (float) Display.displays[Plugin.DisplayToUse.Value].systemWidth / Display.displays[Plugin.DisplayToUse.Value].systemHeight;
-    private static float PositiveScaleFactor => CurrentAspect / BaseAspect;
-    private static bool Switching;
 
-    private static RectTransform UpperLeft1 { get; set; }
-    private static RectTransform UpperLeft2 { get; set; }
-    private static RectTransform UpperLeft3 { get; set; }
-    private static RectTransform UpperRight { get; set; }
-    private static RectTransform BottomLeft { get; set; }
-    private static RectTransform BottomRight1 { get; set; }
-    private static RectTransform BottomRight2 { get; set; }
-    
     private const string MainMenu = "MainMenu";
     private const string UpperLeft2Const = "HUDScaleRectParentUpperLeftCorner";
     private const string UpperLeft1Const = "HealthBar";
@@ -29,6 +18,9 @@ public static class Patches
     private const string BottomLeftConst = "HUDScaleRectParentBottomLeft";
     private const string BottomRight1Const = "HUDScaleRectParentBottomRight";
     private const string BottomRight2Const = "FocusHUDWidget";
+    private const string UbisoftSwirl = "UBISOFTSWIRL";
+    private const string UpperLeft3Const = "Amulets";
+    private static bool Switching;
 
     private readonly static WriteOnce<Vector2> OriginalUpperLeft1 = new();
     private readonly static WriteOnce<Vector2> OriginalUpperLeft2 = new();
@@ -37,14 +29,24 @@ public static class Patches
     private readonly static WriteOnce<Vector2> OriginalBottomLeft = new();
     private readonly static WriteOnce<Vector2> OriginalBottomRight1 = new();
     private readonly static WriteOnce<Vector2> OriginalBottomRight2 = new();
+    private static float CurrentAspect => (float) Display.displays[Plugin.DisplayToUse.Value].systemWidth / Display.displays[Plugin.DisplayToUse.Value].systemHeight;
+    private static float PositiveScaleFactor => CurrentAspect / BaseAspect;
+
+    private static RectTransform UpperLeft1 { get; set; }
+    private static RectTransform UpperLeft2 { get; set; }
+    private static RectTransform UpperLeft3 { get; set; }
+    private static RectTransform UpperRight { get; set; }
+    private static RectTransform BottomLeft { get; set; }
+    private static RectTransform BottomRight1 { get; set; }
+    private static RectTransform BottomRight2 { get; set; }
 
     private static float NormalWidth => CurrentHeight * BaseAspect;
     private static float CurrentWidth => Screen.width;
     private static float CurrentHeight => Screen.height;
     private static float AspectGap => (CurrentWidth - NormalWidth) / 2f;
     private static int MaxRefreshRate => Screen.resolutions.Max(a => a.refreshRate);
-    
-    
+
+
     //can't SceneManager.sceneLoaded += action; because it crashes interop
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SceneController), nameof(SceneController.OnSceneLoaded))]
@@ -61,7 +63,7 @@ public static class Patches
         
         UpperLeft2 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft2Const).GetComponent<RectTransform>(); //top left - appears to be just the potions
         UpperLeft1 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft1Const).GetComponent<RectTransform>(); //top left
-        UpperLeft3 = UIManager.Instance.m_canvasHUD.transform.FindChild("Amulets").GetComponent<RectTransform>(); //top left
+        UpperLeft3 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft3Const).GetComponent<RectTransform>(); //top left
         OriginalUpperLeft1.Value = UpperLeft1.anchoredPosition;
         OriginalUpperLeft2.Value = UpperLeft2.anchoredPosition;
         OriginalUpperLeft3.Value = UpperLeft3.anchoredPosition;
@@ -107,7 +109,7 @@ public static class Patches
             BottomRight2.anchoredPosition = OriginalBottomRight2.Value;
         }
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(VideoController), nameof(VideoController.OnVideoPrepared))]
     public static void VideoPlayer_ResumeVideo()
@@ -118,18 +120,24 @@ public static class Patches
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Stop))]
+    public static void VideoController_Stop()
+    {
+        SwitchToUltra();
+    }
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoController), nameof(VideoController.StopVideo))]
     public static void VideoController_StopVideo()
     {
         SwitchToUltra();
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
     public static void VideoPlayer_Play(ref VideoPlayer __instance)
     {
         var source = __instance.source == VideoSource.Url ? __instance.url : __instance.clip.name;
-        if (source.Contains("UBISOFTSWIRL"))
+        if (source.Contains(UbisoftSwirl))
         {
             __instance.targetCameraAlpha = 0f;
             __instance.playbackSpeed = 10000f;
@@ -170,7 +178,7 @@ public static class Patches
         UIManager.Instance.PlayerMap.m_encodeFogDataToTextureJob.m_refreshEncodeFog = true;
         UIManager.Instance.PlayerMap.UpdateAutoDiscover(true);
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(UIManager), nameof(UIManager.OnMenuClosedBackToGameplay))]
     public static void UIManager_OnMenuClosedBackToGameplay()
