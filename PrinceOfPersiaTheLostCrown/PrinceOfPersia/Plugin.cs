@@ -18,10 +18,15 @@ public class Plugin : BasePlugin
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
     internal static Plugin Instance { get; private set; }
     internal static ManualLogSource Logger { get; private set; }
+    internal static Harmony HarmonyInstance { get; private set; } = new(PluginGuid);
+
+    
+ 
     public override void Load()
     {
         Instance = this;
-        RemoveAllMapFog = Config.Bind("General", "Remove All Map Fog", false, "Remove all map fog. Recommend using Guided Exploration mode if you have this on.");
+        
+        RemoveAllMapFog = Config.Bind("General", "Remove All Map Fog", true, "Remove all map fog. Recommend using Guided Exploration mode if you have this on.");
         DisplayToUse = Config.Bind("General", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
         ExpandUI = Config.Bind("General", "Expand UI", true, "Expand UI to the edges of the screen.");
         Logger = Log;
@@ -35,6 +40,7 @@ public class Plugin : BasePlugin
         Debug.unityLogger.logEnabled = true;
       
         Log.LogInfo($"Plugin {PluginName} is loaded!");
-        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+        HarmonyInstance.PatchAll();
+       
     }
 }

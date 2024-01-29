@@ -45,13 +45,13 @@ public static class Patches
 
     //can't SceneManager.sceneLoaded += action; because it crashes interop
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(SceneController), nameof(SceneController.OnSceneLoaded))]
-    public static void SceneController_OnSceneLoaded(Scene _scene)
+    [HarmonyPatch(typeof(SceneManager), nameof(SceneManager.Internal_SceneLoaded))]
+    public static void SceneController_OnSceneLoaded(Scene scene)
     {
         if (UIManager.Instance == null) return;
 
-        if (!(UIManager.Instance.m_canvasHUD != null & _scene.name.Equals(MainMenu))) return;
-        
+        if (!(UIManager.Instance.m_canvasHUD != null & scene.name.Equals(MainMenu))) return;
+
         UpperLeft2 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft2Const).GetComponent<RectTransform>(); //top left - appears to be just the potions
         UpperLeft1 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft1Const).GetComponent<RectTransform>(); //top left - health
         UpperLeft3 = UIManager.Instance.m_canvasHUD.transform.FindChild(UpperLeft3Const).GetComponent<RectTransform>(); //top left - amulets
@@ -87,7 +87,6 @@ public static class Patches
             UpperRight.anchoredPosition = OriginalUpperRight.Value -= new Vector2(AspectGap, 0);
             BottomRight1.anchoredPosition = OriginalBottomRight1.Value -= new Vector2(AspectGap, 0);
             BottomRight2.anchoredPosition = OriginalBottomRight2.Value -= new Vector2(AspectGap, 0);
-            
         }
         else
         {
@@ -151,16 +150,26 @@ public static class Patches
         }
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UIManager), nameof(UIManager.OnPlayerChangingLevel))]
+    public static void UIManager_OnPlayerChangingLevel()
+    {
+        Plugin.Instance.Config.Reload();
+        UpdatePositions();
+    }
+
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(UIManager), nameof(UIManager.OpenWorldMap))]
     public static void UIManager_OpenWorldMap()
     {
         Plugin.Instance.Config.Reload();
         UIManager.Instance.PlayerMap.m_showFog = !Plugin.RemoveAllMapFog.Value;
+
         UpdatePositions();
-        
+
         SwitchToSixteenByNine(FullScreenMode.FullScreenWindow);
-  
+
         // not sure if any of this is actually needed; hoping there is some resolution stuff buried in there
         UIManager.Instance.PlayerMap.OnStart();
         UIManager.Instance.PlayerMap.InitAfterUIManager();
