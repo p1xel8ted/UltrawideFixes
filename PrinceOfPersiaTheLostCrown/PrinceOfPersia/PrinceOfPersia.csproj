@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>PrinceOfPersiaTheLostCrownUltraWide</AssemblyName>
         <Description>Prince of Persia: The Lost Crown Ultra-Wide</Description>
-        <Version>0.1.4</Version>
+        <Version>0.1.5</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>

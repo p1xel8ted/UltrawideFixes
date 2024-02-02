@@ -28,6 +28,7 @@ public static class Patches
     private readonly static WriteOnce<Vector2> OriginalBottomRight2 = new();
     private static float CurrentAspect => (float) Display.displays[Plugin.DisplayToUse.Value].systemWidth / Display.displays[Plugin.DisplayToUse.Value].systemHeight;
     private static float PositiveScaleFactor => CurrentAspect / BaseAspect;
+    // private static float NegativeScaleFactor => 1f / PositiveScaleFactor;
 
     private static RectTransform UpperLeft1 { get; set; }
     private static RectTransform UpperLeft2 { get; set; }
@@ -74,7 +75,7 @@ public static class Patches
 
     private static void UpdatePositions()
     {
-        Plugin.Instance.Config.Reload();
+        Plugin.ConfigInstance.Reload();
 
         if (UpperLeft1 == null || UpperLeft2 == null || UpperRight == null || BottomLeft == null || BottomRight1 == null || BottomRight2 == null) return;
 
@@ -100,10 +101,12 @@ public static class Patches
         }
     }
 
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(VideoController), nameof(VideoController.OnVideoPrepared))]
-    public static void VideoPlayer_ResumeVideo()
+    public static void VideoPlayer_OnVideoPrepared()
     {
+        //aspect ratio setting is ignored/overridden elsewhere hence this hacky method
         SwitchToSixteenByNine(FullScreenMode.FullScreenWindow);
     }
 
@@ -112,6 +115,7 @@ public static class Patches
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Stop))]
     public static void VideoController_Stop()
     {
+        //aspect ratio setting is ignored/overridden elsewhere hence this hacky method
         SwitchToUltra();
     }
 
@@ -127,19 +131,19 @@ public static class Patches
     public static void VideoPlayer_Play(ref VideoPlayer __instance)
     {
         var source = __instance.source == VideoSource.Url ? __instance.url : __instance.clip.name;
-        if (source.Contains(UbisoftSwirl))
-        {
-            __instance.targetCameraAlpha = 0f;
-            __instance.playbackSpeed = 10000f;
-        }
+        if (!source.Contains(UbisoftSwirl)) return;
+        __instance.targetCameraAlpha = 0f;
+        __instance.playbackSpeed = 10000f;
     }
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
-        UpdatePositions();
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        var refRes = __instance.referenceResolution;
+        refRes.x = Mathf.RoundToInt(refRes.y * CurrentAspect);
+        __instance.referenceResolution = refRes;
+        
         if (!__instance.name.Equals(CnvCharacter)) return;
 
         //fixes sargon being squished on the menu screen in game
@@ -154,30 +158,22 @@ public static class Patches
     [HarmonyPatch(typeof(UIManager), nameof(UIManager.OnPlayerChangingLevel))]
     public static void UIManager_OnPlayerChangingLevel()
     {
-        Plugin.Instance.Config.Reload();
+        Plugin.ConfigInstance.Reload();
+
         UpdatePositions();
     }
 
-
-    [HarmonyPrefix]
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(UIManager), nameof(UIManager.OpenWorldMap))]
     public static void UIManager_OpenWorldMap()
     {
-        Plugin.Instance.Config.Reload();
+        Plugin.ConfigInstance.Reload();
+
         UIManager.Instance.PlayerMap.m_showFog = !Plugin.RemoveAllMapFog.Value;
 
+        SwitchToUltra();
+
         UpdatePositions();
-
-        SwitchToSixteenByNine(FullScreenMode.FullScreenWindow);
-
-        // not sure if any of this is actually needed; hoping there is some resolution stuff buried in there
-        UIManager.Instance.PlayerMap.OnStart();
-        UIManager.Instance.PlayerMap.InitAfterUIManager();
-        UIManager.Instance.PlayerMap.InitializeSubMaps();
-        UIManager.Instance.PlayerMap.UpdateDiscoveryJobData();
-        UIManager.Instance.PlayerMap.m_activeRefresh = true;
-        UIManager.Instance.PlayerMap.m_encodeFogDataToTextureJob.m_refreshEncodeFog = true;
-        UIManager.Instance.PlayerMap.UpdateAutoDiscover(true);
     }
 
     [HarmonyPrefix]
@@ -186,14 +182,7 @@ public static class Patches
     {
         SwitchToUltra();
     }
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(UIManager), nameof(UIManager.OnEnterMainMenu))]
-    public static void UIManager_OnEnterMainMenu()
-    {
-        SwitchToUltra();
-    }
-
+    
     private static void SwitchToSixteenByNine(FullScreenMode fsMode)
     {
         var res = new Resolution
