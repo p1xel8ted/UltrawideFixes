@@ -166,7 +166,13 @@ public static class Patches
     [HarmonyPatch(typeof(UIWorldMapManager), nameof(UIWorldMapManager.Show))]
     public static void UIWorldMapManager_Show(UIWorldMapManager __instance)
     {
-        foreach (var transform in __instance.transform)
+        UpdateMapPosition();
+        Plugin.UpdateScales();
+    }
+
+    private static void UpdateMapPosition()
+    {
+        foreach (var transform in UIWorldMapManager.Instance.transform)
         {
             var t = transform.TryCast<Transform>();
             if (t != null && t.name.StartsWith(Const.MapTransforms))
@@ -174,8 +180,8 @@ public static class Patches
                 t.localPosition = t.localPosition with {x = 330};
             }
         }
-        Plugin.UpdateScales();
     }
+    
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UISetting), nameof(UISetting.Show))]
@@ -195,34 +201,31 @@ public static class Patches
 
         Plugin.UpdateScales();
     }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(EscRelateButton), nameof(EscRelateButton.OnEnable))]
-    public static void EscRelateButton_OnEnable(EscRelateButton __instance)
-    {
-        if (__instance.transform.GetAbsolutePathInHierarchy().Contains("SafeArea", StringComparison.OrdinalIgnoreCase))
-        {
-            var close = __instance.GetComponent<RectTransform>();
-            close.anchoredPosition = new Vector2(Mathf.RoundToInt(Plugin.SelectedWidth / 2f) - Plugin.AspectWidthDifference, 525f);
-        }
-     
-    }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(GameEventManager), nameof(GameEventManager.LateUpdate))]
     [HarmonyPatch(typeof(UIIllustratedHandbook), nameof(UIIllustratedHandbook.Show))]
-    public static void UIIllustratedHandbook_Show(UIIllustratedHandbook __instance)
+    public static void UIIllustratedHandbook_Show()
     {
+        if (!UIIllustratedHandbook.Instance.gameObject.activeSelf) return;
+
         var controllerTips = GameObject.Find(Const.UiIllustratedHandbookControllerButtonsPath);
-        controllerTips.transform.position = controllerTips.transform.position with {x = -1.46f};
+        var rectTransform = controllerTips.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector2(440f, 45f);
+
+        var close = UIIllustratedHandbook.Instance.CloseButton.GetComponent<RectTransform>();
+        close.anchoredPosition = new Vector2(Mathf.RoundToInt(Plugin.SelectedWidth / 2f) - Plugin.AspectWidthDifference, 525f);
 
         Plugin.UpdateScales();
     }
-
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UISetting), nameof(UISetting.Update))]
     public static void UISetting_Update(UISetting __instance)
     {
+        var close = __instance.CloseButton.GetComponent<RectTransform>();
+        close.anchoredPosition = new Vector2(Mathf.RoundToInt(Plugin.SelectedWidth / 2f) - Plugin.AspectWidthDifference, 525f);
+
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             __instance.CloseButton.onClick.Invoke();
@@ -259,20 +262,21 @@ public static class Patches
         __instance.transform.FindChild(Const.UpSideBlackBar).gameObject.SetActive(false);
         __instance.transform.FindChild(Const.DownSideBlackBar).gameObject.SetActive(false);
     }
-//
-
-//     
-//     [HarmonyPostfix]
-//     [HarmonyPatch(typeof(ScenarioSkipButton), nameof(ScenarioSkipButton.Show))]
-//     [HarmonyPatch(typeof(UIWorldMapManager), nameof(UIWorldMapManager.Update))]
-//     public static void ScenarioSkipButton_Show()
-//     {
-//         var icon = GameObject.Find("GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/ScenarioSkipButton/ScenarioSkipButton(Clone)/ControllerIconTipsGroup");
-//         if (icon != null)
-//         {
-//             icon.gameObject.transform.localPosition = WorldMapOpen ? new Vector3(330f, 0, 0) : new Vector3(760f, 178f, 0);
-//         }
-//     }
+  
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ScenarioSkipButton), nameof(ScenarioSkipButton.Show))]
+    [HarmonyPatch(typeof(UIWorldMapManager), nameof(UIWorldMapManager.Update))]
+    public static void ScenarioSkipButton_Show()
+    {
+        UpdateMapPosition();
+        
+        var icon = GameObject.Find("GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/ScenarioSkipButton/ScenarioSkipButton(Clone)/ControllerIconTipsGroup/Free/ButtonStartNoBg");
+        if (icon != null)
+        {
+            var rectTransform = icon.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(1065.094f, 485.8047f);
+        }
+    }
 //
 
 //
@@ -372,12 +376,14 @@ public static class Patches
         {
             var BlurBg = Object.Instantiate(BlurBgGo, __instance.transform, true);
             BlurBg.transform.SetAsFirstSibling();
-            BlurBg.transform.position = new Vector3(0, 0, 10);
-            BlurBg.transform.localScale = BlurBg.transform.localScale with {x = Plugin.PositiveScaleFactor};
+            var rectTransform = BlurBg.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(0, 0);
+            // BlurBg.transform.localScale = BlurBg.transform.localScale with {x = Plugin.PositiveScaleFactor};
         }
         else
         {
-            blurBg.transform.position = new Vector3(0, 0, 10);
+            var rectTransform = blurBg.GetComponent<RectTransform>();
+            rectTransform.anchoredPosition = new Vector2(0, 0);
         }
 
         Plugin.UpdateScales();

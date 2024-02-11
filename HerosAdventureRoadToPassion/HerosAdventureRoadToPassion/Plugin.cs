@@ -89,7 +89,7 @@ public class Plugin : BasePlugin
 
             canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
             canvasScaler.referenceResolution = new Vector2(Mathf.RoundToInt(canvasScaler.referenceResolution.y * Const.BaseAspect), canvasScaler.referenceResolution.y);
-            canvasScaler.scaleFactor = PositiveScaleFactor - 0.10f;
+            canvasScaler.scaleFactor = PositiveScaleFactor;
         }
 
         var pixelPerfects = Utils.FindIl2CppType<PixelPerfectCamera>();
