@@ -101,6 +101,9 @@
       <Reference Include="UnityEngine.TerrainModule">
         <HintPath>F:\Games\steamapps\common\WulinSH\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
       </Reference>
+      <Reference Include="UnityEngine.TextCoreModule">
+        <HintPath>F:\Games\steamapps\common\WulinSH\BepInEx\interop\UnityEngine.TextCoreModule.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>F:\Games\steamapps\common\WulinSH\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
@@ -128,9 +131,6 @@
       <Reference Include="UnityEngine.XRModule">
         <HintPath>F:\Games\steamapps\common\WulinSH\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
-      <Reference Include="UniverseLib.BIE.IL2CPP.Interop">
-        <HintPath>F:\Games\steamapps\common\WulinSH\BepInEx\plugins\sinai-dev-UnityExplorer\UniverseLib.BIE.IL2CPP.Interop.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
     <ItemGroup>
@@ -140,5 +140,9 @@
       <Compile Include="..\..\..\SunHavenMods\Shared\Extensions.cs">
         <Link>Extensions.cs</Link>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="background.png" />
     </ItemGroup>
 </Project>

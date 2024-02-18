@@ -3,6 +3,22 @@
 [Harmony]
 internal static class Const
 {
+    internal const string AchievementTipName = "tip";
+    internal const string AchievementScrollViewName = "ScrollView";
+    internal const string AchievementBgOneName = "bg (1)";
+    internal const string AchievementBoxName = "box";
+    internal const string CabManagerBottomControlName = "BottomControl";
+    internal const string CabManagerGoName = "btnGo";
+    internal const string CabManagerTxtCostName = "txtCostCoin";
+    internal const string CabManagerTxtToName = "txtFromTo";
+    internal const string StatOneName = "zhanyi";
+    internal const string StatTwoName = "nuqi";
+    internal const string TradeFactionCloseName = "Close (1)";
+    internal const string TradeFactionItemDisplayZoneOneName = "ItemDisplayZone";
+    internal const string TradeFactionItemDisplayZoneTwoName = "ItemDisplayZone_";
+    internal const string TradeFactionSellItemName = "TradingWithFactionUI_SellItem";
+    internal const string StoryLogName = "StoryLog";
+    internal const string TradingNpcCloseName = "Close";
     internal const string HotTipBoxPath = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/EscUI(Clone)/EscUI_Main/BoxTip";
     internal const string AchievementUiBg1Path = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/AchievementUI(Clone)/BlurBg(Clone)/Bg";
     internal const string AchievementUiBg2Path = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/AchievementUI(Clone)/bg (1)";
@@ -16,8 +32,9 @@ internal static class Const
     internal const string UIAbilityBottomPath = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/UIMenuPanel(Clone)/UIAbility/JoyStickTip/ControllerIconTipsGroup/Bottom";
     internal const string UIRelationBottomPath = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/UIMenuPanel(Clone)/UIRelation/ControllerIconTipsGroup/Bottom";
     internal const string UIStoryNoteBottomPath = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/UIMenuPanel(Clone)/UIStoryNote/ControllerIconTipsGroup/Bottom";
-    internal const string BlurBgCenterPath = "Center";
-    internal const string BlurBgBgPath = "Bg";
+    internal const string MainMenuBottomPath = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Normal/MainMenuUI(Clone)/ControllerIconTipsGroup/Bottom";
+    internal const string CenterPath = "Center";
+    internal const string BgPath = "Bg";
     internal const string PluginGuid = "p1xel8ted.herosadventureroadtopassion.ultrawide";
     internal const string PluginName = "Hero's Adventure: Road to Passion Ultra-Wide";
     internal const string PluginVersion = "0.1.0";
@@ -47,4 +64,13 @@ internal static class Const
     internal const string Blur2Path = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/Window/UISetting(Clone)/Center/Bg";
     internal const string TxtPrizeLineName = "txtPrizeLine";
     internal const string TxtEnergyLineName = "txtEnergyLine";
+    internal const string ScenarioSkipControllerButtonPath = "GameSingletonRoot/WuLin.UIRoot(Clone)/SafeArea/ScenarioSkipButton/ScenarioSkipButton(Clone)/ControllerIconTipsGroup/Free/ButtonStartNoBg";
+    internal const string ButtonModHelpPath = "btnModHelp";
+    internal const string TabsGroupName = "TabsGroup";
+    internal const string BtnCloseName = "btnClose";
+    internal const string CloseButtonName = "Close";
+    internal const string BottomName = "Bottom";
+    internal const string RoamingControllerIconTipsGroupName = "RoamingControllerIconTipsGroup";
+    internal const string BlurBgName = "BlurBg";
+    internal const string ModObjectPath = "Mod";
 }

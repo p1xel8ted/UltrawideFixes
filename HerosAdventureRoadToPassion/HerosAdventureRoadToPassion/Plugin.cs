@@ -1,6 +1,4 @@
-﻿using TMPro;
-
-namespace HerosAdventureRoadToPassion;
+﻿namespace HerosAdventureRoadToPassion;
 
 [BepInPlugin(Const.PluginGuid, Const.PluginName, Const.PluginVersion)]
 public class Plugin : BasePlugin
@@ -14,6 +12,7 @@ public class Plugin : BasePlugin
     internal static float PositiveScaleFactor => CurrentAspect / Const.BaseAspect;
     private static float BaseWidth => Display.displays[DisplayToUse.Value].systemHeight * Const.BaseAspect;
     internal static float NegativeScaleFactor => 1f / (CurrentAspect / Const.BaseAspect);
+    internal static float MiddleOfScreenX => BaseWidth / 2f;
     internal static int SelectedWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int SelectedHeight => Display.displays[DisplayToUse.Value].systemHeight;
     private static int MaxRefreshRate => Screen.resolutions.Max(a => a.refreshRate);
@@ -21,7 +20,7 @@ public class Plugin : BasePlugin
     internal static ConfigEntry<bool> DisableTips { get; private set; }
     internal static ConfigEntry<bool> CorrectMenu { get; private set; }
 
-    internal static ConfigEntry<bool> ExpandUI { get; private set; }
+    internal static ConfigEntry<bool> SixteenByNineHud { get; private set; }
     internal static ConfigFile ConfigInstance { get; private set; }
     internal static CanvasScaler RootScaler { get; private set; }
 
@@ -31,7 +30,7 @@ public class Plugin : BasePlugin
         DisplayToUse = Config.Bind(Const.GeneralCat, "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
         DisableTips = Config.Bind(Const.GeneralCat, "Disable Tips", false, "Disables tips under the Esc menu");
         CorrectMenu = Config.Bind(Const.GeneralCat, "Correct Menu", false, "Corrects the menu to fit the screen");
-        ExpandUI = Config.Bind(Const.GeneralCat, "Expand UI", true, "Expands the UI to fit the screen");
+        SixteenByNineHud = Config.Bind(Const.GeneralCat, "Restrict HUD", false, "Sets the HUD to 16:9");
         PlayerPrefs.SetInt(Const.UnitySelectMonitor, DisplayToUse.Value);
         PlayerPrefs.Save();
         Display.displays[DisplayToUse.Value].Activate();
@@ -107,94 +106,28 @@ public class Plugin : BasePlugin
             tf.targetFrameRate = MaxRefreshRate;
         }
 
+        
+        SetSafeArea(!SixteenByNineHud.Value);
+    }
 
+
+    internal static void SetSafeArea(bool expand)
+    {
         var safeAreaHelpers = Utils.FindIl2CppType<SafeAreaHelper>();
         foreach (var sah in safeAreaHelpers)
         {
             sah.Start();
             sah.canvasSize = new Vector2(SelectedWidth, SelectedHeight);
-            if (!ExpandUI.Value)
-            {
-                sah.wideScreen = AspectWidthDifference;
-            }
-            else
+            if (expand)
             {
                 sah.wideScreen = 0;
             }
+            else
+            {
+                sah.wideScreen = AspectWidthDifference;
+            }
+
             sah.SetupArea();
         }
-
-        UpdateScales();
-    }
-
-    private static void UpdateControllerIcons()
-    {
-        var controllerTips = Utils.FindIl2CppType<ControllerIconTipsGroup>();
-        var shouldExpand = ExpandUI.Value;
-        var scaleFactor = shouldExpand ? 1 : PositiveScaleFactor;
-
-        foreach (var controllerTip in controllerTips)
-        {
-            var bottom = controllerTip.transform.FindChild(Const.BottomPath);
-            if (bottom == null) continue;
-            var localScale = bottom.localScale;
-            localScale = new Vector3(scaleFactor, localScale.y, localScale.z);
-            bottom.localScale = localScale;
-            foreach (var o in bottom)
-            {
-                var child = o.TryCast<Transform>();
-                if (child == null) continue;
-                var scale = child.localScale;
-                scale = new Vector3(scaleFactor, scale.y, scale.z);
-                child.localScale = scale;
-            }
-        }
-    }
-
-    private static void UpdateBlurBackgrounds()
-    {
-        var blurs = Utils.FindIl2CppType<BlurBg>();
-        foreach (var transform in blurs.Select(blur => blur.transform))
-        {
-            transform.localScale = transform.localScale with {x = PositiveScaleFactor};
-        }
-    }
-
-    private static Dictionary<int, float> FontSizeDictionary { get; } = new();
-
-    private static IEnumerable<string> TextToSkip { get; } = ["NpcBigTalk", "NpcSmallTalk", "headchat", "StoryLog"];
-
-    internal static void UpdateTextMesh()
-    {
-        var textMeshProUGUIs = Utils.FindIl2CppType<TextMeshProUGUI>();
-        foreach (var text in textMeshProUGUIs)
-        {
-            var path = text.transform.GetAbsolutePathInHierarchy();
-
-            if (TextToSkip.Any(path.Contains))
-            {
-                if (path.Contains("StoryLog"))
-                {
-                    //expand the width of the textbox
-                    text.rectTransform.sizeDelta = text.rectTransform.sizeDelta with {x = 500};
-                }
-                continue;
-            }
-
-            text.enableWordWrapping = true;
-            FontSizeDictionary.TryAdd(text.GetInstanceID(), text.fontSize);
-
-            if (FontSizeDictionary.TryGetValue(text.GetInstanceID(), out var fontSize))
-            {
-                text.fontSize = fontSize - 4;
-            }
-        }
-    }
-
-    internal static void UpdateScales()
-    {
-        UpdateBlurBackgrounds();
-        UpdateControllerIcons();
-        // UpdateTextMesh();
     }
 }

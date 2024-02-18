@@ -12,3 +12,4 @@ global using JimmysUnityUtilities;
 global using UnityEngine.EventSystems;
 global using Object = UnityEngine.Object;
 global using Shared;
+global using TMPro;
