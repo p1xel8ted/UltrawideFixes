@@ -27,7 +27,7 @@ Developed against the Steam version @ 3440x1440
 
 ## Changes
 
-`0.1.0 - 12th January 2024`
+`0.1.0 - 18th January 2024`
 - Initial release
   
 ## Credits
