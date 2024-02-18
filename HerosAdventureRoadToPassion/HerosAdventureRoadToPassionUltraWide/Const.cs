@@ -1,4 +1,4 @@
-﻿namespace HerosAdventureRoadToPassion;
+﻿namespace HerosAdventureRoadToPassionUltraWide;
 
 [Harmony]
 internal static class Const

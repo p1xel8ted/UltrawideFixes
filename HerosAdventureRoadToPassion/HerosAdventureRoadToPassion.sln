@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerosAdventureRoadToPassion", "HerosAdventureRoadToPassion\HerosAdventureRoadToPassion.csproj", "{3A6E6BE2-C1E0-43AD-BBBB-58B2185F94B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerosAdventureRoadToPassionUltraWide", "HerosAdventureRoadToPassionUltraWide\HerosAdventureRoadToPassionUltraWide.csproj", "{3A6E6BE2-C1E0-43AD-BBBB-58B2185F94B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace HerosAdventureRoadToPassion;
+﻿namespace HerosAdventureRoadToPassionUltraWide;
 
 [BepInPlugin(Const.PluginGuid, Const.PluginName, Const.PluginVersion)]
 public class Plugin : BasePlugin

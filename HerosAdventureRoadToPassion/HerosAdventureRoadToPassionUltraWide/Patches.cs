@@ -1,4 +1,4 @@
-﻿namespace HerosAdventureRoadToPassion;
+﻿namespace HerosAdventureRoadToPassionUltraWide;
 
 [Harmony]
 public static class Patches
@@ -480,6 +480,8 @@ public static class Patches
         var tip = __instance.transform.FindFirstChildByName(Const.AchievementTipName);
         tip.localPosition = tip.localPosition with {y = -420f};
     }
+    
+    private static Transform QuitToDesktopButton { get; set; }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(EscUI), nameof(EscUI.Show), typeof(bool))]
@@ -488,6 +490,23 @@ public static class Patches
     public static void EscUI_Show(EscUI __instance)
     {
         Plugin.ConfigInstance.Reload();
+        if (QuitToDesktopButton == null)
+        {
+            var quitButton = __instance.transform.FindFirstChildByName("Quit");
+            var parent = __instance.transform.FindFirstChildByName("EscUI_Main");
+            parent.localScale = new Vector3(0.75f, 0.75f, 1);
+            QuitToDesktopButton = Object.Instantiate(quitButton, parent, true);
+ 
+            var button = QuitToDesktopButton.GetComponent<Button>();
+            var text = QuitToDesktopButton.GetComponentInChildren<TextMeshProUGUI>();
+            text.text = "Quit to Desktop";
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(() =>
+            {
+                GC.Collect();
+                Application.Quit();
+            });
+        }
 
         if (__instance.transform.FindChild(Const.BlurBgClone) == null && BlurBgGo != null)
         {

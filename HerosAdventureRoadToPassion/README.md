@@ -1,34 +1,31 @@
-### Prince of Persia: The Lost Crown Ultra-Wide
+### Hero's Adventure: Road to Passion
 
 ![Game Logo](header.png)<br>
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
 
-Tested against the Ubisoft/UPlay version @ 3440x1440
-
-## Note
-- You must select 'Fullscreen Window'
+Developed against the Steam version @ 3440x1440
 
 ## Features
-- Makes all resolutions and aspect ratios "valid".
-- Corrects UI scaling.
+- Forces main display resolution. Select display in config file.
 - Option to keep HUD at 16:9 positions instead of expanding.
+- Map is restricted to 16:9 intentionally.
+- Option to correct the main menu backgrounds etc. Looks fine on 21:9.
+- Various UI components have been manually adjusted for the wider aspect.
+- Added 'Quit to Desktop' button to the in-game menu.
+
+## Note
+- The UI is not designed for the English language; many components (such as text) are not aligned correctly/overlap. This is not the mod.
+- I've manually corrected these instances where possible.
 
 ## Configuration
-- The settings file can be found in `BepInEx/config/p1xel8ted.princeofpersia.ultrawide.cfg`.
-- You can change the settings, save the file and then toggle the character menu to reload the config.
+- The settings file can be found in `BepInEx/config/p1xel8ted.herosadventureroadtopassion.ultrawide.cfg`.
 
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown).
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HerosAdventureRoadToPassion).
 - Extract the contents of the release zip into the game directory.
 
 ## Changes
-
-`0.1.2 - 13th January 2024`
-- Added option to have the UI expanded or set at 16:9 positions.
-
-`0.1.1 - 13th January 2024`
-- Fixed character being the incorrect aspect on the character screen
 
 `0.1.0 - 12th January 2024`
 - Initial release

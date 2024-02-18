@@ -2,17 +2,18 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <AssemblyName>HerosAdventureRoadToPassion</AssemblyName>
-        <Description>My first plugin</Description>
-        <Version>1.0.0</Version>
+        <Description>Hero's Adventure: Road to Passion Ultra-Wide</Description>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+      <Version>0.1.0</Version>
+      <AssemblyVersion>$(Version)</AssemblyVersion>
+      <FileVersion>$(Version)</FileVersion>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
-        <RootNamespace>HerosAdventureRoadToPassion</RootNamespace>
+        <PackageId>HerosAdventureRoadToPassionUltraWide</PackageId>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
