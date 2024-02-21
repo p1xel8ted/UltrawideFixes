@@ -36,6 +36,9 @@ I generally don't maintain them once released; I don't even play most of these; 
 ### [Death Or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
 
+### [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/FlipWitch/total?label=downloads&style=for-the-badge)
+
 ### [Heaven Dust 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HeavenDust1/total?label=downloads&style=for-the-badge)
 
