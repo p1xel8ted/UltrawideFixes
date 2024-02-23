@@ -1,4 +1,7 @@
-﻿namespace FlipWitchUltraWideTweaks;
+﻿using BepInEx.Configuration;
+using Shared;
+
+namespace FlipWitchUltraWideTweaks;
 
 [Harmony]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -6,24 +9,60 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.flipwitch.tweaks";
     private const string PluginName = "Flip Witch Ultra-Wide Tweaks";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     private static bool FirstTimeMainMenu = true;
     private static float BaseAspect => 16f / 9f;
-    internal static int MainWidth => Display.displays[0].systemWidth;
-    internal static int MainHeight => Display.displays[0].systemHeight;
-    internal static float CurrentAspect => MainWidth / (float) MainHeight;
+    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
+    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
+    internal static int SixteenNineWidth => MainHeight * 16 / 9;
+    private static float CurrentAspect => MainWidth / (float) MainHeight;
     internal static float PositiveScaleFactor => CurrentAspect / BaseAspect;
     internal static float NegativeScaleFactor => 1f / PositiveScaleFactor;
-    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+
+    internal static ConfigEntry<int> DisplayToUse { get; private set; }
+    private static ConfigEntry<bool> LimitHudToSixteenByNine { get; set; }
+
+    internal static ConfigEntry<bool> LimitInGameMenuToSixteenByNine { get; private set; }
+
+    internal static ConfigEntry<bool> SkipIntros { get; private set; }
     private static ManualLogSource LOG { get; set; }
 
     private void Awake()
     {
         LOG = Logger;
+
+        DisplayToUse = Config.Bind("General", "Display To Use", 0, new ConfigDescription("The display to use for the game. 0 is generally the main.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        SkipIntros = Config.Bind("General", "Skip Intros", true, "Skip the intro stuff and go straight to the main menu.");
+        LimitHudToSixteenByNine = Config.Bind("HUD", "Limit HUD to 16:9", false, "Limit the hud to 16:9 aspect ratio");
+        LimitHudToSixteenByNine.SettingChanged += (sender, args) =>
+        {
+            AdjustHUD();
+        };
+
+        LimitInGameMenuToSixteenByNine = Config.Bind("In Game Menu", "Limit In-Game Menu to 16:9", false, "Limit the in game menu to 16:9 aspect ratio");
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private readonly static WriteOnce<float> OriginalHudPosition = new();
+    private static Transform HUDTransform { get; set; }
+
+
+    private static void AdjustHUD()
+    {
+        HUDTransform = GameObject.Find("Switch Database/Main UI/Ingame HUD").transform;
+        OriginalHudPosition.Value = HUDTransform.position.x;
+        if (LimitHudToSixteenByNine.Value)
+        {
+            HUDTransform.position = HUDTransform.position with {x = OriginalHudPosition.Value + (MainWidth - SixteenNineWidth) / 2f};
+        }
+        else
+        {
+            HUDTransform.position = HUDTransform.position with {x = OriginalHudPosition.Value};
+        }
     }
 
     private static void SceneManagerOnSceneLoaded(Scene __arg0, LoadSceneMode __arg1)
@@ -33,13 +72,15 @@ public class Plugin : BaseUnityPlugin
         {
             mainMenuBackground.transform.localScale = mainMenuBackground.transform.localScale with {x = PositiveScaleFactor, y = PositiveScaleFactor};
         }
-        
+
+        AdjustHUD();
+
         if (!__arg0.name.Equals("MainMenu")) return;
 
         var grid = GameObject.Find("MainMenu/Grid");
         if (grid == null) return;
 
-        Display.displays[0].Activate();
+        Display.displays[DisplayToUse.Value].Activate();
         Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
         Application.targetFrameRate = MaxRefresh;
 
@@ -54,7 +95,7 @@ public class Plugin : BaseUnityPlugin
 
 
         grid.transform.localScale = grid.transform.localScale with {x = PositiveScaleFactor, y = PositiveScaleFactor};
-        
+
         // no idea why this changes on menu reload, hacky fix, but meh
         if (FirstTimeMainMenu)
         {
