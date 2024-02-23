@@ -27,7 +27,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> LimitInGameMenuToSixteenByNine { get; private set; }
 
     internal static ConfigEntry<bool> SkipIntros { get; private set; }
-    private static ManualLogSource LOG { get; set; }
+    internal static ManualLogSource LOG { get; private set; }
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class Plugin : BaseUnityPlugin
         DisplayToUse = Config.Bind("General", "Display To Use", 0, new ConfigDescription("The display to use for the game. 0 is generally the main.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
         SkipIntros = Config.Bind("General", "Skip Intros", true, "Skip the intro stuff and go straight to the main menu.");
         LimitHudToSixteenByNine = Config.Bind("HUD", "Limit HUD to 16:9", false, "Limit the hud to 16:9 aspect ratio");
-        LimitHudToSixteenByNine.SettingChanged += (sender, args) =>
+        LimitHudToSixteenByNine.SettingChanged += (_, _) =>
         {
             AdjustHUD();
         };

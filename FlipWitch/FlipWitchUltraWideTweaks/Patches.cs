@@ -89,13 +89,40 @@ public static class Patches
         }
         else
         {
-            UltraWideScaling(scaler);
             SetMaxUltrawide();
+            AdjustedScaling();
         }
     }
 
     private static void UltraWideScaling(CanvasScaler scaler)
     {
+        if (scaler == null)
+        {
+            Plugin.LOG.LogError("Requested CanvasScaler is null!");
+            return;
+        }
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+    }
+
+
+    private static void AdjustedScaling(CanvasScaler scaler = null)
+    {
+        if (scaler == null)
+        {
+            var scalers = Resources.FindObjectsOfTypeAll<CanvasScaler>();
+            scaler = scalers.Aggregate(scaler, (current, s) => s.name switch
+            {
+                "MainMenuUi" => s,
+                "Main UI" => s,
+                _ => current
+            });
+        }
+        if (scaler == null)
+        {
+            Plugin.LOG.LogError("Requested CanvasScaler is null!");
+            return;
+        }
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
     }
@@ -111,6 +138,18 @@ public static class Patches
         var tf = __instance.transform;
         switch (instanceName)
         {
+            case "MainMenuUi":
+                AdjustedScaling(__instance);
+                break;
+            case "Main UI":
+            {
+                AdjustedScaling(__instance);
+                break;
+            }
+            case "Generic Healthbar":
+                AdjustedScaling(__instance);
+                __instance.scaleFactor = 1f;
+                break;
             case "Game Over Canvas":
             {
                 var bg = tf.Find("bg");
