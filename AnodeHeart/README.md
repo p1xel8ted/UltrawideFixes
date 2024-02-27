@@ -22,4 +22,3 @@ Tested against retail Steam version @ 3440x1440.
 - [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
 - [ManlyMarco](https://github.com/ManlyMarco) for [ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager).
 - [Sinai]() for [Unity Explorer](https://github.com/sinai-dev/UnityExplorer).
-- 
