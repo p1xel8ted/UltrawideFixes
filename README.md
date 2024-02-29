@@ -90,6 +90,9 @@ I generally don't maintain them once released; I don't even play most of these; 
 ### [Turnip Boy Commits Tax Evasion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TurnipBoyCommitsTaxEvasion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TurnipBoyCommitsTaxEvasion/total?label=downloads&style=for-the-badge)
 
+### [UNSIGHTED](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/UNSIGHTED)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/UNSIGHTED/total?label=downloads&style=for-the-badge)
+
 ### [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
 
