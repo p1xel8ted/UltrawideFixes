@@ -1,8 +1,4 @@
-﻿using Com.LuisPedroFonseca.ProCamera2D;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace LittleGoodyTwoShoes;
+﻿namespace LittleGoodyTwoShoes;
 
 public static class Utils
 {
@@ -24,21 +20,12 @@ public static class Utils
         }
         return path;
     }
-
-
-    internal static float GetNewScale(float reference)
-    {
-        var displayHeight = Display.main.systemHeight;
-        var scale = 1f / (reference / displayHeight);
-        return scale;
-    }
     
 
     internal static void UpdateScaler(CanvasScaler scaler)
     {
         if (scaler == null) return;
         scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        scaler.scaleFactor = Utils.GetNewScale(scaler.referenceResolution.y) * Plugin.ScaleConfig.Value;
+        scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
     }
 }

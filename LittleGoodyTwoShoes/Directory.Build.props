@@ -40,11 +40,11 @@
         <DebugType>portable</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
+        <OutputPath>H:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
+        <OutputPath>H:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

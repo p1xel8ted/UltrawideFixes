@@ -1,26 +1,8 @@
-﻿using System;
-using System.Linq;
-using Com.LuisPedroFonseca.ProCamera2D;
-using FMODUnity;
-using HarmonyLib;
-using LGTS.Initialization;
-using LGTS.LGTS_Utils;
-using LGTS.Managers;
-using LGTS.Managers.Scenes;
-using LGTS.Scenes;
-using LGTS.UI;
-using LGTS.UI.Dialogue;
-using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-using Object = UnityEngine.Object;
-
-namespace LittleGoodyTwoShoes;
+﻿namespace LittleGoodyTwoShoes;
 
 [Harmony]
 public static class Patches
 {
-
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LightingLoader), nameof(LightingLoader.Load))]
@@ -31,34 +13,16 @@ public static class Patches
     public static void LightingLoader_Load(ref LightingLoader __instance)
     {
         Plugin.LightingLoaderInstance = __instance;
-        // Plugin.UpdatePostProcessing();
         Plugin.UpdateLightingWeight();
         Plugin.UpdatePauseFrame();
         Plugin.UpdateDialogueFrame();
-        Plugin.UpdateScalers();
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
-        // if (!Plugin.ScaleCorrections.Value) return;
-        if (__instance.name.ToLowerInvariant().Contains(Const.Sinai) || __instance.name.Equals(Const.ToastManager) || __instance.name.Equals(Const.TutorialCanvas)) return;
-        if (__instance.gameObject.GetGameObjectPath().Contains(Const.TitleUI)) return;
         Utils.UpdateScaler(__instance);
-    }
-    
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.scaleFactor), MethodType.Getter)]
-    public static void CanvasScaler_scaleFactor(ref CanvasScaler __instance, ref float __result)
-    {
-        // if (!Plugin.ScaleCorrections.Value) return;
-        if (__instance.name.ToLowerInvariant().Contains(Const.Sinai) || __instance.name.Equals(Const.ToastManager) || __instance.name.Equals(Const.TutorialCanvas)) return;
-        if (__instance.gameObject.GetGameObjectPath().Contains(Const.TitleUI)) return;
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-        __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        __result = Utils.GetNewScale(__instance.referenceResolution.y) * Plugin.ScaleConfig.Value;
     }
 
     [HarmonyPostfix]
@@ -71,6 +35,14 @@ public static class Patches
         __instance.windowed.LockOptions(1);
         __instance.windowed.left.interactable = false;
         __instance.windowed.right.interactable = false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
+    private static void VideoPlayer_Play(VideoPlayer __instance)
+    {
+        //forces the video to fit vertically
+        __instance.aspectRatio = VideoAspectRatio.FitVertically;
     }
 
     [HarmonyPrefix]
@@ -97,29 +69,56 @@ public static class Patches
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Canvas), nameof(Canvas.pixelRect), MethodType.Getter)]
-    private static void Canvas_Show(ref Canvas __instance, ref Rect __result)
+    [HarmonyPatch(typeof(Parallax), nameof(Parallax.Start))]
+    private static void Parallax_Start(Parallax __instance)
     {
-        //this is to the keep the title menu usable.
-        // if (!Plugin.ScaleCorrections.Value) return;
-        if (__instance.name.Equals(Const.ToastManager)) return;
-        if (Mathf.Approximately(__result.m_Height, Display.main.systemHeight))
+        var name = __instance.name;
+        var path = __instance.gameObject.GetGameObjectPath();
+        if (name.Equals(Const.BG) && path.Contains(Const.TitleUI))
         {
-            __result = new Rect(0, 0, Display.main.systemHeight * 16 / 9f, Display.main.systemHeight);
+            var transform = __instance.transform;
+            transform.localScale = transform.localScale with {x = Plugin.PositiveScaleFactor + 0.200f, y = Plugin.PositiveScaleFactor + 0.200f};
+            __instance.enabled = false;
+
+            var bg1 = __instance.transform.Find(Const.Bg1);
+            PerformPositiveXYScale(bg1);
+
+            var bg2 = __instance.transform.Find(Const.Bg2);
+            PerformPositiveXYScale(bg2);
         }
+    }
+
+    private static void PerformPositiveXYScale(Transform tf)
+    {
+        tf.localScale = tf.localScale with {x = Plugin.PositiveScaleFactor, y = Plugin.PositiveScaleFactor};
+    }
+
+    private static void PerformPositiveXScale(Transform tf)
+    {
+        tf.localScale = tf.localScale with {x = Plugin.PositiveScaleFactor};
     }
 
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Canvas), nameof(Canvas.renderingDisplaySize), MethodType.Getter)]
-    private static void Canvas_Show(ref Canvas __instance, ref Vector2 __result)
+    [HarmonyPatch(typeof(QuestGoalUpdate), nameof(QuestGoalUpdate.Start))]
+    private static void QuestGoalUpdate_Start(QuestGoalUpdate __instance)
     {
-        //this is to the keep the title menu usable.
-        // if (!Plugin.ScaleCorrections.Value) return;
-        if (__instance.name.Equals(Const.ToastManager)) return;
-        if (Mathf.Approximately(__result.y, Display.main.systemHeight))
+        var transform = __instance.transform;
+
+        var position = transform.position;
+
+        position = position with {x = position.x * Plugin.PositiveScaleFactor};
+
+        transform.position = position;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AllIn1Shader), nameof(AllIn1Shader.OnEnable))]
+    private static void AllIn1Shader_OnEnable(AllIn1Shader __instance)
+    {
+        if (__instance.name.Equals(Const.Fader))
         {
-            __result = new Vector2(Display.main.systemHeight * 16 / 9f, Display.main.systemHeight);
+            PerformPositiveXScale(__instance.transform);
         }
     }
 
@@ -128,7 +127,7 @@ public static class Patches
     private static void GameObject_SetActive(GameObject __instance, ref bool value)
     {
         //disable the splash screen and photo sensitive warning
-        if (__instance.name.Equals(Const.SplashCanvas) || __instance.name.Equals(Const.PhotoSensitveWarning))
+        if (__instance.name.Equals(Const.SplashCanvas) || __instance.name.Equals(Const.PhotoSensitiveWarning))
         {
             value = false;
         }
@@ -153,9 +152,9 @@ public static class Patches
         __instance._resolutions.Clear();
         var res = new Resolution
         {
-            height = Display.main.systemHeight,
-            width = Display.main.systemWidth,
-            refreshRate = Screen.resolutions.Max(a => a.refreshRate)
+            height = Plugin.MainHeight,
+            width = Plugin.MainWidth,
+            refreshRate = Plugin.MaxRefresh
         };
         __instance._resolutions.Add(res);
     }
@@ -219,17 +218,32 @@ public static class Patches
         return !path.Contains(Const.GameTitleVo);
     }
 
-    [HarmonyPostfix]
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(TitleScreenManager), nameof(TitleScreenManager.Start))]
     public static void TitleScreenManager_Start(ref TitleScreenManager __instance)
     {
+        var sceneBg = GameObject.Find("Scene/Background/Background");
+        sceneBg.transform.position = sceneBg.transform.position with {x = -Plugin.PositiveScaleFactor};
+        sceneBg.transform.localScale = sceneBg.transform.localScale with {x = Plugin.PositiveScaleFactor};
+        
+        var creditsButton = GameObject.Find(Const.CreditsButtonPath);
+        creditsButton.SetActive(false);
+
         //skip the animation video/intro and the press any key screen
+
         if (!Plugin.GoStraightToTitleMenu.Value) return;
+
+
+        var flash = GameObject.Find(Const.IntroAnimationFlashTitlePath);
+        if (flash != null)
+        {
+            flash.SetActive(false);
+            Object.Destroy(flash);
+        }
+        
+        __instance.PlayTitleMusic();
         __instance.OnAfterShowAnyKeyPressed();
         __instance.ShowLogo();
-        var flash = GameObject.Find(Const.IntroAnimationFlashTitlePath);
-        if (flash == null) return;
-        flash.SetActive(false);
-        Object.Destroy(flash);
+      
     }
 }
