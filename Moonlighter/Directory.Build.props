@@ -4,7 +4,6 @@
   <!--Base Settings-->
   <PropertyGroup>
    <Description>$(MSBuildProjectName)</Description>
-    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
       <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -12,7 +11,6 @@
            <Authors>p1xel8ted</Authors>
     <Company>$(Authors)</Company>
     <Product>$(MSBuildProjectName)</Product>
-    <PackageId>$(MSBuildProjectName)</PackageId>
 
   </PropertyGroup>
 
@@ -35,12 +33,5 @@
     <OutputPath>F:\Games\steamapps\common\Moonlighter\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-  </ItemGroup>
 
 </Project>
