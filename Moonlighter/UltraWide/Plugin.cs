@@ -19,7 +19,7 @@ public class Plugin : BasePlugin
     
     private const string PluginGuid = "p1xel8ted.moonlighter.ultrawide";
     private const string PluginName = "UltraWide Ultra-Wide (IL2CPP)";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
 
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
