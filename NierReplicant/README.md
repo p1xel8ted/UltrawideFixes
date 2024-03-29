@@ -1,12 +1,18 @@
 # Nier Replicant Ultrawide (3DMigoto, ReShade, SpecialK)
 
+# Automatic Install
+
+- Ensure you're internet connection is active.
+
+1. Download [Nier Replicant Ultrawide AIO]() from the releases page.
+2. Extract the contents of the zip file to the game directory.
+3. Run, `nier_ultrawide_aio.exe` and select your monitor's aspect ratio.
+4. Wait for the patcher to finish, then close it.
+5. Run the game via Steam like normal. You should get a few Special K notifications, and the usual ReShade messages on the top left, and no stretching ocurring.
+
+# Manual Install
+
 Follow the steps below to achieve ultra-wide support, high framerate and 16:9 HUD, as well as re-shade support.
-
-## Notes
-
-- Don't use the latest version of ReShade, it doesn't work.
-- The most recent version you can use is [5.9.0](https://reshade.me/downloads/ReShade_Setup_5.9.0.exe).
-- Install it into a random game (not Nier Replicant), and in the random games folder, rename the `dxgi.dll` to `ReShade64.dll`. Copy this file into your Nier Replicant directory, AFTER following the steps below - Replace All. (You can also copy the shaders across).
 
 ## Installation Steps
 
@@ -40,6 +46,10 @@ Follow the steps below to achieve ultra-wide support, high framerate and 16:9 HU
 ## Verifying the Installation
 
 After completing the above steps, launch Nier Replicant. The game should now run with ultrawide support, framerate uncapped and the main game UI will remain at a 16:9 aspect ratio, but the gameplay will be adapted to your ultrawide screen.
+
+## Notes
+
+- Don't use the latest version of ReShade, it doesn't work. Use the one provided in the Replicant's Little Helper mod.
 
 ## Credits
 
