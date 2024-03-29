@@ -32,9 +32,10 @@ Follow the steps below to achieve ultra-wide support, high framerate and 16:9 HU
 
 ### Step 4: Final Steps
 
-1. Run the game via Steam like normal.
+1. Run the game via Steam like normal. You should get a few Special K notifications, and the usual ReShade messages on the top left. If neither of that happened, start again with a fresh install.
 2. In-game, press `Ctrl` + `Shift` + `Backspace` to open the Special K menu.
 3. Enable the `High Dynamic Framerate` from the menu, and untick `Framerate limit`. Adjust any other settings to your preference.
+4. In-game, press `Home` to open the ReShade menu.
 
 ## Verifying the Installation
 
