@@ -1,13 +1,12 @@
-use dialoguer::console::Term;
-use dialoguer::{theme::ColorfulTheme, Select};
-use dirs;
-use hex_literal::{self, hex};
-use spinners;
-use spinners::{Spinner, Spinners};
 use std::io::Read;
 use std::io::Write;
 use std::path::Path;
 use std::path::PathBuf;
+
+use dialoguer::{Select, theme::ColorfulTheme};
+use dialoguer::console::Term;
+use dirs;
+use hex_literal::{self, hex};
 
 #[derive(Clone)]
 struct EngineRatio {
@@ -59,15 +58,11 @@ fn main() {
 }
 
 fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
-    println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent/");
+    println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent");
 
-    let source = "https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent/";
-    
+    let source = "https://github.com/p1xel8ted/UltrawideFixes/blob/main/NierReplicant/PatchContent/";
+
     let download_list = vec![
-        "Mods/empty.txt",
-        "ReplacementTextures/empty.txt",
-        "reshade-shaders/Shaders/empty.txt",
-        "reshade-shaders/Textures/empty.txt",
         "ShaderFixes/0a2c2125f4a421a5-vs_replace.txt",
         "ShaderFixes/3dvision2sbs_sli_downscale_pass1.hlsl",
         "ShaderFixes/3dvision2sbs_sli_downscale_pass2.hlsl",
@@ -88,56 +83,64 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
         "ReShade64.dll",
     ];
 
-    // Create ShaderFixes folder if it doesn't already exist.
-    let shader_fixes_path = game_path.clone().join("ShaderFixes");
-    if !shader_fixes_path.exists() {
-        std::fs::create_dir_all(&shader_fixes_path).expect("Failed to create ShaderFixes folder");
-    }
+    // Ensure necessary directories exist
+    let dirs_to_create = vec![
+        "Mods",
+        "ReplacementTextures",
+        "reshade-shaders/Shaders",
+        "reshade-shaders/Textures",
+        "ShaderFixes",
+    ];
 
-    // Start downloading files needed.
-    for file in download_list {
-        match ureq::get(&format!("{}{}?raw=true", source, file)).call() {
-            Ok(res) => {
-                let len = res
-                    .header("Content-Length")
-                    .and_then(|s| s.parse::<usize>().ok())
-                    .unwrap();
-
-                let mut bytes: Vec<u8> = Vec::with_capacity(len);
-                match res.into_reader().take(10_000_000).read_to_end(&mut bytes) {
-                    Ok(_) => (),
-                    Err(err) => {
-                        println!("{}", err);
-                        return;
-                    }
-                };
-
-                let mut file_path = game_path.clone();
-                file_path.push(file);
-
-                let mut file = match std::fs::File::create(&file_path) {
-                    Ok(file) => file,
-                    Err(err) => {
-                        println!("{}", err);
-                        return;
-                    }
-                };
-
-                match file.write_all(&bytes) {
-                    Ok(_) => {
-                        println!("Downloaded {}", file_path.to_str().unwrap());
-                    }
-                    Err(err) => {
-                        println!("{}", err);
-                        return;
-                    }
-                }
-            }
-            Err(err) => {
-                println!("{}", err);
+    for dir in dirs_to_create {
+        let full_path = game_path.join(dir);
+        if !full_path.exists() {
+            if let Err(e) = std::fs::create_dir_all(&full_path) {
+                eprintln!("Failed to create directory {}: {}", full_path.display(), e);
                 return;
             }
+        }
+    }
+
+    // Download and save files
+    for file in download_list {
+        let url = format!("{}{}?raw=true", source, file);
+        let response = match ureq::get(&url).call() {
+            Ok(res) => res,
+            Err(e) => {
+                eprintln!("Failed to download {}: {}", file, e);
+                continue; // Skip this file and continue with the next
+            },
         };
+
+        let content_length = response.header("Content-Length")
+            .and_then(|s| s.parse::<usize>().ok())
+            .unwrap_or_else(|| 0); // Default to 0 if not found or parse fails
+
+        let mut bytes: Vec<u8> = Vec::with_capacity(content_length);
+        match response.into_reader().take(10_000_000).read_to_end(&mut bytes) {
+            Ok(_) => (),
+            Err(err) => {
+                eprintln!("Error reading {}: {}", file, err);
+                continue; // Skip this file and continue with the next
+            },
+        };
+
+        let file_path = game_path.join(file);
+        let mut file = match std::fs::File::create(&file_path) {
+            Ok(f) => f,
+            Err(err) => {
+                eprintln!("Failed to create file {}: {}", file_path.display(), err);
+                continue; // Skip this file and continue with the next
+            },
+        };
+
+        if let Err(err) = file.write_all(&bytes) {
+            eprintln!("Failed to write to {}: {}", file_path.display(), err);
+            continue; // Skip this file and continue with the next
+        }
+
+        println!("Downloaded and saved {}", file_path.display());
     }
 
     println!("All files downloaded!");
@@ -201,8 +204,8 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
 }
 
 fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-    let sp = Spinner::new(&Spinners::Dots9, "Patching Aspect Ratio".into());
-
+    println!("Patching Aspect Ratio...");
+    
     let mut game_path = game_dir_path.clone();
     game_path.push("NieR Replicant ver.1.22474487139.exe");
 
@@ -230,14 +233,13 @@ fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
     let mut patched_exec_file = std::fs::File::create(&game_path).unwrap();
 
     patched_exec_file.write_all(&buffer).unwrap();
-
-    sp.stop();
+    
     println!(" Done!");
 }
 
 fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-    let sp = Spinner::new(&Spinners::Dots9, "Removing Black Bars".into());
-
+     println!("Removing black bars...");
+    
     let mut game_path = game_dir_path.clone();
     game_path.push("NieR Replicant ver.1.22474487139.exe");
 
@@ -267,8 +269,7 @@ fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
     let mut patched_exec_file = std::fs::File::create(&game_path).unwrap();
 
     patched_exec_file.write_all(&buffer).unwrap();
-
-    sp.stop();
+    
     println!(" Done!");
 }
 
@@ -445,7 +446,10 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
         println!("Please confirm this is the correct ratio. [y/n]");
 
         let mut buffer = String::new();
-        std::io::stdin().read_line(&mut buffer).unwrap();
+        if std::io::stdin().read_line(&mut buffer).is_err() {
+            eprintln!("Error reading input.");
+            return Err(std::io::Error::new(std::io::ErrorKind::InvalidInput, "Error reading input."));
+        }
 
         if buffer.trim() != "y" {
             println!("Please manually type your ratio.");
@@ -519,7 +523,10 @@ fn backup(game_path: &PathBuf) {
         println!("Restore original game backup for patching? (highly recommended) [y/n]");
 
         let mut buffer = String::new();
-        std::io::stdin().read_line(&mut buffer).unwrap();
+        if std::io::stdin().read_line(&mut buffer).is_err() {
+            eprintln!("Error reading input.");
+            return;
+        }
 
         if buffer.trim() == "y" {
             std::fs::copy(&backup_path, &game_path).unwrap();
