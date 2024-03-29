@@ -2,9 +2,9 @@
 
 Follow the steps below to achieve ultra-wide support, high framerate and 16:9 HUD, as well as re-shade support.
 
-## Prerequisites
+## Notes
 
-Ensure you have administrative access to your game's installation directory, typically located in your Steam or game library folder.
+- Don't use the latest version of ReShade, it doesn't work.
 
 ## Installation Steps
 
