@@ -5,6 +5,8 @@ Follow the steps below to achieve ultra-wide support, high framerate and 16:9 HU
 ## Notes
 
 - Don't use the latest version of ReShade, it doesn't work.
+- The most recent version you can use is [5.9.0](https://reshade.me/downloads/ReShade_Setup_5.9.0.exe).
+- Install it into a random game (not Nier Replicant), and in the random games folder, rename the `dxgi.dll` to `ReShade64.dll`. Copy this file into your Nier Replicant directory, AFTER following the steps below - Replace All. (You can also copy the shaders across).
 
 ## Installation Steps
 
