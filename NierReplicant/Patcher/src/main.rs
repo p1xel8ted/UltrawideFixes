@@ -79,7 +79,6 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
         "d3dx.ini",
         "dxgi.dll",
         "dxgi.ini",
-        "nvapi64.dll",
         "ReShade.ini",
         "ReShade64.dll",
     ];
