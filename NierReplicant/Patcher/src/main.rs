@@ -2,11 +2,12 @@ use std::io::Read;
 use std::io::Write;
 use std::path::Path;
 use std::path::PathBuf;
-
 use dialoguer::{Select, theme::ColorfulTheme};
 use dialoguer::console::Term;
-use dirs;
-use hex_literal::{self, hex};
+use hex_literal::hex;
+use spinners::Spinner;
+use spinners::Spinners::Dots9;
+use indicatif::{ProgressBar, ProgressStyle};
 
 #[derive(Clone)]
 struct EngineRatio {
@@ -74,10 +75,10 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
         "ShaderFixes/upscale.hlsl",
         "ShaderFixes/upscale.ini",
         "3Dmigoto64.dll",
-        "d3d11.dll",
         "d3dcompiler_46.dll",
         "d3dx.ini",
         "dxgi.dll",
+        "dxgi.ini",
         "nvapi64.dll",
         "ReShade.ini",
         "ReShade64.dll",
@@ -101,49 +102,64 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
             }
         }
     }
+    
+    let style = ProgressStyle::default_bar()
+        .template("{msg} {spinner:.green} [{elapsed}] [{bar:40.cyan/blue}] {bytes}/{total_bytes} ({eta})").unwrap().progress_chars("#>-");// This line directly modifies the ProgressStyle object without returning a Result.
 
-    // Download and save files
+    let mut skipped = false;
+    
     for file in download_list {
         let url = format!("{}{}?raw=true", source, file);
         let response = match ureq::get(&url).call() {
             Ok(res) => res,
             Err(e) => {
                 eprintln!("Failed to download {}: {}", file, e);
+                skipped = true;
                 continue; // Skip this file and continue with the next
             },
         };
 
         let content_length = response.header("Content-Length")
-            .and_then(|s| s.parse::<usize>().ok())
-            .unwrap_or_else(|| 0); // Default to 0 if not found or parse fails
+            .and_then(|s| s.parse::<u64>().ok())
+            .unwrap_or_default(); // Using unwrap_or_default for simplicity.
 
-        let mut bytes: Vec<u8> = Vec::with_capacity(content_length);
-        match response.into_reader().take(10_000_000).read_to_end(&mut bytes) {
-            Ok(_) => (),
-            Err(err) => {
-                eprintln!("Error reading {}: {}", file, err);
-                continue; // Skip this file and continue with the next
-            },
-        };
+        let pb = ProgressBar::new(content_length);
+        pb.set_style(style.clone()); // Cloning the style for each ProgressBar.
+        pb.set_message(format!("Downloading {}", file));
+        let mut bytes: Vec<u8> = Vec::with_capacity(content_length as usize);
+        let mut reader = response.into_reader();
+        let mut buffer = [0; 128 * 1024]; // A 128 KB buffer
+        while let Ok(len) = reader.read(&mut buffer) {
+            if len == 0 {
+                break;
+            }
+            bytes.extend_from_slice(&buffer[..len]);
+            pb.inc(len as u64);
+        }
+        pb.finish_with_message(format!("Downloaded {}", file));
 
         let file_path = game_path.join(file);
         let mut file = match std::fs::File::create(&file_path) {
             Ok(f) => f,
             Err(err) => {
                 eprintln!("Failed to create file {}: {}", file_path.display(), err);
+                skipped = true;
                 continue; // Skip this file and continue with the next
             },
         };
 
         if let Err(err) = file.write_all(&bytes) {
             eprintln!("Failed to write to {}: {}", file_path.display(), err);
+            skipped = true;
             continue; // Skip this file and continue with the next
         }
-
-        println!("Downloaded and saved {}", file_path.display());
     }
 
-    println!("All files downloaded!");
+    if skipped {
+        println!("Some files failed to download/save. Please download them manually from the link above and place them in the game directory.");
+    }else{
+        println!("All files downloaded!");
+    }
 
     println!("Updating configuration files...");
 
@@ -204,7 +220,9 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
 }
 
 fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-    println!("Patching Aspect Ratio...");
+    //println!("Patching Aspect Ratio...");
+
+    let mut sp = Spinner::new(Dots9, "Patching Aspect Ratio".into());
     
     let mut game_path = game_dir_path.clone();
     game_path.push("NieR Replicant ver.1.22474487139.exe");
@@ -233,12 +251,16 @@ fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
     let mut patched_exec_file = std::fs::File::create(&game_path).unwrap();
 
     patched_exec_file.write_all(&buffer).unwrap();
-    
+
+    sp.stop();
+
     println!(" Done!");
 }
 
 fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-     println!("Removing black bars...");
+     //println!("Removing black bars...");
+    
+    let mut sp = Spinner::new(Dots9, "Removing Black Bars".into());
     
     let mut game_path = game_dir_path.clone();
     game_path.push("NieR Replicant ver.1.22474487139.exe");
@@ -270,6 +292,7 @@ fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
 
     patched_exec_file.write_all(&buffer).unwrap();
     
+    sp.stop();
     println!(" Done!");
 }
 
@@ -386,7 +409,7 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             height: 9.0,
         },
     ];
-
+    
     // Create array with only the names
     let mut names = Vec::new();
     for ratio in common_ratios.clone() {
@@ -548,40 +571,43 @@ fn backup(game_path: &PathBuf) {
 }
 
 fn detect_game_location() -> Result<PathBuf, String> {
-    // Check if it's in the current directory
-    if Path::new("NieR Replicant ver.1.22474487139.exe").exists() {
-        return Ok(PathBuf::from("./"));
+    let mut possible_paths = vec![
+        PathBuf::from("./NieR Replicant ver.1.22474487139.exe"), // Current directory
+        PathBuf::from("C:/Program Files (x86)/Steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("D:/Games/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("E:/Games/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("F:/Games/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("G:/Games/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("H:/Games/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("D:/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("E:/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("F:/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("G:/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+        PathBuf::from("H:/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"),
+    ];
+
+    // Attempt to include dynamic paths based on the user's home directory
+    if let Some(home_dir) = dirs::home_dir() {
+        possible_paths.push(home_dir.join(".steam/steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe")); // Steam Linux Directory
+        possible_paths.push(home_dir.join(".local/share/Steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe")); // Another possible Linux directory
     }
 
-    // Go through common directories
-
-    // Steam Windows Directory
-    if Path::new("C:/Program Files (x86)/Steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe").exists() {
-        return Ok(PathBuf::from("C:/Program Files (x86)/Steam/steamapps/common/NieR Replicant ver.1.22474487139/"));
+    // Iterate over the possible paths and check if the game executable exists
+    for path in possible_paths {
+        if path.exists() {
+            return Ok(path.parent().unwrap().to_path_buf());
+        }
     }
 
-    let home_dir = dirs::home_dir().unwrap();
-
-    // Steam Linux Directory
-    if Path::new(&format!("{}/.steam/steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe", home_dir.to_str().unwrap())).exists() {
-        return Ok(PathBuf::from(format!("{}/.steam/steam/steamapps/common/NieR Replicant ver.1.22474487139/", home_dir.to_str().unwrap())));
-    }
-
-    // Another possible linux directory
-    if Path::new(&format!("{}/.local/share/Steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe", home_dir.to_str().unwrap())).exists() {
-        return Ok(PathBuf::from(format!("{}/.local/share/Steam/steamapps/common/NieR Replicant ver.1.22474487139/", home_dir.to_str().unwrap())));
-    }
-
-    // Could not find the game executable automatically. Ask the user.
+    // If none of the predefined paths exist, ask the user to manually enter the path
     println!("Could not find the game executable automatically. Please enter the path manually:");
-    let mut path = String::new();
-    std::io::stdin()
-        .read_line(&mut path)
-        .expect("Failed to read line");
-    path = path.trim().to_string();
-
-    if Path::new(&path).exists() {
-        return Ok(PathBuf::from(path));
+    let mut user_input = String::new();
+    if std::io::stdin().read_line(&mut user_input).is_err() {
+        return Err("Failed to read line".to_string());
+    }
+    let user_path = PathBuf::from(user_input.trim());
+    if user_path.exists() {
+        return Ok(user_path);
     }
 
     Err("Could not find the game executable".to_string())

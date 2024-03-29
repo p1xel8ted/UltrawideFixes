@@ -10,9 +10,10 @@ edition = "2024"
 [dependencies]
 dirs = "5.0.1"
 hex-literal = "0.4.1"
-dialoguer = "0.11.0"
+dialoguer = "0.9.0"
 spinners = "4.1.1"
 ureq = "2.3.1"
+indicatif = "0.17.8"
 
 [build-dependencies]
 winres = "0.1.12"
