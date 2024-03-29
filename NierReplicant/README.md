@@ -47,3 +47,4 @@ After completing the above steps, launch Nier Replicant. The game should now run
 - **Nier Replicant Ultrawide Patcher**: Developed by [PineappleIOnic](https://github.com/PineappleIOnic).
 - **Special K**: Created by Kaldaien. [Special K's website](https://www.special-k.info/).
 - **Replicant's Little Helper**: Put together by [Merle / MerleWasTaken] and available on Nexus Mods.
+- **ReShade**: Created by [Crosire](https://reshade.me/)
