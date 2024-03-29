@@ -373,19 +373,20 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
         EngineRatio {
             name: "21:9 (2560x1080)".into(),
             hex: hex!("26 B4 17 40"),
-            width: 21.0,
+            width: 21.5, //this is intentional
             height: 9.0,
         },
+        
         EngineRatio {
             name: "21:9 (3440x1440)".into(),
             hex: hex!("8E E3 18 40"),
-            width: 21.0,
+            width: 21.5, //this is intentional
             height: 9.0,
         },
         EngineRatio {
             name: "21:9 (3840x1600)".into(),
             hex: hex!("9A 99 19 40"),
-            width: 21.0,
+            width: 21.5, //this is intentional
             height: 9.0,
         },
         EngineRatio {
