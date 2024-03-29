@@ -1,6 +1,6 @@
 # Nier Replicant Ultrawide (3DMigoto, ReShade, SpecialK)
 
-Enhance your Nier Replicant experience with ultrawide support and improved game performance. Follow the steps below to apply the necessary mods.
+Follow the steps below to achieve ultra-wide support, high framerate and 16:9 HUD, as well as re-shade support.
 
 ## Prerequisites
 
@@ -36,8 +36,6 @@ After completing the above steps, launch Nier Replicant. The game should now run
 
 ## Credits
 
-The enhancements and modifications listed in this guide were made possible thanks to the hard work and dedication of the following authors and contributors:
-
-- **Nier Replicant Ultrawide Patcher**: Developed by [PineappleIOnic](https://github.com/PineappleIOnic). This tool adjusts the game to support ultrawide displays, providing a more immersive gaming experience for players with ultrawide monitors.
-- **Special K**: Created by Kaldaien. Special K is a powerful utility for tweaking and improving game performance and compatibility. Its general-purpose nature makes it a valuable tool for enhancing a wide range of games. More information and updates can be found on [Special K's website](https://www.special-k.info/).
-- **Replicant's Little Helper**: Put together by [Merle / MerleWasTaken] and available on Nexus Mods, this mod offers several game enhancements specifically tailored for Nier Replicant. It addresses various performance issues and adds quality-of-life improvements.
+- **Nier Replicant Ultrawide Patcher**: Developed by [PineappleIOnic](https://github.com/PineappleIOnic).
+- **Special K**: Created by Kaldaien. [Special K's website](https://www.special-k.info/).
+- **Replicant's Little Helper**: Put together by [Merle / MerleWasTaken] and available on Nexus Mods.
