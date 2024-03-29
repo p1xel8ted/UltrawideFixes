@@ -17,7 +17,7 @@ struct EngineRatio {
 }
 
 fn main() {
-    println!("Nier Replicant Ultra-Wide + ReShade + SpecialK (High Frame Rate) Patcher 1.0");
+    println!("Nier Replicant Ultra-Wide + ReShade + SpecialK (High Frame Rate) AIO 1.0");
     println!("It is recommended to use this tool on a clean installation of Nier Replicant.");
 
     let game_path = match detect_game_location() {
@@ -108,7 +108,7 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
             "{msg} {spinner:.green} [{elapsed}] [{bar:40.cyan/blue}] {bytes}/{total_bytes} ({eta})",
         )
         .unwrap()
-        .progress_chars("#>-"); // This line directly modifies the ProgressStyle object without returning a Result.
+        .progress_chars("#>-");
 
     let mut skipped = false;
 
@@ -119,21 +119,21 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
             Err(e) => {
                 eprintln!("Failed to download {}: {}", file, e);
                 skipped = true;
-                continue; // Skip this file and continue with the next
+                continue;
             }
         };
 
         let content_length = response
             .header("Content-Length")
             .and_then(|s| s.parse::<u64>().ok())
-            .unwrap_or_default(); // Using unwrap_or_default for simplicity.
+            .unwrap_or_default();
 
         let pb = ProgressBar::new(content_length);
-        pb.set_style(style.clone()); // Cloning the style for each ProgressBar.
+        pb.set_style(style.clone()); 
         pb.set_message(format!("Downloading {}", file));
         let mut bytes: Vec<u8> = Vec::with_capacity(content_length as usize);
         let mut reader = response.into_reader();
-        let mut buffer = [0; 128 * 1024]; // A 128 KB buffer
+        let mut buffer = [0; 128 * 1024]; 
         while let Ok(len) = reader.read(&mut buffer) {
             if len == 0 {
                 break;
@@ -149,14 +149,14 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
             Err(err) => {
                 eprintln!("Failed to create file {}: {}", file_path.display(), err);
                 skipped = true;
-                continue; // Skip this file and continue with the next
+                continue; 
             }
         };
 
         if let Err(err) = file.write_all(&bytes) {
             eprintln!("Failed to write to {}: {}", file_path.display(), err);
             skipped = true;
-            continue; // Skip this file and continue with the next
+            continue;
         }
     }
 
@@ -200,8 +200,7 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
             return;
         }
     };
-
-    // Replace the aspect ratios
+    
     let config_text = config_text.replace(
         "float new_aspect_width = 32.0",
         &format!("float new_aspect_width = {}", &ratio.width.to_string()),
@@ -210,8 +209,7 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
         "float new_aspect_height = 9.0",
         &format!("float new_aspect_height = {}", &ratio.height.to_string()),
     );
-
-    // Write back to file
+    
     let mut config = match std::fs::File::create(&config_path) {
         Ok(file) => file,
         Err(err) => {
@@ -235,7 +233,6 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
 }
 
 fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-    //println!("Patching Aspect Ratio...");
 
     let mut sp = Spinner::new(Dots9, "Patching Aspect Ratio".into());
 
@@ -273,8 +270,7 @@ fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
 }
 
 fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-    //println!("Removing black bars...");
-
+ 
     let mut sp = Spinner::new(Dots9, "Removing Black Bars".into());
 
     let mut game_path = game_dir_path.clone();
@@ -316,10 +312,22 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
 
     let common_ratios = vec![
         EngineRatio {
-            name: "5:4".into(),
-            hex: hex!("00 00 A0 3F"),
-            width: 5.0,
-            height: 4.0,
+            name: "1.85:1".into(),
+            hex: hex!("CD CC EC 3F"),
+            width: 1.85,
+            height: 1.0,
+        },
+        EngineRatio {
+            name: "2.39:1".into(),
+            hex: hex!("C3 F5 18 40"),
+            width: 2.39,
+            height: 1.0,
+        },
+        EngineRatio {
+            name: "2.76:1".into(),
+            hex: hex!("D7 A3 30 40"),
+            width: 2.76,
+            height: 1.0,
         },
         EngineRatio {
             name: "4:3".into(),
@@ -334,10 +342,22 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             height: 2.0,
         },
         EngineRatio {
-            name: "16:10".into(),
-            hex: hex!("CD CC CC 3F"),
-            width: 16.0,
-            height: 10.0,
+            name: "5:4".into(),
+            hex: hex!("00 00 A0 3F"),
+            width: 5.0,
+            height: 4.0,
+        },
+        EngineRatio {
+            name: "12:3".into(),
+            hex: hex!("00 00 80 40"),
+            width: 12.0,
+            height: 3.0,
+        },
+        EngineRatio {
+            name: "15:4".into(),
+            hex: hex!("00 00 70 40"),
+            width: 15.0,
+            height: 4.0,
         },
         EngineRatio {
             name: "15:9".into(),
@@ -346,10 +366,10 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             height: 9.0,
         },
         EngineRatio {
-            name: "1.85:1".into(),
-            hex: hex!("CD CC EC 3F"),
-            width: 1.85,
-            height: 1.0,
+            name: "16:10".into(),
+            hex: hex!("CD CC CC 3F"),
+            width: 16.0,
+            height: 10.0,
         },
         EngineRatio {
             name: "21:9 (2560x1080)".into(),
@@ -364,22 +384,10 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             height: 9.0,
         },
         EngineRatio {
-            name: "2.39:1".into(),
-            hex: hex!("C3 F5 18 40"),
-            width: 2.39,
-            height: 1.0,
-        },
-        EngineRatio {
             name: "21:9 (3840x1600)".into(),
             hex: hex!("9A 99 19 40"),
             width: 21.0,
             height: 9.0,
-        },
-        EngineRatio {
-            name: "2.76:1".into(),
-            hex: hex!("D7 A3 30 40"),
-            width: 2.76,
-            height: 1.0,
         },
         EngineRatio {
             name: "32:10".into(),
@@ -392,18 +400,6 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             hex: hex!("39 8E 63 40"),
             width: 32.0,
             height: 9.0,
-        },
-        EngineRatio {
-            name: "3x5:4".into(),
-            hex: hex!("00 00 70 40"),
-            width: 15.0, // 3 times 5
-            height: 4.0,
-        },
-        EngineRatio {
-            name: "3x4:3".into(),
-            hex: hex!("00 00 80 40"),
-            width: 12.0, // 3 times 4
-            height: 3.0,
         },
         EngineRatio {
             name: "48:10".into(),
