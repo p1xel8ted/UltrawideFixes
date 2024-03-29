@@ -59,9 +59,9 @@ fn main() {
 }
 
 fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
-    println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent");
+    println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent/");
 
-    let source = "https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent";
+    let source = "https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent/";
     
     let download_list = vec![
         "Mods/empty.txt",
