@@ -4,7 +4,7 @@
 
 - Ensure you're internet connection is active.
 
-1. Download [Nier Replicant Ultrawide AIO]() from the releases page.
+1. Download [Nier Replicant Ultrawide AIO](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NierReplicant) from the releases page.
 2. Extract the contents of the zip file to the game directory.
 3. Run, `nier_ultrawide_aio.exe` and select your monitor's aspect ratio.
 4. Wait for the patcher to finish, then close it.
