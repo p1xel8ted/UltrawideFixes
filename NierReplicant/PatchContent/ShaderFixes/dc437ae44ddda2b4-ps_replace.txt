@@ -1,0 +1,67 @@
+//Pseudo TAA
+cbuffer CbDynamicResolution : register(b0)
+{
+  float2 dynamic_resolution_size : packoffset(c0);
+  float2 static_resolution_size : packoffset(c0.z);
+  float2 dr_downscale : packoffset(c1);
+  float2 dr_inv_downscale : packoffset(c1.z);
+}
+
+cbuffer CbTaa : register(b1)
+{
+  float gamma : packoffset(c0);
+  float lerp_factor : packoffset(c0.y);
+  float2 texture_size : packoffset(c0.z);
+  float2 inv_texture_size : packoffset(c1);
+}
+
+SamplerState CurrColorMap_s_s : register(s0);
+SamplerState PrevColorMap_s_s : register(s1);
+Texture2D<float4> CurrColorMap : register(t0);
+Texture2D<float4> PrevColorMap : register(t1);
+
+void main(float4 v0 : SV_POSITION0, linear noperspective float2 v1 : TEXCOORD0, out float4 o0 : SV_TARGET0, out float4 o1 : SV_TARGET1)
+{
+  float4 r0,r1,r2,r3,r4,r5;
+  uint4 bitmask, uiDest;
+  float4 fDest;
+
+  r0.xy = v1.xy * dr_downscale.xy + -inv_texture_size.xy;
+  r0.xyz = CurrColorMap.SampleLevel(CurrColorMap_s_s, r0.xy, 0).xyz;
+  r1.xyz = r0.xyz * r0.xyz;
+  r2.xy = dr_downscale.xy * v1.xy;
+  r3.xyz = CurrColorMap.SampleLevel(CurrColorMap_s_s, r2.xy, 0).xyz;
+  r2.xyzw = inv_texture_size.xyxy * float4(-1,1,1,-1) + r2.xyxy;
+  r1.xyz = r3.xyz * r3.xyz + r1.xyz;
+  r4.xyz = CurrColorMap.SampleLevel(CurrColorMap_s_s, r2.xy, 0).xyz;
+  r2.xyz = CurrColorMap.SampleLevel(CurrColorMap_s_s, r2.zw, 0).xyz;
+  r1.xyz = r4.xyz * r4.xyz + r1.xyz;
+  r1.xyz = r2.xyz * r2.xyz + r1.xyz;
+  r5.xy = v1.xy * dr_downscale.xy + inv_texture_size.xy;
+  r5.xyz = CurrColorMap.SampleLevel(CurrColorMap_s_s, r5.xy, 0).xyz;
+  r1.xyz = r5.xyz * r5.xyz + r1.xyz;
+  r0.xyz = r3.xyz + r0.xyz;
+  r0.xyz = r0.xyz + r4.xyz;
+  r0.xyz = r0.xyz + r2.xyz;
+  r0.xyz = r0.xyz + r5.xyz;
+  r2.xyz = float3(0.200000003,0.200000003,0.200000003) * r0.xyz;
+  r2.xyz = r2.xyz * r2.xyz;
+  r1.xyz = r1.xyz * float3(0.200000003,0.200000003,0.200000003) + -r2.xyz;
+  r1.xyz = max(float3(0,0,0), r1.xyz);
+  r1.xyz = sqrt(r1.xyz);
+  r1.xyz = gamma * r1.xyz;
+  r2.xyz = r0.xyz * float3(0.200000003,0.200000003,0.200000003) + -r1.xyz;
+  r0.xyz = r0.xyz * float3(0.200000003,0.200000003,0.200000003) + r1.xyz;
+  r1.xyz = PrevColorMap.SampleLevel(PrevColorMap_s_s, v1.xy, 0).xyz;
+  r1.xyz = max(r1.xyz, r2.xyz);
+  r0.xyz = min(r1.xyz, r0.xyz);
+  r0.xyz = r0.xyz + -r3.xyz;
+  r0.xyz = r3.xyz; //Patch out Japanese "TAA" here.
+  r0.xyz = max(float3(0,0,0), r0.xyz);
+  r0.xyz = min(float3(65504,65504,65504), r0.xyz);
+  o0.xyz = r0.xyz;
+  o1.xyz = r0.xyz;
+  o0.w = 1;
+  o1.w = 1;
+  return;
+}
