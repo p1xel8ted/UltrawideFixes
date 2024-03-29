@@ -1,4 +1,4 @@
-# Nier Replicant Ultrawide & Performance Mod Guide
+# Nier Replicant Ultrawide (3DMigoto, ReShade, SpecialK)
 
 Enhance your Nier Replicant experience with ultrawide support and improved game performance. Follow the steps below to apply the necessary mods.
 
@@ -32,10 +32,12 @@ Ensure you have administrative access to your game's installation directory, typ
 
 ## Verifying the Installation
 
-After completing the above steps, launch Nier Replicant. The game should now run with ultrawide support, and you'll potentially notice improved performance. The main game UI will remain at a 16:9 aspect ratio, but the gameplay will be adapted to your ultrawide screen.
+After completing the above steps, launch Nier Replicant. The game should now run with ultrawide support, framerate uncapped and the main game UI will remain at a 16:9 aspect ratio, but the gameplay will be adapted to your ultrawide screen.
 
-## Support
+## Credits
 
-For issues or further assistance, please refer to the respective mod pages for troubleshooting tips and community support.
+The enhancements and modifications listed in this guide were made possible thanks to the hard work and dedication of the following authors and contributors:
 
-Thank you for following this guide to enhance your Nier Replicant gaming experience!
+- **Nier Replicant Ultrawide Patcher**: Developed by [PineappleIOnic](https://github.com/PineappleIOnic). This tool adjusts the game to support ultrawide displays, providing a more immersive gaming experience for players with ultrawide monitors.
+- **Special K**: Created by Kaldaien. Special K is a powerful utility for tweaking and improving game performance and compatibility. Its general-purpose nature makes it a valuable tool for enhancing a wide range of games. More information and updates can be found on [Special K's website](https://www.special-k.info/).
+- **Replicant's Little Helper**: Put together by [Merle / MerleWasTaken] and available on Nexus Mods, this mod offers several game enhancements specifically tailored for Nier Replicant. It addresses various performance issues and adds quality-of-life improvements.
