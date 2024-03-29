@@ -60,6 +60,9 @@ I generally don't maintain them once released; I don't even play most of these; 
 ### [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
 
+### [NieR Replicant ver.1.22474487139](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NierReplicant)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NierReplicant/total?label=downloads&style=for-the-badge)
+
 ### [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PeaksOfYore/total?label=downloads&style=for-the-badge)
 
