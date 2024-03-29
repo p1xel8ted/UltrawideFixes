@@ -1,13 +1,12 @@
 use std::io::Read;
 use std::io::Write;
-use std::path::Path;
 use std::path::PathBuf;
 use dialoguer::{Select, theme::ColorfulTheme};
 use dialoguer::console::Term;
 use hex_literal::hex;
+use indicatif::{ProgressBar, ProgressStyle};
 use spinners::Spinner;
 use spinners::Spinners::Dots9;
-use indicatif::{ProgressBar, ProgressStyle};
 
 #[derive(Clone)]
 struct EngineRatio {
@@ -61,7 +60,8 @@ fn main() {
 fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
     println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent");
 
-    let source = "https://github.com/p1xel8ted/UltrawideFixes/blob/main/NierReplicant/PatchContent/";
+    let source =
+        "https://github.com/p1xel8ted/UltrawideFixes/blob/main/NierReplicant/PatchContent/";
 
     let download_list = vec![
         "ShaderFixes/0a2c2125f4a421a5-vs_replace.txt",
@@ -102,12 +102,16 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
             }
         }
     }
-    
+
     let style = ProgressStyle::default_bar()
-        .template("{msg} {spinner:.green} [{elapsed}] [{bar:40.cyan/blue}] {bytes}/{total_bytes} ({eta})").unwrap().progress_chars("#>-");// This line directly modifies the ProgressStyle object without returning a Result.
+        .template(
+            "{msg} {spinner:.green} [{elapsed}] [{bar:40.cyan/blue}] {bytes}/{total_bytes} ({eta})",
+        )
+        .unwrap()
+        .progress_chars("#>-"); // This line directly modifies the ProgressStyle object without returning a Result.
 
     let mut skipped = false;
-    
+
     for file in download_list {
         let url = format!("{}{}?raw=true", source, file);
         let response = match ureq::get(&url).call() {
@@ -116,10 +120,11 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
                 eprintln!("Failed to download {}: {}", file, e);
                 skipped = true;
                 continue; // Skip this file and continue with the next
-            },
+            }
         };
 
-        let content_length = response.header("Content-Length")
+        let content_length = response
+            .header("Content-Length")
             .and_then(|s| s.parse::<u64>().ok())
             .unwrap_or_default(); // Using unwrap_or_default for simplicity.
 
@@ -145,7 +150,7 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
                 eprintln!("Failed to create file {}: {}", file_path.display(), err);
                 skipped = true;
                 continue; // Skip this file and continue with the next
-            },
+            }
         };
 
         if let Err(err) = file.write_all(&bytes) {
@@ -157,25 +162,34 @@ fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
 
     if skipped {
         println!("Some files failed to download/save. Please download them manually from the link above and place them in the game directory.");
-    }else{
+    } else {
         println!("All files downloaded!");
     }
 
     println!("Updating configuration files...");
 
-    update_config(game_path.clone().join("ShaderFixes/0a2c2125f4a421a5-vs_replace.txt"), &ratio);
-    update_config(game_path.clone().join("ShaderFixes/dc88834b3469cba8-vs_replace.txt"), &ratio);
+    update_config(
+        game_path
+            .clone()
+            .join("ShaderFixes/0a2c2125f4a421a5-vs_replace.txt"),
+        &ratio,
+    );
+    update_config(
+        game_path
+            .clone()
+            .join("ShaderFixes/dc88834b3469cba8-vs_replace.txt"),
+        &ratio,
+    );
 }
 
 fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
-    let mut config =
-        match std::fs::File::open(&config_path) {
-            Ok(file) => file,
-            Err(err) => {
-                println!("{}", err);
-                return;
-            }
-        };
+    let mut config = match std::fs::File::open(&config_path) {
+        Ok(file) => file,
+        Err(err) => {
+            println!("{}", err);
+            return;
+        }
+    };
 
     // Read as text
     let mut config_text = String::new();
@@ -198,9 +212,7 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
     );
 
     // Write back to file
-    let mut config = match std::fs::File::create(
-        &config_path,
-    ) {
+    let mut config = match std::fs::File::create(&config_path) {
         Ok(file) => file,
         Err(err) => {
             println!("{}", err);
@@ -216,14 +228,17 @@ fn update_config(config_path: PathBuf, ratio: &EngineRatio) {
         }
     };
 
-    println!("Successfully updated the configuration of {}", config_path.to_str().unwrap());
+    println!(
+        "Successfully updated the configuration of {}",
+        config_path.to_str().unwrap()
+    );
 }
 
 fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
     //println!("Patching Aspect Ratio...");
 
     let mut sp = Spinner::new(Dots9, "Patching Aspect Ratio".into());
-    
+
     let mut game_path = game_dir_path.clone();
     game_path.push("NieR Replicant ver.1.22474487139.exe");
 
@@ -258,10 +273,10 @@ fn patch_aspect_ratio(game_dir_path: &PathBuf, ratio: &EngineRatio) {
 }
 
 fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
-     //println!("Removing black bars...");
-    
+    //println!("Removing black bars...");
+
     let mut sp = Spinner::new(Dots9, "Removing Black Bars".into());
-    
+
     let mut game_path = game_dir_path.clone();
     game_path.push("NieR Replicant ver.1.22474487139.exe");
 
@@ -291,7 +306,7 @@ fn correct_position(game_dir_path: &PathBuf, ratio: &EngineRatio) {
     let mut patched_exec_file = std::fs::File::create(&game_path).unwrap();
 
     patched_exec_file.write_all(&buffer).unwrap();
-    
+
     sp.stop();
     println!(" Done!");
 }
@@ -409,7 +424,7 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             height: 9.0,
         },
     ];
-    
+
     // Create array with only the names
     let mut names = Vec::new();
     for ratio in common_ratios.clone() {
@@ -471,7 +486,10 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
         let mut buffer = String::new();
         if std::io::stdin().read_line(&mut buffer).is_err() {
             eprintln!("Error reading input.");
-            return Err(std::io::Error::new(std::io::ErrorKind::InvalidInput, "Error reading input."));
+            return Err(std::io::Error::new(
+                std::io::ErrorKind::InvalidInput,
+                "Error reading input.",
+            ));
         }
 
         if buffer.trim() != "y" {
@@ -479,7 +497,7 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
 
             let mut width_string: String = String::new();
             let mut height_string: String = String::new();
-            
+
             loop {
                 print!("Ratio Width: ");
                 std::io::stdout().flush().unwrap();
@@ -489,7 +507,9 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
                 std::io::stdout().flush().unwrap();
                 std::io::stdin().read_line(&mut height_string).unwrap();
 
-                if width_string.trim().parse::<f32>().is_ok() && height_string.trim().parse::<f32>().is_ok() {
+                if width_string.trim().parse::<f32>().is_ok()
+                    && height_string.trim().parse::<f32>().is_ok()
+                {
                     break;
                 }
 
@@ -499,7 +519,6 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             width = width_string.trim().parse::<f32>().unwrap();
             height = height_string.trim().parse::<f32>().unwrap();
         }
-        
 
         let hex: f32 = (width / height).log2();
 
@@ -509,7 +528,7 @@ fn ratio_select() -> Result<EngineRatio, std::io::Error> {
             hex: hex.to_le_bytes(),
             height,
             width,
-        })
+        });
     }
 
     Ok(common_ratios[selection].clone())
@@ -589,7 +608,8 @@ fn detect_game_location() -> Result<PathBuf, String> {
     // Attempt to include dynamic paths based on the user's home directory
     if let Some(home_dir) = dirs::home_dir() {
         possible_paths.push(home_dir.join(".steam/steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe")); // Steam Linux Directory
-        possible_paths.push(home_dir.join(".local/share/Steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe")); // Another possible Linux directory
+        possible_paths.push(home_dir.join(".local/share/Steam/steamapps/common/NieR Replicant ver.1.22474487139/NieR Replicant ver.1.22474487139.exe"));
+        // Another possible Linux directory
     }
 
     // Iterate over the possible paths and check if the game executable exists
