@@ -9,6 +9,7 @@ public static class Patches
     [HarmonyPatch(typeof(Pillarboxes), nameof(Pillarboxes.Refresh))]
     public static void Pillarboxes_Awake(ref Pillarboxes __instance)
     {
+        if (!Plugin.UltraWideFixes.Value) return;
         __instance?.gameObject.SetActive(false);
     }
 
@@ -16,6 +17,7 @@ public static class Patches
     [HarmonyPatch(typeof(TimelineContainer), nameof(TimelineContainer.OnEnable))]
     public static void TimelineContainer_Start(ref TimelineContainer __instance)
     {
+        if (!Plugin.UltraWideFixes.Value) return;
         var newX = Plugin.MainWidth / 2f + Plugin.AspectDifference;
         __instance.transform.parent.position = __instance.transform.parent.position with {x = newX};
     }
@@ -25,6 +27,7 @@ public static class Patches
     [HarmonyPatch(typeof(CameraRationizerManager), nameof(CameraRationizerManager.Init))]
     public static void CameraRationizerManager_Init(ref CameraRationizerManager __instance)
     {
+        if (!Plugin.UltraWideFixes.Value) return;
         __instance._minAuthorizedRatio = Plugin.MainAspectRatio;
         __instance._maxAuthorizedRatio = Plugin.MainAspectRatio;
         __instance._currentViewportMode = CameraRationizerManager.ViewportMode.Unrestricted;
@@ -63,6 +66,8 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.Handle))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
+        if (!Plugin.UltraWideFixes.Value) return;
+        
         Plugin.OriginalScreenMatchModes.TryAdd(__instance, __instance.screenMatchMode);
 
         __instance.screenMatchMode = Plugin.AdjustUIScalingBehaviour.Value ? CanvasScaler.ScreenMatchMode.Expand : Plugin.OriginalScreenMatchModes[__instance];

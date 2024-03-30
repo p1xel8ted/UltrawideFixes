@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.terramemoria.ultrawide";
     private const string PluginName = "Terra Memoria Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
     private const string SplashScreen = "LaMoutardeSplashScreenScene";
     private const string MainMenu = "StartScreenScene";
 
@@ -17,6 +17,7 @@ public class Plugin : BasePlugin
     private static float BaseAspect => 16f / 9f;
     private static float NormalWidth => MainHeight * BaseAspect;
     private static ConfigEntry<int> DisplayToUse { get; set; }
+    internal static ConfigEntry<bool> UltraWideFixes { get; set; }
     private static ConfigFile ConfigInstance { get; set; }
     private static ManualLogSource Logger { get; set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
@@ -81,6 +82,7 @@ public class Plugin : BasePlugin
 
             if (Input.GetKeyDown(AdjustUIScalingBehaviourKeybind.Value))
             {
+                if (!UltraWideFixes.Value) return;
                 AdjustUIScalingBehaviour.Value = !AdjustUIScalingBehaviour.Value;
                 ShowMessage(AdjustUIScalingBehaviour.Value ? "UI Scaling: Modified" : "UI Scaling: Default");
                 return;
@@ -139,6 +141,7 @@ public class Plugin : BasePlugin
 
 
         DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        UltraWideFixes = Config.Bind("01. Display", "Ultra-Wide Fixes", true, new ConfigDescription("Enable Ultra-Wide fixes."));
         SkipSplashScreens = Config.Bind("02. General", "Skip Splash Screens", true, new ConfigDescription("Skip splash screens on start up. There is a slight delay in loading the text on the main menu."));
         AdjustUIScalingBehaviour = Config.Bind("05. UI", "Adjust UI Scaling Behaviour", true, new ConfigDescription("Adjust UI scaling behaviour to expand instead of match width/height ratio. Will make everything not so big..."));
         Vignette = Config.Bind("03. Post-Processing", "Vignette", true, new ConfigDescription("Enable Vignette effect on the game screen."));
