@@ -1,0 +1,674 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>TerraMemoriaUltraWide</AssemblyName>
+        <Description>Terra Memoria Ultra-Wide</Description>
+        <Version>0.1.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>TerraMemoriaUltraWide</RootNamespace>
+    </PropertyGroup>
+
+  <Import Project="../zip.target"/>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Achievements.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Achievements.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Ambient.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Ambient.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Arckhania.Shared">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Arckhania.Shared.dll</HintPath>
+      </Reference>
+      <Reference Include="ArkEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\ArkEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="ArkEngine.Unity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\ArkEngine.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="CameraManagement">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\CameraManagement.dll</HintPath>
+      </Reference>
+      <Reference Include="Camping.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Camping.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Cinemachine">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Cinemachine.dll</HintPath>
+      </Reference>
+      <Reference Include="com.rlabrecque.steamworks.net">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+      </Reference>
+      <Reference Include="CookEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\CookEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Cooking.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Cooking.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="CookingMinigame.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\CookingMinigame.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Craft.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Craft.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Credits.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Credits.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Databasor">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Databasor.dll</HintPath>
+      </Reference>
+      <Reference Include="DebugExtension">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\DebugExtension.dll</HintPath>
+      </Reference>
+      <Reference Include="EasyPerformantOutline">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\EasyPerformantOutline.dll</HintPath>
+      </Reference>
+      <Reference Include="EconomyEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\EconomyEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="EvolutiveTown">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\EvolutiveTown.dll</HintPath>
+      </Reference>
+      <Reference Include="Fighting.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Fighting.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Fighting.Arckhania.DataModel">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Fighting.Arckhania.DataModel.dll</HintPath>
+      </Reference>
+      <Reference Include="Fighting.Arckhania.Tools">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Fighting.Arckhania.Tools.dll</HintPath>
+      </Reference>
+      <Reference Include="Fighting.Zones.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Fighting.Zones.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="FishEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\FishEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Fishing.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Fishing.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="FMODUnity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\FMODUnity.dll</HintPath>
+      </Reference>
+      <Reference Include="FMODUnityResonance">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\FMODUnityResonance.dll</HintPath>
+      </Reference>
+      <Reference Include="GachaEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\GachaEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="General.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\General.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="GeoData.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\GeoData.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="GuideBook.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\GuideBook.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="GuideBook.Arckhania.Tools">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\GuideBook.Arckhania.Tools.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.Api">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.Api.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.Api.Client">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.Api.Client.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.DataModel">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.DataModel.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.PrefabScripts.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.PrefabScripts.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.Steles">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.Steles.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.Steles.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.Steles.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Hexa.Unity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Hexa.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="Historik">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Historik.dll</HintPath>
+      </Reference>
+      <Reference Include="HyperTree">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\HyperTree.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Collections">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Data">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.IO.Compression">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.IO.Compression.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.IO.Compression.FileSystem">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.IO.Compression.FileSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Net.Http">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Net.Http.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Runtime.Serialization">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml.Linq">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
+      </Reference>
+      <Reference Include="ImageViewer.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\ImageViewer.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Infopopup.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Infopopup.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Inputs.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Inputs.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="LaMoutarde.Api">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LaMoutarde.Api.dll</HintPath>
+      </Reference>
+      <Reference Include="LaMoutarde.Api.Client">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LaMoutarde.Api.Client.dll</HintPath>
+      </Reference>
+      <Reference Include="LeanCommon">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LeanCommon.dll</HintPath>
+      </Reference>
+      <Reference Include="LeanTouch">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LeanTouch.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TranslucentImage">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LeTai.TranslucentImage.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TranslucentImage.UniversalRP">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LeTai.TranslucentImage.UniversalRP.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TrueShadow">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LeTai.TrueShadow.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TrueShadow.Demo">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LeTai.TrueShadow.Demo.dll</HintPath>
+      </Reference>
+      <Reference Include="LevelUp.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\LevelUp.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="MainMenu.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\MainMenu.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Mocks">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Mocks.dll</HintPath>
+      </Reference>
+      <Reference Include="Moji">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Moji.dll</HintPath>
+      </Reference>
+      <Reference Include="Moji.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Moji.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Murdoc">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Murdoc.dll</HintPath>
+      </Reference>
+      <Reference Include="Murdoc.Unity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Murdoc.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="Murdoc.Unity.Steam">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Murdoc.Unity.Steam.dll</HintPath>
+      </Reference>
+      <Reference Include="Nementic.SelectionUtility.Runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Nementic.SelectionUtility.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Nementic.SelectionUtility.Samples">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Nementic.SelectionUtility.Samples.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="NotificationCenter.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\NotificationCenter.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="OpenMenusControls.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\OpenMenusControls.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Options.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Options.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="ParticleImage">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\ParticleImage.dll</HintPath>
+      </Reference>
+      <Reference Include="QuestEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\QuestEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="QuickActions.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\QuickActions.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="RemoteConsole.Unity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\RemoteConsole.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="Rescue.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Rescue.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="SavesMenu.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\SavesMenu.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="SaveStates">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\SaveStates.dll</HintPath>
+      </Reference>
+      <Reference Include="sc.stylizedgrass.demo.runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\sc.stylizedgrass.demo.runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="sc.stylizedgrass.runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\sc.stylizedgrass.runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="sc.stylizedwater2.runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\sc.stylizedwater2.runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Screenshoter">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Screenshoter.dll</HintPath>
+      </Reference>
+      <Reference Include="Settings.Database">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Settings.Database.dll</HintPath>
+      </Reference>
+      <Reference Include="Settings.Save">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Settings.Save.dll</HintPath>
+      </Reference>
+      <Reference Include="ShapesRuntime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\ShapesRuntime.dll</HintPath>
+      </Reference>
+      <Reference Include="ShapesSamples">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\ShapesSamples.dll</HintPath>
+      </Reference>
+      <Reference Include="Shared.UI.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Shared.UI.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Shopping.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Shopping.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.OdinInspector.Attributes">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Sirenix.OdinInspector.Attributes.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Serialization">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Sirenix.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Serialization.Config">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Sirenix.Serialization.Config.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Utilities">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Sirenix.Utilities.dll</HintPath>
+      </Reference>
+      <Reference Include="Sound">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Sound.dll</HintPath>
+      </Reference>
+      <Reference Include="SpeechSystem.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\SpeechSystem.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="StartScreen.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\StartScreen.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="SuperCharge">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\SuperCharge.dll</HintPath>
+      </Reference>
+      <Reference Include="SuperCharge.Unity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\SuperCharge.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="Tabechan.DataModel">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Tabechan.DataModel.dll</HintPath>
+      </Reference>
+      <Reference Include="Tabechan.Interaction">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Tabechan.Interaction.dll</HintPath>
+      </Reference>
+      <Reference Include="Tabechan.UI">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Tabechan.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="Tabechan.Unity.Runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Tabechan.Unity.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="TamagoEngine.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\TamagoEngine.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="TamagoEngine.Mock">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\TamagoEngine.Mock.dll</HintPath>
+      </Reference>
+      <Reference Include="Timeline.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Timeline.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="Transitioner">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Transitioner.dll</HintPath>
+      </Reference>
+      <Reference Include="UIX">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UIX.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UniTask.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask.Addressables">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UniTask.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask.DOTween">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UniTask.DOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask.Linq">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UniTask.Linq.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask.TextMeshPro">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UniTask.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.ForUI">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Profiling.Core">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Profiling.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="websocket-sharp">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\websocket-sharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Wire">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Wire.dll</HintPath>
+      </Reference>
+      <Reference Include="Wire.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\Wire.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="WorldSystem.Arckhania">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\WorldSystem.Arckhania.dll</HintPath>
+      </Reference>
+      <Reference Include="WorldSystem.Unity">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\WorldSystem.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="WorldSystem.Unity.Demo">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\WorldSystem.Unity.Demo.dll</HintPath>
+      </Reference>
+      <Reference Include="WorldToUi">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\WorldToUi.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>F:\Games\steamapps\common\Terra Memoria\BepInEx\interop\__Generated.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+</Project>
