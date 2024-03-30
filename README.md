@@ -81,6 +81,9 @@ I generally don't maintain them once released; I don't even play most of these; 
 ### [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
 
+### [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TerraMemoria/total?label=downloads&style=for-the-badge)
+
 ### [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
 
