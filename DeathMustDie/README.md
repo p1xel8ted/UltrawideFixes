@@ -20,7 +20,7 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie).
-- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Death Must Die`** for Steam).
+- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Death Must Die`** for Steam on Windows).
 
 ## Credits
 - [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
