@@ -8,6 +8,7 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Features
 - Adds your main display resolution to the in-game options menu.
+- Option to change what display the game uses.
 - Option to correct main menu background scenery. Anything wider than 21:9 may look stretched.
 - Option to remove clutter from main menu.
 - Option to load directly into the game. Hold down Left-Shift while opening the game to cancel.
