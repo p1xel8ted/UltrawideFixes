@@ -1,4 +1,4 @@
-### 20 Minutes Till Dawn Ultra-Wide
+# 20 Minutes Till Dawn Ultra-Wide
 
 ![Game Logo](display.png)<br>
 
