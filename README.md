@@ -33,6 +33,9 @@ I generally don't maintain them once released; I don't even play most of these; 
 ### [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DarkestDungeon2/total?label=downloads&style=for-the-badge)
 
+### [Death Must Die](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathMustDie/total?label=downloads&style=for-the-badge)
+
 ### [Death Or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
 
