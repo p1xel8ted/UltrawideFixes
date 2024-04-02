@@ -2,8 +2,6 @@
 
 ![Game Logo](display.png)<br>
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](../donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
-
 Tested against retail Steam version @ 3440x1440.
 
 ## Features
@@ -32,6 +30,10 @@ Tested against retail Steam version @ 3440x1440.
 
 `0.1.0` - ??
 - Initial release.
+
+## Support
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](../donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 ## Credits
 - [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
