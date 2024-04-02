@@ -1,10 +1,8 @@
-# Ultra-Wide Fixes
+# The Ultra-Wide Collection
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
+[![ko-fi](donations/kofi.png)](https://ko-fi.com/F2F2DI3WA) [![patreon](donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 A collection of ultrawide fixes for various games. Click on the game title to access the specific fix.
-
-I generally don't maintain them once released; I don't even play most of these; so if you encounter a bug in one, please log it so I know to take a look.
 
 ### [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
