@@ -1,0 +1,364 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>ArtifactSeekerTweaks</AssemblyName>
+        <Description>Artifact Seeker Tweaks</Description>
+        <Version>0.1.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>ArtifactSeekerTweaks</RootNamespace>
+    </PropertyGroup>
+
+  <Import Project="../zip.target"/>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="AllIn1VfxAssmebly">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\AllIn1VfxAssmebly.dll</HintPath>
+      </Reference>
+      <Reference Include="AllIn1VfxDemoScriptAssemblies">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\AllIn1VfxDemoScriptAssemblies.dll</HintPath>
+      </Reference>
+      <Reference Include="AllIn1VfxTexDemoAssembly">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\AllIn1VfxTexDemoAssembly.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="BehaviorDesigner.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\BehaviorDesigner.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Boxophobic.AtmosphericHeightFog.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Boxophobic.AtmosphericHeightFog.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Boxophobic.Utils.Scripts">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Boxophobic.Utils.Scripts.dll</HintPath>
+      </Reference>
+      <Reference Include="Cinemachine">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Cinemachine.dll</HintPath>
+      </Reference>
+      <Reference Include="com.rlabrecque.steamworks.net">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\DOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTweenPro">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\DOTweenPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="LoopScrollRect.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\LoopScrollRect.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="MonsterLove.StateMachine.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\MonsterLove.StateMachine.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Plugins.Baedrick.ColoredHeaderCreator">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Plugins.Baedrick.ColoredHeaderCreator.dll</HintPath>
+      </Reference>
+      <Reference Include="spine-unity">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\spine-unity.dll</HintPath>
+      </Reference>
+      <Reference Include="spine-unity-examples">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\spine-unity-examples.dll</HintPath>
+      </Reference>
+      <Reference Include="UIEffect">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UIEffect.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Animation.Rigging">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Animation.Rigging.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.ForUI">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityWebSocket.Runtime">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\UnityWebSocket.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>F:\Games\steamapps\common\Artifact SeekerPrologue\BepInEx\interop\__Generated.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+  
+    
+</Project>
