@@ -1,6 +1,6 @@
 # The Ultra-Wide Collection
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](../donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
+[![ko-fi](donations/kofi.png)](https://ko-fi.com/F2F2DI3WA) [![patreon](donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 A collection of ultrawide fixes for various games. Click on the game title to access the specific fix.
 
