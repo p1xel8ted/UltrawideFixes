@@ -1,6 +1,6 @@
 ### 20 Minutes Till Dawn Ultra-Wide
 
-![Game Logo](display)<br>
+![Game Logo](display.png)<br>
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
 
