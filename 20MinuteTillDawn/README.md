@@ -2,7 +2,7 @@
 
 ![Game Logo](display.png)<br>
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA) [![patreon](../patreon.png)](https://www.patreon.com/p1xel8ted)
 
 Tested against retail Steam version @ 3440x1440.
 

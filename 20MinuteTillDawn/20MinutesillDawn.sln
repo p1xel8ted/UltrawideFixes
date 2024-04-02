@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwentyMinutesTillDawn", "TwentyMinutesTillDawn\TwentyMinutesTillDawn.csproj", "{AD821A4C-360A-4837-9729-A028308A8563}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LagLess", "LagLess\LagLess.csproj", "{F61F29A2-5868-4C1F-B8EF-604D1BC7252B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{AD821A4C-360A-4837-9729-A028308A8563}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD821A4C-360A-4837-9729-A028308A8563}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD821A4C-360A-4837-9729-A028308A8563}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F61F29A2-5868-4C1F-B8EF-604D1BC7252B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F61F29A2-5868-4C1F-B8EF-604D1BC7252B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F61F29A2-5868-4C1F-B8EF-604D1BC7252B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F61F29A2-5868-4C1F-B8EF-604D1BC7252B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
