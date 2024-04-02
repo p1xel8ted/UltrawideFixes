@@ -9,7 +9,7 @@ public class Plugin : BaseUnityPlugin
 
     private static float MainAspectRatio => MainWidth / (float) MainHeight;
     internal static float PositiveScaleFactor => MainAspectRatio / BaseAspect;
-    private static float BaseAspect => 16f / 9f;
+    internal static float BaseAspect => 16f / 9f;
     private static ConfigEntry<int> DisplayToUse { get; set; }
     internal static ConfigEntry<bool> RemoveExcessMenuItems { get; private set; }
     internal static ConfigEntry<bool> LoadStraightIntoGame { get; private set; }

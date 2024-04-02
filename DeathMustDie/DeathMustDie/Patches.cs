@@ -58,9 +58,15 @@ public static class Patches
     [HarmonyPatch(typeof(ParallaxLayer), nameof(ParallaxLayer.OnEnable))]
     public static void ParallaxLayer_OnEnable(ref ParallaxLayer __instance)
     {
-        if (Plugin.CorrectMainMenuBackground.Value)
+        if (!Plugin.CorrectMainMenuBackground.Value) return;
+        
+        if (Plugin.BaseAspect > 21f / 9f)
         {
-            __instance.transform.parent.transform.localScale = __instance.transform.parent.transform.localScale with {x = Plugin.PositiveScaleFactor};
+            __instance.transform.parent.transform.localScale = __instance.transform.parent.transform.localScale with {x = Plugin.PositiveScaleFactor, y = Plugin.PositiveScaleFactor}; 
+        }
+        else
+        {
+            __instance.transform.parent.transform.localScale = __instance.transform.parent.transform.localScale with {x = Plugin.PositiveScaleFactor}; 
         }
     }
 }
