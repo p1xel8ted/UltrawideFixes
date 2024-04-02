@@ -17,8 +17,8 @@ Tested against retail Steam version @ 3440x1440.
 ![Settings](settings.png)<br>
 
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie).
-- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Death Must Die`** for Steam on Windows).
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn). Windows and MacOS/Unix versions have been made available.
+- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\20MinuteTillDawn`** for Steam on Windows).
 
 ## Changes
 
