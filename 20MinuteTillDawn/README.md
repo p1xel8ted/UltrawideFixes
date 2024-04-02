@@ -2,7 +2,7 @@
 
 ![Game Logo](display.png)<br>
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](bitcoin:bc1qfvzws9kgr3jvpnmvty6w8lusgqxt0pvdjrwvrt)
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](../donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 Tested against retail Steam version @ 3440x1440.
 
