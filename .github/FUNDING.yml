@@ -10,4 +10,4 @@ liberapay: # Replace with a single Liberapay username
 issuehunt: # Replace with a single IssueHunt username
 otechie: # Replace with a single Otechie username
 lfx_crowdfunding: # Replace with a single LFX Crowdfunding project-name e.g., cloud-foundry
-custom: ['btc://bc1qfvzws9kgr3jvpnmvty6w8lusgqxt0pvdjrwvrt', 'eth://0x1008840987Cc860fC2C8A812f588C3E8b2c460b9']
+custom: ['https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md']
