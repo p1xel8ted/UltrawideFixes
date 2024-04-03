@@ -6,7 +6,7 @@ using HarmonyLib;
 
 namespace AlwasLegacy;
 
-[BepInPlugin("p1xel8ted.alwaslegacy.fixes", "Alwa's Legacy Fixes", "0.1.1")]
+[BepInPlugin("p1xel8ted.alwaslegacy.fixes", "Alwa's Legacy Fixes", "0.1.3")]
 [HarmonyPatch]
 public partial class Plugin : BaseUnityPlugin
 {

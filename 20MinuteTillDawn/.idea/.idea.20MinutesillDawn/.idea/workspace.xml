@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/LagLess/LagLess.csproj" afterDir="false" />
+    <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment="20MTD">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/20MinutesillDawn.sln" beforeDir="false" afterPath="$PROJECT_DIR$/20MinutesillDawn.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/AlwasLegacy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/AlwasLegacy.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/Plugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlwasLegacy/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../AlwasLegacy/Directory.Build.props" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,15 +38,14 @@
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/541e796cca564a1b8ba9ed8634531cc286e00/6e/c809c4aa/Summon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/541e796cca564a1b8ba9ed8634531cc286e00/fc/9d2c566a/OptionsSetter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LagLess/CollisionLayersPatch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LagLess/LLConstants.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LagLess/LLLayers.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LagLess/LagLessPlugin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LagLess/ModPowerUpFixPatch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LagLess/ObjectPoolerPatch.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LagLess/SummonLayersPatch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LagLess/XPPickupPatch.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/20MinuteTillDawn/TwentyMinutesTillDawn/Cameras.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/20MinuteTillDawn/TwentyMinutesTillDawn/Patches.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/20MinuteTillDawn/TwentyMinutesTillDawn/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../DeathMustDie/DeathMustDie/Patches.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/DeathMustDie/DeathMustDie/Patches.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/DeathMustDie/DeathMustDie/Patches.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/DeathMustDie/DeathMustDie/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/UltrawideFixes/DeathMustDie/DeathMustDie/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../DeathMustDie/DeathMustDie/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -104,7 +103,9 @@
       <workItem from="1691057082646" duration="93000" />
       <workItem from="1691283225143" duration="1492000" />
       <workItem from="1712029791595" duration="12769000" />
-      <workItem from="1712045433550" duration="709000" />
+      <workItem from="1712045433550" duration="1594000" />
+      <workItem from="1712047899384" duration="4524000" />
+      <workItem from="1712111342062" duration="1548000" />
     </task>
     <task id="LOCAL-00001" summary="20 Minutes Till Dawn 0.1.2">
       <option name="closed" value="true" />
@@ -130,7 +131,79 @@
       <option name="project" value="LOCAL" />
       <updated>1712037303049</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary=".">
+      <option name="closed" value="true" />
+      <created>1712046398260</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712046398260</updated>
+    </task>
+    <task id="LOCAL-00005" summary=".">
+      <option name="closed" value="true" />
+      <created>1712046546429</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712046546429</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Donations">
+      <option name="closed" value="true" />
+      <created>1712048835184</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712048835184</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Donations">
+      <option name="closed" value="true" />
+      <created>1712051158325</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712051158325</updated>
+    </task>
+    <task id="LOCAL-00008" summary=".">
+      <option name="closed" value="true" />
+      <created>1712051611930</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712051611930</updated>
+    </task>
+    <task id="LOCAL-00009" summary=".">
+      <option name="closed" value="true" />
+      <created>1712051737889</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1712051737889</updated>
+    </task>
+    <task id="LOCAL-00010" summary=".">
+      <option name="closed" value="true" />
+      <created>1712051922926</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1712051922926</updated>
+    </task>
+    <task id="LOCAL-00011" summary=".">
+      <option name="closed" value="true" />
+      <created>1712052061348</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1712052061348</updated>
+    </task>
+    <task id="LOCAL-00012" summary="20MTD">
+      <option name="closed" value="true" />
+      <created>1712114785201</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1712114785201</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -143,6 +216,9 @@
     <MESSAGE value="20 Minutes Till Dawn 0.1.2" />
     <MESSAGE value="Death Must Die" />
     <MESSAGE value="Misc" />
-    <option name="LAST_COMMIT_MESSAGE" value="Misc" />
+    <MESSAGE value="Donations" />
+    <MESSAGE value="." />
+    <MESSAGE value="20MTD" />
+    <option name="LAST_COMMIT_MESSAGE" value="20MTD" />
   </component>
 </project>
