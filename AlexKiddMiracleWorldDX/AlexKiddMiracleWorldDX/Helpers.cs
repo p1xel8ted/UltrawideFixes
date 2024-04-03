@@ -17,17 +17,5 @@ public static class Helpers
         var simplifiedHeight = Display.main.systemHeight / width;
         return (simplifiedWidth, simplifiedHeight);
     }
-    
-    internal static string GetGameObjectPath(GameObject obj)
-    {
-        var path = obj.name;
-        var parent = obj.transform.parent;
-        while (parent != null)
-        {
-            path = parent.name + "/" + path;
-            parent = parent.parent;
-        }
-        return path;
-    }
 
 }

@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment=".">
+    <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/char.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/char.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/game.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/game.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/gun.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/gun.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/screenshots/menu.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/screenshots/menu.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,14 +34,6 @@
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/541e796cca564a1b8ba9ed8634531cc286e00/68/2e908476/Powerup.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/541e796cca564a1b8ba9ed8634531cc286e00/6e/c809c4aa/Summon.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/541e796cca564a1b8ba9ed8634531cc286e00/fc/9d2c566a/OptionsSetter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/CollisionLayersPatch.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/LLConstants.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/LLLayers.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/LagLessPlugin.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/ModPowerUpFixPatch.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/ObjectPoolerPatch.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/SummonLayersPatch.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/LagLess/XPPickupPatch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../DeathMustDie/DeathMustDie/Patches.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../DeathMustDie/DeathMustDie/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -106,7 +94,7 @@
       <workItem from="1712029791595" duration="12769000" />
       <workItem from="1712045433550" duration="1594000" />
       <workItem from="1712047899384" duration="4524000" />
-      <workItem from="1712111342062" duration="3347000" />
+      <workItem from="1712111342062" duration="4558000" />
     </task>
     <task id="LOCAL-00001" summary="20 Minutes Till Dawn 0.1.2">
       <option name="closed" value="true" />
