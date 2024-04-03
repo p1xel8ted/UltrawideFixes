@@ -1,7 +1,5 @@
 ![Game Logo](header.jpg)<br>
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
-
 Tested against retail Steam version @ 3440x1440.
 
 ## Features
@@ -19,7 +17,7 @@ Tested against retail Steam version @ 3440x1440.
 ![Settings](settings.png)<br>
 
 ## Installation
-- Grab the latest release from below. Windows and MacOS/Unix versions have been made available.
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
 - Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\20MinuteTillDawn** for Steam on Windows).
 
 ## Changes
