@@ -10,6 +10,8 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ### [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE) - Last update 3rd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
 
+![Cutscenes](https://raw.githubusercontent.com/p1xel8ted/UltrawideFixes/main/AgathaChristieMOE/cutscenes.jpg) ![FOV](https://raw.githubusercontent.com/p1xel8ted/UltrawideFixes/main/AgathaChristieMOE/fov.jpg)
+
 ### [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
 
