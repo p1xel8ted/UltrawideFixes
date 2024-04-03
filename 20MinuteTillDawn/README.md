@@ -1,4 +1,4 @@
-![Game Logo](header.jpg)<br>
+![Game Logo](screens/header.jpg)<br>
 
 Tested against retail Steam version @ 3440x1440.
 
@@ -8,13 +8,12 @@ Tested against retail Steam version @ 3440x1440.
 - UI corrections, mostly related to the main menu, weapon selection screen and the fog in-game.
 
 ## Screenshots
-![Game Logo](display.png)
-![Cutscenes](char.jpg) ![FOV](map.jpg)
+![Menu](screens/menu.jpg) ![Character](screens/char.jpg) ![Gun](screens/gun.jpg) ![Game](screens/game.jpg)
 
 ## Configuration
 - Press F1 in game to open the UI.
 
-![Settings](settings.png)<br>
+![Settings](screens/settings.png)<br>
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
