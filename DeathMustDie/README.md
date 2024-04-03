@@ -1,4 +1,4 @@
-### Death Must Die Ultra-Wide
+# Death Must Die Ultra-Wide
 
 ![Game Logo](screenshots/header.jpg)<br>
 
