@@ -1,6 +1,6 @@
 # Agatha Christie - Murder on the Orient Express
 
-![Game Logo](display.png)<br>
+![Game Logo](header.jpg)<br>
 
 Tested against retail Steam version @ 3440x1440.
 
