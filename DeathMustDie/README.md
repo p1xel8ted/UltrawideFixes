@@ -1,8 +1,6 @@
 ### Death Must Die Ultra-Wide
 
-![Game Logo](main_menu.png)<br>
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
+![Game Logo](screenshots/main_menu.png)<br>
 
 Tested against retail Steam version @ 3440x1440.
 
@@ -13,14 +11,26 @@ Tested against retail Steam version @ 3440x1440.
 - Option to remove clutter from main menu.
 - Option to load directly into the game. Hold down Left-Shift while opening the game to cancel.
 
+## Screenshots
+
+![Menu](screenshots/main_menu.png)
+
 ## Configuration
 - Press F1 in game to open the UI.
 
-![Settings](settings.png)<br>
+![Settings](screenshots/settings.png)<br>
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie).
 - Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Death Must Die`** for Steam on Windows).
+
+### Steam Deck/Linux Additional Instructions
+🚩**You do not need to do this if you are using Windows!**
+- Open up the game properties in Steam and add `WINEDLLOVERRIDES="winmm=n,b" %command%` to the launch options.
+
+- ## Support
+
+[![ko-fi](../donations/kofi.png)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](../donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 ## Credits
 - [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).

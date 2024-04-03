@@ -19,6 +19,10 @@ Tested against retail Steam version @ 3440x1440.
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
 - Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\20MinuteTillDawn** for Steam on Windows).
 
+## Steam Deck/Linux Additional Instructions
+🚩**You do not need to do this if you are using Windows!**
+- Open up the game properties in Steam and add `WINEDLLOVERRIDES="winmm=n,b" %command%` to the launch options.
+
 ## Changes
 
 `0.1.3` - 3rd April 2024
