@@ -15,7 +15,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.20minutestilldawn.ultrawide";
     private const string PluginName = "20 Minutes Till Dawn Ultra-Wide!";
-    private const string PluginVersion = "0.1.2";
+    private const string PluginVersion = "0.1.3";
     private const string FogOfWarCanvas = "PlayerController/FogOfWarCanvas/FogOfWarImage";
 
     internal static float MainAspectRatio => MainWidth / (float) MainHeight;
@@ -23,30 +23,41 @@ public class Plugin : BaseUnityPlugin
     private static float BaseAspect => 16f / 9f;
     private static float NormalWidth => MainHeight * BaseAspect;
     private static ConfigEntry<int> DisplayToUse { get; set; }
+    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-
-    internal static ManualLogSource Log { get; private set; }
+    private static ManualLogSource Log { get; set; }
 
     private void Awake()
     {
-        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.Windowed, new ConfigDescription("Set the full screen mode"));
+        FullScreenModeConfig.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
 
+
+        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        DisplayToUse.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
+        
         Log = Logger;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         Log.LogWarning($"Plugin {PluginName} is loaded!");
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
     }
 
-    private static void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private static void UpdateDisplay()
     {
         Display.displays[DisplayToUse.Value].Activate(MainWidth, MainHeight, MaxRefresh);
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.Windowed, MaxRefresh);
-        Log.LogInfo($"Display {DisplayToUse.Value} activated with resolution {MainWidth}x{MainHeight} at {MaxRefresh}Hz");
-       
-        Time.fixedDeltaTime = 1f / FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
-
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, MaxRefresh);
+    }
+    
+    private static void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
         Cameras.UpdateCameras();
 
         var fog = GameObject.Find(FogOfWarCanvas);
@@ -54,18 +65,5 @@ public class Plugin : BaseUnityPlugin
         {
             fog.transform.localScale = new Vector3(PositiveScaleFactor, PositiveScaleFactor, 1);
         }
-    }
-
-    private static float FindLowestFrameRateMultipleAboveFifty(int originalRate)
-    {
-        for (var rate = originalRate / 2; rate > 50; rate--)
-        {
-            if (originalRate % rate == 0)
-            {
-                return rate;
-            }
-        }
-
-        return originalRate;
     }
 }
