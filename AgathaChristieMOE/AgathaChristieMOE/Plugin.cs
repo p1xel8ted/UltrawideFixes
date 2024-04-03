@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using Cinemachine;
+using HarmonyLib;
 using MSL.GameEngine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,52 +14,75 @@ namespace AgathaChristieMOE;
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.agathachristiemoe.ultrawidefix";
-    private const string PluginName = "Agatha Christie - MoE Cutscene Fix";
-    private const string PluginVersion = "0.0.1";
+    private const string PluginGuid = "p1xel8ted.agathachristiemoe.displaytweaks";
+    private const string PluginName = "Agatha Christie - Murder on the Orient Express";
+    private const string PluginVersion = "0.1.0";
     private const string BlackBorders = "BlackBorders";
-    private const string Shoulder = "shoulder";
+    
+    private static ConfigEntry<int> DisplayToUse { get; set; }
+    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
+    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     private static ManualLogSource LOG { get; set; }
-    private static List<AspectRatioFitter> AspectRatioFitters { get; } = new();
-    private static List<AspectRatioFitterMax> AspectRatioFitterMaxs { get; } = new();
-    private static CinemachineVirtualCamera ShoulderCam { get; set; } = new();
+    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     private static ConfigEntry<AspectRatioFitter.AspectMode> AspectModeConfig { get; set; }
-    private static ConfigEntry<Camera.GateFitMode> GateFitConfig { get; set; }
+    private static ConfigEntry<string> GateFitConfig { get; set; }
+    internal static ConfigEntry<int> FoVMultiplierPercent { get; private set; }
 
     private void Awake()
     {
+        LOG = Logger;
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-        AspectModeConfig = Config.Bind("Video", "Aspect Mode", AspectRatioFitter.AspectMode.None, new ConfigDescription("Suggest leaving this on None, but you can try other modes if you want to. You will need to restart the game to go back to None."));
-        AspectModeConfig.SettingChanged += (_, _) => { UpdateAr(); };
-        GateFitConfig = Config.Bind("Video", "Gate Fit", Camera.GateFitMode.Vertical, new ConfigDescription("Switch between Hor+ etc. Vertical = Hor+ (default), Horizontal = Vert+, Overscan = Hor-, None = Vert-."));
-        GateFitConfig.SettingChanged += (_, _) => { UpdateGateFit(); };
-        LOG = new ManualLogSource("Agatha Christie - MoE Cutscene Fix");
-        BepInEx.Logging.Logger.Sources.Add(LOG);
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.Windowed, new ConfigDescription("Set the full screen mode"));
+        FullScreenModeConfig.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
+
+
+        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        DisplayToUse.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
+
+        FoVMultiplierPercent = Config.Bind("2. Field of View", "FOV Multiplier Percent", 75, new ConfigDescription("Set the FOV multiplier percent. Default is a 75% increase.", new AcceptableValueRange<int>(0, 200), new {ShowAsPercent = true}));
+        GateFitConfig = Config.Bind("2. Field of View", "Screen Fitting Strategy", "Hor+", new ConfigDescription("Switch between Hor+ etc. Games default is Hor+.", new AcceptableValueList<string>(GateFitEnumMappings.StringToEnum.Keys.ToArray())));
+        GateFitConfig.SettingChanged += (_, _) =>
+        {
+            UpdateGateFit();
+        };
+        AspectModeConfig = Config.Bind("3. Cutscene Cropping", "Aspect Mode", AspectRatioFitter.AspectMode.None, new ConfigDescription("Suggest leaving this on None, but you can try other modes if you want to. You will need to restart the game to go back to None."));
+        AspectModeConfig.SettingChanged += (_, _) =>
+        {
+            UpdateAr();
+        };
+
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
     private static void UpdateGateFit()
     {
-        ShoulderCam ??= Resources.FindObjectsOfTypeAll<CinemachineVirtualCamera>().FirstOrDefault(a => a.name.ToLowerInvariant().Contains(Shoulder));
-        if (ShoulderCam == null) return;
-        var lens = ShoulderCam.m_Lens;
-        lens.GateFit = GateFitConfig.Value;
-        ShoulderCam.m_Lens = lens;
+        if (!GateFitEnumMappings.StringToEnum.TryGetValue(GateFitConfig.Value, out var gateFitMode)) return;
+
+        if (Patches.ShoulderCam is not null)
+        {
+            Patches.ShoulderCam.m_Lens = Patches.ShoulderCam.m_Lens with {GateFit = gateFitMode};
+        }
     }
 
     private static void UpdateAr()
     {
-        AspectRatioFitters.RemoveAll(a => a is null);
-        AspectRatioFitterMaxs.RemoveAll(a => a is null);
-        foreach (var arf in AspectRatioFitters.Where(a => a is not null))
+        foreach (var arf in Resources.FindObjectsOfTypeAll<AspectRatioFitter>())
         {
             if (arf.isActiveAndEnabled)
             {
                 arf.aspectMode = AspectModeConfig.Value;
             }
         }
-
-        foreach (var arf in AspectRatioFitterMaxs.Where(a => a is not null))
+    
+        foreach (var arf in Resources.FindObjectsOfTypeAll<AspectRatioFitterMax>())
         {
             if (arf.isActiveAndEnabled)
             {
@@ -68,36 +91,28 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-    private static void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    private static void UpdateDisplay()
     {
-        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow, Screen.resolutions.Max(a => a.refreshRate));
-        AspectRatioFitters.Clear();
-        AspectRatioFitterMaxs.Clear();
-        ShoulderCam = null;
-        UpdateGateFit();
-      
+        Display.displays[DisplayToUse.Value].Activate(MainWidth, MainHeight, MaxRefresh);
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, MaxRefresh);
+    }
 
-        var aspectRatioFitters = Resources.FindObjectsOfTypeAll<AspectRatioFitter>();
-        foreach (var arf in aspectRatioFitters)
-        {
-            arf.aspectMode = AspectRatioFitter.AspectMode.None;
-            AspectRatioFitters.Add(arf);
-        }
-
-        var aspectRatioFitterMaxes = Resources.FindObjectsOfTypeAll<AspectRatioFitterMax>();
-        foreach (var arf in aspectRatioFitterMaxes)
-        {
-            arf.aspectMode = AspectRatioFitter.AspectMode.None;
-            AspectRatioFitterMaxs.Add(arf);
-        }
-
-        var rectTransform = Resources.FindObjectsOfTypeAll<RectTransform>();
-        foreach (var rect in rectTransform)
+    private static void RemoveBlackBorders()
+    {
+        foreach (var rect in Resources.FindObjectsOfTypeAll<RectTransform>())
         {
             if (rect.name.Equals(BlackBorders))
             {
                 rect.gameObject.SetActive(false);
             }
-        }
+        }   
+    }
+
+    private static void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateDisplay();
+        UpdateGateFit();
+        UpdateAr();
+        RemoveBlackBorders();
     }
 }

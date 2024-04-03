@@ -1,45 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>latest</LangVersion>
-    <RestoreAdditionalProjectSources>
-      https://api.nuget.org/v3/index.json;
-      https://nuget.bepinex.dev/v3/index.json;
-      https://nuget.samboy.dev/v3/index.json
-    </RestoreAdditionalProjectSources>
-    <IsPackable>false</IsPackable>
-    <Company>p1xel8ted</Company>
-    <AssemblyVersion>0.0.1</AssemblyVersion>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\BepInEx\plugins</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\BepInEx\plugins</OutputPath>
+    <Version>0.1.0</Version>
+    <AssemblyVersion>$(Version)</AssemblyVersion>
+    <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="5.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Cinemachine">
-      <HintPath>..\libs\Cinemachine.dll</HintPath>
+    <Reference Include="Cinemachine" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\Agatha Christie - Murder on the Orient Express DEMO_Data\Managed\Cinemachine.dll</HintPath>
     </Reference>
-    <Reference Include="MSL.GameEngine">
-      <HintPath>..\libs\MSL.GameEngine.dll</HintPath>
+    <Reference Include="MSL.GameEngine" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\Agatha Christie - Murder on the Orient Express DEMO_Data\Managed\MSL.GameEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\libs\UnityEngine.dll</HintPath>
+    <Reference Include="UnityEngine" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\Agatha Christie - Murder on the Orient Express DEMO_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
+    <Reference Include="UnityEngine.CoreModule" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\Agatha Christie - Murder on the Orient Express DEMO_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
+    <Reference Include="UnityEngine.UI" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\Agatha Christie - Murder on the Orient Express DEMO_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
+  
+  <Import Project="..\zip.target" />
 </Project>
