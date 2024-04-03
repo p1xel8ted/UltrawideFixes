@@ -4,7 +4,7 @@
 
 A collection of ultrawide fixes for various games. Click on the game title to access the specific fix.
 
-### [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)  
+### [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn) - Last update 2nd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
 ### [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)  
