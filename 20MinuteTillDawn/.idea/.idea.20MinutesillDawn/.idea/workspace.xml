@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment="20MTD">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/AlwasLegacy.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/AlwasLegacy.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../AlwasLegacy/AlwasLegacy/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlwasLegacy/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../AlwasLegacy/Directory.Build.props" afterDir="false" />
-    </list>
+    <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment="Update readme" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +100,7 @@
       <workItem from="1712029791595" duration="12769000" />
       <workItem from="1712045433550" duration="1594000" />
       <workItem from="1712047899384" duration="4524000" />
-      <workItem from="1712111342062" duration="1548000" />
+      <workItem from="1712111342062" duration="1988000" />
     </task>
     <task id="LOCAL-00001" summary="20 Minutes Till Dawn 0.1.2">
       <option name="closed" value="true" />
@@ -203,7 +198,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712114785201</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary=".">
+      <option name="closed" value="true" />
+      <created>1712115686392</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1712115686392</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update readme">
+      <option name="closed" value="true" />
+      <created>1712115817013</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1712115817013</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -217,8 +228,9 @@
     <MESSAGE value="Death Must Die" />
     <MESSAGE value="Misc" />
     <MESSAGE value="Donations" />
-    <MESSAGE value="." />
     <MESSAGE value="20MTD" />
-    <option name="LAST_COMMIT_MESSAGE" value="20MTD" />
+    <MESSAGE value="." />
+    <MESSAGE value="Update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update readme" />
   </component>
 </project>
