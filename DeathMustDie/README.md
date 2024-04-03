@@ -1,6 +1,6 @@
-### Death Must Die Ultra-Wide
+# Death Must Die Ultra-Wide
 
-![Game Logo](screenshots/main_menu.png)<br>
+![Game Logo](screenshots/header.jpg)<br>
 
 Tested against retail Steam version @ 3440x1440.
 
