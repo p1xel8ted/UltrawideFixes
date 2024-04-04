@@ -5,18 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86c04a9-7e94-4480-8b55-10ddc17ce598" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Extensions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudScaler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/VolumeToggler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/ScreenResolution.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/WriteOnce.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AspectRatio/AspectRatioFixes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Constants/Const.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Constants/Levels.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_1.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_2.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_3.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_4.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_5.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_6.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_7.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_7_Extra.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/MainMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/MiscAssetFixes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Shop.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudMover.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/LavaBruteForce.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/NegativeScaler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/Scalers.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/SpriteExpander.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/VideoPlayerAspectCorrector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Helpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Helpers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Misc/Extensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Helpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Misc/Helpers.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudScaler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudScaler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/VolumeToggler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/EffectsToggler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Patches.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Plugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/ScreenResolution.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AspectRatio/ScreenResolution.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/WriteOnce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Misc/WriteOnce.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,19 +63,27 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/0e35dc2723924243ba294076c0226ea9125e00/2f/d4b0d79f/AbstractSwap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/0e35dc2723924243ba294076c0226ea9125e00/87/c63271fd/StateSwap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1932688446034837bbbf78ba8760053a123200/10/6f8174b8/CameraLimit.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1932688446034837bbbf78ba8760053a123200/57/e9155031/AbstractSwap.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1932688446034837bbbf78ba8760053a123200/6a/402522a4/GMSCanvasScaler.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1932688446034837bbbf78ba8760053a123200/71/77081887/CameraMover.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1932688446034837bbbf78ba8760053a123200/91/00a46845/CameraController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1932688446034837bbbf78ba8760053a123200/fd/53481754/Logos.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1b4135d412ac47b78d18fb09f599c0ccfe800/02/31d4c6d3/Camera.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1b4135d412ac47b78d18fb09f599c0ccfe800/70/a71c4125/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/8063318377a64c368c01f66db1251f1b23a00/74/dbcd74bf/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/b455e42cec8c40df92dbd0c9f3d0cec76200/3f/dbbf6ab9/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2Tapfn14uyuIgIy5KgDfY8mCGso" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -97,15 +125,28 @@
       <updated>1691291151791</updated>
       <workItem from="1691291152906" duration="1049000" />
       <workItem from="1712119805805" duration="15332000" />
-      <workItem from="1712140010739" duration="13375000" />
+      <workItem from="1712140010739" duration="13455000" />
+      <workItem from="1712185341853" duration="39346000" />
     </task>
+    <task id="LOCAL-00001" summary="Alex Kidd Re-Do WIP">
+      <option name="closed" value="true" />
+      <created>1712153637158</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712153637158</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Alex Kidd Re-Do WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alex Kidd Re-Do WIP" />
   </component>
 </project>

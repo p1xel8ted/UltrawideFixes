@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace AlexKiddMiracleWorldDX;
+namespace AlexKiddMiracleWorldDX.Misc;
 
 public static class Helpers
 {

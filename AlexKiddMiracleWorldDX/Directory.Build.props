@@ -34,11 +34,11 @@
     </ItemDefinitionGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\Alex Kidd in Miracle World DX Demo\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\Alex Kidd in Miracle World DX\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\Alex Kidd in Miracle World DX Demo\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\Alex Kidd in Miracle World DX\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">

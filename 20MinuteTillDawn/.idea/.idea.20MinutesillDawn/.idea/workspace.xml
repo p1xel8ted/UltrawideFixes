@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="68f8b269-c4e6-4423-835a-31a4881f9f56" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +96,8 @@
       <workItem from="1712045433550" duration="1594000" />
       <workItem from="1712047899384" duration="4524000" />
       <workItem from="1712111342062" duration="4558000" />
+      <workItem from="1712184417762" duration="58000" />
+      <workItem from="1712184684194" duration="205000" />
     </task>
     <task id="LOCAL-00001" summary="20 Minutes Till Dawn 0.1.2">
       <option name="closed" value="true" />
@@ -224,7 +227,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712116326089</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Update">
+      <option name="closed" value="true" />
+      <created>1712184698790</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1712184698790</updated>
+    </task>
+    <task id="LOCAL-00018" summary=".">
+      <option name="closed" value="true" />
+      <created>1712184845438</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1712184845438</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -240,6 +259,7 @@
     <MESSAGE value="Donations" />
     <MESSAGE value="20MTD" />
     <MESSAGE value="Update readme" />
+    <MESSAGE value="Update" />
     <MESSAGE value="." />
     <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>

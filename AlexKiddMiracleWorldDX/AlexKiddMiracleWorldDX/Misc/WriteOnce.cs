@@ -1,6 +1,6 @@
 using System;
 
-namespace AlexKiddMiracleWorldDX;
+namespace AlexKiddMiracleWorldDX.Misc;
 
 public sealed class WriteOnce<T>
 {

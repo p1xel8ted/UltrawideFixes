@@ -3,44 +3,55 @@ using UnityEngine;
 
 namespace AlexKiddMiracleWorldDX.MonoBehaviours;
 
-public class HudScaler : MonoBehaviour
+public class NegativeScaler : MonoBehaviour
 {
-    public bool UpdateEnabled { get; set; } = true;
-    
+    private float xBuffer;
+
+    public bool UpdateEnabled { get; set; }
+
     private WriteOnce<float> OriginalXScale { get; } = new();
     private WriteOnce<float> OriginalYScale { get; } = new();
     private WriteOnce<float> OriginalZScale { get; } = new();
 
     private void Start()
     {
-        Plugin.LOG.LogInfo($"HUD Scaler started on {gameObject.name}");
+        Plugin.LOG.LogInfo($"Negative Scaler started on {gameObject.name}");
+
         OriginalXScale.Value = transform.localScale.x;
         OriginalYScale.Value = transform.localScale.y;
         OriginalZScale.Value = transform.localScale.z;
-        PerformingScaling();
+
+        PerformScaling();
     }
 
-    private void PerformingScaling()
+    private void PerformScaling()
     {
         if (!transform) return;
-        
-        if (!Plugin.KeepUICentered.Value)
-        {
-            var x = OriginalXScale.Value * Plugin.NegativeScaleFactor;
-            transform.localScale = transform.localScale with {x = x};
-        }
-        else
-        {
-            transform.localScale = transform.localScale with {x = OriginalXScale.Value};
-        }  
+
+
+        var x = OriginalXScale.Value * Plugin.NegativeScaleFactor + xBuffer;
+        var y = OriginalYScale.Value;
+        var z = OriginalZScale.Value;
+        transform.localScale = new Vector3(x, y, z);
     }
-    
+
+
     private void LateUpdate()
     {
         if (UpdateEnabled)
         {
-            PerformingScaling();
+            PerformScaling();
         }
+    }
+
+    public void SetBuffer(float x)
+    {
+        xBuffer = x;
+    }
+
+    public void ClearBuffers()
+    {
+        xBuffer = 0;
     }
 
 }
