@@ -1,6 +1,6 @@
 # Wonhon: A Vengeful Spirit
 
-![Game Logo](header.jpg)<br>
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e758fb24-a441-422f-80c6-77ab9332c632)
 
 Tested against retail Steam version @ 3440x1440.
 
@@ -14,6 +14,8 @@ Tested against retail Steam version @ 3440x1440.
 * Partially skips intros.
 
 ## Screenshots
+
+![menu_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8c71e8fb-3c19-4e00-aabc-bcb0e61e1e5a) ![game_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/3fd95bef-9f50-4245-8216-31a7dcc77a28)
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonhonAVengefulSpirit). Windows and MacOS/Unix versions have been made available.
