@@ -26,7 +26,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> SkipDevLogos { get; set; }
     internal static ConfigEntry<bool> KeepUICentered { get; private set; }
 
-    internal static float TwentyOneNineAspect => 21f / 9f;
+    internal static float TwentyOneNineAspect => 21.5f / 9f; //21:9 is actually 43:18
     internal static int SimplifiedWidth => Helpers.GetGcd(MainWidth, MainHeight).simplifiedWidth;
     internal static int SimplifiedHeight => Helpers.GetGcd(MainWidth, MainHeight).simplifiedHeight;
 

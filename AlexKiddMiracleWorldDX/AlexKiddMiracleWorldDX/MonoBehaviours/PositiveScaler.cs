@@ -38,7 +38,7 @@ public class PositiveScaler : MonoBehaviour
         }
         else
         {
-            var x = OriginalXScale.Value + xBuffer * Plugin.PositiveScaleFactor;
+            var x = OriginalXScale.Value * Plugin.PositiveScaleFactor + xBuffer;
             var y = OriginalYScale.Value;
             var z = OriginalZScale.Value;
             transform.localScale = new Vector3(x, y, z);

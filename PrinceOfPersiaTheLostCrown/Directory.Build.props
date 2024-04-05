@@ -40,9 +40,4 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <OutputPath>H:\Games\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="JetBrains.Annotations" Version="2023.*" />
-        <PackageReference Include="JetBrains.ExternalAnnotations" Version="10.2.136" />
-    </ItemGroup>
 </Project>

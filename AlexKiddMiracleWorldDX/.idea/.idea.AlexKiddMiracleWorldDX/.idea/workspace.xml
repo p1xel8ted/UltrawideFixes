@@ -5,39 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a86c04a9-7e94-4480-8b55-10ddc17ce598" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AspectRatio/AspectRatioFixes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Constants/Const.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Constants/Levels.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_1.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_2.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_3.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_4.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_5.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_6.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_7.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Level_7_Extra.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/MainMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/MiscAssetFixes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/LevelFixes/Shop.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudMover.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/LavaBruteForce.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/NegativeScaler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/Scalers.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/SpriteExpander.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/VideoPlayerAspectCorrector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/MonoBehaviours/LeftHudMover.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/MonoBehaviours/PositiveScaler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/MonoBehaviours/RightHudMover.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/Transpiler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Extensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Misc/Extensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Helpers.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Misc/Helpers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudScaler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/HudScaler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/VolumeToggler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/EffectsToggler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Patches.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/ScreenResolution.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/AspectRatio/ScreenResolution.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/WriteOnce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Misc/WriteOnce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +100,8 @@
       <workItem from="1691291152906" duration="1049000" />
       <workItem from="1712119805805" duration="15332000" />
       <workItem from="1712140010739" duration="13455000" />
-      <workItem from="1712185341853" duration="39346000" />
+      <workItem from="1712185341853" duration="42697000" />
+      <workItem from="1712286569644" duration="89000" />
     </task>
     <task id="LOCAL-00001" summary="Alex Kidd Re-Do WIP">
       <option name="closed" value="true" />
@@ -136,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712153637158</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Alex Kidd WIP">
+      <option name="closed" value="true" />
+      <created>1712230403131</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712230403131</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -147,6 +130,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Alex Kidd Re-Do WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alex Kidd Re-Do WIP" />
+    <MESSAGE value="Alex Kidd WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alex Kidd WIP" />
   </component>
 </project>
