@@ -126,7 +126,10 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonderBoyReturnsRemix/total?label=downloads&style=for-the-badge)
 
 ## [Wonhon: A Vengeful Spirit](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonhonAVengefulSpirit)  
+#### Last update: 5th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonhonAVengefulSpirit/total?label=downloads&style=for-the-badge)
+
+![menu_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5eb378ec-af52-4917-a53e-4577d6f09702) ![game_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e4685799-796e-4745-ae3d-9b83cc3968fe)
 
 ## [xMystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
