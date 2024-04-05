@@ -16,7 +16,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.wonhonspirit.ultrawide";
     private const string PluginName = "Wonhon Spirit Ultra-Wide";
-    private const string PluginVersion = "0.1.5";
+    private const string PluginVersion = "0.1.0";
 
     private static float MainAspectRatio => MainWidth / (float) MainHeight;
     private static float BaseAspectRatio => 16f / 9f;
