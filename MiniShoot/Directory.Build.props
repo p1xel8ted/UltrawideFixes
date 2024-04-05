@@ -4,7 +4,7 @@
     <!--Base Settings-->
     <PropertyGroup>
         <Description>$(MSBuildProjectName)</Description>
-        <TargetFramework>net35</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
         <LangVersion>latest</LangVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -34,11 +34,11 @@
     </ItemDefinitionGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\Wonder Boy Returns Remix\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\Wonder Boy Returns Remix\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -47,10 +47,10 @@
 
     <ItemGroup>
         <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
-<!--        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all">-->
-<!--            <PrivateAssets>all</PrivateAssets>-->
-<!--            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
-<!--        </PackageReference>-->
+        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 

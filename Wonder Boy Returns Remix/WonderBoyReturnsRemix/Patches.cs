@@ -10,7 +10,7 @@ public static class Patches
     [HarmonyPatch(typeof(ScreenOption), nameof(ScreenOption.Height), MethodType.Getter)]
     public static bool ScreenOption_Height_Getter(ref int __result)
     {
-        __result = Display.main.systemHeight;
+        __result = Plugin.MainHeight;
         return false;
     }
 
@@ -18,7 +18,7 @@ public static class Patches
     [HarmonyPatch(typeof(ScreenOption), nameof(ScreenOption.Width), MethodType.Getter)]
     public static bool ScreenOption_Width_Getter(ref int __result)
     {
-        __result = Display.main.systemWidth;
+        __result = Plugin.MainWidth;
         return false;
     }
     
@@ -27,14 +27,14 @@ public static class Patches
     [HarmonyPatch(typeof(SteamManager), nameof(SteamManager.Awake))]
     public static void LogoScriptMgr_Start()
     {
-        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true,120);
+        Screen.SetResolution(Plugin.MainWidth, Plugin.MainHeight, true,120);
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ScreenOption), nameof(ScreenOption.SetResolution))]
     public static bool ScreenOption_Resolutions_Prefix()
     {
-        Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, true, 120);
+        Screen.SetResolution(Plugin.MainWidth, Plugin.MainHeight, true, 120);
         return false;
     }
 
@@ -43,7 +43,7 @@ public static class Patches
     [HarmonyPatch(typeof(Camera), nameof(Camera.aspect), MethodType.Getter)]
     public static bool Camera_aspect(ref float __result)
     {
-        __result = (float) Display.main.systemWidth / (float) Display.main.systemHeight;
+        __result = Plugin.MainWidth / (float) Plugin.MainHeight;
         return false;
     }
 
@@ -61,7 +61,7 @@ public static class Patches
     [HarmonyPatch(typeof(Camera), nameof(Camera.scaledPixelHeight), MethodType.Getter)]
     public static bool Camera_scaledPixelHeight(ref int __result)
     {
-        __result = Display.main.systemHeight;
+        __result = Plugin.MainHeight;
         return false;
     }
 
@@ -70,7 +70,7 @@ public static class Patches
     [HarmonyPatch(typeof(Camera), nameof(Camera.scaledPixelWidth), MethodType.Getter)]
     public static bool Camera_scaledPixelWidth(ref int __result)
     {
-        __result = Display.main.systemWidth;
+        __result = Plugin.MainWidth;
         return false;
     }
 
@@ -80,7 +80,16 @@ public static class Patches
     [HarmonyPatch(typeof(Canvas), nameof(Canvas.pixelRect), MethodType.Getter)]
     public static bool Camera_pixelRect(ref Rect __result)
     {
-        __result = new Rect(0, 0, Display.main.systemWidth, Display.main.systemHeight);
+        __result = new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight);
         return false;
     }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PlatformerCamera), nameof(PlatformerCamera.FixedUpdate))]
+    public static void PlatformerCamera_FixedUpdate(ref PlatformerCamera __instance)
+    {
+        __instance.bCanGoBack = Plugin.EnableGoingBackwards.Value;
+        __instance.cameraMoveSpeed = 50f;
+    }
+
 }
