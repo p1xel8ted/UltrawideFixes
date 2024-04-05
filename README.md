@@ -1,16 +1,18 @@
 # The Ultra-Wide Collection
 
-[![ko-fi](donations/kofi.png)](https://ko-fi.com/F2F2DI3WA) [![patreon](donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
+[![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 A collection of ultrawide fixes for various games. Click on the game title to access the specific fix.
 
 ### [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn) - Last update 2nd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
+![menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/88778b07-814d-48de-941c-90553486af7a) ![game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2be7167b-f206-43c5-8808-7b9c148efc52)
+
 ### [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE) - Last update 3rd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
 
-![Cutscenes](https://raw.githubusercontent.com/p1xel8ted/UltrawideFixes/main/AgathaChristieMOE/screenshots/cutscenes.jpg) ![FOV](https://raw.githubusercontent.com/p1xel8ted/UltrawideFixes/main/AgathaChristieMOE/screenshots/fov.jpg)
+![cutscenes](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9d2bb250-bb4f-4463-9bae-0705ddb3e13f) ![fov](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/40c18c28-4bdb-4568-8531-ebc1e2e34182)
 
 ### [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
