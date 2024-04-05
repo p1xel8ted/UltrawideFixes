@@ -35,8 +35,12 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DarkestDungeon2/total?label=downloads&style=for-the-badge)
 
+
 ## [Death Must Die](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie)  
+#### Last Update: 1st April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathMustDie/total?label=downloads&style=for-the-badge)
+
+![20240405192915_1_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9a377114-da2c-4e2b-93ad-829a8d749e79) ![20240405192905_1_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/edfd5327-2599-4fcd-929b-2c1ddc87a4a7)
 
 ## [Death Or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
