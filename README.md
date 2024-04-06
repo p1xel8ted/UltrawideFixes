@@ -51,6 +51,12 @@ Click on the game title to access the specific fix.
 ## [Death Or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
 
+## [Elderand](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand)
+### Last update: 6th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Elderand/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9afc4ae3-f7ac-410e-b915-847e2f37d9d8) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9e63d7b-6623-42bb-96ed-17bd8b85bf30)
+
 ## [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/FlipWitch/total?label=downloads&style=for-the-badge)
 
