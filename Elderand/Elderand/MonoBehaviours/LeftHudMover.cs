@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Elderland.MonoBehaviours;
+namespace Elderand.MonoBehaviours;
 
 public class LeftHudMover : MonoBehaviour
 {

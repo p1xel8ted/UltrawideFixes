@@ -5,7 +5,7 @@ using Elderand.UI;
 using HarmonyLib;
 using UnityEngine;
 
-namespace Elderland
+namespace Elderand
 {
     /// <summary>
     /// A Harmony patch to intercept Unity's Screen.resolutions method and add custom resolutions.

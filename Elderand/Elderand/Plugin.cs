@@ -8,14 +8,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Elderland;
+namespace Elderand;
 
 [HarmonyPatch]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.elderland.ultrawide";
-    private const string PluginName = "Elderland Ultra-Wide!";
+    private const string PluginGuid = "p1xel8ted.elderand.ultrawide";
+    private const string PluginName = "Elderand Ultra-Wide!";
     private const string PluginVersion = "0.1.0";
 
     private static int SimplifiedWidth => Helpers.GetGcd(MainWidth, MainHeight).simplifiedWidth;

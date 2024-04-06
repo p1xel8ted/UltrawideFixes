@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elderland", "Elderland\Elderland.csproj", "{AD821A4C-360A-4837-9729-A028308A8563}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elderand", "Elderand\Elderand.csproj", "{AD821A4C-360A-4837-9729-A028308A8563}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

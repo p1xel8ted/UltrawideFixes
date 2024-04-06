@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Elderland;
+namespace Elderand;
 
 public static class Helpers
 {

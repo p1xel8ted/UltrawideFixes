@@ -1,13 +1,13 @@
 ﻿using Elderand.Gameplay;
+using Elderand.MonoBehaviours;
 using Elderand.UI;
-using Elderland.MonoBehaviours;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
-namespace Elderland;
+namespace Elderand;
 
 [HarmonyPatch]
 public static class Patches
