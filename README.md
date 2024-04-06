@@ -128,7 +128,10 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
 
 ## [Wonder Boy Returns Remix](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonderBoyReturnsRemix)  
+#### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonderBoyReturnsRemix/total?label=downloads&style=for-the-badge)
+
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/370e776a-8296-4e75-b5da-1530303a7679) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/78d2e249-190d-4505-8538-eb04b383e140)
 
 ## [Wonhon: A Vengeful Spirit](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonhonAVengefulSpirit)  
 #### Last update: 5th April 2024
