@@ -11,7 +11,8 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Screenshots
 
-![menu_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a52bd47d-cd2a-4b61-85b1-930e7ca5deeb) ![game_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9bc38fe5-9bae-4164-855b-10c211714a5d) ![map_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/3b8d2236-1a15-44d1-b785-806980fec25b) ![skills_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dd868288-19c4-4f97-aa4e-509105e827ea)
+![menu_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a52bd47d-cd2a-4b61-85b1-930e7ca5deeb) ![game_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9bc38fe5-9bae-4164-855b-10c211714a5d) ![map_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/3b8d2236-1a15-44d1-b785-806980fec25b) ![skills_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dd868288-19c4-4f97-aa4e-509105e827ea) ![boss_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7ee3bf4f-33e3-4c41-8e2e-c08a2807bbac)
+
 
 ## Configuration
 - Press F1 in game to open the UI.
