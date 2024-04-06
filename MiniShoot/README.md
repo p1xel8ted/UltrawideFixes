@@ -21,7 +21,7 @@ Tested against retail Steam version @ 3440x1440.
 ![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/522a2173-90f6-43b5-8765-05095f5b6aa5)
 
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures). Windows and MacOS/Unix versions have been made available.
 - Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\Minishoot&apos; Adventures** for Steam on Windows).
 
 ## Steam Deck/Linux Additional Instructions
