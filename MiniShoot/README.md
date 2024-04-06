@@ -1,13 +1,13 @@
-# 20 Minutes Till Dawn
+# Minishoot` Adventures
 
 ![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8ef884fa-a78d-43e5-bf14-ce69fea8f2a8)
 
 Tested against retail Steam version @ 3440x1440.
 
 ## Features
-- Overrides full screen to the main display resolution and enforces the appropriate aspect ratio.
-- Resolution and full screen mode picker are disabled in the settings menu. 
-- UI corrections, mostly related to the main menu, weapon selection screen and the fog in-game.
+- Overrides full screen to the main display resolution.
+- Removes pillar-boxing and corrects UI scaling.
+- Option to toggle Vignette and change Contrast & Saturation.
 
 ## Screenshots
 
@@ -20,7 +20,7 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
-- Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\20MinuteTillDawn** for Steam on Windows).
+- Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\Minishoot&apos; Adventures** for Steam on Windows).
 
 ## Steam Deck/Linux Additional Instructions
 🚩**You do not need to do this if you are using Windows!**
@@ -28,19 +28,7 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Changes
 
-`0.1.3` - 3rd April 2024
-- Adding screen-mode configuration.
-- Fixed Display change action
-
-`0.1.2` - 2nd April 2024
-- Fog scaling is dynamically adjusted based on the resolution instead of being a hard-coded value.
-- Character portraits are now positioned dynamically based on the resolution instead of being a hard-coded value.
-- The advertisement banner on the main menu is disabled.
-
-`0.1.1` - 6th August 2023
-- Fixed the character portrait overlaying weapons on the weapon selection screen.
-
-`0.1.0` - ??
+`0.1.0` - 6th April 2024
 - Initial release.
 
 - ## Support
