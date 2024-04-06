@@ -43,7 +43,7 @@ Tested against retail Steam version @ 3440x1440.
 `0.1.0` - ??
 - Initial release.
 
- ## 🚩 Support
+## 🚩 Support
 #### Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
 ## Credits
