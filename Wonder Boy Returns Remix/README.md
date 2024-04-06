@@ -5,7 +5,7 @@
 Tested against retail Steam version @ 3440x1440.
 
 ## 🚩 Notes
-- This game has really janky resolution control. I've forced it at an engine level and a game level, but it stil renders at 1920x1080 (you can verify in SpecialK); but the aspect is still correct...
+- This game has really janky resolution control. I've forced it at an engine level and a game level, but it still renders at 1920x1080 (you can verify in SpecialK); but the aspect is still correct...
 - If you force the resolution to your native resolution using SpecialK, the game black screens.
 
 ## Features
@@ -15,7 +15,8 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Screenshots
 
-![20240406141549_1_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c3c90c4e-7bc8-4a11-8d88-10eafd4c088c) ![20240406141556_1_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/19a99747-eaad-4748-880c-26a452dd55be) ![20240406142314_1_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e23cb8f0-0c85-4e16-9e50-331c188dbfe6) ![20240406142322_1_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/545b428b-b446-4fc5-bb91-09981f98a17c)
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bc0175db-c3c8-4130-84ea-e117c51b8870)  ![release_char](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/0584c3c2-0b61-4986-8631-276aa6fd3864) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ca605a9f-6fa5-4cf2-a9f5-05310160624d)
+
 
 ## Configuration
 - Press F1 in game to open the UI.
