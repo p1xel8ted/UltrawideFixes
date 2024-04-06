@@ -10,12 +10,36 @@
     <Reference Include="Assembly-CSharp" publicize="true">
       <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine">
+    <Reference Include="Unity.RenderPipelines.Core.Runtime" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine" publicize="true">
       <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.CoreModule">
+    <Reference Include="UnityEngine.AudioModule" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule" publicize="true">
       <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UI" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule" publicize="true">
+      <HintPath>F:\Games\steamapps\common\Minishoot Adventures Demo\Windows\Minishoot_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="20240406020301_1.jpg" />
+    <None Remove="20240406020315_1.jpg" />
+    <None Remove="20240406020320_1.jpg" />
+    <None Remove="20240406083133_1.jpg" />
+    <None Remove="20240406084444_1.jpg" />
+    <None Remove="20240406084455_1.jpg" />
   </ItemGroup>
 
   
