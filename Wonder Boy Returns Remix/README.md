@@ -12,6 +12,7 @@ Tested against retail Steam version @ 3440x1440.
 - Overrides full screen to the main display resolution and enforces the appropriate aspect ratio.
 - UI corrections, mostly related to the main menu, and character/level select screens.
 - Control camera zoom.
+- Enabled ability to go backwards.
 
 ## Screenshots
 
