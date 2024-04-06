@@ -1,6 +1,6 @@
-# Elderland
+# Elderand
 
-![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5d719f40-ee32-40fd-b1a8-c855f1c2f237)
+![image](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4c87c42f-4171-41c1-b96c-1acf873fc7c6)
 
 Tested against retail Steam version @ 3440x1440.
 
@@ -16,10 +16,13 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Screenshots
 
-![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/75787ade-ef4f-4f47-9ec7-e9b477cb0761) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4c7efb1e-df47-4111-80ff-eac33a9d9f69) ![release_inv](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9209af78-bab1-4b15-a4d0-31bb4e34d140)
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7e9b3ffe-f946-46d8-8f88-57ae5e2f5119) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d319e316-794a-4276-8a1a-bb8b9356c08f) ![release_centered](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5c7a7361-c061-4dea-9736-6b7e872d7b0c) ![release_char](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4d09bb32-c02f-4950-a20e-5bba56da7036)
+
 
 ## Configuration
 - Press F1 in game to open the UI.
+
+![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2896e4cd-5e02-479a-beb1-c1d58895eb48)
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand). Windows and MacOS/Unix versions have been made available.
