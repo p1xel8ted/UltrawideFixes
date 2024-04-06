@@ -8,6 +8,7 @@ Tested against retail Steam version @ 3440x1440.
 - Overrides full screen to the main display resolution.
 - Removes pillar-boxing and corrects UI scaling.
 - Option to toggle Vignette and change Contrast & Saturation.
+- Option to change Mute in Background & Run in Background behaviour.
 
 ## Screenshots
 
@@ -28,6 +29,9 @@ Tested against retail Steam version @ 3440x1440.
 - Open up the game properties in Steam and add `WINEDLLOVERRIDES="winmm=n,b" %command%` to the launch options.
 
 ## Changes
+
+`0.1.1` - 6th April 2024
+- Fixed actions related to toggling the run in background setting.
 
 `0.1.0` - 6th April 2024
 - Initial release.
