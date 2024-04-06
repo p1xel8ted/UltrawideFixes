@@ -1,30 +1,31 @@
-# Death Must Die Ultra-Wide
+# Death Must Die
 
-![Game Logo](screenshots/header.jpg)<br>
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/78b72b28-e6a4-4eca-851c-1237ed2f4f57)
 
 Tested against retail Steam version @ 3440x1440.
 
 ## Features
 - Adds your main display resolution to the in-game options menu.
 - Option to change what display the game uses.
-- Option to correct main menu background scenery. Anything wider than 21:9 may look stretched.
+- Option to correct main menu background scenery. For screens wider than 21:9, the background is scaled vertically as well to prevent an excessive stretched look.
 - Option to remove clutter from main menu.
 - Option to load directly into the game. Hold down Left-Shift while opening the game to cancel.
 
 ## Screenshots
 
-![Menu](screenshots/main_menu.png)
+![20240405192915_1_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4f13784c-59d2-4611-8c93-92bf5d43bfe5) 
+![20240405192905_1_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/438c281a-4208-4cf7-8283-558acfab6ddf)
 
 ## Configuration
 - Press F1 in game to open the UI.
 
-![Settings](screenshots/settings.png)<br>
+![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6a0102ec-e8d1-4785-bc7c-e71b117cb3c2)
 
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie).
+- Grab the latest release from below.
 - Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Death Must Die`** for Steam on Windows).
 
-### Steam Deck/Linux Additional Instructions
+## Steam Deck/Linux Additional Instructions
 🚩**You do not need to do this if you are using Windows!**
 - Open up the game properties in Steam and add `WINEDLLOVERRIDES="winmm=n,b" %command%` to the launch options.
 
