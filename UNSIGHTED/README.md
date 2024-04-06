@@ -6,7 +6,7 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Features
 - Overrides resolution to the main display resolution. Resolution options are removed altogether.
-- Various UI adjustments; they're may be issues at anything wider than 21:9.
+- Various UI adjustments; there may be issues at anything wider than 21:9.
 - Removes pillar-boxing and corrects UI scaling.
 - Option to change Mute in Background & Run in Background behaviour.
 
