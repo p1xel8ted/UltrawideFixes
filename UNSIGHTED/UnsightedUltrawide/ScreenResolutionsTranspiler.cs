@@ -18,9 +18,9 @@ public static class ScreenResolutionsTranspiler
     {
         var newRes = new Resolution
         {
-            height = Display.main.systemHeight,
-            width = Display.main.systemWidth,
-            refreshRate = Screen.resolutions.Max(a => a.refreshRate)
+            height = Plugin.MainHeight,
+            width = Plugin.MainWidth,
+            refreshRate = Plugin.MaxRefresh
         };
         var availableResolutions = Screen.resolutions.ToList();
         availableResolutions.Add(newRes);

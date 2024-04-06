@@ -30,7 +30,7 @@ if exist "%~1\*" (
     set "PROCESSED_DIR=!IMAGE_DIR!!GLOBAL_PROCESSED_DIR!"
     echo Processing file: %~nx1
     if not exist "!PROCESSED_DIR!" mkdir "!PROCESSED_DIR!"
-    magick "%~1" -resize 18.75%% "!PROCESSED_DIR!\%~n1_main.png"
+    magick "%~1" -resize 18.75%% "!PROCESSED_DIR!\main_%~n1.png"
     shift
     goto :process_next_arg
 )
@@ -44,7 +44,7 @@ for %%x in (jpg jpeg png gif bmp) do (
     for %%I in ("!IMAGE_DIR!\*.%%x") do (
         echo Processing: %%~nxI.%%x
         :: Resize the image and save it in the Processed directory
-        magick "%%I" -resize 18.75%% "!PROCESSED_DIR!\%%~nI_main.png"
+        magick "%%I" -resize 18.75%% "!PROCESSED_DIR!\main_%%~nI.png"
         if !errorlevel! neq 0 (
             echo Error processing %%I
         ) else (

@@ -19,7 +19,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.minishootadventures.ultrawide";
     private const string PluginName = "Minishoot` Adventures Ultra-Wide!";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     // Dynamic properties to calculate aspect ratios and screen dimensions based on the current display.
     private static int SimplifiedWidth => Helpers.GetGcd(MainWidth, MainHeight).simplifiedWidth;
@@ -44,35 +44,39 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> Contrast { get; set; }
     private static ConfigEntry<int> Saturation { get; set; }
 
-/// <summary>
-/// Configures post-processing effect settings upon plugin initialization. It binds configuration options to user preferences and sets up event handlers to adjust these effects dynamically based on user input.
-/// </summary>
-private void Awake()
-{
-    Log = Logger;
-    
-    // Other initializations for running in background and muting in background.
-    RunInBackground = Config.Bind("01. General", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.",null, new ConfigurationManagerAttributes {Order = 99}));
-    MuteInBackground = Config.Bind("01. General", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.",null, new ConfigurationManagerAttributes {Order = 98}));
-    
-    // Setup and bind post-processing effect configuration options.
-    Contrast = Config.Bind("02. Post-Processing", "Contrast", 0, new ConfigDescription("Adjusts the contrast level of the game's post-processing effects.", new AcceptableValueRange<int>(-100, 100), new ConfigurationManagerAttributes {Order = 97}));
-    Saturation = Config.Bind("02. Post-Processing", "Saturation", 0, new ConfigDescription("Adjusts the saturation level of the game's post-processing effects.", new AcceptableValueRange<int>(-100, 100), new ConfigurationManagerAttributes {Order = 96}));
-    LensDistortion = Config.Bind("02. Post-Processing", "Lens Distortion", true, new ConfigDescription("Toggles lens distortion in the game's post-processing effects.",null, new ConfigurationManagerAttributes {Order = 95}));
-    Vignette = Config.Bind("02. Post-Processing", "Vignette", true, new ConfigDescription("Toggles vignette in the game's post-processing effects.",null, new ConfigurationManagerAttributes {Order = 94}));
+    /// <summary>
+    /// Configures post-processing effect settings upon plugin initialization. It binds configuration options to user preferences and sets up event handlers to adjust these effects dynamically based on user input.
+    /// </summary>
+    private void Awake()
+    {
+        Log = Logger;
 
-    // Event handlers to update post-processing settings when configuration changes.
-    LensDistortion.SettingChanged += (_, _) => RunEffectFixes();
-    Contrast.SettingChanged += (_, _) => RunEffectFixes();
-    Saturation.SettingChanged += (_, _) => RunEffectFixes();
-    Vignette.SettingChanged += (_, _) => RunEffectFixes();
-    
-    Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
-    
-    Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-    SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-    Log.LogInfo($"Plugin {PluginName} is loaded!");
-}
+        // Other initializations for running in background and muting in background.
+        RunInBackground = Config.Bind("01. General", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
+        MuteInBackground = Config.Bind("01. General", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
+
+        // Setup and bind post-processing effect configuration options.
+        Contrast = Config.Bind("02. Post-Processing", "Contrast", 0, new ConfigDescription("Adjusts the contrast level of the game's post-processing effects.", new AcceptableValueRange<int>(-100, 100), new ConfigurationManagerAttributes {Order = 97}));
+        Saturation = Config.Bind("02. Post-Processing", "Saturation", 0, new ConfigDescription("Adjusts the saturation level of the game's post-processing effects.", new AcceptableValueRange<int>(-100, 100), new ConfigurationManagerAttributes {Order = 96}));
+        LensDistortion = Config.Bind("02. Post-Processing", "Lens Distortion", true, new ConfigDescription("Toggles lens distortion in the game's post-processing effects.", null, new ConfigurationManagerAttributes {Order = 95}));
+        Vignette = Config.Bind("02. Post-Processing", "Vignette", true, new ConfigDescription("Toggles vignette in the game's post-processing effects.", null, new ConfigurationManagerAttributes {Order = 94}));
+
+        // Event handlers to update post-processing settings when configuration changes.
+        LensDistortion.SettingChanged += (_, _) => RunEffectFixes();
+        Contrast.SettingChanged += (_, _) => RunEffectFixes();
+        Saturation.SettingChanged += (_, _) => RunEffectFixes();
+        Vignette.SettingChanged += (_, _) => RunEffectFixes();
+
+        Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
+
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
+    }
 
     /// <summary>
     /// Called when a scene is loaded to adjust display settings according to the user's configuration.
@@ -93,7 +97,7 @@ private void Awake()
         // Adjust post-processing settings based on user configuration.
         if (PostProcessManager.vignette)
         {
-            PostProcessManager.vignette.active = Vignette.Value;   
+            PostProcessManager.vignette.active = Vignette.Value;
         }
         if (PostProcessManager.colorAdjust)
         {

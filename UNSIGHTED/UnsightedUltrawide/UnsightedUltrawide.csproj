@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
@@ -18,58 +18,53 @@
     
 
     <ItemGroup>
-      <Folder Include="lib\" />
-    </ItemGroup>
-    
-
-    <ItemGroup>
-      <Reference Include="Assembly-CSharp">
-        <HintPath>lib\Assembly-CSharp.dll</HintPath>
+      <Reference Include="Assembly-CSharp" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>lib\UnityEngine.dll</HintPath>
+      <Reference Include="UnityEngine" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>lib\UnityEngine.AnimationModule.dll</HintPath>
+      <Reference Include="UnityEngine.AnimationModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.AudioModule">
-        <HintPath>lib\UnityEngine.AudioModule.dll</HintPath>
+      <Reference Include="UnityEngine.AudioModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.CoreModule">
-        <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
+      <Reference Include="UnityEngine.CoreModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>lib\UnityEngine.IMGUIModule.dll</HintPath>
+      <Reference Include="UnityEngine.IMGUIModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>lib\UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Reference Include="UnityEngine.JSONSerializeModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>lib\UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Reference Include="UnityEngine.ParticleSystemModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>lib\UnityEngine.Physics2DModule.dll</HintPath>
+      <Reference Include="UnityEngine.Physics2DModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>lib\UnityEngine.PhysicsModule.dll</HintPath>
+      <Reference Include="UnityEngine.PhysicsModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>lib\UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Reference Include="UnityEngine.SharedInternalsModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>lib\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Reference Include="UnityEngine.TextRenderingModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UI">
-        <HintPath>lib\UnityEngine.UI.dll</HintPath>
+      <Reference Include="UnityEngine.UI"  publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.UI.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UIModule">
-        <HintPath>lib\UnityEngine.UIModule.dll</HintPath>
+      <Reference Include="UnityEngine.UIModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.UIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>lib\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Reference Include="UnityEngine.UnityWebRequestModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>lib\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule" publicize="true">
+        <HintPath>F:\Games\steamapps\common\UNSIGHTED\UNSIGHTED_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       </Reference>
     </ItemGroup>
     
