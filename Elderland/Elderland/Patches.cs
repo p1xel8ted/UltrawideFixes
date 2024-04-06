@@ -1,13 +1,9 @@
-﻿using System.Linq;
-using Cinemachine;
-using Elderand.Gameplay;
+﻿using Elderand.Gameplay;
 using Elderand.UI;
 using Elderland.MonoBehaviours;
 using HarmonyLib;
-using TwentyMinutesTillDawn;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -16,7 +12,6 @@ namespace Elderland;
 [HarmonyPatch]
 public static class Patches
 {
-
 
     [HarmonyPrefix]
     [HarmonyPostfix]
@@ -82,31 +77,12 @@ public static class Patches
         }
     }
 
-    private readonly static string[] ParallaxUnits =
-    [
-        "CaveBackgorund 01",
-        "CaveBackgorund 02",
-        "CaveBackgorund 03",
-        "CaveBackgorund 04",
-        "CaveBackgorund 05",
-        "CaveBackgorund 06",
-        "CaveBackgorund 07",
-        "CaveBackgorund 08",
-        "CaveBackgorund 09",
-        "CaveBackgorund 10",
-        "CaveBackgorund 11",
-        "CaveBackgorund 12"
-    ];
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DialogueManager), nameof(DialogueManager.OnEnable))]
     public static void DialogueManager_OnEnable(ref DialogueManager __instance)
     {
-        if (Screen.currentResolution.width == Plugin.MainWidth)
-        {
-            var x = (Screen.width / 2f) + Plugin.BlackBarSize;
-            __instance.sentenceBox.transform.position = __instance.sentenceBox.transform.position with {x = x};
-        }
+        var x = (Screen.width / 2f) + Plugin.BlackBarSize;
+        __instance.sentenceBox.transform.position = __instance.sentenceBox.transform.position with {x = x};
     }
 
     [HarmonyPostfix]
@@ -114,8 +90,6 @@ public static class Patches
     [HarmonyPatch(typeof(AspectRatioFitter), nameof(AspectRatioFitter.Update))]
     public static void AspectRatioFitter_OnEnable(ref AspectRatioFitter __instance)
     {
-        if (Screen.currentResolution.width != Plugin.MainWidth) return;
-
         __instance.aspectMode = AspectRatioFitter.AspectMode.WidthControlsHeight;
         __instance.aspectRatio = Plugin.MainAspectRatio;
     }
@@ -124,17 +98,13 @@ public static class Patches
     [HarmonyPatch(typeof(CameraResolution), nameof(CameraResolution.RescaleCamera))]
     public static void CameraResolution_RescaleCamera_Prefix(ref CameraResolution __instance)
     {
-        if (Screen.currentResolution.width == Plugin.MainWidth)
-        {
-            __instance.width = 10f * Plugin.PositiveScaleFactor;
-        }
+        __instance.width = 10f * Plugin.PositiveScaleFactor;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CameraResolution), nameof(CameraResolution.RescaleCamera))]
     public static void CameraResolution_RescaleCamera_Postfix(ref CameraResolution __instance)
     {
-        if (Screen.currentResolution.width != Plugin.MainWidth) return;
         if (Plugin.FieldOfView.Value <= 0) return;
 
         var originalValue = __instance.width * Screen.height / Screen.width * 0.5f;
@@ -143,21 +113,15 @@ public static class Patches
         __instance.mainCamera.m_Lens.OrthographicSize = newValue;
     }
 
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(ParallaxUnit), nameof(ParallaxUnit.OnEnable))]
-    // public static void ParallaxUnit_OnEnable(ref ParallaxUnit __instance)
-    // {
-    //     //__instance.AspectRatioRange = new Vector2(1.6f, Plugin.MainAspectRatio);
-    // }
-    //
-    //
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(TilemapRenderer), nameof(TilemapRenderer.OnSpriteAtlasRegistered))]
-    // public static void TilemapRenderer_OnEnable(ref TilemapRenderer __instance)
-    // {
-    //     __instance.gameObject.AddComponent<TilemapExpander>();
-    // }
-
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ParallaxUnit), nameof(ParallaxUnit.OnEnable))]
+    public static void ParallaxUnit_OnEnable(ref ParallaxUnit __instance)
+    {
+        if (__instance.name.Equals("Tilemap_background"))
+        {
+            __instance.gameObject.SetActive(false);
+        }
+    }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(VideoSettings), nameof(VideoSettings.SetupNavigators))]

@@ -1,25 +1,29 @@
-# 20 Minutes Till Dawn
+# Elderland
 
-![Game Logo](screenshots/header.jpg)<br>
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5d719f40-ee32-40fd-b1a8-c855f1c2f237)
 
 Tested against retail Steam version @ 3440x1440.
 
+## 🚩 Note
+- There are maps that have no extension beyond 16:9, meaning there just isn't any content to fill the sides. Sometimes despite there being black bars, there is still content there I can work with to fill the gap - not this time.
+
 ## Features
-- Overrides full screen to the main display resolution and enforces the appropriate aspect ratio.
-- Resolution and full screen mode picker are disabled in the settings menu. 
-- UI corrections, mostly related to the main menu, weapon selection screen and the fog in-game.
+- Main display resolution added to the in-game list. Valid aspects expanded to whatever your displays is.
+- Pillar-boxing removed and UI scaling corrected.
+- Option to either expand the HUD or keep it centered.
+- Option to change the camera zoom.
+- Option to change Mute in Background & Run in Background behaviour.
 
 ## Screenshots
-![Menu](screenshots/menu.jpg) ![Character](screenshots/char.jpg) ![Gun](screenshots/gun.jpg) ![Game](screenshots/game.jpg)
+
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/75787ade-ef4f-4f47-9ec7-e9b477cb0761) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4c7efb1e-df47-4111-80ff-eac33a9d9f69) ![release_inv](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9209af78-bab1-4b15-a4d0-31bb4e34d140)
 
 ## Configuration
 - Press F1 in game to open the UI.
 
-![Settings](screenshots/settings.png)<br>
-
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
-- Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\20MinuteTillDawn** for Steam on Windows).
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand). Windows and MacOS/Unix versions have been made available.
+- Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\Elderand** for Steam on Windows).
 
 ## Steam Deck/Linux Additional Instructions
 🚩**You do not need to do this if you are using Windows!**
@@ -27,24 +31,13 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Changes
 
-`0.1.3` - 3rd April 2024
-- Adding screen-mode configuration.
-- Fixed Display change action
-
-`0.1.2` - 2nd April 2024
-- Fog scaling is dynamically adjusted based on the resolution instead of being a hard-coded value.
-- Character portraits are now positioned dynamically based on the resolution instead of being a hard-coded value.
-- The advertisement banner on the main menu is disabled.
-
-`0.1.1` - 6th August 2023
-- Fixed the character portrait overlaying weapons on the weapon selection screen.
-
-`0.1.0` - ??
+`0.1.0` - 6th April 2024
 - Initial release.
 
-- ## Support
+## 🚩 Support
+#### Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
-[![ko-fi](../donations/kofi.png)](https://ko-fi.com/F2F2DI3WA) [![patreon](../donations/patreon.png)](https://www.patreon.com/p1xel8ted) [![bitcoin](../donations/bitcoin.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](../donations/ethereum.png)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
+[![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 ## Credits
 - [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
