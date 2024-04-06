@@ -2,7 +2,11 @@
 
 [![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
-A collection of ultrawide fixes for various games. Click on the game title to access the specific fix.
+## First, a message from our sponsors.
+
+#### Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
+
+Click on the game title to access the specific fix.
 
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
 #### Last update 2nd April 2024
@@ -128,7 +132,10 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
 
 ## [Wonder Boy Returns Remix](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonderBoyReturnsRemix)  
+#### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonderBoyReturnsRemix/total?label=downloads&style=for-the-badge)
+
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/370e776a-8296-4e75-b5da-1530303a7679) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/78d2e249-190d-4505-8538-eb04b383e140)
 
 ## [Wonhon: A Vengeful Spirit](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonhonAVengefulSpirit)  
 #### Last update: 5th April 2024

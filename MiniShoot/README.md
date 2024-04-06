@@ -8,6 +8,7 @@ Tested against retail Steam version @ 3440x1440.
 - Overrides full screen to the main display resolution.
 - Removes pillar-boxing and corrects UI scaling.
 - Option to toggle Vignette and change Contrast & Saturation.
+- Option to change Mute in Background & Run in Background behaviour.
 
 ## Screenshots
 
@@ -20,7 +21,7 @@ Tested against retail Steam version @ 3440x1440.
 ![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/522a2173-90f6-43b5-8765-05095f5b6aa5)
 
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures). Windows and MacOS/Unix versions have been made available.
 - Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\Minishoot&apos; Adventures** for Steam on Windows).
 
 ## Steam Deck/Linux Additional Instructions
@@ -29,10 +30,14 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Changes
 
+`0.1.1` - 6th April 2024
+- Fixed actions related to toggling the run in background setting.
+
 `0.1.0` - 6th April 2024
 - Initial release.
 
-- ## Support
+## 🚩 Support
+#### Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
 [![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
