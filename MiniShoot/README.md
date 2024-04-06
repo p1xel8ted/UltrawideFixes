@@ -1,6 +1,6 @@
 # Minishoot` Adventures
 
-![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8ef884fa-a78d-43e5-bf14-ce69fea8f2a8)
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/eecc2aa1-47e5-46e3-a53d-48e2be288019)
 
 Tested against retail Steam version @ 3440x1440.
 
@@ -11,12 +11,13 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Screenshots
 
-![menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bb279af8-5112-4df0-be1c-9ca4702febd0) ![char](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1176576a-486f-45f7-b246-5edd465df243) ![gun](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/0d18d32a-fef7-4ac4-9554-b538eabf47d3) ![game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/190dcead-2f39-4153-98ed-53c05cb65e75)
+![menu_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a52bd47d-cd2a-4b61-85b1-930e7ca5deeb) ![game_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9bc38fe5-9bae-4164-855b-10c211714a5d) ![map_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/3b8d2236-1a15-44d1-b785-806980fec25b) ![skills_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dd868288-19c4-4f97-aa4e-509105e827ea) ![boss_release](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7ee3bf4f-33e3-4c41-8e2e-c08a2807bbac)
+
 
 ## Configuration
 - Press F1 in game to open the UI.
 
-![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7ccb1db5-0566-4aac-82f4-8bedebf308ab)
+![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/522a2173-90f6-43b5-8765-05095f5b6aa5)
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinuteTillDawn). Windows and MacOS/Unix versions have been made available.

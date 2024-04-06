@@ -37,7 +37,6 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DarkestDungeon2/total?label=downloads&style=for-the-badge)
 
-
 ## [Death Must Die](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie)  
 #### Last Update: 1st April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathMustDie/total?label=downloads&style=for-the-badge)
@@ -67,6 +66,12 @@ A collection of ultrawide fixes for various games. Click on the game title to ac
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
+
+## [Minishoot` Adventures](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures)  
+#### Last update: 6th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MinishootAdventures/total?label=downloads&style=for-the-badge)
+
+![menu_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/56cef129-c4e2-49d0-a7ee-538b8074035e) ![game_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7c3b5a21-d661-4684-b356-79a1e1fefc12)
 
 ## [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
