@@ -1,10 +1,11 @@
 # The Ultra-Wide Collection
 
-[![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
+A growing collection of ultra wide fixes for games based on the Unity engine. This ranges from a simple black bar fix to extensive UI fixes or additions (i.e. toggling between centered and spanned HUD). Most of these fixes below have come from requests via the [WSGF Discord](https://discord.gg/wsgf-142072549537349632). While I try and facilitate all requests (for Unity based games), it is not guaranteed!
 
 ## First, a message from our sponsors.
 
 #### Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
+[![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
 Click on the game title to access the specific fix.
 
@@ -122,8 +123,11 @@ Click on the game title to access the specific fix.
 ## [Turnip Boy Commits Tax Evasion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TurnipBoyCommitsTaxEvasion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TurnipBoyCommitsTaxEvasion/total?label=downloads&style=for-the-badge)
 
-## [UNSIGHTED](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/UNSIGHTED)  
+## [UNSIGHTED](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/UNSIGHTED) 
+### Last updated: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/UNSIGHTED/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6c43960f-1420-4611-9834-114e08ea137f) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1af371aa-2648-4d6a-8e81-9ae621413dde)
 
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
