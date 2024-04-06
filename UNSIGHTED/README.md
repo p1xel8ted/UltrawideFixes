@@ -17,8 +17,10 @@ Tested against retail Steam version @ 3440x1440.
 ## Configuration
 - Press F1 in game to open the UI.
 
+![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9d21173-7072-4abf-9b69-4903ed27d91f)
+
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Unsighted). Windows and MacOS/Unix versions have been made available.
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/UNSIGHTED). Windows and MacOS/Unix versions have been made available.
 - Extract the contents of the release zip into the game directory. <br /> (e.g. **`steamapps\common\Unsighted** for Steam on Windows).
 
 ## Steam Deck/Linux Additional Instructions
