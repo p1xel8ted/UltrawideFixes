@@ -35,7 +35,10 @@ Click on the game title to access the specific fix.
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Anodyne2/total?label=downloads&style=for-the-badge)
 
 # [Blue Oak Bridge](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge)  
+## Last update: 7th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f46d50e9-35c7-4e8f-91ec-8dc638f589e6) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/78b196e3-c47b-4914-a0d8-10b2d4f10c04)
 
 # [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
