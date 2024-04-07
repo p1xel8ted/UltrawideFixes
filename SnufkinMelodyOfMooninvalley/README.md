@@ -1,4 +1,6 @@
-# 20 Snufkin: Melody of Moominvalley
+# Snufkin: Melody of Moominvalley
+
+![image](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/64de5b04-de93-4c8a-9f9e-e58833ef07d7)
 
 Tested against Steam version @ 3440x1440.
 
@@ -8,10 +10,11 @@ Tested against Steam version @ 3440x1440.
 - Backdrop scaling corrections (sky, ocean).
 
 ## Screenshots
-
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/109c26d1-5f06-489f-b7c1-b9b2a338d182) ![release_loading](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/33de0e62-c19c-433f-8201-a03e8070ca11) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e18cbe46-c0e7-47af-a909-d5a76ce4b7ce)
 
 ## Configuration
-- None
+- Edit the file located here **`steamapps\common\Terra Memoria\BepInEx\config\p1xel8ted.snufkin.ultrawide.cfg`**
+- You will need to restart the game for changes to take effect.
 
 ## Installation
 - Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Snufkin). Windows and MacOS/Unix versions have been made available.
