@@ -1,100 +1,52 @@
-### Peaks of Yore
+# Blue Oak Bridge
 
-![Game Logo](header.jpg)<br>
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/310f14f1-3a68-425e-ac22-d30fbaf7707b)
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
-
-## Note
-
-- Includes ConfigManager for easy in-game config. HideGameManagerObject in `BepInEx.cfg` must be set to `TRUE` to function.
+Tested against retail Steam version @ 3440x1440.
 
 ## Features
-- Set whatever resolution and refresh rate (will also set the target framerate to this refresh rate) you want.
-- Set whatever window mode you want.
-- Open to override VSync options in-game (when set to off, Unity was reporting vsync was still on)
-- Override the FixedUpdateRate to a multiple of your refresh rate to fix the awful camera judder (it's hardcoded to 50Hz by default). Be careful going too high if you play the game on a potato.
-- Change the scale of the UI.
+- Overrides resolution and refresh rate to that of whichever display you have set in the configuration.
+- Control fullscreen modes; defaults to Fullscreen Window.
+- Text dialogue boxes, and loading screens have had their backgrounds re-done for ultrawide resolutions.
+- Option to adjust Mute in background and Pause in background settings.
+- Disable Vignette and the games version of Dithering (the in-game config doesn't get it all)
+- Control antialiasing options, specifically being able to enabled FXAA/SMAA/TAA.
+- Force on anisotropic filtering.
+- Control sharpening levels.
+- Menu adjusted to better fit ultrawide resolutions.
+- For some fun, you can disable the player fencing boundaries.
 
-## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge).
-- Extract the contents of the release zip into the game directory.<br />(e.g. `**steamapps\common\SteamBuild**` for Steam).
+## Screenshots
+
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e41277f4-eec5-4dc9-8fb0-6d50d8056a6f) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c36c37c9-0005-4610-a8c8-c1abfd9854ad)
 
 ## Configuration
-- File located at `**steamapps\common\SteamBuild\BepInEx\config\p1xel8ted.blueoakbridge.displaytweaks.cfg**`
-- Note your default values may look different to mine as their based off your own setup.
-```## Settings file was created by plugin Blue Oak Bridge Display Tweaks v0.1.0
-## Plugin GUID: p1xel8ted.blueoakbridge.displaytweaks
+- Press F1 in game to open the UI.
 
-[1. UI]
+![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c5bee9f3-7f81-4c73-a05e-166479aee29e)
 
-## Change the scale of the UI
-# Setting type: Boolean
-# Default value: true
-Change Scale = true
+## Installation
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge). Windows and MacOS/Unix versions have been made available.
+- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\PeaksOfYore`** for Steam on Windows).
 
-## Scale factor for the UI
-# Setting type: Single
-# Default value: 1
-# Acceptable value range: From 0.5 to 2
-Scale Factor = 0.8521128
+### Steam Deck/Linux Additional Instructions
+🚩**You do not need to do this if you are using Windows!**
+- Open up the game properties in Steam and add `WINEDLLOVERRIDES="winmm=n,b" %command%` to the launch options.
 
-[2. Display]
+## Changes
 
-## Screen width
-# Setting type: Int32
-# Default value: 3440
-Screen Width = 3440
+`0.1.1` - 7th April 2024
+- Basically re-built.
 
-## Screen height
-# Setting type: Int32
-# Default value: 1440
-Screen Height = 1440
+`0.1.0` - 29th February 2024
+- Initial release.
 
-## Refresh rate for the game
-# Setting type: Int32
-# Default value: 120
-Refresh Rate = 120
+ ## 🚩 Support
+#### Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
-## Fixed Update Interval
-# Setting type: Single
-# Default value: 60
-# Acceptable values: 60, 100, 120, 60.317, 60.004, 49.987, 59.973, 84.964
-Fixed Update Interval = 120
+[![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA) [![patreon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d66993ee-153f-483f-aec8-6cde5f84d497)](https://www.patreon.com/p1xel8ted) [![bitcoin](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e7c3afc3-43f6-42af-9acc-5a2d7f4a8d50)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md) [![ethereum](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/00a10334-602e-4d5d-b186-96e716f02dc8)](https://github.com/p1xel8ted/UltrawideFixes/blob/main/donations/README.md)
 
-## Full Screen Mode
-# Setting type: String
-# Default value: ExclusiveFullScreen
-# Acceptable values: ExclusiveFullScreen, FullScreenWindow, MaximizedWindow, Windowed
-Full Screen Mode = FullScreenWindow
-
-## Toggle VSync (game setting doesn't always appear to work)
-# Setting type: Boolean
-# Default value: false
-Vsync = false
-
-## Apply Display Settings
-# Setting type: Boolean
-# Default value: true
-Apply = true
-
-[3. Camera]
-
-## Current zoom level
-# Setting type: Single
-# Default value: 12
-Current Zoom = 17.39994
-
-## Minimum zoom level
-# Setting type: Int32
-# Default value: 16
-# Acceptable value range: From 10 to 32
-Max Zoom = 32
-
-## Zoom speed
-# Setting type: Int32
-# Default value: 5
-# Acceptable value range: From 1 to 10
-Zoom Speed = 10
-
-Min Zoom = 10
-```
+## Credits
+- [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
+- [ManlyMarco](https://github.com/ManlyMarco) for [ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager).
+- [Sinai]() for [Unity Explorer](https://github.com/sinai-dev/UnityExplorer).
