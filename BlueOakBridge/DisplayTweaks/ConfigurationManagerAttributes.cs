@@ -32,7 +32,7 @@ internal sealed class ConfigurationManagerAttributes
     /// <summary>
     /// Should the setting be shown as a percentage (only use with value range settings).
     /// </summary>
-    public bool? ShowRangeAsPercent;
+    public bool ShowRangeAsPercent;
 
     /// <summary>
     /// Custom setting editor (OnGUI code that replaces the default editor provided by ConfigurationManager).

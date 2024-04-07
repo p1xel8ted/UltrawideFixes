@@ -1,8 +1,6 @@
 ﻿using BlueOakBridge.Core;
 using BlueOakBridge.Core.Camera;
 using BlueOakBridge.Environment.Room;
-using BlueOakBridge.UserInterface.TopDownHud;
-using BlueOakBridge.UserInterface.TopDownHud.Inventory.Hotbar;
 using HarmonyLib;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,19 +16,7 @@ public static class Patches
     {
         return obj.scene.name == sceneName;
     }
-
-    private static string GetGameObjectPath(GameObject obj)
-    {
-        var path = "/" + obj.name;
-        while (obj.transform.parent != null)
-        {
-            obj = obj.transform.parent.gameObject;
-            path = "/" + obj.name + path;
-        }
-
-        return path;
-    }
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainCamera), nameof(MainCamera.Awake))]
     public static void MainCamera_Awake(ref MainCamera __instance)
@@ -60,7 +46,7 @@ public static class Patches
     {
         if (!SafeToZoom()) return;
         if (Game.CurrentRoom.IsInside) return;
-        Plugin.Log.LogWarning($"Backing up current zoom...{MainCamera._instance.OrthographicSize}");
+        Plugin.Log.LogInfo($"Backing up current zoom...{MainCamera._instance.OrthographicSize}");
         Plugin.CurrentZoom.Value = MainCamera._instance.OrthographicSize;
     }
 
@@ -70,7 +56,7 @@ public static class Patches
     {
         if (!SafeToZoom()) return;
         if (Game.CurrentRoom.IsInside) return;
-        Plugin.Log.LogWarning("Restoring zoom level...");
+        Plugin.Log.LogInfo("Restoring zoom level...");
         MainCamera._instance.OrthographicSize = Plugin.CurrentZoom.Value;
     }
 
@@ -78,8 +64,9 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
+        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         if (!IsObjectInScene(__instance.gameObject, TopDownHud)) return;
         Plugin.CanvasScaler = __instance;
-        Plugin.Log.LogWarning("Found CanvasScaler in " + GetGameObjectPath(__instance.gameObject));
+        // Plugin.Log.LogWarning("Found CanvasScaler in " + GetGameObjectPath(__instance.gameObject));
     }
 }
