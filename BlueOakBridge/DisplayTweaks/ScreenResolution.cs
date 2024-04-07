@@ -1,13 +1,11 @@
 ﻿using HarmonyLib;
 using UnityEngine;
 
-namespace DisplayTweaks.AspectRatio;
+namespace DisplayTweaks;
 
 [Harmony]
 public static class ScreenResolution
 {
-  
-    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(bool), typeof(int))]
     public static void Screen_SetResolution_One(ref int width, ref int height, ref bool fullscreen, ref int preferredRefreshRate)

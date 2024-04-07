@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DisplayTweaks.Misc;
+namespace DisplayTweaks;
 
 public static class Helpers
 {

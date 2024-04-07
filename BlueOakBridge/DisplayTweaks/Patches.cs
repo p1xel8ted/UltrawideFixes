@@ -24,11 +24,12 @@ public static class Patches
         MainCamera.OutsideMaxZoom = Plugin.MaxZoom.Value;
         MainCamera.ZoomSpeed = Plugin.ZoomSpeed.Value;
         MainCamera.MaxZoom = Plugin.MaxZoom.Value;
+        __instance.OrthographicSize = Plugin.CurrentZoom.Value;
     }
 
     internal static bool SafeToZoom()
     {
-        return Game._instance != null && Game.CurrentRoom != null && MainCamera._instance != null;
+        return Game._instance && Game.CurrentRoom && MainCamera._instance && !Game.CurrentRoom.IsInside;
     }
 
     [HarmonyPostfix]
@@ -36,8 +37,7 @@ public static class Patches
     public static void MainCamera_FixedUpdate()
     {
         if (!SafeToZoom()) return;
-        if (Game.CurrentRoom.IsInside) return;
-        Plugin.CurrentZoom.Value = MainCamera._instance.OrthographicSize;
+        MainCamera._instance.OrthographicSize = Plugin.CurrentZoom.Value;
     }
 
     [HarmonyPrefix]
@@ -45,8 +45,6 @@ public static class Patches
     public static void RoomExitTrigger_OnTriggerEnter2D()
     {
         if (!SafeToZoom()) return;
-        if (Game.CurrentRoom.IsInside) return;
-        Plugin.Log.LogInfo($"Backing up current zoom...{MainCamera._instance.OrthographicSize}");
         Plugin.CurrentZoom.Value = MainCamera._instance.OrthographicSize;
     }
 
@@ -55,18 +53,16 @@ public static class Patches
     public static void MainCamera_NotifyRoomLoaded()
     {
         if (!SafeToZoom()) return;
-        if (Game.CurrentRoom.IsInside) return;
-        Plugin.Log.LogInfo("Restoring zoom level...");
-        MainCamera._instance.OrthographicSize = Plugin.CurrentZoom.Value;
+        MainCamera.Instance.OrthographicSize = Plugin.CurrentZoom.Value;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
+        __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
         __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         if (!IsObjectInScene(__instance.gameObject, TopDownHud)) return;
         Plugin.CanvasScaler = __instance;
-        // Plugin.Log.LogWarning("Found CanvasScaler in " + GetGameObjectPath(__instance.gameObject));
     }
 }
