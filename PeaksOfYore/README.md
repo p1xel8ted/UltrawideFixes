@@ -1,6 +1,6 @@
-# Blue Oak Bridge
+# Peaks of Yore
 
-![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/310f14f1-3a68-425e-ac22-d30fbaf7707b)
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/47f3b059-8a30-487a-9699-12c762f704b6)
 
 Tested against retail Steam version @ 3440x1440.
 
@@ -18,15 +18,15 @@ Tested against retail Steam version @ 3440x1440.
 
 ## Screenshots
 
-![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e41277f4-eec5-4dc9-8fb0-6d50d8056a6f) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c36c37c9-0005-4610-a8c8-c1abfd9854ad)
+![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5a619714-b7d7-4127-b53c-0fc8d7d5d7fa) ![release_journal](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/83041b88-b879-4fef-94ea-973f1e727787) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf93ee4d-5ec7-4076-a0db-eab9690c3dfc) ![release_game2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e8ea70e9-4668-46e8-bc46-fe9da8926787)
 
 ## Configuration
 - Press F1 in game to open the UI.
 
-![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c5bee9f3-7f81-4c73-a05e-166479aee29e)
+![settings](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/edaf5e0b-2790-434f-8557-81fd4ad1b4e5)
 
 ## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge). Windows and MacOS/Unix versions have been made available.
+- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore). Windows and MacOS/Unix versions have been made available.
 - Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\PeaksOfYore`** for Steam on Windows).
 
 ### Steam Deck/Linux Additional Instructions
