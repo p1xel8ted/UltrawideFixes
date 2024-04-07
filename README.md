@@ -106,6 +106,12 @@ Click on the game title to access the specific fix.
 # [Smushi Come Home](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SmushiComeHome/total?label=downloads&style=for-the-badge)
 
+# [Snufkin: Melody of Moominvalley](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Snufkin)  
+### Last update: 7th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Snufkin/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2df1c5b0-7892-4820-8e6b-08aa0affd0bd) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c87f9b0f-7e7d-4c64-8b87-24f981b00a1a)
+
 # [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
 
