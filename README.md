@@ -1,12 +1,17 @@
-# The Ultra-Wide Collection
+<div align="center">
+  
+![logo](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d1ca3f3e-9693-4fad-bd69-13abfe72ba75)
+<br/><br/>
+### A growing collection of ultra wide fixes for games based on the Unity engine. This ranges from a simple black bar fix to extensive UI fixes or additions (i.e. toggling between centered and spanned HUD or adding resolution selectors / extra settings). 
+### Most of these fixes below (40+) have come from requests via the [WSGF Discord](https://discord.gg/wsgf-142072549537349632). While I try and facilitate all requests (for Unity based games), it is not guaranteed!
+<br/>
 
-A growing collection of ultra wide fixes for games based on the Unity engine. This ranges from a simple black bar fix to extensive UI fixes or additions (i.e. toggling between centered and spanned HUD). Most of these fixes below (40+) have come from requests via the [WSGF Discord](https://discord.gg/wsgf-142072549537349632). While I try and facilitate all requests (for Unity based games), it is not guaranteed!
-
-## 🚩 First, a message from our sponsors.
+## 🚩 First, a message from our sponsors 🚩
 
 Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
 [![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA)
+<br/><br/>
 
 Click on the game title to access the specific fix.
 
@@ -168,3 +173,4 @@ Click on the game title to access the specific fix.
 
 ## [xMystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
+</div>
