@@ -12,19 +12,22 @@ public class Plugin : BaseUnityPlugin
 
     private static int SimplifiedWidth => Helpers.GetGcd(MainWidth, MainHeight).simplifiedWidth;
     private static int SimplifiedHeight => Helpers.GetGcd(MainWidth, MainHeight).simplifiedHeight;
-    internal static float MainAspectRatio => (float) SimplifiedWidth / SimplifiedHeight;
+    private static float MainAspectRatio => (float) SimplifiedWidth / SimplifiedHeight;
     private const float BaseAspectRatio = 16f / 9f;
-    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
 
+    internal static float WidthDifference => MainWidth - NormalWidth; //3440 - 2560 = 880
+    internal static float BlackBarSize => WidthDifference / 2f; //880 / 2 = 440
+    private static float NormalWidth => MainHeight * BaseAspectRatio; //1440 * 16/9 = 2560
+    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
     private const float SuperWideAspectRatio = 32f / 9f;
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-    private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
-    internal static ConfigEntry<int> FieldOfView { get; private set; }
     private static ConfigEntry<int> DisplayToUse { get; set; }
-    internal static ManualLogSource Log { get; set; }
+    internal static ManualLogSource Log { get; private set; }
+
+    internal static ConfigEntry<bool> KeepUICentered { get; private set; }
 
     private void Awake()
     {
@@ -36,22 +39,15 @@ public class Plugin : BaseUnityPlugin
             UpdateDisplay();
         };
 
-
         DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
         DisplayToUse.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
         };
 
-        // FieldOfView = Config.Bind("02. Camera", "Field of View", 50, new ConfigDescription("Increase or decrease the field of view of the camera. Default is 50% increases", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 100}));
+        KeepUICentered = Config.Bind("02. UI", "Keep UI Centered", true, "Keeps the UI (and other screens) at the original 16:9 ratio.");
 
-        RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
-        RunInBackground.SettingChanged += (_, _) =>
-        {
-            Application.runInBackground = RunInBackground.Value;
-        };
-
-        MuteInBackground = Config.Bind("04. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
+        MuteInBackground = Config.Bind("03. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
 
         Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
 
@@ -60,22 +56,25 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
-
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
     {
         UpdateDisplay();
 
+        UpdateOpaqueBackgrounds();
+
+        UpdateMenuBackground();
+    }
+
+    private static void UpdateOpaqueBackgrounds()
+    {
         var rectTransforms = Resources.FindObjectsOfTypeAll<RectTransform>();
         foreach (var rect in rectTransforms)
         {
-            if (rect.sizeDelta is {x: >= 1600, y: >= 1200} || rect.name.Equals("BlackScreen", StringComparison.OrdinalIgnoreCase))
+            if (rect.sizeDelta is {x: >= 1600, y: >= 1200} || rect.name.Equals("BlackScreen", StringComparison.OrdinalIgnoreCase) || rect.name.Equals("GameObject_1", StringComparison.OrdinalIgnoreCase))
             {
                 rect.sizeDelta = new Vector2(MainWidth, MainHeight);
             }
         }
-
-
-        UpdateMenuBackground();
     }
 
     private static void UpdateMenuBackground()
