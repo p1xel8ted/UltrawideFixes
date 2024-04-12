@@ -39,6 +39,12 @@ Click on the game title to access the specific fix.
 ## [Anodyne 2: Return to Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Anodyne2)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Anodyne2/total?label=downloads&style=for-the-badge)
 
+## [Bing in Wonderland](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BingWonderland)  
+#### Last update: 12th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BingWonderland/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/b65407db-1dc1-456a-9bd0-da72ceb95538) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/81500999-c18e-46e1-9a51-d24417f42cb5)
+
 ## [Blue Oak Bridge](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge)  
 #### Last update: 7th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
