@@ -93,6 +93,12 @@ Click on the game title to access the specific fix.
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
 
+## [Magenta Horizon](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MagentaHorizon)  
+#### Last update: 12th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MagentaHorizon/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/03ddbc41-959f-4781-aabd-86aa59910d4c) ![main_expanded](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/28bad4d1-e71b-491b-ae49-b0cacab42e4a)
+
 ## [Minishoot` Adventures](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures)  
 #### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MinishootAdventures/total?label=downloads&style=for-the-badge)
