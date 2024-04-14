@@ -34,11 +34,11 @@
     </ItemDefinitionGroup>
     
 <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>F:\Games\steamapps\common\Alwa&apos;s Legacy\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\Games\steamapps\common\Alwas Legacy\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
 </PropertyGroup>
 
 <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>F:\Games\steamapps\common\Alwa&apos;s Legacy\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\Games\steamapps\common\Alwas Legacy\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
 </PropertyGroup>
 
 
@@ -48,10 +48,6 @@
 
     <ItemGroup>
         <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 
 

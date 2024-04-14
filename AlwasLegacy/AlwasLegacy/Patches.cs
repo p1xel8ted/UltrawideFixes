@@ -1,16 +1,217 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Reflection.Emit;
+using AlwasLegacy.AspectRatio;
+using AlwasLegacy.Misc;
+using HarmonyLib;
 using UnityEngine;
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace AlwasLegacy;
 
 [HarmonyPatch]
-public partial class Plugin
+public static class Patches
 {
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(PressAdjustValues), nameof(PressAdjustValues.Resolution))]
+    [HarmonyPatch(typeof(PressAdjustValues), nameof(PressAdjustValues.UpdateValues))]
+    public static IEnumerable<CodeInstruction> PressAdjustValues_Resolution(IEnumerable<CodeInstruction> instructions)
+    {
+        var codes = instructions.ToList();
+        foreach (var t in codes.Where(t => t.opcode == OpCodes.Ldc_I4_4))
+        {
+            t.opcode = OpCodes.Ldc_I4_5;
+        }
+        return codes.AsEnumerable();
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CameraScript), nameof(CameraScript.LateUpdate))]
+    public static void CameraScript_LateUpdate(ref CameraScript __instance)
+    {
+        if (Math.Abs(__instance.playerScreenPos.x - Plugin.BlackBarSize) <= Plugin.EdgeDetectionBuffer.Value)
+        {
+            __instance.playerScreenPos.x = 0;
+        }
+        
+        if (Math.Abs(__instance.playerScreenPos.x - (Screen.currentResolution.width - Plugin.BlackBarSize)) <= Plugin.EdgeDetectionBuffer.Value)
+        {
+            __instance.playerScreenPos.x = Screen.currentResolution.width;
+        }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PauseManager), nameof(PauseManager.EnterPause))]
+    public static void PauseManager_EnterPause(ref PauseManager __instance)
+    {
+        var rect = __instance.bgObject.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
+        rect.localPosition = new Vector3(0, 0, 0);
+        __instance.bgObject.gameObject.SetActive(true);
+        __instance.parentNode.Find("Vignette").gameObject.SetActive(false);
+        __instance.parentNode.Find("SlidePanel/Inventory/MidBigPanel/Info_BottomMidBG/DarkOverlay").gameObject.SetActive(false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(FileSelect), nameof(FileSelect.LoadGame))]
+    [HarmonyPatch(typeof(FileSelect), nameof(FileSelect.LoadLatestSave))]
+    public static void FileSelect_Load(ref FileSelect __instance)
+    {
+        foreach (var rect in __instance.loadingScreenNode.GetComponentsInChildren<RectTransform>())
+        {
+            if (rect.name.Equals("BlackBG"))
+            {
+                rect.sizeDelta = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
+            }
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(InfoPopup), MethodType.Constructor)]
+    public static void InfoPopup_Constructor(ref Vector2 ___outsidePos, ref Vector2 ___insidePos)
+    {
+        ___outsidePos = new Vector2(-640f * Plugin.PositiveScaleFactor, -155f);
+        ___insidePos = new Vector2(-254f * Plugin.PositiveScaleFactor - 25f, -155f);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PauseManager), nameof(PauseManager.ExitPause))]
+    public static void PauseManager_ExitPause(ref PauseManager __instance)
+    {
+        __instance.bgObject.gameObject.SetActive(false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(HudManager), nameof(HudManager.Start))]
+    public static void HudManager_Start(ref HudManager __instance)
+    {
+        var newTopLeft = new GameObject("NewTopLeft");
+        newTopLeft.transform.SetParent(__instance.transform, true);
+        
+        foreach (var hud in __instance.topLeftHud)
+        {
+            hud.transform.SetParent(newTopLeft.transform, true);
+        }
+        newTopLeft.TryAddComponent<LeftHudMover>();
+        
+        var newTopRight = new GameObject("NewTopRight");
+        newTopRight.transform.SetParent(__instance.transform, true);
+        foreach (var hud in __instance.topRightHud)
+        {
+            hud.transform.SetParent(newTopRight.transform, true);
+        }
+        newTopRight.TryAddComponent<RightHudMover>();
+            
+        __instance.parentNode.SetAsLastSibling();
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MoveCanvasOnStart), nameof(MoveCanvasOnStart.Start))]
+    public static void MoveCanvasOnStart_Start(ref MoveCanvasOnStart __instance)
+    {
+        var borders = __instance.transform.Find("Borders");
+        borders.transform.localScale = borders.transform.localScale with {x = 1000f};
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MenuSwipeAnimation), nameof(MenuSwipeAnimation.Start))]
+    public static void MenuSwipeAnimation_Start(ref MenuSwipeAnimation __instance)
+    {
+        var fadeImage = GameObject.Find("Canvas/FadeImage");
+        if (fadeImage)
+        {
+            fadeImage.gameObject.SetActive(false);
+        }
+        
+        // Find the existing Background GameObject and handle potential null reference.
+        var mainMenu = GameObject.Find("Canvas");
+        if (!mainMenu)
+        {
+            Plugin.LOG.LogError("_MainMenu not found!");
+            return;
+        }
+        var bg = GameObject.Find("Background");
+        if (bg)
+        {
+            Object.Destroy(bg);
+        }
+
+        // Create a new GameObject to serve as the background.
+        var newBackground = new GameObject("NewBackground");
+        Plugin.LOG.LogWarning("Creating new background");
+
+
+        newBackground.transform.SetParent(mainMenu.transform, false);
+        newBackground.transform.SetAsFirstSibling();
+        newBackground.SetActive(true);
+
+ 
+        var rectTransform = newBackground.AddComponent<RectTransform>();
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        rectTransform.offsetMin = rectTransform.offsetMax = Vector2.zero;
+
+        newBackground.AddComponent<CanvasRenderer>();
+        var canvas = newBackground.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+
+        var newImage = newBackground.AddComponent<Image>();
+
+
+        var texture = new Texture2D(1, 1);
+        var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        var file = Plugin.MainAspectRatio switch
+        {
+            >= Plugin.SuperWideAspectRatio => "assets/32-9.jpg",
+            > Plugin.BaseAspectRatio => "assets/21-9.jpg",
+            _ => "assets/21-9.jpg" // Providing a default file for normal aspect ratio.
+        };
+        var imagePath = Path.Combine(path!, file);
+
+        // Check if the file exists before attempting to load it.
+        if (File.Exists(imagePath))
+        {
+            texture.LoadImage(File.ReadAllBytes(imagePath));
+        }
+        else
+        {
+            Plugin.LOG.LogError($"Image file not found at {imagePath}");
+            return;
+        }
+        
+        newImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
+        
+        newImage.type = Image.Type.Simple;
+        newImage.preserveAspect = true;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MainMenuScript), nameof(MainMenuScript.ExitSettings))]
+    [HarmonyPatch(typeof(MainMenuScript), nameof(MainMenuScript.Start))]
+    public static void MainMenuScript_ExitSettings(ref MainMenuScript __instance)
+    {
+        __instance.settingsParent.transform.localPosition = new Vector2(640f + Plugin.MainWidth, 0f);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
+    {
+        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.Awake))]
     public static void SettingsManager_Awake(ref SettingsManager __instance)
     {
-        __instance.resolutionTexts = new[] {"640x360", "1280x720", "1920x1080", "2560x1440", $"{Display.main.systemWidth}x{Display.main.systemHeight}"};
+        __instance.resolutionTexts = __instance.resolutionTexts.Concat(new[] {$"{Plugin.MainWidth}x{Plugin.MainHeight}"}).ToArray();
     }
 
     [HarmonyPostfix]
@@ -24,84 +225,54 @@ public partial class Plugin
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(EventCutsceneBorders), nameof(EventCutsceneBorders.Trigger))]
-    public static bool EventCutsceneBorders_Trigger(ref EventCutsceneBorders __instance)
+    [HarmonyPatch(typeof(CutsceneBorders), nameof(CutsceneBorders.ShowBorders))]
+    public static bool CutsceneBorders_ShowBorders()
     {
-        if (__instance.borderType == EventCutsceneBorders.BorderTypes.showBorders && CutsceneBorders.instance != null)
-        {
-            CutsceneBorders.instance.HideBorders();
-        }
-        __instance.NextInLine();
         return false;
     }
 
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(EventCutsceneBorders), nameof(EventCutsceneBorders.Trigger))]
+    // public static void EventCutsceneBorders_Trigger(ref EventCutsceneBorders __instance)
+    // {
+    //     CutsceneBorders.instance.HideBorders();
+    //     // if (__instance.borderType == EventCutsceneBorders.BorderTypes.showBorders && CutsceneBorders.instance)
+    //     // {
+    //      CutsceneBorders.instance.HideBorders();
+    //     // }
+    //     // __instance.NextInLine();
+    //     // return false;
+    // }
 
-    [HarmonyPrefix]
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.GetResolutionIndex))]
-    public static bool SettingsManager_GetResolutionIndex(ref int __result)
+    public static void SettingsManager_GetResolutionIndex(ref int __result)
     {
         var currentResolution = Screen.currentResolution;
-        switch (currentResolution)
+        if (currentResolution.width == Plugin.MainWidth && currentResolution.height == Plugin.MainHeight)
         {
-            case {width: 640, height: 360}:
-                __result = 1;
-                return false;
-            case {width: 1280, height: 720}:
-                __result = 1;
-                return false;
-            case {width: 1920, height: 1080}:
-                __result = 2;
-                return false;
-            case {width: 2560, height: 1440}:
-                __result = 3;
-                return false;
+            __result = 5;
         }
-
-        if (currentResolution.width == Display.main.systemWidth && currentResolution.height == Display.main.systemHeight)
-        {
-            __result = 4;
-            return false;
-        }
-
-        __result = 1;
-        return false;
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.ChangeResolution))]
     public static bool SettingsManager_ChangeResolution(ref SettingsManager __instance, ref int res, ref bool waitForConfirmation)
     {
-        var fullScreen = SystemSaveSettings.instance.fullscreenIndex != 1;
-
-        if (res == 0)
+        if (res == 5)
         {
-            res = 1;
+            var fullScreen = SystemSaveSettings.instance.fullscreenIndex != 1;
+            Screen.SetResolution(Plugin.MainWidth, Plugin.MainHeight, fullScreen);
+            if (waitForConfirmation && SystemSaveSettings.instance.resolutionIndex != __instance.changedResolutionIndex)
+            {
+                __instance.confirmTimer = 10f;
+                __instance.navigationActive = false;
+                __instance.usingConfirmResolution = TranslationsManager.instance.FindOutput(__instance.confirmResolutionString);
+                __instance.nodeOrder = SettingsManager.NodeOrders.confirmState;
+            }
+            return false;
         }
-
-        switch (res)
-        {
-            case 1:
-                Screen.SetResolution(1280, 720, fullScreen);
-                break;
-            case 2:
-                Screen.SetResolution(1920, 1080, fullScreen);
-                break;
-            case 3:
-                Screen.SetResolution(2560, 1440, fullScreen);
-                break;
-            case 4:
-                Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, fullScreen);
-                break;
-        }
-
-        if (waitForConfirmation && SystemSaveSettings.instance.resolutionIndex != __instance.changedResolutionIndex)
-        {
-            __instance.confirmTimer = 10f;
-            __instance.navigationActive = false;
-            __instance.usingConfirmResolution = TranslationsManager.instance.FindOutput(__instance.confirmResolutionString);
-            __instance.nodeOrder = SettingsManager.NodeOrders.confirmState;
-        }
-
-        return false;
+        return true;
     }
 }
