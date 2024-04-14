@@ -1,8 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
-using AlwasLegacy.AspectRatio;
-using AlwasLegacy.Misc;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -20,31 +17,22 @@ public class Plugin : BaseUnityPlugin
     private const string PluginGuid = "p1xel8ted.alwaslegacy.ultrawidefix";
     private const string PluginName = "Alwa's Legacy Ultra-Wide";
     private const string PluginVersion = "0.1.2";
-    internal static float TwentyOneNineAspect => 21.5f / 9f; //21:9 is actually 43:18
-    // internal static int SimplifiedWidth => Helpers.GetGcd(MainWidth, MainHeight).simplifiedWidth;
-    // internal static int SimplifiedHeight => Helpers.GetGcd(MainWidth, MainHeight).simplifiedHeight;
+    private static float TwentyOneNineAspect => 21.5f / 9f; //21:9 is actually 43:18
 
-    internal static float WidthDifference => MainWidth - NormalWidth; //3440 - 2560 = 880
+    private static float WidthDifference => MainWidth - NormalWidth; //3440 - 2560 = 880
     internal static float BlackBarSize => WidthDifference / 2f; //880 / 2 = 440
     private static float NormalWidth => MainHeight * BaseAspectRatio; //1440 * 16/9 = 2560
-
     internal static float MainAspectRatio => (float) MainWidth / MainHeight;
-
     internal const float BaseAspectRatio = 16f / 9f;
-    // internal static Vector2 SimplifiedBaseAspect => new(16f, 9f);
-    // internal static Vector2 SimplifiedMainAspect => new(SimplifiedWidth, SimplifiedHeight);
     internal const float SuperWideAspectRatio = 32f / 9f;
-    internal static bool SuperWide => MainAspectRatio > TwentyOneNineAspect;
-
+    private static bool SuperWide => MainAspectRatio > TwentyOneNineAspect;
     internal static ConfigEntry<bool> SpannedHUD { get; private set; }
-
     internal static ConfigEntry<int> EdgeDetectionBuffer { get; private set; }
     internal static float PositiveScaleFactor => MainAspectRatio / BaseAspectRatio;
-    // internal static float NegativeScaleFactor => 1f / PositiveScaleFactor;
-    internal static ConfigEntry<int> DisplayToUse { get; private set; }
+    private static ConfigEntry<int> DisplayToUse { get; set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
-    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     internal static ManualLogSource LOG { get; private set; }
     private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
 
@@ -71,8 +59,8 @@ public class Plugin : BaseUnityPlugin
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
     }
-    
-    internal static void RunDisplayFixes()
+
+    private static void RunDisplayFixes()
     {
         Display.displays[DisplayToUse.Value].Activate();
         Application.targetFrameRate = MaxRefresh;

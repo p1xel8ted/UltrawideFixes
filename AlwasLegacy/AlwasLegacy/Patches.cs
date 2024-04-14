@@ -38,7 +38,7 @@ public static class Patches
         {
             __instance.playerScreenPos.x = 0;
         }
-        
+
         if (Math.Abs(__instance.playerScreenPos.x - (Screen.currentResolution.width - Plugin.BlackBarSize)) <= Plugin.EdgeDetectionBuffer.Value)
         {
             __instance.playerScreenPos.x = Screen.currentResolution.width;
@@ -92,13 +92,13 @@ public static class Patches
     {
         var newTopLeft = new GameObject("NewTopLeft");
         newTopLeft.transform.SetParent(__instance.transform, true);
-        
+
         foreach (var hud in __instance.topLeftHud)
         {
             hud.transform.SetParent(newTopLeft.transform, true);
         }
         newTopLeft.TryAddComponent<LeftHudMover>();
-        
+
         var newTopRight = new GameObject("NewTopRight");
         newTopRight.transform.SetParent(__instance.transform, true);
         foreach (var hud in __instance.topRightHud)
@@ -106,7 +106,7 @@ public static class Patches
             hud.transform.SetParent(newTopRight.transform, true);
         }
         newTopRight.TryAddComponent<RightHudMover>();
-            
+
         __instance.parentNode.SetAsLastSibling();
     }
 
@@ -127,12 +127,11 @@ public static class Patches
         {
             fadeImage.gameObject.SetActive(false);
         }
-        
-        // Find the existing Background GameObject and handle potential null reference.
+
         var mainMenu = GameObject.Find("Canvas");
         if (!mainMenu)
         {
-            Plugin.LOG.LogError("_MainMenu not found!");
+            Plugin.LOG.LogError("Canvas not found!");
             return;
         }
         var bg = GameObject.Find("Background");
@@ -141,16 +140,11 @@ public static class Patches
             Object.Destroy(bg);
         }
 
-        // Create a new GameObject to serve as the background.
         var newBackground = new GameObject("NewBackground");
-        Plugin.LOG.LogWarning("Creating new background");
-
-
         newBackground.transform.SetParent(mainMenu.transform, false);
         newBackground.transform.SetAsFirstSibling();
         newBackground.SetActive(true);
 
- 
         var rectTransform = newBackground.AddComponent<RectTransform>();
         rectTransform.anchorMin = Vector2.zero;
         rectTransform.anchorMax = Vector2.one;
@@ -161,36 +155,36 @@ public static class Patches
         var canvas = newBackground.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-
         var newImage = newBackground.AddComponent<Image>();
 
-
-        var texture = new Texture2D(1, 1);
-        var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var file = Plugin.MainAspectRatio switch
+        var resourceName = Plugin.MainAspectRatio switch
         {
-            >= Plugin.SuperWideAspectRatio => "assets/32-9.jpg",
-            > Plugin.BaseAspectRatio => "assets/21-9.jpg",
-            _ => "assets/21-9.jpg" // Providing a default file for normal aspect ratio.
+            >= Plugin.SuperWideAspectRatio => "AlwasLegacy.assets.32-9.jpg",
+            > Plugin.BaseAspectRatio => "AlwasLegacy.assets.21-9.jpg",
+            _ => "AlwasLegacy.assets.21-9.jpg"
         };
-        var imagePath = Path.Combine(path!, file);
 
-        // Check if the file exists before attempting to load it.
-        if (File.Exists(imagePath))
+        var assembly = Assembly.GetExecutingAssembly();
+        var texture = new Texture2D(2, 2);
+
+        using (var stream = assembly.GetManifestResourceStream(resourceName))
         {
-            texture.LoadImage(File.ReadAllBytes(imagePath));
+            if (stream == null)
+            {
+                Plugin.LOG.LogError($"Embedded image resource not found: {resourceName}");
+                return;
+            }
+
+            var imageData = new byte[stream.Length];
+            _ = stream.Read(imageData, 0, imageData.Length);
+            texture.LoadImage(imageData);
         }
-        else
-        {
-            Plugin.LOG.LogError($"Image file not found at {imagePath}");
-            return;
-        }
-        
+
         newImage.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        
         newImage.type = Image.Type.Simple;
         newImage.preserveAspect = true;
     }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainMenuScript), nameof(MainMenuScript.ExitSettings))]
@@ -231,20 +225,6 @@ public static class Patches
         return false;
     }
 
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(EventCutsceneBorders), nameof(EventCutsceneBorders.Trigger))]
-    // public static void EventCutsceneBorders_Trigger(ref EventCutsceneBorders __instance)
-    // {
-    //     CutsceneBorders.instance.HideBorders();
-    //     // if (__instance.borderType == EventCutsceneBorders.BorderTypes.showBorders && CutsceneBorders.instance)
-    //     // {
-    //      CutsceneBorders.instance.HideBorders();
-    //     // }
-    //     // __instance.NextInLine();
-    //     // return false;
-    // }
-
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.GetResolutionIndex))]
     public static void SettingsManager_GetResolutionIndex(ref int __result)
@@ -260,19 +240,18 @@ public static class Patches
     [HarmonyPatch(typeof(SettingsManager), nameof(SettingsManager.ChangeResolution))]
     public static bool SettingsManager_ChangeResolution(ref SettingsManager __instance, ref int res, ref bool waitForConfirmation)
     {
-        if (res == 5)
+        if (res != 5) return true;
+        
+        var fullScreen = SystemSaveSettings.instance.fullscreenIndex != 1;
+        Screen.SetResolution(Plugin.MainWidth, Plugin.MainHeight, fullScreen);
+        if (waitForConfirmation && SystemSaveSettings.instance.resolutionIndex != __instance.changedResolutionIndex)
         {
-            var fullScreen = SystemSaveSettings.instance.fullscreenIndex != 1;
-            Screen.SetResolution(Plugin.MainWidth, Plugin.MainHeight, fullScreen);
-            if (waitForConfirmation && SystemSaveSettings.instance.resolutionIndex != __instance.changedResolutionIndex)
-            {
-                __instance.confirmTimer = 10f;
-                __instance.navigationActive = false;
-                __instance.usingConfirmResolution = TranslationsManager.instance.FindOutput(__instance.confirmResolutionString);
-                __instance.nodeOrder = SettingsManager.NodeOrders.confirmState;
-            }
-            return false;
+            __instance.confirmTimer = 10f;
+            __instance.navigationActive = false;
+            __instance.usingConfirmResolution = TranslationsManager.instance.FindOutput(__instance.confirmResolutionString);
+            __instance.nodeOrder = SettingsManager.NodeOrders.confirmState;
         }
-        return true;
+        
+        return false;
     }
 }

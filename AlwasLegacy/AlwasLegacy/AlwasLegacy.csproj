@@ -46,13 +46,9 @@
 
   <ItemGroup>
     <None Remove="assets\21-9.jpg" />
-    <Content Include="assets\21-9.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="assets\21-9.jpg" />
     <None Remove="assets\32-9.jpg" />
-    <Content Include="assets\32-9.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="assets\32-9.jpg" />
   </ItemGroup>
   
   <Import Project="..\zip.target" />
