@@ -171,6 +171,12 @@ Click on the game title to access the specific fix.
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
 
+## [Vigil: The Longest Night](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VigilTheLongestNight)  
+#### Last update: 12th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VigilTheLongestNight/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb64afb-3123-400d-a66b-3bc27f35a80e) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c04a42e4-9bd2-480b-b74f-02abeba9f329)
+
 ## [WitchSpring R **WIP**](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
 
