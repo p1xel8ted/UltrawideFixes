@@ -4,7 +4,7 @@
 
 ## 🚩 Releases Below 🚩
 
-https://github.com/p1xel8ted/UltrawideFixes/tree/main
+https://github.com/p1xel8ted/UltrawideFixes
 
 Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
