@@ -31,7 +31,10 @@ Click on the game title to access the specific fix.
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
 
 ## [Alwa's Legacy](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlwasLegacy)  
+#### Last update: 14th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlwasLegacy/total?label=downloads&style=for-the-badge)
+
+![main_mainmenu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a3656175-8d20-4f2e-ac47-b04054746c99) ![main_span_hud](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d7de0f45-b1ae-4418-bda4-3eb86da84a51)
 
 ## [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
