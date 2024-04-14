@@ -1,6 +1,6 @@
 <div align="center">
   
-![logo3](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e76cd453-4544-4961-a1f6-b2622571cc3a)
+![main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2ebbbc08-a05d-4481-94f4-2a2183bbe83d)
 <br/><br/>
 ### A growing collection of ultra wide fixes for games based on the Unity engine. This ranges from a simple black bar fix to extensive UI fixes or additions (i.e. toggling between centered and spanned HUD or adding resolution selectors / extra settings). 
 ### Most of these fixes below (40+) have come from requests via the [WSGF Discord](https://discord.gg/wsgf-142072549537349632). While I try and facilitate all requests (for Unity based games), it is not guaranteed!
@@ -19,13 +19,13 @@ Click on the game title to access the specific fix.
 #### Last update 2nd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
-![menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/88778b07-814d-48de-941c-90553486af7a) ![game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2be7167b-f206-43c5-8808-7b9c148efc52)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/35313973-6c27-4eb7-8b36-365a26cdc35e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/372f8245-fe2b-40b8-a5ec-bffb519d7678)
 
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 #### Last update 3rd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
 
-![cutscenes](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9d2bb250-bb4f-4463-9bae-0705ddb3e13f) ![fov](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/40c18c28-4bdb-4568-8531-ebc1e2e34182)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6e1ca916-bd08-4d57-a6d7-c1cbd64862bf) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/988ff2e3-25e6-4656-8e52-9acfad452cc6)
 
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
@@ -34,7 +34,7 @@ Click on the game title to access the specific fix.
 #### Last update: 14th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlwasLegacy/total?label=downloads&style=for-the-badge)
 
-![main_mainmenu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a3656175-8d20-4f2e-ac47-b04054746c99) ![main_span_hud](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d7de0f45-b1ae-4418-bda4-3eb86da84a51)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c348523a-937a-47e5-99ae-c222258e3a57) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2640c196-e896-49b3-b6f3-e86d37112ed6)
 
 ## [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
@@ -46,13 +46,13 @@ Click on the game title to access the specific fix.
 #### Last update: 12th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BingWonderland/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/b65407db-1dc1-456a-9bd0-da72ceb95538) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/81500999-c18e-46e1-9a51-d24417f42cb5)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a355bb7e-7b2e-425a-aeea-06db1714f4e3) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/057e5167-40ca-4e43-9e5c-89eba7c71c88)
 
 ## [Blue Oak Bridge](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BlueOakBridge)  
 #### Last update: 7th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f46d50e9-35c7-4e8f-91ec-8dc638f589e6) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/78b196e3-c47b-4914-a0d8-10b2d4f10c04)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ccf13f2f-ade9-4a3d-b333-46e5f23c8aa1) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a0499349-578d-45f4-9fbd-ed6bdb1ef661)
 
 ## [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
@@ -64,7 +64,7 @@ Click on the game title to access the specific fix.
 #### Last Update: 1st April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathMustDie/total?label=downloads&style=for-the-badge)
 
-![20240405192915_1_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9a377114-da2c-4e2b-93ad-829a8d749e79) ![20240405192905_1_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/edfd5327-2599-4fcd-929b-2c1ddc87a4a7)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/84dd63a6-9d55-4a46-a380-bfe7596ea29c) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2703ea70-17c9-4ec4-b077-e39c385483cd)
 
 ## [Death Or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
@@ -73,7 +73,7 @@ Click on the game title to access the specific fix.
 #### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Elderand/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9afc4ae3-f7ac-410e-b915-847e2f37d9d8) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9e63d7b-6623-42bb-96ed-17bd8b85bf30)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1087b969-b1f7-4d70-acd1-7c61ced8c8c6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ea7f0dc4-0701-41dd-8a05-51d209e8405d)
 
 ## [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/FlipWitch/total?label=downloads&style=for-the-badge)
@@ -100,13 +100,13 @@ Click on the game title to access the specific fix.
 #### Last update: 12th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MagentaHorizon/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/03ddbc41-959f-4781-aabd-86aa59910d4c) ![main_expanded](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/28bad4d1-e71b-491b-ae49-b0cacab42e4a)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/326b7228-ed36-463c-a432-c4d6f68b8394) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e33ad818-fd43-4ba0-b7ec-48d57b6723e9)
 
 ## [Minishoot` Adventures](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures)  
 #### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MinishootAdventures/total?label=downloads&style=for-the-badge)
 
-![menu_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/56cef129-c4e2-49d0-a7ee-538b8074035e) ![game_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7c3b5a21-d661-4684-b356-79a1e1fefc12)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7322ecd0-1bd6-476b-9200-318990d213a6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/deaa5ecb-d8fd-4c02-9456-5c76c8f0f059)
 
 ## [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
@@ -118,7 +118,7 @@ Click on the game title to access the specific fix.
 #### Last update: 7th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PeaksOfYore/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1dea51c4-4f1c-4265-91af-9031fd0dbb85) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/fc9a46b9-0b99-4974-815d-2e2dd7159e35)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/814484c8-92f0-4fab-b132-0639b5b51769) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/10751a07-5612-4a57-8ee5-be9d7a6eb93c)
 
 ## [Prince of Persia: The Lost Crown](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrinceOfPersiaTheLostCrown/total?label=downloads&style=for-the-badge)
@@ -136,7 +136,7 @@ Click on the game title to access the specific fix.
 #### Last update: 7th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Snufkin/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2df1c5b0-7892-4820-8e6b-08aa0affd0bd) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c87f9b0f-7e7d-4c64-8b87-24f981b00a1a)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9d12b32f-7607-43e8-b86e-1c2f0601d1ab) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/49b4e678-edb5-4982-9206-702c16084793)
 
 ## [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
@@ -145,7 +145,7 @@ Click on the game title to access the specific fix.
 #### Last update: 30th March 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TerraMemoria/total?label=downloads&style=for-the-badge)
 
-![main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c136b92b-8ffe-4fee-9f99-96d4320c0620) ![game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f3db022b-3ccd-4b95-b2fc-ceea336912a0)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/83958ed8-2574-4008-a82b-f142e60c241e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7d6c863e-5fd3-40e6-9d0d-1367d68ee900)
 
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
@@ -166,7 +166,7 @@ Click on the game title to access the specific fix.
 #### Last updated: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/UNSIGHTED/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6c43960f-1420-4611-9834-114e08ea137f) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1af371aa-2648-4d6a-8e81-9ae621413dde)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/0bf24dbe-de14-49a6-8656-698e0237b497) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/01e8dd57-34dd-45ce-b51e-5da38a82f7c6)
 
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
@@ -178,13 +178,13 @@ Click on the game title to access the specific fix.
 #### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonderBoyReturnsRemix/total?label=downloads&style=for-the-badge)
 
-![release_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/370e776a-8296-4e75-b5da-1530303a7679) ![release_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/78d2e249-190d-4505-8538-eb04b383e140)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bd94572a-6dc4-4020-8606-8f6ab80f660d) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/43a3475a-c686-4694-a620-6a71aa2c3df4)
 
 ## [Wonhon: A Vengeful Spirit](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonhonAVengefulSpirit)  
 #### Last update: 5th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonhonAVengefulSpirit/total?label=downloads&style=for-the-badge)
 
-![menu_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5eb378ec-af52-4917-a53e-4577d6f09702) ![game_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e4685799-796e-4745-ae3d-9b83cc3968fe)
+![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6012989c-1eb5-477c-9241-b1e170bdce69) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d95d2919-1575-4089-aedd-6abc23be4d15)
 
 ## [xMystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
