@@ -108,8 +108,11 @@ Click on the game title to access the specific fix.
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7322ecd0-1bd6-476b-9200-318990d213a6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/deaa5ecb-d8fd-4c02-9456-5c76c8f0f059)
 
-## [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)  
+## [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)
+#### Last update: 1th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f72d3c76-81d7-4a54-b7a4-77a4f5fca812) ![main_dungeon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/aba4ed23-1ace-43ab-a1b8-d0c795774dbc)
 
 ## [NieR Replicant ver.1.22474487139](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NierReplicant)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NierReplicant/total?label=downloads&style=for-the-badge)
