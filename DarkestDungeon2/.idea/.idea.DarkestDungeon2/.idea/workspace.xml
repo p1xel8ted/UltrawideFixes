@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="">
+    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="Darkest Dungeon 2 0.1.1">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/DarkestDungeon2UltrawideFix.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/DarkestDungeon2UltrawideFix.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/WriteOnce.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/WriteOnce.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../NierReplicant/PatchContent/dxgi.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../NierReplicant/PatchContent/dxgi.dll" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +29,15 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/51987594b478476284ad9db0eb4fd985223c00/2d/26511ca0/ScreenResolutionWidgetBhv.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/WriteOnce.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -85,15 +83,27 @@
       <updated>1691285098493</updated>
       <workItem from="1691285099540" duration="2887000" />
       <workItem from="1713346465167" duration="1800000" />
-      <workItem from="1713348328011" duration="2671000" />
+      <workItem from="1713348328011" duration="3561000" />
     </task>
+    <task id="LOCAL-00001" summary="Darkest Dungeon 2 0.1.1">
+      <option name="closed" value="true" />
+      <created>1713351250619</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713351250619</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Darkest Dungeon 2 0.1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Darkest Dungeon 2 0.1.1" />
   </component>
 </project>

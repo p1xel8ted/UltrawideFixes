@@ -157,6 +157,8 @@ public static class Patches
     [HarmonyPatch(typeof(MainMenuUiScreenBhv), nameof(MainMenuUiScreenBhv.Awake))]
     public static void MainMenuUiScreenBhv_Awake(ref MainMenuUiScreenBhv __instance)
     {
+        __instance.m_disclaimerShown = true;
+        
         var optionsButton = GameObject.Find("MainMenuUI/MainMenuUIScreen/UI/OptionsButton");
         if (optionsButton)
         {
@@ -214,7 +216,14 @@ public static class Patches
         }
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(MainMenuUiScreenBhv), nameof(MainMenuUiScreenBhv.OnMainMenuPress))]
+    public static void MainMenuUiScreenBhv_OnMainMenuPress(ref MainMenuUiScreenBhv __instance)
+    {
+        __instance.m_disclaimerShown = true;
+    }
 
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.StepForward))]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
