@@ -58,7 +58,10 @@ Click on the game title to access the specific fix.
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
 
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
+#### Last Update: 17th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DarkestDungeon2/total?label=downloads&style=for-the-badge)
+
+![main_menu1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/b5038b82-e57f-4f33-9fbf-e399dd89b899) ![main_game3](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/337dac7e-5a37-469c-bd49-14bbdafc0a4b)
 
 ## [Death Must Die](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathMustDie)  
 #### Last Update: 1st April 2024
