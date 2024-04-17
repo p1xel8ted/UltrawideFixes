@@ -4,7 +4,7 @@
   <!--Base Settings-->
   <PropertyGroup>
    <Description>$(MSBuildProjectName)</Description>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
       <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -23,17 +23,13 @@
   </ItemDefinitionGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>H:\Games\FitGirl\Darkest Dungeon II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\Games\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>H:\Games\FitGirl\Darkest Dungeon II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\Games\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
-  </ItemGroup>
-  
+    
   <ItemGroup>
     <PackageReference Include="BepInEx.Core" Version="5.*" />
   </ItemGroup>

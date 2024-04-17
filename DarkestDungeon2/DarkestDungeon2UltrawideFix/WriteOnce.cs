@@ -2,11 +2,11 @@ namespace DarkestDungeon2UltrawideFix;
 
 public sealed class WriteOnce<T>
 {
-    private T? _value;
+    private T _value;
 
     public bool HasValue { get; private set; }
     
-    public T? Value
+    public T Value
     {
         get => !HasValue ? default : _value;
         set
@@ -17,7 +17,7 @@ public sealed class WriteOnce<T>
         }
     }
 
-    public static implicit operator T?(WriteOnce<T?> value) { return value.Value; }
+    public static implicit operator T(WriteOnce<T> value) { return value.Value; }
 
     public void ResetValue()
     {

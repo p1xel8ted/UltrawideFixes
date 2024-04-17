@@ -1,13 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Assets.Code.Audio.Sfx;
+using Assets.Code.Loading;
+using Assets.Code.Platform;
 using Assets.Code.Rendering;
 using Assets.Code.UI.Screens;
 using Assets.Code.UI.Widgets;
 using HarmonyLib;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.Video;
 using Display = UnityEngine.Display;
 using Math = System.Math;
 
@@ -28,36 +34,29 @@ public static class Patches
     /// <returns>A tuple representing the simplified width and height.</returns>
     private static (int SimplifiedWidth, int SimplifiedHeight) ConvertResolutionToRatio(int width, int height)
     {
-        static int Gcd(int a, int b)
-        {
-            if (b == 0)
-                return a;
-            return Gcd(b, a % b);
-        }
-
         var gcd = Gcd(width, height);
-
         var simplifiedWidth = width / gcd;
         var simplifiedHeight = height / gcd;
 
-        // special case for 21:9
+        // Special case for 21:9 ratio, commonly found in ultrawide monitors
         if (simplifiedWidth == 43 && simplifiedHeight == 18)
         {
             return (21, 9);
         }
 
         return (simplifiedWidth, simplifiedHeight);
-    }
-    
-    /// <summary>
-    /// Converts a simplified resolution ratio to text.
-    /// </summary>
-    /// <param name="simplifiedWidth">The simplified width of the resolution.</param>
-    /// <param name="simplifiedHeight">The simplified height of the resolution.</param>
-    /// <returns>A string representing the simplified resolution ratio.</returns>
-    private static string SimplifiedRatioToText(int simplifiedWidth, int simplifiedHeight)
-    {
-        return $"({simplifiedWidth} : {simplifiedHeight})";
+
+        // Calculate the Greatest Common Divisor using Euclid's algorithm
+        static int Gcd(int a, int b)
+        {
+            while (b != 0)
+            {
+                var temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
     }
 
     /// <summary>
@@ -71,35 +70,29 @@ public static class Patches
     private static void ScreenResolutionWidgetBhv_GetDisplayAspectRatio(ref ScreenResolutionWidgetBhv __instance, ref ResolutionAspectRatio __result)
     {
         var resolutions = Screen.resolutions;
-        var maxWidth = 0;
-        var maxHeight = 0;
-        var maxPixels = 0;
-        foreach (var resolution in resolutions)
-        {
-            var pixels = resolution.width * resolution.height;
-            if (pixels > maxPixels)
-            {
-                maxWidth = resolution.width;
-                maxHeight = resolution.height;
-                maxPixels = pixels;
-            }
-        }
+        var maxResolution = resolutions.OrderByDescending(r => r.width * r.height).First();
+        var aspectRatio = maxResolution.width / (float) maxResolution.height;
 
-        var aspectRatio = maxWidth / (float) maxHeight;
-        var sCurrent = ConvertResolutionToRatio(Display.main.systemWidth, Display.main.systemHeight);
-        if (Math.Abs(aspectRatio - 16f / 10f) < 0.01f) // tolerance of 0.01 for floating point errors
-        {
-            __result = ResolutionAspectRatio.AR_16x10;
-        }
-        else if (Math.Abs(aspectRatio - 16f / 9f) < 0.01f)
-        {
-            __result = ResolutionAspectRatio.AR_16x9;
-        }
-        else if (Math.Abs(aspectRatio - sCurrent.SimplifiedWidth / (float) sCurrent.SimplifiedHeight) < 0.01f)
-        {
-            __result = (ResolutionAspectRatio) 3;
-        }
+        // Simplify the check by using a helper function
+        __result = GetClosestAspectRatio(aspectRatio);
     }
+
+    // Helper function to determine the closest aspect ratio
+    private static ResolutionAspectRatio GetClosestAspectRatio(float aspectRatio)
+    {
+        if (Math.Abs(aspectRatio - 16f / 10f) < 0.01)
+            return ResolutionAspectRatio.AR_16x10;
+        if (Math.Abs(aspectRatio - 16f / 9f) < 0.01)
+            return ResolutionAspectRatio.AR_16x9;
+
+        var sCurrent = ConvertResolutionToRatio(Display.main.systemWidth, Display.main.systemHeight);
+        var currentAspectRatio = sCurrent.SimplifiedWidth / (float) sCurrent.SimplifiedHeight;
+        if (Math.Abs(aspectRatio - currentAspectRatio) < 0.01)
+            return (ResolutionAspectRatio) 3;
+
+        return ResolutionAspectRatio.AR_16x9;
+    }
+
 
     /// <summary>
     /// A WriteOnce list of <see cref="TMP_Dropdown.OptionData"/> that represents the options for the resolution dropdown.
@@ -107,7 +100,7 @@ public static class Patches
     /// <remarks>
     /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
     /// </remarks>
-    private static readonly WriteOnce<List<TMP_Dropdown.OptionData>> ResolutionDropdown = new();
+    private readonly static WriteOnce<List<TMP_Dropdown.OptionData>> ResolutionDropdown = new();
 
     /// <summary>
     /// A WriteOnce list of integers that represents the index mappings for the resolution dropdown.
@@ -116,10 +109,9 @@ public static class Patches
     /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
     /// Each integer in this list corresponds to an index in the resolution dropdown options.
     /// </remarks>
-    private static readonly WriteOnce<List<int>> DropdownIndexMappings = new();
+    private readonly static WriteOnce<List<int>> DropdownIndexMappings = new();
 
 
-    
     /// <summary>
     /// Postfix patch for the <see cref="ScreenResolutionWidgetBhv.RefreshResolution"/> method.
     /// This method adjusts the resolution options and index mappings for the resolution dropdown based on custom resolutions provided by <see cref="ScreenResolutionsPatch.MyResolutions"/>.
@@ -132,7 +124,6 @@ public static class Patches
     /// and sets the resolution dropdown options and index mappings to these new values.
     /// Finally, it refreshes the dropdown value.
     /// </remarks>
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ScreenResolutionWidgetBhv), nameof(ScreenResolutionWidgetBhv.RefreshResolution))]
     public static void ScreenResolutionWidgetBhv_RefreshResolution(ref ScreenResolutionWidgetBhv __instance, FullScreenMode currentWindowMode)
@@ -170,6 +161,21 @@ public static class Patches
         if (optionsButton)
         {
             optionsButton.SetActive(true);
+        }
+
+        var m1 = GameObject.Find("MainMenuUI/MainMenuUIScreen/Background_Far_Mountains");
+        var m2 = GameObject.Find("MainMenuUI/MainMenuUIScreen/Background_Near_Mountains");
+
+        m1.AddComponent<Scaler>();
+        m2.AddComponent<Scaler>();
+    }
+
+
+    private class Scaler : MonoBehaviour
+    {
+        private void LateUpdate()
+        {
+            transform.localScale = new Vector3(Plugin.PositiveScaleFactor, 1.0f, 1.0f);
         }
     }
 
@@ -209,6 +215,28 @@ public static class Patches
     }
 
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.StepForward))]
+    [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
+    [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Prepare))]
+    public static void VideoPlayer_Play(ref VideoPlayer __instance)
+    {
+        if (__instance.clip.name.Contains("RED_HOOK_INTRO", StringComparison.OrdinalIgnoreCase))
+        {
+            __instance.playbackSpeed = 1000f;
+        }
+        __instance.aspectRatio = VideoAspectRatio.FitVertically;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PlatformMgr), nameof(PlatformMgr.ToggleGPUBoost))]
+    [HarmonyPatch(typeof(PlatformMgr), nameof(PlatformMgr.ToggleCPUBoost))]
+    public static void PlatformMgr_ToggleGPUBoost(ref bool isBoosted)
+    {
+        Application.backgroundLoadingPriority = ThreadPriority.High;
+        isBoosted = true;
+    }
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(RedHookSplashSceneBhv), nameof(RedHookSplashSceneBhv.ShowPUACard))]
     public static void RedHookSplashSceneBhv_ShowPUACard(ref RedHookSplashSceneBhv __instance)
@@ -216,6 +244,13 @@ public static class Patches
         __instance.m_cardDisplayTime = 0;
         __instance.m_fadeTime = 0;
         __instance.m_postMovieWaitTime = 0;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
+    {
+        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
     }
 
 
@@ -270,8 +305,8 @@ public static class Patches
     private static ScreenResolution GetDisplayResScriptableObject()
     {
         var newResolution = ScriptableObject.CreateInstance<ScreenResolution>();
-        newResolution.height = Display.main.systemHeight;
-        newResolution.width = Display.main.systemWidth;
+        newResolution.height = Plugin.MainHeight;
+        newResolution.width = Plugin.MainWidth;
         newResolution.aspectRatio = (ResolutionAspectRatio) 3;
         return newResolution;
     }
@@ -293,7 +328,6 @@ public static class Patches
         __instance.supportedScreenResolutions.screenResolutions.Add(newResolution);
     }
 
-
     /// <summary>
     /// Postfix patch for the <see cref="ScreenResolutionWidgetBhv.DetermineLabel"/> method.
     /// </summary>
@@ -309,17 +343,16 @@ public static class Patches
     [HarmonyPatch(typeof(ScreenResolutionWidgetBhv), nameof(ScreenResolutionWidgetBhv.DetermineLabel))]
     private static void ScreenResolutionWidget_DetermineLabel(ScreenResolution resolution, ref string __result)
     {
-        var text = $"{resolution.width} x {resolution.height}";
         var sCurrent = ConvertResolutionToRatio(resolution.width, resolution.height);
-        var sCurrentText = SimplifiedRatioToText(sCurrent.SimplifiedWidth, sCurrent.SimplifiedHeight);
-
-        text += resolution.aspectRatio switch
+        var aspectRatioText = resolution.aspectRatio switch
         {
             ResolutionAspectRatio.AR_16x9 => " (16 : 9)",
             ResolutionAspectRatio.AR_16x10 => " (16 : 10)",
-            (ResolutionAspectRatio) 3 => $" {sCurrentText}",
+            (ResolutionAspectRatio) 3 => $" ({sCurrent.SimplifiedWidth} : {sCurrent.SimplifiedHeight})",
             _ => " (unknown)"
         };
-        __result = text;
+
+        __result = $"{resolution.width} x {resolution.height}{aspectRatioText}";
     }
+
 }
