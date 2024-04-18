@@ -120,6 +120,8 @@ Click on the game title to access the specific fix.
 ## [NieR Replicant ver.1.22474487139](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NierReplicant)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NierReplicant/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9398fce2-a837-48c6-9e19-eed921e13eb7) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9973cdc-0f65-4aff-bc9d-0735c92b4d6a)
+
 ## [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
 #### Last update: 7th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PeaksOfYore/total?label=downloads&style=for-the-badge)
