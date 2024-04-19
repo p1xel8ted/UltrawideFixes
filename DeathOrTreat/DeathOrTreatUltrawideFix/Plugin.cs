@@ -1,197 +1,176 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
-using Cinemachine;
+using BepInEx.Logging;
 using HarmonyLib;
 using SaonaStudios.Core;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-namespace DeathOrTreatUltrawideFix
+namespace DeathOrTreatUltrawideFix;
+
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+public class Plugin : BaseUnityPlugin
 {
-    /// <summary>
-    /// A BepInEx plugin for fixing ultra-wide support in Death or Treat.
-    /// </summary>
-    [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-    public class Plugin : BaseUnityPlugin
+    private const string PluginGuid = "p1xel8ted.deathortreat.ultrawide";
+    private const string PluginName = "Death or Treat Ultra-Wide";
+    private const string PluginVersion = "0.1.0";
+    private const float BaseAspectRatio = 16f / 9f;
+
+    internal static float BlackBarSize => WidthDifference / 2f;
+    internal static float WidthDifference => MainWidth - NormalWidth;
+    internal static float PositiveScaleFactor => MainAspectRatio / BaseAspectRatio;
+    private static int SimplifiedWidth => Helpers.GetGcd(MainWidth, MainHeight).simplifiedWidth;
+    private static int SimplifiedHeight => Helpers.GetGcd(MainWidth, MainHeight).simplifiedHeight;
+    internal static float MainAspectRatio => (float) SimplifiedWidth / SimplifiedHeight;
+    internal static float TwentiesAspectRatio => 21.5f / 9f;
+    internal static float NormalWidth => MainHeight * BaseAspectRatio;
+    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
+
+    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
+    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
+    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    internal static ConfigEntry<bool> Vignette { get; private set; }
+    internal static ConfigEntry<PostProcessLayer.Antialiasing> AntiAliasing { get; private set; }
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
+
+    internal static ConfigEntry<bool> ScreenConfiner { get; set; }
+
+    internal const float SuperWideAspectRatio = 32f / 9f;
+    private static ConfigEntry<int> DisplayToUse { get; set; }
+
+    internal static ManualLogSource Log { get; set; }
+
+    // internal static ConfigEntry<bool> AnisotropicFiltering { get; set; }
+    internal static ConfigEntry<float> CustomScale { get; private set; }
+    private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
+    private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
+    internal static ConfigEntry<bool> MenuCarriage { get; private set; }
+    internal static ConfigEntry<int> CameraZoom { get; private set; }
+
+    private readonly static int Fade = Animator.StringToHash("Fade");
+
+    private void Awake()
     {
-        private const string PluginGuid = "p1xel8ted.deathortreat.ultrawide";
-        private const string PluginName = "Death or Treat Ultra-Wide Fix";
-        private const string PluginVersion = "0.0.3.1";
-        private const float BaseAspectRatio = 16f / 9f;
-        private const string BepInExText = "\nAssembly = Assembly-CSharp.dll\nType = CurrencyItem\nMethod = .cctor";
+        Log = Logger;
 
-        /// <summary>
-        /// Custom scale factor for UI elements.
-        /// </summary>
-        internal static ConfigEntry<float> CustomScale { get; private set; }
-
-        /// <summary>
-        /// Camera zoom level.
-        /// </summary>
-        private static ConfigEntry<int> CameraZoom { get; set; }
-        
-        private static float PlayerAspectRatio { get; set; }
-        private static float ScaleFactor { get; set; }
-
-        /// <summary>
-        /// Collection of all CanvasScalers in the scene.
-        /// </summary>
-        internal static HashSet<CanvasScaler> CanvasScalers { get; private set; }
-
-        private static readonly WriteOnce<Camera> MainCamera = new();
-        private static readonly WriteOnce<CinemachineVirtualCamera> VcCamera = new();
-        private static readonly int Fade = Animator.StringToHash("Fade");
-
-        /// <summary>
-        /// Method called when the plugin is loaded. Sets up the configuration, harmony patches, and event listeners.
-        /// </summary>
-        private void Awake()
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.Windowed, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 108}));
+        FullScreenModeConfig.SettingChanged += (_, _) =>
         {
-            DontDestroyOnLoad(gameObject);
-            SceneManager.sceneLoaded += SceneLoaded;
-            Application.runInBackground = true;
-            CanvasScalers = new HashSet<CanvasScaler>();
-            UpdateAspectValues();
+            UpdateDisplay();
+        };
 
-            CameraZoom = Config.Bind("General", "Camera Zoom", 5, new ConfigDescription("Adjusts the zoom level of the camera.", new AcceptableValueRange<int>(1, 101)));
-            CameraZoom.SettingChanged += (_, _) => { UpdateCameras(); };
 
-            CustomScale = Config.Bind("General", "Custom Scale", 1 * ScaleFactor, new ConfigDescription("Custom scale factor for UI elements. It's calculated automatically based on a 16:9 aspect ratio and your display's aspect ratio.", new AcceptableValueRange<float>(0.5f, 2f)));
-            CustomScale.SettingChanged += (_, _) => { UpdateCanvas(); };
-
-            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-            Logger.LogInfo($"Plugin {PluginName} is loaded!");
-        }
-
-        private void Update()
+        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 107}));
+        DisplayToUse.SettingChanged += (_, _) =>
         {
-            UpdateCameras();
-        }
+            UpdateDisplay();
+        };
 
-        /// <summary>
-        /// Event handler for plugin destroyed. Logs an error message with instructions.
-        /// </summary>
-        private void OnDestroy()
+        CorrectFixedUpdateRate = Config.Bind("02. Performance", "Correct Physics Update Rate", true,
+            new ConfigDescription("Adjusts the physics update rate to minimum amount to reduce camera judder based on your refresh rate. Not all games like this setting being adjusted.", null, new ConfigurationManagerAttributes {Order = 106}));
+        CorrectFixedUpdateRate.SettingChanged += (_, _) =>
         {
-            Logger.LogError($"I've been disabled! Make sure that the entry point details in BepInEx.cfg are as so: {BepInExText}");
-        }        /// <summary>
-        /// Event handler for plugin disabled. Logs an error message with instructions.
-        /// </summary>
-        private void OnDisable()
-        {
-            Logger.LogError($"I've been disabled! Make sure that the entry point details in BepInEx.cfg are as so: {BepInExText}");
-        }
+            UpdateFixedRate();
+        };
 
-        /// <summary>
-        /// Updates the aspect ratio values.
-        /// </summary>
-        private static void UpdateAspectValues()
+        UseRefreshRateForFixedUpdateRate = Config.Bind("02. Performance", "Use Refresh Rate For Physics Update Rate", true,
+            new ConfigDescription("Sets the physics update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes {Order = 105}));
+        UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
         {
-            PlayerAspectRatio = (float)Display.main.systemWidth / Display.main.systemHeight; //3440 / 1440
-            ScaleFactor = PlayerAspectRatio / BaseAspectRatio;
-        }
+            UpdateFixedRate();
+        };
 
-        /// <summary>
-        /// Updates the orthographic size of the cameras in the scene.
-        /// </summary>
-        /// <remarks>
-        /// This method is responsible for maintaining the appropriate zoom level of the cameras in the scene.
-        /// 
-        /// The first part of the method checks whether the <see cref="MainCamera"/> and <see cref="VcCamera"/> instances have been initialized.
-        /// If not, it resets their values and calls the nested UpdateCams function, which iterates over all the 
-        /// cameras in the scene to set their orthographic size and assign the correct <see cref="MainCamera"/> and <see cref="VcCamera"/> 
-        /// instances. This is particularly useful at the start of the scene or when the camera configuration changes.
-        ///
-        /// If the <see cref="MainCamera"/> and <see cref="VcCamera"/> instances are already set, the method then checks whether the 
-        /// orthographic size of the <see cref="MainCamera"/> matches the desired <see cref="CameraZoom"/> value. If it already matches, 
-        /// the function returns early as no further adjustments are needed.
-        ///
-        /// If the orthographic size doesn't match the desired <see cref="CameraZoom"/> value, the method adjusts the orthographic 
-        /// size of the <see cref="MainCamera"/> and updates the lens of the <see cref="VcCamera"/> to match the new orthographic size. 
-        /// This ensures that the camera zoom level always matches the configured <see cref="CameraZoom"/> value.
-        /// </remarks>
-        private static void UpdateCameras()
+        CustomScale = Config.Bind("03. UI", "Custom UI Scale", PositiveScaleFactor, new ConfigDescription("Custom scale for the game's UI.", new AcceptableValueRange<float>(0.5f, 2f), new ConfigurationManagerAttributes {Order = 104}));
+        MenuCarriage = Config.Bind("03. UI", "Menu Carriage", true, new ConfigDescription("Toggle visibility of the carriage in the main menu.", null, new ConfigurationManagerAttributes {Order = 103}));
+        MenuCarriage.SettingChanged += (_, _) =>
         {
-            if (MainCamera.Value == null || VcCamera.Value == null)
+            if (Patches.Carro)
             {
-                MainCamera.ResetValue();
-                VcCamera.ResetValue();
-                UpdateCams();
-                return;
+                Patches.Carro.gameObject.SetActive(MenuCarriage.Value);
             }
+        };
+        CameraZoom = Config.Bind("04. Camera", "Camera Zoom", 5, new ConfigDescription("Camera Zoom", new AcceptableValueRange<int>(-19, 20), new ConfigurationManagerAttributes {Order = 1022}));
+        ScreenConfiner = Config.Bind("04. Camera", "Screen Confiner", true, new ConfigDescription("Constrains the camera to the screen size.", null, new ConfigurationManagerAttributes {Order = 102}));
 
-            if (Mathf.Approximately(MainCamera.Value.orthographicSize, CameraZoom.Value)) return;
+        Vignette = Config.Bind("05. Post-Processing", "Vignette", true, new ConfigDescription("Enable Vignette effect on the game screen.", null, new ConfigurationManagerAttributes {Order = 101}));
 
-            MainCamera.Value.orthographicSize = CameraZoom.Value;
+        AntiAliasing = Config.Bind("05. Post-Processing", "Anti-Aliasing", PostProcessLayer.Antialiasing.TemporalAntialiasing, new ConfigDescription("Enable Anti-Aliasing effect on the game screen. May have little (or no) effect being a 2D game.", null, new ConfigurationManagerAttributes {Order = 100}));
 
-            var lens = VcCamera.Value.m_Lens;
-            lens.OrthographicSize = CameraZoom.Value;
-            VcCamera.Value.m_Lens = lens;
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
 
-            void UpdateCams()
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
+
+        Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
+
+        SceneManager.sceneLoaded += SceneLoaded;
+
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+
+    private static int FindLowestFrameRateMultipleAboveFifty(int originalRate)
+    {
+        for (var rate = originalRate / 2; rate > 50; rate--)
+        {
+            if (originalRate % rate == 0)
             {
-                foreach (var camera in Camera.allCameras)
-                {
-                    if (!camera.orthographic) continue;
-
-                    camera.orthographicSize = CameraZoom.Value;
-
-                    var cbc = camera.GetComponent<CinemachineBrain>();
-                    if (cbc == null) continue;
-
-                    var avc = cbc.ActiveVirtualCamera;
-                    if (avc == null || avc.VirtualCameraGameObject == null) continue;
-
-                    var vc = avc.VirtualCameraGameObject.GetComponent<CinemachineVirtualCamera>();
-                    if (vc == null) continue;
-
-                    var mLens = vc.m_Lens;
-                    mLens.OrthographicSize = CameraZoom.Value;
-                    vc.m_Lens = mLens;
-
-                    MainCamera.Value = camera;
-                    VcCamera.Value = vc;
-                }
+                return rate;
             }
         }
 
-        private static void UpdateCanvas()
-        {
-            foreach (var scaler in CanvasScalers)
-            {
-                if (CustomScale.Value <= 1)
-                {
-                    scaler.scaleFactor = CustomScale.Value;
-                }
-                else
-                {
-                    scaler.scaleFactor = 1 * CustomScale.Value;
-                }
+        return originalRate;
+    }
 
-                scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+    private static void UpdateDisplay()
+    {
+        Application.runInBackground = RunInBackground.Value;
+        Display.displays[DisplayToUse.Value].Activate();
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
+        UpdateFixedRate();
+    }
+
+    private static void UpdateFixedRate()
+    {
+        if (CorrectFixedUpdateRate.Value)
+        {
+            if (UseRefreshRateForFixedUpdateRate.Value)
+            {
+                Time.fixedDeltaTime = 1f / MaxRefresh;
+                Log.LogInfo($"Physics update rate set to {MaxRefresh}Hz");
+            }
+            else
+            {
+                var denominator = FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
+                Time.fixedDeltaTime = 1f / denominator;
+                Log.LogInfo($"Physics update rate set to {denominator}Hz");
             }
         }
-
-        /// <summary>
-        /// Event handler for scene loaded. Skips the logo scene and updates the cameras.
-        /// </summary>
-        private static void SceneLoaded(Scene arg0, LoadSceneMode arg1)
+        else
         {
-            if (arg0.name.Contains("Logo"))
-            {
-                Resources.UnloadUnusedAssets();
-                GC.Collect();
-                SceneHandler.instance._anim.SetTrigger(Fade);
-                SceneHandler.instance.loadingGO.SetActive(false);
-                SceneManager.LoadScene("MainMenu");
-            }
-
-            UpdateCameras();
-            UpdateCanvas();
+            Time.fixedDeltaTime = 0.02f; //Game default  
         }
+    }
+
+    private static void SceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        UpdateDisplay();
+
+        if (!arg0.name.Contains("Logo")) return;
+
+        Resources.UnloadUnusedAssets();
+        GC.Collect();
+        SceneHandler.instance._anim.SetTrigger(Fade);
+        SceneHandler.instance.loadingGO.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
     }
 }

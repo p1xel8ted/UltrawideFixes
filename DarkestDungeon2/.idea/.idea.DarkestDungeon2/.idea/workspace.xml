@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="Darkest Dungeon 2 0.1.1">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +28,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/51987594b478476284ad9db0eb4fd985223c00/2d/26511ca0/ScreenResolutionWidgetBhv.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Ben/OneDrive/Development/Ultrawide/1AAAA-UltrawideFixes/DarkestDungeon2/DarkestDungeon2UltrawideFix/Patches.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/WriteOnce.cs" root0="FORCE_HIGHLIGHTING" />
@@ -83,7 +82,7 @@
       <updated>1691285098493</updated>
       <workItem from="1691285099540" duration="2887000" />
       <workItem from="1713346465167" duration="1800000" />
-      <workItem from="1713348328011" duration="3561000" />
+      <workItem from="1713348328011" duration="3841000" />
     </task>
     <task id="LOCAL-00001" summary="Darkest Dungeon 2 0.1.1">
       <option name="closed" value="true" />
@@ -93,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713351250619</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary=".">
+      <option name="closed" value="true" />
+      <created>1713352178381</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1713352178381</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -104,6 +111,9 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Darkest Dungeon 2 0.1.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Darkest Dungeon 2 0.1.1" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="/" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
 </project>
