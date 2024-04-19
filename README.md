@@ -6,7 +6,7 @@
 ### Most of these fixes below (40+) have come from requests via the [WSGF Discord](https://discord.gg/wsgf-142072549537349632). While I try and facilitate all requests (for Unity based games), it is not guaranteed!
 <br/>
 
-## 🚩 First, a message from our sponsors 🚩
+## ❗First, a message from our sponsors❗
 
 Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
@@ -69,8 +69,11 @@ Click on the game title to access the specific fix.
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/84dd63a6-9d55-4a46-a380-bfe7596ea29c) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2703ea70-17c9-4ec4-b077-e39c385483cd)
 
-## [Death Or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat)  
+## [Death or Treat](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DeathOrTreat) 
+#### Last Update: 19th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2c7bec22-0d6b-4487-be1c-5019da7fb9c1) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/244f9d6d-7f47-4e7d-ac00-20abc36b3795)
 
 ## [Elderand](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand)
 #### Last update: 6th April 2024
