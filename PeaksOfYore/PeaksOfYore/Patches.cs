@@ -103,8 +103,8 @@ public static class Patches
         {
             dithering.active = Plugin.Dithering.Value;
         }
-
     }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(NPC_ParcelDeliverySystem), nameof(NPC_ParcelDeliverySystem.Start))]
     public static void NPC_ParcelDeliverySystem_Start(ref NPC_ParcelDeliverySystem __instance)

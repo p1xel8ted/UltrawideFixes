@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a0a3e42-df35-4819-a81f-1d0fff826bb2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/ConfigurationManagerAttributes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/Helpers.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DarkestDungeon2/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../DarkestDungeon2/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DeathOrTreat/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DeathOrTreat/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/DeathOrTreatUltrawideFix.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/DeathOrTreatUltrawideFix.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/Patches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DeathOrTreatUltrawideFix/WriteOnce.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Elderand/Elderand/Elderand.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Elderand/Elderand/Elderand.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Elderand/Elderand/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Elderand/Elderand/Plugin.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -38,12 +29,13 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/b22b0d15350b413389be70354b16db6415600/b1/7e0935d6/PolygonCollider2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/b22b0d15350b413389be70354b16db6415600/b1/7e0935d6/PolygonCollider2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/b38268724fa14724a8781d56f28c6ac321c00/bc/caa33978/CinemachineVirtualCameraBase.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -98,10 +90,20 @@
       <workItem from="1713434212159" duration="688000" />
       <workItem from="1713434981534" duration="353000" />
       <workItem from="1713435538411" duration="8429000" />
-      <workItem from="1713518634086" duration="4342000" />
+      <workItem from="1713518634086" duration="5617000" />
     </task>
+    <task id="LOCAL-00001" summary="Updates">
+      <option name="closed" value="true" />
+      <created>1713524511699</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1713524511699</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityProjectDiscoverer">
     <option name="hasUnityReference" value="true" />
@@ -109,5 +111,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
   </component>
 </project>
