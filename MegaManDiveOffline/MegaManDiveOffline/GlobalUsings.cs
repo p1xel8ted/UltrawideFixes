@@ -1,4 +1,5 @@
-﻿global using System.Linq;
+﻿global using System;
+global using System.Linq;
 global using System.Reflection;
 global using BepInEx;
 global using BepInEx.Configuration;

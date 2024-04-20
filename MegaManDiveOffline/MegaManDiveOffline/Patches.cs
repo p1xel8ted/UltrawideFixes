@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MegaManDiveOffline;
+﻿namespace MegaManDiveOffline;
 
 [Harmony]
 [HarmonyWrapSafe]
@@ -41,7 +39,39 @@ public static class Patches
     {
         p_targetFov = __instance._defaultFov + __instance._defaultFov * (Plugin.FieldOfView.Value / 100f);
     }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AspectRatioFitter), nameof(AspectRatioFitter.OnEnable))]
+    private static void AspectRatioFitter_OnEnable(ref AspectRatioFitter __instance)
+    {
+        __instance.aspectMode = AspectRatioFitter.AspectMode.WidthControlsHeight;
+    }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AspectRatioController), nameof(AspectRatioController.Start))]
+    private static void AspectRatioController_Start(ref AspectRatioController __instance)
+    {
+        __instance.aspectRatioHeight = Plugin.SimplifiedHeight;
+        __instance.aspectRatioWidth = Plugin.SimplifiedWidth;
+        __instance.maxHeightPixel = Plugin.SelectedHeight;
+        __instance.maxWidthPixel = Plugin.SelectedWidth;
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(EventStageMain), nameof(EventStageMain.Start))]
+    [HarmonyPatch(typeof(EventStageMain), nameof(EventStageMain.Setup))]
+    [HarmonyPatch(typeof(EventStageMain), nameof(EventStageMain.ReSetup))]
+    private static void EventStageMain_Start(ref EventStageMain __instance)
+    {
+        var blockOne = __instance.transform.FindChild("TabsScrollView");
+        var destroyMe = blockOne.GetComponent<NonDrawingGraphic>();
+        destroyMe.enabled = false;
+        
+        var blockTwo = __instance.transform.FindChild("TabsScrollView/Viewport");
+        var destroyMeTwo = blockTwo.GetComponent<Image>();
+        destroyMeTwo.enabled = false;
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.Handle))]
     private static void GraphicsMenu_Handle(ref CanvasScaler __instance)

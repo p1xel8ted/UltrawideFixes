@@ -6,8 +6,9 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.megamandiveoffline.ultrawide";
     private const string PluginName = "MEGA MAN X DiVE Offline Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
-
+    private const string PluginVersion = "0.1.1";
+    internal static int SimplifiedWidth => Helpers.GetGcd(SelectedWidth, SelectedHeight).simplifiedWidth;
+    internal static int SimplifiedHeight => Helpers.GetGcd(SelectedWidth, SelectedHeight).simplifiedHeight;
     private static ConfigEntry<string> Resolution { get; set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static Resolution SelectedResolution { get; private set; }
@@ -16,20 +17,18 @@ public class Plugin : BasePlugin
     internal static int SelectedHeight => SelectedResolution.height;
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
-
     internal static ConfigEntry<int> FieldOfView { get; private set; }
-    internal static ManualLogSource Logger { get; set; }
+    private static ManualLogSource Logger { get; set; }
     internal static ConfigEntry<float> CustomScale { get; private set; }
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
-    
     private static int MaxRefreshRate => Screen.resolutions.Max(a => a.refreshRate);
-    
+
 
     public override void Load()
     {
         var maxRes = $"{Display.main.systemWidth}x{Display.main.systemHeight}@{MaxRefreshRate}Hz";
-        
+
         Logger = Log;
 
         var acceptedResolutions = Screen.resolutions
@@ -37,26 +36,27 @@ public class Plugin : BasePlugin
             .Select(a => a.MaxBy(b => b.refreshRate))
             .Select(a => $"{a.width}x{a.height}@{a.refreshRate}Hz")
             .ToArray();
-        
+
         Resolution = Config.Bind("02. Display", "Resolution", maxRes, new ConfigDescription("Set the resolution of the game", new AcceptableValueList<string>(acceptedResolutions), new ConfigurationManagerAttributes {Order = 100}));
         Resolution.SettingChanged += (_, _) =>
         {
             ApplySettings();
         };
-        
-        FullScreenModeConfig = Config.Bind("02. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null,new ConfigurationManagerAttributes {Order = 99}));
+
+        FullScreenModeConfig = Config.Bind("02. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 99}));
         FullScreenModeConfig.SettingChanged += (_, _) =>
         {
             ApplySettings();
         };
-        CustomScale = Config.Bind("03. UI", "Custom UI Scale", 1.2f, new ConfigDescription("Custom scale for the game's UI.", new AcceptableValueRange<float>(0.5f, 2f), new ConfigurationManagerAttributes {Order = 98}));
+
+        CustomScale = Config.Bind("03. UI", "Custom UI Scale", 1f, new ConfigDescription("Custom scale for the game's UI.", new AcceptableValueRange<float>(0.5f, 2f), new ConfigurationManagerAttributes {Order = 98}));
 
         FieldOfView = Config.Bind("04. Camera", "Field of View", 50, new ConfigDescription("Increase or decrease the field of view of the camera. Default is 50% increases", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 97}));
         FieldOfView.SettingChanged += (_, _) =>
         {
             ApplyFieldOfView();
         };
-        
+
         CorrectFixedUpdateRate = Config.Bind("05. Performance", "Correct Physics Update Rate", true,
             new ConfigDescription("Adjusts the physics update rate to minimum amount to reduce camera judder based on your refresh rate. Not all games like this setting being adjusted.", null, new ConfigurationManagerAttributes {Order = 96}));
         CorrectFixedUpdateRate.SettingChanged += (_, _) =>
@@ -69,9 +69,8 @@ public class Plugin : BasePlugin
         UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
         {
             UpdateFixedRate();
-            
         };
-        
+
         RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 94}));
         RunInBackground.SettingChanged += (_, _) =>
         {
@@ -83,13 +82,13 @@ public class Plugin : BasePlugin
         {
             AudioListener.pause = !Application.isFocused && MuteInBackground.Value;
         };
-        
-        
+
+
         Application.focusChanged += (Il2CppSystem.Action<bool>) FocusChanged;
 
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>) SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-      
+
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
@@ -141,6 +140,7 @@ public class Plugin : BasePlugin
             Time.fixedDeltaTime = 1f / 60f; //Game default  
         }
     }
+
     private static void ApplySettings()
     {
         var res = Resolution.Value.Split('@');
