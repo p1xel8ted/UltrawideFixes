@@ -108,6 +108,12 @@ Click on the game title to access the specific fix.
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/326b7228-ed36-463c-a432-c4d6f68b8394) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e33ad818-fd43-4ba0-b7ec-48d57b6723e9)
 
+## [MEGA MAN X DiVE Offline](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MegaManDive)  
+#### Last update: 20th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MegaManDive/total?label=downloads&style=for-the-badge)
+
+![main_menu2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9f092bac-90f7-4881-b726-0fa1f5005acc) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/fec2b4ed-5e30-4b70-915e-41e38a2920b9)
+
 ## [Minishoot` Adventures](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures)  
 #### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MinishootAdventures/total?label=downloads&style=for-the-badge)
