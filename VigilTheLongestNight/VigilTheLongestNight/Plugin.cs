@@ -6,7 +6,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.vigilthelongestnight.ultrawide";
     private const string PluginName = "Vigil The Longest Night Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     internal static float WidthDifference => MainWidth - NormalWidth; //3440 - 2560 = 880
     private static float NormalWidth => MainHeight * BaseAspectRatio; //1440 * 16/9 = 2560

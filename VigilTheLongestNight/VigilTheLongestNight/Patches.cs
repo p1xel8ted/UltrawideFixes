@@ -1,4 +1,7 @@
-﻿namespace VigilTheLongestNight;
+﻿using System.Collections.Generic;
+using Object = UnityEngine.Object;
+
+namespace VigilTheLongestNight;
 
 [Harmony]
 public static class Patches
@@ -8,6 +11,36 @@ public static class Patches
         "BG",
         "whitebox"
     ];
+
+    private readonly static Dictionary<int, float> TimeOnScreen = new();
+
+    [HarmonyPrefix]
+    [HarmonyWrapSafe]
+    [HarmonyPatch(typeof(DamageInfoMan), nameof(DamageInfoMan.work))]
+    public static void DamageInfoMan_work(ref DamageInfoMan __instance)
+    {
+        var damageInfos = GameObject.Find("Damage Info");
+        if (!damageInfos) return;
+
+        foreach (var o in damageInfos.transform)
+        {
+            var child = o.TryCast<Transform>();
+            if (!child || !child.gameObject.activeSelf) continue;
+
+            var instanceId = child.gameObject.GetInstanceID();
+            
+            if (!TimeOnScreen.TryAdd(instanceId, 0))
+            {
+                TimeOnScreen[instanceId] += Time.deltaTime;
+            }
+
+            if (!(TimeOnScreen[instanceId] > 2f)) continue;
+            
+            child.gameObject.SetActive(false);
+            TimeOnScreen.Remove(instanceId);
+        }
+    }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LayerScroller), nameof(LayerScroller.Start))]
@@ -19,12 +52,12 @@ public static class Patches
         {
             var bg = __instance.transform.FindChildByRecursive(background);
             if (!bg) continue;
-            
+
             var x = bg.transform.localScale.x * Plugin.PositiveScaleFactor;
             bg.transform.localScale = bg.transform.localScale with {x = x};
         }
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LayerStageMask), nameof(LayerStageMask.stagePosToMapPos))]
     public static void LayerStageMask_stagePosToMapPos(ref LayerStageMask __instance, ref Point posInStage, ref Point __result)
@@ -34,7 +67,7 @@ public static class Patches
 
     private static GameObject LeftHud;
     private static GameObject RightHud;
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Stage), nameof(Stage.load))]
     public static void Stage_load()
@@ -52,17 +85,29 @@ public static class Patches
         var bottomRight = GameObject.Find("GameUI/QuickItem");
 
         LeftHud ??= new GameObject("LeftHUD");
+        if (!parent) return;
+
         LeftHud.transform.SetParent(parent.transform, true);
-        
-        topLeft.transform.SetParent(LeftHud.transform,true);
-        bottomLeft.transform.SetParent(LeftHud.transform,true);
-        
+
+        if (topLeft)
+        {
+            topLeft.transform.SetParent(LeftHud.transform, true);
+        }
+        if (bottomLeft)
+        {
+            bottomLeft.transform.SetParent(LeftHud.transform, true);
+        }
+
         RightHud ??= new GameObject("RightHUD");
+
         RightHud.transform.SetParent(parent.transform, true);
-        bottomRight.transform.SetParent(RightHud.transform, true);
+        if (bottomRight)
+        {
+            bottomRight.transform.SetParent(RightHud.transform, true);
+        }
 
         LeftHud.TryAddComponent<LeftHudMover>();
-        
+
         RightHud.TryAddComponent<RightHudMover>();
     }
 
