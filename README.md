@@ -40,7 +40,10 @@ Click on the game title to access the specific fix.
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
 
 ## [Anodyne 2: Return to Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Anodyne2)  
+#### Last update: 21st April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Anodyne2/total?label=downloads&style=for-the-badge)
+
+![main_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/80636591-ac38-4fbc-97ed-e8bf22284dd3) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/84811463-1670-4287-98d4-575b023c748a)
 
 ## [Bing in Wonderland](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BingWonderland)  
 #### Last update: 12th April 2024
