@@ -34,7 +34,7 @@ public static class Patches
     private const string NoSettingsSavedSkippingRestore = "No settings saved, skipping restore.";
     private const string SavePoint = "savePoint";
     private const string GitHub = "GitHub\n";
-    private const string UltraWideByP1Xel8Ted = "\nUltra-Wide by p1xel8ted";
+    private const string UltraWideByP1xel8Ted = "\nUltra-Wide by p1xel8ted";
 
     /// <summary>
     /// Sets the appropriate options to skip the intro stuff
@@ -67,27 +67,27 @@ public static class Patches
     private static GameObject Vision2 { get; set; }
     private static GameObject Vision3 { get; set; }
     private static GameObject[] Visions { get; set; } = [Vision1, Vision2, Vision3];
-    private static float NegativeScaleFactor { get; set; }
+    // private static float NegativeScaleFactor { get; set; }
 
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PauseMenu), nameof(PauseMenu.OnEnterInventory))]
     public static void PauseMenu_OnEnterInventory(ref PauseMenu __instance)
     {
-        var currentAspect = (float) Display.main.systemWidth / Display.main.systemHeight;
-        const float baseAspect = 16f / 9f;
-
-        if (!(currentAspect > baseAspect)) return;
-
-        var positiveScaleFactor = currentAspect / baseAspect;
-        NegativeScaleFactor = 1f / positiveScaleFactor;
+        // var currentAspect = (float) Display.main.systemWidth / Display.main.systemHeight;
+        // const float baseAspect = 16f / 9f;
+        //
+        // if (!(currentAspect > baseAspect)) return;
+        //
+        // var positiveScaleFactor = currentAspect / baseAspect;
+        // NegativeScaleFactor = 1f / positiveScaleFactor;
 
         Vision1 = GameObject.Find("UI/Dialogue/palvision1");
         Vision2 = GameObject.Find("UI/Dialogue/palvision2");
         Vision3 = GameObject.Find("UI/Dialogue/palvision3");
         Visions = [Vision1, Vision2, Vision3];
 
-        if (BlackBackground == null && Vision1 != null)
+        if (!BlackBackground && Vision1)
         {
             Plugin.Log.LogInfo("BlackBackground instance is null - creating now.");
             BlackBackground = UnityEngine.Object.Instantiate(Vision1, Vision1.transform.parent);
@@ -100,26 +100,26 @@ public static class Patches
             BlackBackground.transform.SetAsFirstSibling();
         }
 
-        foreach (var v in Visions.Where(a => a != null))
+        foreach (var v in Visions.Where(a => a))
         {
             BlackBackground.SetActive(true);
-            v.transform.localScale = v.transform.localScale with {x = NegativeScaleFactor, y = NegativeScaleFactor};
+            v.transform.localScale = v.transform.localScale with {x = Plugin.NegativeScaleFactor, y = Plugin.NegativeScaleFactor};
         }
     }
 
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(EntityState2D), nameof(EntityState2D.SetVelocityTowardsDestination))]
-    public static void EntityState2D_SetVelocityTowardsDestination(Rigidbody2D rb, Transform destinationTransform, float magnitude)
-    {
-        Plugin.Log.LogWarning($"RB: {rb.name}, Transform: {destinationTransform}, Magnitude: {magnitude}");
-    }
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(EntityState2D), nameof(EntityState2D.SetVelocityTowardsDestination))]
+    // public static void EntityState2D_SetVelocityTowardsDestination(Rigidbody2D rb, Transform destinationTransform, float magnitude)
+    // {
+    //     Plugin.Log.LogWarning($"RB: {rb.name}, Transform: {destinationTransform}, Magnitude: {magnitude}");
+    // }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PauseMenu), nameof(PauseMenu.Update))]
     public static void PauseMenu_Update(ref PauseMenu __instance)
     {
-        if (__instance == null) return;
-        if (BlackBackground == null) return;
+        if (!__instance) return;
+        if (!BlackBackground) return;
         if (__instance.doingInvVision)
         {
             // Vision1 = GameObject.Find("UI/Dialogue/palvision1");
@@ -127,9 +127,9 @@ public static class Patches
             // Vision3 = GameObject.Find("UI/Dialogue/palvision3");
             // Visions = [Vision1, Vision2, Vision3];
             BlackBackground.SetActive(true);
-            foreach (var v in Visions.Where(a => a != null))
+            foreach (var v in Visions.Where(a => a))
             {
-                v.transform.localScale = v.transform.localScale with {x = NegativeScaleFactor, y = NegativeScaleFactor};
+                v.transform.localScale = v.transform.localScale with {x = Plugin.NegativeScaleFactor, y = Plugin.NegativeScaleFactor};
             }
         }
         else
@@ -259,7 +259,7 @@ public static class Patches
     [HarmonyPatch(typeof(TitleScreen), nameof(TitleScreen.setVersionPressKeyText))]
     public static void TitleScreen_setVersionPressKeyText(ref TitleScreen __instance)
     {
-        __instance.version.text += UltraWideByP1Xel8Ted;
+        __instance.version.text += UltraWideByP1xel8Ted;
         __instance.version.transform.position += new Vector3(0, 6f, 0);
     }
 

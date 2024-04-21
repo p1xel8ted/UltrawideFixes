@@ -4,7 +4,7 @@
 public static class Transpilers
 {
     private const string TwitterString = "https://www.analgesic.productions/twitter.html";
-    private const string GitHubString = "https://github.com/p1xel8ted";
+    private const string GitHubString = "https://github.com/p1xel8ted/UltrawideFixes";
 
     /// <summary>
     /// Replaces the Twitter link with a link to the GitHub repository.
