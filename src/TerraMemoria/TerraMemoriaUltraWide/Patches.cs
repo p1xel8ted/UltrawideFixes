@@ -41,8 +41,7 @@ public static class Patches
         Plugin.UpdateVolumeProfiles();
         __instance.DepthOfFieldEnabled = Plugin.DepthOfField.Value;
     }
-
- 
+    
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CinemachineVirtualCamera), nameof(CinemachineVirtualCamera.OnEnable))]
@@ -61,7 +60,29 @@ public static class Patches
             __instance.m_Lens = __instance.m_Lens with {FieldOfView = fov}; 
         }
     }
-
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CinemachineVirtualCameraBase), nameof(CinemachineVirtualCameraBase.Update))]
+    public static void CinemachineVirtualCameraBase_Update(ref CinemachineVirtualCameraBase __instance)
+    {
+        if (__instance is CinemachineVirtualCamera cvc)
+        {
+            var cam = Plugin.VirtualCameras.TryGetValue(cvc, out var fov);
+            if (cam)
+            {
+                if (Plugin.ModifyFieldOfView.Value)
+                {
+                    cvc.m_Lens = cvc.m_Lens with {FieldOfView = Plugin.FieldOfViewValue.Value + fov};
+                }
+                else
+                {
+                    cvc.m_Lens = cvc.m_Lens with {FieldOfView = fov};
+                }
+            }
+        }
+    }
+    
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.Handle))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)

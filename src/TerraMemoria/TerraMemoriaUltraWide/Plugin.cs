@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.terramemoria.ultrawide";
     private const string PluginName = "Terra Memoria Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
     private const string SplashScreen = "LaMoutardeSplashScreenScene";
     private const string MainMenu = "StartScreenScene";
 
@@ -40,87 +40,87 @@ public class Plugin : BasePlugin
     private static ConfigEntry<KeyCode> FieldOfViewIncreaseKeybind { get; set; }
     private static ConfigEntry<KeyCode> FieldOfViewDecreaseKeybind { get; set; }
 
-    private class MonoBehaviours : MonoBehaviour
-    {
-        private void Update()
-        {
-            if (Input.GetKeyDown(ConfigReloadKeybind.Value))
-            {
-                RefreshVolumeProfiles();
-                ConfigInstance.Reload();
-                Logger.LogInfo("Config reloaded!");
-                ShowMessage("Config reloaded!");
-                return;
-            }
-
-            if (Input.GetKeyDown(VignetteKeybind.Value))
-            {
-                RefreshVolumeProfiles();
-                Vignette.Value = !Vignette.Value;
-                UpdateVolumeProfiles();
-                ShowMessage(Vignette.Value ? $"Vignette ON!" : $"Vignette OFF!");
-                return;
-            }
-
-            if (Input.GetKeyDown(DepthOfFieldKeybind.Value))
-            {
-                RefreshVolumeProfiles();
-                DepthOfField.Value = !DepthOfField.Value;
-                UpdateVolumeProfiles();
-                ShowMessage(DepthOfField.Value ? $"Depth of Field ON!" : $"Depth of Field OFF!");
-                return;
-            }
-
-            if (Input.GetKeyDown(ChromaticAberrationKeybind.Value))
-            {
-                RefreshVolumeProfiles();
-                ChromaticAberration.Value = !ChromaticAberration.Value;
-                UpdateVolumeProfiles();
-                ShowMessage(ChromaticAberration.Value ? $"Chromatic Aberration ON!" : $"Chromatic Aberration OFF!");
-                return;
-            }
-
-            if (Input.GetKeyDown(AdjustUIScalingBehaviourKeybind.Value))
-            {
-                if (!UltraWideFixes.Value) return;
-                AdjustUIScalingBehaviour.Value = !AdjustUIScalingBehaviour.Value;
-                ShowMessage(AdjustUIScalingBehaviour.Value ? "UI Scaling: Modified" : "UI Scaling: Default");
-                return;
-            }
-
-            if (Input.GetKeyDown(FieldOfViewIncreaseKeybind.Value))
-            {
-                if (!ModifyFieldOfView.Value)
-                {
-                    ShowMessage($"Press {ModifyFieldOfViewKeybind.Value.ToString()} to enable Field of View modification first!");
-                    return;
-                }
-                FieldOfViewValue.Value += 1;
-                UpdateCameraFoV();
-                ShowMessage(FieldOfViewValue.Value == 0 ? "Default Field of View" : $"Field of View: {FieldOfViewValue.Value}");
-                return;
-            }
-
-            if (Input.GetKeyDown(FieldOfViewDecreaseKeybind.Value))
-            {
-                if (!ModifyFieldOfView.Value)
-                {
-                    ShowMessage($"Press {ModifyFieldOfViewKeybind.Value.ToString()} to enable Field of View modification first!");
-                    return;
-                }
-                FieldOfViewValue.Value -= 1;
-                UpdateCameraFoV();
-                ShowMessage(FieldOfViewValue.Value == 0 ? "Default Field of View" : $"Field of View: {FieldOfViewValue.Value}");
-            }
-
-            if (Input.GetKeyDown(ModifyFieldOfViewKeybind.Value))
-            {
-                ModifyFieldOfView.Value = !ModifyFieldOfView.Value;
-                UpdateCameraFoV();
-                ShowMessage(ModifyFieldOfView.Value ? "Field of View: Modified" : "Field of View: Default");
-            }
-        }
-    }
+    // private class MonoBehaviours : MonoBehaviour
+    // {
+    //     private void Update()
+    //     {
+    //         if (Input.GetKeyDown(ConfigReloadKeybind.Value))
+    //         {
+    //             RefreshVolumeProfiles();
+    //             ConfigInstance.Reload();
+    //             Logger.LogInfo("Config reloaded!");
+    //             ShowMessage("Config reloaded!");
+    //             return;
+    //         }
+    //
+    //         if (Input.GetKeyDown(VignetteKeybind.Value))
+    //         {
+    //             RefreshVolumeProfiles();
+    //             Vignette.Value = !Vignette.Value;
+    //             UpdateVolumeProfiles();
+    //             ShowMessage(Vignette.Value ? $"Vignette ON!" : $"Vignette OFF!");
+    //             return;
+    //         }
+    //
+    //         if (Input.GetKeyDown(DepthOfFieldKeybind.Value))
+    //         {
+    //             RefreshVolumeProfiles();
+    //             DepthOfField.Value = !DepthOfField.Value;
+    //             UpdateVolumeProfiles();
+    //             ShowMessage(DepthOfField.Value ? $"Depth of Field ON!" : $"Depth of Field OFF!");
+    //             return;
+    //         }
+    //
+    //         if (Input.GetKeyDown(ChromaticAberrationKeybind.Value))
+    //         {
+    //             RefreshVolumeProfiles();
+    //             ChromaticAberration.Value = !ChromaticAberration.Value;
+    //             UpdateVolumeProfiles();
+    //             ShowMessage(ChromaticAberration.Value ? $"Chromatic Aberration ON!" : $"Chromatic Aberration OFF!");
+    //             return;
+    //         }
+    //
+    //         if (Input.GetKeyDown(AdjustUIScalingBehaviourKeybind.Value))
+    //         {
+    //             if (!UltraWideFixes.Value) return;
+    //             AdjustUIScalingBehaviour.Value = !AdjustUIScalingBehaviour.Value;
+    //             ShowMessage(AdjustUIScalingBehaviour.Value ? "UI Scaling: Modified" : "UI Scaling: Default");
+    //             return;
+    //         }
+    //
+    //         if (Input.GetKeyDown(FieldOfViewIncreaseKeybind.Value))
+    //         {
+    //             if (!ModifyFieldOfView.Value)
+    //             {
+    //                 ShowMessage($"Press {ModifyFieldOfViewKeybind.Value.ToString()} to enable Field of View modification first!");
+    //                 return;
+    //             }
+    //             FieldOfViewValue.Value += 1;
+    //             UpdateCameraFoV();
+    //             ShowMessage(FieldOfViewValue.Value == 0 ? "Default Field of View" : $"Field of View: {FieldOfViewValue.Value}");
+    //             return;
+    //         }
+    //
+    //         if (Input.GetKeyDown(FieldOfViewDecreaseKeybind.Value))
+    //         {
+    //             if (!ModifyFieldOfView.Value)
+    //             {
+    //                 ShowMessage($"Press {ModifyFieldOfViewKeybind.Value.ToString()} to enable Field of View modification first!");
+    //                 return;
+    //             }
+    //             FieldOfViewValue.Value -= 1;
+    //             UpdateCameraFoV();
+    //             ShowMessage(FieldOfViewValue.Value == 0 ? "Default Field of View" : $"Field of View: {FieldOfViewValue.Value}");
+    //         }
+    //
+    //         if (Input.GetKeyDown(ModifyFieldOfViewKeybind.Value))
+    //         {
+    //             ModifyFieldOfView.Value = !ModifyFieldOfView.Value;
+    //             UpdateCameraFoV();
+    //             ShowMessage(ModifyFieldOfView.Value ? "Field of View: Modified" : "Field of View: Default");
+    //         }
+    //     }
+    // }
 
     private static void ShowMessage(string message)
     {
@@ -147,20 +147,20 @@ public class Plugin : BasePlugin
         Vignette = Config.Bind("03. Post-Processing", "Vignette", true, new ConfigDescription("Enable Vignette effect on the game screen."));
         DepthOfField = Config.Bind("03. Post-Processing", "Depth Of Field", true, new ConfigDescription("Enable Depth Of Field effect on the game screen."));
         ChromaticAberration = Config.Bind("03. Post-Processing", "Chromatic Aberration", true, new ConfigDescription("Enable Chromatic Aberration effect on the game screen."));
-        ConfigReloadKeybind = Config.Bind("04. Keybinds", "Reload Config", KeyCode.F5, new ConfigDescription("Reload the config file."));
-        VignetteKeybind = Config.Bind("04. Keybinds", "Vignette Keybind", KeyCode.F1, new ConfigDescription("Toggle Vignette effect."));
-        DepthOfFieldKeybind = Config.Bind("04. Keybinds", "Depth Of Field Keybind", KeyCode.F2, new ConfigDescription("Toggle Depth Of Field effect."));
-        ChromaticAberrationKeybind = Config.Bind("04. Keybinds", "Chromatic Aberration Keybind", KeyCode.F3, new ConfigDescription("Toggle Chromatic Aberration effect."));
-        AdjustUIScalingBehaviourKeybind = Config.Bind("04. Keybinds", "Adjust UI Scaling Behaviour Keybind", KeyCode.F4, new ConfigDescription("Toggle UI scaling behaviour."));
+        //ConfigReloadKeybind = Config.Bind("04. Keybinds", "Reload Config", KeyCode.F5, new ConfigDescription("Reload the config file."));
+        //VignetteKeybind = Config.Bind("04. Keybinds", "Vignette Keybind", KeyCode.F1, new ConfigDescription("Toggle Vignette effect."));
+        //DepthOfFieldKeybind = Config.Bind("04. Keybinds", "Depth Of Field Keybind", KeyCode.F2, new ConfigDescription("Toggle Depth Of Field effect."));
+       //ChromaticAberrationKeybind = Config.Bind("04. Keybinds", "Chromatic Aberration Keybind", KeyCode.F3, new ConfigDescription("Toggle Chromatic Aberration effect."));
+        //AdjustUIScalingBehaviourKeybind = Config.Bind("04. Keybinds", "Adjust UI Scaling Behaviour Keybind", KeyCode.F4, new ConfigDescription("Toggle UI scaling behaviour."));
         ModifyFieldOfView = Config.Bind("06. Field of View", "Modify Field Of View", false, new ConfigDescription("Modify the field of view of the camera."));
-        FieldOfViewValue = Config.Bind("06. Field of View", "Field Of View Value", 0, new ConfigDescription("Field of view value. This figure will get added to the original field of view value."));
-        FieldOfViewIncreaseKeybind = Config.Bind("06. Field of View", "Field Of View Increase Keybind", KeyCode.F7, new ConfigDescription("Increase field of view value."));
-        FieldOfViewDecreaseKeybind = Config.Bind("06. Field of View", "Field Of View Decrease Keybind", KeyCode.F6, new ConfigDescription("Decrease field of view value."));
-        ModifyFieldOfViewKeybind = Config.Bind("06. Field of View", "Modify Field Of View Keybind", KeyCode.F8, new ConfigDescription("Toggle field of view modification."));
+        FieldOfViewValue = Config.Bind("06. Field of View", "Field Of View Value", 0, new ConfigDescription("Field of view value. This figure will get added to the original field of view value.", new AcceptableValueRange<int>(0,50)));
+        //FieldOfViewIncreaseKeybind = Config.Bind("06. Field of View", "Field Of View Increase Keybind", KeyCode.F7, new ConfigDescription("Increase field of view value."));
+        //FieldOfViewDecreaseKeybind = Config.Bind("06. Field of View", "Field Of View Decrease Keybind", KeyCode.F6, new ConfigDescription("Decrease field of view value."));
+        //ModifyFieldOfViewKeybind = Config.Bind("06. Field of View", "Modify Field Of View Keybind", KeyCode.F8, new ConfigDescription("Toggle field of view modification."));
 
         Display.displays[DisplayToUse.Value].Activate(MainWidth, MainHeight, MaxRefresh);
 
-        AddComponent<MonoBehaviours>();
+        // AddComponent<MonoBehaviours>();
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>) OnSceneLoaded;
 
         Logger.LogInfo($"Plugin {PluginName} is loaded!");
@@ -176,13 +176,13 @@ public class Plugin : BasePlugin
         {
             SceneManager.LoadScene(MainMenu);
         }
-
-
+        
         UpdateGraphicsQualitySettings();
         RefreshVolumeProfiles();
-        UpdateCameraFoV();
+        // UpdateCameraFoV();
     }
     internal static List<VolumeProfile> VolumeProfiles { get; } = [];
+    
     internal readonly static Dictionary<CinemachineVirtualCamera, float> VirtualCameras = [];
 
     internal static void RefreshVolumeProfiles()
@@ -193,17 +193,17 @@ public class Plugin : BasePlugin
 
     private static void UpdateCameraFoV()
     {
-        foreach (var cam in VirtualCameras)
-        {
-            if (ModifyFieldOfView.Value)
-            {
-                cam.Key.m_Lens = cam.Key.m_Lens with {FieldOfView = FieldOfViewValue.Value + cam.Value};
-            }
-            else
-            {
-                cam.Key.m_Lens = cam.Key.m_Lens with {FieldOfView = cam.Value};
-            }
-        }
+        // foreach (var cam in VirtualCameras)
+        // {
+        //     if (ModifyFieldOfView.Value)
+        //     {
+        //         cam.Key.m_Lens = cam.Key.m_Lens with {FieldOfView = FieldOfViewValue.Value + cam.Value};
+        //     }
+        //     else
+        //     {
+        //         cam.Key.m_Lens = cam.Key.m_Lens with {FieldOfView = cam.Value};
+        //     }
+        // }
     }
 
     internal static void UpdateVolumeProfiles()
