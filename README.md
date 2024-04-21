@@ -162,10 +162,10 @@ Click on the game title to access the specific fix.
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
 
 ## [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria) 
-#### Last update: 30th March 2024
+#### Last update: 21st April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TerraMemoria/total?label=downloads&style=for-the-badge)
 
-![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/83958ed8-2574-4008-a82b-f142e60c241e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7d6c863e-5fd3-40e6-9d0d-1367d68ee900)
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/441e6c6f-680f-42f4-baef-d73b838dbbcc) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/fff2c21f-f701-4c5c-ab31-4a3678c37e4a)
 
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
