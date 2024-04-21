@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-
-
     <!--Base Settings-->
     <PropertyGroup>
 
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <LangVersion>latest</LangVersion>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Company>p1xel8ted</Company>
@@ -16,13 +14,8 @@
         <NoWarn>Publicizer001,CS1591</NoWarn>
         <Nullable>disable</Nullable>
         <Description>$(MSBuildProjectName)</Description>
-        <RestoreAdditionalProjectSources>
-            https://api.nuget.org/v3/index.json;
-            https://nuget.bepinex.dev/v3/index.json;
-            https://nuget.samboy.dev/v3/index.json
-        </RestoreAdditionalProjectSources>
     </PropertyGroup>
-    <Import Project="..\zip.target"/>
+
     <!--Default all references to CopyLocal False.-->
     <ItemDefinitionGroup>
         <Reference>
@@ -41,11 +34,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\Sea of Stars\Mods</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\Sea of Stars\Mods</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\plugins</OutputPath>
     </PropertyGroup>
-
 </Project>

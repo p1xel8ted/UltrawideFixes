@@ -1,17 +1,26 @@
-﻿using Il2Cpp;
-using Il2CppDG.Tweening;
-using MelonLoader;
+﻿using System.Net.Mime;
+using System.Reflection;
+using BepInEx;
+using BepInEx.Logging;
+using BepInEx.Unity.IL2CPP;
+using DG.Tweening;
+using HarmonyLib;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using WitchSpringR;
 
-[assembly: MelonInfo(typeof(WitchSpringRUltrawide), "WitchSpring R Ultra-Wide", "0.1.1", "p1xel8ted")]
-
 namespace WitchSpringR
 {
-    public class WitchSpringRUltrawide : MelonMod
+    [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+    public class WitchSpringRUltrawide : BasePlugin
     {
+        
+        private const string PluginGuid = "p1xel8ted.witchspringr.ultrawide";
+        private const string PluginName = "WitchSpring R Ultra-Wide";
+        private const string PluginVersion = "0.1.2";
+        
         private const string BlackPanelImage = "blackPanel";
         private const string PaperSideImage = "PaperSide";
         private const string MinimapCamera = "MiniMapCamera";
@@ -24,23 +33,40 @@ namespace WitchSpringR
         private const string LayerTopPath = "Canvas(Clone)/Canvas/Layer_Top";
         private const string LayerBottomPath = "Canvas(Clone)/Canvas/Layer_Bottom";
         private const string LayerBasePath = "Canvas(Clone)/Canvas/Layer_Base";
-        private static float NormalWidth => Display.main.systemHeight * 16f / 9f;
-        private static float UltraWidth => Display.main.systemWidth;
-        internal static float WidthDifference => UltraWidth - NormalWidth;
-        internal static float HalfUltraWidth => UltraWidth / 2f;
-        internal static float Difference => HalfUltraWidth - (WidthDifference / 2f);
-        private static float Height => Display.main.systemHeight;
+        
+        internal static int MainWidth => Display.displays[0].systemWidth;
+        private static int MainHeight => Display.displays[0].systemHeight;
         private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+        private static float NormalWidth => MainHeight * 16f / 9f;
+        internal static float WidthDifference => MainWidth - NormalWidth;
+        internal static float HalfUltraWidth => MainWidth / 2f;
+        internal static float Difference => HalfUltraWidth - (WidthDifference / 2f);
 
         internal static List<Panel_ItemInfo_Left> PanelItemInfoLeftInstances { get; set; } = new();
-
-        public override void OnUpdate()
+        private static ManualLogSource Logger { get; set; }
+        
+        public class Behaviours : MonoBehaviour
         {
-            base.OnUpdate();
+            private void Update()
+            {
+                AdjustCameraFOV(MainCameraPath);
+                AdjustUIPosition(PanelItemInfoLeftInstances, WidthDifference / 2f);
+               AdjustUIPosition(Patches.PanelTrainingResultNewInstance, HalfUltraWidth);
+            }
+        }
+        
+        public override void Load()
+        {
+            Logger = Log;
+            AddComponent<Behaviours>();
 
-            AdjustCameraFOV(MainCameraPath);
-            AdjustUIPosition(PanelItemInfoLeftInstances, WidthDifference / 2f);
-            AdjustUIPosition(Patches.PanelTrainingResultNewInstance, HalfUltraWidth);
+            Display.displays[0].Activate(MainWidth, MainHeight, MaxRefresh);
+
+      
+            SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>) OnSceneLoaded;
+
+            Logger.LogInfo($"Plugin {PluginName} is loaded!");
+            Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         }
 
         private static void AdjustCameraFOV(string path)
@@ -68,17 +94,15 @@ namespace WitchSpringR
                 }
                 case Panel_ItemInfo_Left panel:
                     var transform = panel.transform;
-                    transform.position = new Vector3(xPosition, transform.position.y, transform.position.z);
+                    transform.position = new UnityEngine.Vector3(xPosition, transform.position.y, transform.position.z);
                     break;
             }
         }
 
-        public override void OnSceneWasInitialized(int buildIndex, string sceneName)
+        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            base.OnSceneWasInitialized(buildIndex, sceneName);
-
             Application.targetFrameRate = MaxRefresh;
-            Screen.SetResolution((int) UltraWidth, (int) Height, FullScreenMode.FullScreenWindow, MaxRefresh);
+            Screen.SetResolution(MainWidth,MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
             Time.fixedDeltaTime = 1f / MaxRefresh;
 
             DeactivateGameObject(LetterboxRightPath);
@@ -124,7 +148,7 @@ namespace WitchSpringR
                 switch (image.name)
                 {
                     case BlackPanelImage:
-                        image.transform.localScale = new Vector3(UltraWidth, Height, 1f);
+                        image.transform.localScale = new Vector3(MainWidth, MainHeight, 1f);
                         break;
                     case PaperSideImage:
                         image.gameObject.SetActive(false);
@@ -139,8 +163,8 @@ namespace WitchSpringR
             foreach (var cam in cameras)
             {
                 if (cam.transform.GetFullPath().Contains(MinimapCamera)) continue;
-                cam.pixelRect = new Rect(0, 0, UltraWidth, Height);
-                cam.aspect = UltraWidth / Height;
+                cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+                cam.aspect = MainWidth / (float) MainHeight;
             }
         }
     }

@@ -4,212 +4,356 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>WitchSpring R Ultra-wide</Product>
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
         <AssemblyName>WitchSpringRUltraWide</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
+		        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
     </PropertyGroup>
 
+    <Import Project="../../zip.target"/>
+  
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-        <OutputPath>H:\Games\steamapps\common\WitchSpring R\Mods</OutputPath>
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
-        <OutputPath>H:\Games\steamapps\common\WitchSpring R\Mods</OutputPath>
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
-        <Reference Include="0Harmony">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\net6\0Harmony.dll</HintPath>
-        </Reference>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="Assembly-CSharp-firstpass">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppDOTween">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppDOTween.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppDOTweenPro">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppDOTweenPro.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppExcelDataReader">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppExcelDataReader.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppInterop.Common">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppInterop.Runtime">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2Cppmscorlib">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppRayFireAssembly">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppRayFireAssembly.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppSystem">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppSystem.Core">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
-        </Reference>
-        <Reference Include="Il2CppSystem.Data">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Il2CppSystem.Data.dll</HintPath>
-        </Reference>
-        <Reference Include="MelonLoader">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\net6\MelonLoader.dll</HintPath>
-        </Reference>
-        <Reference Include="Microsoft.CSharp">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\Microsoft.CSharp.dll</HintPath>
-        </Reference>
-        <Reference Include="mscorlib">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\mscorlib.dll</HintPath>
-        </Reference>
-        <Reference Include="netstandard">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\netstandard.dll</HintPath>
-        </Reference>
-        <Reference Include="System">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.dll</HintPath>
-        </Reference>
-        <Reference Include="System.ComponentModel.DataAnnotations">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ComponentModel.DataAnnotations.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Configuration">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Configuration.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Core">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Core.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Data">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Data.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Data.DataSetExtensions">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Data.DataSetExtensions.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Drawing">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Drawing.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO.Compression">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.IO.Compression.dll</HintPath>
-        </Reference>
-        <Reference Include="System.IO.Compression.FileSystem">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.IO.Compression.FileSystem.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Net">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Net.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Net.Http">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Net.Http.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Numerics">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Numerics.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Numerics.Vectors">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Numerics.Vectors.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Runtime.Serialization">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Runtime.Serialization.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Security">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Security.dll</HintPath>
-        </Reference>
-        <Reference Include="System.ServiceModel.Web">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ServiceModel.Web.dll</HintPath>
-        </Reference>
-        <Reference Include="System.ServiceProcess">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.ServiceProcess.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Transactions">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Transactions.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Web">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Web.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Xml">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Xml.dll</HintPath>
-        </Reference>
-        <Reference Include="System.Xml.Linq">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\System.Xml.Linq.dll</HintPath>
-        </Reference>
-        <Reference Include="Unity.InputSystem">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Unity.InputSystem.dll</HintPath>
-        </Reference>
-        <Reference Include="Unity.Mathematics">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
-        </Reference>
-        <Reference Include="Unity.RenderPipelines.Core.Runtime">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-        </Reference>
-        <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.AIModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.AnimationModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.AssetBundleModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.AudioModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.CoreModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.IMGUIModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.InputLegacyModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.ParticleSystemModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.Physics2DModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.SharedInternalsModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.TerrainModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.TerrainPhysicsModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.TextRenderingModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.UI">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.UIModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.UnityWebRequestModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.VideoModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
-        </Reference>
-        <Reference Include="UnityEngine.WindModule">
-            <HintPath>H:\Games\steamapps\common\WitchSpring R\MelonLoader\Il2CppAssemblies\UnityEngine.WindModule.dll</HintPath>
-        </Reference>
-        <Reference Include="WindowsBase">
-            <HintPath>F:\Games\steamapps\common\Sea of Stars\MelonLoader\Managed\WindowsBase.dll</HintPath>
-        </Reference>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="com.rlabrecque.steamworks.net">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\DOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTweenPro">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\DOTweenPro.dll</HintPath>
+      </Reference>
+      <Reference Include="ExcelDataReader">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\ExcelDataReader.dll</HintPath>
+      </Reference>
+      <Reference Include="ExcelDataReader.DataSet">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\ExcelDataReader.DataSet.dll</HintPath>
+      </Reference>
+      <Reference Include="Heathen.Core">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Heathen.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Heathen.Steamworks">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Heathen.Steamworks.dll</HintPath>
+      </Reference>
+      <Reference Include="Heathen.Steamworks.Examples">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Heathen.Steamworks.Examples.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppI18N">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppI18N.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppI18N.West">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppI18N.West.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Data">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.IO.Compression">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.IO.Compression.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="InputSystem.Samples.Visualizers">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\InputSystem.Samples.Visualizers.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TranslucentImage">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\LeTai.TranslucentImage.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TranslucentImage.Demo">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\LeTai.TranslucentImage.Demo.dll</HintPath>
+      </Reference>
+      <Reference Include="LeTai.TranslucentImage.UniversalRP">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\LeTai.TranslucentImage.UniversalRP.dll</HintPath>
+      </Reference>
+      <Reference Include="MagicaCloth">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\MagicaCloth.dll</HintPath>
+      </Reference>
+      <Reference Include="RayFireAssembly">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\RayFireAssembly.dll</HintPath>
+      </Reference>
+      <Reference Include="RFLib_DotNet_2018">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\RFLib_DotNet_2018.dll</HintPath>
+      </Reference>
+      <Reference Include="sc.stylizedwater2.runtime">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\sc.stylizedwater2.runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="ToonyColorsPro.Runtime">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\ToonyColorsPro.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="ToonyColorsPro2.Demo">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\ToonyColorsPro2.Demo.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.InGameHints">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.InputSystem.InGameHints.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.RebindingUI">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.InputSystem.RebindingUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.TextCoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

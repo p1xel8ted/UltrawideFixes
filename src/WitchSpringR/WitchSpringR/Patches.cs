@@ -1,8 +1,5 @@
-﻿using HarmonyLib;
-using Il2Cpp;
-using Il2CppDG.Tweening;
-using Il2CppRootMotion.FinalIK;
-using MelonLoader;
+﻿using DG.Tweening;
+using HarmonyLib;
 using UnityEngine;
 
 namespace WitchSpringR;
