@@ -197,8 +197,11 @@ Click on the game title to access the specific fix.
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb64afb-3123-400d-a66b-3bc27f35a80e) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c04a42e4-9bd2-480b-b74f-02abeba9f329)
 
-## [WitchSpring R **WIP**](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
+## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
+#### Last update: 21st April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb01e5c-f4b9-4135-855c-fd1338aebc2d) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/57aa628f-5019-4c89-b7ba-1451af016e14)
 
 ## [Wonder Boy Returns Remix](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WonderBoyReturnsRemix)  
 #### Last update: 6th April 2024
