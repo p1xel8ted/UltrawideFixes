@@ -17,7 +17,7 @@ Click on the game title to access the specific fix.
 
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
 #### Last update 2nd April 2024
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20Mi1nutesTillDawn/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/35313973-6c27-4eb7-8b36-365a26cdc35e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/372f8245-fe2b-40b8-a5ec-bffb519d7678)
 
@@ -149,8 +149,11 @@ Click on the game title to access the specific fix.
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
-## [Smushi Come Home](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome)  
+## [Smushi Come Home](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome) 
+#### Last update: 22nd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SmushiComeHome/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7cf40908-6539-4c87-ad7c-f2b295ef372d) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/52a41572-d844-4ea6-911d-1564748618e3)
 
 ## [Snufkin: Melody of Moominvalley](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Snufkin)  
 #### Last update: 7th April 2024
