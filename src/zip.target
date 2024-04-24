@@ -9,8 +9,8 @@
   
 <Target Name="ZipOutputPath" AfterTargets="Build">
         <PropertyGroup>
-            <TempDir>$(MSBuildProjectDirectory)\temp\plugins</TempDir>
-              <PluginDir>$(MSBuildProjectDirectory)\temp\plugins</PluginDir>
+            <TempDir>$(MSBuildProjectDirectory)\temp</TempDir>
+              <PluginDir>$(MSBuildProjectDirectory)\temp</PluginDir>
         </PropertyGroup>
         <MakeDir Directories="$(TempDir)" />
         <MakeDir Directories="$(SolutionDir)\AAA_Releases" />
