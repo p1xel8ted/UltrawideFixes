@@ -8,7 +8,7 @@ public static class Const
     internal const string PhotoSensitiveWarning = "PhotoSensitveWarning";
     internal const string PluginGuid = "p1xel8ted.littlegoodytwoshoes.ultrawide";
     internal const string PluginName = "Little Goody Two Shoes Ultra-Wide";
-    internal const string PluginVersion = "0.1.1";
+    internal const string PluginVersion = "0.1.2";
     internal const string PauseMenuFramePath = "PauseMenu/HomeMenu/Frame";
     internal const string DialogueWindowFramePath = "DialogueWindow/Dialogue/Frame";
     internal const string IntroAnimationFlashTitlePath = "IntroAnimation ---------------------/flash title";

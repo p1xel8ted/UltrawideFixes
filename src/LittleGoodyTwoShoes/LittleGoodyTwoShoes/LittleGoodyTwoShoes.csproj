@@ -2,7 +2,7 @@
 
     <PropertyGroup>
 
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
 
@@ -278,6 +278,6 @@
       </Reference>
     </ItemGroup>
 
-    <Import Project="..\zip.target"/>
+    <Import Project="..\..\zip.target"/>
 
 </Project>

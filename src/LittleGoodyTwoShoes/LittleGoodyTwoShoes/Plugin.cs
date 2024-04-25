@@ -19,6 +19,10 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> TitleMenuVoiceOver { get; private set; }
     internal static ConfigEntry<bool> AutoAdvanceConfig { get; private set; }
     internal static ConfigEntry<bool> GoStraightToTitleMenu { get; private set; }
+    
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
+    
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
@@ -78,6 +82,26 @@ public class Plugin : BaseUnityPlugin
         TitleMenuVoiceOver = Config.Bind("05. Startup Settings", "Title Menu Voiceover", false,
             new ConfigDescription("Enables or disables the voiceover on the title menu.",
                 null, new ConfigurationManagerAttributes {Order = 19}));
+
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 18}));
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
+
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 17}));
+        
+        Application.focusChanged += _ =>
+        {
+            if (MuteInBackground.Value)
+            {
+                AudioListener.pause = !Application.isFocused;
+            }
+            else
+            {
+                AudioListener.pause = false; 
+            }
+        };
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), Const.PluginGuid);
         SceneManager.sceneLoaded += OnSceneLoaded;

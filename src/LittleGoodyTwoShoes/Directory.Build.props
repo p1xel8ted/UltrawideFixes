@@ -40,17 +40,15 @@
         <DebugType>portable</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>H:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>H:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\Little Goody Two Shoes\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
-        <PackageReference Include="BepInEx.BaseLib" Version="5.4.21"/>
-        <PackageReference Include="Resource.Embedder" Version="2.2.0"/>
     </ItemGroup>
 
 </Project>
