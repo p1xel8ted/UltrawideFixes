@@ -85,7 +85,10 @@ Click on the game title to access the specific fix.
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1087b969-b1f7-4d70-acd1-7c61ced8c8c6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ea7f0dc4-0701-41dd-8a05-51d209e8405d)
 
 ## [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
+#### Last update: 25th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/FlipWitch/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/15fe48d3-3028-4082-9b34-09428ec073a8) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/858bf856-8ae0-47a4-a914-a7686c532d55)
 
 ## [Heaven Dust 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HeavenDust1/total?label=downloads&style=for-the-badge)
