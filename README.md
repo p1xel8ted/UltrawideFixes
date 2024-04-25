@@ -232,7 +232,10 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TormentedSouls/total?label=downloads&style=for-the-badge)
 
 ## [Train Valley 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TrainValley1)  
+#### Last update: 25th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TrainValley1/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f6d5dde8-9a28-48aa-9b81-2d26717a9512) ![main_uw](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/3eff9091-58fe-497e-bf7d-128a848fd879)
 
 ## [Turnip Boy Commits Tax Evasion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TurnipBoyCommitsTaxEvasion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TurnipBoyCommitsTaxEvasion/total?label=downloads&style=for-the-badge)
