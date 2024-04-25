@@ -103,7 +103,10 @@ Click on the game title to access the specific fix.
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
 
 ## [Little Goody Two Shoes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LittleGoodyTwoShoes)  
+#### Last update: 25th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LittleGoodyTwoShoes/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/43045c73-4139-43c3-9e93-3cdcec00ae76) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/79b87d95-cfe7-4b22-83f2-d6df28ce72f1)
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
