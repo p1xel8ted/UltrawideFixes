@@ -20,6 +20,8 @@ public class Plugin : BaseUnityPlugin
     internal static float NegativeScaleFactor => 1f / PositiveScaleFactor;
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
 
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
     private static ConfigEntry<bool> LimitHudToSixteenByNine { get; set; }
 
@@ -33,19 +35,40 @@ public class Plugin : BaseUnityPlugin
     {
         LOG = Logger;
 
-        DisplayToUse = Config.Bind("General", "Display To Use", 0, new ConfigDescription("The display to use for the game. 0 is generally the main.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        DisplayToUse = Config.Bind("01. General", "Display To Use", 0, new ConfigDescription("The display to use for the game. 0 is generally the main.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 103}));
         DisplayToUse.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
         };
-        SkipIntros = Config.Bind("General", "Skip Intros", true, "Skip the intro stuff and go straight to the main menu.");
-        LimitHudToSixteenByNine = Config.Bind("HUD", "Limit HUD to 16:9", false, "Limit the hud to 16:9 aspect ratio");
+        SkipIntros = Config.Bind("01. General", "Skip Intros", true, new ConfigDescription("Skip the intro stuff and go straight to the main menu.", null, new ConfigurationManagerAttributes {Order = 102}));;
+        LimitHudToSixteenByNine = Config.Bind("01. General", "Limit HUD to 16:9", false, new ConfigDescription("Limit the hud to 16:9 aspect ratio", null, new ConfigurationManagerAttributes {Order = 101}));
         LimitHudToSixteenByNine.SettingChanged += (_, _) =>
         {
             AdjustHUD();
         };
 
-        LimitInGameMenuToSixteenByNine = Config.Bind("In Game Menu", "Limit In-Game Menu to 16:9", false, "Limit the in game menu to 16:9 aspect ratio");
+        LimitInGameMenuToSixteenByNine = Config.Bind("01. General", "Limit In-Game Menu to 16:9", false, new ConfigDescription("Limit the in game menu to 16:9 aspect ratio", null, new ConfigurationManagerAttributes {Order = 100}));
+       
+        RunInBackground = Config.Bind("01. General", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
+
+        MuteInBackground = Config.Bind("01. General", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
+        
+        Application.focusChanged += _ =>
+        {
+            if (MuteInBackground.Value)
+            {
+                AudioListener.pause = !Application.isFocused;
+            }
+            else
+            {
+                AudioListener.pause = false; 
+            }
+        };
+        
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
