@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace FlipWitchUltraWideTweaks;
+﻿namespace FlipWitchUltraWide;
 
 [Harmony]
 public static class Patches
@@ -50,7 +48,7 @@ public static class Patches
 
     private static void SetSixteenByNine(CanvasScaler scaler = null)
     {
-        if (scaler != null)
+        if (scaler)
         {
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
@@ -62,7 +60,7 @@ public static class Patches
 
     private static void SetMaxUltrawide(CanvasScaler scaler = null)
     {
-        if (scaler != null)
+        if (scaler)
         {
             UltraWideScaling(scaler);
         }
@@ -96,7 +94,7 @@ public static class Patches
 
     private static void UltraWideScaling(CanvasScaler scaler)
     {
-        if (scaler == null)
+        if (!scaler)
         {
             Plugin.LOG.LogError("Requested CanvasScaler is null!");
             return;
@@ -108,7 +106,7 @@ public static class Patches
 
     private static void AdjustedScaling(CanvasScaler scaler = null)
     {
-        if (scaler == null)
+        if (!scaler)
         {
             var scalers = Resources.FindObjectsOfTypeAll<CanvasScaler>();
             scaler = scalers.Aggregate(scaler, (current, s) => s.name switch
@@ -118,7 +116,7 @@ public static class Patches
                 _ => current
             });
         }
-        if (scaler == null)
+        if (!scaler)
         {
             Plugin.LOG.LogError("Requested CanvasScaler is null!");
             return;
@@ -179,7 +177,7 @@ public static class Patches
 
     private static void AddBlackBackgroundIfNeeded(Transform parent)
     {
-        if (parent.Find("bg_black") != null) return;
+        if (parent.Find("bg_black")) return;
         var go = new GameObject("bg_black");
         go.transform.SetParent(parent, false);
         go.transform.SetAsFirstSibling();

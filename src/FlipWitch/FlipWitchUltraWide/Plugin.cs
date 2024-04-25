@@ -1,17 +1,16 @@
-﻿using BepInEx.Configuration;
-using Shared;
-
-namespace FlipWitchUltraWideTweaks;
+﻿namespace FlipWitchUltraWide;
 
 [Harmony]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.flipwitch.tweaks";
-    private const string PluginName = "Flip Witch Ultra-Wide Tweaks";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginGuid = "p1xel8ted.flipwitch.ultrawide";
+    private const string PluginName = "Flip Witch Ultra-Wide";
+    private const string PluginVersion = "0.1.2";
 
     private static bool FirstTimeMainMenu = true;
+
+    private readonly static WriteOnce<float> OriginalHudPosition = new();
     private static float BaseAspect => 16f / 9f;
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
@@ -28,12 +27,17 @@ public class Plugin : BaseUnityPlugin
 
     internal static ConfigEntry<bool> SkipIntros { get; private set; }
     internal static ManualLogSource LOG { get; private set; }
+    private static Transform HUDTransform { get; set; }
 
     private void Awake()
     {
         LOG = Logger;
 
         DisplayToUse = Config.Bind("General", "Display To Use", 0, new ConfigDescription("The display to use for the game. 0 is generally the main.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        DisplayToUse.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
         SkipIntros = Config.Bind("General", "Skip Intros", true, "Skip the intro stuff and go straight to the main menu.");
         LimitHudToSixteenByNine = Config.Bind("HUD", "Limit HUD to 16:9", false, "Limit the hud to 16:9 aspect ratio");
         LimitHudToSixteenByNine.SettingChanged += (_, _) =>
@@ -46,9 +50,6 @@ public class Plugin : BaseUnityPlugin
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
     }
-
-    private readonly static WriteOnce<float> OriginalHudPosition = new();
-    private static Transform HUDTransform { get; set; }
 
 
     private static void AdjustHUD()
@@ -65,27 +66,31 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
+    private static void UpdateDisplay()
+    {
+        Display.displays[DisplayToUse.Value].Activate();
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
+        Application.targetFrameRate = MaxRefresh;
+    }
+
     private static void SceneManagerOnSceneLoaded(Scene __arg0, LoadSceneMode __arg1)
     {
+        UpdateDisplay();
+        AdjustHUD();
+
         var mainMenuBackground = GameObject.Find("Switch Database/Main Camera Holder/Main Camera/Background Manager");
-        if (mainMenuBackground != null)
+        if (mainMenuBackground)
         {
             mainMenuBackground.transform.localScale = mainMenuBackground.transform.localScale with {x = PositiveScaleFactor, y = PositiveScaleFactor};
         }
 
-        AdjustHUD();
-
         if (!__arg0.name.Equals("MainMenu")) return;
 
         var grid = GameObject.Find("MainMenu/Grid");
-        if (grid == null) return;
-
-        Display.displays[DisplayToUse.Value].Activate();
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
-        Application.targetFrameRate = MaxRefresh;
+        if (!grid) return;
 
         grid.TryGetComponent<RectTransform>(out var rect);
-        if (rect == null)
+        if (!rect)
         {
             rect = grid.AddComponent<RectTransform>();
         }
