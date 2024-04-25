@@ -1,4 +1,6 @@
-﻿namespace TrainValleyOne;
+﻿using UnityEngine.UI;
+
+namespace TrainValleyOne;
 
 [Harmony]
 public static class Patches
@@ -19,8 +21,8 @@ public static class Patches
         if (PositionsCalculated) return;
 
         var leftPanelWidth = toolBar.leftPanel.sizeDelta.y; //120 at time of writing
-        var ultraWidth = Display.main.systemWidth; //3440
-        var normalWidth = Display.main.systemHeight * 16f / 9f; //1440 * 16 / 9 = 2560
+        var ultraWidth = Plugin.MainWidth; //3440
+        var normalWidth = Plugin.MainHeight * (16f / 9f); //1440 * 16 / 9 = 2560
         var difference = ultraWidth - normalWidth; //880
         var splitDifference = difference / 2f; //440
 
@@ -38,6 +40,19 @@ public static class Patches
         CalculatePositions(__instance);
         UpdatePositions(__instance);
     }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MenuController), nameof(MenuController.Start))]
+    public static void MenuController_Start(ref MenuController __instance)
+    {
+        var image = GameObject.Find("Main Camera");
+        if (image)
+        {
+            var positiveScaleFactor = (Plugin.PositiveScaleFactor / 10f) + 1f;
+            image.transform.localScale = new Vector3(positiveScaleFactor, positiveScaleFactor, 1f);
+        }
+    }
+    
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ToolBar), nameof(ToolBar.Update))]
@@ -63,7 +78,7 @@ public static class Patches
     private static void SetGaugePosition(float position)
     {
         var gaugeGameObject = GetGaugeGameObject();
-        if (gaugeGameObject != null)
+        if (gaugeGameObject)
         {
             gaugeGameObject.GetComponent<RectTransform>().SetAnchoredPositionX(position);
         }
