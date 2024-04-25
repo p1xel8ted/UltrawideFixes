@@ -18,6 +18,7 @@ Please consider supporting the project! Your support helps keep the fixes coming
 [2](#2) | [A](#A) | [B](#B) | [C](#C) | [D](#D) | [E](#E) | [F](#F) | [G](#G) | [H](#H) | [I](#I) | [J](#J) | [K](#K) | [L](#L) | [M](#M) | [N](#N) | [O](#O) | [P](#P) | [Q](#Q) | [R](#R) | [S](#S) | [T](#T) | [U](#U) | [V](#V) | [W](#W) | [X](#X) | [Y](#Y) | [Z](#Z)
 
 Click on the game title to access the specific fix.<br/><br/>
+
 <div id="2"/>
   
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
@@ -25,6 +26,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/35313973-6c27-4eb7-8b36-365a26cdc35e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/372f8245-fe2b-40b8-a5ec-bffb519d7678)
+
 <div id="A"/>
   
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
@@ -50,6 +52,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Anodyne2/total?label=downloads&style=for-the-badge)
 
 ![main_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/80636591-ac38-4fbc-97ed-e8bf22284dd3) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/84811463-1670-4287-98d4-575b023c748a)
+
 <div id="B"/>
 
 ## [Beautiful Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
@@ -66,10 +69,12 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ccf13f2f-ade9-4a3d-b333-46e5f23c8aa1) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a0499349-578d-45f4-9fbd-ed6bdb1ef661)
+
 <div id="C"/>
 
 ## [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
+
 <div id="D"/>
 
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
@@ -89,6 +94,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2c7bec22-0d6b-4487-be1c-5019da7fb9c1) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/244f9d6d-7f47-4e7d-ac00-20abc36b3795)
+
 <div id="E"/>
 
 ## [Elderand](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand)
@@ -96,6 +102,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Elderand/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1087b969-b1f7-4d70-acd1-7c61ced8c8c6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ea7f0dc4-0701-41dd-8a05-51d209e8405d)
+
 <div id="F"/>
 
 ## [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
@@ -103,6 +110,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/FlipWitch/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/15fe48d3-3028-4082-9b34-09428ec073a8) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/858bf856-8ae0-47a4-a914-a7686c532d55)
+
 <div id="H"/>
 
 ## [Heaven Dust 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
@@ -113,10 +121,12 @@ Click on the game title to access the specific fix.<br/><br/>
 
 ## [Hero's Adventure: Road to Passion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HerosAdventureRoadToPassion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HerosAdventureRoadToPassion/total?label=downloads&style=for-the-badge)
+
 <div id="K"/>
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
+
 <div id="L"/>
 
 ## [Little Goody Two Shoes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LittleGoodyTwoShoes)  
@@ -127,6 +137,7 @@ Click on the game title to access the specific fix.<br/><br/>
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
+
 <div id="M"/>
 
 ## [Magenta Horizon](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MagentaHorizon)  
@@ -152,6 +163,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f72d3c76-81d7-4a54-b7a4-77a4f5fca812) ![main_dungeon](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/aba4ed23-1ace-43ab-a1b8-d0c795774dbc)
+
 <div id="N"/>
   
 ## [New Super Lucky Tales](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NewSuperLuckyTales)
@@ -164,6 +176,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NierReplicant/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9398fce2-a837-48c6-9e19-eed921e13eb7) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9973cdc-0f65-4aff-bc9d-0735c92b4d6a)
+
 <div id="P"/>
 
 ## [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
@@ -174,6 +187,7 @@ Click on the game title to access the specific fix.<br/><br/>
 
 ## [Prince of Persia: The Lost Crown](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrinceOfPersiaTheLostCrown/total?label=downloads&style=for-the-badge)
+
 <div id="S"/>
 
 ## [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
@@ -199,6 +213,7 @@ Click on the game title to access the specific fix.<br/><br/>
 
 ## [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
+
 <div id="T"/>
 
 ## [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria) 
@@ -228,6 +243,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/UNSIGHTED/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/0bf24dbe-de14-49a6-8656-698e0237b497) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/01e8dd57-34dd-45ce-b51e-5da38a82f7c6)
+
 <div id="V"/>
 
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
@@ -238,6 +254,7 @@ Click on the game title to access the specific fix.<br/><br/>
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VigilTheLongestNight/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb64afb-3123-400d-a66b-3bc27f35a80e) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c04a42e4-9bd2-480b-b74f-02abeba9f329)
+
 <div id="W"/>
   
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
