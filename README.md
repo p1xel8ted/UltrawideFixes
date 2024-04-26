@@ -1,7 +1,6 @@
 <div align="center">
   
-![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/239bcf1c-e239-40ef-adb3-c4ce6c7c44ea)
-
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/04c34280-ef70-4db3-95bc-26295f83e0d2)
 <br/><br/>
 ### A growing collection of ultra wide fixes for games based on the Unity engine. This ranges from a simple black bar fix to extensive UI fixes or additions (i.e. toggling between centered and spanned HUD or adding resolution selectors / extra settings). 
 ### Most of these fixes below (40+) have come from requests via the [WSGF Discord](https://discord.gg/wsgf-142072549537349632). While I try and facilitate all requests (for Unity based games), it is not guaranteed!
