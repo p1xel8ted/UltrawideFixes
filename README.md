@@ -238,8 +238,10 @@ Click on the game title to access the specific fix.<br/><br/>
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f6d5dde8-9a28-48aa-9b81-2d26717a9512) ![main_uw](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/3eff9091-58fe-497e-bf7d-128a848fd879)
 
 ## [Turnip Boy Commits Tax Evasion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TurnipBoyCommitsTaxEvasion)  
+#### Last updated: 26th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TurnipBoyCommitsTaxEvasion/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ac5580ac-e0e4-4f1a-baea-c39a1e821ccd) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/49ad012d-5cee-4feb-9601-d2b2ddb0a169) 
 
 ## [UNSIGHTED](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/UNSIGHTED) <div id="U"/>
 #### Last updated: 6th April 2024
