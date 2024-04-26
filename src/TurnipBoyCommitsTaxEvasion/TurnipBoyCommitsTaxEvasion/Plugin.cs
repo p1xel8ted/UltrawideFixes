@@ -5,60 +5,91 @@
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.turnipboycommitstaxevasion.ultrawide";
-    private const string PluginName = "Turnip Boy Commits Tax Evasion Ultrawide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginName = "Turnip Boy Commits Tax Evasion Ultra-Wide";
+    private const string PluginVersion = "0.1.2";
 
     internal static ConfigEntry<float> NpcChatDialogScale { get; private set; }
     internal static ConfigEntry<float> NpcChatDialogPosition { get; private set; }
     private static ConfigEntry<float> CameraZoom { get; set; }
     internal static ConfigEntry<float> MoveSpeed { get; private set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdate { get; set; }
-    private static List<CanvasScaler> CanvasScalers { get; set; } = [];
-    private static List<PixelPerfectCamera> PixelPerfectCameras { get; set; } = [];
-    private const float MinAspectRatio = 16f / 9f;
+
     private static ManualLogSource Log { get; set; }
 
+    private static ConfigEntry<int> DisplayToUse { get; set; }
+    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
+    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+
     private static IEnumerable<string> FastForwardThese { get; } = ["Snoozy", "fblk", "Graffiti", "Partners", "FMOD", "Warning"];
+    
     private void Awake()
     {
         Log = Logger;
-        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
 
-        NpcChatDialogScale = Config.Bind("General", "NPC Dialog Scale", 0.75f, new ConfigDescription("Scale of the dialogues when talking to an NPC.", new AcceptableValueRange<float>(0.1f, 2f), new ConfigurationManagerAttributes {Order = 0}));
-        NpcChatDialogPosition = Config.Bind("General", "NPC Dialog Position", 0f, new ConfigDescription("Vertical position of the dialogues when talking to an NPC.", new AcceptableValueRange<float>(-1000, 1000), new ConfigurationManagerAttributes {Order = 1}));
-        CameraZoom = Config.Bind("General", "Camera Zoom", 7f, new ConfigDescription("Zoom of the camera.", new AcceptableValueRange<float>(0.5f, 20f), new ConfigurationManagerAttributes {Order = 2}));
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.Windowed, new ConfigDescription("Set the full screen mode",null, new ConfigurationManagerAttributes {Order = 100}));
+        FullScreenModeConfig.SettingChanged += (_, _) =>
+        {
+            RunDisplayFixes();
+        };
+        DisplayToUse = Config.Bind("01. Display", "Display Selection", 0, new ConfigDescription("Select the monitor to be used for display.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 99}));
+        DisplayToUse.SettingChanged += (_, _) =>
+        {
+            RunDisplayFixes();
+        };
+        RunInBackground = Config.Bind("01. Display", "Background Running", true, new ConfigDescription("Allow the game to continue running when it is not the active window.", null, new ConfigurationManagerAttributes {Order = 98}));
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
+        NpcChatDialogScale = Config.Bind("02. User Interface", "NPC Chat Scale", 0.75f, new ConfigDescription("Adjusts the scale of NPC dialog boxes.", new AcceptableValueRange<float>(0.1f, 2f), new ConfigurationManagerAttributes {Order = 97}));
+        NpcChatDialogPosition = Config.Bind("02. User Interface", "NPC Chat Vertical Position", 0f, new ConfigDescription("Sets the vertical position of NPC chat dialog boxes.", new AcceptableValueRange<float>(-1000, 1000), new ConfigurationManagerAttributes {Order = 96}));
+        CameraZoom = Config.Bind("03. Camera", "Camera Zoom Level", 7f, new ConfigDescription("Controls the zoom level of the game camera.", new AcceptableValueRange<float>(0.5f, 20f), new ConfigurationManagerAttributes {Order = 95}));
         CameraZoom.SettingChanged += (_, _) => UpdateCameras();
-        MoveSpeed = Config.Bind("General", "Move Speed", 1.5f, new ConfigDescription("Speed of the player.", new AcceptableValueRange<float>(0.5f, 5f), new ConfigurationManagerAttributes {Order = 3}));
-        UseRefreshRateForFixedUpdate = Config.Bind("General", "Use Refresh Rate For Fixed Update", true, new ConfigDescription("Use the refresh rate of the monitor for the fixed update. If not, it will be bumped from 50fps to 60fps.", null, new ConfigurationManagerAttributes {Order = 4}));
+        MoveSpeed = Config.Bind("03. Gameplay", "Player Movement Speed", 1.5f, new ConfigDescription("Determines the speed at which the player moves.", new AcceptableValueRange<float>(0.5f, 5f), new ConfigurationManagerAttributes {Order = 94}));
+        UseRefreshRateForFixedUpdate = Config.Bind("03. Gameplay", "Physics Update Rate Refresh", true, new ConfigDescription("Uses the monitor's refresh rate to determine the physics update rate, reducing camera jitter.", null, new ConfigurationManagerAttributes {Order = 93}));
         UseRefreshRateForFixedUpdate.SettingChanged += (_, _) => UpdateFixedUpdate();
+
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        Application.focusChanged += FocusChanged;
+
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         Log.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private static void FocusChanged(bool focus)
+    {
+        Application.runInBackground = RunInBackground.Value;
     }
 
     private static void UpdateFixedUpdate()
     {
         if (UseRefreshRateForFixedUpdate.Value)
         {
-            Time.fixedDeltaTime = 1f / Screen.currentResolution.refreshRate;
+            Time.fixedDeltaTime = 1f / MaxRefresh;
         }
         else
         {
-            Time.fixedDeltaTime = 1f / FindLowestFrameRateMultipleAboveFifty(Screen.currentResolution.refreshRate);
-        }   
+            Time.fixedDeltaTime = 1f / FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
+        }
+    }
+
+    private static void RunDisplayFixes()
+    {
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, MaxRefresh);
+        Application.runInBackground = RunInBackground.Value;
+        Application.targetFrameRate = MaxRefresh;
+        UpdateFixedUpdate();
     }
 
     private static void SceneManagerOnSceneLoaded(Scene __arg0, LoadSceneMode __arg1)
     {
-        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, Screen.fullScreenMode, Screen.currentResolution.refreshRate);
-
-        UpdateFixedUpdate();
+        RunDisplayFixes();
 
         Time.timeScale = FastForwardThese.Contains(__arg0.name) ? 1000f : 1f;
 
-        PixelPerfectCameras = FindObjectsOfType<PixelPerfectCamera>().ToList();
-
-        UpdateScalers();
-        UpdatePixelPerfectCameras();
         UpdateCameras();
     }
 
@@ -76,32 +107,9 @@ public class Plugin : BaseUnityPlugin
         // Fallback, though this scenario is unlikely with standard monitor refresh rates
         return originalRate;
     }
-
-    private static void UpdateScalers()
-    {
-        CanvasScalers = FindObjectsOfType<CanvasScaler>().ToList();
-        var selectResolution = Screen.currentResolution;
-
-        var aspectRatio = (float) selectResolution.width / selectResolution.height;
-        if (!(aspectRatio > MinAspectRatio)) return;
-
-        foreach (var canvasScaler in CanvasScalers.Where(a => a != null))
-        {
-            canvasScaler.referenceResolution = new Vector2(selectResolution.width, selectResolution.height);
-        }
-    }
-
-    private static void UpdatePixelPerfectCameras()
-    {
-        foreach (var pixelPerfectCamera in PixelPerfectCameras.Where(a => a != null))
-        {
-            pixelPerfectCamera.enabled = false;
-        }
-    }
-
     private static void UpdateCameras()
     {
-        foreach (var allCamera in Camera.allCameras.Where(a => a != null))
+        foreach (var allCamera in Camera.allCameras.Where(a => a))
         {
             allCamera.orthographicSize = CameraZoom.Value;
         }

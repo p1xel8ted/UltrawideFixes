@@ -1,0 +1,406 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>LastCloudiaUltraWide</AssemblyName>
+        <Description>Last Cloudia Ultra-Wide</Description>
+        <Version>0.1.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>LastCloudia</RootNamespace>
+    </PropertyGroup>
+
+  <Import Project="../zip.target"/>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\DOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween43">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\DOTween43.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween46">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\DOTween46.dll</HintPath>
+      </Reference>
+      <Reference Include="Firebase.App">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Firebase.App.dll</HintPath>
+      </Reference>
+      <Reference Include="Firebase.Crashlytics">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Firebase.Crashlytics.dll</HintPath>
+      </Reference>
+      <Reference Include="Firebase.Platform">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Firebase.Platform.dll</HintPath>
+      </Reference>
+      <Reference Include="Google.Protobuf">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Google.Protobuf.dll</HintPath>
+      </Reference>
+      <Reference Include="Grpc.Core">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Grpc.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Grpc.Core.Api">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Grpc.Core.Api.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Data">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Runtime.Serialization">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml.Linq">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
+      </Reference>
+      <Reference Include="LibSardineClient">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\LibSardineClient.dll</HintPath>
+      </Reference>
+      <Reference Include="MsgPack">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\MsgPack.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="Purchasing.Common">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Purchasing.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="ThinkingAnalytics">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\ThinkingAnalytics.dll</HintPath>
+      </Reference>
+      <Reference Include="ThinkingSDK">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\ThinkingSDK.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Configuration">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Device">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Device.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Environments.Internal">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Environments.Internal.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Internal">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Internal.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Registration">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Registration.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Scheduler">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Scheduler.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Telemetry">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Telemetry.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Threading">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Services.Core.Threading.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.AppleCore">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.AppleCore.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.AppleMacosStub">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.AppleMacosStub.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.AppleStub">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.AppleStub.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.SecurityCore">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.SecurityStub">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.SecurityStub.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.Stores">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.Stores.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.WinRTCore">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.WinRTCore.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Purchasing.WinRTStub">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.Purchasing.WinRTStub.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityStore">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\UnityStore.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>F:\Games\steamapps\common\LAST CLOUDIA\BepInEx\interop\__Generated.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="assets\21-9.jpg" />
+      <EmbeddedResource Include="assets\21-9.jpg" />
+      <None Remove="assets\32-9.jpg" />
+      <EmbeddedResource Include="assets\32-9.jpg" />
+    </ItemGroup>
+
+   
+</Project>

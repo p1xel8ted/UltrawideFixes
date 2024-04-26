@@ -17,10 +17,26 @@ public static class Patches
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(PixelPerfectCamera), nameof(PixelPerfectCamera.OnEnable))]
+    public static void PixelPerfectCamera_OnEnable(ref PixelPerfectCamera __instance)
+    {
+        __instance.enabled = false;
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
+    {
+        __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+    }
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(OptionsManager), nameof(OptionsManager.SetLanguage))]
     public static void OptionsManager_SetLanguage()
     {
-        if (GitHubButton != null)
+        if (GitHubButton)
         {
             GitHubButton.text.text = GetText();
         }
@@ -78,7 +94,7 @@ public static class Patches
             _ => "github"
         };
     }
-    
+
     private static void OnPressed()
     {
         Application.OpenURL("https://github.com/p1xel8ted/UltrawideFixes");
