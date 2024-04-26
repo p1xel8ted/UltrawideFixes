@@ -1,6 +1,6 @@
 <div align="center">
   
-![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/b78f1ce3-5cc6-4bd4-b0df-3d7943da0e11)
+![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/239bcf1c-e239-40ef-adb3-c4ce6c7c44ea)
 
 <br/><br/>
 ### A growing collection of ultra wide fixes for games based on the Unity engine. This ranges from a simple black bar fix to extensive UI fixes or additions (i.e. toggling between centered and spanned HUD or adding resolution selectors / extra settings). 
