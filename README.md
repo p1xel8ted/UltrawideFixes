@@ -17,7 +17,7 @@ Please consider supporting the project! Your support helps keep the fixes coming
 ## Table of Contents
 [2](#2) | [A](#A) | [B](#B) | [C](#C) | [D](#D) | [E](#E) | [F](#F) | [G](#G) | [H](#H) | [I](#I) | [J](#J) | [K](#K) | [L](#L) | [M](#M) | [N](#N) | [O](#O) | [P](#P) | [Q](#Q) | [R](#R) | [S](#S) | [T](#T) | [U](#U) | [V](#V) | [W](#W) | [X](#X) | [Y](#Y) | [Z](#Z)
 
-Click on the game title to access the specific fix.<br/><br/>
+Expand a section, and click on the game title to access the specific fix.<br/><br/>
 
 <div id="2"/>
 <details><summary>2</summary>
