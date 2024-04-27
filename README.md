@@ -146,6 +146,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <div id="L"/>
 <details><summary>L</summary>
 
+## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
+#### Last update: 28th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LaikaAgedThroughBlood/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5153ed6a-d2a3-4337-b1bb-38683c303247) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/39cedd05-2c92-40e5-82c9-f57001586581)
+
 ## [Little Goody Two Shoes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LittleGoodyTwoShoes)  
 #### Last update: 25th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LittleGoodyTwoShoes/total?label=downloads&style=for-the-badge)
