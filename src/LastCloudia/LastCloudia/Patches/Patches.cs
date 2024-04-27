@@ -304,6 +304,12 @@ public static class Patches
         __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
         __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
 
+        var cinematicBars = __instance.transform.Find("Faders/CineSco");
+        if (cinematicBars)
+        {
+            cinematicBars.gameObject.SetActive(false);
+        }
+        
         var resultBottomBg = __instance.transform.FindDeepChild("btm_eff");
         if (resultBottomBg)
         {
