@@ -11,9 +11,6 @@ Thank you for supporting the project!
 [![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA)
 <br/><br/>
 
-## Table of Contents
-[2](#2) | [A](#A) | [B](#B) | [C](#C) | [D](#D) | [E](#E) | [F](#F) | [G](#G) | [H](#H) | [I](#I) | [J](#J) | [K](#K) | [L](#L) | [M](#M) | [N](#N) | [O](#O) | [P](#P) | [Q](#Q) | [R](#R) | [S](#S) | [T](#T) | [U](#U) | [V](#V) | [W](#W) | [X](#X) | [Y](#Y) | [Z](#Z)
-
 Expand a section, and click on the game title to access the specific fix.<br/><br/>
 
 <div id="2"/>
@@ -152,6 +149,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5153ed6a-d2a3-4337-b1bb-38683c303247) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/39cedd05-2c92-40e5-82c9-f57001586581)
 
+## [Last Cloudia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LastCloudia)  
+#### Last update: 28th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LastCloudia/total?label=downloads&style=for-the-badge)
+
+![main_game_mix](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2fc61459-e538-460d-a1f5-1616e85abd83) ![main_map](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5b5f3681-386e-4aec-8f65-e081f9e8cdc9)
+
 ## [Little Goody Two Shoes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LittleGoodyTwoShoes)  
 #### Last update: 25th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LittleGoodyTwoShoes/total?label=downloads&style=for-the-badge)
@@ -192,7 +195,13 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 <div id="N"/>
 <details><summary>N</summary>
-  
+
+## [NEO - The World Ends With Yous](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
+#### Last update: 28th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NEOTheWorldEndsWithYou/total?label=downloads&style=for-the-badge)
+
+![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9b4b064a-1de9-4dcf-a122-3d043763fb23) ![main_dialogue](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/606974be-2735-4091-9133-67f3b8409e47)
+ 
 ## [New Super Lucky Tales](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NewSuperLuckyTales)
 #### Last update: 24th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NewSuperLuckyTales/total?label=downloads&style=for-the-badge)
