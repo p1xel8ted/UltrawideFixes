@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.neotheworldendswithyou.ultrawide";
     private const string PluginName = "NEO - The World Ends With You Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
@@ -55,14 +55,17 @@ public class Plugin : BasePlugin
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
     {
+        if (a.name.Equals("Logo"))
+        {
+            SceneManager.LoadScene("Title");
+        }
         UpdateDisplay();
     }
 
     private static void UpdateDisplay()
     {
         Display.displays[DisplayToUse.Value].Activate();
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.Windowed, MaxRefresh);
         Application.targetFrameRate = MaxRefresh;
     }
-
 }

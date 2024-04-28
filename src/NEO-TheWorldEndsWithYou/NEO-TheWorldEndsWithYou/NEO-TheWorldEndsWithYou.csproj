@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>NEO-TheWorldEndsWithYouUltraWide</AssemblyName>
         <Description>NEO - The World Ends With You Ultra-Wide</Description>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
