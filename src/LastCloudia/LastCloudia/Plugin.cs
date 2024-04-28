@@ -6,13 +6,14 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.lastcloudia.ultrawide";
     private const string PluginName = "Last Cloudia Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.0";
 
     internal const float SuperWideAspectRatio = 32f / 9f;
     internal const float BaseAspectRatio = 16f / 9f;
 
     private readonly static string[] CutsceneCameras = ["AdapsBgCamera", "AdapsDollsCamera", "AdapsEnvCamera"];
 
+    internal static float NativeWidth => MainHeight * BaseAspectRatio;
     internal static float MainAspectRatio => (float) MainWidth / MainHeight;
     internal static float NegativeScaleFactor => BaseAspectRatio / MainAspectRatio;
     internal static float PositiveScaleFactor => MainAspectRatio / BaseAspectRatio;
@@ -20,8 +21,10 @@ public class Plugin : BasePlugin
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-    internal static ConfigEntry<bool> RunInBackground { get; private set; }
-    internal static ConfigEntry<bool> MuteInBackground { get; private set; }
+    
+    internal static ConfigEntry<bool> SpeedIncrease { get; private set; }
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
     internal static ConfigEntry<int> CutsceneFieldOfView { get; private set; }
     internal static ConfigEntry<HudLayout> HudLayoutOption { get; private set; }
     internal static ConfigEntry<int> BattleFieldOfView { get; private set; }
@@ -42,37 +45,41 @@ public class Plugin : BasePlugin
         Logger = Log;
 
 
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode"));
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode",null, new ConfigurationManagerAttributes {Order = 107}));
         FullScreenModeConfig.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
         };
 
 
-        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
+        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 106}));
         DisplayToUse.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
         };
 
-        CutsceneFieldOfView = Config.Bind("02. Camera", "Cutscene Field of View", 75, new ConfigDescription("Increase or decrease the field of view of the camera. Default is around 55.", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 100}));
+        CutsceneFieldOfView = Config.Bind("02. Camera", "Cutscene Field of View", 75, new ConfigDescription("Increase or decrease the field of view of the camera. Default is around 55.", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 105}));
 
-        BattleFieldOfView = Config.Bind("02. Camera", "Battle Field of View", 75, new ConfigDescription("Increase or decrease the field of view of the camera. Default is around 55.", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 101}));
+        BattleFieldOfView = Config.Bind("02. Camera", "Battle Field of View", 75, new ConfigDescription("Increase or decrease the field of view of the camera. Default is around 55.", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 104}));
 
-        HudLayoutOption = Config.Bind("03. HUD", "HUD Layout", HudLayout.New, new ConfigDescription("Select the HUD layout. You need to restart the game after changing this setting.", null, new ConfigurationManagerAttributes {Order = 102}));
+        HudLayoutOption = Config.Bind("03. HUD", "HUD Layout", HudLayout.Mix, new ConfigDescription("Select the HUD layout. You need to restart the game after changing this setting.", null, new ConfigurationManagerAttributes {Order = 103}));
 
-        UseNewMainMenu = Config.Bind("04. Misc", "Use New Main Menu", true, new ConfigDescription("Use the partially AI generated main menu (fills the screen at 21:9 and 32:9).", null, new ConfigurationManagerAttributes {Order = 103}));
+        UseNewMainMenu = Config.Bind("04. Main Menu", "Use New Main Menu", true, new ConfigDescription("Use the partially AI generated main menu (fills the screen at 21:9 and 32:9).", null, new ConfigurationManagerAttributes {Order = 102}));
         
-        RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
+        SpeedIncrease = Config.Bind("05. Potentially Dangerous Settings", "Speed Increase", false, new ConfigDescription("Increases the game speed by 5x, 10x, 15x, or 20x when pressing 2, 3, 4, 5, 6. Press 1 to reset. Use with caution.", null, new ConfigurationManagerAttributes {Order = 100}));
+        
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
 
-        MuteInBackground = Config.Bind("04. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
-
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", true, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
+        
+        
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>) SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
 
         Application.focusChanged += (Il2CppSystem.Action<bool>) FocusChanged;
         
         AddComponent<MonoBehaviours.MonoBehaviours>();
+        ClassInjector.RegisterTypeInIl2Cpp<BgMaskScaler>();
         ClassInjector.RegisterTypeInIl2Cpp<CameraEffectRootScaler>();
         ClassInjector.RegisterTypeInIl2Cpp<CutsceneCameraFieldOfViewEnforcer>();
         ClassInjector.RegisterTypeInIl2Cpp<BattleCameraFieldOfViewEnforcer>();
@@ -83,7 +90,7 @@ public class Plugin : BasePlugin
 
     private static void FocusChanged(bool focus)
     {
-        Application.runInBackground = Plugin.RunInBackground.Value;
+        Application.runInBackground = RunInBackground.Value;
         var audioSources = Utils.FindIl2CppType<AudioSource>();
         foreach (var audioSource in audioSources)
         {
@@ -92,12 +99,29 @@ public class Plugin : BasePlugin
         
     }
 
+    private static void UpdateBgMasks()
+    {
+        var meshRenderers = Utils.FindIl2CppType<MeshRenderer>();
+        foreach (var mesh in meshRenderers.Where(mesh => mesh.name.Equals("BgMask", StringComparison.OrdinalIgnoreCase)))
+        {
+            if (mesh.gameObject != null) mesh.gameObject.TryAddComponent<BgMaskScaler>();
+        }  
+        
+        var canvasScalerSimulators = Utils.FindIl2CppType<UICanvasScalerSimulator>();
+        foreach (var css in canvasScalerSimulators.Where(css => css.name.Equals("mask", StringComparison.OrdinalIgnoreCase)))
+        {
+            if (css.gameObject != null) css.gameObject.TryAddComponent<BgMaskScaler>();
+        }
+
+    }
+    
+
     private static void DisableShadowEffects()
     {
         var rects = Utils.FindIl2CppType<RectTransform>();
         foreach (var rect in rects.Where(rect => rect.name.Equals("shadow_effect")))
         {
-            rect.gameObject.SetActive(false);
+            if (rect.gameObject != null) rect.gameObject.SetActive(false);
         }
     }
 
@@ -113,7 +137,7 @@ public class Plugin : BasePlugin
             var path = camera.transform.GetFullPath();
             if (path.Contains("CameraRoot/Shake"))
             {
-                camera.gameObject.TryAddComponent<BattleCameraFieldOfViewEnforcer>();
+                if (camera.gameObject != null) camera.gameObject.TryAddComponent<BattleCameraFieldOfViewEnforcer>();
                 camera.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
             }
             
@@ -123,11 +147,11 @@ public class Plugin : BasePlugin
             var cameraEffects = camera.transform.parent.FindChild("CameraEffectRoot");
             if (cameraEffects)
             {
-                cameraEffects.gameObject.TryAddComponent<CameraEffectRootScaler>();
+                if (cameraEffects.gameObject != null) cameraEffects.gameObject.TryAddComponent<CameraEffectRootScaler>();
             }
             
             //Cutscene Cameras
-            camera.gameObject.TryAddComponent<CutsceneCameraFieldOfViewEnforcer>();
+            if (camera.gameObject != null) camera.gameObject.TryAddComponent<CutsceneCameraFieldOfViewEnforcer>();
         }
     }
 
@@ -136,6 +160,7 @@ public class Plugin : BasePlugin
         UpdateDisplay();
         UpdateCameras();
         DisableShadowEffects();
+        UpdateBgMasks();
     }
 
     private static void UpdateDisplay()
@@ -143,7 +168,6 @@ public class Plugin : BasePlugin
         Display.displays[DisplayToUse.Value].Activate();
         Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
         Application.targetFrameRate = MaxRefresh;
-        Logger.LogInfo($"Display set to {MainWidth}x{MainHeight} @ {MaxRefresh}Hz");
     }
 
     internal enum HudLayout

@@ -1,10 +1,17 @@
-﻿using World.UI.Home;
+﻿using World.Battle.Effect;
+using World.UI.EventDungeon;
+using World.UI.Home;
+using World.UI.News;
 
 namespace LastCloudia.Patches;
 
 [Harmony]
 public static class Patches
 {
+
+    private static Transform TargetSwitchButtons { get; set; }
+    private static Transform SkillButtons { get; set; }
+    private static Transform UnitButtons { get; set; }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIFirstGetPage), nameof(UIFirstGetPage.Show))]
@@ -30,40 +37,63 @@ public static class Patches
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(BattleCameraManager), nameof(BattleCameraManager.Init))]
-    public static void BattleCameraManager_Init(ref BattleCameraManager __instance)
-    {
-        var bgMask = GameObject.Find("Shake/BgMask");
-        if (bgMask)
-        {
-            var newVector = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f);
-            __instance.transform.localScale = newVector;
-        }
-    }
-
-    [HarmonyPostfix]
     [HarmonyPatch(typeof(UICanvasScalerSimulator), nameof(UICanvasScalerSimulator.Start))]
     public static void UICanvasScalerSimulator_Start(ref UICanvasScalerSimulator __instance)
     {
-        var bgMask = GameObject.Find("CameraRoot/Shake/BgMask");
-        if (bgMask)
-        {
-            var newVector = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f);
-            __instance.transform.localScale = newVector;
-        }
-
-        if (__instance.name.Equals("mask", StringComparison.OrdinalIgnoreCase))
-        {
-            var newVector = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f);
-            __instance.transform.localScale = newVector;
-        }
-
         //Disables the jewellery curtain. 
         if (__instance.name.Equals("curtain"))
         {
             __instance.gameObject.SetActive(false);
         }
     }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UICanvasAlphaFader), nameof(UICanvasAlphaFader.OnEnable))]
+    public static void UICanvasAlphaFader_OnEnable(ref UICanvasAlphaFader __instance)
+    {
+        var transform = __instance.transform.FindChild("bottom/screen_footer");
+        if (transform)
+        {
+            var rectTransform = transform.GetComponent<RectTransform>();
+            rectTransform.sizeDelta = rectTransform.sizeDelta with {x = Plugin.MainWidth};
+            transform.position = transform.position with {x = 0};
+            transform.localScale = transform.localScale with {x = Plugin.PositiveScaleFactor};
+        }
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UIEventDungeonPage), nameof(UIEventDungeonPage.EnterModal))]
+    [HarmonyPatch(typeof(UIEventDungeonPage2), nameof(UIEventDungeonPage2.EnterModal))]
+    public static void UIEventDungeonPage_OnEnable(ref UISingletonPageBase<UIEventDungeonPage> __instance)
+    {
+        var backFrame = __instance.transform.FindChild("Panel/backFrame");
+        if (backFrame)
+        {
+            var rectTransform = backFrame.transform.GetComponent<RectTransform>();
+            var width = -Plugin.NativeWidth;
+            rectTransform.sizeDelta = rectTransform.sizeDelta with {x = width};
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UINewsList), nameof(UINewsList.Setup))]
+    [HarmonyPatch(typeof(UINewsList), nameof(UINewsList.OnContentLayoutGroup))]
+    public static void UINewsList_OnEnable(ref UINewsList __instance)
+    {
+        var backFrame = __instance.transform.FindChild("backFrame");
+        if (backFrame)
+        {
+            var rectTransform = backFrame.transform.GetComponent<RectTransform>();
+            var width = -Plugin.NativeWidth;
+            rectTransform.sizeDelta = rectTransform.sizeDelta with {x = width};
+        }
+        var frontFrame = __instance.transform.FindChild("frontFrame");
+        if (frontFrame)
+        {
+            frontFrame.gameObject.SetActive(false);
+        }
+    }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HeaderRenderer), nameof(HeaderRenderer.Start))]
@@ -83,13 +113,7 @@ public static class Patches
     {
         if (UnitButtons && Plugin.HudLayoutOption.Value != Plugin.HudLayout.Default)
         {
-            var ubRect = UnitButtons.GetComponent<RectTransform>();
-            ubRect.anchorMax = Vector2.one;
-            ubRect.anchorMin = Vector2.one;
-            ubRect.pivot = new Vector2(1, 1);
-            ubRect.localScale = new Vector3(0.8f, 0.8f, 1f);
-
-            UnitButtons.position = new Vector3(143f, -43f, 99f);
+            UnitButtons.position = new Vector3(132f, -41.5f, 99);
         }
     }
 
@@ -106,13 +130,7 @@ public static class Patches
     {
         if (SkillButtons && Plugin.HudLayoutOption.Value == Plugin.HudLayout.New)
         {
-            var sbRect = SkillButtons.GetComponent<RectTransform>();
-            sbRect.anchorMin = new Vector2(0.5f, 0);
-            sbRect.anchorMax = new Vector2(0.5f, 0);
-            sbRect.pivot = new Vector2(0.5f, 0);
-            sbRect.localScale = new Vector3(0.8f, 0.8f, 1f);
-
-            SkillButtons.position = new Vector3(0f, -51f, 99);
+            SkillButtons.position = new Vector3(0f, -60f, 99f);
 
             var magic = SkillButtons.transform.Find("mgc");
             if (magic)
@@ -120,51 +138,29 @@ public static class Patches
                 magic.position = new Vector3(0f, -64.5f, 99f);
             }
 
-            var attack = SkillButtons.transform.Find("Attack");
-            if (attack)
-            {
-                attack.position = new Vector3(0f, -58f, 99);
-            }
-
             var skillButtons = SkillButtons.transform.Find("Skill");
             if (skillButtons)
             {
                 var skill1 = skillButtons.Find("Skill1");
-                skill1.transform.position = new Vector3(-39f, -63.5f, 99);
+                skill1.transform.position = new Vector3(-50f, -62f, 99);
 
                 var skill2 = skillButtons.Find("Skill2");
-                skill2.transform.position = new Vector3(40f, -63.5f, 99);
+                skill2.transform.position = new Vector3(50f, -62f, 99);
 
                 var skill3 = skillButtons.Find("Skill3");
-                skill3.transform.position = skill3.transform.position with {y = -64};
+                skill3.transform.position = skill3.transform.position with {y = -62f};
 
                 var special = skillButtons.Find("Special");
-                special.transform.position = new Vector3(17f, -64f, 99f);
+                special.transform.position = special.transform.position with {y = -62f};
             }
         }
     }
-
-    private static Transform TargetSwitchButtons { get; set; }
-    private static Transform SkillButtons { get; set; }
-    private static Transform UnitButtons { get; set; }
 
     private static void MoveAttackButtonsToBottomSquare()
     {
         if (SkillButtons && Plugin.HudLayoutOption.Value == Plugin.HudLayout.Mix)
         {
-            var sbRect = SkillButtons.GetComponent<RectTransform>();
-            sbRect.anchorMin = new Vector2(0.5f, 0);
-            sbRect.anchorMax = new Vector2(0.5f, 0);
-            sbRect.pivot = new Vector2(0.5f, 0);
-            sbRect.localScale = new Vector3(0.8f, 0.8f, 1f);
-
-            SkillButtons.localPosition = new Vector3(0f, Plugin.MainHeight / 2f, 0f);
-
-            var allButtons = SkillButtons.transform.Find("Skill");
-            allButtons.position = new Vector3(0f, -34f, 99);
-
-            var atkButtons = SkillButtons.transform.Find("Attack");
-            atkButtons.position = new Vector3(0f, -58f, 99);
+            SkillButtons.position = new Vector3(0f, -60f, 99f);
 
             var magic = SkillButtons.transform.Find("mgc");
             if (magic)
@@ -178,35 +174,28 @@ public static class Patches
     {
         if (TargetSwitchButtons && Plugin.HudLayoutOption.Value != Plugin.HudLayout.Default)
         {
-            var tsRect = TargetSwitchButtons.GetComponent<RectTransform>();
-
-            tsRect.anchorMax = Vector2.zero;
-            tsRect.anchorMin = Vector2.zero;
-            tsRect.pivot = new Vector2(0, 0);
-            tsRect.localScale = new Vector3(0.8f, 0.8f, 1f);
-
-            TargetSwitchButtons.localPosition = new Vector3(Plugin.MainWidth / 2f, (Plugin.MainHeight / 2f) - 80, 0f);
+            TargetSwitchButtons.position = new Vector3(-132f, -64.5f, 99);
 
             var swtch = TargetSwitchButtons.transform.Find("unit_chg_bt");
             if (swtch)
             {
-                swtch.position = new Vector3(-131f, -65.5f, 99f);
+                swtch.position = new Vector3(-122f, -64.5f, 99f);
             }
             var stamp = TargetSwitchButtons.transform.Find("stamp_bt");
             if (stamp)
             {
-                stamp.position = new Vector3(-131f, -65.5f, 99f);
+                stamp.position = new Vector3(-122f, -64.5f, 99f);
             }
             var targetLock = TargetSwitchButtons.transform.Find("tgt_lock_bt");
             if (stamp)
             {
-                targetLock.position = new Vector3(-131f, -65.5f, 99);
+                targetLock.position = new Vector3(-122f, -64.5f, 99f);
             }
 
             var tgtCharge = TargetSwitchButtons.transform.Find("tgt_chg_bt");
             if (tgtCharge)
             {
-                tgtCharge.position = new Vector3(-155f, -65.5f, 99f);
+                tgtCharge.position = new Vector3(-151.5f, -64.5f, 99f);
             }
         }
     }
@@ -227,7 +216,7 @@ public static class Patches
         MoveHud();
     }
 
-    internal static void MoveHud()
+    private static void MoveHud()
     {
         MoveTargetSwitchToBottomLeft();
         MoveUnitsToBottomRight();
@@ -246,11 +235,6 @@ public static class Patches
     [HarmonyPatch(typeof(BtlUnitSelect), nameof(BtlUnitSelect.MoveCamera))]
     public static void BtlUnitSelect_MoveCamera(ref BtlUnitSelect __instance)
     {
-        var mask = GameObject.Find("CameraRoot/Shake/BgMask");
-        if (mask)
-        {
-            mask.transform.localScale = new Vector3(Plugin.PositiveScaleFactor * 2f, Plugin.PositiveScaleFactor);
-        }
         BtlUnitSelect.BaseCameraScreenOfs = new Vector2(-0.105f, -0.105f);
         BtlUnitSelect.CameraScreenOfsAll = new Vector2(-0.105f, -0.105f);
         __instance.CameraScreenOfs = new Vector2(-0.105f, -0.105f);
@@ -297,53 +281,59 @@ public static class Patches
         }
     }
 
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
-    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
+    private static void DisableCinematicBars(Component canvasScaler)
     {
-        __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-
-        var cinematicBars = __instance.transform.Find("Faders/CineSco");
+        var cinematicBars = canvasScaler.transform.Find("Faders/CineSco");
         if (cinematicBars)
         {
             cinematicBars.gameObject.SetActive(false);
         }
-        
-        var resultBottomBg = __instance.transform.FindDeepChild("btm_eff");
+    }
+
+    private static void ScaleTopBottomEffects(Component canvasScaler)
+    {
+        var resultBottomBg = canvasScaler.transform.FindDeepChild("btm_eff");
         if (resultBottomBg)
         {
             resultBottomBg.localPosition = resultBottomBg.localPosition with {x = -(Plugin.MainWidth / 2f)};
             resultBottomBg.GetComponent<RectTransform>().sizeDelta = new Vector2(400f, Plugin.MainWidth); //this is not a mistake, window is rotated?
         }
 
-        var resultTopBg = __instance.transform.FindDeepChild("top_eff");
+        var resultTopBg = canvasScaler.transform.FindDeepChild("top_eff");
         if (resultTopBg)
         {
             resultTopBg.localPosition = resultTopBg.localPosition with {x = -(Plugin.MainWidth / 2f)};
             resultTopBg.GetComponent<RectTransform>().sizeDelta = new Vector2(400f, Plugin.MainWidth); //this is not a mistake, window is rotated?
         }
-        var menuBackground = __instance.transform.Find("BgGroup/Bg");
-        if (menuBackground != null)
+    }
+
+    private static void ScaleMenuBackground(Component canvasScaler)
+    {
+        var menuBackground = canvasScaler.transform.Find("BgGroup/Bg");
+        if (menuBackground)
         {
             menuBackground.localScale = new Vector3(Plugin.NegativeScaleFactor, Plugin.NegativeScaleFactor, 1f);
         }
+    }
 
-        if (!Plugin.UseNewMainMenu.Value) return;
-
-        var titleOne = __instance.transform.Find("TitlePanel/TitleName");
+    private static void DisableTitleMenuText(Component canvasScaler)
+    {
+        var titleOne = canvasScaler.transform.Find("TitlePanel/TitleName");
         if (titleOne)
         {
             titleOne.gameObject.SetActive(false);
         }
 
-        var titleTwo = __instance.transform.Find("TitlePanel/TitleName_part2");
+        var titleTwo = canvasScaler.transform.Find("TitlePanel/TitleName_part2");
         if (titleTwo)
         {
             titleTwo.gameObject.SetActive(false);
         }
+    }
 
-
+    private static void ReplaceMenuBackground(Component canvasScaler)
+    {
+        var menuBackground = canvasScaler.transform.Find("BgGroup/Bg");
         if (menuBackground)
         {
             var image = menuBackground.GetComponent<Image>();
@@ -358,7 +348,7 @@ public static class Patches
             };
 
             var assembly = Assembly.GetExecutingAssembly();
-            var texture = new Texture2D(2, 2); // Temporary small size for initialization.
+            var texture = new Texture2D(2, 2);
 
             using (var stream = assembly.GetManifestResourceStream(resourceName))
             {
@@ -394,5 +384,30 @@ public static class Patches
             image.sprite = Sprite.Create(texture, new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight), pivot);
             image.transform.localScale = Vector3.one;
         }
+    }
+
+    private static void AdjustCanvasScaler(CanvasScaler canvasScaler)
+    {
+        canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
+        canvasScaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
+    {
+        AdjustCanvasScaler(__instance);
+
+        DisableCinematicBars(__instance);
+
+        ScaleTopBottomEffects(__instance);
+
+        ScaleMenuBackground(__instance);
+
+        if (!Plugin.UseNewMainMenu.Value) return;
+
+        DisableTitleMenuText(__instance);
+
+        ReplaceMenuBackground(__instance);
     }
 }
