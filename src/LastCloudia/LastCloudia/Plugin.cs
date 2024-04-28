@@ -104,13 +104,19 @@ public class Plugin : BasePlugin
         var meshRenderers = Utils.FindIl2CppType<MeshRenderer>();
         foreach (var mesh in meshRenderers.Where(mesh => mesh.name.Equals("BgMask", StringComparison.OrdinalIgnoreCase)))
         {
-            if (mesh.gameObject != null) mesh.gameObject.TryAddComponent<BgMaskScaler>();
+            if (mesh.gameObject)
+            {
+                mesh.gameObject.TryAddComponent<BgMaskScaler>();
+            }
         }  
         
         var canvasScalerSimulators = Utils.FindIl2CppType<UICanvasScalerSimulator>();
         foreach (var css in canvasScalerSimulators.Where(css => css.name.Equals("mask", StringComparison.OrdinalIgnoreCase)))
         {
-            if (css.gameObject != null) css.gameObject.TryAddComponent<BgMaskScaler>();
+            if (css.gameObject)
+            {
+                css.gameObject.TryAddComponent<BgMaskScaler>();
+            }
         }
 
     }
@@ -121,7 +127,10 @@ public class Plugin : BasePlugin
         var rects = Utils.FindIl2CppType<RectTransform>();
         foreach (var rect in rects.Where(rect => rect.name.Equals("shadow_effect")))
         {
-            if (rect.gameObject != null) rect.gameObject.SetActive(false);
+            if (rect.gameObject)
+            {
+                rect.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -137,7 +146,10 @@ public class Plugin : BasePlugin
             var path = camera.transform.GetFullPath();
             if (path.Contains("CameraRoot/Shake"))
             {
-                if (camera.gameObject != null) camera.gameObject.TryAddComponent<BattleCameraFieldOfViewEnforcer>();
+                if (camera.gameObject)
+                {
+                    camera.gameObject.TryAddComponent<BattleCameraFieldOfViewEnforcer>();
+                }
                 camera.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
             }
             
@@ -147,11 +159,17 @@ public class Plugin : BasePlugin
             var cameraEffects = camera.transform.parent.FindChild("CameraEffectRoot");
             if (cameraEffects)
             {
-                if (cameraEffects.gameObject != null) cameraEffects.gameObject.TryAddComponent<CameraEffectRootScaler>();
+                if (cameraEffects.gameObject)
+                {
+                    cameraEffects.gameObject.TryAddComponent<CameraEffectRootScaler>();
+                }
             }
             
             //Cutscene Cameras
-            if (camera.gameObject != null) camera.gameObject.TryAddComponent<CutsceneCameraFieldOfViewEnforcer>();
+            if (camera.gameObject)
+            {
+                camera.gameObject.TryAddComponent<CutsceneCameraFieldOfViewEnforcer>();
+            }
         }
     }
 
@@ -166,7 +184,7 @@ public class Plugin : BasePlugin
     private static void UpdateDisplay()
     {
         Display.displays[DisplayToUse.Value].Activate();
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, MaxRefresh);
         Application.targetFrameRate = MaxRefresh;
     }
 

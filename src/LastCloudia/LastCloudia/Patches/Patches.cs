@@ -1,9 +1,4 @@
-﻿using World.Battle.Effect;
-using World.UI.EventDungeon;
-using World.UI.Home;
-using World.UI.News;
-
-namespace LastCloudia.Patches;
+﻿namespace LastCloudia.Patches;
 
 [Harmony]
 public static class Patches
@@ -51,13 +46,17 @@ public static class Patches
     [HarmonyPatch(typeof(UICanvasAlphaFader), nameof(UICanvasAlphaFader.OnEnable))]
     public static void UICanvasAlphaFader_OnEnable(ref UICanvasAlphaFader __instance)
     {
+        
+        var brown = __instance.transform.Find("overlay");
+        if (brown)
+        {
+            brown.gameObject.SetActive(false);
+        }
+        
         var transform = __instance.transform.FindChild("bottom/screen_footer");
         if (transform)
         {
-            var rectTransform = transform.GetComponent<RectTransform>();
-            rectTransform.sizeDelta = rectTransform.sizeDelta with {x = Plugin.MainWidth};
-            transform.position = transform.position with {x = 0};
-            transform.localScale = transform.localScale with {x = Plugin.PositiveScaleFactor};
+            transform.gameObject.SetActive(false);
         }
     }
     

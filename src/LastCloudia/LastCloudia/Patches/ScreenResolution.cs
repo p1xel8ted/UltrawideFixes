@@ -10,6 +10,10 @@ public static class ScreenResolution
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
         preferredRefreshRate = Plugin.MaxRefresh;
+        if(Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow)
+            fullscreen = true;
+        else
+            fullscreen = false;
     }
     
     [HarmonyPrefix]
@@ -18,6 +22,10 @@ public static class ScreenResolution
     {
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
+        if(Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow)
+            fullscreen = true;
+        else
+            fullscreen = false;
     }
     
     [HarmonyPrefix]

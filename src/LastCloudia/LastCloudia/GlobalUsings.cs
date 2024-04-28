@@ -21,4 +21,7 @@ global using World.Scene;
 global using World.UI;
 global using World.UI.BattleResult;
 global using World.UI.Common;
+global using World.UI.EventDungeon;
+global using World.UI.Home;
+global using World.UI.News;
 global using Object = UnityEngine.Object;

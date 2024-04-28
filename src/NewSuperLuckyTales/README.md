@@ -1,23 +1,12 @@
-### Peaks of Yore Ultra-Wide
+<div align="center">
+  
+![logo3](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e76cd453-4544-4961-a1f6-b2622571cc3a)
 
-![Game Logo](header.jpg)<br>
+## 🚩 Releases Below 🚩
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/F2F2DI3WA)<br>
+https://github.com/p1xel8ted/UltrawideFixes
 
-Tested against Steam version @ 3440x1440
+Please consider supporting the project! Your support helps keep the fixes coming (and maintained), improving the experience for all. Thank you for supporting the project!
 
-## Features
-- Resolution will be the default resolution of the screen the game is on.
-- Fullscreen Windows is forced; options to toggle are disabled as it breaks the resolution until scene change.
-
-## Configuration
-- Press F1 to open the configuration menu. Only option available is to control what screen the game is on.
-
-## Installation
-- Grab the latest release from [here](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore).
-- Extract the contents of the release zip into the game directory.<br />(e.g. **`steamapps\common\Peaks of Yore`** for Steam).
-
-## Credits
-- [Bepis](https://github.com/bbepis) and team for [BepInEx](https://github.com/BepInEx/BepInEx).
-- [ManlyMarco](https://github.com/ManlyMarco) for [ConfigurationManager](https://github.com/BepInEx/BepInEx.ConfigurationManager).
-- [Sinai]() for [Unity Explorer](https://github.com/sinai-dev/UnityExplorer).
+[![ko-fi](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bf2d4fb0-2249-4193-92df-5de01bf40cbf)](https://ko-fi.com/F2F2DI3WA)
+</div>

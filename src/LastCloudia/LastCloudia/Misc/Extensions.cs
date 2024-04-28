@@ -3,12 +3,11 @@
 public static class Extensions
 {
 
-    public static T TryAddComponent<T>(this GameObject gameObject) where T : Component
+    public static void TryAddComponent<T>(this GameObject gameObject) where T : Component
     {
         var component = gameObject.GetComponent<T>();
-        if (component == null)
-            component = gameObject.AddComponent<T>();
-        return component;
+        if (!component)
+            gameObject.AddComponent<T>();
     }
 
     public static Transform FindDeepChild(this Transform parent, string name)
@@ -28,7 +27,7 @@ public static class Extensions
     public static string GetFullPath(this Transform transform)
     {
         var path = transform.name;
-        while (transform.parent != null)
+        while (transform.parent)
         {
             transform = transform.parent;
             path = transform.name + "/" + path;
