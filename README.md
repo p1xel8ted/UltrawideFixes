@@ -14,7 +14,7 @@ Thank you for supporting the project!
 Expand a section, and click on the game title to access the specific fix.<br/><br/>
 
 <div id="2"/>
-<details><summary>2</summary>
+<details><summary>2 (1)</summary>
   
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
 #### Last update 2nd April 2024
@@ -24,7 +24,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="A"/>
-<details><summary>A</summary>
+<details><summary>A (5)</summary>
   
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 #### Last update 3rd April 2024
@@ -42,7 +42,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c348523a-937a-47e5-99ae-c222258e3a57) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2640c196-e896-49b3-b6f3-e86d37112ed6)
 
 ## [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
+#### Last update: 29th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d11b9308-f90b-41f7-ae7c-8dfa552bed70) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a6ceafee-c48d-4e24-a6f2-6758309249a1)
 
 ## [Anodyne 2: Return to Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Anodyne2)  
 #### Last update: 21st April 2024
@@ -52,7 +55,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="B"/>
-<details><summary>B</summary>
+<details><summary>B (3)</summary>
   
 ## [Beautiful Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
@@ -72,14 +75,14 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C</summary>
+<details><summary>C (1)</summary>
 
 ## [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
 
 </details>
 <div id="D"/>
-<details><summary>D</summary>
+<details><summary>D (3)</summary>
 
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 #### Last Update: 17th April 2024
@@ -101,7 +104,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="E"/>
-<details><summary>E</summary>
+<details><summary>E (1)</summary>
 
 ## [Elderand](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand)
 #### Last update: 6th April 2024
@@ -111,7 +114,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="F"/>
-<details><summary>F</summary>
+<details><summary>F (1)</summary>
 
 ## [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
 #### Last update: 25th April 2024
@@ -121,7 +124,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="H"/>
-<details><summary>H</summary>
+<details><summary>H (3)</summary>
 
 ## [Heaven Dust 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HeavenDust1/total?label=downloads&style=for-the-badge)
@@ -134,14 +137,14 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="K"/>
-<details><summary>K</summary>
+<details><summary>K (1)</summary>
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
 
 </details>
 <div id="L"/>
-<details><summary>L</summary>
+<details><summary>L (4)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 #### Last update: 28th April 2024
@@ -166,7 +169,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="M"/>
-<details><summary>M</summary>
+<details><summary>M (4)</summary>
 
 ## [Magenta Horizon](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MagentaHorizon)  
 #### Last update: 12th April 2024
@@ -194,7 +197,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="N"/>
-<details><summary>N</summary>
+<details><summary>N (3)</summary>
 
 ## [NEO - The World Ends With Yous](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
 #### Last update: 28th April 2024
@@ -215,7 +218,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="P"/>
-<details><summary>P</summary>
+<details><summary>P (2)</summary>
 
 ## [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
 #### Last update: 7th April 2024
@@ -228,7 +231,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="S"/>
-<details><summary>S</summary>
+<details><summary>S (6)</summary>
 
 ## [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ScarletMaiden/total?label=downloads&style=for-the-badge)
@@ -256,7 +259,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T</summary>
+<details><summary>T (6)</summary>
 
 ## [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria) 
 #### Last update: 21st April 2024
@@ -287,7 +290,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="U"/>
-<details><summary>U</summary>
+<details><summary>U (1)</summary>
 
 ## [UNSIGHTED](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/UNSIGHTED)
 #### Last updated: 6th April 2024
@@ -297,7 +300,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="V"/>
-<details><summary>V</summary>
+<details><summary>V (2)</summary>
 
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
@@ -310,7 +313,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="W"/>
-<details><summary>W</summary>
+<details><summary>W (3)</summary>
   
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
 #### Last update: 21st April 2024
