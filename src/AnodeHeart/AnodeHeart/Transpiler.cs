@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using HarmonyLib;
-using UnityEngine;
-using Display = UnityEngine.Display;
-
-namespace AnodeHeart
+﻿namespace AnodeHeart
 {
     /// <summary>
     /// A Harmony patch to intercept Unity's Screen.resolutions method and add custom resolutions.
@@ -23,9 +16,9 @@ namespace AnodeHeart
             Plugin.Log.LogInfo("Unity Screen.resolutions intercepted!");
             var newRes = new Resolution
             {
-                height = Display.main.systemHeight,
-                width = Display.main.systemWidth,
-                refreshRate = Screen.resolutions.Max(a => a.refreshRate)
+                height = Plugin.MainHeight,
+                width = Plugin.MainWidth,
+                refreshRate = Plugin.MaxRefresh
             };
             var availableResolutions = Screen.resolutions.ToList();
             availableResolutions.Add(newRes);

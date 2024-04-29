@@ -34,17 +34,15 @@
         <DebugType>portable</DebugType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>H:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>H:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>F:\Games\steamapps\common\AnodeHeart\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-        <PackageReference Include="BepInEx.BaseLib" Version="5.4.21" />
-        <PackageReference Include="Resource.Embedder" Version="2.2.0" />
+        <PackageReference Include="BepInEx.Core" Version="5.4.*" />
     </ItemGroup>
 
 </Project>
