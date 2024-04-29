@@ -21,14 +21,14 @@ public class Plugin : BasePlugin
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-    
-    internal static ConfigEntry<bool> SpeedIncrease { get; private set; }
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
+    private static ConfigEntry<int> DisplayToUse { get; set; }
+    
+    internal static ConfigEntry<bool> SpeedIncrease { get; private set; }
     internal static ConfigEntry<int> CutsceneFieldOfView { get; private set; }
     internal static ConfigEntry<HudLayout> HudLayoutOption { get; private set; }
     internal static ConfigEntry<int> BattleFieldOfView { get; private set; }
-    private static ConfigEntry<int> DisplayToUse { get; set; }
     internal static ConfigEntry<bool> UseNewMainMenu { get; private set; }
     internal static ManualLogSource Logger { get; private set; }
 

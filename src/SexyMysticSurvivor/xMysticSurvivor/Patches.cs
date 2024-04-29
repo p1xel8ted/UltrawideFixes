@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AMG;
 using AMG.UI;
 using DG.Tweening;
@@ -11,21 +12,39 @@ namespace xMysticSurvivor;
 [HarmonyPatch]
 public static class Patches
 {
+
+    private readonly static string[] LeftElements = ["UIAvatar", "WeaponSlots", "SupportSlots", "ActiveSpecialSkill"];
+    private readonly static string[] RightElements = ["UIGameStats"];
+    private static GameObject NewLeftHUD;
+    private static GameObject NewRightHUD;
+
+    private static GameObject BlurOverlay { get; set; }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PopUpManager), nameof(PopUpManager.ShowPopUpConfirm))]
+    [HarmonyPatch(typeof(PopUpManager), nameof(PopUpManager.ShowPopUpWindow))]
+    private static void PopUpManager_Show(ref PopUpManager __instance)
+    {
+        var bg = __instance.transform.Find("Bg");
+        if (bg)
+        {
+            bg.localScale = bg.localScale with {x = Plugin.PositiveScaleFactor};
+        }
+    }
+
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CameraZoomer), nameof(CameraZoomer.ZoomTween))]
     private static void CameraZoomer_Zoom(ref CameraZoomer __instance, float currentZoomValue)
     {
-        if (Plugin.CurrentZoomLevel == null) return;
-
         Plugin.CurrentZoomLevel.Value = currentZoomValue;
-        Plugin.LOG?.LogWarning($"Saving Zoom Level: {currentZoomValue}");
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIOpenChest), nameof(UIOpenChest.Show))]
     private static void UIOpenChest_Show(ref UIOpenChest __instance)
     {
-        if (Plugin.AutoOpenChests is {Value: true})
+        if (Plugin.AutoOpenChests.Value)
         {
             __instance.HandleOpen();
             SoundManager.Instance.PlayUISound(GameSoundID.ui_button_click);
@@ -38,13 +57,13 @@ public static class Patches
     {
         if (clip.name.StartsWith("Crystal Reward Tick"))
         {
-            if (Plugin.CollectCrystalsSound != null && !Plugin.CollectCrystalsSound.Value)
+            if (!Plugin.CollectCrystalsSound.Value)
             {
                 volumeScale = 0;
                 return;
             }
 
-            if (Plugin.CollectCrystalsVolume != null && Plugin.CollectCrystalsVolume.Value != 0)
+            if (Plugin.CollectCrystalsVolume.Value != 0)
             {
                 volumeScale = Helpers.AdjustVolumeScale(volumeScale, Plugin.CollectCrystalsVolume.Value);
                 return;
@@ -53,7 +72,7 @@ public static class Patches
 
         if (clip.name.StartsWith("sunstone"))
         {
-            if (Plugin.SunStoneVolume != null && Plugin.SunStoneVolume.Value != 0)
+            if (Plugin.SunStoneVolume.Value != 0)
             {
                 volumeScale = Helpers.AdjustVolumeScale(volumeScale, Plugin.SunStoneVolume.Value);
             }
@@ -66,16 +85,146 @@ public static class Patches
     {
         if (clip.name.ToLowerInvariant().StartsWith("levelup"))
         {
-            if (Plugin.LevelUpVoice != null && !Plugin.LevelUpVoice.Value)
+            if (!Plugin.LevelUpVoice.Value)
             {
                 volumeScale = 0;
                 return;
             }
 
-            if (Plugin.LevelUpVoiceVolume != null && Plugin.LevelUpVoiceVolume.Value != 0)
+            if (Plugin.LevelUpVoiceVolume.Value != 0)
             {
                 volumeScale = Helpers.AdjustVolumeScale(volumeScale, Plugin.LevelUpVoiceVolume.Value);
             }
+        }
+    }
+
+
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(UILevelSelectScreen), nameof(UILevelSelectScreen.OnShow))]
+    // [HarmonyPatch(typeof(UILevelDifficultScreen), nameof(UILevelDifficultScreen.OnShow))]
+    // private static void UIScreen_OnShow_Pre(ref MonoBehaviour __instance)
+    // {
+    //     var disableMe = GameObject.Find("CanvasOverlay/ScreenWrapper/BG_LevelSelect");
+    //     if (disableMe)
+    //     {
+    //         disableMe.gameObject.SetActive(false);
+    //     }
+    //
+    //     if (__instance.transform.Find("OverlayNew")) return;
+    //
+    //     var image = __instance.GetComponent<Image>();
+    //     if (image)
+    //     {
+    //         image.enabled = false;
+    //     }
+    //
+    //     BlurOverlay = GameObject.Find("CanvasOverlay/ScreenWrapper/UnlockScreen/Overlay");
+    //     if (!BlurOverlay)
+    //     {
+    //         BlurOverlay = GameObject.Find("CanvasOverlay/ScreenWrapper/PopUpScreen/Bg");
+    //     }
+    //
+    //     if (BlurOverlay)
+    //     {
+    //         var newOverlay = Object.Instantiate(BlurOverlay, __instance.transform, true);
+    //         newOverlay.name = "OverlayNew";
+    //         newOverlay.transform.SetAsFirstSibling();
+    //         newOverlay.transform.localScale = newOverlay.transform.localScale with {x = Plugin.PositiveScaleFactor};
+    //         newOverlay.SetActive(true);
+    //     }
+    // }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UIUnlockScreen), nameof(UIUnlockScreen.OnShow))]
+    [HarmonyPatch(typeof(UICharacterSelectScreen), nameof(UICharacterSelectScreen.OnShow))]
+    [HarmonyPatch(typeof(UIPowerupScreen), nameof(UIPowerupScreen.OnShow))]
+    [HarmonyPatch(typeof(UIGalleryScreen), nameof(UIGalleryScreen.OnShow))]
+    [HarmonyPatch(typeof(UISettingScreen), nameof(UISettingScreen.IsShown))]
+    [HarmonyPatch(typeof(UICardLevelUpPopup), nameof(UICardLevelUpPopup.Show))]
+    [HarmonyPatch(typeof(UICardLevelUpPopup), nameof(UICardLevelUpPopup.Start))]
+    [HarmonyPatch(typeof(UILevelSelectScreen), nameof(UILevelSelectScreen.OnShow))]
+    [HarmonyPatch(typeof(UILevelDifficultScreen), nameof(UILevelDifficultScreen.OnShow))]
+    private static void UIScreen2_OnShow(ref MonoBehaviour __instance)
+    {
+        var disableMe = GameObject.Find("CanvasOverlay/ScreenWrapper/BG_LevelSelect");
+        if (disableMe)
+        {
+            disableMe.gameObject.SetActive(false);
+        }
+
+        var ol = __instance.transform.Find("Overlay");
+        if (ol)
+        {
+            ol.localScale = ol.localScale with {x = Plugin.PositiveScaleFactor};
+        }
+
+        var blur = __instance.transform.Find("Blur");
+        if (blur)
+        {
+            blur.localScale = blur.localScale with {x = Plugin.PositiveScaleFactor};
+        }
+
+        if ((ol && ol.gameObject.activeSelf) || (blur && blur.gameObject.activeSelf) || __instance.transform.Find("OverlayNew")) return;
+
+        var image = __instance.GetComponent<Image>();
+        if (image)
+        {
+            image.enabled = false;
+        }
+        BlurOverlay = GameObject.Find("CanvasOverlay/ScreenWrapper/UnlockScreen/Overlay");
+        if (!BlurOverlay)
+        {
+            BlurOverlay = GameObject.Find("CanvasOverlay/ScreenWrapper/PopUpScreen/Bg");
+        }
+
+        if (BlurOverlay)
+        {
+            var newOverlay = Object.Instantiate(BlurOverlay, __instance.transform, true);
+            newOverlay.name = "OverlayNew";
+            newOverlay.transform.SetAsFirstSibling();
+            newOverlay.transform.localScale = newOverlay.transform.localScale with {x = Plugin.PositiveScaleFactor};
+            newOverlay.SetActive(true);
+        }
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UIResult), nameof(UIResult.Show))]
+    private static void UIResult_Show(ref UIResult __instance)
+    {
+        if (__instance.transform.Find("NewBG")) return;
+        var newBg = new GameObject("NewBG");
+        var image = __instance.GetComponent<Image>();
+        Copy.CopyComponent(image, newBg);
+        newBg.AddComponent<Canvas>();
+        newBg.transform.SetParent(__instance.transform);
+        newBg.transform.SetAsFirstSibling();
+        
+        var rect = newBg.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(Plugin.MainWidth * 2f, Plugin.MainHeight * 2f);
+        rect.localScale = Vector3.one;
+        rect.localPosition = Vector3.zero;
+        newBg.SetActive(true);
+        newBg.name = "NewBG";
+        image.enabled = false;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UICharacterStatsOnPauseScreen), nameof(UICharacterStatsOnPauseScreen.OnEnable))]
+    private static void UICharacterStatsOnPauseScreen_OnEnable(ref UICharacterStatsOnPauseScreen __instance)
+    {
+        var corners = __instance.transform.Find("PanelCorners");
+        if (corners)
+        {
+            var x = Plugin.BlackBarSize - 90f;
+            corners.position = corners.position with {x = x};
+        }
+    
+        var bg = __instance.transform.Find("PanelBG");
+        if (bg)
+        {
+            bg.position = bg.position with {x = Plugin.BlackBarSize - 100f};
+            bg.localScale = bg.localScale with {x = Plugin.PositiveScaleFactor + 1f};
         }
     }
 
@@ -83,7 +232,7 @@ public static class Patches
     [HarmonyPatch(typeof(CameraZoomer), nameof(CameraZoomer.MakeTreeTransparent))]
     private static bool CameraZoomer_MakeTreeTransparent(ref CameraZoomer __instance)
     {
-        return Plugin.StopTransparentTrees is not {Value: true};
+        return !Plugin.StopTransparentTrees.Value;
     }
 
     [HarmonyPostfix]
@@ -91,7 +240,7 @@ public static class Patches
     private static void CameraZoomer_Start(ref CameraZoomer __instance)
     {
         Plugin.CameraZoomer = __instance;
-        if (Plugin.CurrentZoomLevel != null && Plugin.CurrentZoomLevel.Value > 0)
+        if (Plugin.CurrentZoomLevel.Value > 0)
         {
             __instance.CurrentZoomValue = Plugin.CurrentZoomLevel.Value;
             if (__instance.cam.orthographic)
@@ -110,25 +259,63 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     private static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
-        switch (__instance.name)
+        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+
+        var titleBlur = __instance.transform.Find("BackgroundComp/BackgroundImage2_BLURMORE");
+        if (titleBlur)
         {
-            case "CanvasOverlay":
-                Plugin.CanvasOverlay = __instance;
-                break;
-            case "CanvasCamera":
-                Plugin.CanvasCamera = __instance;
-                break;
+            var image = titleBlur.GetComponent<Image>();
+            if (image)
+            {
+                image.enabled = false;
+            }
         }
 
-        Plugin.SetScaling();
+
+        var parent = __instance.transform.Find("ScreenWrapper");
+        if (!parent) return;
+
+        var effectCircle = GameObject.Find("CanvasCamera/ScreenWrapperCC");
+
+        NewLeftHUD = new GameObject("NewLeftHUD");
+        NewLeftHUD.transform.SetParent(parent);
+
+        foreach (var element in LeftElements)
+        {
+            var go = parent.Find(element);
+            if (go)
+            {
+                go.SetParent(NewLeftHUD.transform);
+            }
+        }
+        if (effectCircle)
+        {
+            effectCircle.transform.SetParent(NewLeftHUD.transform);
+        }
+
+        NewRightHUD = new GameObject("NewRightHUD");
+        NewRightHUD.transform.SetParent(parent);
+
+        foreach (var element in RightElements)
+        {
+            var go = parent.Find(element);
+            if (go)
+            {
+                go.SetParent(NewRightHUD.transform);
+            }
+        }
+
+        NewRightHUD.gameObject.AddComponent<RightHudMover>();
+        NewLeftHUD.gameObject.AddComponent<LeftHudMover>();
+
+        NewRightHUD.transform.SetAsFirstSibling();
+        NewLeftHUD.transform.SetAsFirstSibling();
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UISettingScreenResolution), nameof(UISettingScreenResolution.FilterResolution))]
     private static void UISettingScreenResolution_FilterResolution(UISettingScreenResolution __instance)
     {
-        if (Plugin.UltraWide is {Value: false}) return;
-
         UISettingScreenResolution.filteredResolution.Clear();
         UISettingScreenResolution.resolutionsText.Clear();
         foreach (var res in Screen.resolutions

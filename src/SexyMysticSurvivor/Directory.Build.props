@@ -23,16 +23,12 @@
   </ItemDefinitionGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>H:\Games\steamapps\common\Sexy Mystic Survivors\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\Games\steamapps\common\Sexy Mystic Survivors\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>H:\Games\steamapps\common\Sexy Mystic Survivors\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\Games\steamapps\common\Sexy Mystic Survivors\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
-
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
-  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="BepInEx.Core" Version="5.*" />
