@@ -42,7 +42,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c348523a-937a-47e5-99ae-c222258e3a57) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2640c196-e896-49b3-b6f3-e86d37112ed6)
 
 ## [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
+#### Last update: 29th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d11b9308-f90b-41f7-ae7c-8dfa552bed70) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a6ceafee-c48d-4e24-a6f2-6758309249a1)
 
 ## [Anodyne 2: Return to Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Anodyne2)  
 #### Last update: 21st April 2024
