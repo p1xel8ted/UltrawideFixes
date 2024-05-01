@@ -6,7 +6,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.lastcloudia.ultrawide";
     private const string PluginName = "Last Cloudia Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     internal const float SuperWideAspectRatio = 32f / 9f;
     internal const float BaseAspectRatio = 16f / 9f;
@@ -28,6 +28,9 @@ public class Plugin : BasePlugin
     internal static ConfigEntry<bool> SpeedIncrease { get; private set; }
     internal static ConfigEntry<int> CutsceneFieldOfView { get; private set; }
     internal static ConfigEntry<HudLayout> HudLayoutOption { get; private set; }
+    internal static ConfigEntry<RightClickMode> RightClickModeOption { get; private set; }
+    internal static ConfigEntry<bool> UseESCBackup { get; private set; }
+    internal static ConfigEntry<MagicHudLayout> MagicHudLayoutOption { get; private set; }
     internal static ConfigEntry<int> BattleFieldOfView { get; private set; }
     internal static ConfigEntry<bool> UseNewMainMenu { get; private set; }
     internal static ManualLogSource Logger { get; private set; }
@@ -63,7 +66,8 @@ public class Plugin : BasePlugin
         BattleFieldOfView = Config.Bind("02. Camera", "Battle Field of View", 75, new ConfigDescription("Increase or decrease the field of view of the camera. Default is around 55.", new AcceptableValueRange<int>(0, 300), new ConfigurationManagerAttributes {Order = 104}));
 
         HudLayoutOption = Config.Bind("03. HUD", "HUD Layout", HudLayout.Mix, new ConfigDescription("Select the HUD layout. You need to restart the game after changing this setting.", null, new ConfigurationManagerAttributes {Order = 103}));
-
+        MagicHudLayoutOption = Config.Bind("03. HUD", "Magic HUD Layout", MagicHudLayout.Normal, new ConfigDescription("Select the Magic HUD layout. You need to restart the game after changing this setting.", null, new ConfigurationManagerAttributes {Order = 101}));
+        
         UseNewMainMenu = Config.Bind("04. Main Menu", "Use New Main Menu", true, new ConfigDescription("Use the partially AI generated main menu (fills the screen at 21:9 and 32:9).", null, new ConfigurationManagerAttributes {Order = 102}));
         
         SpeedIncrease = Config.Bind("05. Potentially Dangerous Settings", "Speed Increase", false, new ConfigDescription("Increases the game speed by 5x, 10x, 15x, or 20x when pressing 2, 3, 4, 5, 6. Press 1 to reset. Use with caution.", null, new ConfigurationManagerAttributes {Order = 100}));
@@ -71,7 +75,10 @@ public class Plugin : BasePlugin
         RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
 
         MuteInBackground = Config.Bind("06. Misc", "Mute In Background", true, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
+       
+        RightClickModeOption = Config.Bind("06. Misc", "Right Click Mode", RightClickMode.Game, new ConfigDescription("Select the right click mode. Game uses the games default implementation, but won't work on all screens. Native uses the Windows API to simulate the ESC key-press. It's important you right-click in empty space.", null, new ConfigurationManagerAttributes {Order = 97}));
         
+        UseESCBackup = Config.Bind("06. Misc", "Right Click Mode Game Backup", true, new ConfigDescription("Use the ESC key as a backup for the right click mode if there is no backup button.", null, new ConfigurationManagerAttributes {Order = 96}));
         
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>) SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
@@ -193,5 +200,18 @@ public class Plugin : BasePlugin
         Default,
         New,
         Mix
+    }
+    
+    internal enum RightClickMode
+    {
+        Native,
+        Game
+    }
+
+    
+    internal enum MagicHudLayout
+    {
+        Overlap,
+        Normal
     }
 }

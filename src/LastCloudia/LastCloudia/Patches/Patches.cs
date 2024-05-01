@@ -1,11 +1,14 @@
-﻿namespace LastCloudia.Patches;
+﻿using UnityEngine.EventSystems;
+using World.Battle.Unit;
+
+namespace LastCloudia.Patches;
 
 [Harmony]
 public static class Patches
 {
 
     private static Transform TargetSwitchButtons { get; set; }
-    private static Transform SkillButtons { get; set; }
+    private static Transform Actions { get; set; }
     private static Transform UnitButtons { get; set; }
 
     [HarmonyPostfix]
@@ -18,6 +21,26 @@ public static class Patches
         {
             bottomEffect.localPosition = bottomEffect.localPosition with {x = -(Plugin.MainWidth / 2f)};
             bottomEffect.GetComponent<RectTransform>().sizeDelta = new Vector2(400f, Plugin.MainWidth); //this is not a mistake, window is rotated?
+        }
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(BtlMagicMenuPanel), nameof(BtlMagicMenuPanel.Activate))]
+    [HarmonyPatch(typeof(BtlMagicMenuPanel), nameof(BtlMagicMenuPanel.Show), typeof(bool))]
+    [HarmonyPatch(typeof(BtlMagicMenuPanel), nameof(BtlMagicMenuPanel.Show), typeof(PlayerUnit), typeof(Il2CppSystem.Action), typeof(BtlUnitSelect))]
+    public static void BtlMagicMenuPanel_Show(ref BtlMagicMenuPanel __instance)
+    {
+        var deco = __instance.transform.FindChild("window/deco_flame");
+        if (deco)
+        {
+            deco.gameObject.SetActive(false);
+        }
+
+        var bk = __instance.transform.FindChild("window/bk");
+        if (bk)
+        {
+            bk.localScale = bk.localScale with {x = 20f};
         }
     }
 
@@ -46,20 +69,19 @@ public static class Patches
     [HarmonyPatch(typeof(UICanvasAlphaFader), nameof(UICanvasAlphaFader.OnEnable))]
     public static void UICanvasAlphaFader_OnEnable(ref UICanvasAlphaFader __instance)
     {
-        
         var brown = __instance.transform.Find("overlay");
         if (brown)
         {
             brown.gameObject.SetActive(false);
         }
-        
+
         var transform = __instance.transform.FindChild("bottom/screen_footer");
         if (transform)
         {
             transform.gameObject.SetActive(false);
         }
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIEventDungeonPage), nameof(UIEventDungeonPage.EnterModal))]
     [HarmonyPatch(typeof(UIEventDungeonPage2), nameof(UIEventDungeonPage2.EnterModal))]
@@ -92,8 +114,8 @@ public static class Patches
             frontFrame.gameObject.SetActive(false);
         }
     }
-
-
+    
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HeaderRenderer), nameof(HeaderRenderer.Start))]
     [HarmonyPatch(typeof(HeaderRenderer), nameof(HeaderRenderer.UpdateUI))]
@@ -110,10 +132,10 @@ public static class Patches
 
     private static void MoveUnitsToBottomRight()
     {
-        if (UnitButtons && Plugin.HudLayoutOption.Value != Plugin.HudLayout.Default)
-        {
-            UnitButtons.position = new Vector3(132f, -41.5f, 99);
-        }
+        if (Plugin.HudLayoutOption.Value == Plugin.HudLayout.Default) return;
+        if (!UnitButtons) return;
+
+        UnitButtons.position = new Vector3(132f, -41.5f, 99);
     }
 
     private static void RemoveMobileBackground(Transform tf)
@@ -125,77 +147,74 @@ public static class Patches
         }
     }
 
-    private static void MoveAttackButtonsToBottomHorizontally()
+    private static void MoveAttackButtonsToBottom()
     {
-        if (SkillButtons && Plugin.HudLayoutOption.Value == Plugin.HudLayout.New)
+        if (Plugin.HudLayoutOption.Value == Plugin.HudLayout.Default) return;
+        if (!Actions) return;
+        
+        // Apply changes common to both layouts.
+        Actions.position = Plugin.MagicHudLayoutOption.Value == Plugin.MagicHudLayout.Normal ? new Vector3(0f, -53f, 99f) : new Vector3(0f, -59.5f, 99f);
+
+        // Position the 'magic' button.
+        var magic = Actions.transform.Find("mgc");
+        if (magic)
         {
-            SkillButtons.position = new Vector3(0f, -60f, 99f);
+            magic.position = Plugin.MagicHudLayoutOption.Value == Plugin.MagicHudLayout.Normal ? new Vector3(0f, -64f, 99f) : new Vector3(0f, -63f, 99f);
+        }
 
-            var magic = SkillButtons.transform.Find("mgc");
-            if (magic)
-            {
-                magic.position = new Vector3(0f, -64.5f, 99f);
-            }
+        // Position the 'magicCancel' button.
+        var mgcCancel = Actions.transform.Find("magicCancel");
+        if (mgcCancel)
+        {
+                mgcCancel.position = new Vector3(0f, -50f, 99f);
+        }
 
-            var skillButtons = SkillButtons.transform.Find("Skill");
+        // Specific positioning based on HUD layout configuration.
+        if (Plugin.HudLayoutOption.Value == Plugin.HudLayout.New)
+        {
+            var skillButtons = Actions.transform.Find("Skill");
             if (skillButtons)
             {
+                var skill3 = skillButtons.Find("Skill3");
+                var y = skill3.position.y;
+
                 var skill1 = skillButtons.Find("Skill1");
-                skill1.transform.position = new Vector3(-50f, -62f, 99);
+                skill1.position = new Vector3(-50f, y, 99);
 
                 var skill2 = skillButtons.Find("Skill2");
-                skill2.transform.position = new Vector3(50f, -62f, 99);
-
-                var skill3 = skillButtons.Find("Skill3");
-                skill3.transform.position = skill3.transform.position with {y = -62f};
-
-                var special = skillButtons.Find("Special");
-                special.transform.position = special.transform.position with {y = -62f};
+                skill2.position = new Vector3(50f, y, 99);
             }
         }
     }
 
-    private static void MoveAttackButtonsToBottomSquare()
-    {
-        if (SkillButtons && Plugin.HudLayoutOption.Value == Plugin.HudLayout.Mix)
-        {
-            SkillButtons.position = new Vector3(0f, -60f, 99f);
-
-            var magic = SkillButtons.transform.Find("mgc");
-            if (magic)
-            {
-                magic.position = new Vector3(0f, -64.5f, 99f);
-            }
-        }
-    }
 
     private static void MoveTargetSwitchToBottomLeft()
     {
-        if (TargetSwitchButtons && Plugin.HudLayoutOption.Value != Plugin.HudLayout.Default)
+        if (Plugin.HudLayoutOption.Value == Plugin.HudLayout.Default) return;
+        if (!TargetSwitchButtons) return;
+
+        TargetSwitchButtons.position = new Vector3(-132f, -64.5f, 99);
+
+        var swtch = TargetSwitchButtons.transform.Find("unit_chg_bt");
+        if (swtch)
         {
-            TargetSwitchButtons.position = new Vector3(-132f, -64.5f, 99);
+            swtch.position = new Vector3(-122f, -64.5f, 99f);
+        }
+        var stamp = TargetSwitchButtons.transform.Find("stamp_bt");
+        if (stamp)
+        {
+            stamp.position = new Vector3(-122f, -64.5f, 99f);
+        }
+        var targetLock = TargetSwitchButtons.transform.Find("tgt_lock_bt");
+        if (stamp)
+        {
+            targetLock.position = new Vector3(-122f, -64.5f, 99f);
+        }
 
-            var swtch = TargetSwitchButtons.transform.Find("unit_chg_bt");
-            if (swtch)
-            {
-                swtch.position = new Vector3(-122f, -64.5f, 99f);
-            }
-            var stamp = TargetSwitchButtons.transform.Find("stamp_bt");
-            if (stamp)
-            {
-                stamp.position = new Vector3(-122f, -64.5f, 99f);
-            }
-            var targetLock = TargetSwitchButtons.transform.Find("tgt_lock_bt");
-            if (stamp)
-            {
-                targetLock.position = new Vector3(-122f, -64.5f, 99f);
-            }
-
-            var tgtCharge = TargetSwitchButtons.transform.Find("tgt_chg_bt");
-            if (tgtCharge)
-            {
-                tgtCharge.position = new Vector3(-151.5f, -64.5f, 99f);
-            }
+        var tgtCharge = TargetSwitchButtons.transform.Find("tgt_chg_bt");
+        if (tgtCharge)
+        {
+            tgtCharge.position = new Vector3(-151.5f, -64.5f, 99f);
         }
     }
 
@@ -208,19 +227,18 @@ public static class Patches
 
         UnitButtons = __instance.transform.Find("Interactable/Bottom/unit");
 
-        SkillButtons = __instance.transform.Find("Interactable/Bottom/action");
+        Actions = __instance.transform.Find("Interactable/Bottom/action");
 
         RemoveMobileBackground(__instance.transform);
 
         MoveHud();
     }
 
-    private static void MoveHud()
+    internal static void MoveHud()
     {
         MoveTargetSwitchToBottomLeft();
         MoveUnitsToBottomRight();
-        MoveAttackButtonsToBottomHorizontally();
-        MoveAttackButtonsToBottomSquare();
+        MoveAttackButtonsToBottom();
     }
 
     [HarmonyPrefix]
