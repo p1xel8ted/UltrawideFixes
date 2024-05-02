@@ -17,7 +17,7 @@ struct EngineRatio {
 }
 
 fn main() {
-    println!("Nier Replicant Ultra-Wide + ReShade + SpecialK (High Frame Rate) AIO 1.0");
+    println!("Nier Replicant Ultra-Wide + ReShade + SpecialK (High Frame Rate) AIO 1.2");
     println!("It is recommended to use this tool on a clean installation of Nier Replicant.");
 
     let game_path = match detect_game_location() {
@@ -58,10 +58,10 @@ fn main() {
 }
 
 fn fix_ui_scaling(game_path: &PathBuf, ratio: &EngineRatio) {
-    println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/NierReplicant/PatchContent");
+    println!("This task downloads files from github they can be found here: https://github.com/p1xel8ted/UltrawideFixes/tree/main/src/NierReplicant/PatchContent");
 
     let source =
-        "https://github.com/p1xel8ted/UltrawideFixes/blob/main/NierReplicant/PatchContent/";
+        "https://github.com/p1xel8ted/UltrawideFixes/blob/main/src/NierReplicant/PatchContent/";
 
     let download_list = vec![
         "ShaderFixes/0a2c2125f4a421a5-vs_replace.txt",
