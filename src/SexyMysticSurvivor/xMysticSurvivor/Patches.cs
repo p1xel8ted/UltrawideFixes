@@ -1,23 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AMG;
-using AMG.UI;
-using DG.Tweening;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.UI;
-
-namespace xMysticSurvivor;
+﻿namespace xMysticSurvivor;
 
 [HarmonyPatch]
 public static class Patches
 {
-
-    private readonly static string[] LeftElements = ["UIAvatar", "WeaponSlots", "SupportSlots", "ActiveSpecialSkill"];
-    private readonly static string[] RightElements = ["UIGameStats"];
-    private static GameObject NewLeftHUD;
-    private static GameObject NewRightHUD;
-
     private static GameObject BlurOverlay { get; set; }
 
     [HarmonyPostfix]
@@ -99,41 +84,6 @@ public static class Patches
     }
 
 
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(UILevelSelectScreen), nameof(UILevelSelectScreen.OnShow))]
-    // [HarmonyPatch(typeof(UILevelDifficultScreen), nameof(UILevelDifficultScreen.OnShow))]
-    // private static void UIScreen_OnShow_Pre(ref MonoBehaviour __instance)
-    // {
-    //     var disableMe = GameObject.Find("CanvasOverlay/ScreenWrapper/BG_LevelSelect");
-    //     if (disableMe)
-    //     {
-    //         disableMe.gameObject.SetActive(false);
-    //     }
-    //
-    //     if (__instance.transform.Find("OverlayNew")) return;
-    //
-    //     var image = __instance.GetComponent<Image>();
-    //     if (image)
-    //     {
-    //         image.enabled = false;
-    //     }
-    //
-    //     BlurOverlay = GameObject.Find("CanvasOverlay/ScreenWrapper/UnlockScreen/Overlay");
-    //     if (!BlurOverlay)
-    //     {
-    //         BlurOverlay = GameObject.Find("CanvasOverlay/ScreenWrapper/PopUpScreen/Bg");
-    //     }
-    //
-    //     if (BlurOverlay)
-    //     {
-    //         var newOverlay = Object.Instantiate(BlurOverlay, __instance.transform, true);
-    //         newOverlay.name = "OverlayNew";
-    //         newOverlay.transform.SetAsFirstSibling();
-    //         newOverlay.transform.localScale = newOverlay.transform.localScale with {x = Plugin.PositiveScaleFactor};
-    //         newOverlay.SetActive(true);
-    //     }
-    // }
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIUnlockScreen), nameof(UIUnlockScreen.OnShow))]
     [HarmonyPatch(typeof(UICharacterSelectScreen), nameof(UICharacterSelectScreen.OnShow))]
@@ -195,11 +145,11 @@ public static class Patches
         if (__instance.transform.Find("NewBG")) return;
         var newBg = new GameObject("NewBG");
         var image = __instance.GetComponent<Image>();
-        Copy.CopyComponent(image, newBg);
+        image.CopyComponent(newBg);
         newBg.AddComponent<Canvas>();
         newBg.transform.SetParent(__instance.transform);
         newBg.transform.SetAsFirstSibling();
-        
+
         var rect = newBg.GetComponent<RectTransform>();
         rect.sizeDelta = new Vector2(Plugin.MainWidth * 2f, Plugin.MainHeight * 2f);
         rect.localScale = Vector3.one;
@@ -219,7 +169,7 @@ public static class Patches
             var x = Plugin.BlackBarSize - 90f;
             corners.position = corners.position with {x = x};
         }
-    
+
         var bg = __instance.transform.Find("PanelBG");
         if (bg)
         {
@@ -255,6 +205,7 @@ public static class Patches
         Plugin.SetZoom();
     }
 
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     private static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
@@ -272,44 +223,45 @@ public static class Patches
         }
 
 
-        var parent = __instance.transform.Find("ScreenWrapper");
-        if (!parent) return;
-
-        var effectCircle = GameObject.Find("CanvasCamera/ScreenWrapperCC");
-
-        NewLeftHUD = new GameObject("NewLeftHUD");
-        NewLeftHUD.transform.SetParent(parent);
-
-        foreach (var element in LeftElements)
-        {
-            var go = parent.Find(element);
-            if (go)
-            {
-                go.SetParent(NewLeftHUD.transform);
-            }
-        }
-        if (effectCircle)
-        {
-            effectCircle.transform.SetParent(NewLeftHUD.transform);
-        }
-
-        NewRightHUD = new GameObject("NewRightHUD");
-        NewRightHUD.transform.SetParent(parent);
-
-        foreach (var element in RightElements)
-        {
-            var go = parent.Find(element);
-            if (go)
-            {
-                go.SetParent(NewRightHUD.transform);
-            }
-        }
-
-        NewRightHUD.gameObject.AddComponent<RightHudMover>();
-        NewLeftHUD.gameObject.AddComponent<LeftHudMover>();
-
-        NewRightHUD.transform.SetAsFirstSibling();
-        NewLeftHUD.transform.SetAsFirstSibling();
+        // var parent = __instance.transform.Find("ScreenWrapper");
+        // if (!parent) return;
+        //
+        // var effectCircle = GameObject.Find("CanvasCamera/ScreenWrapperCC");
+        //
+        // NewLeftHUD = new GameObject("NewLeftHUD");
+        // NewLeftHUD.transform.SetParent(parent, true);
+        //
+        // foreach (var element in LeftElements)
+        // {
+        //     var go = parent.Find(element);
+        //     if (go)
+        //     {
+        //         go.SetParent(NewLeftHUD.transform, true);
+        //     }
+        // }
+        // if (effectCircle)
+        // {
+        //     effectCircle.transform.SetParent(NewLeftHUD.transform, true);
+        //     effectCircle.gameObject.TryAddComponent<SpecialMover>();
+        // }
+        //
+        // NewRightHUD = new GameObject("NewRightHUD");
+        // NewRightHUD.transform.SetParent(parent, true);
+        //
+        // foreach (var element in RightElements)
+        // {
+        //     var go = parent.Find(element);
+        //     if (go)
+        //     {
+        //         go.SetParent(NewRightHUD.transform, true);
+        //     }
+        // }
+        //
+        // NewRightHUD.gameObject.TryAddComponent<RightHudMover>();
+        // NewLeftHUD.gameObject.TryAddComponent<LeftHudMover>();
+        //
+        // NewRightHUD.transform.SetAsFirstSibling();
+        // NewLeftHUD.transform.SetAsFirstSibling();
     }
 
     [HarmonyPostfix]

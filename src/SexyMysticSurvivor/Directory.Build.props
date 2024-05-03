@@ -6,6 +6,11 @@
    <Description>$(MSBuildProjectName)</Description>
     <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
+      <RestoreAdditionalProjectSources>
+          https://api.nuget.org/v3/index.json;
+          https://nuget.bepinex.dev/v3/index.json;
+          https://nuget.samboy.dev/v3/index.json
+      </RestoreAdditionalProjectSources>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
       <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
        <IsPackable>false</IsPackable>
