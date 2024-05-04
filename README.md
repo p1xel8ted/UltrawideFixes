@@ -81,7 +81,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <details><summary>C (1)</summary>
 
 ## [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
+#### Last update: 4th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c38193ce-f849-4013-83c1-4860172a21b5) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e3f962b7-0f96-4a3a-a032-c672c81a29d7)
 
 </details>
 <div id="D"/>
@@ -143,7 +146,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <details><summary>K (1)</summary>
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
+#### Last update: 4th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8cdd42bb-912c-46c9-8cfa-54711993694a) ![main_game2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5f021f54-756c-4ee1-b25f-f5d370add107)
 
 </details>
 <div id="L"/>
