@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Il2CppInterop.Runtime;
-using UnityEngine;
-
-namespace KazeWildMasks;
-
+﻿namespace KazeWildMasks;
 
 public static class Utils
 {

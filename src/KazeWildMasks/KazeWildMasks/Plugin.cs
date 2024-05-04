@@ -1,17 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
-using System.Net.Mime;
-using BepInEx.Unity.IL2CPP;
-using Il2CppInterop.Runtime;
-using Il2CppInterop.Runtime.Injection;
-using Il2CppSystem.IO;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-namespace KazeWildMasks;
+﻿namespace KazeWildMasks;
 
 [Harmony]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -33,7 +20,7 @@ public class Plugin : BasePlugin
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<int> DisplayToUse { get; set; }
-    internal static ManualLogSource Logger { get; set; }
+    internal static ManualLogSource Logger { get; private set; }
 
     public override void Load()
     {

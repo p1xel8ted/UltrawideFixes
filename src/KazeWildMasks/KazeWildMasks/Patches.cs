@@ -1,21 +1,4 @@
-﻿using System.Linq;
-using Il2CppInterop.Runtime;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using Il2CppMono.Security.X509;
-using KazeGameplayHUD;
-using KazeGameplayHUD.Bonus;
-using KazeGameplayHUD.Cutscene;
-using KazeGameplayHUD.Results;
-using KazeMap.Levels.Environment;
-using KazeMenu.Slots;
-using KazeResults;
-using KazeScenes;
-using KazeTransitions;
-using UnityEngine;
-using UnityEngine.UI;
-using Vox.Utilities;
-
-namespace KazeWildMasks;
+﻿namespace KazeWildMasks;
 
 [HarmonyPatch]
 public static class Patches

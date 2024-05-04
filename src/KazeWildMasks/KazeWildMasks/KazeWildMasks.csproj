@@ -33,35 +33,14 @@
       <Reference Include="Assembly-CSharp">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
-      </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="PlayFab">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\PlayFab.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\Unity.Timeline.dll</HintPath>
@@ -108,17 +87,11 @@
       <Reference Include="UnityEngine.DirectorModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.GameCenterModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GridModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ImageConversionModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -128,9 +101,6 @@
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.JSONSerializeModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -149,9 +119,6 @@
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ScreenCaptureModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
@@ -189,9 +156,6 @@
       <Reference Include="UnityEngine.TilemapModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
@@ -201,9 +165,6 @@
       <Reference Include="UnityEngine.UIModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UNETModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
       </Reference>
@@ -212,9 +173,6 @@
       </Reference>
       <Reference Include="UnityEngine.UnityConnectModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
         <HintPath>F:\Games\steamapps\common\Kaze and the Wild Masks\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>

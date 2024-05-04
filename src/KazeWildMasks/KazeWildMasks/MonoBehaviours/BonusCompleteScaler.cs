@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace KazeWildMasks;
+﻿namespace KazeWildMasks.MonoBehaviours;
 
 [Harmony]
 public class BonusCompleteScaler : MonoBehaviour
