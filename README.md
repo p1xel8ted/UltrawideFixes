@@ -58,7 +58,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <details><summary>B (3)</summary>
   
 ## [Beautiful Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
+#### Last update: 3rd May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
+
+![main_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/009a57ea-34b1-4501-a081-d3b5ccfc073c) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8bfad81e-8de4-46b9-8a5c-ccdcd38c158d)
 
 ## [Bing in Wonderland](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BingWonderland)  
 #### Last update: 12th April 2024
@@ -240,7 +243,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
 ## [Sexy Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
+#### Last update: 3rd May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
+
+![main_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/009a57ea-34b1-4501-a081-d3b5ccfc073c) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8bfad81e-8de4-46b9-8a5c-ccdcd38c158d)
 
 ## [Smushi Come Home](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome) 
 #### Last update: 22nd April 2024
