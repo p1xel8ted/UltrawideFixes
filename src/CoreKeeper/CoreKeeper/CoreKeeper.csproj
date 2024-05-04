@@ -1,0 +1,274 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>0.1.0</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DefineConstants>TRACE</DefineConstants>
+        <OutputPath>F:\Games\steamapps\common\Core Keeper\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DefineConstants>TRACE</DefineConstants>
+        <OutputPath>F:\Games\steamapps\common\Core Keeper\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="0Harmony">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="AssetRipper.VersionUtilities">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\AssetRipper.VersionUtilities.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Core">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\BepInEx.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Preloader.Core">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\BepInEx.Preloader.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Unity.Common">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\BepInEx.Unity.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Unity.Mono">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\BepInEx.Unity.Mono.dll</HintPath>
+      </Reference>
+      <Reference Include="CgSDK">
+        <HintPath>..\libs\CgSDK.dll</HintPath>
+      </Reference>
+      <Reference Include="Discord.SDK">
+        <HintPath>..\libs\Discord.SDK.dll</HintPath>
+      </Reference>
+      <Reference Include="DomainReloadHelper.Runtime">
+        <HintPath>..\libs\DomainReloadHelper.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Facepunch.Steamworks.Win64">
+        <HintPath>..\libs\Facepunch.Steamworks.Win64.dll</HintPath>
+      </Reference>
+      <Reference Include="FewesLight">
+        <HintPath>..\libs\FewesLight.dll</HintPath>
+      </Reference>
+      <Reference Include="I2">
+        <HintPath>..\libs\I2.dll</HintPath>
+      </Reference>
+      <Reference Include="modio.UI">
+        <HintPath>..\libs\modio.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="modio.UnityPlugin">
+        <HintPath>..\libs\modio.UnityPlugin.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil">
+        <HintPath>..\libs\Mono.Cecil.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoMod.RuntimeDetour">
+        <HintPath>..\libs\MonoMod.RuntimeDetour.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoMod.Utils">
+        <HintPath>..\libs\MonoMod.Utils.dll</HintPath>
+      </Reference>
+      <Reference Include="NaughtyAttributes.Core">
+        <HintPath>..\libs\NaughtyAttributes.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.Base">
+        <HintPath>..\libs\Pug.Base.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ColorCycling">
+        <HintPath>..\libs\Pug.ColorCycling.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ECS.Authoring">
+        <HintPath>..\libs\Pug.ECS.Authoring.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ECS.Components">
+        <HintPath>..\libs\Pug.ECS.Components.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ECS.ConditionExtensions">
+        <HintPath>..\libs\Pug.ECS.ConditionExtensions.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ECS.Extensions">
+        <HintPath>..\libs\Pug.ECS.Extensions.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ECS.Hybrid">
+        <HintPath>..\libs\Pug.ECS.Hybrid.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.Mods">
+        <HintPath>..\libs\Pug.Mods.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.ObjectIDCategory">
+        <HintPath>..\libs\Pug.ObjectIDCategory.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.Other">
+        <HintPath>..\libs\Pug.Other.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.PP">
+        <HintPath>..\libs\Pug.PP.dll</HintPath>
+      </Reference>
+      <Reference Include="Pug.UnityExtensions">
+        <HintPath>..\libs\Pug.UnityExtensions.dll</HintPath>
+      </Reference>
+      <Reference Include="PugConversion">
+        <HintPath>..\libs\PugConversion.dll</HintPath>
+      </Reference>
+      <Reference Include="PugMap.Common">
+        <HintPath>..\libs\PugMap.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="PugMod.Integration">
+        <HintPath>..\libs\PugMod.Integration.dll</HintPath>
+      </Reference>
+      <Reference Include="PugMod.Loader">
+        <HintPath>..\libs\PugMod.Loader.dll</HintPath>
+      </Reference>
+      <Reference Include="PugMod.Platform">
+        <HintPath>..\libs\PugMod.Platform.dll</HintPath>
+      </Reference>
+      <Reference Include="PugMod.SDK">
+        <HintPath>..\libs\PugMod.SDK.dll</HintPath>
+      </Reference>
+      <Reference Include="PugMod.SDK.Runtime">
+        <HintPath>..\libs\PugMod.SDK.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="PugProperties">
+        <HintPath>..\libs\PugProperties.dll</HintPath>
+      </Reference>
+      <Reference Include="PugRP">
+        <HintPath>..\libs\PugRP.dll</HintPath>
+      </Reference>
+      <Reference Include="QFSW.QC">
+        <HintPath>..\libs\QFSW.QC.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired">
+        <HintPath>..\libs\Rewired.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Core">
+        <HintPath>..\libs\Rewired_Core.dll</HintPath>
+      </Reference>
+      <Reference Include="RoslynCSharp">
+        <HintPath>..\libs\RoslynCSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="SemanticVersioning">
+        <HintPath>F:\Games\steamapps\common\Core Keeper\BepInEx\core\SemanticVersioning.dll</HintPath>
+      </Reference>
+      <Reference Include="Sentry">
+        <HintPath>..\libs\Sentry.dll</HintPath>
+      </Reference>
+      <Reference Include="Sentry.Unity">
+        <HintPath>..\libs\Sentry.Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="SpriteInstancing">
+        <HintPath>..\libs\SpriteInstancing.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>..\libs\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>..\libs\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>..\libs\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Entities">
+        <HintPath>..\libs\Unity.Entities.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Entities.Hybrid">
+        <HintPath>..\libs\Unity.Entities.Hybrid.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>..\libs\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.NetCode">
+        <HintPath>..\libs\Unity.NetCode.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.NetCode.Physics">
+        <HintPath>..\libs\Unity.NetCode.Physics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Networking.Transport">
+        <HintPath>..\libs\Unity.Networking.Transport.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Physics">
+        <HintPath>..\libs\Unity.Physics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Physics.Custom">
+        <HintPath>..\libs\Unity.Physics.Custom.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>..\libs\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>..\libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>..\libs\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Scenes">
+        <HintPath>..\libs\Unity.Scenes.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>..\libs\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Transforms">
+        <HintPath>..\libs\Unity.Transforms.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\libs\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>..\libs\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>..\libs\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>..\libs\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>..\libs\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>..\libs\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>..\libs\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>..\libs\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>..\libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>..\libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>..\libs\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>..\libs\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>..\libs\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>..\libs\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>..\libs\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="CoreKeeper.csproj.DotSettings" />
+    </ItemGroup>
+
+    <Import Project="..\..\zip.target"/>
+
+</Project>
