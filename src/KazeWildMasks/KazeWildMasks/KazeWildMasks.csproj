@@ -259,9 +259,13 @@
       <None Remove="assets\album-21-9.jpg" />
       <None Remove="assets\album-32-9.jpg" />
       <None Remove="assets\splash-21-9.jpg" />
-      <EmbeddedResource Include="assets\splash-21-9.jpg" />
       <None Remove="assets\splash-32-9.jpg" />
-      <EmbeddedResource Include="assets\splash-32-9.jpg" />
+      <None Remove="assets\tree-21-9.png" />
+      <None Remove="assets\tree-32-9.png" />
+      <None Remove="assets\splash-21-9.png" />
+      <EmbeddedResource Include="assets\splash-21-9.png" />
+      <None Remove="assets\splash-32-9.png" />
+      <EmbeddedResource Include="assets\splash-32-9.png" />
       <None Remove="assets\album-21-9.png" />
       <EmbeddedResource Include="assets\album-21-9.png" />
       <None Remove="assets\album-32-9.png" />
