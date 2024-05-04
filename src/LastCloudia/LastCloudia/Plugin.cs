@@ -6,7 +6,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.lastcloudia.ultrawide";
     private const string PluginName = "Last Cloudia Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
 
     internal const float SuperWideAspectRatio = 32f / 9f;
     internal const float BaseAspectRatio = 16f / 9f;
@@ -38,12 +38,6 @@ public class Plugin : BasePlugin
     public static ConfigFile ConfigInstance { get; private set; }
     public override void Load()
     {
-        ConfigInstance = Config;
-        Config.ConfigReloaded += (_, _) =>
-        {
-            Logger.LogInfo("Config reloaded!");
-            UpdateDisplay();
-        };
         
         Logger = Log;
 
@@ -73,7 +67,11 @@ public class Plugin : BasePlugin
         SpeedIncrease = Config.Bind("05. Potentially Dangerous Settings", "Speed Increase", false, new ConfigDescription("Increases the game speed by 5x, 10x, 15x, or 20x when pressing 2, 3, 4, 5, 6. Press 1 to reset. Use with caution.", null, new ConfigurationManagerAttributes {Order = 100}));
         
         RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 99}));
-
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
+        
         MuteInBackground = Config.Bind("06. Misc", "Mute In Background", true, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 98}));
        
         RightClickModeOption = Config.Bind("06. Misc", "Right Click Mode", RightClickMode.Game, new ConfigDescription("Select the right click mode. Game uses the games default implementation, but won't work on all screens. Native uses the Windows API to simulate the ESC key-press. It's important you right-click in empty space.", null, new ConfigurationManagerAttributes {Order = 97}));

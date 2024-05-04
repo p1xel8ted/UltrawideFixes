@@ -1,23 +1,12 @@
-﻿using System.Collections;
-using BepInEx.Unity.IL2CPP.Utils.Collections;
-using World;
-using World.UI.Base;
-
-namespace LastCloudia.MonoBehaviours;
+﻿namespace LastCloudia.MonoBehaviours;
 
 public class MonoBehaviours : MonoBehaviour
 {
-    private bool _customTimeScale;
-    private float _timeScale;
+    private  bool _customTimeScale;
+    private  float _timeScale;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            Plugin.ConfigInstance.Reload();
-            Patches.Patches.MoveHud();
-        }
-
 
         if (Plugin.SpeedIncrease.Value)
         {
@@ -35,7 +24,7 @@ public class MonoBehaviours : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            StartCoroutine(PerformEscape().WrapToIl2Cpp());
+            this.StartCoroutine(PerformEscape());
         }
     }
 
