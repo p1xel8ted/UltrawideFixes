@@ -21,6 +21,41 @@ public static class Patches
     {
         return !Plugin.DontDestroyTiles.Value;
     }
+
+
+    // private static Dictionary<int, List<SendClientSubMapToPugMapSystem.TileUpdate>> GroupTilesByY(NativeArray<SendClientSubMapToPugMapSystem.TileUpdate> tileUpdates)
+    // {
+    //     // Group by 'pos.y' and convert to dictionary
+    //     return tileUpdates
+    //         .GroupBy(tile => tile.pos.y)
+    //         .ToDictionary(group => group.Key, group => group.ToList());
+    // }
+
+
+    //this sort of works, not really
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(SendClientSubMapToPugMapSystem), nameof(SendClientSubMapToPugMapSystem.Apply))]
+    // public static void SendClientSubMapToPugMapSystem_Apply(SendClientSubMapToPugMapSystem __instance)
+    // {
+    //     if (__instance.tileUpdates.Length <= 0) return;
+    //     var data = __instance.tileUpdates.ToArray(Allocator.Temp);
+    //     var groupedTiles = GroupTilesByY(data);
+    //
+    //     foreach (var (y, tiles) in groupedTiles)
+    //     {
+    //         //find max x in tiles
+    //         var start = tiles.Max(tile => tile.pos.x) + 1;
+    //         var end = start + 20;
+    //         for (var i = start; i < end; i++)
+    //         {
+    //             var tile = tiles.FirstOrDefault(t => t.pos.x == start - 1 && t.pos.y == y);
+    //             var pos = new int2(Manager.camera.RenderOrigo.ToInt2().x + i, y);
+    //             var tileType = tile.tileType;
+    //             var tileset = tile.tileset;
+    //             __instance.AddTileOverride(pos, tileset, tileType);
+    //         }
+    //     }
+    // }
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]

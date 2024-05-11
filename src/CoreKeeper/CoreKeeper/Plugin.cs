@@ -28,7 +28,7 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> DisplayToUse { get; set; }
     internal static ConfigEntry<bool> SkipSplashScreens { get; private set; }
     internal static ConfigEntry<bool> DontDestroyTiles { get; private set; }
-    private static ManualLogSource Log { get; set; }
+    internal static ManualLogSource Log { get; set; }
 
     private void Awake()
     {

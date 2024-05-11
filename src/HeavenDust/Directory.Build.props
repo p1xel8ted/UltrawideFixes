@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+
+    <!--Base Settings-->
+    <PropertyGroup>
+        <Description>$(MSBuildProjectName)</Description>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <IsPackable>false</IsPackable>
+        <Authors>p1xel8ted</Authors>
+        <Company>$(Authors)</Company>
+        <Product>$(MSBuildProjectName)</Product>
+        <PackageId>$(MSBuildProjectName)</PackageId>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+
+    <!--Default all references to CopyLocal False.-->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
+    </ItemGroup>
+
+</Project>

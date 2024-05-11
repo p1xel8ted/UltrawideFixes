@@ -1,8 +1,7 @@
-﻿namespace NEOTheWorldEndsWithYouUltraWide;
+﻿namespace HeavenDustOne.Misc;
 
 public static class Extensions
 {
-
     public static T TryAddComponent<T>(this GameObject gameObject) where T : Component
     {
         var component = gameObject.GetComponent<T>();
@@ -13,9 +12,8 @@ public static class Extensions
 
     public static Transform FindDeepChild(this Transform parent, string name)
     {
-        foreach (var c in parent)
+        foreach (Transform child in parent)
         {
-            var child = c.TryCast<Transform>();
             if (child && child.name == name)
                 return child;
 

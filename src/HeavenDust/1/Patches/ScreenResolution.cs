@@ -1,4 +1,4 @@
-﻿namespace NEOTheWorldEndsWithYouUltraWide;
+﻿namespace HeavenDustOne.Patches;
 
 [Harmony]
 public static class ScreenResolution
@@ -10,7 +10,7 @@ public static class ScreenResolution
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
         preferredRefreshRate = Plugin.MaxRefresh;
-        fullscreen = Plugin.FullScreenModeConfig.Value is FullScreenMode.ExclusiveFullScreen or FullScreenMode.FullScreenWindow;
+        fullscreen = Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow || Plugin.FullScreenModeConfig.Value == FullScreenMode.MaximizedWindow;
     }
     
     [HarmonyPrefix]
@@ -19,7 +19,7 @@ public static class ScreenResolution
     {
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
-        fullscreen = Plugin.FullScreenModeConfig.Value is FullScreenMode.ExclusiveFullScreen or FullScreenMode.FullScreenWindow;
+        fullscreen = Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow || Plugin.FullScreenModeConfig.Value == FullScreenMode.MaximizedWindow;
     }
     
     [HarmonyPrefix]

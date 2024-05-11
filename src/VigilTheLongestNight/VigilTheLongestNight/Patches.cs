@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.Analytics;
 using Object = UnityEngine.Object;
 
 namespace VigilTheLongestNight;
@@ -9,7 +10,8 @@ public static class Patches
     private readonly static string[] BackgroundsToScale =
     [
         "BG",
-        "whitebox"
+        "whitebox",
+        "BlackMask"
     ];
 
     private readonly static Dictionary<int, float> TimeOnScreen = new();
@@ -41,18 +43,28 @@ public static class Patches
         }
     }
 
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LayerScroller), nameof(LayerScroller.Start))]
     public static void LayerScroller_Start(ref LayerScroller __instance)
     {
         Plugin.UpdateComponents();
 
+        // if(__instance.name.Equals("MASK"))
+        // {
+        //     if(__instance.transform.FindChild("BlackMask"))
+        //     {
+        //         var x = __instance.transform.localScale.x * Plugin.PositiveScaleFactor;
+        //         __instance.transform.localScale = __instance.transform.localScale with {x = x};
+        //     }
+        // }
         foreach (var background in BackgroundsToScale)
         {
             var bg = __instance.transform.FindChildByRecursive(background);
             if (!bg) continue;
 
+            if (bg.transform.GetPath().Contains("layer/GROUND/BLACK")) continue;
+            
+            Plugin.Logger.LogInfo($"Scaling {bg.GetPath()}");
             var x = bg.transform.localScale.x * Plugin.PositiveScaleFactor;
             bg.transform.localScale = bg.transform.localScale with {x = x};
         }

@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavenDustOne", "1\HeavenDustOne\HeavenDustOne.csproj", "{EC2EDF98-F8CD-4AB8-8414-B15DFAC5DCA2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavenDustOne", "1\HeavenDustOne.csproj", "{EC2EDF98-F8CD-4AB8-8414-B15DFAC5DCA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavenDustTwo", "2\HeavenDustTwo\HeavenDustTwo.csproj", "{283CB5A7-226F-460D-B8B9-BD0D4E85AD49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeavenDustTwo", "2\HeavenDustTwo.csproj", "{283CB5A7-226F-460D-B8B9-BD0D4E85AD49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

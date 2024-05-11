@@ -14,4 +14,21 @@ public static class Extensions
         return gameObject.GetComponent<T>() ? component :
             gameObject.AddComponent<T>();
     }
+    
+    public static string GetPath(this Transform transform)
+    {
+        if (!transform)
+        {
+            throw new ArgumentNullException(nameof(transform));
+        }
+        
+        var path = transform.name;
+        while (transform.parent)
+        {
+            transform = transform.parent;
+            path = $"{transform.name}/{path}";
+        }
+
+        return path;
+    }
 }
