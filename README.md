@@ -132,11 +132,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <div id="H"/>
 <details><summary>H (3)</summary>
 
-## [Heaven Dust 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
+## [Heaven Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
+#### Last update: 11th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HeavenDust1/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/40523009-69eb-4a07-8530-027cafbe7b4d) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/66ab4c95-675b-4312-9c46-2f08df83b0a7)
+
 ## [Heaven Dust 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust2)  
+#### Last update: 11th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HeavenDust2/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7da471c1-5f63-4806-bbd5-3c5f307095fd) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/473f0db8-434f-4ab4-a3f8-af635b4db915)
 
 ## [Hero's Adventure: Road to Passion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HerosAdventureRoadToPassion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HerosAdventureRoadToPassion/total?label=downloads&style=for-the-badge)
