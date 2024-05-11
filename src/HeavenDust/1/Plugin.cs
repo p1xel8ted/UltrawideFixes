@@ -35,7 +35,7 @@ public class Plugin : BaseUnityPlugin
     {
         Log = Logger;
 
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode",null, new ConfigurationManagerAttributes {Order = 109}));
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 109}));
         FullScreenModeConfig.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
@@ -51,7 +51,7 @@ public class Plugin : BaseUnityPlugin
         {
             WindowPositioner = gameObject.AddComponent<WindowPositioner>();
         }
-        
+
         FieldOfView = Config.Bind("02. Camera", "Field of View", 0, new ConfigDescription("Increase or decrease the field of view of the camera.", new AcceptableValueRange<int>(-50, 100), new ConfigurationManagerAttributes {Order = 107}));
         FieldOfView.SettingChanged += (_, _) =>
         {
@@ -69,7 +69,7 @@ public class Plugin : BaseUnityPlugin
         ChromaticAberration = Config.Bind("03. Post-Processing", "Chromatic Aberration", true, new ConfigDescription("Disable the chromatic aberration effect.", null, new ConfigurationManagerAttributes {Order = 103}));
         FogOfWar = Config.Bind("03. Post-Processing", "Fog of War", true, new ConfigDescription("Disable the fog of war effect.", null, new ConfigurationManagerAttributes {Order = 102}));
 
-       
+
         CorrectFixedUpdateRate = Config.Bind("04. Performance", "Modify Physics Rate", true,
             new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate.", null, new ConfigurationManagerAttributes {Order = 101}));
         CorrectFixedUpdateRate.SettingChanged += (_, _) =>
@@ -100,6 +100,25 @@ public class Plugin : BaseUnityPlugin
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
     {
+        if (CameraCtl._instance)
+        {
+            var cam = CameraCtl._instance.m_cameraUI;
+            if (a.name.Equals("start"))
+            {
+                Misc.Utils.EnableBlackBars();
+                cam.pixelRect = new Rect(BlackBarSize, 0, NativeWidth, MainHeight);
+                cam.aspect = BaseAspectRatio;
+            }
+            else
+            {
+                Misc.Utils.DisableBlackBars();
+                ;
+                cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+                cam.aspect = MainAspectRatio;
+            }
+        }
+
+        HeavenDustOne.Misc.Utils.CreateBlackBars();
         UpdateDisplay();
         UpdateCamera();
         UpdateFixedDeltaTime();
@@ -133,16 +152,16 @@ public class Plugin : BaseUnityPlugin
         }
         Log.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
     }
-    
+   
     private static void UpdateCamera()
     {
         if (CameraCtl._instance)
         {
             CameraCtl._instance.m_bEnableRotate = EnableCameraRotation.Value;
         }
-        
+
         if (!Camera.main) return;
-        
+
         var pct = FieldOfView.Value / 100f;
         Camera.main.fieldOfView = 36f + 36f * pct;
     }

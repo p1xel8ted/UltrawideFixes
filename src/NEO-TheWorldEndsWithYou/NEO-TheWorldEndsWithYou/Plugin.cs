@@ -74,6 +74,8 @@ public class Plugin : BasePlugin
     {
         AudioListener.pause = !focus && MuteInBackground.Value;
     }
+    
+    
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
     {

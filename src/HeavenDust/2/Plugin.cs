@@ -5,7 +5,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.heavendust.two";
     private const string PluginName = "Heaven Dust 2 Ultra-Wide";
-    private const string PluginVer = "0.1.2";
+    private const string PluginVer = "0.1.3";
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
