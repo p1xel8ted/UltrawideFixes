@@ -1,0 +1,241 @@
+﻿namespace CrowCountry;
+
+[Harmony]
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+public class Plugin : BaseUnityPlugin
+{
+    private const string PluginGuid = "p1xel8ted.crowcountry.ultrawide";
+    private const string PluginName = "Crow Country Ultra-Wide";
+    private const string PluginVersion = "0.1.0";
+
+    private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
+    private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
+
+    internal static RefreshRate RefreshRate => new()
+    {
+        denominator = 1,
+        numerator = (uint) MaxRefresh
+    };
+
+    internal static ConfigEntry<bool> PSXEffect { get; set; }
+    internal static ConfigEntry<bool> CRTEffect { get; set; }
+
+    internal static ConfigEntry<float> CRTEffectBrightness { get; private set; }
+    internal static ConfigEntry<bool> FlashbackEffect { get; set; }
+    internal static ConfigEntry<bool> GrainEffect { get; set; }
+    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
+    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
+    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
+    private static int MaxRefresh => (int) Screen.resolutions.Max(a => a.refreshRateRatio.value);
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
+    private static ConfigEntry<bool> PoisonOverlay { get; set; }
+    private static ConfigEntry<int> FieldOfView { get; set; }
+
+    internal static ConfigEntry<CanvasScaler.ScaleMode> ScaleMode { get; set; }
+    internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; set; }
+  
+    public static ConfigEntry<bool> Pixelation { get; set; }
+    internal static ConfigEntry<int> DisplayToUse { get; private set; }
+    internal static ManualLogSource Log { get; set; }
+    private static WindowPositioner WindowPositioner { get; set; }
+    private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
+    private static string[] SkipScenes { get; } = ["Logos", "Title"];
+    private static Dictionary<string, WriteOnce<float>> SceneCameraFov { get; } = new();
+    private void Awake()
+    {
+        Log = Logger;
+
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 104}));
+        FullScreenModeConfig.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
+
+
+        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 103}));
+        DisplayToUse.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+        };
+
+        if (PlatformHelper.Is(Platform.Windows) || PlatformHelper.Is(Platform.Wine))
+        {
+            WindowPositioner = gameObject.AddComponent<WindowPositioner>();
+        }
+
+        FieldOfView = Config.Bind("02. Camera", "Field of View", 10, new ConfigDescription("Increase or decrease the field of view of the camera by a percentage.", new AcceptableValueRange<int>(-75, 100), new ConfigurationManagerAttributes {Order = 102}));
+        FieldOfView.SettingChanged += (_, _) =>
+        {
+            UpdateCamera(SceneManager.GetActiveScene().name);
+        };
+
+        PoisonOverlay = Config.Bind("03. Post-Processing", "Poison Overlay", true, new ConfigDescription("Enables the poison overlay in the game.", null, new ConfigurationManagerAttributes {Order = 101}));
+        PoisonOverlay.SettingChanged += (_, _) =>
+        {
+            UpdatePoison();
+        };
+
+        PSXEffect = Config.Bind("03. Post-Processing", "PSX Effect", true, new ConfigDescription("Enables the PSX effect in the game.", null, new ConfigurationManagerAttributes {Order = 100}));
+
+        CRTEffect = Config.Bind("03. Post-Processing", "CRT Effect", false, new ConfigDescription("Enables the CRT effect in the game.", null, new ConfigurationManagerAttributes {Order = 99}));
+
+        CRTEffectBrightness = Config.Bind("03. Post-Processing", "CRT Effect Brightness", -0.4f, new ConfigDescription("Adjust the brightness of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 98}));
+
+        CRTEffectBrightness.SettingChanged += (_, _) =>
+        {
+            var snappedValue = Mathf.Round(CRTEffectBrightness.Value * 20f) / 20f;
+            CRTEffectBrightness.Value = snappedValue;
+            UpdateCrtBrightness();
+        };
+
+
+        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes {Order = 97}));
+
+        Pixelation = Config.Bind("03. Post-Processing", "Pixelation", false, new ConfigDescription("Enables the pixelation effect in the game.", null, new ConfigurationManagerAttributes {Order = 96}));
+        Pixelation.SettingChanged += (_, _) =>
+        {
+            UpdatePixelation();
+        };
+        
+        
+       
+        CorrectFixedUpdateRate = Config.Bind("04. Performance", "Modify Physics Rate", false,
+            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways.", null, new ConfigurationManagerAttributes {Order = 95}));
+        CorrectFixedUpdateRate.SettingChanged += (_, _) =>
+        {
+            UpdateFixedDeltaTime();
+        };
+        
+        UseRefreshRateForFixedUpdateRate = Config.Bind("04. Performance", "Use Refresh Rate For Physics Rate", false,
+            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes {Order = 94}));
+        UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
+        {
+            UpdateFixedDeltaTime();
+        };
+        
+       // ScaleMode = Config.Bind("05. Scalers", "Canvas Scaler Scale Mode", CanvasScaler.ScaleMode.ScaleWithScreenSize, new ConfigDescription("The scaling mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 93}));
+        ScreenMatchMode = Config.Bind("05. Scalers", "Canvas Scaler Screen Match Mode", CanvasScaler.ScreenMatchMode.MatchWidthOrHeight, new ConfigDescription("The screen match mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 92}));
+
+
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 91}));
+        RunInBackground.SettingChanged += (_, _) =>
+        {
+            Application.runInBackground = RunInBackground.Value;
+        };
+
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 90}));
+
+        Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
+
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private static void UpdateCrtBrightness()
+    {
+        Patches.Patches.CrowCountryCamEffectInstance.UpdateColorMatrices();
+    }
+    private static void UpdatePixelation()
+    {
+        if (Pixelation.Value)
+        {
+            Patches.Patches.PixelationOn(Patches.Patches.CrowCountryCamEffectInstance);
+        }
+        else
+        {
+            Patches.Patches.PixelationOff(Patches.Patches.CrowCountryCamEffectInstance);
+        }
+    }
+
+    private static void UpdateFixedDeltaTime()
+    {
+        OriginalFixedDeltaTime.Value = Mathf.RoundToInt(1f / Time.fixedDeltaTime);
+        if (Mathf.Approximately(MaxRefresh, OriginalFixedDeltaTime.Value) || OriginalFixedDeltaTime.Value > MaxRefresh)
+        {
+            Log.LogInfo("Games physics update rate is already equal to (or greater than) your monitors refresh rate. Skipping update.");
+            return;
+        }
+
+        if (CorrectFixedUpdateRate.Value)
+        {
+            if (UseRefreshRateForFixedUpdateRate.Value)
+            {
+                Time.fixedDeltaTime = 1f / MaxRefresh;
+            }
+            else
+            {
+                Time.fixedDeltaTime = 1f / Utils.FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
+            }
+        }
+        else
+        {
+            Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
+        }
+        Log.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
+    }
+
+    internal static void UpdatePoison()
+    {
+        if (Patches.Patches.Poison)
+        {
+            Patches.Patches.Poison.gameObject.SetActive(PoisonOverlay.Value);
+        }
+    }
+
+    private static void UpdateCamera(string scene)
+    {
+        if (!Camera.main) return;
+        if (SkipScenes.Contains(scene)) return;
+
+        if (!SceneCameraFov.ContainsKey(scene))
+        {
+            var fov = new WriteOnce<float>
+            {
+                Value = Camera.main.fieldOfView
+            };
+            SceneCameraFov.Add(scene, fov);
+        }
+
+        var pct = FieldOfView.Value / 100f;
+        Camera.main.fieldOfView = SceneCameraFov[scene].Value + SceneCameraFov[scene].Value * pct;
+    }
+
+    private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
+    {
+        if (a.name.Equals("Logos"))
+        {
+            SceneManager.LoadScene("Title");
+        }
+
+        UpdateDisplay();
+        UpdateFixedDeltaTime();
+        UpdateCamera(a.name);
+        ForceCameraChanges();
+        UpdatePoison();
+    }
+
+    private static void ForceCameraChanges()
+    {
+        foreach (var camera in Camera.allCameras)
+        {
+            camera.rect = new Rect(0, 0, MainWidth, MainHeight);
+            camera.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+            camera.aspect = MainWidth / (float) MainHeight;
+            Plugin.Log.LogInfo($"Forcing camera changes for {camera.name}. Camera aspect ratio set to {camera.aspect} and resolution set to {MainWidth}x{MainHeight}.");
+        }
+    }
+
+    private static void UpdateDisplay()
+    {
+        if (WindowPositioner)
+        {
+            WindowPositioner.Start();
+        }
+        Application.runInBackground = RunInBackground.Value;
+        Display.displays[DisplayToUse.Value].Activate();
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, RefreshRate);
+        Application.targetFrameRate = MaxRefresh;
+    }
+}

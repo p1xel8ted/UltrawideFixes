@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine.Analytics;
-using Object = UnityEngine.Object;
-
-namespace VigilTheLongestNight;
+﻿namespace VigilTheLongestNight;
 
 [Harmony]
 public static class Patches
@@ -11,10 +7,14 @@ public static class Patches
     [
         "BG",
         "whitebox",
-        "BlackMask"
+        "BlackMask",
+        "MASK"
     ];
 
     private readonly static Dictionary<int, float> TimeOnScreen = new();
+
+    private static GameObject LeftHud;
+    private static GameObject RightHud;
 
     [HarmonyPrefix]
     [HarmonyWrapSafe]
@@ -30,14 +30,14 @@ public static class Patches
             if (!child || !child.gameObject.activeSelf) continue;
 
             var instanceId = child.gameObject.GetInstanceID();
-            
+
             if (!TimeOnScreen.TryAdd(instanceId, 0))
             {
                 TimeOnScreen[instanceId] += Time.deltaTime;
             }
 
             if (!(TimeOnScreen[instanceId] > 2f)) continue;
-            
+
             child.gameObject.SetActive(false);
             TimeOnScreen.Remove(instanceId);
         }
@@ -49,23 +49,19 @@ public static class Patches
     {
         Plugin.UpdateComponents();
 
-        // if(__instance.name.Equals("MASK"))
-        // {
-        //     if(__instance.transform.FindChild("BlackMask"))
-        //     {
-        //         var x = __instance.transform.localScale.x * Plugin.PositiveScaleFactor;
-        //         __instance.transform.localScale = __instance.transform.localScale with {x = x};
-        //     }
-        // }
         foreach (var background in BackgroundsToScale)
         {
             var bg = __instance.transform.FindChildByRecursive(background);
             if (!bg) continue;
 
-            if (bg.transform.GetPath().Contains("layer/GROUND/BLACK")) continue;
-            
-            Plugin.Logger.LogInfo($"Scaling {bg.GetPath()}");
+            var path = bg.transform.GetPath();
+            if (path.Contains("layer/GROUND/BLACK", StringComparison.OrdinalIgnoreCase)) continue;
+            if (path.Contains("layer/House0.5/HOLE", StringComparison.OrdinalIgnoreCase)) continue;
+
+            var originalScale = bg.transform.localScale;
             var x = bg.transform.localScale.x * Plugin.PositiveScaleFactor;
+            x += x * 0.50f;
+            Plugin.Logger.LogInfo($"Scaling {bg.transform.GetPath()} from {originalScale.x} to {x}");
             bg.transform.localScale = bg.transform.localScale with {x = x};
         }
     }
@@ -76,9 +72,6 @@ public static class Patches
     {
         __result = __result with {y = __result.y * Plugin.PositiveScaleFactor};
     }
-
-    private static GameObject LeftHud;
-    private static GameObject RightHud;
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Stage), nameof(Stage.load))]

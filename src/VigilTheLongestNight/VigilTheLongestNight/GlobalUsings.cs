@@ -8,6 +8,7 @@ global using Il2CppInterop.Runtime.Injection;
 global using Litus.Geometry;
 global using Night;
 global using System;
+global using System.Collections.Generic;
 global using System.Linq;
 global using System.Reflection;
 global using UnityEngine;

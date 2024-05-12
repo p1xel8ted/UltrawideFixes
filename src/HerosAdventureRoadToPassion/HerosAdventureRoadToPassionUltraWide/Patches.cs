@@ -1,4 +1,9 @@
-﻿namespace HerosAdventureRoadToPassionUltraWide;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace HerosAdventureRoadToPassionUltraWide;
 
 [Harmony]
 public static class Patches

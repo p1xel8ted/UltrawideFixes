@@ -1,0 +1,119 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>0.1.0</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DefineConstants>TRACE</DefineConstants>
+        <OutputPath>F:\Games\steamapps\common\Kynseed\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <DefineConstants>TRACE</DefineConstants>
+        <OutputPath>F:\Games\steamapps\common\Kynseed\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="assets\" />
+	  <Folder Include="lib\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="0Harmony">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Core">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\BepInEx.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.NET.Common">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\BepInEx.NET.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="BepInEx.Preloader.Core">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\BepInEx.Preloader.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Magick.NET-Q16-AnyCPU">
+        <HintPath>..\libs\Magick.NET-Q16-AnyCPU.dll</HintPath>
+      </Reference>
+      <Reference Include="Magick.NET.Core">
+        <HintPath>..\libs\Magick.NET.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\Mono.Cecil.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil.Mdb">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\Mono.Cecil.Mdb.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil.Pdb">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\Mono.Cecil.Pdb.dll</HintPath>
+      </Reference>
+      <Reference Include="Mono.Cecil.Rocks">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\Mono.Cecil.Rocks.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoGame.Framework">
+        <HintPath>..\libs\MonoGame.Framework.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoMod.RuntimeDetour">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoMod.Utils">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\MonoMod.Utils.dll</HintPath>
+      </Reference>
+      <Reference Include="MonoProtoFramework">
+        <HintPath>..\libs\MonoProtoFramework.dll</HintPath>
+      </Reference>
+      <Reference Include="NAudio">
+        <HintPath>..\libs\NAudio.dll</HintPath>
+      </Reference>
+      <Reference Include="NAudio.Vorbis">
+        <HintPath>..\libs\NAudio.Vorbis.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>..\libs\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="NVorbis">
+        <HintPath>..\libs\NVorbis.dll</HintPath>
+      </Reference>
+      <Reference Include="SemanticVersioning">
+        <HintPath>F:\Games\steamapps\common\Kynseed\BepInEx\core\SemanticVersioning.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX">
+        <HintPath>..\libs\SharpDX.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.Direct2D1">
+        <HintPath>..\libs\SharpDX.Direct2D1.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.Direct3D11">
+        <HintPath>..\libs\SharpDX.Direct3D11.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.Direct3D9">
+        <HintPath>..\libs\SharpDX.Direct3D9.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.DXGI">
+        <HintPath>..\libs\SharpDX.DXGI.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.Mathematics">
+        <HintPath>..\libs\SharpDX.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.MediaFoundation">
+        <HintPath>..\libs\SharpDX.MediaFoundation.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.XAudio2">
+        <HintPath>..\libs\SharpDX.XAudio2.dll</HintPath>
+      </Reference>
+      <Reference Include="SharpDX.XInput">
+        <HintPath>..\libs\SharpDX.XInput.dll</HintPath>
+      </Reference>
+      <Reference Include="Steamworks.NET">
+        <HintPath>..\libs\Steamworks.NET.dll</HintPath>
+      </Reference>
+      <Reference Include="WindowsSpecific">
+        <HintPath>..\libs\WindowsSpecific.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <Import Project="..\zip.target"/>
+
+</Project>

@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace VigilTheLongestNight.HUD;
 
 public class RightHudMover : MonoBehaviour
