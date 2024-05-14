@@ -129,6 +129,16 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/15fe48d3-3028-4082-9b34-09428ec073a8) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/858bf856-8ae0-47a4-a914-a7686c532d55)
 
 </details>
+<div id="G"/>
+<details><summary>G (1)</summary>
+
+## [Gift](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/gift)
+#### Last update: 14th May 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/gift/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4976d285-9a16-4eee-904b-7cdc497e610c) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/57f840cb-993e-4e89-8b2b-1129388cab52)
+
+</details>
 <div id="H"/>
 <details><summary>H (3)</summary>
 
