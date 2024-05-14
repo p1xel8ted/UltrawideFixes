@@ -21,21 +21,35 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> CRTEffect { get; set; }
 
     internal static ConfigEntry<float> CRTEffectBrightness { get; private set; }
+    internal static ConfigEntry<float> CRTEffectContrast { get; private set; }
+    internal static ConfigEntry<float> CRTEffectSaturation { get; private set; }
+
+
     internal static ConfigEntry<bool> FlashbackEffect { get; set; }
-    internal static ConfigEntry<bool> GrainEffect { get; set; }
+
+
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     private static int MaxRefresh => (int) Screen.resolutions.Max(a => a.refreshRateRatio.value);
+
+    internal const float NativeAspectRatio = 16f / 9f;
+    internal static float MainAspectRatio => (float) MainWidth / MainHeight;
+
+    internal static float NativeWidth => MainHeight * NativeAspectRatio;
+
+    internal static float BlackBarSize => (MainWidth - NativeWidth) / 2f;
+
+    internal static float ScaleFactor => MainAspectRatio / NativeAspectRatio;
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<bool> PoisonOverlay { get; set; }
     private static ConfigEntry<int> FieldOfView { get; set; }
 
-    internal static ConfigEntry<CanvasScaler.ScaleMode> ScaleMode { get; set; }
     internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; set; }
-  
-    public static ConfigEntry<bool> Pixelation { get; set; }
+
+
+    public static ConfigEntry<int> PixelationAmount { get; set; }
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
     internal static ManualLogSource Log { get; set; }
     private static WindowPositioner WindowPositioner { get; set; }
@@ -80,51 +94,65 @@ public class Plugin : BaseUnityPlugin
 
         CRTEffect = Config.Bind("03. Post-Processing", "CRT Effect", false, new ConfigDescription("Enables the CRT effect in the game.", null, new ConfigurationManagerAttributes {Order = 99}));
 
-        CRTEffectBrightness = Config.Bind("03. Post-Processing", "CRT Effect Brightness", -0.4f, new ConfigDescription("Adjust the brightness of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 98}));
-
+        CRTEffectBrightness = Config.Bind("03. Post-Processing", "CRT Effect Brightness", -0.5f, new ConfigDescription("Adjust the brightness of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 98}));
         CRTEffectBrightness.SettingChanged += (_, _) =>
         {
             var snappedValue = Mathf.Round(CRTEffectBrightness.Value * 20f) / 20f;
             CRTEffectBrightness.Value = snappedValue;
-            UpdateCrtBrightness();
+            UpdateCrt();
         };
 
-
-        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes {Order = 97}));
-
-        Pixelation = Config.Bind("03. Post-Processing", "Pixelation", false, new ConfigDescription("Enables the pixelation effect in the game.", null, new ConfigurationManagerAttributes {Order = 96}));
-        Pixelation.SettingChanged += (_, _) =>
+        CRTEffectContrast = Config.Bind("03. Post-Processing", "CRT Effect Contrast", 0.4f, new ConfigDescription("Adjust the contrast of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 97}));
+        CRTEffectContrast.SettingChanged += (_, _) =>
         {
-            UpdatePixelation();
+            var snappedValue = Mathf.Round(CRTEffectContrast.Value * 20f) / 20f;
+            CRTEffectContrast.Value = snappedValue;
+            UpdateCrt();
         };
-        
-        
-       
+
+        CRTEffectSaturation = Config.Bind("03. Post-Processing", "CRT Effect Saturation", 0f, new ConfigDescription("Adjust the saturation of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 96}));
+        CRTEffectSaturation.SettingChanged += (_, _) =>
+        {
+            var snappedValue = Mathf.Round(CRTEffectSaturation.Value * 20f) / 20f;
+            CRTEffectSaturation.Value = snappedValue;
+            UpdateCrt();
+        };
+
+
+        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes {Order = 95}));
+
+
+        PixelationAmount = Config.Bind("03. Post-Processing", "Pixelation Amount", 4, new ConfigDescription("Lessens the pixelation effect in the game. 0 is off, 4 is game default.", new AcceptableValueRange<int>(0, 4), new ConfigurationManagerAttributes {Order = 93}));
+        PixelationAmount.SettingChanged += (_, _) =>
+        {
+            Patches.Patches.PixelationAdjust(Patches.Patches.CrowCountryCamEffectInstance);
+        };
+
         CorrectFixedUpdateRate = Config.Bind("04. Performance", "Modify Physics Rate", false,
-            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways.", null, new ConfigurationManagerAttributes {Order = 95}));
+            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways.", null, new ConfigurationManagerAttributes {Order = 92}));
         CorrectFixedUpdateRate.SettingChanged += (_, _) =>
         {
             UpdateFixedDeltaTime();
         };
-        
+
         UseRefreshRateForFixedUpdateRate = Config.Bind("04. Performance", "Use Refresh Rate For Physics Rate", false,
-            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes {Order = 94}));
+            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes {Order = 91}));
         UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
         {
             UpdateFixedDeltaTime();
         };
-        
-       // ScaleMode = Config.Bind("05. Scalers", "Canvas Scaler Scale Mode", CanvasScaler.ScaleMode.ScaleWithScreenSize, new ConfigDescription("The scaling mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 93}));
-        ScreenMatchMode = Config.Bind("05. Scalers", "Canvas Scaler Screen Match Mode", CanvasScaler.ScreenMatchMode.MatchWidthOrHeight, new ConfigDescription("The screen match mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 92}));
+
+        // ScaleMode = Config.Bind("05. Scalers", "Canvas Scaler Scale Mode", CanvasScaler.ScaleMode.ScaleWithScreenSize, new ConfigDescription("The scaling mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 93}));
+        ScreenMatchMode = Config.Bind("05. Scalers", "Canvas Scaler Screen Match Mode", CanvasScaler.ScreenMatchMode.MatchWidthOrHeight, new ConfigDescription("The screen match mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 90}));
 
 
-        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 91}));
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 89}));
         RunInBackground.SettingChanged += (_, _) =>
         {
             Application.runInBackground = RunInBackground.Value;
         };
 
-        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 90}));
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 88}));
 
         Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
 
@@ -133,20 +161,9 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
-    private static void UpdateCrtBrightness()
+    private static void UpdateCrt()
     {
         Patches.Patches.CrowCountryCamEffectInstance.UpdateColorMatrices();
-    }
-    private static void UpdatePixelation()
-    {
-        if (Pixelation.Value)
-        {
-            Patches.Patches.PixelationOn(Patches.Patches.CrowCountryCamEffectInstance);
-        }
-        else
-        {
-            Patches.Patches.PixelationOff(Patches.Patches.CrowCountryCamEffectInstance);
-        }
     }
 
     private static void UpdateFixedDeltaTime()

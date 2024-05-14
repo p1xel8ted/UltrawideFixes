@@ -8,12 +8,12 @@
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DefineConstants>TRACE</DefineConstants>
-        <OutputPath>F:\Games\steamapps\common\Crow Country\BepInEx\plugins</OutputPath>
+        <OutputPath>I:\Crow Country\BepInEx\plugins\</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <DefineConstants>TRACE</DefineConstants>
-        <OutputPath>F:\Games\steamapps\common\Crow Country\BepInEx\plugins</OutputPath>
+        <OutputPath>I:\Crow Country\BepInEx\plugins\</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>

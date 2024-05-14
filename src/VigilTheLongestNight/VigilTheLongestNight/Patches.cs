@@ -11,37 +11,41 @@ public static class Patches
         "MASK"
     ];
 
-    private readonly static Dictionary<int, float> TimeOnScreen = new();
+   
 
     private static GameObject LeftHud;
     private static GameObject RightHud;
 
-    [HarmonyPrefix]
-    [HarmonyWrapSafe]
-    [HarmonyPatch(typeof(DamageInfoMan), nameof(DamageInfoMan.work))]
-    public static void DamageInfoMan_work(ref DamageInfoMan __instance)
-    {
-        var damageInfos = GameObject.Find("Damage Info");
-        if (!damageInfos) return;
-
-        foreach (var o in damageInfos.transform)
-        {
-            var child = o.TryCast<Transform>();
-            if (!child || !child.gameObject.activeSelf) continue;
-
-            var instanceId = child.gameObject.GetInstanceID();
-
-            if (!TimeOnScreen.TryAdd(instanceId, 0))
-            {
-                TimeOnScreen[instanceId] += Time.deltaTime;
-            }
-
-            if (!(TimeOnScreen[instanceId] > 2f)) continue;
-
-            child.gameObject.SetActive(false);
-            TimeOnScreen.Remove(instanceId);
-        }
-    }
+    //no longer needed as of game update 0513
+    
+    // private readonly static Dictionary<int, float> TimeOnScreen = new();
+    
+    // [HarmonyPrefix]
+    // [HarmonyWrapSafe]
+    // [HarmonyPatch(typeof(DamageInfoMan), nameof(DamageInfoMan.work))]
+    // public static void DamageInfoMan_work(ref DamageInfoMan __instance)
+    // {
+    //     var damageInfos = GameObject.Find("Damage Info");
+    //     if (!damageInfos) return;
+    //
+    //     foreach (var o in damageInfos.transform)
+    //     {
+    //         var child = o.TryCast<Transform>();
+    //         if (!child || !child.gameObject.activeSelf) continue;
+    //
+    //         var instanceId = child.gameObject.GetInstanceID();
+    //
+    //         if (!TimeOnScreen.TryAdd(instanceId, 0))
+    //         {
+    //             TimeOnScreen[instanceId] += Time.deltaTime;
+    //         }
+    //
+    //         if (!(TimeOnScreen[instanceId] > 2f)) continue;
+    //
+    //         child.gameObject.SetActive(false);
+    //         TimeOnScreen.Remove(instanceId);
+    //     }
+    // }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LayerScroller), nameof(LayerScroller.Start))]

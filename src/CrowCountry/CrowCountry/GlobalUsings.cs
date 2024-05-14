@@ -9,6 +9,7 @@ global using BepInEx;
 global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using com.sfbgames.crowcountry;
+global using com.sfbgames.general.materials;
 global using com.sfbgames.playmaker;
 global using CrowCountry.Misc;
 global using HarmonyLib;

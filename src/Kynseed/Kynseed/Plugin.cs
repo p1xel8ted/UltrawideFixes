@@ -1,6 +1,8 @@
 ﻿using System.Net.Mime;
 using BepInEx.NET.Common;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Graphics;
 using PeaksOfYore;
 
 namespace Kynseed;
@@ -13,10 +15,6 @@ public class Plugin : BasePlugin
     private const string PluginName = "Peaks of Yore Ultra-Wide";
     private const string PluginVersion = "0.1.1";
 
-    // internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    // internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
-    // internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
-    // internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     internal static ConfigEntry<int> FieldOfView { get; private set; }
