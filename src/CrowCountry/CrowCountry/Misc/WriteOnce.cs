@@ -18,6 +18,7 @@ public sealed class WriteOnce<T>
         }
     }
     
+    // ReSharper disable once MemberCanBePrivate.Global
     public bool HasValue { get; private set; }
 
     public static implicit operator T(WriteOnce<T> value) { return value.Value; }

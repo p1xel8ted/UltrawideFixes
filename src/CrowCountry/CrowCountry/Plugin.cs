@@ -44,7 +44,7 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<bool> PoisonOverlay { get; set; }
-    private static ConfigEntry<int> FieldOfView { get; set; }
+    internal static ConfigEntry<int> FieldOfView { get; set; }
 
     internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; set; }
 
@@ -55,7 +55,7 @@ public class Plugin : BaseUnityPlugin
     private static WindowPositioner WindowPositioner { get; set; }
     private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
     private static string[] SkipScenes { get; } = ["Logos", "Title"];
-    private static Dictionary<string, WriteOnce<float>> SceneCameraFov { get; } = new();
+    // private static Dictionary<string, WriteOnce<float>> SceneCameraFov { get; } = new();
     private void Awake()
     {
         Log = Logger;
@@ -201,22 +201,13 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-    private static void UpdateCamera(string scene)
+    internal static void UpdateCamera(string scene)
     {
         if (!Camera.main) return;
         if (SkipScenes.Contains(scene)) return;
 
-        if (!SceneCameraFov.ContainsKey(scene))
-        {
-            var fov = new WriteOnce<float>
-            {
-                Value = Camera.main.fieldOfView
-            };
-            SceneCameraFov.Add(scene, fov);
-        }
-
         var pct = FieldOfView.Value / 100f;
-        Camera.main.fieldOfView = SceneCameraFov[scene].Value + SceneCameraFov[scene].Value * pct;
+        Camera.main.DOFieldOfView(10f + 10f * pct, 1f).SetEase(Ease.InOutQuad);
     }
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)

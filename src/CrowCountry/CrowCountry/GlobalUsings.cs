@@ -12,6 +12,8 @@ global using com.sfbgames.crowcountry;
 global using com.sfbgames.general.materials;
 global using com.sfbgames.playmaker;
 global using CrowCountry.Misc;
+global using CrowCountry.MonoBehaviours;
+global using DG.Tweening;
 global using HarmonyLib;
 global using MonoMod.Utils;
 global using UnityEngine;

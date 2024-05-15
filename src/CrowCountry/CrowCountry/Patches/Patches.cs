@@ -50,6 +50,18 @@ public static class Patches
         {
             Poison = __instance;
         }
+        
+        if (__instance.name.Equals("ItemAction (3D items)", StringComparison.OrdinalIgnoreCase))
+        {
+            var onOff = __instance.transform.GetChild(0);
+            onOff.gameObject.TryAddComponent<CameraFoV>();
+        }
+        
+        if (__instance.name.Equals("Tips (Background)", StringComparison.OrdinalIgnoreCase))
+        {
+            var onOff = __instance.transform.GetChild(0);
+          onOff.gameObject.TryAddComponent<CameraFoV>();
+        }
 
         if (__instance.name.Equals("camera root", StringComparison.OrdinalIgnoreCase))
         {
@@ -62,7 +74,7 @@ public static class Patches
         
         if (__instance.name.Equals("Tips", StringComparison.OrdinalIgnoreCase))
         {
-            __instance.transform.localScale = __instance.transform.localScale with {x = 1f / Plugin.ScaleFactor, y = 1f / Plugin.ScaleFactor};
+            __instance.transform.localScale = __instance.transform.localScale with {x = 0.9f, y = 0.9f};
         }
 
         if (CrowCountryCamEffectInstance)
@@ -194,8 +206,11 @@ internal static void PixelationAdjust(CrowCountryCamEffect __instance)
         if (__instance.name.Equals("UI Canvas Inventory OFF", StringComparison.OrdinalIgnoreCase))
         {
             Utils.DisablePillarBoxing();
+            Plugin.UpdateCamera(SceneManager.GetActiveScene().name);
         }
     }
+    
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
@@ -222,10 +237,9 @@ internal static void PixelationAdjust(CrowCountryCamEffect __instance)
         if (__instance.name.Equals("UI Canvas Inventory OFF", StringComparison.OrdinalIgnoreCase))
         {
             Utils.EnablePillarBoxing(); //this is to cover the edges at superwide+
-            var ui = __instance.transform.Find("child Inventory UI");
-            if (ui)
+            if (Camera.main)
             {
-                ui.transform.localScale = ui.transform.localScale with {x = 0.9f};
+                Camera.main.fieldOfView = 10f;
             }
         }
     }
