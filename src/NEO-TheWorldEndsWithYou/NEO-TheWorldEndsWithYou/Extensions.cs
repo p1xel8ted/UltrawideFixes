@@ -1,4 +1,6 @@
-﻿namespace NEOTheWorldEndsWithYouUltraWide;
+﻿using System;
+
+namespace NEOTheWorldEndsWithYouUltraWide;
 
 public static class Extensions
 {
@@ -11,12 +13,12 @@ public static class Extensions
         return component;
     }
 
-    public static Transform FindDeepChild(this Transform parent, string name)
+    public static Transform FindDeepChild(this Transform parent, string name, StringComparison comparison = StringComparison.CurrentCulture)
     {
         foreach (var c in parent)
         {
             var child = c.TryCast<Transform>();
-            if (child && child.name == name)
+            if (child && child.name.Equals(name, comparison))
                 return child;
 
             var result = child.FindDeepChild(name);

@@ -1,8 +1,6 @@
 ﻿using System;
 using ComicEvent;
-using HnLib;
 using UI.Battle;
-using UI.Event;
 
 namespace NEOTheWorldEndsWithYouUltraWide;
 
@@ -13,26 +11,42 @@ public static class Patches
     private static GameObject BlackBarCanvas { get; set; }
     private static GameObject LeftBlackBar { get; set; }
     private static GameObject RightBlackBar { get; set; }
-
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(UIManager), nameof(UIManager.))]
-    // public static void UIManager_SetupCreateUI(GameObject go, GameObject prefab)
-    // {
-    //     Plugin.Logger.LogWarning($"UIManager.SetupCreateUI: {go.name} {prefab.name}");
-    // }
-
-
+    
+    
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(BattlePauseUI), nameof(BattlePauseUI.OnAwake))]
-    public static void BattlePauseUI_OnAwake(ref BattlePauseUI __instance)
+    [HarmonyPatch(typeof(BattleScene), nameof(BattleScene.OnAwake))]
+    [HarmonyPatch(typeof(BattleScene), nameof(BattleScene.OnStart))]
+    [HarmonyPatch(typeof(BattleScene), nameof(BattleScene.OnInitialize))]
+    public static void BattleScene_OnAwake()
+    {
+       RestrictCamera();
+    }
+    
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BattleResultScene), nameof(BattleResultScene.OnStart))]
+    public static void BattleResultScene_OnStart(ref BattleResultScene __instance)
     {
         EnablePillarBoxing();
     }
+    
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BattleResultScene), nameof(BattleResultScene.OnDestroy))]
+    public static void BattleResultScene_OnDestroy(ref BattleResultScene __instance)
+    {
+        DisablePillarBoxing();
+    }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(BattlePauseUI), nameof(BattlePauseUI.OnAwake))]
+    public static void BattlePauseUI_OnAwake()
+    {
+        EnablePillarBoxing();
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(BattlePauseUI), nameof(BattlePauseUI.OnCancel))]
     [HarmonyPatch(typeof(BattlePauseUI), nameof(BattlePauseUI.OnDecide))]
-    public static void BattlePauseUI_OnCancel(ref BattlePauseUI __instance)
+    public static void BattlePauseUI_OnCancel()
     {
         DisablePillarBoxing();
     }
@@ -41,6 +55,27 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
+        // if (__instance.transform.childCount > 0)
+        // {
+        //     var firstChild = __instance.transform.GetChild(0);
+        //     if (firstChild)
+        //     {
+        //         Plugin.Logger.LogWarning(firstChild.name);
+        //     }
+        // }
+        //
+        var bg = __instance.transform.FindChild("Setting/BG");
+        if (bg)
+        {
+            bg.transform.localScale = bg.transform.localScale with {x = Plugin.PositiveScaleFactor};
+        }
+
+        var fadebg = __instance.transform.FindDeepChild("fade_bg", StringComparison.OrdinalIgnoreCase);
+        if (fadebg)
+        {
+            fadebg.transform.localScale = fadebg.transform.localScale with {x = Plugin.PositiveScaleFactor};
+        }
+        
         __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         if (__instance.name.Contains("transition", StringComparison.OrdinalIgnoreCase))
         {
