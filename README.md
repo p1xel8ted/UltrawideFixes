@@ -78,13 +78,19 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C (1)</summary>
+<details><summary>C (2)</summary>
 
 ## [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 #### Last update: 4th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CoreKeeper/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c38193ce-f849-4013-83c1-4860172a21b5) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/e3f962b7-0f96-4a3a-a032-c672c81a29d7)
+
+## [Crow Country](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CrowCountry)  
+#### Last update: 17th May 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CrowCountry/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/b75e6f82-1190-499c-947a-a85aac9f3d4f) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/f6e7d186-eafc-4e85-97fc-32dbc2c19e5f)
 
 </details>
 <div id="D"/>
