@@ -1,26 +1,31 @@
-﻿namespace CrowCountry.Patches;
+﻿using CrowCountry.Generics;
+
+namespace CrowCountry.Patches;
 
 [Harmony]
 public static class Patches
 {
-    private const string PoisonFrame = "poison frame";
+
+
     private readonly static int ColorMat = Shader.PropertyToID("colorMat");
     private readonly static int BlurTex = Shader.PropertyToID("_BlurTex");
 
-    private static bool PauseCanvasScaled;
-    internal static PlayMakerFSM Poison { get; private set; }
+    private readonly static WriteOnce<float> BgMainX = new();
+    private readonly static WriteOnce<float> BgMainY = new();
 
-    internal static CrowCountryCamEffect CrowCountryCamEffectInstance { get; private set; }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIPixelate), nameof(UIPixelate.OnEnable))]
     public static void UIPixelate_OnEnable(UIPixelate __instance)
     {
         var rect = __instance.GetComponent<RectTransform>();
-        if (rect && __instance.name.Equals("bg main", StringComparison.OrdinalIgnoreCase))
+        if (rect && __instance.name.Equals(Const.BgMain, StringComparison.OrdinalIgnoreCase))
         {
-            var x = rect.sizeDelta.x * Plugin.ScaleFactor;
-            var y = rect.sizeDelta.y * Plugin.ScaleFactor;
+            BgMainX.Value = rect.sizeDelta.x;
+            BgMainY.Value = rect.sizeDelta.y;
+
+            var x = BgMainX.Value * Plugin.PositiveScaleFactor;
+            var y = BgMainY.Value * Plugin.PositiveScaleFactor;
             rect.sizeDelta = new Vector2(x, y);
         }
     }
@@ -33,12 +38,20 @@ public static class Patches
         w = Plugin.MainWidth;
         h = Plugin.MainHeight;
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
-        Plugin.UpdatePoison();
-        if (CrowCountryCamEffectInstance)
+        ScalingCorrections.UpdatePoison();
+        if (Instances.CrowCountryCamEffectInstance)
         {
-            PixelationAdjust(CrowCountryCamEffectInstance);
-            CrowCountryCamEffectInstance.UpdateColorMatrices();
+            Renderer.PixelationAdjust(Instances.CrowCountryCamEffectInstance);
+            Instances.CrowCountryCamEffectInstance.UpdateColorMatrices();
         }
+    }
+
+
+    internal static bool FovAdjusterEnabled()
+    {
+        return Instances.ItemFovAdjusterInstance && Instances.ItemFovAdjusterInstance.gameObject.activeSelf ||
+               Instances.TipFovAdjusterInstance && Instances.TipFovAdjusterInstance.gameObject.activeSelf ||
+               Instances.InventoryFovAdjusterInstance && Instances.InventoryFovAdjusterInstance.gameObject.activeSelf;
     }
 
     [HarmonyPostfix]
@@ -46,49 +59,44 @@ public static class Patches
     [HarmonyPatch(typeof(PlayMakerFSM), nameof(PlayMakerFSM.OnEnable))]
     public static void PlayMakerFSM_OnEnable(PlayMakerFSM __instance)
     {
-        if (__instance.name.Equals(PoisonFrame, StringComparison.OrdinalIgnoreCase))
+        if (__instance.name.Equals(Const.PoisonFrame, StringComparison.OrdinalIgnoreCase))
         {
-            Poison = __instance;
-        }
-        
-        if (__instance.name.Equals("ItemAction (3D items)", StringComparison.OrdinalIgnoreCase))
-        {
-            var onOff = __instance.transform.GetChild(0);
-            onOff.gameObject.TryAddComponent<CameraFoV>();
-        }
-        
-        if (__instance.name.Equals("Tips (Background)", StringComparison.OrdinalIgnoreCase))
-        {
-            var onOff = __instance.transform.GetChild(0);
-          onOff.gameObject.TryAddComponent<CameraFoV>();
+            Instances.PoisonInstance = __instance;
+            ScalingCorrections.PoisonScale.Value = __instance.transform.localScale;
         }
 
-        if (__instance.name.Equals("camera root", StringComparison.OrdinalIgnoreCase))
+        if (__instance.name.Equals(Const.ItemsPlayMaker, StringComparison.OrdinalIgnoreCase))
         {
-            var letterBox = __instance.transform.Find("camera parent/Cutscene Camera/letterbox");
-            if (letterBox)
-            {
-                letterBox.gameObject.SetActive(false);
-            }
+            var onOff = __instance.transform.GetChild(0);
+            Instances.ItemFovAdjusterInstance = onOff.gameObject.TryAddComponent<FovAdjuster>();
+            Instances.ItemFovAdjusterInstance.enableDuration = 0.4f;
+            Instances.ItemFovAdjusterInstance.disableDuration = 0.75f;
         }
-        
-        if (__instance.name.Equals("Tips", StringComparison.OrdinalIgnoreCase))
+
+        if (__instance.name.Equals(Const.TipsBackgroundPlayMaker, StringComparison.OrdinalIgnoreCase))
+        {
+            var onOff = __instance.transform.GetChild(0);
+            Instances.TipFovAdjusterInstance = onOff.gameObject.TryAddComponent<FovAdjuster>();
+            Instances.TipFovAdjusterInstance.enableDuration = 0f;
+            Instances.ItemFovAdjusterInstance.disableDuration = 0.75f;
+        }
+
+        if (__instance.name.Equals(Const.TipsPlayMaker, StringComparison.OrdinalIgnoreCase))
         {
             __instance.transform.localScale = __instance.transform.localScale with {x = 0.9f, y = 0.9f};
         }
 
-        if (CrowCountryCamEffectInstance)
-        {
-            PixelationAdjust(CrowCountryCamEffectInstance);
-            CrowCountryCamEffectInstance.UpdateColorMatrices();
-        }
+        if (!Instances.CrowCountryCamEffectInstance) return;
+
+        Renderer.PixelationAdjust(Instances.CrowCountryCamEffectInstance);
+        Instances.CrowCountryCamEffectInstance.UpdateColorMatrices();
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CrowCountryCamEffect), nameof(CrowCountryCamEffect.OnRenderImage))]
     public static void CrowCountryCamEffect_OnRenderImage(CrowCountryCamEffect __instance)
     {
-        CrowCountryCamEffectInstance = __instance;
+        Instances.CrowCountryCamEffectInstance = __instance;
 
         __instance.enableCRTBlurFilter = Plugin.CRTEffect.Value;
         __instance.enableCRTPostFilter = Plugin.CRTEffect.Value;
@@ -102,79 +110,16 @@ public static class Patches
     [HarmonyPatch(typeof(CrowCountryCamEffect), nameof(CrowCountryCamEffect.Awake))]
     public static void CrowCountryCamEffect_Awake(CrowCountryCamEffect __instance)
     {
-        CrowCountryCamEffectInstance = __instance;
+        Instances.CrowCountryCamEffectInstance = __instance;
 
         if (Application.isPlaying)
         {
             Application.targetFrameRate = (int) Plugin.RefreshRate.value;
         }
 
-        PixelationAdjust(__instance);
+        Renderer.PixelationAdjust(__instance);
     }
 
-
-internal static void PixelationAdjust(CrowCountryCamEffect __instance)
-{
-    QualitySettings.antiAliasing = Plugin.PixelationAmount.Value > 0 ? 0 : 4;
-
-    ReleaseRenderTexture(ref __instance.midBuffer);
-    ReleaseRenderTexture(ref __instance.psxRenderTexture);
-    ReleaseRenderTexture(ref __instance.camRenderTexture1);
-    ReleaseRenderTexture(ref __instance.camRenderTexture2);
-    ReleaseRenderTexture(ref __instance.camRenderTexture3);
-    ReleaseRenderTexture(ref __instance.camRenderTexture4);
-    ReleaseRenderTexture(ref __instance.camRenderTexture5);
-    ReleaseRenderTexture(ref __instance.crtBlurTexture);
-    ReleaseRenderTexture(ref __instance.fbBuffer);
-    
-    __instance.midBuffer = new RenderTexture(Adjust(1248), Adjust(702, true), 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-    __instance.psxRenderTexture = new RenderTexture(Adjust(550), Adjust(400, true), 16, RenderTextureFormat.ARGB32)
-    {
-        filterMode = Plugin.PixelationAmount.Value == 0 ? FilterMode.Trilinear : FilterMode.Point
-    };
-    __instance.camRenderTexture1 = new RenderTexture(Adjust(1248), Adjust(702, true), 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-    __instance.camRenderTexture2 = new RenderTexture(Adjust(624), Adjust(351, true), 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-    __instance.camRenderTexture3 = new RenderTexture(Adjust(416), Adjust(234, true), 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-    __instance.camRenderTexture4 = new RenderTexture(Adjust(550), Adjust(400, true), 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-    __instance.camRenderTexture5 = new RenderTexture(1, 1, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-    __instance.crtBlurTexture = new RenderTexture(Adjust(1248), Adjust(702, true), 0);
-    __instance.fbBuffer = new RenderTexture(Adjust(416), Adjust(234, true), 0)
-    {
-        filterMode = Plugin.PixelationAmount.Value == 0 ? FilterMode.Trilinear : FilterMode.Point
-    };
-    
-    __instance.UpdateColorMatrices();
-    return;
-    
-    void ReleaseRenderTexture(ref RenderTexture rt)
-    {
-        if (!rt) return;
-        rt.Release();
-        rt = null;
-    }
-}
-
-
-    private static int Adjust(int value, bool height = false)
-    {
-        return Plugin.PixelationAmount.Value switch
-        {
-            0 => height ? Plugin.MainHeight : Plugin.MainWidth,
-            1 =>
-                //100% resolution increase
-                Mathf.RoundToInt(value * 2),
-            2 =>
-                //75% resolution increase
-                Mathf.RoundToInt(value * 1.75f),
-            3 =>
-                // 50% resolution increase
-                Mathf.RoundToInt(value * 1.5f),
-            4 =>
-                // 25% resolution increase
-                Mathf.RoundToInt(value * 1.25f),
-            _ => value
-        };
-    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CrowCountryCamEffect), nameof(CrowCountryCamEffect.UpdateColorMatrices))]
@@ -203,51 +148,58 @@ internal static void PixelationAdjust(CrowCountryCamEffect __instance)
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnDisable))]
     public static void CanvasScaler_OnDisable(CanvasScaler __instance)
     {
-        if (__instance.name.Equals("UI Canvas Inventory OFF", StringComparison.OrdinalIgnoreCase))
+        if (__instance.name.Equals(Const.UICanvasInventoryOff, StringComparison.OrdinalIgnoreCase))
         {
             Utils.DisablePillarBoxing();
-            Plugin.UpdateCamera(SceneManager.GetActiveScene().name);
+            ScalingCorrections.UpdatePoison();
+        }
+
+        if (__instance.name.Equals(Const.UICanvasPauseOff, StringComparison.OrdinalIgnoreCase))
+        {
+            ScalingCorrections.UpdatePoison();
         }
     }
-    
-    
+
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
-        if (!PauseCanvasScaled && __instance.name.Equals("UI Canvas Pause OFF", StringComparison.OrdinalIgnoreCase))
+        if (__instance.name.Equals(Const.UICanvasPauseOff, StringComparison.OrdinalIgnoreCase))
         {
-            var bg = __instance.transform.Find("child Pause UI/UI Pause BG/bg/fg");
-            if (bg)
-            {
-                PauseCanvasScaled = true;
-                bg.transform.localScale *= Plugin.ScaleFactor;
-            }
+            ScalingCorrections.CorrectPauseScreen(__instance.transform);
         }
 
-        if (__instance.name.Equals("Canvas", StringComparison.OrdinalIgnoreCase))
+        ScalingCorrections.CorrectMapBackground();
+       
+
+        ScalingCorrections.CorrectResultsScreen(__instance.transform);
+
+        if (__instance.name.Equals(Const.Canvas, StringComparison.OrdinalIgnoreCase))
         {
-            var black = __instance.transform.Find("menu cover (ON)/Image");
-            if (black)
-            {
-                black.gameObject.SetActive(false);
-            }
+            ScalingCorrections.CorrectCreditsScreen(__instance.transform);
+            ScalingCorrections.CorrectBlackBackground(__instance.transform);
+            ScalingCorrections.CorrectFooter(__instance.transform);
         }
 
-        if (__instance.name.Equals("UI Canvas Inventory OFF", StringComparison.OrdinalIgnoreCase))
-        {
-            Utils.EnablePillarBoxing(); //this is to cover the edges at superwide+
-            if (Camera.main)
-            {
-                Camera.main.fieldOfView = 10f;
-            }
-        }
+
+        if (!__instance.name.Equals(Const.UICanvasInventoryOff, StringComparison.OrdinalIgnoreCase)) return;
+
+        Utils.EnablePillarBoxing();
+        Instances.InventoryFovAdjusterInstance = __instance.gameObject.TryAddComponent<FovAdjuster>();
+        Instances.InventoryFovAdjusterInstance.enableDuration = 0f;
+        Instances.InventoryFovAdjusterInstance.disableDuration = 0f;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.Handle))]
     public static void CanvasScaler_Handle(CanvasScaler __instance)
     {
+        if (__instance.name.Contains("sinai")) return;
+        __instance.uiScaleMode = Plugin.ScaleMode.Value;
         __instance.screenMatchMode = Plugin.ScreenMatchMode.Value;
+        if (__instance.uiScaleMode is CanvasScaler.ScaleMode.ScaleWithScreenSize) return;
+        __instance.scaleFactor = Plugin.ScaleFactor.Value;
+        __instance.SetScaleFactor(Plugin.ScaleFactor.Value);
     }
 }

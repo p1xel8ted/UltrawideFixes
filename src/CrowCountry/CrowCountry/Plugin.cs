@@ -1,13 +1,12 @@
-﻿namespace CrowCountry;
+﻿using CrowCountry.Generics;
+using CrowCountry.WindowsAPI;
+
+namespace CrowCountry;
 
 [Harmony]
-[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+[BepInPlugin(Const.PluginGuid, Const.PluginName, Const.PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.crowcountry.ultrawide";
-    private const string PluginName = "Crow Country Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
-
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
 
@@ -17,57 +16,50 @@ public class Plugin : BaseUnityPlugin
         numerator = (uint) MaxRefresh
     };
 
-    internal static ConfigEntry<bool> PSXEffect { get; set; }
-    internal static ConfigEntry<bool> CRTEffect { get; set; }
-
+    internal static ConfigEntry<bool> PSXEffect { get; private set; }
+    internal static ConfigEntry<bool> CRTEffect { get; private set; }
     internal static ConfigEntry<float> CRTEffectBrightness { get; private set; }
     internal static ConfigEntry<float> CRTEffectContrast { get; private set; }
     internal static ConfigEntry<float> CRTEffectSaturation { get; private set; }
-
-
-    internal static ConfigEntry<bool> FlashbackEffect { get; set; }
-
-
+    internal static ConfigEntry<bool> FlashbackEffect { get; private set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
     private static int MaxRefresh => (int) Screen.resolutions.Max(a => a.refreshRateRatio.value);
-
-    internal const float NativeAspectRatio = 16f / 9f;
-    internal static float MainAspectRatio => (float) MainWidth / MainHeight;
-
-    internal static float NativeWidth => MainHeight * NativeAspectRatio;
-
+    private static float MainAspectRatio => (float) MainWidth / MainHeight;
+    private static float NativeWidth => MainHeight * Const.NativeAspectRatio;
     internal static float BlackBarSize => (MainWidth - NativeWidth) / 2f;
-
-    internal static float ScaleFactor => MainAspectRatio / NativeAspectRatio;
+    internal static float PositiveScaleFactor => MainAspectRatio / Const.NativeAspectRatio;
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
-    private static ConfigEntry<bool> PoisonOverlay { get; set; }
-    internal static ConfigEntry<int> FieldOfView { get; set; }
+    internal static ConfigEntry<bool> PoisonOverlay { get; private set; }
+    internal static ConfigEntry<int> FieldOfView { get; private set; }
 
-    internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; set; }
-
-
-    public static ConfigEntry<int> PixelationAmount { get; set; }
+    internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; private set; }
+    internal static ConfigEntry<CanvasScaler.ScaleMode> ScaleMode { get; private set; }
+    internal static ConfigEntry<float> ScaleFactor { get; private set; }
+    public static ConfigEntry<int> PixelationAmount { get; private set; }
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
-    internal static ManualLogSource Log { get; set; }
+    private static ManualLogSource Log { get; set; }
     private static WindowPositioner WindowPositioner { get; set; }
     private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
-    private static string[] SkipScenes { get; } = ["Logos", "Title"];
-    // private static Dictionary<string, WriteOnce<float>> SceneCameraFov { get; } = new();
+    private static string[] IntroSkipScenes { get; } = ["Logos", "Title"];
+    private static string[] EndingSkipScenes { get; } = ["Results", "Ending Sequence", "Driving Intro"];
+
+
+    private static WriteOnce<float> OriginalCameraFov { get; } = new();
     private void Awake()
     {
         Log = Logger;
 
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 104}));
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 105}));
         FullScreenModeConfig.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
         };
 
 
-        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 103}));
+        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 104}));
         DisplayToUse.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
@@ -78,19 +70,22 @@ public class Plugin : BaseUnityPlugin
             WindowPositioner = gameObject.AddComponent<WindowPositioner>();
         }
 
-        FieldOfView = Config.Bind("02. Camera", "Field of View", 10, new ConfigDescription("Increase or decrease the field of view of the camera by a percentage.", new AcceptableValueRange<int>(-75, 100), new ConfigurationManagerAttributes {Order = 102}));
+        FieldOfView = Config.Bind("02. Camera", "Field of View", 0, new ConfigDescription("Increase or decrease the field of view of the camera by a percentage.", new AcceptableValueRange<int>(-75, 100), new ConfigurationManagerAttributes {Order = 103}));
         FieldOfView.SettingChanged += (_, _) =>
         {
-            UpdateCamera(SceneManager.GetActiveScene().name);
+            if (Patches.Patches.FovAdjusterEnabled()) return;
+            UpdateCamera(SceneManager.GetActiveScene().name, 1f);
+            ScalingCorrections.UpdatePoison();
         };
 
-        PoisonOverlay = Config.Bind("03. Post-Processing", "Poison Overlay", true, new ConfigDescription("Enables the poison overlay in the game.", null, new ConfigurationManagerAttributes {Order = 101}));
+        PoisonOverlay = Config.Bind("03. Post-Processing", "Poison Overlay", true, new ConfigDescription("Enables the poison overlay in the game.", null, new ConfigurationManagerAttributes {Order = 102}));
         PoisonOverlay.SettingChanged += (_, _) =>
         {
-            UpdatePoison();
+            ScalingCorrections.UpdatePoison();
         };
 
-        PSXEffect = Config.Bind("03. Post-Processing", "PSX Effect", true, new ConfigDescription("Enables the PSX effect in the game.", null, new ConfigurationManagerAttributes {Order = 100}));
+        PSXEffect = Config.Bind("03. Post-Processing", "PSX Effect", true, new ConfigDescription("Enables the PSX effect in the game.", null, new ConfigurationManagerAttributes {Order = 101}));
+        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes {Order = 100}));
 
         CRTEffect = Config.Bind("03. Post-Processing", "CRT Effect", false, new ConfigDescription("Enables the CRT effect in the game.", null, new ConfigurationManagerAttributes {Order = 99}));
 
@@ -118,14 +113,10 @@ public class Plugin : BaseUnityPlugin
             UpdateCrt();
         };
 
-
-        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes {Order = 95}));
-
-
         PixelationAmount = Config.Bind("03. Post-Processing", "Pixelation Amount", 4, new ConfigDescription("Lessens the pixelation effect in the game. 0 is off, 4 is game default.", new AcceptableValueRange<int>(0, 4), new ConfigurationManagerAttributes {Order = 93}));
         PixelationAmount.SettingChanged += (_, _) =>
         {
-            Patches.Patches.PixelationAdjust(Patches.Patches.CrowCountryCamEffectInstance);
+            Renderer.PixelationAdjust(Instances.CrowCountryCamEffectInstance);
         };
 
         CorrectFixedUpdateRate = Config.Bind("04. Performance", "Modify Physics Rate", false,
@@ -142,28 +133,44 @@ public class Plugin : BaseUnityPlugin
             UpdateFixedDeltaTime();
         };
 
-        // ScaleMode = Config.Bind("05. Scalers", "Canvas Scaler Scale Mode", CanvasScaler.ScaleMode.ScaleWithScreenSize, new ConfigDescription("The scaling mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 93}));
-        ScreenMatchMode = Config.Bind("05. Scalers", "Canvas Scaler Screen Match Mode", CanvasScaler.ScreenMatchMode.MatchWidthOrHeight, new ConfigDescription("The screen match mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 90}));
+        ScaleMode = Config.Bind("05. Scalers", "Canvas Scaler Scale Mode", CanvasScaler.ScaleMode.ScaleWithScreenSize, new ConfigDescription("The scaling mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 90}));
+        ScreenMatchMode = Config.Bind("05. Scalers", "Canvas Scaler Screen Match Mode", CanvasScaler.ScreenMatchMode.Expand, new ConfigDescription("The screen match mode to use for the CanvasScaler component. Has no effect unless Scale Mode is set to ScaleWithScreenSize.", null, new ConfigurationManagerAttributes {Order = 89}));
+        ScaleFactor = Config.Bind("05. Scalers", "Canvas Scaler Scale Factor", 1f, new ConfigDescription("The scaling factor to use for the CanvasScaler component. Has no effect when Scale Mode is set to ScaleWithScreenSize.", new AcceptableValueRange<float>(0.5f, 10f), new ConfigurationManagerAttributes {Order = 88}));
+        ScaleFactor.SettingChanged += (_, _) =>
+        {
+            ScaleFactor.Value = Mathf.Round(ScaleFactor.Value * 4) / 4;
+        };
 
-
-        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 89}));
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 87}));
         RunInBackground.SettingChanged += (_, _) =>
         {
             Application.runInBackground = RunInBackground.Value;
         };
 
-        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 88}));
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 86}));
 
         Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;
 
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-        Log.LogInfo($"Plugin {PluginName} is loaded!");
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), Const.PluginGuid);
+        Log.LogInfo($"Plugin {Const.PluginName} is loaded!");
+    }
+
+    private void LateUpdate()
+    {
+        var scene = SceneManager.GetActiveScene().name;
+        if (EndingSkipScenes.Contains(scene))
+        {
+            if (Camera.main)
+            {
+                Camera.main.fieldOfView = GetDefaultCameraFov();
+            }
+        }
     }
 
     private static void UpdateCrt()
     {
-        Patches.Patches.CrowCountryCamEffectInstance.UpdateColorMatrices();
+        Instances.CrowCountryCamEffectInstance.UpdateColorMatrices();
     }
 
     private static void UpdateFixedDeltaTime()
@@ -193,21 +200,30 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
     }
 
-    internal static void UpdatePoison()
-    {
-        if (Patches.Patches.Poison)
-        {
-            Patches.Patches.Poison.gameObject.SetActive(PoisonOverlay.Value);
-        }
-    }
-
-    internal static void UpdateCamera(string scene)
+    internal static void UpdateCamera(string scene, float duration)
     {
         if (!Camera.main) return;
-        if (SkipScenes.Contains(scene)) return;
+        if (IntroSkipScenes.Contains(scene))
+        {
+            Camera.main.fieldOfView = 4.6f;
+            return;
+        }
 
+        if (EndingSkipScenes.Contains(scene))
+        {
+            Camera.main.fieldOfView = 10.1f;
+            return;
+        }
+
+        OriginalCameraFov.Value = Camera.main.fieldOfView;
+        var baseFov = GetDefaultCameraFov();
         var pct = FieldOfView.Value / 100f;
-        Camera.main.DOFieldOfView(10f + 10f * pct, 1f).SetEase(Ease.InOutQuad);
+        Camera.main.DOFieldOfView(baseFov + baseFov * pct, duration).SetEase(Ease.InOutQuad);
+    }
+
+    internal static float GetDefaultCameraFov()
+    {
+        return OriginalCameraFov.HasValue ? OriginalCameraFov.Value : 10.1f;
     }
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
@@ -219,10 +235,25 @@ public class Plugin : BaseUnityPlugin
 
         UpdateDisplay();
         UpdateFixedDeltaTime();
-        UpdateCamera(a.name);
+        UpdateCamera(a.name, 1f);
         ForceCameraChanges();
-        UpdatePoison();
+        CorrectLetterboxing();
+        
+        ScalingCorrections.UpdatePoison();
+        ScalingCorrections.CorrectCreditsSky();
+        ScalingCorrections.CorrectMapBackground();
+        ScalingCorrections.CorrectDrivingIntroRoad();
     }
+
+    private static void CorrectLetterboxing()
+    {
+        var letterboxTransforms = Resources.FindObjectsOfTypeAll<Transform>().Where(t => t.name.Equals("letterbox", StringComparison.InvariantCultureIgnoreCase)).ToList();
+        foreach (var lb in letterboxTransforms)
+        {
+            lb.gameObject.TryAddComponent<LetterboxDisabler>();
+        }
+    }
+
 
     private static void ForceCameraChanges()
     {
@@ -231,7 +262,6 @@ public class Plugin : BaseUnityPlugin
             camera.rect = new Rect(0, 0, MainWidth, MainHeight);
             camera.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
             camera.aspect = MainWidth / (float) MainHeight;
-            Plugin.Log.LogInfo($"Forcing camera changes for {camera.name}. Camera aspect ratio set to {camera.aspect} and resolution set to {MainWidth}x{MainHeight}.");
         }
     }
 

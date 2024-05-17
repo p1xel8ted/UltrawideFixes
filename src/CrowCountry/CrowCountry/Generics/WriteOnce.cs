@@ -1,4 +1,4 @@
-namespace CrowCountry.Misc;
+namespace CrowCountry.Generics;
 
 public sealed class WriteOnce<T>
 {

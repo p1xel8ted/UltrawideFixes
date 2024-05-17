@@ -10,28 +10,22 @@ public static class Extensions
             component = gameObject.AddComponent<T>();
         return component;
     }
+    
+    public static List<Transform> FindAllDeepChildren(this Transform parent, string name)
+    {
+        var children = new List<Transform>();
+        FindAllDeepChildrenHelper(parent, name, children);
+        return children;
+    }
 
-    // public static Transform FindDeepChild(this Transform parent, string name)
-    // {
-    //     foreach (Transform child in parent)
-    //     {
-    //         if (child && child.name == name)
-    //             return child;
-    //
-    //         var result = child.FindDeepChild(name);
-    //         if (result) return result;
-    //     }
-    //     return null;
-    // }
-    //
-    // public static string GetFullPath(this Transform transform)
-    // {
-    //     var path = transform.name;
-    //     while (transform.parent)
-    //     {
-    //         transform = transform.parent;
-    //         path = transform.name + "/" + path;
-    //     }
-    //     return path;
-    // }
+    private static void FindAllDeepChildrenHelper(Transform parent, string name, List<Transform> children)
+    {
+        foreach (Transform child in parent)
+        {
+            if (child && child.name == name)
+                children.Add(child);
+        
+            FindAllDeepChildrenHelper(child, name, children);
+        }
+    }
 }

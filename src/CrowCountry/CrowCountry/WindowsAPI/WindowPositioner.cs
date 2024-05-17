@@ -1,4 +1,4 @@
-﻿namespace CrowCountry.Misc;
+﻿namespace CrowCountry.WindowsAPI;
 
 public class WindowPositioner : MonoBehaviour
 {
