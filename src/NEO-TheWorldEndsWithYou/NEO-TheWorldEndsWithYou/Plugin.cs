@@ -1,14 +1,11 @@
-﻿using System;
-using Il2CppInterop.Runtime.Injection;
-
-namespace NEOTheWorldEndsWithYouUltraWide;
+﻿namespace NEOTheWorldEndsWithYouUltraWide;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.neotheworldendswithyou.ultrawide";
     private const string PluginName = "NEO - The World Ends With You Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
 
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;

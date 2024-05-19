@@ -1,34 +1,30 @@
-﻿using System;
-using ComicEvent;
-using UI.Battle;
-
-namespace NEOTheWorldEndsWithYouUltraWide;
+﻿namespace NEOTheWorldEndsWithYouUltraWide;
 
 [Harmony]
 public static class Patches
 {
-    private static Camera ComicCamera { get; set; }
+    // private static Camera ComicCamera { get; set; }
     private static GameObject BlackBarCanvas { get; set; }
     private static GameObject LeftBlackBar { get; set; }
     private static GameObject RightBlackBar { get; set; }
-    
-    
+
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BattleScene), nameof(BattleScene.OnAwake))]
     [HarmonyPatch(typeof(BattleScene), nameof(BattleScene.OnStart))]
     [HarmonyPatch(typeof(BattleScene), nameof(BattleScene.OnInitialize))]
     public static void BattleScene_OnAwake()
     {
-       RestrictCamera();
+        RestrictCamera();
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BattleResultScene), nameof(BattleResultScene.OnStart))]
     public static void BattleResultScene_OnStart(ref BattleResultScene __instance)
     {
         EnablePillarBoxing();
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(BattleResultScene), nameof(BattleResultScene.OnDestroy))]
     public static void BattleResultScene_OnDestroy(ref BattleResultScene __instance)
@@ -42,7 +38,7 @@ public static class Patches
     {
         EnablePillarBoxing();
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(BattlePauseUI), nameof(BattlePauseUI.OnCancel))]
     [HarmonyPatch(typeof(BattlePauseUI), nameof(BattlePauseUI.OnDecide))]
@@ -55,15 +51,6 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
-        // if (__instance.transform.childCount > 0)
-        // {
-        //     var firstChild = __instance.transform.GetChild(0);
-        //     if (firstChild)
-        //     {
-        //         Plugin.Logger.LogWarning(firstChild.name);
-        //     }
-        // }
-        //
         var bg = __instance.transform.FindChild("Setting/BG");
         if (bg)
         {
@@ -75,11 +62,11 @@ public static class Patches
         {
             fadebg.transform.localScale = fadebg.transform.localScale with {x = Plugin.PositiveScaleFactor};
         }
-        
+
         __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         if (__instance.name.Contains("transition", StringComparison.OrdinalIgnoreCase))
         {
-            EnablePillarBoxingAndRestrictCamera();
+            EnablePillarBoxing();
         }
     }
 
@@ -89,7 +76,7 @@ public static class Patches
     {
         if (__instance.name.Contains("transition", StringComparison.OrdinalIgnoreCase))
         {
-            DisablePillarBoxingAndRestoreCamera();
+            DisablePillarBoxing();
         }
     }
 
@@ -97,24 +84,43 @@ public static class Patches
     [HarmonyPatch(typeof(ComicEventDirector), nameof(ComicEventDirector.End))]
     public static void ComicEventDirector_End(ref ComicEventDirector __instance)
     {
-        DisablePillarBoxingAndRestoreCamera();
-    }
-
-    private static void DisablePillarBoxingAndRestoreCamera()
-    {
-        if (BlackBarCanvas)
+        var text = $"ComicEventDirector End {__instance.name} is";
+        if (Utils.IsMain(__instance.name))
         {
-            BlackBarCanvas.SetActive(false);
+            Plugin.Logger.LogInfo($"{text} main");
+            ProcessComicStripOptionsEnd();
         }
-        RestoreCamera();
+        else if (Utils.IsBefore(__instance.name))
+        {
+            Plugin.Logger.LogInfo($"{text} before");
+            ProcessComicStripOptionsEnd();
+        }
+        else if (Utils.IsChatter(__instance.name))
+        {
+            Plugin.Logger.LogInfo($"{text} chatter");
+            ProcessNpcChatterOptionsEnd();
+        }
+        else if (Utils.IsMission(__instance.name))
+        {
+            Plugin.Logger.LogInfo($"{text} mission");
+            ProcessComicStripOptionsEnd();
+        }
+        else if (Utils.IsChoice(__instance.name))
+        {
+            Plugin.Logger.LogInfo($"{text} choice");
+            ProcessComicStripOptionsEnd();
+        }
+        else
+        {
+            Plugin.Logger.LogWarning($"{text} unknown");
+        }
     }
-
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ScenarioMovieManager), nameof(ScenarioMovieManager.Stop))]
     public static void ScenarioMovieManager_Stop(ref ScenarioMovieManager __instance)
     {
-        DisablePillarBoxingAndRestoreCamera();
+        DisablePillarBoxing();
     }
 
     private static void EnablePillarBoxing()
@@ -135,12 +141,6 @@ public static class Patches
         }
     }
 
-    private static void EnablePillarBoxingAndRestrictCamera()
-    {
-        EnablePillarBoxing();
-        RestrictCamera();
-    }
-
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ScenarioMovieManager), nameof(ScenarioMovieManager.PlayMovie))]
     public static void ScenarioMovieManager_PlayMovie(ref ScenarioMovieManager __instance)
@@ -151,24 +151,16 @@ public static class Patches
 
     private static void RestoreCamera()
     {
-        var camera = ComicCamera = UIManager.Instance.mCamera2D;
+        var camera = UIManager.Instance.mCamera2D;
         camera.pixelRect = new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight);
         camera.aspect = Plugin.MainAspectRatio;
     }
 
     private static void RestrictCamera()
     {
-        var camera = ComicCamera = UIManager.Instance.mCamera2D;
-        if (Plugin.CenterComicStripDialog.Value)
-        {
-            camera.pixelRect = new Rect(Plugin.BlackBarSize, 0, Plugin.CameraWidth, Plugin.CameraHeight);
-            camera.aspect = Plugin.BaseAspectRatio;
-        }
-        else
-        {
-            camera.pixelRect = new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight);
-            camera.aspect = Plugin.MainAspectRatio;
-        }
+        var camera = UIManager.Instance.mCamera2D;
+        camera.pixelRect = new Rect(Plugin.BlackBarSize, 0, Plugin.CameraWidth, Plugin.CameraHeight);
+        camera.aspect = Plugin.BaseAspectRatio;
     }
 
     private static void CreateBlackBars()
@@ -226,26 +218,19 @@ public static class Patches
         }
     }
     
-    // [HarmonyPrefix]
-    // [HarmonyPatch(typeof(UIChoicePanel.ChoicePanelObject), nameof(UIChoicePanel.ChoicePanelObject.SetItemActive))]
-    // public static void UIChoicePanel_OnEnable(ref UIChoicePanel.ChoicePanelObject __instance)
-    // {
-    //     var bg =   __instance.Object.transform.FindDeepChild("BG");
-    //     if (!bg) return;
-    //     var rect = bg.GetComponent<RectTransform>();
-    //     if (rect)
-    //     {
-    //         var y = rect.sizeDelta.y;
-    //         var newX = y * Plugin.MainAspectRatio;
-    //         rect.sizeDelta = new Vector2(newX, y);
-    //     }
-    //     else
-    //     {
-    //         bg.localScale = bg.localScale with {x = Plugin.PositiveScaleFactor};
-    //     }
-    // }
-
-    private static void ProcessComicStripOptions()
+    private static void ProcessComicStripOptionsEnd()
+    {
+        if (Plugin.CenterComicStripDialog.Value)
+        {
+            RestoreCamera();
+            if (Plugin.PillarBoxComicStripDialog.Value)
+            {
+                DisablePillarBoxing();
+            }
+        }
+    }
+    
+    private static void ProcessComicStripOptionsStart()
     {
         if (Plugin.CenterComicStripDialog.Value)
         {
@@ -259,13 +244,20 @@ public static class Patches
                 DisablePillarBoxing();
             }
         }
-        else
-        {
-            DisablePillarBoxingAndRestoreCamera();
-        }
     }
 
-    private static void ProcessNpcChatterOptions()
+    private static void ProcessNpcChatterOptionsEnd()
+    {
+        if (Plugin.CenterNpcChatter.Value)
+        {
+            RestoreCamera();
+            if (Plugin.PillarBoxNpcChatter.Value)
+            {
+                DisablePillarBoxing();
+            }
+        }
+    }
+    private static void ProcessNpcChatterOptionsStart()
     {
         if (Plugin.CenterNpcChatter.Value)
         {
@@ -279,41 +271,37 @@ public static class Patches
                 DisablePillarBoxing();
             }
         }
-        else
-        {
-            DisablePillarBoxingAndRestoreCamera();
-        }
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ComicEventDirector), nameof(ComicEventDirector.Play))]
     public static void ComicEventDirector_OnPlayBegin(ref ComicEventDirector __instance)
     {
-        var text = $"ComicEventDirector {__instance.name} is";
+        var text = $"ComicEventDirector Play {__instance.name} is";
         if (Utils.IsMain(__instance.name))
         {
             Plugin.Logger.LogInfo($"{text} main");
-            ProcessComicStripOptions();
+            ProcessComicStripOptionsStart();
         }
         else if (Utils.IsBefore(__instance.name))
         {
             Plugin.Logger.LogInfo($"{text} before");
-            ProcessComicStripOptions();
+            ProcessComicStripOptionsStart();
         }
         else if (Utils.IsChatter(__instance.name))
         {
             Plugin.Logger.LogInfo($"{text} chatter");
-            ProcessNpcChatterOptions();
+            ProcessNpcChatterOptionsStart();
         }
         else if (Utils.IsMission(__instance.name))
         {
             Plugin.Logger.LogInfo($"{text} mission");
-            ProcessComicStripOptions();
+            ProcessComicStripOptionsStart();
         }
         else if (Utils.IsChoice(__instance.name))
         {
             Plugin.Logger.LogInfo($"{text} choice");
-            ProcessComicStripOptions();
+            ProcessComicStripOptionsStart();
         }
         else
         {

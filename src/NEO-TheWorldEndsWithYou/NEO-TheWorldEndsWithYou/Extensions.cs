@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NEOTheWorldEndsWithYouUltraWide;
+﻿namespace NEOTheWorldEndsWithYouUltraWide;
 
 public static class Extensions
 {
@@ -27,6 +25,7 @@ public static class Extensions
         return null;
     }
 
+/*
     public static string GetFullPath(this Transform transform)
     {
         var path = transform.name;
@@ -37,4 +36,5 @@ public static class Extensions
         }
         return path;
     }
+*/
 }

@@ -1,10 +1,13 @@
-﻿global using System.Linq;
+﻿global using System;
+global using System.Linq;
 global using System.Reflection;
 global using BepInEx;
 global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using BepInEx.Unity.IL2CPP;
+global using ComicEvent;
 global using HarmonyLib;
+global using UI.Battle;
 global using UnityEngine;
 global using UnityEngine.Events;
 global using UnityEngine.SceneManagement;
