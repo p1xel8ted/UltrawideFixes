@@ -1,101 +1,54 @@
-﻿using System.Linq;
-using System.Reflection;
-using BepInEx;
-using BepInEx.Configuration;
-using BepInEx.Logging;
-using HarmonyLib;
-using MSL.GameEngine;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-
-namespace AgathaChristieMOE;
+﻿namespace AgathaChristieMOE;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.agathachristiemoe.displaytweaks";
     private const string PluginName = "Agatha Christie - Murder on the Orient Express";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.3";
     private const string BlackBorders = "BlackBorders";
-    
-    private static ConfigEntry<int> DisplayToUse { get; set; }
-    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
-    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
-    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
+    internal static ConfigEntry<int> MoveSpeed { get; private set; }
+    internal static ConfigEntry<bool> AlwaysAllowedToRun { get; private set; }
     private static ManualLogSource LOG { get; set; }
-    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    private static ConfigEntry<AspectRatioFitter.AspectMode> AspectModeConfig { get; set; }
-    private static ConfigEntry<string> GateFitConfig { get; set; }
     internal static ConfigEntry<int> FoVMultiplierPercent { get; private set; }
+
 
     private void Awake()
     {
         LOG = Logger;
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.Windowed, new ConfigDescription("Set the full screen mode"));
-        FullScreenModeConfig.SettingChanged += (_, _) =>
+
+        FoVMultiplierPercent = Config.Bind("01. Field of View", "FOV Increase", 50, new ConfigDescription("Set the FOV multiplier percent. Default is a 50% increase on default.", new AcceptableValueRange<int>(0, 200), new {Order = 102, ShowAsPercent = true}));
+        MoveSpeed = Config.Bind("02. Movement", "Move Speed", 50, new ConfigDescription("Set the walk speed multiplier. Default is 50% faster.", new AcceptableValueRange<int>(0, 100), new {Order = 99, ShowAsPercent = true}));
+
+        AlwaysAllowedToRun = Config.Bind("02. Movement", "Always Allowed To Run", true, new ConfigDescription("Always allowed to run.", null, new ConfigurationManagerAttributes {Order = 98}));
+
+        RunInBackground = Config.Bind("03. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 90}));
+        RunInBackground.SettingChanged += (_, _) =>
         {
-            UpdateDisplay();
+            Application.runInBackground = RunInBackground.Value;
         };
 
+        MuteInBackground = Config.Bind("03. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 89}));
 
-        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray())));
-        DisplayToUse.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-        };
-
-        FoVMultiplierPercent = Config.Bind("2. Field of View", "FOV Multiplier Percent", 75, new ConfigDescription("Set the FOV multiplier percent. Default is a 75% increase.", new AcceptableValueRange<int>(0, 200), new {ShowAsPercent = true}));
-        GateFitConfig = Config.Bind("2. Field of View", "Screen Fitting Strategy", "Hor+", new ConfigDescription("Switch between Hor+ etc. Games default is Hor+.", new AcceptableValueList<string>(GateFitEnumMappings.StringToEnum.Keys.ToArray())));
-        GateFitConfig.SettingChanged += (_, _) =>
-        {
-            UpdateGateFit();
-        };
-        AspectModeConfig = Config.Bind("3. Cutscene Cropping", "Aspect Mode", AspectRatioFitter.AspectMode.None, new ConfigDescription("Suggest leaving this on None, but you can try other modes if you want to. You will need to restart the game to go back to None."));
-        AspectModeConfig.SettingChanged += (_, _) =>
-        {
-            UpdateAr();
-        };
+        Application.focusChanged += FocusChanged;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
-    private static void UpdateGateFit()
+    private static void FocusChanged(bool focus)
     {
-        if (!GateFitEnumMappings.StringToEnum.TryGetValue(GateFitConfig.Value, out var gateFitMode)) return;
-
-        if (Patches.ShoulderCam is not null)
+        Application.runInBackground = RunInBackground.Value;
+        var audioSources = Resources.FindObjectsOfTypeAll<AudioSource>();
+        foreach (var audioSource in audioSources)
         {
-            Patches.ShoulderCam.m_Lens = Patches.ShoulderCam.m_Lens with {GateFit = gateFitMode};
+            audioSource.mute = !focus && MuteInBackground.Value;
         }
     }
 
-    private static void UpdateAr()
-    {
-        foreach (var arf in Resources.FindObjectsOfTypeAll<AspectRatioFitter>())
-        {
-            if (arf.isActiveAndEnabled)
-            {
-                arf.aspectMode = AspectModeConfig.Value;
-            }
-        }
-    
-        foreach (var arf in Resources.FindObjectsOfTypeAll<AspectRatioFitterMax>())
-        {
-            if (arf.isActiveAndEnabled)
-            {
-                arf.aspectMode = AspectModeConfig.Value;
-            }
-        }
-    }
-
-    private static void UpdateDisplay()
-    {
-        Display.displays[DisplayToUse.Value].Activate(MainWidth, MainHeight, MaxRefresh);
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, MaxRefresh);
-    }
 
     private static void RemoveBlackBorders()
     {
@@ -105,14 +58,11 @@ public class Plugin : BaseUnityPlugin
             {
                 rect.gameObject.SetActive(false);
             }
-        }   
+        }
     }
 
     private static void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateDisplay();
-        UpdateGateFit();
-        UpdateAr();
         RemoveBlackBorders();
     }
 }

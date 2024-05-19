@@ -13,7 +13,11 @@
         <Company>$(Authors)</Company>
         <Product>$(MSBuildProjectName)</Product>
         <PackageId>$(MSBuildProjectName)</PackageId>
-
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -34,11 +38,11 @@
     </ItemDefinitionGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>H:\Agatha Christie - Murder on the Orient Express\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\Agatha Christie - Murder on the Orient Express Demo\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>H:\Agatha Christie - Murder on the Orient Express\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
