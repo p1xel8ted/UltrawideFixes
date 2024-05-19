@@ -196,7 +196,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/43045c73-4139-43c3-9e93-3cdcec00ae76) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/79b87d95-cfe7-4b22-83f2-d6df28ce72f1)
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
+#### Last update: 19th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/82b3b410-835d-4e82-8e02-ee87df97961b) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9968f63b-59b0-4778-904d-f8b6624d5de1)
 
 </details>
 <div id="M"/>
