@@ -33,7 +33,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6e1ca916-bd08-4d57-a6d7-c1cbd64862bf) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/988ff2e3-25e6-4656-8e52-9acfad452cc6)
 
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
+#### Last update 19th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9bfbf487-7eca-428d-8af8-75f2f886fff5) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/275dd18a-ea87-4e32-b065-991333ec89b2)
 
 ## [Alwa's Legacy](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlwasLegacy)  
 #### Last update: 14th April 2024
