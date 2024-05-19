@@ -1,11 +1,3 @@
-using System;
-using AlexKiddMiracleWorldDX.Constants;
-using AlexKiddMiracleWorldDX.MonoBehaviours;
-using Assets.Scripts.Manager;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Object = UnityEngine.Object;
-
 namespace AlexKiddMiracleWorldDX.LevelFixes;
 
 public static class Level_5

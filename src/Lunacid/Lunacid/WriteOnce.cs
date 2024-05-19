@@ -1,4 +1,4 @@
-namespace AlexKiddMiracleWorldDX.Misc;
+namespace Lunacid;
 
 public sealed class WriteOnce<T>
 {

@@ -1,6 +1,3 @@
-using UnityEngine;
-using UnityEngine.Rendering;
-
 namespace AlexKiddMiracleWorldDX.MonoBehaviours;
 
 public class EffectsToggler : MonoBehaviour

@@ -20,21 +20,25 @@
 
     <ItemGroup>
       <Reference Include="Assembly-CSharp">
-        <HintPath>..\..\..\..\Everything Else\MoonlighterMods\libs\Assembly-CSharp.dll</HintPath>
+        <HintPath>..\..\..\..\..\Game-Mods\Moonlighter\libs\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine">
-        <HintPath>..\..\..\..\Everything Else\MoonlighterMods\libs\UnityEngine.dll</HintPath>
+        <HintPath>..\..\..\..\..\Game-Mods\Moonlighter\libs\UnityEngine.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>..\..\..\..\Everything Else\MoonlighterMods\libs\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\Game-Mods\Moonlighter\libs\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>..\..\..\..\Everything Else\MoonlighterMods\libs\UnityEngine.UI.dll</HintPath>
+        <HintPath>..\..\..\..\..\Game-Mods\Moonlighter\libs\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>..\..\..\..\Everything Else\MoonlighterMods\libs\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\Game-Mods\Moonlighter\libs\UnityEngine.UIModule.dll</HintPath>
       </Reference>
     </ItemGroup>
+
+
+
+
     <Import Project="..\zip.target" />
   
 </Project>

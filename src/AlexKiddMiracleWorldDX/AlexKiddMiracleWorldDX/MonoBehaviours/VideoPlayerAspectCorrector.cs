@@ -1,6 +1,3 @@
-using UnityEngine;
-using UnityEngine.Video;
-
 namespace AlexKiddMiracleWorldDX.MonoBehaviours;
 
 public class VideoPlayerAspectCorrector : MonoBehaviour

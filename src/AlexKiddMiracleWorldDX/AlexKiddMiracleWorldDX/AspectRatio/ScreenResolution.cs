@@ -1,7 +1,4 @@
-﻿using HarmonyLib;
-using UnityEngine;
-
-namespace AlexKiddMiracleWorldDX;
+﻿namespace AlexKiddMiracleWorldDX;
 
 [Harmony]
 public static class ScreenResolution

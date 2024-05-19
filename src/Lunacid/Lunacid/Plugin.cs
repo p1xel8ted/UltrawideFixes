@@ -6,8 +6,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.lunacid.tweaks";
     private const string PluginName = "Lunacid Tweaks";
-    private const string PluginVersion = "0.1.0";
-    private const int UiReferenceResolutionHeight = 720;
+    private const string PluginVersion = "0.1.1";
 
     private readonly static string[] ObjectsToScale = ["mask", "overlay", "border", "mask1", "mask2", "border_3d", "overlay_new", "level_load", "level_load_alt"];
     private static float BaseAspect => 16f / 9f;
@@ -15,39 +14,21 @@ public class Plugin : BaseUnityPlugin
     private static float PositiveScaleFactor => CurrentAspect / BaseAspect;
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     private static ConfigEntry<bool> ExpandHudConfig { get; set; }
-    private static ConfigEntry<bool> IncreaseUpdateRate { get; set; }
-    private static ConfigEntry<bool> UseRefreshRateForUpdateRate { get; set; }
     private static ConfigEntry<bool> LoadSavePurpleEffect { get; set; }
     private static ManualLogSource LOG { get; set; }
     private static ConfigEntry<int> LeftSideAdjustment { get; set; }
     private static ConfigEntry<int> RightSideAdjustment { get; set; }
-    private static ConfigEntry<bool> ConfigScaleConfig { get; set; }
-    private static ConfigEntry<float> ConfigScale { get; set; }
-    private static List<CanvasScaler> UiCanvasScalers { get; } = [];
-
+    internal static ConfigEntry<PostProcessLayer.Antialiasing> AntiAliasing { get; private set; }
+    private static ConfigEntry<bool> AnisotropicFiltering { get; set; }
     private static ConfigEntry<bool> ModifyReticleTransparency { get; set; }
     private static ConfigEntry<float> ReticleTransparency { get; set; }
     private static Dictionary<Transform, WriteOnce<float>> OriginalTransformPositions { get; set; } = [];
 
     private void Awake()
     {
-        LOG = new ManualLogSource(PluginName);
-        BepInEx.Logging.Logger.Sources.Add(LOG);
+        LOG = Logger;
 
-        ConfigScaleConfig = Config.Bind("01. Scale", "Enable Scale Adjustments", false, new ConfigDescription("Enable scale adjustments. This will override the default UI scaling.", null, new ConfigurationManagerAttributes {Order = 100}));
-        ConfigScaleConfig.SettingChanged += (_, _) =>
-        {
-            ChangeScale();
-        };
-        ConfigScale = Config.Bind("01. Scale", "Overall Scale", GetNewScale(UiReferenceResolutionHeight),
-            new ConfigDescription("Scale of the UI. Adjust as necessary to fit. The default value should OK.",
-                new AcceptableValueRange<float>(0.1f, 5f), new ConfigurationManagerAttributes {Order = 99}));
-        ConfigScale.SettingChanged += (_, _) =>
-        {
-            ChangeScale();
-        };
-
-        ExpandHudConfig = Config.Bind("03. HUD", "Expand Hud", true, new ConfigDescription("Expand the hud elements to the left and right of the screen.", null, new ConfigurationManagerAttributes {Order = 94}));
+        ExpandHudConfig = Config.Bind("01. HUD", "Expand Hud", true, new ConfigDescription("Expand the hud elements to the left and right of the screen.", null, new ConfigurationManagerAttributes {Order = 94}));
         ExpandHudConfig.SettingChanged += (_, _) =>
         {
             if (ExpandHudConfig.Value)
@@ -59,53 +40,50 @@ public class Plugin : BaseUnityPlugin
                 RestoreHud();
             }
         };
-        LeftSideAdjustment = Config.Bind("03. HUD", "Left Side Adjustment", 210, new ConfigDescription("Adjust the hud elements on the left side of the screen", new AcceptableValueRange<int>(-500, 500), new ConfigurationManagerAttributes {Order = 93}));
+        LeftSideAdjustment = Config.Bind("01. HUD", "Left Side Adjustment", 210, new ConfigDescription("Adjust the hud elements on the left side of the screen", new AcceptableValueRange<int>(-500, 500), new ConfigurationManagerAttributes {Order = 93}));
         LeftSideAdjustment.SettingChanged += (_, _) =>
         {
             if (!ExpandHudConfig.Value) return;
             RestoreHud();
             ExpandHud();
         };
-        RightSideAdjustment = Config.Bind("03. HUD", "Right Side Adjustment", 210, new ConfigDescription("Adjust the hud elements on the right side of the screen", new AcceptableValueRange<int>(-500, 500), new ConfigurationManagerAttributes {Order = 92}));
+        RightSideAdjustment = Config.Bind("01. HUD", "Right Side Adjustment", 210, new ConfigDescription("Adjust the hud elements on the right side of the screen", new AcceptableValueRange<int>(-500, 500), new ConfigurationManagerAttributes {Order = 92}));
         RightSideAdjustment.SettingChanged += (_, _) =>
         {
             if (!ExpandHudConfig.Value) return;
             RestoreHud();
             ExpandHud();
         };
-        ModifyReticleTransparency = Config.Bind("04. Reticle", "Modify Reticle Transparency", false, new ConfigDescription("Modify the transparency of the reticle.", null, new ConfigurationManagerAttributes {Order = 91}));
+        ModifyReticleTransparency = Config.Bind("02. Reticle", "Modify Reticle Transparency", false, new ConfigDescription("Modify the transparency of the reticle.", null, new ConfigurationManagerAttributes {Order = 91}));
         ModifyReticleTransparency.SettingChanged += (_, _) =>
         {
             UpdateReticle();
         };
-        ReticleTransparency = Config.Bind("04. Reticle", "Reticle Transparency", 0.25f, new ConfigDescription("Transparency of the reticle.", new AcceptableValueRange<float>(0.10f, 1f), new ConfigurationManagerAttributes {Order = 90}));
+        ReticleTransparency = Config.Bind("02. Reticle", "Reticle Transparency", 0.25f, new ConfigDescription("Transparency of the reticle.", new AcceptableValueRange<float>(0.10f, 1f), new ConfigurationManagerAttributes {Order = 90}));
         ReticleTransparency.SettingChanged += (_, _) =>
         {
             UpdateReticle();
         };
-        LoadSavePurpleEffect = Config.Bind("05. UI Effects", "Purple Wave Effect", false, new ConfigDescription("Enable the purple wave effect on load and save screens.", null, new ConfigurationManagerAttributes {Order = 89}));
+        LoadSavePurpleEffect = Config.Bind("03. UI Effects", "Purple Wave Effect", false, new ConfigDescription("Enable the purple wave effect on load and save screens.", null, new ConfigurationManagerAttributes {Order = 89}));
         LoadSavePurpleEffect.SettingChanged += (_, _) =>
         {
             TogglePurpleWave();
         };
-        IncreaseUpdateRate = Config.Bind("06. Performance", "Increase Update Rate", false, new ConfigDescription("Increases the update rate of physics to the lowest multiple of your refresh rate that is above 50Hz (the default). So at 120Hz, the update rate will be 60fps. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 88}));
-        IncreaseUpdateRate.SettingChanged += (_, _) =>
+
+        AnisotropicFiltering = Config.Bind("05. Quality", "Anisotropic Filtering", true, new ConfigDescription("Enable Anisotropic Filtering.", null,new ConfigurationManagerAttributes {Order = 88}));
+        AnisotropicFiltering.SettingChanged += (_, _) =>
         {
-            FixUpdateRate();
+            QualitySettings.anisotropicFiltering = AnisotropicFiltering.Value ? UnityEngine.AnisotropicFiltering.ForceEnable : UnityEngine.AnisotropicFiltering.Disable;
         };
-        UseRefreshRateForUpdateRate = Config.Bind("06. Performance", "Use Refresh Rate For Update Rate", false, new ConfigDescription("Use the refresh rate of the monitor for the update rate. This will increase the CPU usage.", null, new ConfigurationManagerAttributes {Order = 87}));
-        UseRefreshRateForUpdateRate.SettingChanged += (_, _) =>
-        {
-            if (UseRefreshRateForUpdateRate.Value)
-            {
-                IncreaseUpdateRate.Value = true;
-            }
-            FixUpdateRate();
-        };
+
+
+        AntiAliasing = Config.Bind("06. Post-Processing", "Anti-Aliasing", PostProcessLayer.Antialiasing.TemporalAntialiasing, new ConfigDescription("Enable Anti-Aliasing effect on the game screen.",null,new ConfigurationManagerAttributes {Order = 87}));
+
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         LOG.LogInfo($"Plugin {PluginName} is loaded!");
     }
+
 
     private static void UpdateReticle()
     {
@@ -113,10 +91,10 @@ public class Plugin : BaseUnityPlugin
         var magic = GameObject.Find("PLAYER/Canvas/HUD/GAME/REDICLE/magic");
         var bow = GameObject.Find("PLAYER/Canvas/HUD/GAME/REDICLE/bow");
         var reticles = new[] {always, magic, bow};
-        foreach (var ret in reticles.Where(a => a != null))
+        foreach (var ret in reticles.Where(a => a))
         {
             var image = ret.GetComponent<Image>();
-            if (image == null) continue;
+            if (!image) continue;
             var color = image.color;
             if (color.a <= 0) return;
             if (ModifyReticleTransparency.Value)
@@ -132,85 +110,18 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-    private static int FindLowestFrameRateMultipleAboveFifty(int originalRate)
-    {
-        for (var rate = originalRate / 2; rate > 50; rate--)
-        {
-            if (originalRate % rate == 0)
-            {
-                return rate;
-            }
-        }
 
-        return originalRate;
-    }
-    private static void FixUpdateRate()
-    {
-        var newRate = FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
-        if (IncreaseUpdateRate.Value)
-        {
-            if (UseRefreshRateForUpdateRate.Value)
-            {
-                Time.fixedDeltaTime = 1f / MaxRefresh;
-            }
-            else
-            {
-                Time.fixedDeltaTime = 1f / newRate;
-            }
-        }
-        else
-        {
-            Time.fixedDeltaTime = 1f / 50f; //engine default
-        }
-    }
     private static void TogglePurpleWave()
     {
         var waveOne = GameObject.Find("PLAYER/Canvas/HUD/QUERY/waves");
         var waveTwo = GameObject.Find("PLAYER/Canvas/HUD/ROOT/FILE/waves");
         var waves = new[] {waveOne, waveTwo};
-        foreach (var wave in waves.Where(a => a != null))
+        foreach (var wave in waves.Where(a => a))
         {
             wave.SetActive(LoadSavePurpleEffect.Value);
         }
     }
 
-    private static float GetNewScale(float reference)
-    {
-        var displayHeight = Display.main.systemHeight;
-        var scale = 1f / (reference / displayHeight);
-        return scale;
-    }
-
-
-    private static void ChangeScale()
-    {
-        if (ConfigScaleConfig.Value)
-        {
-            foreach (var scaler in UiCanvasScalers)
-            {
-                scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-                scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-                scaler.scaleFactor = ConfigScale.Value;
-            }
-        }
-        else
-        {
-            foreach (var scaler in UiCanvasScalers)
-            {
-                scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-                scaler.scaleFactor = ConfigScale.Value;
-            }
-        }
-    }
-
-    private static void UpdateCanvasScaler(CanvasScaler scaler, float referenceResolutionHeight)
-    {
-        if (!ConfigScaleConfig.Value) return;
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Shrink;
-        scaler.scaleFactor = GetNewScale(referenceResolutionHeight);
-    }
 
     private static void RestoreHud()
     {
@@ -246,11 +157,8 @@ public class Plugin : BaseUnityPlugin
     {
         Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow, MaxRefresh);
         Application.targetFrameRate = MaxRefresh;
-
-        FixUpdateRate();
-
-        UpdateCanvasScalers();
-
+        QualitySettings.anisotropicFiltering = AnisotropicFiltering.Value ? UnityEngine.AnisotropicFiltering.ForceEnable : UnityEngine.AnisotropicFiltering.Disable;
+        
         UpdateMasksAndOverlays();
 
         TogglePurpleWave();
@@ -277,7 +185,7 @@ public class Plugin : BaseUnityPlugin
     {
         var allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
 
-        foreach (var obj in allObjects.Where(a => a != null))
+        foreach (var obj in allObjects.Where(a => a))
         {
             if (Array.IndexOf(ObjectsToScale, obj.name.ToLowerInvariant()) == -1) continue;
             SetScale(obj, PositiveScaleFactor, PositiveScaleFactor, 1f);
@@ -294,16 +202,7 @@ public class Plugin : BaseUnityPlugin
             SetScale(child.gameObject, PositiveScaleFactor, PositiveScaleFactor, 1f);
         }
     }
-    private static void UpdateCanvasScalers()
-    {
-        var canvasScalers = Resources.FindObjectsOfTypeAll<CanvasScaler>();
-        foreach (var scaler in canvasScalers)
-        {
-            var refHeight = scaler.referenceResolution.y;
-            UpdateCanvasScaler(scaler, refHeight);
-            UiCanvasScalers.Add(scaler);
-        }
-    }
+
     private static void BackupHudPositions()
     {
         var gameHud = GameObject.Find("PLAYER/Canvas/HUD/GAME");
@@ -312,14 +211,18 @@ public class Plugin : BaseUnityPlugin
             var child = gameHud.transform.GetChild(i);
             if (!OriginalTransformPositions.ContainsKey(child))
             {
-                OriginalTransformPositions.Add(child, new WriteOnce<float>(child.localPosition.x));
+                var original = new WriteOnce<float>
+                {
+                    Value = child.localPosition.x
+                };
+                OriginalTransformPositions.Add(child, original);
             }
         }
     }
     private static void ScaleBlackReadThis()
     {
         var black = GameObject.Find("PLAYER/Canvas/HUD/POP_TEXT/Extra_Effects/OVERLAY");
-        if (black != null)
+        if (black)
         {
             black.transform.localScale = new Vector3(50f, 50f, 1f);
         }

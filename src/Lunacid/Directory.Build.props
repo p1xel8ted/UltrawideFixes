@@ -34,11 +34,11 @@
     </ItemDefinitionGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>H:\Games\steamapps\common\Lunacid\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>I:\SteamLibrary\steamapps\common\Lunacid\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>H:\Games\steamapps\common\Lunacid\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>I:\SteamLibrary\steamapps\common\Lunacid\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
 

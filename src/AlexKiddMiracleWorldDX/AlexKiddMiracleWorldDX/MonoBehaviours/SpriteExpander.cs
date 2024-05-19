@@ -1,7 +1,3 @@
-using AlexKiddMiracleWorldDX.Misc;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 namespace AlexKiddMiracleWorldDX.MonoBehaviours;
 
 public class SpriteExpander : MonoBehaviour
@@ -9,7 +5,6 @@ public class SpriteExpander : MonoBehaviour
     /// <summary>
     /// Expands a sprite horizontally by instantiating new sprites based on the original sprite's width.
     /// </summary>
-    /// <param name="level"></param>
     /// <param name="parentGameObject">The parent GameObject where the sprite to be expanded is located.</param>
     /// <param name="spriteName">The name of the sprite GameObject to be expanded.</param>
     /// <param name="expansionCount">The number of times the sprite should be expanded.</param>

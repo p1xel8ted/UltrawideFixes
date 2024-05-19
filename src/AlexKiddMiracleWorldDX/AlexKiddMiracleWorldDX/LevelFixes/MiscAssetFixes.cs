@@ -1,11 +1,3 @@
-using System;
-using System.Linq;
-using AlexKiddMiracleWorldDX.Constants;
-using AlexKiddMiracleWorldDX.Misc;
-using AlexKiddMiracleWorldDX.MonoBehaviours;
-using UnityEngine;
-using UnityEngine.Animations;
-
 namespace AlexKiddMiracleWorldDX.LevelFixes;
 
 public static class MiscAssetFixes

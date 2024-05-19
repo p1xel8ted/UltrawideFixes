@@ -9,7 +9,7 @@ global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using JetBrains.Annotations;
 global using HarmonyLib;
-global using Shared;
 global using UnityEngine;
+global using UnityEngine.Rendering.PostProcessing;
 global using UnityEngine.SceneManagement;
 global using UnityEngine.UI;

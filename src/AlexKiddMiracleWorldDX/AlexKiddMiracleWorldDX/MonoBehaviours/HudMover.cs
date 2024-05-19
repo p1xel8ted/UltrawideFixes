@@ -1,6 +1,3 @@
-using AlexKiddMiracleWorldDX.Misc;
-using UnityEngine;
-
 namespace AlexKiddMiracleWorldDX.MonoBehaviours;
 
 public class HudMover : MonoBehaviour

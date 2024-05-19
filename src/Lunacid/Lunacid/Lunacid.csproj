@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
@@ -19,8 +19,23 @@
         <Reference Include="Assembly-CSharp">
             <HintPath>..\libs\Assembly-CSharp.dll</HintPath>
         </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+          <HintPath>..\libs\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="Autodesk.Fbx">
+          <HintPath>..\libs\Autodesk.Fbx.dll</HintPath>
+        </Reference>
+        <Reference Include="Coffee.SoftMaskForUGUI">
+          <HintPath>..\libs\Coffee.SoftMaskForUGUI.dll</HintPath>
+        </Reference>
         <Reference Include="com.unity.multiplayer-hlapi.Runtime">
             <HintPath>..\libs\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="FbxBuildTestAssets">
+          <HintPath>..\libs\FbxBuildTestAssets.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Security">
+          <HintPath>..\libs\Mono.Security.dll</HintPath>
         </Reference>
         <Reference Include="NavMeshComponents">
             <HintPath>..\libs\NavMeshComponents.dll</HintPath>
@@ -58,8 +73,14 @@
         <Reference Include="Unity.Recorder">
             <HintPath>..\libs\Unity.Recorder.dll</HintPath>
         </Reference>
+        <Reference Include="Unity.Recorder.Base">
+          <HintPath>..\libs\Unity.Recorder.Base.dll</HintPath>
+        </Reference>
         <Reference Include="Unity.ScriptableBuildPipeline">
             <HintPath>..\libs\Unity.ScriptableBuildPipeline.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>..\libs\Unity.TextMeshPro.dll</HintPath>
         </Reference>
         <Reference Include="Unity.Timeline">
             <HintPath>..\libs\Unity.Timeline.dll</HintPath>
@@ -109,11 +130,20 @@
         <Reference Include="UnityEngine.DirectorModule">
             <HintPath>..\libs\UnityEngine.DirectorModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.DSPGraphModule">
+          <HintPath>..\libs\UnityEngine.DSPGraphModule.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine.GameCenterModule">
             <HintPath>..\libs\UnityEngine.GameCenterModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.GIModule">
+          <HintPath>..\libs\UnityEngine.GIModule.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine.GridModule">
             <HintPath>..\libs\UnityEngine.GridModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.HotReloadModule">
+          <HintPath>..\libs\UnityEngine.HotReloadModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ImageConversionModule">
             <HintPath>..\libs\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -123,6 +153,9 @@
         </Reference>
         <Reference Include="UnityEngine.InputLegacyModule">
             <HintPath>..\libs\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputModule">
+          <HintPath>..\libs\UnityEngine.InputModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.JSONSerializeModule">
             <HintPath>..\libs\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -144,6 +177,12 @@
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
             <HintPath>..\libs\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ProfilerModule">
+          <HintPath>..\libs\UnityEngine.ProfilerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+          <HintPath>..\libs\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ScreenCaptureModule">
             <HintPath>..\libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
@@ -184,6 +223,9 @@
         <Reference Include="UnityEngine.TilemapModule">
             <HintPath>..\libs\UnityEngine.TilemapModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.TLSModule">
+          <HintPath>..\libs\UnityEngine.TLSModule.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine.UI">
             <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
         </Reference>
@@ -196,6 +238,9 @@
         <Reference Include="UnityEngine.UIModule">
             <HintPath>..\libs\UnityEngine.UIModule.dll</HintPath>
         </Reference>
+        <Reference Include="UnityEngine.UmbraModule">
+          <HintPath>..\libs\UnityEngine.UmbraModule.dll</HintPath>
+        </Reference>
         <Reference Include="UnityEngine.UNETModule">
             <HintPath>..\libs\UnityEngine.UNETModule.dll</HintPath>
         </Reference>
@@ -204,6 +249,12 @@
         </Reference>
         <Reference Include="UnityEngine.UnityConnectModule">
             <HintPath>..\libs\UnityEngine.UnityConnectModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityCurlModule">
+          <HintPath>..\libs\UnityEngine.UnityCurlModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityTestProtocolModule">
+          <HintPath>..\libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
             <HintPath>..\libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
@@ -244,15 +295,6 @@
         <Reference Include="UnityEngine.XRModule">
             <HintPath>..\libs\UnityEngine.XRModule.dll</HintPath>
         </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Compile Include="..\..\..\SunHavenMods\Shared\ConfigurationManagerAttributes.cs">
-            <Link>ConfigurationManagerAttributes.cs</Link>
-        </Compile>
-        <Compile Include="..\..\..\SunHavenMods\Shared\WriteOnce.cs">
-            <Link>WriteOnce.cs</Link>
-        </Compile>
     </ItemGroup>
     <Import Project="..\zip.target"/>
 

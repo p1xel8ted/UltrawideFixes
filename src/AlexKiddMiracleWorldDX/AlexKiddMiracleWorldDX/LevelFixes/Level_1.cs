@@ -1,13 +1,3 @@
-using System;
-using System.Linq;
-using AlexKiddMiracleWorldDX.Constants;
-using AlexKiddMiracleWorldDX.Misc;
-using Assets.Scripts.Manager;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
-
 namespace AlexKiddMiracleWorldDX.LevelFixes;
 
 [Harmony]

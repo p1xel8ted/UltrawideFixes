@@ -1,7 +1,3 @@
-using System;
-using AlexKiddMiracleWorldDX.Constants;
-using UnityEngine.SceneManagement;
-
 namespace AlexKiddMiracleWorldDX.LevelFixes;
 
 

@@ -1,9 +1,3 @@
-using System;
-using AlexKiddMiracleWorldDX.Constants;
-using AlexKiddMiracleWorldDX.MonoBehaviours;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 namespace AlexKiddMiracleWorldDX.LevelFixes;
 
 public static class Level_2

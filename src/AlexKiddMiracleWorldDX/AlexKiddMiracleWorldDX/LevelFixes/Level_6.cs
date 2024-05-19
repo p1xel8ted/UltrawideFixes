@@ -1,6 +1,3 @@
-using AlexKiddMiracleWorldDX.MonoBehaviours;
-using UnityEngine;
-
 namespace AlexKiddMiracleWorldDX.LevelFixes;
 
 public static class Level_6

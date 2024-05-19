@@ -13,7 +13,11 @@
         <Company>$(Authors)</Company>
         <Product>$(MSBuildProjectName)</Product>
         <PackageId>$(MSBuildProjectName)</PackageId>
-
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -34,23 +38,15 @@
     </ItemDefinitionGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\Alex Kidd in Miracle World DX\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>H:\Games\steamapps\common\Alex Kidd in Miracle World DX\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\Alex Kidd in Miracle World DX\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+        <OutputPath>H:\Games\steamapps\common\Alex Kidd in Miracle World DX\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
     </PropertyGroup>
-
-    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all"/>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1" PrivateAssets="all">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
     </ItemGroup>
 
 

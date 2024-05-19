@@ -1,15 +1,8 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using AlexKiddMiracleWorldDX.AspectRatio;
-using AlexKiddMiracleWorldDX.Constants;
-using AlexKiddMiracleWorldDX.LevelFixes;
-using AlexKiddMiracleWorldDX.Misc;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace AlexKiddMiracleWorldDX;
 
@@ -18,12 +11,12 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.alexkiddmiracleworlddx.ultrawidefix";
     private const string PluginName = "Alex Kidd in Miracle World DX Ultra-Wide Fix";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     internal static ConfigEntry<bool> ColorOverlay { get; private set; }
     internal static ConfigEntry<bool> WaterColour { get; private set; }
 
-    internal static ConfigEntry<bool> SkipDevLogos { get; set; }
+    // internal static ConfigEntry<bool> SkipDevLogos { get; set; }
     internal static ConfigEntry<bool> KeepUICentered { get; private set; }
 
     internal static float TwentyOneNineAspect => 21.5f / 9f; //21:9 is actually 43:18
@@ -33,7 +26,7 @@ public class Plugin : BaseUnityPlugin
     internal static float MainAspectRatio => (float) MainWidth / MainHeight;
 
     internal static float BaseAspectRatio => 16f / 9f;
-    internal static Vector2 SimplifiedBaseAspect => new(16f, 9f);
+    // internal static Vector2 SimplifiedBaseAspect => new(16f, 9f);
     internal static Vector2 SimplifiedMainAspect => new(SimplifiedWidth, SimplifiedHeight);
 
     internal static bool SuperWide => MainAspectRatio > TwentyOneNineAspect;
@@ -67,7 +60,7 @@ public class Plugin : BaseUnityPlugin
         };
         WaterColour = Config.Bind("03. Post Processing", "Water Colour", true, "Toggle the water colour effect in game.");
         ColorOverlay = Config.Bind("03. Post Processing", "Color Overlay", true, "Toggle the color overlay/illumination in game.");
-        SkipDevLogos = Config.Bind("00. General", "Skip Splash Screens", true, "Skips the developer logos at the start of the game.");
+
         KeepUICentered = Config.Bind("02. UI", "Keep UI Centered", true, "Keeps the UI (and other screens) at the original 16:9 ratio.");
         
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
@@ -88,36 +81,36 @@ public class Plugin : BaseUnityPlugin
         MiscAssetFixes.RunIlluminationFixes();
         
             
-        if (scene.name.Equals(Levels.level_1))
-        {
-            Level_1.RunFixes();
-        }
-        
-        if (scene.name.Equals(Levels.level_2))
-        {
-            Level_2.RunFixes();
-        }
-        
-        if (scene.name.Equals(Levels.level_5))
-        {
-            Level_5.RunFixes();
-        }
-        
-        if (scene.name.Equals(Levels.level_6))
-        {
-            Level_6.RunFixes();
-        }
-        
-        if (scene.name.Equals(Levels.level_7))
-        {
-            Level_7.RunFixes();
-        }
-        
-        if (scene.name.Equals(Levels.level_7_extra))
-        {
-            Level_7_Extra.RunFixes();
-        }
-        
+        // if (scene.name.Equals(Levels.level_1))
+        // {
+        //     Level_1.RunFixes();
+        // }
+        //
+        // if (scene.name.Equals(Levels.level_2))
+        // {
+        //     Level_2.RunFixes();
+        // }
+        //
+        // if (scene.name.Equals(Levels.level_5))
+        // {
+        //     Level_5.RunFixes();
+        // }
+        //
+        // if (scene.name.Equals(Levels.level_6))
+        // {
+        //     Level_6.RunFixes();
+        // }
+        //
+        // if (scene.name.Equals(Levels.level_7))
+        // {
+        //     Level_7.RunFixes();
+        // }
+        //
+        // if (scene.name.Equals(Levels.level_7_extra))
+        // {
+        //     Level_7_Extra.RunFixes();
+        // }
+        //
 
         LOG.LogInfo($"Scene loaded: {scene.name}");
         

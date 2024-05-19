@@ -1,18 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AlexKiddMiracleWorldDX.Constants;
-using AlexKiddMiracleWorldDX.LevelFixes;
-using AlexKiddMiracleWorldDX.Misc;
-using AlexKiddMiracleWorldDX.MonoBehaviours;
-using Assets.Scripts.Manager;
-using Assets.Scripts.UI;
-using Game2DWaterKit;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
-using UnityEngine.UI;
-
-namespace AlexKiddMiracleWorldDX;
+﻿namespace AlexKiddMiracleWorldDX;
 
 [HarmonyPatch]
 public static class Patches
@@ -106,19 +92,19 @@ public static class Patches
         if (wallBox)
         {
             var boxCollider = wallBox.GetComponent<BoxCollider2D>();
-
+    
             var writeOnce = new WriteOnce<float>
             {
                 Value = boxCollider.offset.x
             };
-
+    
             BoxColliders.TryAdd(boxCollider, writeOnce);
-
+    
             var newX = BoxColliders[boxCollider].Value * Plugin.PositiveScaleFactor;
             boxCollider.offset = boxCollider.offset with {x = newX};
         }
-
-
+    
+    
         var boxColliders = __instance.GetComponents<BoxCollider2D>();
         foreach (var boxCollider in boxColliders)
         {
@@ -126,12 +112,12 @@ public static class Patches
             {
                 Value = boxCollider.offset.x
             };
-
+    
             BoxColliders.TryAdd(boxCollider, writeOnce);
-
+    
             var newX = BoxColliders[boxCollider].Value * Plugin.PositiveScaleFactor;
             boxCollider.offset = boxCollider.offset with {x = newX};
-
+    
             var cameraLimit = __instance.GetComponentInChildren<CameraLimit>();
             if (cameraLimit)
             {
