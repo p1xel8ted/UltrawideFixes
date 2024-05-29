@@ -33,7 +33,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6e1ca916-bd08-4d57-a6d7-c1cbd64862bf) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/988ff2e3-25e6-4656-8e52-9acfad452cc6)
 
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
+#### Last update 19th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9bfbf487-7eca-428d-8af8-75f2f886fff5) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/275dd18a-ea87-4e32-b065-991333ec89b2)
 
 ## [Alwa's Legacy](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlwasLegacy)  
 #### Last update: 14th April 2024
@@ -196,7 +199,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/43045c73-4139-43c3-9e93-3cdcec00ae76) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/79b87d95-cfe7-4b22-83f2-d6df28ce72f1)
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
+#### Last update: 19th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/82b3b410-835d-4e82-8e02-ee87df97961b) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9968f63b-59b0-4778-904d-f8b6624d5de1)
 
 </details>
 <div id="M"/>
@@ -293,7 +299,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (6)</summary>
+<details><summary>T (7)</summary>
 
 ## [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria) 
 #### Last update: 21st April 2024
@@ -303,6 +309,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
+
+## [The Rogue Prince of Persia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RoguePrinceOfPersia)  
+#### Last update: 29th May 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
+
+![main_ui_small](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1d47ffa4-c2d7-46ea-97c3-2abd59fec1c5) ![main_ui_large](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dac9fed0-88e1-4896-ab81-0d270dfa9499)
 
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
