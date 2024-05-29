@@ -4,7 +4,7 @@ internal static class Const
 {
     internal const string PluginGuid = "p1xel8ted.crowcountry.ultrawide";
     internal const string PluginName = "Crow Country Ultra-Wide";
-    internal const string PluginVersion = "0.1.0";
+    internal const string PluginVersion = "0.1.1";
     internal const float NativeAspectRatio = 16f / 9f;
     internal const string PauseScreenBackground = "child Pause UI/UI Pause BG/bg/fg";
     internal const string BlackBackground = "menu cover (ON)/Image";

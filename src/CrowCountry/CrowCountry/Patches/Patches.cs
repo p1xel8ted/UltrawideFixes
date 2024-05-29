@@ -97,7 +97,6 @@ public static class Patches
     public static void CrowCountryCamEffect_OnRenderImage(CrowCountryCamEffect __instance)
     {
         Instances.CrowCountryCamEffectInstance = __instance;
-
         __instance.enableCRTBlurFilter = Plugin.CRTEffect.Value;
         __instance.enableCRTPostFilter = Plugin.CRTEffect.Value;
 
@@ -127,20 +126,20 @@ public static class Patches
     {
         var brightnessAdjustment = Plugin.CRTEffectBrightness.Value;
         var brightnessVector = new Vector4(brightnessAdjustment, brightnessAdjustment, brightnessAdjustment, 1f);
-
+    
         var contractAdjustment = Plugin.CRTEffectContrast.Value;
         var contrastVector = new Vector4(contractAdjustment, contractAdjustment, contractAdjustment, 1f);
-
+    
         var saturationAdjustment = Plugin.CRTEffectSaturation.Value;
         var saturationVector = new Vector4(saturationAdjustment, saturationAdjustment, saturationAdjustment, 1f);
-
+    
         __instance.crtBrightnessMat.SetColumn(3, brightnessVector);
         __instance.crtContrastMat.SetColumn(3, contrastVector);
         __instance.crtSaturationMat.SetColumn(3, saturationVector);
-
+    
         __instance.crtColorMat = __instance.crtBrightnessMat * __instance.crtContrastMat * __instance.crtSaturationMat;
-
-        __instance.crtPostProMaterial.SetTexture(BlurTex, __instance.crtBlurTexture);
+    
+        __instance.crtPostProMaterial.SetTexture(BlurTex,  __instance.texC1248x702);
         __instance.crtPostProMaterial.SetMatrix(ColorMat, __instance.crtColorMat);
     }
 

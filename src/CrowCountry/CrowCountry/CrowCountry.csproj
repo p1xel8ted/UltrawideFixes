@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DefineConstants>TRACE</DefineConstants>
-        <OutputPath>I:\Crow Country\BepInEx\plugins\</OutputPath>
+        <OutputPath>F:\SteamLibrary\steamapps\common\Crow Country\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <DefineConstants>TRACE</DefineConstants>
-        <OutputPath>I:\Crow Country\BepInEx\plugins\</OutputPath>
+        <OutputPath>F:\SteamLibrary\steamapps\common\Crow Country\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
