@@ -1,6 +1,5 @@
 ﻿// Global using directives
 
-global using BepInEx_IL2CPP;
 global using BepInEx;
 global using BepInEx.Logging;
 global using BepInEx.Unity.IL2CPP;
@@ -11,5 +10,4 @@ global using PixelPerfectCamera = UnityEngine.Experimental.Rendering.Universal.P
 global using JimmysUnityUtilities;
 global using UnityEngine.EventSystems;
 global using Object = UnityEngine.Object;
-global using Shared;
 global using TMPro;

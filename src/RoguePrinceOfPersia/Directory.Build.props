@@ -34,10 +34,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>I:\SteamLibrary\steamapps\common\WulinSH\BepInEx\plugins</OutputPath>
+        <OutputPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>I:\SteamLibrary\steamapps\common\WulinSH\BepInEx\plugins</OutputPath>
+        <OutputPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 </Project>

@@ -1,4 +1,11 @@
-﻿namespace HerosAdventureRoadToPassionUltraWide;
+﻿using System;
+using System.Linq;
+using BepInEx.Configuration;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+
+namespace HerosAdventureRoadToPassionUltraWide;
 
 [BepInPlugin(Const.PluginGuid, Const.PluginName, Const.PluginVersion)]
 public class Plugin : BasePlugin
@@ -36,8 +43,8 @@ public class Plugin : BasePlugin
         Display.displays[DisplayToUse.Value].Activate();
 
         Logger = Log;
-        Utils.AttachToSceneOnLoaded(OnSceneLoaded);
-        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>) OnSceneLoaded;
+        Logger.LogInfo($"Plugin {Const.PluginName} is loaded!");
         HarmonyInstance.PatchAll();
     }
 
@@ -46,25 +53,25 @@ public class Plugin : BasePlugin
         Logger.LogWarning(message);
     }
 
-    private static void CamFix(Camera cam)
-    {
-        if (cam.targetTexture == null) return;
-        var targetTexture = cam.targetTexture;
-        var descriptor = targetTexture.descriptor;
-        if (descriptor.width == SelectedWidth) return;
-        descriptor.width = SelectedWidth;
-        descriptor.height = SelectedHeight;
-        var renderTexture = new RenderTexture(descriptor)
-        {
-            filterMode = targetTexture.filterMode,
-            name = targetTexture.name
-        };
-        cam.targetTexture = renderTexture;
-        if (cam.targetTexture == renderTexture)
-        {
-            targetTexture.Release();
-        }
-    }
+    // private static void CamFix(Camera cam)
+    // {
+    //     if (cam.targetTexture == null) return;
+    //     var targetTexture = cam.targetTexture;
+    //     var descriptor = targetTexture.descriptor;
+    //     if (descriptor.width == SelectedWidth) return;
+    //     descriptor.width = SelectedWidth;
+    //     descriptor.height = SelectedHeight;
+    //     var renderTexture = new RenderTexture(descriptor)
+    //     {
+    //         filterMode = targetTexture.filterMode,
+    //         name = targetTexture.name
+    //     };
+    //     cam.targetTexture = renderTexture;
+    //     if (cam.targetTexture == renderTexture)
+    //     {
+    //         targetTexture.Release();
+    //     }
+    // }
 
     internal static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -72,11 +79,11 @@ public class Plugin : BasePlugin
         Application.targetFrameRate = MaxRefreshRate;
         Time.fixedDeltaTime = 1f / MaxRefreshRate;
 
-        var cameras = Utils.FindIl2CppType<Camera>();
-        foreach (var camera in cameras)
-        {
-            CamFix(camera);
-        }
+        // var cameras = Utils.FindIl2CppType<Camera>();
+        // foreach (var camera in cameras)
+        // {
+        //     CamFix(camera);
+        // }
 
         var canvasScalers = Utils.FindIl2CppType<CanvasScaler>();
         foreach (var canvasScaler in canvasScalers.Where(canvasScaler => !canvasScaler.name.Contains("sinai", StringComparison.OrdinalIgnoreCase)))

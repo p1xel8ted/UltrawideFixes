@@ -4,14 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="" />
+    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/Extenions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/Utils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/Directory.Build.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/GlobalUsings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/GlobalUsings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/HerosAdventureRoadToPassionUltraWide.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/HerosAdventureRoadToPassionUltraWide.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/Patches.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../HerosAdventureRoadToPassion/HerosAdventureRoadToPassionUltraWide/Plugin.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -83,6 +93,7 @@
       <workItem from="1691285099540" duration="2887000" />
       <workItem from="1713346465167" duration="1800000" />
       <workItem from="1713348328011" duration="3841000" />
+      <workItem from="1716597923910" duration="1749000" />
     </task>
     <task id="LOCAL-00001" summary="Darkest Dungeon 2 0.1.1">
       <option name="closed" value="true" />

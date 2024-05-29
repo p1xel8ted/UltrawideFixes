@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace HerosAdventureRoadToPassionUltraWide;
@@ -40,9 +42,15 @@ public static class Patches
 
         var speedButton = GameObject.Find(Const.SpeedButtonPath);
         var button = speedButton.GetComponent<Button>();
-        button.onClick.AddListener(() => ClickedSpeedButton = true);
+        button.onClick.AddListener(ClickSpeed());
 
         __instance.autoInfoText.transform.position = new Vector3(0, -2, 10);
+    }
+
+    private static UnityAction ClickSpeed()
+    {
+        ClickedSpeedButton = true;
+        return null;    
     }
 
     [HarmonyPostfix]
@@ -160,19 +168,19 @@ public static class Patches
         Plugin.OnSceneLoaded(SceneManager.GetActiveScene(), default);
 
         var tree = GameObject.Find(Const.Tree1Path);
-        tree.transform.SetAnchoredPosition(new Vector2(-6f, 6.2f));
+        if (tree != null) tree.transform.SetAnchoredPosition(new Vector2(-6f, 6.2f));
 
         var hideTree = GameObject.Find(Const.Tree2Path);
-        hideTree.SetActive(false);
+        if (hideTree != null) hideTree.SetActive(false);
 
         var ribbon = GameObject.Find(Const.RibbonPath);
-        ribbon.transform.SetAnchoredPosition(new Vector2(0.1f, 0f));
+        if (ribbon != null) ribbon.transform.SetAnchoredPosition(new Vector2(0.1f, 0f));
 
         var grass = GameObject.Find(Const.GrassPath);
-        grass.SetActive(true);
+        if (grass != null) grass.SetActive(true);
 
         var bg = GameObject.Find(Const.MainMenuBgPath);
-        bg.transform.localScale = bg.transform.localScale with {x = Plugin.PositiveScaleFactor};
+        if (bg != null) bg.transform.localScale = bg.transform.localScale with {x = Plugin.PositiveScaleFactor};
     }
 
     [HarmonyPostfix]
@@ -187,7 +195,7 @@ public static class Patches
     public static void TradingWithNpcUI_Show(TradingWithNpcUI __instance)
     {
         var closeButton = __instance.transform.FindFirstChildByName(Const.TradingNpcCloseName);
-        closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+        if (closeButton != null) closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
     }
 
     [HarmonyPostfix]
@@ -229,16 +237,16 @@ public static class Patches
     public static void UISetting_Show(UISetting __instance)
     {
         var closeButton = __instance.CloseButton.transform;
-        closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+        if (closeButton != null) closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
 
         var tabGroup = __instance.transform.FindFirstChildByName(Const.TabsGroupName);
-        tabGroup.localPosition = tabGroup.localPosition with {x = Plugin.WidthDifference + 30f};
+        if (tabGroup != null) tabGroup.localPosition = tabGroup.localPosition with {x = Plugin.WidthDifference + 30f};
 
         var bg1 = GameObject.Find(Const.Blur1Path);
         var bg2 = GameObject.Find(Const.Blur2Path);
 
-        bg1.SetActive(false);
-        bg2.SetActive(false);
+        if (bg1 != null) bg1.SetActive(false);
+        if (bg2 != null) bg2.SetActive(false);
     }
 
     private static Transform AchievementCloseButton { get; set; }
@@ -259,10 +267,10 @@ public static class Patches
     public static void UIIllustratedHandbook_Show(UIIllustratedHandbook __instance)
     {
         var closeButton = __instance.CloseButton.transform;
-        closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+        if (closeButton != null) closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
 
         var tabGroup = __instance.transform.FindFirstChildByName(Const.TabsGroupName);
-        tabGroup.localPosition = tabGroup.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+        if (tabGroup != null) tabGroup.localPosition = tabGroup.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
     }
 
     [HarmonyPostfix]
@@ -280,7 +288,7 @@ public static class Patches
     public static void UIRoot_Init(UIRoot __instance)
     {
         var sa = __instance.transform.FindChild(Const.SafeArea);
-        SafeAreaHelperInstance ??= sa.AddComponent<SafeAreaHelper>();
+        if (sa != null) SafeAreaHelperInstance ??= sa.AddComponent<SafeAreaHelper>();
         SafeAreaHelperInstance.Start();
         SafeAreaHelperInstance.canvasSize = new Vector2(Plugin.SelectedWidth, Plugin.SelectedHeight);
         if (Plugin.SixteenByNineHud.Value)
@@ -300,19 +308,19 @@ public static class Patches
     public static void TradingWithFactionUI_Show(TradingWithFactionUI __instance)
     {
         var sellClose = __instance.transform.FindFirstChildByName(Const.CloseButtonName);
-        sellClose.localPosition = sellClose.localPosition with {x = Plugin.WidthDifference - 130f, y = CloseButtonPosition.y};
+        if (sellClose != null) sellClose.localPosition = sellClose.localPosition with {x = Plugin.WidthDifference - 130f, y = CloseButtonPosition.y};
 
         var buyClose = __instance.transform.FindFirstChildByName(Const.TradeFactionCloseName);
-        buyClose.localPosition = buyClose.localPosition with {x = 585f, y = 880f}; //no idea why this is so different from the other close button
+        if (buyClose != null) buyClose.localPosition = buyClose.localPosition with {x = 585f, y = 880f}; //no idea why this is so different from the other close button
 
         var idz = __instance.transform.FindFirstChildByName(Const.TradeFactionItemDisplayZoneOneName);
-        idz.localPosition = idz.localPosition with {x = -415};
+        if (idz != null) idz.localPosition = idz.localPosition with {x = -415};
 
         var idzs = __instance.transform.FindFirstChildByName(Const.TradeFactionSellItemName);
-        idzs.localPosition = idzs.localPosition with {x = -415};
+        if (idzs != null) idzs.localPosition = idzs.localPosition with {x = -415};
 
         var idz2 = __instance.transform.FindFirstChildByName(Const.TradeFactionItemDisplayZoneTwoName);
-        idz2.localPosition = idz2.localPosition with {x = -415};
+        if (idz2 != null) idz2.localPosition = idz2.localPosition with {x = -415};
     }
 
     [HarmonyPostfix]
@@ -321,10 +329,10 @@ public static class Patches
     public static void UIBattleActorInfo_Show(UIBattleActorInfo __instance)
     {
         var statOne = __instance.transform.FindFirstChildByName(Const.StatOneName);
-        statOne.localPosition = statOne.localPosition with {x = -277};
+        if (statOne != null) statOne.localPosition = statOne.localPosition with {x = -277};
 
         var statTwo = __instance.transform.FindFirstChildByName(Const.StatTwoName);
-        statTwo.localPosition = statTwo.localPosition with {x = -126};
+        if (statTwo != null) statTwo.localPosition = statTwo.localPosition with {x = -126};
     }
 
     [HarmonyPostfix]
@@ -333,15 +341,17 @@ public static class Patches
     public static void UISundriesPanel_Show(UISundriesPanel __instance)
     {
         var close = __instance.transform.FindFirstChildByName(Const.CloseButtonName);
-        close.localPosition = close.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+        if (close != null) close.localPosition = close.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ScenarioBlackSide), nameof(ScenarioBlackSide.Show))]
     public static void ScenarioBlackSide_Show(ScenarioBlackSide __instance)
     {
-        __instance.transform.FindChild(Const.UpSideBlackBar).gameObject.SetActive(false);
-        __instance.transform.FindChild(Const.DownSideBlackBar).gameObject.SetActive(false);
+        var usbb = __instance.transform.FindChild(Const.UpSideBlackBar);
+        if (usbb != null) usbb.gameObject.SetActive(false);
+        var dsbb = __instance.transform.FindChild(Const.DownSideBlackBar);
+        if (dsbb != null) dsbb.gameObject.SetActive(false);
     }
 
     [HarmonyPostfix]
@@ -350,8 +360,11 @@ public static class Patches
     public static void UICabMapManager_Show(UICabMapManager __instance)
     {
         var bg = __instance.transform.FindFirstChildByName(Const.BgPath);
-        bg.localPosition = bg.localPosition with {x = -Plugin.MiddleOfScreenX};
-        bg.localScale = bg.localScale with {x = Plugin.PositiveScaleFactor};
+        if (bg != null)
+        {
+            bg.localPosition = bg.localPosition with {x = -Plugin.MiddleOfScreenX};
+            bg.localScale = bg.localScale with {x = Plugin.PositiveScaleFactor};
+        }
 
 
         var parent = __instance.transform.FindFirstChildByName(Const.CabManagerBottomControlName);
@@ -381,8 +394,7 @@ public static class Patches
     public static void ScenarioSkipButton_Show()
     {
         var icon = GameObject.Find(Const.ScenarioSkipControllerButtonPath);
-        if (icon == null) return;
-        icon.transform.SetAnchoredPosition(new Vector2(1065.094f, 485.8047f));
+        if (icon != null) icon.transform.SetAnchoredPosition(new Vector2(1065.094f, 485.8047f));
     }
 
     [HarmonyPostfix]
@@ -390,9 +402,11 @@ public static class Patches
     public static void UIThankList_Show(UIThankList __instance)
     {
         var background = __instance.transform.FindFirstChildByName(Const.BgPath);
-        if (background == null) return;
-        var transform = background.transform;
-        transform.localScale = transform.localScale with {x = Plugin.PositiveScaleFactor};
+        if (background != null)
+        {
+            var transform = background.transform;
+            transform.localScale = transform.localScale with {x = Plugin.PositiveScaleFactor};
+        }
     }
 
     [HarmonyPostfix]
@@ -405,11 +419,14 @@ public static class Patches
         TxtPrizeLine ??= __instance.transform.FindChild(Const.TxtPrizeLineName);
 
         __instance.txtPrizeLessNum.transform.SetAnchoredPosition(new Vector2(-185, 333));
-        TxtPrizeLine.transform.SetAnchoredPosition(new Vector2(-165, 333));
-        __instance.txtPrizeTotalNum.transform.SetAnchoredPosition(new Vector2(-17, 333));
+        if (TxtPrizeLine != null)
+        {
+            TxtPrizeLine.transform.SetAnchoredPosition(new Vector2(-165, 333));
+            __instance.txtPrizeTotalNum.transform.SetAnchoredPosition(new Vector2(-17, 333));
 
-        AdjustPosition(__instance.txtPrizeLessNum.transform.position.x, __instance.txtEnergyLessNum.transform, -0.04f);
-        AdjustPosition(TxtPrizeLine.position.x, TxtEnergyLine, -0.04f);
+            AdjustPosition(__instance.txtPrizeLessNum.transform.position.x, __instance.txtEnergyLessNum.transform, -0.04f);
+            AdjustPosition(TxtPrizeLine.position.x, TxtEnergyLine, -0.04f);
+        }
         AdjustPosition(__instance.txtPrizeTotalNum.transform.position.x, __instance.txtEnergyTotalNum.transform, -0.04f);
 
         var id = __instance.txtDiffcult.GetInstanceID();
@@ -443,13 +460,18 @@ public static class Patches
     public static void UIMenuPanel_Show_(UIMenuPanel __instance)
     {
         var closeButton = UIMenuPanel.Instance.transform.FindFirstChildByName(Const.CloseButtonName);
-        closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
-        closeButton.localScale = closeButton.localScale with {x = Plugin.NegativeScaleFactor, y = Plugin.NegativeScaleFactor};
+        if (closeButton != null)
+        {
+            closeButton.localPosition = closeButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+            closeButton.localScale = closeButton.localScale with {x = Plugin.NegativeScaleFactor, y = Plugin.NegativeScaleFactor};
+        }
 
         var bottom = __instance.transform.FindFirstChildByName(Const.BottomName);
-        if (bottom == null) return;
-        bottom.localScale = bottom.localScale with {x = Plugin.PositiveScaleFactor};
-        bottom.GetChild(0).localScale = bottom.GetChild(0).localScale with {x = Plugin.NegativeScaleFactor};
+        if (bottom != null)
+        {
+            bottom.localScale = bottom.localScale with {x = Plugin.PositiveScaleFactor};
+            bottom.GetChild(0).localScale = bottom.GetChild(0).localScale with {x = Plugin.NegativeScaleFactor};
+        }
     }
 
     [HarmonyPostfix]
@@ -457,10 +479,10 @@ public static class Patches
     public static void AchievementUI_Show(AchievementUI __instance)
     {
         AchievementCloseButton = __instance.transform.FindFirstChildByName(Const.BtnCloseName);
-        AchievementCloseButton.localPosition = AchievementCloseButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
+        if (AchievementCloseButton != null) AchievementCloseButton.localPosition = AchievementCloseButton.localPosition with {x = Plugin.WidthDifference, y = CloseButtonPosition.y};
 
         var boxBg = __instance.transform.FindFirstChildByName(Const.AchievementBoxName);
-        boxBg.GetChild(0).gameObject.SetActive(false);
+        if (boxBg != null) boxBg.GetChild(0).gameObject.SetActive(false);
 
         var blurBg = __instance.transform.FindFirstChildByName(Const.BlurBgClone);
 
@@ -480,10 +502,10 @@ public static class Patches
         }
 
         var scrollView = __instance.transform.FindFirstChildByName(Const.AchievementScrollViewName);
-        scrollView.localPosition = scrollView.localPosition with {y = 400f};
+        if (scrollView != null) scrollView.localPosition = scrollView.localPosition with {y = 400f};
 
         var tip = __instance.transform.FindFirstChildByName(Const.AchievementTipName);
-        tip.localPosition = tip.localPosition with {y = -420f};
+        if (tip != null) tip.localPosition = tip.localPosition with {y = -420f};
     }
     
     private static Transform QuitToDesktopButton { get; set; }
@@ -506,11 +528,7 @@ public static class Patches
             var text = QuitToDesktopButton.GetComponentInChildren<TextMeshProUGUI>();
             text.text = "Quit to Desktop";
             button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() =>
-            {
-                GC.Collect();
-                Application.Quit();
-            });
+            button.onClick.AddListener(Quit());
         }
 
         if (__instance.transform.FindChild(Const.BlurBgClone) == null && BlurBgGo != null)
@@ -526,6 +544,13 @@ public static class Patches
             tips.SetActive(!Plugin.DisableTips.Value);
         }
         IncreaseStoryLogWidth();
+    }
+
+    private static UnityAction Quit()
+    {
+        GC.Collect();
+        Application.Quit();
+        return null;
     }
 
     [HarmonyPostfix]

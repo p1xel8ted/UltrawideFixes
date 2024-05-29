@@ -1,0 +1,13 @@
+﻿global using System.Collections.Generic;
+global using System.Linq;
+global using System.Reflection;
+global using BepInEx;
+global using BepInEx.Configuration;
+global using BepInEx.Unity.IL2CPP;
+global using HarmonyLib;
+global using Il2CppInterop.Runtime;
+global using LastCloudia.Misc;
+global using UnityEngine;
+global using UnityEngine.Events;
+global using UnityEngine.SceneManagement;
+global using UnityEngine.UI;

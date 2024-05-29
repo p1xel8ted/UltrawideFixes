@@ -4,22 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a86c04a9-7e94-4480-8b55-10ddc17ce598" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/MonoBehaviours/LeftHudMover.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/MonoBehaviours/PositiveScaler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/MonoBehaviours/RightHudMover.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Elderland/Elderland/Transpiler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlexKiddMiracleWorldDX/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/MonoBehaviours/PositiveScaler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/AlexKiddMiracleWorldDX/Plugin.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a86c04a9-7e94-4480-8b55-10ddc17ce598" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -49,6 +41,10 @@
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/1b4135d412ac47b78d18fb09f599c0ccfe800/70/a71c4125/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/8063318377a64c368c01f66db1251f1b23a00/74/dbcd74bf/Animator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/b455e42cec8c40df92dbd0c9f3d0cec76200/3f/dbbf6ab9/Tilemap.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Ben/OneDrive/Development/Ultrawide/1AAAA-UltrawideFixes/src/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Lunacid/Lunacid/ConfigurationManagerAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Ben/OneDrive/Development/Ultrawide/1AAAA-UltrawideFixes/src/Lunacid/Lunacid/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Lunacid/Lunacid/Plugin.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -119,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712230403131</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Alex Kidd">
+      <option name="closed" value="true" />
+      <created>1716103105727</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716103105727</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
@@ -131,6 +135,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Alex Kidd Re-Do WIP" />
     <MESSAGE value="Alex Kidd WIP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Alex Kidd WIP" />
+    <MESSAGE value="Alex Kidd" />
+    <option name="LAST_COMMIT_MESSAGE" value="Alex Kidd" />
   </component>
 </project>
