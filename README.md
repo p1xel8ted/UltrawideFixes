@@ -299,7 +299,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (6)</summary>
+<details><summary>T (7)</summary>
 
 ## [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria) 
 #### Last update: 21st April 2024
@@ -309,6 +309,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
+
+## [The Rogue Prince of Persia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RoguePrinceOfPersia)  
+#### Last update: 29th May 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
+
+![main_ui_small](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1d47ffa4-c2d7-46ea-97c3-2abd59fec1c5) ![main_ui_large](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dac9fed0-88e1-4896-ab81-0d270dfa9499)
 
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
