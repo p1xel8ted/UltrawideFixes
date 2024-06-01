@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>RoguePrinceOfPersiaUltraWide</AssemblyName>
         <Description>The Rogue Prince of Persia Ultra-Wide</Description>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
@@ -31,415 +31,88 @@
 
     <ItemGroup>
       <Reference Include="Assembly-CSharp">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Assembly-CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
-      <Reference Include="AstarPathfindingProject">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\AstarPathfindingProject.dll</HintPath>
-      </Reference>
-      <Reference Include="Cinemachine">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Cinemachine.dll</HintPath>
-      </Reference>
-      <Reference Include="DoozyRuntime">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\DoozyRuntime.dll</HintPath>
-      </Reference>
-      <Reference Include="DOTween">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\DOTween.dll</HintPath>
-      </Reference>
-      <Reference Include="Facepunch.Steamworks.Win64">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Facepunch.Steamworks.Win64.dll</HintPath>
-      </Reference>
-      <Reference Include="FMODUnity">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\FMODUnity.dll</HintPath>
-      </Reference>
-      <Reference Include="FMODUnityResonance">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\FMODUnityResonance.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMicrosoft.CSharp">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppMicrosoft.CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Data">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Drawing">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Drawing.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Runtime.Serialization">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml.Linq">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
-      </Reference>
-      <Reference Include="ImGui.NET">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\ImGui.NET.dll</HintPath>
-      </Reference>
-      <Reference Include="ImGui.NET.System.Runtime.CompilerServices.Unsafe">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\ImGui.NET.System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.ActionFramework">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.ActionFramework.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.ApplicationFlowManager">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.ApplicationFlowManager.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.BuildTool">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.BuildTool.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.EntityFramework">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.EntityFramework.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.FeedbackManager">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.FeedbackManager.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.GameCommandMenu">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.GameCommandMenu.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.GameServices">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.GameServices.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.IMGUI">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.IMGUI.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.ToolKit">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.ToolKit.dll</HintPath>
-      </Reference>
-      <Reference Include="MotherBase.UserReporting">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\MotherBase.UserReporting.dll</HintPath>
-      </Reference>
-      <Reference Include="NaughtyAttributes.Core">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\NaughtyAttributes.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="NaughtyAttributes.Test">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\NaughtyAttributes.Test.dll</HintPath>
-      </Reference>
-      <Reference Include="Newtonsoft.Json">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
-      </Reference>
-      <Reference Include="PlayFab">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\PlayFab.dll</HintPath>
-      </Reference>
-      <Reference Include="SerializeReferenceExtension">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\SerializeReferenceExtension.dll</HintPath>
-      </Reference>
-      <Reference Include="Tayx.Graphy">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Tayx.Graphy.dll</HintPath>
-      </Reference>
-      <Reference Include="Timeline.Samples.Video">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Timeline.Samples.Video.dll</HintPath>
-      </Reference>
-      <Reference Include="UImGui">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UImGui.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.2D.Animation.Runtime.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Addressables.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Burst.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Collections">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Collections.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Collections.LowLevel.ILSupport">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.InputSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.InputSystem.ForUI">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.InputSystem.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Localization">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Localization.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Mathematics">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Mathematics.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Profiling.Core">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Profiling.Core.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Localization.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.Timeline.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Timeline.dll</HintPath>
       </Reference>
       <Reference Include="Unity.VisualEffectGraph.Runtime">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AIModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AudioModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClothModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ContentLoadModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ContentLoadModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GIModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PropertiesModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.PropertiesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VFXModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VideoModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.XRModule">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="Yarn.CsvHelper">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Yarn.CsvHelper.dll</HintPath>
-      </Reference>
-      <Reference Include="Yarn.Google.Protobuf">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Yarn.Google.Protobuf.dll</HintPath>
-      </Reference>
-      <Reference Include="Yarn.System.Buffers">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Yarn.System.Buffers.dll</HintPath>
-      </Reference>
-      <Reference Include="Yarn.System.Memory">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Yarn.System.Memory.dll</HintPath>
-      </Reference>
-      <Reference Include="Yarn.System.Numerics.Vectors">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Yarn.System.Numerics.Vectors.dll</HintPath>
-      </Reference>
-      <Reference Include="Yarn.System.Runtime.CompilerServices.Unsafe">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\Yarn.System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="YarnSpinner">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\YarnSpinner.dll</HintPath>
-      </Reference>
-      <Reference Include="YarnSpinner.Unity">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\YarnSpinner.Unity.dll</HintPath>
-      </Reference>
-      <Reference Include="__Generated">
-        <HintPath>D:\Downloads\JDownloader\The Rogue Prince of Persia_Crack [RUNE]\The Rogue Prince of Persia\Crack [RUNE].rar\The Rogue Prince of Persia\The Rogue Prince of Persia\BepInEx\interop\__Generated.dll</HintPath>
+        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
     </ItemGroup>
 
