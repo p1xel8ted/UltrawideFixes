@@ -13,6 +13,11 @@
     <Company>$(Authors)</Company>
     <Product>$(MSBuildProjectName)</Product>
     <PackageId>$(MSBuildProjectName)</PackageId>
+      <RestoreAdditionalProjectSources>
+          https://api.nuget.org/v3/index.json;
+          https://nuget.bepinex.dev/v3/index.json;
+          https://nuget.samboy.dev/v3/index.json
+      </RestoreAdditionalProjectSources>
   </PropertyGroup>
 
   <!--Default all references to CopyLocal False.-->
@@ -23,11 +28,11 @@
   </ItemDefinitionGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>F:\Games\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\SteamLibrary\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>F:\Games\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>F:\SteamLibrary\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
     
   <ItemGroup>
