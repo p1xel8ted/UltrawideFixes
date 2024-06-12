@@ -311,7 +311,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
 
 ## [The Rogue Prince of Persia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RoguePrinceOfPersia)  
-#### Last update: 29th May 2024
+#### Last update: 1st June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
 
 ![main_ui_small](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1d47ffa4-c2d7-46ea-97c3-2abd59fec1c5) ![main_ui_large](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dac9fed0-88e1-4896-ab81-0d270dfa9499)
@@ -320,7 +320,10 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
 
 ## [Tormented Souls](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TormentedSouls)  
+#### Last update: 2nd June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TormentedSouls/total?label=downloads&style=for-the-badge)
+
+![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7f579b79-94fa-420c-8143-237c287e69a9)
 
 ## [Train Valley 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TrainValley1)  
 #### Last update: 25th April 2024
