@@ -1,4 +1,4 @@
-<div align="center">
+![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4889bfae-fbed-42f8-a753-cf07681c54a3)<div align="center">
   
 ![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/04c34280-ef70-4db3-95bc-26295f83e0d2)
 <br/><br/>
@@ -178,7 +178,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="L"/>
-<details><summary>L (5)</summary>
+<details><summary>L (6)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 #### Last update: 28th April 2024
@@ -191,6 +191,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LastCloudia/total?label=downloads&style=for-the-badge)
 
 ![main_game_mix](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2fc61459-e538-460d-a1f5-1616e85abd83) ![main_map](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5b5f3681-386e-4aec-8f65-e081f9e8cdc9)
+
+## [Life is Strange Remastered](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LifeIsStrangeRemastered)  
+#### Last update: 13th June 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LifeIsStrangeRemastered/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/aa3d8ac7-921a-4e93-8847-f5ed9a083386) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bb6cc856-8da2-4d7d-b7f2-9b1ab8b19d16)
 
 ## [Life is Strange: Before the Storm Remastered](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LifeIsStrangeBeforeTheStormRemastered)  
 #### Last update: 12th June 2024
