@@ -1,4 +1,4 @@
-![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/4889bfae-fbed-42f8-a753-cf07681c54a3)<div align="center">
+<div align="center">
   
 ![header](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/04c34280-ef70-4db3-95bc-26295f83e0d2)
 <br/><br/>
