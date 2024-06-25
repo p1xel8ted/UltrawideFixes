@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontMission2Remake", "FrontMission2Remake\FrontMission2Remake.csproj", "{878B33D0-AABC-4A4F-8095-AFDE451F894A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{878B33D0-AABC-4A4F-8095-AFDE451F894A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{878B33D0-AABC-4A4F-8095-AFDE451F894A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{878B33D0-AABC-4A4F-8095-AFDE451F894A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{878B33D0-AABC-4A4F-8095-AFDE451F894A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
