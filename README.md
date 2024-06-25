@@ -119,13 +119,19 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="E"/>
-<details><summary>E (1)</summary>
+<details><summary>E (2)</summary>
 
 ## [Elderand](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Elderand)
 #### Last update: 6th April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Elderand/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1087b969-b1f7-4d70-acd1-7c61ced8c8c6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ea7f0dc4-0701-41dd-8a05-51d209e8405d)
+
+## [Everafter Falls](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/EverafterFalls)
+#### Last update: 25th June 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/EverafterFalls/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a6b10822-c307-4436-8d5a-2fa2268e6924) ![main_game_1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ce5b78ee-0710-4691-8c0f-9e89b178cece)
 
 </details>
 <div id="F"/>
@@ -178,7 +184,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="L"/>
-<details><summary>L (4)</summary>
+<details><summary>L (6)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 #### Last update: 28th April 2024
@@ -191,6 +197,18 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LastCloudia/total?label=downloads&style=for-the-badge)
 
 ![main_game_mix](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2fc61459-e538-460d-a1f5-1616e85abd83) ![main_map](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5b5f3681-386e-4aec-8f65-e081f9e8cdc9)
+
+## [Life is Strange Remastered](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LifeIsStrangeRemastered)  
+#### Last update: 13th June 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LifeIsStrangeRemastered/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/aa3d8ac7-921a-4e93-8847-f5ed9a083386) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/bb6cc856-8da2-4d7d-b7f2-9b1ab8b19d16)
+
+## [Life is Strange: Before the Storm Remastered](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LifeIsStrangeBeforeTheStormRemastered)  
+#### Last update: 12th June 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LifeIsStrangeBeforeTheStormRemastered/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a1ca23d4-55de-4703-a9f3-9a65ae6a48bc) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/0ffaea39-51dd-4148-a3bb-b9296f25da9c)
 
 ## [Little Goody Two Shoes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LittleGoodyTwoShoes)  
 #### Last update: 25th April 2024
