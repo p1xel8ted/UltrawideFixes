@@ -174,13 +174,19 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="K"/>
-<details><summary>K (1)</summary>
+<details><summary>K (2)</summary>
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 #### Last update: 4th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8cdd42bb-912c-46c9-8cfa-54711993694a) ![main_game2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5f021f54-756c-4ee1-b25f-f5d370add107)
+
+## [Klonoa Phantasy Reverie Series](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KlonoaPRS)  
+#### Last update: 14th July 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KlonoaPRS/total?label=downloads&style=for-the-badge)
+
+![main_klonoa1_menu](https://github.com/user-attachments/assets/5352b102-3672-4718-9e5f-f25f127904d3) ![main_klonoa2_menu](https://github.com/user-attachments/assets/18e28ba5-8f4f-4648-808e-5a13ff8790ce)
 
 </details>
 <div id="L"/>
