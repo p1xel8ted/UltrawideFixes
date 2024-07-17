@@ -1,6 +1,7 @@
 ﻿namespace KlonoaSeries;
 
 [Harmony]
+[HarmonyAfter("settings_fix")]
 public static class ScreenResolution
 {
     [HarmonyPrefix]

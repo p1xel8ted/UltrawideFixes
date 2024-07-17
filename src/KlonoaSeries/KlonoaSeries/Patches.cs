@@ -1,13 +1,12 @@
 ﻿namespace KlonoaSeries;
 
 [Harmony]
+[HarmonyAfter("settings_fix")]
 public static class Patches
 {
-
     private readonly static string[] DontDestroy = ["UniverseLib", "BepInEx", "sinai", "ExplorerBehaviour", "UnityExplorer"];
     private static Vector2 MainResolution => new(Plugin.MainWidth, Plugin.MainHeight);
-
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasChecker), nameof(CanvasChecker.Update))]
     public static void nsPFWLauncher_CanvasChecker_SetBaseSize(CanvasChecker __instance)
@@ -35,10 +34,50 @@ public static class Patches
         __instance.aspect = Plugin.MainAspect;
     }
 
+
+    internal static void UpdateBeautify()
+    {
+        foreach (var b in Resources.FindObjectsOfTypeAll<Beautify>())
+        {
+            b.preset = Plugin.Preset.Value;
+            b.sharpen = Plugin.Sharpen.Value;
+            b.bloom = Plugin.Bloom.Value;
+            b.bloomUltra = false;
+            b.bloomIntensity = Plugin.BloomIntensity.Value;
+            b._quality = Plugin.Quality.Value;
+            b.tonemap = Plugin.Tonemap.Value;
+            b.lensDirt = Plugin.LensDirt.Value;
+            b.lensDirtIntensity = Plugin.LensDirtIntensity.Value;
+            b.dither = Plugin.Dither.Value;
+            b.ditherDepth = Plugin.DitherDepth.Value;
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Beautify), nameof(Beautify.OnEnable))]
+    public static void Beautify_OnEnable(Beautify __instance)
+    {
+        UpdateBeautify();
+    }
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(nsPFW.nw4r.g3d.Camera), nameof(nsPFW.nw4r.g3d.Camera.SetPerspective))]
-    public static void nsPFW_nw4r_g3d_Camera_SetPerspective(ref float aspect)
+    public static void nsPFW_nw4r_g3d_Camera_SetPerspective(ref nsPFW.nw4r.g3d.Camera __instance, ref float fovy, ref float aspect)
     {
+        var baseFov = fovy * Plugin.ScaleFactor;
+
+        if (!Plugin.AtTitleMenu)
+        {
+            var pct = Plugin.FieldOfView.Value / 100f;
+            var newFov = baseFov + baseFov * pct;
+
+            fovy = newFov;
+        }
+        else
+        {
+            fovy = baseFov;
+        }
+
         aspect = Plugin.MainAspect;
     }
 

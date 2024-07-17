@@ -3,7 +3,8 @@
 /// <summary>
 /// A Harmony patch to intercept Unity's Screen.resolutions method and add custom resolutions.
 /// </summary>
-[HarmonyPatch]
+[Harmony]
+[HarmonyAfter("settings_fix")]
 public static class ScreenResolutionsPatch
 {
     /// <summary>
@@ -13,7 +14,6 @@ public static class ScreenResolutionsPatch
     /// <returns>A list of resolutions, including the custom one.</returns>
     public static Resolution[] MyResolutions()
     {
-        Plugin.Log.LogInfo("Unity Screen.resolutions intercepted!");
         var newRes = new Resolution
         {
             height = Plugin.MainHeight,
