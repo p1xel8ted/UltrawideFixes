@@ -145,7 +145,13 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="G"/>
-<details><summary>G (1)</summary>
+<details><summary>G (2)</summary>
+
+## [Gestalt: Steam & Cinder](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/GestaltSteamCinder)
+#### Last update: 24th July 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/GestaltSteamCinder/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/61ee21f0-f702-4eb6-a55b-61ad212475ab) ![main_game](https://github.com/user-attachments/assets/6b927428-8d78-4575-a7a5-110b467a106c)
 
 ## [Gift](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/gift)
 #### Last update: 14th May 2024
