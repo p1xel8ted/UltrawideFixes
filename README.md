@@ -135,7 +135,13 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="F"/>
-<details><summary>F (1)</summary>
+<details><summary>F (2)</summary>
+
+## [Farlands](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Farlands)  
+#### Last update: 27th July 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Farlands/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/4c1d719e-0bda-41fd-9ff7-9f9f437f946f) ![main_game](https://github.com/user-attachments/assets/dd22830b-f489-445a-881a-4e9566ede82e)
 
 ## [FlipWitch - Forbidden Sex Hex](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/FlipWitch)  
 #### Last update: 25th April 2024
