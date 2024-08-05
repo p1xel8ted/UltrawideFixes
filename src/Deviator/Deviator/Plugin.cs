@@ -30,7 +30,7 @@ public class Plugin : BaseUnityPlugin
         480 // Uncommon
     ];
 
-    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
+    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
 
@@ -50,6 +50,7 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> TargetFramerate { get; set; }
     private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
     public static ConfigEntry<bool> ConfineArea { get; private set; }
+    public static ConfigEntry<bool> CleanMenu { get; private set; }
 
 
     private void Awake()
@@ -127,6 +128,7 @@ public class Plugin : BaseUnityPlugin
 
         MuteInBackground = Config.Bind("04. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 89}));
 
+        CleanMenu = Config.Bind("04. Misc", "Clean Menu", true, new ConfigDescription("Removes socials and credit button from the menu.", null, new ConfigurationManagerAttributes {Order = 88}));
         Application.focusChanged += FocusChanged;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);

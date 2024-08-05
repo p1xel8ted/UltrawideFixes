@@ -22,6 +22,10 @@ public static class ScreenResolutionsPatch
         };
         var availableResolutions = Screen.resolutions.ToList();
         availableResolutions.Add(newRes);
+        
+        //remove duplicates and sort resolutions by pixels, lowest to highest
+        availableResolutions = availableResolutions.Distinct().OrderBy(r => r.width * r.height).ToList();
+        
         return availableResolutions.ToArray();
     }
 

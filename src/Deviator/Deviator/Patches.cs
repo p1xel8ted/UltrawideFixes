@@ -45,4 +45,23 @@ public static class Patches
             __instance._viewRect = new Rect(0, 0, 1, 1);
         }
     }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(StartPanel), nameof(StartPanel.OnCreate))]
+    [HarmonyPatch(typeof(StartPanel), nameof(StartPanel.OnShow))]
+    public static void StartPanel_OnCreate(StartPanel __instance)
+    {
+        var social = __instance.transform.Find("SocialMedia");
+        if (social)
+        {
+            social.gameObject.SetActive(!Plugin.CleanMenu.Value);
+        }
+
+        var team = __instance.transform.Find("FirstPanel/OptionsSquare/Team");
+        if (team)
+        {
+            team.gameObject.SetActive(!Plugin.CleanMenu.Value);
+        }
+    }
 }
