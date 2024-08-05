@@ -97,7 +97,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="D"/>
-<details><summary>D (3)</summary>
+<details><summary>D (4)</summary>
 
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 #### Last Update: 17th April 2024
@@ -116,6 +116,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DeathOrTreat/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2c7bec22-0d6b-4487-be1c-5019da7fb9c1) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/244f9d6d-7f47-4e7d-ac00-20abc36b3795)
+
+## [Deviator](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Deviator) 
+#### Last Update: 4th August 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Deviator/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/92748465-2e0e-4b21-be62-c9fd699313e3) ![main_game](https://github.com/user-attachments/assets/76be4a52-72e6-471b-8344-998f30ec5aa2)
 
 </details>
 <div id="E"/>
