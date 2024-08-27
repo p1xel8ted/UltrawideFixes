@@ -34,10 +34,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 </Project>

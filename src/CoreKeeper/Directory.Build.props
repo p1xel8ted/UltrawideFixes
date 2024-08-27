@@ -36,6 +36,8 @@
             <Private>False</Private>
         </PackageReference>
     </ItemDefinitionGroup>
-
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.Mono" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
 
 </Project>

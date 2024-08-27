@@ -31,259 +31,120 @@
 
     <ItemGroup>
       <Reference Include="Alkawa.Core">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Core.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Core.dll</HintPath>
       </Reference>
       <Reference Include="Alkawa.Core.Platform">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Core.Platform.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Core.Platform.dll</HintPath>
       </Reference>
       <Reference Include="Alkawa.Engine">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Engine.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Engine.dll</HintPath>
       </Reference>
       <Reference Include="Alkawa.Engine.Gfx">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Engine.Gfx.dll</HintPath>
-      </Reference>
-      <Reference Include="Alkawa.Engine.Windows">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Engine.Windows.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Engine.Gfx.dll</HintPath>
       </Reference>
       <Reference Include="Alkawa.Gameplay">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Gameplay.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.Gameplay.dll</HintPath>
       </Reference>
       <Reference Include="Alkawa.GameSystems">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.GameSystems.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.GameSystems.dll</HintPath>
       </Reference>
       <Reference Include="Alkawa.ObjectRegister">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.ObjectRegister.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Alkawa.ObjectRegister.dll</HintPath>
       </Reference>
       <Reference Include="Animancer">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Animancer.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Animancer.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="NavMeshComponents">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\NavMeshComponents.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.2D.Animation.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.Common.Runtime">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.2D.Common.Runtime.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\NavMeshComponents.dll</HintPath>
       </Reference>
       <Reference Include="Unity.2D.SpriteShape.Runtime">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.2D.SpriteShape.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.Addressables.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InputSystem.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem.PS5">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InputSystem.PS5.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InputSystem.PS5.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem.Recorder">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InputSystem.Recorder.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InternalAPIEngineBridge.001.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.ProBuilder.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder.KdTree">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.ProBuilder.KdTree.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder.Poly2Tri">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.ProBuilder.Poly2Tri.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.InputSystem.Recorder.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Splines">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.Splines.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.Splines.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\Unity.Timeline.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClothModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UIElementsNativeModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UNETModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VFXModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.XRModule">
-        <HintPath>F:\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+        <HintPath>..\..\..\..\..\..\..\SteamLibrary\steamapps\common\Prince of Persia The Lost Crown\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
       </Reference>
     </ItemGroup>
+
+   
 </Project>

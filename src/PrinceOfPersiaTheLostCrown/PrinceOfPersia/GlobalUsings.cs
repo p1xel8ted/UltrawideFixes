@@ -1,6 +1,4 @@
-﻿global using System;
-global using System.Linq;
-global using System.Reflection;
+﻿global using System.Reflection;
 global using Alkawa.Engine;
 global using Alkawa.Gameplay;
 global using BepInEx;

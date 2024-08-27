@@ -6,7 +6,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.corekeeper.ultrawide";
     private const string PluginName = "Core Keeper Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     private const string LeftPillarBoxName = "Left";
     private const string RightPillarBoxName = "Right";
@@ -136,12 +136,12 @@ public class Plugin : BaseUnityPlugin
             {
                 cam.m_outputMode = OutputMode.MatchAspect;
             }
-            if (cam.camera != null)
+            if (cam.camera)
             {
                 cam.camera.aspect = MainAspectRatio;
             }
 
-            cam.outputSmoothing = true;
+            cam.preventPixelCrawl = true;
         }
     }
 
