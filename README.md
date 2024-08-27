@@ -81,7 +81,14 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C (2)</summary>
+<details><summary>C (3)</summary>
+
+## [Cat Quest (1)](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CatQuest1)  
+#### Last update: 11th August 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CatQuest1/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/a1d0200a-55a7-4120-b88e-9d639046c453)
+![main_game](https://github.com/user-attachments/assets/76f6a3d0-a7ac-4433-8cbd-63bf4d3e2379)
 
 ## [Core Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CoreKeeper)  
 #### Last update: 4th May 2024
