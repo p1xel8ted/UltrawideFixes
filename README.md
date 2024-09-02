@@ -317,7 +317,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="S"/>
-<details><summary>S (6)</summary>
+<details><summary>S (7)</summary>
 
 ## [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ScarletMaiden/total?label=downloads&style=for-the-badge)
@@ -330,6 +330,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
 
 ![main_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/009a57ea-34b1-4501-a081-d3b5ccfc073c) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8bfad81e-8de4-46b9-8a5c-ccdcd38c158d)
+
+## [Shadow of the Ninja - Reborn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ShadowOfTheNinja)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ShadowOfTheNinja/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/c4325aff-0d5b-463c-af08-53ef534388a6)![main_game](https://github.com/user-attachments/assets/390d9fe5-4e91-43a1-8f64-669dd238a11c)
 
 ## [Smushi Come Home](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SmushiComeHome) 
 #### Last update: 22nd April 2024
