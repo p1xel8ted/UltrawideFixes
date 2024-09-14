@@ -7,6 +7,8 @@ public static class Patches
     private const string FadeCanvas = "FadeCanvas";
     private const string MainCamera = "Main Camera";
 
+
+
     private static void UpdateLetterbox(bool enabled)
     {
         var lbc = Utils.FindIl2CppType<LetterBoxControl>();
@@ -27,32 +29,47 @@ public static class Patches
         }
     }
     
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(nnObjSky), nameof(nnObjSky.StepInit))]
-    // public static void nnObjSky_OnEnable(nnObjSky __instance)
-    // {
-    //     var aspectRatio = Plugin.CurrentAspect;
-    //     var scale = new Vector3(1f, 1f, 1f);
-    //
-    //     if (Plugin.ScaleBackgrounds.Value)
-    //     {
-    //         scale = aspectRatio switch
-    //         {
-    //             // 48:9 or similar
-    //             > 5.0f => new Vector3(1.5f, 1.5f, 1f),
-    //             // 32:9 or similar
-    //             > 3.5f => new Vector3(1.25f, 1.25f, 1f),
-    //             _ => scale
-    //         };
-    //     }
-    //
-    //     if (aspectRatio > 2.0f) // 21:9 or similar
-    //     {
-    //         scale = new Vector3(1.1f, 1.1f, 1f);
-    //     }
-    //
-    //     __instance.localScale = scale;
-    // }
+    private static readonly WriteOnceFloat PlayerOnePositionX = new();
+    private static readonly WriteOnceFloat PlayerTwoPositionX = new();
+    private static nnObjPlayerGauge PlayerOneGauge { get; set; }
+    private static nnObjPlayerGauge PlayerTwoGauge { get; set; }
+    
+    
+    internal static void UpdateGaugePosition()
+    {
+        if (PlayerOneGauge)
+        {
+            var x = PlayerOnePositionX.Value + Plugin.PlayerOneGaugePosition.Value;
+            PlayerOneGauge.transform.localPosition = new Vector3(x, PlayerOneGauge.transform.localPosition.y, PlayerOneGauge.transform.localPosition.z);
+        }
+        if (PlayerTwoGauge)
+        {
+            var x = PlayerTwoPositionX.Value + Plugin.PlayerTwoGaugePosition.Value;
+            PlayerTwoGauge.transform.localPosition = new Vector3(x, PlayerTwoGauge.transform.localPosition.y, PlayerTwoGauge.transform.localPosition.z);
+        }
+    }
+
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(nnObjPlayerGauge), nameof(nnObjPlayerGauge.StepInit))]
+    public static void nnObjPlayerGauge_LateUpdate(nnObjPlayerGauge __instance)
+    {
+        switch (__instance.name)
+        {
+            case "ObjPlayerGauge1P":
+                PlayerOneGauge = __instance;
+                PlayerOnePositionX.Value = __instance.transform.localPosition.x;
+                Plugin.Logger.LogWarning($"ObjPlayerGauge1P: {PlayerOnePositionX.Value}");
+                break;
+            case "ObjPlayerGauge2P":
+                PlayerTwoGauge = __instance;
+                PlayerTwoPositionX.Value = __instance.transform.localPosition.x;
+                Plugin.Logger.LogWarning($"ObjPlayerGauge2P: {PlayerTwoPositionX.Value}");
+                break;
+        }
+
+        UpdateGaugePosition();
+    }
 
 
 
@@ -89,10 +106,6 @@ public static class Patches
     [HarmonyPatch(typeof(MakerLogo), nameof(MakerLogo.Start))]
     public static void MakerLogo_Start()
     {
-        // SplashScreen.Stop(SplashScreen.StopBehavior.StopImmediate);
-        // SplashScreen.CancelSplashScreen();
-        // SceneManager.LoadScene(TitleScene, LoadSceneMode.Single);
-
         UpdateLetterbox(true);
     }
 
@@ -191,9 +204,11 @@ public static class Patches
 
     internal static void RunFixes()
     {
-        
-        AspectCamera.Instance.width = AspectCamera.Instance.height * Plugin.CurrentAspect;
-        
+        if (AspectCamera.Instance)
+        {
+            AspectCamera.Instance.width = AspectCamera.Instance.height * Plugin.CurrentAspect;   
+        }
+
         FixWhiteLines();
         
         UpdateCameraBackgrounds();

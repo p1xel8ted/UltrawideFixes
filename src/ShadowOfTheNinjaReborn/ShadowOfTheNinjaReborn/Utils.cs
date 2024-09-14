@@ -1,6 +1,4 @@
-﻿using Object = UnityEngine.Object;
-
-namespace ShadowOfTheNinjaReborn;
+﻿namespace ShadowOfTheNinjaReborn;
 
 public static class Utils
 {
