@@ -174,7 +174,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="H"/>
-<details><summary>H (3)</summary>
+<details><summary>H (4)</summary>
 
 ## [Heaven Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
 #### Last update: 11th May 2024
@@ -190,6 +190,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ## [Hero's Adventure: Road to Passion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HerosAdventureRoadToPassion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HerosAdventureRoadToPassion/total?label=downloads&style=for-the-badge)
+
+## [Hollowbody](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Hollowbody)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Hollowbody/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/17ea3f3d-817a-455e-8197-2daa68f82e37)
+![main_game_1](https://github.com/user-attachments/assets/43f26305-655b-4769-a3e1-acea994bf86d)
 
 </details>
 <div id="K"/>
