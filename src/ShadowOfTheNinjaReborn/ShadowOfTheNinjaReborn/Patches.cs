@@ -27,32 +27,32 @@ public static class Patches
         }
     }
     
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(nnObjSky), nameof(nnObjSky.StepInit))]
-    public static void nnObjSky_OnEnable(nnObjSky __instance)
-    {
-        var aspectRatio = Plugin.CurrentAspect;
-        var scale = new Vector3(1f, 1f, 1f);
-
-        if (Plugin.ScaleBackgrounds.Value)
-        {
-            scale = aspectRatio switch
-            {
-                // 48:9 or similar
-                > 5.0f => new Vector3(1.5f, 1.5f, 1f),
-                // 32:9 or similar
-                > 3.5f => new Vector3(1.25f, 1.25f, 1f),
-                _ => scale
-            };
-        }
-
-        if (aspectRatio > 2.0f) // 21:9 or similar
-        {
-            scale = new Vector3(1.1f, 1.1f, 1f);
-        }
-
-        __instance.localScale = scale;
-    }
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(nnObjSky), nameof(nnObjSky.StepInit))]
+    // public static void nnObjSky_OnEnable(nnObjSky __instance)
+    // {
+    //     var aspectRatio = Plugin.CurrentAspect;
+    //     var scale = new Vector3(1f, 1f, 1f);
+    //
+    //     if (Plugin.ScaleBackgrounds.Value)
+    //     {
+    //         scale = aspectRatio switch
+    //         {
+    //             // 48:9 or similar
+    //             > 5.0f => new Vector3(1.5f, 1.5f, 1f),
+    //             // 32:9 or similar
+    //             > 3.5f => new Vector3(1.25f, 1.25f, 1f),
+    //             _ => scale
+    //         };
+    //     }
+    //
+    //     if (aspectRatio > 2.0f) // 21:9 or similar
+    //     {
+    //         scale = new Vector3(1.1f, 1.1f, 1f);
+    //     }
+    //
+    //     __instance.localScale = scale;
+    // }
 
 
 
@@ -191,6 +191,9 @@ public static class Patches
 
     internal static void RunFixes()
     {
+        
+        AspectCamera.Instance.width = AspectCamera.Instance.height * Plugin.CurrentAspect;
+        
         FixWhiteLines();
         
         UpdateCameraBackgrounds();

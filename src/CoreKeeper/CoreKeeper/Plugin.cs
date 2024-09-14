@@ -29,6 +29,8 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> SkipSplashScreens { get; private set; }
     internal static ConfigEntry<bool> DontDestroyTiles { get; private set; }
     internal static ManualLogSource Log { get; set; }
+    public static float ScaleFactor => MainAspectRatio / NativeAspect;
+    public const float NativeAspect = 16f / 9f;
 
     private void Awake()
     {
