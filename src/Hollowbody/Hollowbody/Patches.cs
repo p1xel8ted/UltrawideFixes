@@ -3,8 +3,7 @@
 [Harmony]
 public static class Patches
 {
-    private const string SelResolution = "selResolution";
-    private static readonly List<GameObject> Letterboxes = [];
+    private const string SelResolution = "UWF_Resolution";
     private static readonly List<HorizontalLayoutGroup> TitleBars = [];
 
     private static readonly string[] SkipThese = ["HeadwareSplash", "TitleMenu", "ViolenceWarning"];
@@ -20,8 +19,8 @@ public static class Patches
     [HarmonyPatch(typeof(PostProcessVolume), nameof(PostProcessVolume.OnEnable))]
     public static void PostProcessVolume_OnEnable(PostProcessVolume __instance)
     {
-        if(SkipThese.Any(SceneManager.GetActiveScene().name.Contains)) return;
-        
+        if (SkipThese.Any(SceneManager.GetActiveScene().name.Contains)) return;
+
         var ap = __instance.profile;
         if (!ap) return;
 
@@ -64,15 +63,7 @@ public static class Patches
             autoExposure.active = Plugin.AutoExposure.Value;
             autoExposure.enabled.value = Plugin.AutoExposure.Value;
         }
-
-        // // Set Depth Of Field based on config value
-        // ao = ap.TryGetSettings(out DepthOfField depthOfField);
-        // if (ao)
-        // {
-        //     depthOfField.active = Plugin.DepthOfField.Value;
-        //     depthOfField.enabled.value = Plugin.DepthOfField.Value;
-        // }
-        //
+        
         // Set Chromatic Aberration based on config value
         ao = ap.TryGetSettings(out ChromaticAberration chromaticAberration);
         if (ao)
@@ -172,26 +163,6 @@ public static class Patches
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(WorldSpaceOverlayUI), nameof(WorldSpaceOverlayUI.Start))]
-    public static void WorldSpaceOverlayUI_Start(ref WorldSpaceOverlayUI __instance)
-    {
-        if (__instance.name.Equals("BarTop") || __instance.name.Equals("BarBottom"))
-        {
-            Letterboxes.Add(__instance.gameObject);
-        }
-
-        UpdateLetterbox();
-    }
-
-    internal static void UpdateLetterbox()
-    {
-        foreach (var obj in Letterboxes.Where(obj => obj))
-        {
-            obj.SetActive(Plugin.Letterboxing.Value);
-        }
-    }
-
-    [HarmonyPostfix]
     [HarmonyPatch(typeof(HorizontalLayoutGroup), nameof(HorizontalLayoutGroup.CalculateLayoutInputHorizontal))]
     [HarmonyPatch(typeof(HorizontalLayoutGroup), nameof(HorizontalLayoutGroup.CalculateLayoutInputVertical))]
     [HarmonyPatch(typeof(HorizontalLayoutGroup), nameof(HorizontalLayoutGroup.SetLayoutHorizontal))]
@@ -237,12 +208,14 @@ public static class Patches
         __result = false;
     }
 
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
-    public static void CanvasScaler_OnEnable(CanvasScaler __instance)
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Material), nameof(Material.HasProperty), typeof(string))]
+    public static void Material_HasProperty(ref string name)
     {
-        __instance.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        if (name.Contains("cull") || name.Contains("Cull"))
+        {
+            name = "_Cull";
+        }
     }
 
     [HarmonyPrefix]
