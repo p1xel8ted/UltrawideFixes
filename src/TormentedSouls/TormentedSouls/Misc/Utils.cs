@@ -2,6 +2,18 @@
 
 public static class Utils
 {
+    public static string GetPath(this GameObject go)
+    {
+        var path = go.name;
+        while (go.transform.parent != null)
+        {
+            go = go.transform.parent.gameObject;
+            path = go.name + "/" + path;
+        }
+
+        return path;
+    }
+
     private static float GetNewScale(float reference)
     {
         var displayHeight = Plugin.MainHeight;
@@ -28,5 +40,4 @@ public static class Utils
 
         return originalRate;
     }
-    
 }

@@ -11,7 +11,7 @@
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         <RootNamespace>TormentedSouls</RootNamespace>
-      <Version>0.1.3</Version>
+      <Version>0.1.4</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
@@ -25,89 +25,11 @@
       <Reference Include="Assembly-CSharp">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
       <Reference Include="Cinemachine">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Cinemachine.dll</HintPath>
       </Reference>
-      <Reference Include="com.Epic.OnlineServices">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\com.Epic.OnlineServices.dll</HintPath>
-      </Reference>
-      <Reference Include="com.playeveryware.eos">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\com.playeveryware.eos.dll</HintPath>
-      </Reference>
-      <Reference Include="com.rlabrecque.steamworks.net">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
-      </Reference>
-      <Reference Include="com.unity.multiplayer-hlapi.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="GalaxyCSharp">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\GalaxyCSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
-      </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Data">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Data.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Runtime.Serialization">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml.Linq">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Il2CppSystem.Xml.Linq.dll</HintPath>
-      </Reference>
-      <Reference Include="NavMeshComponents">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\NavMeshComponents.dll</HintPath>
-      </Reference>
-      <Reference Include="Newtonsoft.Json">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Newtonsoft.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Core">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Rewired_Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Windows">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Rewired_Windows.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.OdinInspector.Attributes">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Sirenix.OdinInspector.Attributes.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.OdinInspector.CompatibilityLayer">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Sirenix.OdinInspector.CompatibilityLayer.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.Serialization">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Sirenix.Serialization.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.Serialization.AOTGenerated">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Sirenix.Serialization.AOTGenerated.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.Serialization.Config">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Sirenix.Serialization.Config.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.Utilities">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Sirenix.Utilities.dll</HintPath>
-      </Reference>
-      <Reference Include="UIEffect">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UIEffect.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Unity.Addressables.dll</HintPath>
@@ -118,29 +40,14 @@
       <Reference Include="Unity.ResourceManager">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.AnimationModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
@@ -148,38 +55,11 @@
       <Reference Include="UnityEngine.ClothModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.DirectorModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
@@ -187,20 +67,8 @@
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
@@ -208,116 +76,23 @@
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.TextCoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UI.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UIElementsNativeModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UNETModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VFXModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.VideoModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.XRModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Tormented Souls\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
     </ItemGroup>
   <Import Project="..\zip.target" />

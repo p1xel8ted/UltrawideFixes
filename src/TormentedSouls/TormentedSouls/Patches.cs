@@ -3,7 +3,8 @@
 [Harmony]
 public static class Patches
 {
-    
+   
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CinemachineVirtualCamera), nameof(CinemachineVirtualCamera.OnEnable))]
     public static void CinemachineVirtualCamera_OnEnable(ref CinemachineVirtualCamera __instance)
@@ -11,70 +12,73 @@ public static class Patches
         if (__instance.gameObject.TryGetComponent(out FoVController _)) return;
         __instance.gameObject.AddComponent<FoVController>();
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(InitMenuController), nameof(InitMenuController.OnEnter))]
     public static void InitMenuController_OnEnter(ref InitMenuController __instance)
     {
         __instance.tormented2WishlistButton.SetActive(false);
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PostProcessVolume), nameof(PostProcessVolume.Update))]
     private static void Volume_Update(PostProcessVolume __instance)
     {
-       if (!Plugin.PostProcessingEffects.Value) return;
-       
+        if (!Plugin.PostProcessingEffects.Value) return;
+
         var ap = __instance.profile;
-        
+
         if (ap.TryGetSettings(out Bloom bloomComponent))
         {
             bloomComponent.active = Plugin.Bloom.Value;
         }
-        
+
         if (ap.TryGetSettings(out AmbientOcclusion ambientOcclusionComponent))
         {
             ambientOcclusionComponent.active = Plugin.AmbientOcclusion.Value;
         }
-    
+
         if (ap.TryGetSettings(out ColorGrading colorGradingComponent))
         {
             colorGradingComponent.active = Plugin.ColorAdjustments.Value;
         }
-    
-        if (ap.TryGetSettings(out Streak streakComponent))
+
+        if (!__instance.gameObject.GetPath().Contains(Const.Gui3DObject))
         {
-            streakComponent.active = Plugin.Streak.Value;
+            if (ap.TryGetSettings(out Streak streakComponent))
+            {
+                streakComponent.active = Plugin.Streak.Value;
+            }
         }
-    
+
         if (ap.TryGetSettings(out SharpenV2 sharpenV2Component))
         {
             sharpenV2Component.active = Plugin.Sharpen.Value;
         }
-    
+
         if (ap.TryGetSettings(out TiltShiftBlur tiltShiftBlurComponent))
         {
             tiltShiftBlurComponent.active = Plugin.TiltShiftBlur.Value;
         }
-    
+
         if (ap.TryGetSettings(out RapidOldTVVignette rapidOldTVVignetteComponent))
         {
             rapidOldTVVignetteComponent.active = Plugin.RapidOldTVVignette.Value;
         }
-        
-        if(!ap.TryGetSettings(out ScreenSpaceReflections ssr))
+
+        if (!ap.TryGetSettings(out ScreenSpaceReflections ssr))
         {
             ssr = ScriptableObject.CreateInstance<ScreenSpaceReflections>();
             ssr.active = true;
 
             ap.AddSettings(ssr);
         }
-        
+
         ssr.active = Plugin.ScreenSpaceReflections.Value;
         ssr.resolution.value = ScreenSpaceReflectionResolution.FullSize;
         ssr.preset.value = ScreenSpaceReflectionPreset.Ultra;
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PostProcessLayer), nameof(PostProcessLayer.Init))]
     public static void PostProcessLayer_Init(ref PostProcessLayer __instance)
@@ -84,6 +88,7 @@ public static class Patches
         {
             volume = __instance.gameObject.AddComponent<PostProcessVolume>();
         }
+
         var ap = volume.profile;
         if (!ap.TryGetSettings(out ScreenSpaceReflections ssr))
         {
@@ -117,7 +122,7 @@ public static class Patches
             Utils.UpdateCanvasScaler(__instance, Const.DeathReferenceResolutionHeight);
         }
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GraphicsBaseMenuController), nameof(GraphicsBaseMenuController.OnSResolutionPress))]
     public static void GraphicsBaseMenuController_OnSResolutionPress_Prefix(ref GraphicsBaseMenuController __instance, ref int pos)
@@ -155,7 +160,7 @@ public static class Patches
         __instance.debugResolution = 4;
         settingsData.currentResolution = 4;
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GraphicsBaseMenuController), nameof(GraphicsBaseMenuController.OnSResolutionForceUpdate))]
     public static void GraphicsBaseMenuController_OnSResolutionForceUpdate(ref GraphicsBaseMenuController __instance)
@@ -164,13 +169,13 @@ public static class Patches
 
         __instance.sResolutionTextID.Add(Const.Uw);
     }
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(QualitySettingsManager), nameof(QualitySettingsManager.IterateResolution), [])]
     public static bool QualitySettingsManager_IterateResolution(ref QualitySettingsManager __instance, ref int __result)
     {
         __instance.debugResolution =
-            (int) Mathf.Repeat(PersistentData.GetSettingsData().currentResolution + 1, 5f);
+            (int)Mathf.Repeat(PersistentData.GetSettingsData().currentResolution + 1, 5f);
         __instance.SetupResolution();
         PersistentData.GetSettingsData().currentResolution = __instance.debugResolution;
         __result = __instance.debugResolution;
@@ -183,7 +188,7 @@ public static class Patches
         ref int __result)
     {
         __instance.debugResolution =
-            (int) Mathf.Repeat(PersistentData.GetSettingsData().currentResolution + pos, 5f);
+            (int)Mathf.Repeat(PersistentData.GetSettingsData().currentResolution + pos, 5f);
         __instance.SetupResolution();
         PersistentData.GetSettingsData().currentResolution = __instance.debugResolution;
         __result = __instance.debugResolution;
@@ -212,6 +217,7 @@ public static class Patches
                 Screen.SetResolution(1280, 720, true, Plugin.MaxRefresh);
                 break;
         }
+
         return false;
     }
 }
