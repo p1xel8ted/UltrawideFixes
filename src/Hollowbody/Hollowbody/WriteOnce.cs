@@ -4,7 +4,7 @@ public sealed class WriteOnce<T>
 {
     private T _value;
 
-    public bool HasValue { get; private set; }
+    private bool HasValue { get; set; }
     
     public T Value
     {
