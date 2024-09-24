@@ -11,7 +11,7 @@ public static class Patches
     internal static CanvasScaler BaseCanvasCanvasScaler;
     internal static CanvasScaler DialogScaler;
 
-    internal readonly static Dictionary<CinemachineVirtualCamera, WriteOnce<float>> CameraOrthographicSize = new();
+    internal static readonly Dictionary<CinemachineVirtualCamera, WriteOnce<float>> CameraOrthographicSize = new();
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
@@ -136,7 +136,7 @@ public static class Patches
     }
 
     [HarmonyTranspiler]
-    [HarmonyPatch(typeof(BugCatcherScript), nameof(BugCatcherScript.Update))]
+    [HarmonyPatch(typeof(BugCatcherScript), nameof(BugCatcherScript.FixedUpdate))]
     [HarmonyPatch(typeof(BugCatcherScript), nameof(BugCatcherScript.OnDestroy))]
     public static IEnumerable<CodeInstruction> BugCatcherScript_Update(IEnumerable<CodeInstruction> instructions)
     {

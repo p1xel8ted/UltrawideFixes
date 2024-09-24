@@ -8,13 +8,13 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.farlands.ultrawide";
     private const string PluginName = "Farlands Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
     private const string LogoScene = "JanduSoftLogoScene";
     private const string MainMenu = "MainMenu";
 
     internal const float NativeAspectRatio = 16f / 9f;
 
-    private readonly static int[] CustomRefreshRates =
+    private static readonly int[] CustomRefreshRates =
     [
         30, // Uncommon
         50, // Uncommon

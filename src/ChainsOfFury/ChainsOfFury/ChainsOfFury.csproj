@@ -1,78 +1,111 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <Version>0.1.1</Version>
+        <Version>0.1.0</Version>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
         <DefineConstants>TRACE</DefineConstants>
-        <OutputPath>F:\SteamLibrary\steamapps\common\Farlands\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\FitGirl\Chains of Fury\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
         <DefineConstants>TRACE</DefineConstants>
-        <OutputPath>F:\SteamLibrary\steamapps\common\Farlands\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\FitGirl\Chains of Fury\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <ItemGroup>
+      <Reference Include="AimingRig">
+        <HintPath>libs\AimingRig.dll</HintPath>
+      </Reference>
       <Reference Include="Assembly-CSharp">
         <HintPath>libs\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Assembly-CSharp-firstpass">
         <HintPath>libs\Assembly-CSharp-firstpass.dll</HintPath>
       </Reference>
+      <Reference Include="Autodesk.Fbx">
+        <HintPath>libs\Autodesk.Fbx.dll</HintPath>
+      </Reference>
+      <Reference Include="BezierSolution.Runtime">
+        <HintPath>libs\BezierSolution.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Boxophobic.Utils.Scripts">
+        <HintPath>libs\Boxophobic.Utils.Scripts.dll</HintPath>
+      </Reference>
+      <Reference Include="ch.sycoforge.Decal">
+        <HintPath>libs\ch.sycoforge.Decal.dll</HintPath>
+      </Reference>
+      <Reference Include="ch.sycoforge.Logging">
+        <HintPath>libs\ch.sycoforge.Logging.dll</HintPath>
+      </Reference>
+      <Reference Include="ch.sycoforge.Unity.Runtime">
+        <HintPath>libs\ch.sycoforge.Unity.Runtime.dll</HintPath>
+      </Reference>
       <Reference Include="Cinemachine">
         <HintPath>libs\Cinemachine.dll</HintPath>
       </Reference>
-      <Reference Include="FMODUnity">
-        <HintPath>libs\FMODUnity.dll</HintPath>
+      <Reference Include="com.lightbug.character-controller-pro">
+        <HintPath>libs\com.lightbug.character-controller-pro.dll</HintPath>
       </Reference>
-      <Reference Include="FMODUnityResonance">
-        <HintPath>libs\FMODUnityResonance.dll</HintPath>
+      <Reference Include="CsvHelper">
+        <HintPath>libs\CsvHelper.dll</HintPath>
+      </Reference>
+      <Reference Include="Facepunch.Steamworks.Win64">
+        <HintPath>libs\Facepunch.Steamworks.Win64.dll</HintPath>
+      </Reference>
+      <Reference Include="FbxBuildTestAssets">
+        <HintPath>libs\FbxBuildTestAssets.dll</HintPath>
+      </Reference>
+      <Reference Include="InControl">
+        <HintPath>libs\InControl.dll</HintPath>
+      </Reference>
+      <Reference Include="InControl.Examples">
+        <HintPath>libs\InControl.Examples.dll</HintPath>
+      </Reference>
+      <Reference Include="IngameDebugConsole.Runtime">
+        <HintPath>libs\IngameDebugConsole.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Micosmo.SensorToolkit">
+        <HintPath>libs\Micosmo.SensorToolkit.dll</HintPath>
       </Reference>
       <Reference Include="Mono.Security">
         <HintPath>libs\Mono.Security.dll</HintPath>
       </Reference>
-      <Reference Include="NavMeshPlus">
-        <HintPath>libs\NavMeshPlus.dll</HintPath>
+      <Reference Include="NavMeshComponents">
+        <HintPath>libs\NavMeshComponents.dll</HintPath>
       </Reference>
-      <Reference Include="Newtonsoft.Json">
-        <HintPath>libs\Newtonsoft.Json.dll</HintPath>
+      <Reference Include="SeppePeelman.EditorTools.SurfaceAlignTool">
+        <HintPath>libs\SeppePeelman.EditorTools.SurfaceAlignTool.dll</HintPath>
       </Reference>
-      <Reference Include="Rewired_Core">
-        <HintPath>libs\Rewired_Core.dll</HintPath>
+      <Reference Include="Sirenix.OdinInspector.Attributes">
+        <HintPath>libs\Sirenix.OdinInspector.Attributes.dll</HintPath>
       </Reference>
-      <Reference Include="Rewired_Windows">
-        <HintPath>libs\Rewired_Windows.dll</HintPath>
+      <Reference Include="Sirenix.Serialization">
+        <HintPath>libs\Sirenix.Serialization.dll</HintPath>
       </Reference>
-      <Reference Include="Rewired_Windows_Functions">
-        <HintPath>libs\Rewired_Windows_Functions.dll</HintPath>
+      <Reference Include="Sirenix.Serialization.Config">
+        <HintPath>libs\Sirenix.Serialization.Config.dll</HintPath>
       </Reference>
-      <Reference Include="SuperTiled2Unity">
-        <HintPath>libs\SuperTiled2Unity.dll</HintPath>
+      <Reference Include="Sirenix.Utilities">
+        <HintPath>libs\Sirenix.Utilities.dll</HintPath>
       </Reference>
-      <Reference Include="System.Management">
-        <HintPath>libs\System.Management.dll</HintPath>
+      <Reference Include="UniTask">
+        <HintPath>libs\UniTask.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>libs\Unity.2D.Animation.Runtime.dll</HintPath>
+      <Reference Include="UniTask.Addressables">
+        <HintPath>libs\UniTask.Addressables.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.2D.Common.Runtime">
-        <HintPath>libs\Unity.2D.Common.Runtime.dll</HintPath>
+      <Reference Include="UniTask.DOTween">
+        <HintPath>libs\UniTask.DOTween.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>libs\Unity.2D.IK.Runtime.dll</HintPath>
+      <Reference Include="UniTask.Linq">
+        <HintPath>libs\UniTask.Linq.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.2D.PixelPerfect">
-        <HintPath>libs\Unity.2D.PixelPerfect.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.SpriteShape.Runtime">
-        <HintPath>libs\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>libs\Unity.2D.Tilemap.Extras.dll</HintPath>
+      <Reference Include="UniTask.TextMeshPro">
+        <HintPath>libs\UniTask.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="Unity.AI.Navigation">
         <HintPath>libs\Unity.AI.Navigation.dll</HintPath>
@@ -83,19 +116,29 @@
       <Reference Include="Unity.Burst.Unsafe">
         <HintPath>libs\Unity.Burst.Unsafe.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>libs\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      <Reference Include="Unity.Collections">
+        <HintPath>libs\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>libs\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Formats.Alembic.Runtime">
+        <HintPath>libs\Unity.Formats.Alembic.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Formats.Fbx.Runtime">
+        <HintPath>libs\Unity.Formats.Fbx.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Mathematics">
         <HintPath>libs\Unity.Mathematics.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>libs\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-        <Private>False</Private>
+      <Reference Include="Unity.Polybrush">
+        <HintPath>libs\Unity.Polybrush.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>libs\Unity.Postprocessing.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
         <HintPath>libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
@@ -103,48 +146,17 @@
       <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
         <HintPath>libs\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>libs\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-        <Private>False</Private>
+      <Reference Include="Unity.ScriptableBuildPipeline">
+        <HintPath>libs\Unity.ScriptableBuildPipeline.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-        <HintPath>libs\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <Reference Include="Unity.Serialization">
+        <HintPath>libs\Unity.Serialization.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Services.Core">
-        <HintPath>libs\Unity.Services.Core.dll</HintPath>
+      <Reference Include="Unity.Splines">
+        <HintPath>libs\Unity.Splines.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Services.Core.Analytics">
-        <HintPath>libs\Unity.Services.Core.Analytics.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Configuration">
-        <HintPath>libs\Unity.Services.Core.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Device">
-        <HintPath>libs\Unity.Services.Core.Device.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Environments">
-        <HintPath>libs\Unity.Services.Core.Environments.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Environments.Internal">
-        <HintPath>libs\Unity.Services.Core.Environments.Internal.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Internal">
-        <HintPath>libs\Unity.Services.Core.Internal.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Networking">
-        <HintPath>libs\Unity.Services.Core.Networking.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Registration">
-        <HintPath>libs\Unity.Services.Core.Registration.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Scheduler">
-        <HintPath>libs\Unity.Services.Core.Scheduler.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Telemetry">
-        <HintPath>libs\Unity.Services.Core.Telemetry.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Services.Core.Threading">
-        <HintPath>libs\Unity.Services.Core.Threading.dll</HintPath>
+      <Reference Include="Unity.Splines.Examples">
+        <HintPath>libs\Unity.Splines.Examples.dll</HintPath>
       </Reference>
       <Reference Include="Unity.TextMeshPro">
         <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
@@ -152,21 +164,11 @@
       <Reference Include="Unity.Timeline">
         <HintPath>libs\Unity.Timeline.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>libs\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualScripting.Core">
-        <HintPath>libs\Unity.VisualScripting.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>libs\Unity.VisualScripting.Flow.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualScripting.State">
-        <HintPath>libs\Unity.VisualScripting.State.dll</HintPath>
+      <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>libs\Unity.VisualEffectGraph.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine">
         <HintPath>libs\UnityEngine.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.AccessibilityModule">
         <HintPath>libs\UnityEngine.AccessibilityModule.dll</HintPath>
@@ -179,7 +181,6 @@
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
         <HintPath>libs\UnityEngine.AnimationModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.ARModule">
         <HintPath>libs\UnityEngine.ARModule.dll</HintPath>
@@ -189,7 +190,6 @@
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
         <HintPath>libs\UnityEngine.AudioModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.ClothModule">
         <HintPath>libs\UnityEngine.ClothModule.dll</HintPath>
@@ -200,9 +200,11 @@
       <Reference Include="UnityEngine.ClusterRendererModule">
         <HintPath>libs\UnityEngine.ClusterRendererModule.dll</HintPath>
       </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>libs\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.CrashReportingModule">
         <HintPath>libs\UnityEngine.CrashReportingModule.dll</HintPath>
@@ -230,11 +232,9 @@
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
         <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.InputModule">
         <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
@@ -256,14 +256,15 @@
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
         <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.ProfilerModule">
         <HintPath>libs\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>libs\UnityEngine.PropertiesModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
         <HintPath>libs\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
@@ -273,14 +274,12 @@
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
         <HintPath>libs\UnityEngine.SharedInternalsModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.SpriteMaskModule">
         <HintPath>libs\UnityEngine.SpriteMaskModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteShapeModule">
         <HintPath>libs\UnityEngine.SpriteShapeModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.StreamingModule">
         <HintPath>libs\UnityEngine.StreamingModule.dll</HintPath>
@@ -290,7 +289,6 @@
       </Reference>
       <Reference Include="UnityEngine.SubsystemsModule">
         <HintPath>libs\UnityEngine.SubsystemsModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.TerrainModule">
         <HintPath>libs\UnityEngine.TerrainModule.dll</HintPath>
@@ -306,35 +304,24 @@
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>libs\UnityEngine.TextRenderingModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
         <HintPath>libs\UnityEngine.TilemapModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.TLSModule">
         <HintPath>libs\UnityEngine.TLSModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>libs\UnityEngine.UI.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
         <HintPath>libs\UnityEngine.UIElementsModule.dll</HintPath>
-        <Private>False</Private>
-      </Reference>
-      <Reference Include="UnityEngine.UIElementsNativeModule">
-        <HintPath>libs\UnityEngine.UIElementsNativeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
         <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
       <Reference Include="UnityEngine.UmbraModule">
         <HintPath>libs\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UNETModule">
-        <HintPath>libs\UnityEngine.UNETModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
         <HintPath>libs\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
@@ -386,25 +373,9 @@
       </Reference>
       <Reference Include="UnityEngine.XRModule">
         <HintPath>libs\UnityEngine.XRModule.dll</HintPath>
-        <Private>False</Private>
       </Reference>
     </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Farlands.csproj.DotSettings" />
-      <None Remove="libs\**" />
-      <None Remove="assets\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="libs\**" />
-      <Compile Remove="assets\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="libs\**" />
-      <EmbeddedResource Remove="assets\**" />
-    </ItemGroup>
+    
 
     <Import Project="..\zip.target"/>
 
