@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ufouria2", "Ufouria2\Ufouria2.csproj", "{46E96343-A9E0-449A-AFDB-7027CC2F168C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46E96343-A9E0-449A-AFDB-7027CC2F168C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E96343-A9E0-449A-AFDB-7027CC2F168C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E96343-A9E0-449A-AFDB-7027CC2F168C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E96343-A9E0-449A-AFDB-7027CC2F168C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

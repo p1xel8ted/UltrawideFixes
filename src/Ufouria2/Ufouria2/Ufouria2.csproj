@@ -1,0 +1,400 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>Ufouria2</AssemblyName>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+      <Version>0.1.0</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+      <PackageReference Remove="Resource.Embedder" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="BuildAutomation">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\BuildAutomation.dll</HintPath>
+      </Reference>
+      <Reference Include="Cinemachine">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Cinemachine.dll</HintPath>
+      </Reference>
+      <Reference Include="com.rlabrecque.steamworks.net">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="NintendoSDKPluginAssemblyDefinition">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\NintendoSDKPluginAssemblyDefinition.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_AchievementConst">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_AchievementConst.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_CheckEmoteIconAnim">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_CheckEmoteIconAnim.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_Common">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_Common.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_Const">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_Const.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_GameMain">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_GameMain.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_LocalizedText">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_LocalizedText.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_Root">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_Root.dll</HintPath>
+      </Reference>
+      <Reference Include="ProjectHebeRemake_SaveData">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\ProjectHebeRemake_SaveData.dll</HintPath>
+      </Reference>
+      <Reference Include="Steamworks">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Steamworks.dll</HintPath>
+      </Reference>
+      <Reference Include="StompyRobot.SRDebugger">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\StompyRobot.SRDebugger.dll</HintPath>
+      </Reference>
+      <Reference Include="StompyRobot.SRF">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\StompyRobot.SRF.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_Core">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_Core.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_EditorTool">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_EditorTool.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_Fade">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_Fade.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_LocalizedCheck">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_LocalizedCheck.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_Module_Input">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_Module_Input.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_Module_UI">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_Module_UI.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_AssetManagement">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_AssetManagement.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_Audio">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_Audio.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_Boot">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_Boot.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_Input">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_Input.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_MemoryManagement">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_MemoryManagement.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_ParticleSystem">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_ParticleSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_ResolutionChecker">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_ResolutionChecker.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_SceneManagement">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_SceneManagement.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_Sprite">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_Sprite.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_Time">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_Time.dll</HintPath>
+      </Reference>
+      <Reference Include="TastoAlpha_System_VFX">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\TastoAlpha_System_VFX.dll</HintPath>
+      </Reference>
+      <Reference Include="Terasurware">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Terasurware.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UniTask.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.ForUI">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>F:\SteamLibrary\steamapps\common\へべれけ2\BepInEx\interop\__Generated.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    
+  <Import Project="..\zip.target" />
+</Project>
