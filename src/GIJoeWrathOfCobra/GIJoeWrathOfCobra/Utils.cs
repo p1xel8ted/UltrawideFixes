@@ -2,18 +2,6 @@
 
 public static class Utils
 {
-
-    public static string GetPath(this Transform transform)
-    {
-        var path = transform.name;
-        while (transform.parent != null)
-        {
-            transform = transform.parent;
-            path = transform.name + "/" + path;
-        }
-
-        return path;
-    }
     
     internal static float FindLowestFrameRateMultipleAboveFifty(double originalRate)
     {

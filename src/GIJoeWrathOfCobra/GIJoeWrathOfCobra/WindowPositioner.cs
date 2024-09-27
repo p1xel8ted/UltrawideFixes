@@ -11,7 +11,7 @@ public class WindowPositioner : MonoBehaviour
     public void Start()
     {
         PlayerPrefs.SetInt("UnitySelectMonitor", 0);
-        Display._mainDisplay.Activate(Plugin.MainWidth, Plugin.MainHeight, Screen.currentResolution.refreshRate);
+        Display._mainDisplay.Activate(Plugin.MainWidth, Plugin.MainHeight, Screen.currentResolution.refreshRateRatio);
         MoveWindowToDisplay(0);
     }
 
@@ -24,7 +24,7 @@ public class WindowPositioner : MonoBehaviour
         var x = Plugin.MainWidth * displayIndex;
         const int y = 0;
 
-        var window = FindWindow(null, "Hollowbody");
+        var window = FindWindow(null, "GI Joe Wrath of Cobra");
         SetWindowPos(window, 0, x, y, width, height, 0);
     }
 }

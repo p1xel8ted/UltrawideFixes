@@ -11,28 +11,22 @@ public class Plugin : BaseUnityPlugin
 
     private static readonly int NativeWidth = Mathf.RoundToInt(MainHeight * NativeAspect);
     internal static readonly float WidthDifference = MainWidth - NativeWidth;
-    internal static readonly float BlackBarWidth = WidthDifference / 2f;
-
     private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
     internal static int MainWidth => Display._mainDisplay.systemWidth;
-
-    internal static float MainDisplayAspectRatio => Display._mainDisplay.systemWidth / (float)Display._mainDisplay.systemHeight;
-    internal const float NativeAspectRatio = 16f / 9f;
+    private static float MainDisplayAspectRatio => Display._mainDisplay.systemWidth / (float)Display._mainDisplay.systemHeight;
+    private const float NativeAspectRatio = 16f / 9f;
     internal static float PositiveScaleFactor => MainDisplayAspectRatio / NativeAspectRatio;
     internal static float NegativeScaleFactor => NativeAspectRatio / MainDisplayAspectRatio;
     private static float NativeAspect => 16f / 9f;
-
     internal static ConfigEntry<bool> TransparentHUD { get; private set; }
-
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
-    internal static ConfigEntry<bool> SkipIntroCinematic { get; set; }
-
+    internal static ConfigEntry<bool> SkipIntroCinematic { get; private set; }
     internal static ConfigEntry<bool> MenuMetalDoors { get; private set; }
     internal static ConfigEntry<bool> ScaleMenuBackgrounds { get; private set; }
-    internal static ManualLogSource Log { get; private set; }
+    internal static ManualLogSource Log { get; set; }
     private static WindowPositioner WindowPositioner { get; set; }
     private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
 
@@ -40,10 +34,7 @@ public class Plugin : BaseUnityPlugin
     {
         Log = Logger;
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-
-        // SkipSplash = Config.Bind("00. General", "Skip Splash", true,
-        //     new ConfigDescription("Skip the splash screen.", null, new ConfigurationManagerAttributes { Order = 105 }));
-
+        
         FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow,
             new ConfigDescription("Set the full screen mode", null,
                 new ConfigurationManagerAttributes { Order = 103 }));
@@ -66,25 +57,25 @@ public class Plugin : BaseUnityPlugin
 
         SkipIntroCinematic = Config.Bind("04. Startup", "Skip Intro Cinematic", true, new ConfigDescription("Skips the intro cinematic.", null, new ConfigurationManagerAttributes { Order = 99 }));
         
-        CorrectFixedUpdateRate = Config.Bind("04. Performance", "Modify Physics Rate", true,
+        CorrectFixedUpdateRate = Config.Bind("05. Performance", "Modify Physics Rate", true,
             new ConfigDescription(
                 "Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways. It may do nothing at all.",
                 null, new ConfigurationManagerAttributes { Order = 92 }));
         CorrectFixedUpdateRate.SettingChanged += (_, _) => { UpdateFixedDeltaTime(); };
 
-        UseRefreshRateForFixedUpdateRate = Config.Bind("04. Performance", "Use Refresh Rate For Physics Rate", true,
+        UseRefreshRateForFixedUpdateRate = Config.Bind("05. Performance", "Use Refresh Rate For Physics Rate", true,
             new ConfigDescription(
                 "Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.",
                 null, new ConfigurationManagerAttributes { Order = 91 }));
         UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) => { UpdateFixedDeltaTime(); };
 
-        RunInBackground = Config.Bind("05. Misc", "Run In Background", true,
+        RunInBackground = Config.Bind("06. Misc", "Run In Background", true,
             new ConfigDescription("Allows the game to run even when not in focus.", null,
                 new ConfigurationManagerAttributes { Order = 90 }));
         RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
 
 
-        MuteInBackground = Config.Bind("05. Misc", "Mute In Background", false,
+        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false,
             new ConfigDescription("Mutes the game's audio when it is not in focus.", null,
                 new ConfigurationManagerAttributes { Order = 89 }));
 
@@ -118,15 +109,12 @@ public class Plugin : BaseUnityPlugin
         Display._mainDisplay.Activate();
         var refreshRate = Screen.currentResolution.refreshRateRatio;
         Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, refreshRate);
-
         Application.targetFrameRate = (int)refreshRate.value;
-        Plugin.Log.LogInfo($"Display set to {MainWidth}x{MainHeight} @ {refreshRate.value}Hz");
     }
 
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
     {
-        Log.LogInfo("Scene loaded: " + a.name);
         UpdateFixedDeltaTime();
         UpdateDisplay();
     }

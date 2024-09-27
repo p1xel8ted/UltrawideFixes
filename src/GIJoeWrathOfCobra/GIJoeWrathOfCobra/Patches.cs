@@ -182,6 +182,13 @@ public static class Patches
             background.transform.localScale = Plugin.ScaleMenuBackgrounds.Value ? new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1) : new Vector3(1f, 1f, 1);
         }
     }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(CanvasScaler __instance)
+    {
+        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(AspectRatioFitter), nameof(AspectRatioFitter.OnEnable))]
