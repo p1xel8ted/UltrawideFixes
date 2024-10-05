@@ -321,6 +321,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Prince of Persia: The Lost Crown](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrinceOfPersiaTheLostCrown/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/decbaf21-e737-4bd0-b64a-8677aba2729d)
+![main_game](https://github.com/user-attachments/assets/1e3b2500-72aa-41ce-9d69-6809bc9a3042)
+
 </details>
 <div id="S"/>
 <details><summary>S (7)</summary>
