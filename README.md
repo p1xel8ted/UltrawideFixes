@@ -357,6 +357,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/e52656af-7210-411b-8781-18261844e997)
+![main_game](https://github.com/user-attachments/assets/f1f06ef1-772f-4a67-89f7-31eacdc07320)
+
 </details>
 <div id="T"/>
 <details><summary>T (7)</summary>
