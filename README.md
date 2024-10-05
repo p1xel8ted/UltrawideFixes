@@ -321,12 +321,18 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Prince of Persia: The Lost Crown](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrinceOfPersiaTheLostCrown/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/decbaf21-e737-4bd0-b64a-8677aba2729d)
+![main_game](https://github.com/user-attachments/assets/1e3b2500-72aa-41ce-9d69-6809bc9a3042)
+
 </details>
 <div id="S"/>
 <details><summary>S (7)</summary>
 
 ## [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ScarletMaiden/total?label=downloads&style=for-the-badge)
+
+![main_menu2](https://github.com/user-attachments/assets/1a1cbeee-ceb0-48e8-950b-22adda99eb38)
+![main_game_spanned](https://github.com/user-attachments/assets/5a14816a-4115-4529-8f50-81eb391b09bc)
 
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
@@ -357,6 +363,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/e52656af-7210-411b-8781-18261844e997)
+![main_game](https://github.com/user-attachments/assets/f1f06ef1-772f-4a67-89f7-31eacdc07320)
+
 </details>
 <div id="T"/>
 <details><summary>T (7)</summary>
@@ -374,7 +383,8 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 #### Last update: 1st June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
 
-![main_ui_small](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1d47ffa4-c2d7-46ea-97c3-2abd59fec1c5) ![main_ui_large](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dac9fed0-88e1-4896-ab81-0d270dfa9499)
+![main_menu_spanned](https://github.com/user-attachments/assets/975ee15f-f4ad-440b-b865-54921cd44dbc)
+![main_hud_constrained](https://github.com/user-attachments/assets/7d8803b9-4ba3-4373-82c5-2ba3fcf4d0b9)
 
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
