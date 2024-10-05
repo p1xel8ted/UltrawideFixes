@@ -374,7 +374,8 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 #### Last update: 1st June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
 
-![main_ui_small](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1d47ffa4-c2d7-46ea-97c3-2abd59fec1c5) ![main_ui_large](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/dac9fed0-88e1-4896-ab81-0d270dfa9499)
+![main_menu_spanned](https://github.com/user-attachments/assets/975ee15f-f4ad-440b-b865-54921cd44dbc)
+![main_hud_constrained](https://github.com/user-attachments/assets/7d8803b9-4ba3-4373-82c5-2ba3fcf4d0b9)
 
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
