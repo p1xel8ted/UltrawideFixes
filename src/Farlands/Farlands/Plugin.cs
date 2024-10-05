@@ -45,6 +45,8 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> CameraZoom { get; set; }
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
+    
+    private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
     internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; private set; }
@@ -54,7 +56,7 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log { get; private set; }
     private static WindowPositioner WindowPositioner { get; set; }
     private static ConfigEntry<int> TargetFramerate { get; set; }
-    private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
+  
     private static ConfigEntry<float> BaseCanvasScalerScaleFactor { get; set; }
     private static ConfigEntry<bool> UseCustomBaseScale { get; set; }
     private static ConfigEntry<float> DialogueCanvasScalerScaleFactor { get; set; }
@@ -370,15 +372,8 @@ public class Plugin : BaseUnityPlugin
 
         Display.displays[DisplayToUse.Value].Activate();
 
-        if (UseCustomRefreshRate.Value)
-        {
-            Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, CustomRefreshRate.Value);
-            Application.targetFrameRate = TargetFramerate.Value;
-        }
-        else
-        {
-            Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, MaxRefresh);
-            Application.targetFrameRate = TargetFramerate.Value;
-        }
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh);
+
+        Application.targetFrameRate = TargetFramerate.Value;
     }
 }

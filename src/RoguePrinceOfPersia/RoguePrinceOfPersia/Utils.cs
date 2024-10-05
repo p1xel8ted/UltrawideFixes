@@ -8,4 +8,16 @@ public static class Utils
         list.AddRange(Resources.FindObjectsOfTypeAll(Il2CppType.Of<T>()).Select(obj => obj.TryCast<T>()).Where(o => o != null));
         return list;
     }
+
+    public static string GetPath(this Transform tr)
+    {
+        var path = tr.name;
+        while (tr.parent != null)
+        {
+            tr = tr.parent;
+            path = tr.name + "/" + path;
+        }
+
+        return path;
+    }
 }

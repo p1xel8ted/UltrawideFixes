@@ -7,15 +7,15 @@ internal static class Const
     internal const string PluginVersion = "0.1.1";
 
 
-    // internal static string GetPath(this GameObject tr)
-    // {
-    //     var path = tr.name;
-    //     while (tr.transform.parent != null)
-    //     {
-    //         tr = tr.transform.parent.gameObject;
-    //         path = tr.name + "/" + path;
-    //     }
-    //
-    //     return path;
-    // }
+    internal static string GetPath(this GameObject tr)
+    {
+        var path = tr.name;
+        while (tr.transform.parent != null)
+        {
+            tr = tr.transform.parent.gameObject;
+            path = tr.name + "/" + path;
+        }
+    
+        return path;
+    }
 }

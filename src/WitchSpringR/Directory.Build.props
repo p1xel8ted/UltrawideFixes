@@ -34,10 +34,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\WitchSpring R\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\Games\steamapps\common\WitchSpring R\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\WitchSpring R\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 </Project>

@@ -34,10 +34,10 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 </Project>

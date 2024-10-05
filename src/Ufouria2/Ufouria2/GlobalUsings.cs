@@ -18,7 +18,6 @@ global using ProjectHebeRemake.Common.View;
 global using ProjectHebeRemake.GameMain.Component.Opening;
 global using ProjectHebeRemake.GameMain.View;
 global using SRF;
-global using TastoAlpha.Module.Fade;
 global using TastoAlpha.Module.UI;
 global using Ufouria2.Misc;
 global using Ufouria2.WindowsAPI;
@@ -26,4 +25,5 @@ global using UnityEngine;
 global using UnityEngine.Events;
 global using UnityEngine.SceneManagement;
 global using UnityEngine.UI;
+global using Object = UnityEngine.Object;
 

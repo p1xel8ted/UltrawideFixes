@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace WitchSpringR.MonoBehaviours;
 
 public class RightHudMover : MonoBehaviour

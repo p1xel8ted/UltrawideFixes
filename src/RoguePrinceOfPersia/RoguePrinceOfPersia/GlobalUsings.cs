@@ -2,11 +2,17 @@
 global using System.Collections.Generic;
 global using System.Linq;
 global using System.Reflection;
+global using System.Runtime.InteropServices;
 global using BepInEx;
 global using BepInEx.Configuration;
+global using BepInEx.Logging;
 global using BepInEx.Unity.IL2CPP;
+global using Doozy.Runtime.Reactor.Targets;
+global using Doozy.Runtime.UIManager.Layouts;
 global using HarmonyLib;
 global using Il2CppInterop.Runtime;
+global using MonoMod.Utils;
+global using RoguePrinceOfPersia.WindowsAPI;
 global using UnityEngine;
 global using UnityEngine.Events;
 global using UnityEngine.Rendering;

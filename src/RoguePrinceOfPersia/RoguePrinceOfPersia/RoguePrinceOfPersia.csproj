@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <AssemblyName>RoguePrinceOfPersiaUltraWide</AssemblyName>
         <Description>The Rogue Prince of Persia Ultra-Wide</Description>
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <RestoreAdditionalProjectSources>
@@ -31,88 +31,100 @@
 
     <ItemGroup>
       <Reference Include="Assembly-CSharp">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="DoozyRuntime">
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\DoozyRuntime.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.SpriteShape.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.2D.SpriteShape.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Addressables.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.InputSystem.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Localization">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Localization.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Localization.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Timeline.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.Timeline.dll</HintPath>
       </Reference>
       <Reference Include="Unity.VisualEffectGraph.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VFXModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.XRModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\The Rogue Prince Of Persia\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
     </ItemGroup>
 

@@ -1,38 +1,26 @@
-﻿using System.Collections.Generic;
-using Avrahamy;
-using Avrahamy.GG;
-using HarmonyLib;
-using Product.UI;
-using UnityEngine;
+﻿namespace Spiritfall;
 
-namespace Spiritfall;
-
-/// <summary>
-/// Represents a Harmony plugin that patches several methods in order to change game settings and behavior.
-/// </summary>
 [HarmonyPatch]
-public partial class Plugin
+public class Patches
 {
-    /// <summary>
-    /// A prefix patch for both <see cref="SettingsModel.SupportedWindowedResolutions"/> and <see cref="SettingsModel.SupportedFullscreenResolutions"/> getters.
-    /// This patch sets the supported resolutions and refresh rates to custom ones defined in <see cref="ScreenResolutionsPatch"/>.
-    /// </summary>
-    /// <param name="__instance">The instance of the <see cref="SettingsModel"/> that is being patched.</param>
-    /// <param name="__result">The result of the getter that will be changed by this patch.</param>
+    private static readonly List<GameObject> CleanMenuObjects = [];
+    private static readonly List<GameObject> InGameCleanMenuObjects = [];
+    private static readonly List<GameObject> InGameMenuQuitToDesktop = [];
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(SettingsModel), nameof(SettingsModel.SupportedWindowedResolutions), MethodType.Getter)]
     [HarmonyPatch(typeof(SettingsModel), nameof(SettingsModel.SupportedFullscreenResolutions), MethodType.Getter)]
     public static void SettingsModel_SupportedResolutions(ref SettingsModel __instance, ref List<Vector2Int> __result)
     {
-        __instance.supportedResolutions = ScreenResolutionsPatch.VectorResolutions;
-        __instance.supportedFPS = ScreenResolutionsPatch.SupportRefresh;
+        var resolutions = new List<Vector2Int>();
+        var res = new Vector2Int(Plugin.MainWidth, Plugin.MainHeight);
+        resolutions.Add(res);
+        __instance.supportedResolutions = resolutions;
+
+        var refreshRates = new List<int> { Plugin.MaxRefresh };
+        __instance.supportedFPS = refreshRates;
     }
 
-    /// <summary>
-    /// A prefix patch for <see cref="CompanyLogo.Update"/> method.
-    /// This patch hides the company logo and shows the loading animation instead.
-    /// </summary>
-    /// <param name="__instance">The instance of the <see cref="CompanyLogo"/> that is being patched.</param>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CompanyLogo), nameof(CompanyLogo.Update))]
     private static void CompanyLogo_Update(ref CompanyLogo __instance)
@@ -41,13 +29,115 @@ public partial class Plugin
         __instance.loadingAnimation.SetActive(true);
         __instance.enabled = false;
     }
+
+    private static void CleanMainMenu()
+    {
+        foreach (var obj in CleanMenuObjects.Where(obj => obj).Where(obj => obj))
+        {
+            obj.SetActive(!Plugin.CleanMainMenu.Value);
+        }
+    }
+
+    private static void CleanInGameMenu()
+    {
+        foreach (var obj in InGameCleanMenuObjects.Where(obj => obj).Where(obj => obj))
+        {
+            obj.SetActive(!Plugin.CleanInGameMenu.Value);
+        }
         
-    /// <summary>
-    /// A prefix patch for <see cref="SettingsMenuController.OnWindowedModeChanged"/> and <see cref="SettingsMenuController.OnBorderlessChanged"/> methods.
-    /// This patch forces borderless fullscreen to be always enabled.
-    /// </summary>
-    /// <param name="__instance">The instance of the <see cref="SettingsMenuController"/> that is being patched.</param>
-    /// <param name="value">The new value of the windowed mode setting.</param>
+        foreach (var obj in InGameMenuQuitToDesktop.Where(obj => obj).Where(obj => obj))
+        {
+            obj.SetActive(Plugin.QuitToDesktop.Value);
+        }
+    }
+
+    internal static void RunCleanMenu()
+    {
+        CleanMainMenu();
+        CleanInGameMenu();
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ExtendedUIPanel), nameof(ExtendedUIPanel.OnEnable))]
+    private static void ExtendedUIPanel_Start(ref ExtendedUIPanel __instance)
+    {
+        var inGameMenuMarketingButtons = __instance.transform.Find("Content/MarketingButtons");
+        if (inGameMenuMarketingButtons)
+        {
+            InGameCleanMenuObjects.Add(inGameMenuMarketingButtons.gameObject);
+        }
+        
+        var inGameMenuFeedbackButton = __instance.transform.Find("Content/Feedback");
+        if (inGameMenuFeedbackButton)
+        {
+            InGameCleanMenuObjects.Add(inGameMenuFeedbackButton.gameObject);
+        }
+        
+        var inGameMenuQuitToDesktop = __instance.transform.Find("Content/Quit");
+        if (inGameMenuQuitToDesktop)
+        {
+            InGameMenuQuitToDesktop.Add(inGameMenuQuitToDesktop.gameObject);
+        }
+        
+        var banner = __instance.transform.Find("Banner");
+        if (banner)
+        {
+            CleanMenuObjects.Add(banner.gameObject);
+        }
+
+        var discordButton = __instance.transform.Find("SideMenu/DiscordButton");
+        if (discordButton)
+        {
+            CleanMenuObjects.Add(discordButton.gameObject);
+        }
+
+        var twitterButton = __instance.transform.Find("SideMenu/TwitterButton");
+        if (twitterButton)
+        {
+            CleanMenuObjects.Add(twitterButton.gameObject);
+        }
+
+        var feedbackButton = __instance.transform.Find("SideMenu/FeedbackButton");
+        if (feedbackButton)
+        {
+            CleanMenuObjects.Add(feedbackButton.gameObject);
+        }
+
+        var roadMapButton = __instance.transform.Find("SideMenu/Content/Roadmap");
+        if (roadMapButton)
+        {
+            CleanMenuObjects.Add(roadMapButton.gameObject);
+        }
+
+        var creditsButton = __instance.transform.Find("SideMenu/Content/Credits");
+        if (creditsButton)
+        {
+            CleanMenuObjects.Add(creditsButton.gameObject);
+        }
+
+        RunCleanMenu();
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SettingsInitializer), nameof(SettingsInitializer.Start))]
+    private static void SettingsInitializer_Start(ref SettingsInitializer __instance)
+    {
+        var feedbackForm = __instance.transform.Find("FeedbackForm");
+        if (feedbackForm)
+        {
+            CleanMenuObjects.Add(feedbackForm.gameObject);
+        }
+
+        var versionText = __instance.transform.Find("VersionUI");
+        if (versionText)
+        {
+            CleanMenuObjects.Add(versionText.gameObject);
+        }
+
+        RunCleanMenu();
+    }
+
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(SettingsMenuController), nameof(SettingsMenuController.OnWindowedModeChanged))]
     [HarmonyPatch(typeof(SettingsMenuController), nameof(SettingsMenuController.OnBorderlessChanged))]

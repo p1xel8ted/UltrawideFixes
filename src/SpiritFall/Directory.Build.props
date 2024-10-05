@@ -7,7 +7,7 @@
   <!--Base Settings-->
   <PropertyGroup>
    <Description>$(MSBuildProjectName)</Description>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
       <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -20,7 +20,6 @@
     
     <ItemGroup>
         <PackageReference Include="BepInEx.Core" Version="5.*" />
-        <PackageReference Include="UnityEngine.Modules" Version="2021.3.14" IncludeAssets="compile" />
     </ItemGroup>
     
   <!--Default all references to CopyLocal False.-->
@@ -31,15 +30,15 @@
   </ItemDefinitionGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>H:\Games\steamapps\common\Spiritfall\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>G:\SteamLibrary\steamapps\common\Spiritfall\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>H:\Games\steamapps\common\Spiritfall\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+    <OutputPath>G:\SteamLibrary\steamapps\common\Spiritfall\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

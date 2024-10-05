@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace WitchSpringR.Misc;
 
 public static class Extensions

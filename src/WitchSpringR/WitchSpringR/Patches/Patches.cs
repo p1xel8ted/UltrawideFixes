@@ -1,19 +1,8 @@
-using HarmonyLib;
-using LeTai.Asset.TranslucentImage;
-using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using WitchSpringR.Misc;
-using WitchSpringR.MonoBehaviours;
-
 namespace WitchSpringR.Patches;
 
 [Harmony]
 public static class Patches
 {
-
     private const string BlackPanelImage = "blackPanel";
     private const string PaperSideImage = "PaperSide";
 
@@ -30,7 +19,7 @@ public static class Patches
     private const string LeftHudName = "LeftHud";
 
 
-    private readonly static string[] LeftItems =
+    private static readonly string[] LeftItems =
     [
         "Body/MainStatus",
         "Body/MiniMapPanel/PuzzleOperating",
@@ -65,13 +54,13 @@ public static class Patches
             }
         }
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UI_Field), nameof(UI_Field.SetMapName))]
     public static void UI_Field_SetMapName_Postfix(ref UI_Field __instance)
     {
         var mapDots = __instance.transform.FindChild("RightHud/MapName/MapNameDot");
-        mapDots.transform.localPosition = mapDots.transform.localPosition with {y = -40};
+        mapDots.transform.localPosition = mapDots.transform.localPosition with { y = -40 };
     }
 
     [HarmonyPrefix]
@@ -90,21 +79,32 @@ public static class Patches
         __instance.gameObject.TryAddComponent<ClothsToggler>();
     }
 
+    private static MainCamera MainCameraInstance { get; set; }
+
+    internal static void UpdateCamera()
+    {
+        if (SceneManager.GetActiveScene().name.Equals(TitleScene)) return;
+        if (SceneManager.GetActiveScene().name.Equals(HomePieberryScene)) return;
+        MainCameraInstance.thisCamera.fieldOfView = 24 + 24 * (Plugin.FieldOfView.Value / 100f);
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainCamera), nameof(MainCamera.Update))]
     public static void MainCamera_Update(ref MainCamera __instance)
     {
-        if (SceneManager.GetActiveScene().name.Equals(TitleScene)) return;
-        if (SceneManager.GetActiveScene().name.Equals(HomePieberryScene)) return;
-        __instance.thisCamera.fieldOfView = 24 + 24 * (Plugin.FieldOfView.Value / 100f);
+        MainCameraInstance = __instance;
     }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainCamera), nameof(MainCamera.Awake))]
     [HarmonyPatch(typeof(MainCamera), nameof(MainCamera.SetCamera))]
     public static void MainCamera_Awake(ref MainCamera __instance)
     {
+        MainCameraInstance = __instance;
+        VolumeUpdateRequired = true;
         __instance.thisCamera.aspect = Plugin.MainAspect;
         __instance.thisCamera.pixelRect = Plugin.CameraRect;
+        UpdateCamera();
     }
 
     [HarmonyPostfix]
@@ -128,8 +128,12 @@ public static class Patches
     {
         var path = __instance.transform.GetFullPath();
 
-        if (!path.Contains("Quest") && __instance.name.Equals("Translucent Image"))
+        if (__instance.name.Equals("Translucent Image"))
         {
+            if (path.Contains("Quest", StringComparison.OrdinalIgnoreCase)) return;
+            if (path.Contains("Talk", StringComparison.OrdinalIgnoreCase)) return;
+            if(path.Contains("Guide", StringComparison.OrdinalIgnoreCase)) return;
+
             __instance.rectTransform.sizeDelta = new Vector2(Plugin.MainWidth, Plugin.MainHeight);
         }
 
@@ -137,9 +141,9 @@ public static class Patches
         if (!path.Contains(UITitle)) return;
 
         var x = Plugin.MainWidth - Plugin.BlackBarSize;
-        __instance.transform.position = __instance.transform.position with {x = x};
+        __instance.transform.position = __instance.transform.position with { x = x };
         var scale = __instance.transform.localScale.x * Plugin.PositiveScaleFactor;
-        __instance.transform.localScale = __instance.transform.localScale with {x = scale};
+        __instance.transform.localScale = __instance.transform.localScale with { x = scale };
     }
 
 
@@ -225,11 +229,16 @@ public static class Patches
             miniMap.gameObject.TryAddComponent<MiniMapMover>();
         }
     }
-
+    
+    internal static bool VolumeUpdateRequired;
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Volume), nameof(Volume.Update))]
     public static void Volume_Update(ref Volume __instance)
     {
+        if (!VolumeUpdateRequired) return;
+        VolumeUpdateRequired = false;
+        
         var ap = __instance.profile;
 
         ap.TryGet(out SplitToning splitToning);
@@ -237,6 +246,7 @@ public static class Patches
         {
             splitToning.active = Plugin.ToneMapping.Value;
         }
+
         ap.TryGet(out MotionBlur motionBlur);
         if (motionBlur)
         {
