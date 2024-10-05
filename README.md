@@ -331,6 +331,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ScarletMaiden/total?label=downloads&style=for-the-badge)
 
+![main_menu2](https://github.com/user-attachments/assets/1a1cbeee-ceb0-48e8-950b-22adda99eb38)
+![main_game_spanned](https://github.com/user-attachments/assets/5a14816a-4115-4529-8f50-81eb391b09bc)
+
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
