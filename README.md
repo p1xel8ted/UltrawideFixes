@@ -399,6 +399,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 #### Last update: 2nd June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TormentedSouls/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/dd6b1922-e091-4a32-94ac-398e46f513ca)
 ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7f579b79-94fa-420c-8143-237c287e69a9)
 
 ## [Train Valley 1](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TrainValley1)  
