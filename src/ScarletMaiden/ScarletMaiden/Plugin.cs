@@ -41,7 +41,7 @@
         private static ConfigEntry<int> CustomRefreshRate { get; set; }
         private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
         internal static ConfigEntry<int> DisplayToUse { get; private set; }
-        private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
+        public static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
         internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
         internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
         private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }

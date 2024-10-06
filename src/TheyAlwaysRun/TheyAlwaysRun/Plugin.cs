@@ -1,139 +1,202 @@
-﻿using System;
-using System.Reflection;
-using BepInEx;
-using BepInEx.Configuration;
-using BepInEx.Logging;
-using HarmonyLib;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+﻿namespace TheyAlwaysRun;
 
-namespace TheyAlwaysRun;
-
-[HarmonyPatch]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.theyalwaysrun.ultrawide";
-    private const string PluginName = "They Always Run Ultra-Wide!";
-    private const string PluginVersion = "0.1.0";
-    internal static ManualLogSource Log { get; private set; }
-    internal static GameObject TopLeftHud { get; set; }
-    internal static GameObject TopRightHud { get; set; }
-    internal static GameObject BottomLeftHud { get; set; }
-    internal static CanvasScaler HudScaler { get; set; }
-    private static ConfigEntry<bool> SkipSplashScreens { get; set; }
-    private static ConfigEntry<bool> ExpandUI { get; set; }
-    internal static ConfigEntry<bool> StretchBackGround { get; private set; }
-    internal static ConfigEntry<float> UIScale { get; private set; }
-    public static GameObject BackImage { get; set; }
+    private const string PluginName = "They Always Run Ultra-Wide";
+    private const string PluginVersion = "0.1.1";
 
-    private static bool DoUpdates { get; set; }
+    private static readonly int[] CustomRefreshRates =
+    [
+        30, // Uncommon
+        50, // Uncommon
+        60, // Common
+        72, // Uncommon
+        75, // Common
+        90, // Uncommon
+        100, // Uncommon
+        120, // Common
+        144, // Common
+        165, // Common
+        180, // Common
+        200, // Uncommon
+        240, // Common
+        300, // Uncommon
+        360, // Uncommon
+        480 // Uncommon
+    ];
+
+    internal static ManualLogSource Log { get; private set; }
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    private static ConfigEntry<bool> RunInBackground { get; set; }
+    private static ConfigEntry<bool> MuteInBackground { get; set; }
+    private static ConfigEntry<int> CustomRefreshRate { get; set; }
+    private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
+    internal static ConfigEntry<int> DisplayToUse { get; private set; }
+    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
+    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
+    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
+    private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
+    private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
+    private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
+    private static WindowPositioner WindowPositioner { get; set; }
+    private static ConfigEntry<int> TargetFramerate { get; set; }
+    internal static float NativeAspectRatio => 16f / 9f; // 1.77777777778
+    private static float CameraWidth => MainHeight * NativeAspectRatio; // 1440 * 16/9 = 2560
+    internal static float BlackBarSize => (MainWidth - CameraWidth) / 2f; // (3440 - 2560) / 2 = 440
+    internal static float MainAspectRatio => MainWidth / (float)MainHeight; // 3440 / 1440 = 2.38889
+    internal static ConfigEntry<bool> RestrictHUD { get; private set; }
+    internal static float PositiveScaleFactor => MainAspectRatio / NativeAspectRatio;
 
     private void Awake()
     {
+        SplashController.Shown = true;
+        
+        var customRates = MergeUnityRefreshRates();
         Log = Logger;
-        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-        Log.LogWarning($"Plugin {PluginName} is loaded!");
-        SkipSplashScreens = ConfigureSetting("Skip Splash Screens", true, "Skip the splash screens.", (_, _) => { SplashController.Shown = SkipSplashScreens.Value; });
 
-        UIScale = ConfigureSetting("UI Scale", 1f, new ConfigDescription("Scale the UI.", new AcceptableValueRange<float>(0.1f, 10f), null), (_, _) =>
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode.", null, new ConfigurationManagerAttributes { Order = 99 }));
+        FullScreenModeConfig.SettingChanged += (_, _) => UpdateDisplay();
+
+        DisplayToUse = Config.Bind("01. Display", "Display to Use", 0, new ConfigDescription("Select the display to use.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes { Order = 98 }));
+        DisplayToUse.SettingChanged += (_, _) => UpdateDisplay();
+
+        if (PlatformHelper.Is(Platform.Windows) || PlatformHelper.Is(Platform.Windows))
         {
-            UpdateResolution();
-            if (HudScaler != null) HudScaler.scaleFactor = UIScale.Value;
-        });
-
-        ExpandUI = ConfigureSetting("Expand UI", true, "Expand UI to fill the screen.", (_, _) =>
-        {
-            UpdateResolution();
-            DoUpdates = !ExpandUI.Value;
-
-            if (DoUpdates) return;
-
-            foreach (var obj in Patches.OriginalPositions)
-            {
-                //Log.LogWarning($"Resetting {obj.Key} to {obj.Value}");
-                GameObject.Find(obj.Key).transform.position = obj.Value;
-            }
-        });
-
-        StretchBackGround = ConfigureSetting("Stretch Background", true, "Stretch the background to fill the screen.", (_, _) =>
-        {
-            UpdateResolution();
-            if (BackImage != null)
-            {
-                BackImage.transform.localScale = StretchBackGround.Value
-                    ? new Vector3(Util.GetScaleRatio(), 1, 1)
-                    : new Vector3(1, 1, 1);
-            }
-        });
-
-        if (SkipSplashScreens.Value)
-        {
-            SplashController.Shown = true;
+            WindowPositioner = gameObject.AddComponent<WindowPositioner>();
         }
+
+        UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false, new ConfigDescription("Use a custom refresh rate instead of the maximum available in case Unity is reporting it wrong.", null, new ConfigurationManagerAttributes { Order = 97 }));
+        UseCustomRefreshRate.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+            UpdateFixedDeltaTime();
+        };
+
+        CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", MaxRefresh, new ConfigDescription("Set a custom refresh rate to use instead of the maximum available.", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 96 }));
+        CustomRefreshRate.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+            UpdateFixedDeltaTime();
+        };
+
+        TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh, new ConfigDescription("Set the target framerate", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 95 }));
+        TargetFramerate.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+            UpdateFixedDeltaTime();
+        };
+
+        CorrectFixedUpdateRate = Config.Bind("02. Performance", "Modify Physics Rate", false,
+            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways. It may do nothing at all.", null, new ConfigurationManagerAttributes { Order = 94 }));
+        CorrectFixedUpdateRate.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+            UpdateFixedDeltaTime();
+        };
+
+        UseRefreshRateForFixedUpdateRate = Config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", false,
+            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes { Order = 93 }));
+        UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
+        {
+            UpdateDisplay();
+            UpdateFixedDeltaTime();
+        };
+
+        RestrictHUD = Config.Bind("03. UI", "Restrict HUD", false, new ConfigDescription("Restrict the HUD to 16:9.", null, new ConfigurationManagerAttributes { Order = 84 }));
+        RestrictHUD.SettingChanged += (_, _) => { Utils.UpdateHUD(); };
+
+        RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 83 }));
+        RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
+
+        Application.runInBackground = RunInBackground.Value;
+
+        MuteInBackground = Config.Bind("04. Misc", "Mute In Background", true, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes { Order = 82 }));
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Application.focusChanged += FocusChanged;
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
-    private void Update()
+    private static int[] MergeUnityRefreshRates()
     {
-        if (DoUpdates)
+        var unityRates = Screen.resolutions.Select(a => a.refreshRate).Distinct().ToArray();
+        var customRates = new List<int>();
+        customRates.AddRange(unityRates);
+        customRates.AddRange(CustomRefreshRates);
+        return customRates.Distinct().OrderBy(a => a).ToArray();
+    }
+
+    private static void FocusChanged(bool focus)
+    {
+        Application.runInBackground = RunInBackground.Value;
+        var audioSources = Resources.FindObjectsOfTypeAll<AudioSource>();
+        foreach (var audioSource in audioSources)
         {
-            UpdateAll();
+            audioSource.mute = !focus && MuteInBackground.Value;
         }
     }
 
-    private ConfigEntry<T> ConfigureSetting<T>(string key, T defaultValue, object description, EventHandler args)
-    {
-        var setting = description is string s
-            ? Config.Bind("General", key, defaultValue, s)
-            : Config.Bind("General", key, defaultValue, description as ConfigDescription);
-
-        setting.SettingChanged += args;
-        return setting;
-    }
-
-
-    private static void UpdateAll()
-    {
-        const float aspectRatio = 16 / 9f;
-        var aspectWidth = Mathf.RoundToInt(Display.main.systemHeight * aspectRatio);
-        var halfAspectWidth = aspectWidth / 2f;
-        var leftPositionAdjusted = Display.main.systemWidth / 2f + (Display.main.systemWidth / 2f - halfAspectWidth);
-
-        var topLeftPositionAdjusted = (Display.main.systemWidth - aspectWidth) / 2f;
-        var topLeftHudCurrentPosition = TopLeftHud.transform.position;
-        var topLeftHudNewPosition = new Vector3(topLeftPositionAdjusted + 30f, topLeftHudCurrentPosition.y, topLeftHudCurrentPosition.z);
-        TopLeftHud.transform.position = topLeftHudNewPosition;
-
-        var topRightPositionAdjusted = aspectWidth + (Display.main.systemWidth - aspectWidth) / 2f;
-        var topRightHudCurrentPosition = TopRightHud.transform.position;
-        var topRightHudNewPosition = new Vector3(topRightPositionAdjusted, topRightHudCurrentPosition.y, topRightHudCurrentPosition.z);
-        TopRightHud.transform.position = topRightHudNewPosition;
-
-        var bottomLeftHudCurrentPosition = BottomLeftHud.transform.position;
-        var bottomLeftHudNewPosition = new Vector3(leftPositionAdjusted, bottomLeftHudCurrentPosition.y, bottomLeftHudCurrentPosition.z);
-        BottomLeftHud.transform.position = bottomLeftHudNewPosition;
-    }
-
-    private static void UpdateResolution(bool menu = false)
-    {
-        const float ar = 16 / 9f;
-        var width = Mathf.RoundToInt(Display.main.systemHeight * ar);
-        Screen.SetResolution(menu ? width : Display.main.systemWidth, Display.main.systemHeight, Screen.fullScreenMode, 120);
-    }
 
     private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        if (SkipSplashScreens.Value)
+        Log.LogInfo($"Scene loaded: {arg0.name}");
+        UpdateDisplay();
+        Utils.UpdateHUD();
+        UpdateFixedDeltaTime();
+    }
+
+    private static void UpdateFixedDeltaTime()
+    {
+        OriginalFixedDeltaTime.Value = Mathf.RoundToInt(1f / Time.fixedDeltaTime);
+        var targetRefresh = UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh;
+        if (targetRefresh <= 0)
         {
-            if (arg0.name.Equals("Start"))
-            {
-                SceneLoader.Load("Menu");
-            }
+            Log.LogWarning("Custom refresh rate is set to 0 or less. Skipping update.");
+            return;
         }
 
-        UpdateResolution(arg0.name.Equals("Menu"));
+        if (Mathf.Approximately(targetRefresh, OriginalFixedDeltaTime.Value) || OriginalFixedDeltaTime.Value > targetRefresh)
+        {
+            Log.LogInfo("Games physics update rate is already equal to (or greater than) your chosen refresh. Skipping update.");
+            return;
+        }
+
+        if (CorrectFixedUpdateRate.Value)
+        {
+            if (UseRefreshRateForFixedUpdateRate.Value)
+            {
+                Time.fixedDeltaTime = 1f / targetRefresh;
+            }
+            else
+            {
+                Time.fixedDeltaTime = 1f / Utils.FindLowestFrameRateMultipleAboveFifty(targetRefresh);
+            }
+        }
+        else
+        {
+            Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
+        }
+
+        Log.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
+    }
+
+
+    private static void UpdateDisplay()
+    {
+        if (WindowPositioner)
+        {
+            WindowPositioner.Start();
+        }
+
+        Application.runInBackground = RunInBackground.Value;
+
+        Display.displays[DisplayToUse.Value].Activate();
+
+        Screen.SetResolution(Screen.currentResolution.width, Screen.currentResolution.height, FullScreenModeConfig.Value, UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh);
+
+        Application.targetFrameRate = TargetFramerate.Value;
     }
 }

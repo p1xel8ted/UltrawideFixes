@@ -4,38 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1776f42d-28c6-4424-80bd-043917aede62" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../20MinuteTillDawn/.idea/.idea.20MinutesillDawn/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/.idea/.idea.AlexKiddMiracleWorldDX/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeathOrTreat/.idea/.idea.DeathOrTreat/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeathOrTreat/.idea/.idea.DeathOrTreat/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeathOrTreat/.idea/.idea.DeathOrTreat/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../DeathOrTreat/.idea/.idea.DeathOrTreat/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../IronMeat/.idea/.idea.IronMeat/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../IronMeat/.idea/.idea.IronMeat/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../IronMeat/.idea/.idea.IronMeat/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../IronMeat/.idea/.idea.IronMeat/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../zip.target" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../20MinuteTillDawn/TwentyMinutesTillDawn/TwentyMinutesTillDawn.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../20MinuteTillDawn/TwentyMinutesTillDawn/TwentyMinutesTillDawn.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX/AlexKiddMiracleWorldDX.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../AlexKiddMiracleWorldDX/Directory.Build.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DarkestDungeon2/DarkestDungeon2UltrawideFix/DarkestDungeon2UltrawideFix.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../DarkestDungeon2/DarkestDungeon2UltrawideFix/DarkestDungeon2UltrawideFix.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DeathOrTreat/DeathOrTreatUltrawideFix/DeathOrTreatUltrawideFix.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../DeathOrTreat/DeathOrTreatUltrawideFix/DeathOrTreatUltrawideFix.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DeathOrTreat/DeathOrTreatUltrawideFix/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../DeathOrTreat/DeathOrTreatUltrawideFix/Patches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DeathOrTreat/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../DeathOrTreat/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IronMeat/IronMeat/IronMeat.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../IronMeat/IronMeat/IronMeat.csproj" afterDir="false" />
+    <list default="true" id="13a4b301-882a-430a-81d5-aac7b4fc7c2c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../ScarletMaiden/ScarletMaiden/ScreenResolution.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TheLastCampfire/ScreenResolution.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/GlobalUsings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ScarletMaiden/ScarletMaiden/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../ScarletMaiden/ScarletMaiden/Plugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TheLastCampfire/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/Directory.Build.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NuGet.Config" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheLastCampfire.sln" beforeDir="false" afterPath="$PROJECT_DIR$/TheLastCampfire.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheLastCampfire/Patches.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheLastCampfire/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TheLastCampfire/Plugin.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TheLastCampfire/TheLastCampfire.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TheLastCampfire/TheLastCampfire.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TheLastCampfire/Transpiler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/header.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/zip.target" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/../TheyAlwaysRun/Directory.Build.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun.sln" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/ConfigurationManagerAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/Patches.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/Plugin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/TheyAlwaysRun.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/TheyAlwaysRun.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/TheyAlwaysRun/Util.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/header.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../TheyAlwaysRun/header.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../TheyAlwaysRun/zip.target" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,36 +36,37 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;p1xel8ted&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/p1xel8ted/UltrawideFixes.git&quot;,
+    &quot;accountId&quot;: &quot;98ab4992-b9e8-44a2-9908-6b4f702c7294&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d7c212eecb61465988022e21ae9f78351ac600/dd/d1e5f5e8/ScreenSpaceReflectionModel.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
-  <component name="ProjectId" id="2TarDGkRnJvqlbqYx0WjLxTGPNZ" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2n38T8CtPgbtSyNVqe2ONH5UAvs" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true"
-  },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Ben\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Ben\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\Ben\\AppData\\Local\\Symbols\\src"
-    ]
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
@@ -86,18 +80,12 @@
     </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="1776f42d-28c6-4424-80bd-043917aede62" name="Changes" comment="" />
-      <created>1691291910293</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1691291910293</updated>
-      <workItem from="1691291911407" duration="413000" />
-    </task>
-    <servers />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
 </project>

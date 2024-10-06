@@ -1,17 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using HarmonyLib;
-using Pathfinding.Examples;
-using UnityEngine;
-using Display = UnityEngine.Display;
-
-namespace TheLastCampfire;
+﻿namespace TheyAlwaysRun;
 
 /// <summary>
 /// A Harmony patch to intercept Unity's Screen.resolutions method and add custom resolutions.
 /// </summary>
-[HarmonyPatch]
+[Harmony]
 public static class ScreenResolutionsPatch
 {
     /// <summary>
@@ -23,12 +15,15 @@ public static class ScreenResolutionsPatch
     {
         var newRes = new Resolution
         {
-            height = Display.main.systemHeight,
-            width = Display.main.systemWidth,
-            refreshRate = Screen.resolutions.Max(a => a.refreshRate)
+            height = Plugin.MainHeight,
+            width = Plugin.MainWidth,
+            refreshRate = Plugin.MaxRefresh
         };
         var availableResolutions = Screen.resolutions.ToList();
         availableResolutions.Add(newRes);
+            
+        availableResolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
+            
         return availableResolutions.ToArray();
     }
 
@@ -37,10 +32,10 @@ public static class ScreenResolutionsPatch
     /// </summary>
     /// <returns>A list of methods to be patched by the transpiler.</returns>
     [HarmonyTargetMethods]
+    [UsedImplicitly]
     private static IEnumerable<MethodBase> TargetMethods()
     {
-        yield return AccessTools.Method(typeof(GroupController), nameof(GroupController.Update));
-        yield return AccessTools.Method(typeof(GraphicAPI), nameof(GraphicAPI.FilterResolutions));
+        yield return AccessTools.Method(typeof(MainMenuOptionsUI), nameof(MainMenuOptionsUI.InitResolution));
     }
 
     /// <summary>
@@ -49,6 +44,7 @@ public static class ScreenResolutionsPatch
     /// <param name="instructions">The original IL instructions of the method.</param>
     /// <returns>The modified IL instructions.</returns>
     [HarmonyTranspiler]
+    [UsedImplicitly]
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var originalInstructions = instructions.ToList();
