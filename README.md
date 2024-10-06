@@ -389,6 +389,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/4cd6e2e2-4649-4969-bedc-1eead1227351)
+![main_game_spanned](https://github.com/user-attachments/assets/90c239b2-d512-49dc-b3bd-9f799515e070)
+
 ## [Tormented Souls](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TormentedSouls)  
 #### Last update: 2nd June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TormentedSouls/total?label=downloads&style=for-the-badge)
