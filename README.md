@@ -379,6 +379,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/cdc23061-11b4-439a-a332-619bb129f1ae)
+![main_game_spanned](https://github.com/user-attachments/assets/1676efa5-df9b-40f8-926e-1124b43753a8)
+
 ## [The Rogue Prince of Persia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RoguePrinceOfPersia)  
 #### Last update: 1st June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
