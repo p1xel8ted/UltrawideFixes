@@ -1,4 +1,4 @@
-namespace SeaOfStars;
+namespace AnimaFlux.Patches;
 
 [Harmony]
 public static class ScreenResolution

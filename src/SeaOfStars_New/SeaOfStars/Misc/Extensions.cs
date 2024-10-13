@@ -2,7 +2,7 @@ namespace SeaOfStars;
 
 public static class Extensions
 {
-    public static string GetFullPath(this Transform current)
+    public static string GetFullTransformPath(this Transform current)
     {
         var path = current.name;
         while (current.parent != null)
@@ -12,6 +12,16 @@ public static class Extensions
         }
 
         return path;
+    }
+
+    public static string GetFullGameObjectPath(this GameObject current)
+    {
+        if (current.transform != null)
+        {
+            return current.transform.GetFullTransformPath();
+        }
+
+        return "No transform found";
     }
 
     // Attempts to add a component of type T to the GameObject if it doesn't already have one.
@@ -25,7 +35,7 @@ public static class Extensions
 
         // Check if the GameObject already has the component
         var component = gameObject.GetComponent<T>();
-        
+
         return gameObject.GetComponent<T>() ? component : gameObject.AddComponent<T>();
     }
 }
