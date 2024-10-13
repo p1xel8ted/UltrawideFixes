@@ -344,6 +344,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
+![main_menu](https://github.com/user-attachments/assets/c0d9c6a7-de95-471f-a69b-acfe5953d7ec)
+![main_game](https://github.com/user-attachments/assets/1ae1b07d-ae04-40d0-8c19-00b8c3870191)
+
 ## [Sexy Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 #### Last update: 3rd May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
