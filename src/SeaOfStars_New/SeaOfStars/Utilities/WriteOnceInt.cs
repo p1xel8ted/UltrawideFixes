@@ -1,4 +1,4 @@
-namespace SeaOfStars;
+namespace SeaOfStars.Utilities;
 
 public sealed class WriteOnceInt : MonoBehaviour
 {

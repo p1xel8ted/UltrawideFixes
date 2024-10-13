@@ -1,4 +1,4 @@
-namespace SeaOfStars;
+namespace SeaOfStars.Configuration;
 
 /// <summary>
 /// Class that specifies how a setting should be displayed inside the ConfigurationManager settings window.
@@ -38,7 +38,7 @@ internal sealed class ConfigurationManagerAttributes
     /// Custom setting editor (OnGUI code that replaces the default editor provided by ConfigurationManager).
     /// See below for a deeper explanation. Using a custom drawer will cause many of the other fields to do nothing.
     /// </summary>
-    public Action<BepInEx.Configuration.ConfigEntryBase> CustomDrawer;
+    public Action<ConfigEntryBase> CustomDrawer;
 
     /// <summary>
     /// Custom setting editor that allows polling keyboard input with the Input (or UnityInput) class.
@@ -84,7 +84,7 @@ internal sealed class ConfigurationManagerAttributes
     /// The value will persist after being set, use it to see if the current instance is being edited.
     /// Remember to set it to false after you are done!
     /// </param>
-    public delegate void CustomHotkeyDrawerFunc(BepInEx.Configuration.ConfigEntryBase setting, ref bool isCurrentlyAcceptingInput);
+    public delegate void CustomHotkeyDrawerFunc(ConfigEntryBase setting, ref bool isCurrentlyAcceptingInput);
 
     /// <summary>
     /// Show this setting in the settings screen at all? If false, don't show.

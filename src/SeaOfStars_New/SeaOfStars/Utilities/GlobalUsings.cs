@@ -12,6 +12,6 @@ global using Il2CppInterop.Runtime.Injection;
 global using MonoMod.Utils;
 global using UnityEngine;
 global using UnityEngine.Events;
+global using UnityEngine.Experimental.Rendering.Universal;
 global using UnityEngine.SceneManagement;
 global using UnityEngine.UI;
-global using UnityEngine.Experimental.Rendering.Universal;
