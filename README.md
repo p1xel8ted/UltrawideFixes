@@ -24,7 +24,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="A"/>
-<details><summary>A (5)</summary>
+<details><summary>A (6)</summary>
   
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 #### Last update 3rd April 2024
@@ -43,6 +43,13 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlwasLegacy/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c348523a-937a-47e5-99ae-c222258e3a57) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/2640c196-e896-49b3-b6f3-e86d37112ed6)
+
+## [Anima Flux](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnimaFlux)  
+#### Last update: 14th April 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnimaFlux/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/767236d3-d3c6-4551-bc0a-c68c96cdfa99)
+![main_game1](https://github.com/user-attachments/assets/7413f9a3-2d02-413a-9c56-75ece27b3a9f)
 
 ## [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
 #### Last update: 29th April 2024
