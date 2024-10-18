@@ -17,23 +17,30 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <details><summary>2 (1)</summary>
   
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
-#### Last update 2nd April 2024
+#### Last update: 2nd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/35313973-6c27-4eb7-8b36-365a26cdc35e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/372f8245-fe2b-40b8-a5ec-bffb519d7678)
 
 </details>
 <div id="A"/>
-<details><summary>A (6)</summary>
+<details><summary>A (7)</summary>
   
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
-#### Last update 3rd April 2024
+#### Last update: 3rd April 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6e1ca916-bd08-4d57-a6d7-c1cbd64862bf) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/988ff2e3-25e6-4656-8e52-9acfad452cc6)
 
+## [AI LIMIT](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AiLimit)  
+#### Last update: 18th October 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
+
+![main_menu1](https://github.com/user-attachments/assets/6e77b4b3-2929-45ec-83bf-5c4fa5c526ab)
+![main_game](https://github.com/user-attachments/assets/e4b40a2c-26a9-488d-9795-f6825123e04b)
+
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
-#### Last update 19th May 2024
+#### Last update: 19th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9bfbf487-7eca-428d-8af8-75f2f886fff5) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/275dd18a-ea87-4e32-b065-991333ec89b2)
@@ -343,6 +350,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/c0d9c6a7-de95-471f-a69b-acfe5953d7ec)
+![main_game](https://github.com/user-attachments/assets/1ae1b07d-ae04-40d0-8c19-00b8c3870191)
 
 ## [Sexy Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 #### Last update: 3rd May 2024
