@@ -112,7 +112,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="D"/>
-<details><summary>D (4)</summary>
+<details><summary>D (5)</summary>
 
 ## [Darkest Dungeon 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DarkestDungeon2)  
 #### Last Update: 17th April 2024
@@ -137,6 +137,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Deviator/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/92748465-2e0e-4b21-be62-c9fd699313e3) ![main_game](https://github.com/user-attachments/assets/76be4a52-72e6-471b-8344-998f30ec5aa2)
+
+## [Drova Forsaken Kin](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/DrovaForsakenKin) 
+#### Last Update: 23rd October 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/DrovaForsakenKin/total?label=downloads&style=for-the-badge)
+
+![main_menu_exp](https://github.com/user-attachments/assets/86cc4557-ca71-4507-94d2-2ef2885a3e23) ![main_game_two](https://github.com/user-attachments/assets/475afb52-6527-42ad-af23-c317acf15b32)
 
 </details>
 <div id="E"/>
