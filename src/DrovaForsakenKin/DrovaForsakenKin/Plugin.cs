@@ -1,11 +1,13 @@
-﻿namespace DrovaForsakenKin;
+﻿using System.Diagnostics;
+
+namespace DrovaForsakenKin;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.drovaforsakenkin.ultrawide";
     private const string PluginName = "Drova Forsaken Kin Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -209,11 +211,7 @@ public class Plugin : BasePlugin
 
     private static void UpdateMainMenu()
     {
-        if (!Patches.Patches.MainMenuCamera)
-        {
-            Logger.LogWarning("Main menu camera not found.");
-            return;
-        }
+        if (!Patches.Patches.MainMenuCamera) return;
 
         Patches.Patches.MainMenuCamera.cropFrame = ConstrainMainMenu.Value ? PixelPerfectCamera.CropFrame.Pillarbox : PixelPerfectCamera.CropFrame.None;
     }
@@ -287,13 +285,32 @@ public class Plugin : BasePlugin
 
         Application.targetFrameRate = TargetFramerate.Value;
     }
-
+    
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateDisplay();
-        UpdateFixedDeltaTime();
-        UpdateFogLayer();
-        UpdateSocial();
-        UpdateFeedback();
+        if (mode == LoadSceneMode.Single)
+        {
+            UpdateMainMenu();
+            UpdateScalers();
+            UpdateDisplay();
+            UpdateFixedDeltaTime();
+            UpdateFogLayer();
+            UpdateSocial();
+            UpdateFeedback();
+        }
+
+        if (scene.name.Contains("floor", StringComparison.OrdinalIgnoreCase))
+        {
+            UpdateFogLayer();
+        }
     }
+
+    // private static void RunWithTimer(Action action, string message)
+    // {
+    //     var timer = new Stopwatch();
+    //     timer.Start();
+    //     action();
+    //     timer.Stop();
+    //     Logger.LogWarning($"{message} in {timer.ElapsedMilliseconds}ms");
+    // }
 }
