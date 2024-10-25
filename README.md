@@ -309,7 +309,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="N"/>
-<details><summary>N (3)</summary>
+<details><summary>N (4)</summary>
 
 ## [NEO - The World Ends With Yous](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
 #### Last update: 28th April 2024
@@ -327,6 +327,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NierReplicant/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9398fce2-a837-48c6-9e19-eed921e13eb7) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9973cdc-0f65-4aff-bc9d-0735c92b4d6a)
+
+## [Nine Sols](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NineSols)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NineSols/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/e05a9313-6201-41b6-9f9c-66f35e14db52)
+![main_game](https://github.com/user-attachments/assets/4fb09915-d5f3-4451-8654-41a9672235dc)
 
 </details>
 <div id="P"/>
