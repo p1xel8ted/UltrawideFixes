@@ -27,6 +27,20 @@ public static class Patches
         if (__instance.name.ToLower().Contains("sinai")) return;
         __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         __instance.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+
+        if (__instance.name == "OpeningMenu")
+        {
+            var bg = __instance.transform.Find("BookBackground");
+            if (bg)
+            {
+                const float twn = 21.5f / 9f;
+                const float epsilon = 0.0001f;
+                if (Plugin.MainAspectRatio > twn + epsilon)
+                {
+                    bg.transform.localScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f);   
+                }
+            }
+        }
     }
 
     internal static void UpdateVolumes()
@@ -82,6 +96,14 @@ public static class Patches
 
             ap.isDirty = true;
         }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AspectRatioControlBase), nameof(AspectRatioControlBase.SetAspectRatio))]
+    public static void AspectRatioControlBase_SetAspectRatio(AspectRatioControlBase __instance, int ScreenWidth, int ScreenHeight)
+    {
+        __instance.m_Camera.aspect = (float)ScreenWidth / ScreenHeight;
+        __instance.m_Camera.pixelRect = new Rect(0, 0, ScreenWidth, ScreenHeight);
     }
 
     [HarmonyPostfix]

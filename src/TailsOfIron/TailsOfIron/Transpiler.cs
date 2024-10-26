@@ -34,9 +34,17 @@
                 width = Plugin.MainWidth,
                 refreshRate = Plugin.MaxRefresh
             };
+            //
+            // var customRes = new Resolution
+            // {
+            //     height = 900,
+            //     width = 3200,
+            //     refreshRate = Plugin.MaxRefresh
+            // };
 
             var availableResolutions = Screen.resolutions.ToList();
             availableResolutions.Add(newRes);
+            // availableResolutions.Add(customRes);
 
             // Sort resolutions by pixel count, from lowest to highest
             availableResolutions.Sort((a, b) => (a.width * a.height).CompareTo(b.width * b.height));

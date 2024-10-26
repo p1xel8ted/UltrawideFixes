@@ -6,7 +6,7 @@
 
   <!--Base Settings-->
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
       <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
