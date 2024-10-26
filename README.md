@@ -397,7 +397,14 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (7)</summary>
+<details><summary>T (8)</summary>
+  
+## [Tails of Iron](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TailsOfIron) 
+#### Last update: 26th October 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TailsOfIron/total?label=downloads&style=for-the-badge)
+
+![release_menu](https://github.com/user-attachments/assets/4db16fe3-1a0a-400c-8113-9a0b79bf76e8)
+![release_game1](https://github.com/user-attachments/assets/d439c107-b996-414b-91ea-8ec066a8f282)
 
 ## [Terra Memoria](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TerraMemoria) 
 #### Last update: 21st April 2024
