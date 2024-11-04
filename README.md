@@ -474,7 +474,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="V"/>
-<details><summary>V (2)</summary>
+<details><summary>V (3)</summary>
 
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
@@ -487,6 +487,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VigilTheLongestNight/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb64afb-3123-400d-a66b-3bc27f35a80e) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c04a42e4-9bd2-480b-b74f-02abeba9f329)
+
+## [Voidwrought](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Voidwrought)  
+#### Last update: 4th November 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Voidwrought/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/cee78263-9d87-49be-8888-3b3f706aede6) ![main_game_span](https://github.com/user-attachments/assets/a72f6033-9079-46d9-9ada-08eee99f7b6a)
 
 </details>
 <div id="W"/>
