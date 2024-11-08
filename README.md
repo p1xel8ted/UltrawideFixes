@@ -418,12 +418,6 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/cdc23061-11b4-439a-a332-619bb129f1ae)
 ![main_game_spanned](https://github.com/user-attachments/assets/1676efa5-df9b-40f8-926e-1124b43753a8)
 
-## [The Messenger](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheMessenger)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheMessenger/total?label=downloads&style=for-the-badge)
-
-![main_menu](https://github.com/user-attachments/assets/0399ceea-702b-43aa-8e8f-9ea136e87dd8)
-![main_game](https://github.com/user-attachments/assets/cff923a6-6561-47fe-9d17-a14bf44f811a)
-
 ## [The Rogue Prince of Persia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RoguePrinceOfPersia)  
 #### Last update: 1st June 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RoguePrinceOfPersia/total?label=downloads&style=for-the-badge)
