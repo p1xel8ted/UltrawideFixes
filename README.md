@@ -331,7 +331,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [NIMRODS: GunCraft Survivor](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NIMRODS)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NIMRODS/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/f7029e67-4ed0-4797-86f9-b03b7392ea6a) ![release_game2](https://github.com/user-attachments/assets/2ab24c68-5f74-4035-84c0-8e1ea7d35a7e)
+![main_menu](https://github.com/user-attachments/assets/f7029e67-4ed0-4797-86f9-b03b7392ea6a) ![main_game2](https://github.com/user-attachments/assets/26bf03aa-60fd-4e6b-a054-95984aa316fa)
 
 ## [Nine Sols](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NineSols)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NineSols/total?label=downloads&style=for-the-badge)
