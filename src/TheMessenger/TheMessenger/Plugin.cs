@@ -29,17 +29,19 @@ public class Plugin : BaseUnityPlugin
     ];
 
 
-    private static ManualLogSource Log { get; set; }
+    internal static ManualLogSource Log { get; set; }
 
-    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
-    private static float MainAspectRatio => Display.main.systemWidth / (float)Display.main.systemHeight;
+    internal static float MainAspectRatio => Display.main.systemWidth / (float)Display.main.systemHeight;
+    internal static float SuwAspect = 3.5555556f;
     internal static float PositiveScaleFactor => MainAspectRatio / BaseAspectRatio;
-    private static int MainWidth => Display.main.systemWidth;
-    private static int MainHeight => Display.main.systemHeight;
+    internal static float NegativeScaleFactor => BaseAspectRatio / MainAspectRatio;
+    internal static int MainWidth => Display.main.systemWidth;
+    internal static int MainHeight => Display.main.systemHeight;
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
     private static WriteOnce<int> OriginalFixedDeltaTime { get; } = new();
@@ -78,7 +80,7 @@ public class Plugin : BaseUnityPlugin
 
         ExpandHUD = Config.Bind("04. HUD", "Expand HUD", false, new ConfigDescription("Expands the HUD to fill the screen. This may cause issues with the game's UI."));
         ExpandHUD.SettingChanged += (_, _) => { UpdateCameras(); };
-        
+
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
@@ -121,46 +123,46 @@ public class Plugin : BaseUnityPlugin
 
     internal static void UpdateCameras()
     {
-        var cameras = Resources.FindObjectsOfTypeAll<Camera>();
-        foreach (var cam in cameras)
-        {
-           
-            //game play
-            if (cam.name == "Main Camera")
-            {
-                cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
-            }
-
-            //hud
-            if (cam.name == "Camera")
-            {
-                cam.aspect = MainAspectRatio;
-                if (ExpandHUD.Value)
-                {
-                    cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
-                }
-                else
-                {
-                    cam.pixelRect = new Rect((MainWidth - NativeWidth) / 2f, 0, NativeWidth, MainHeight); 
-                }
-              
-            }
-
-            // blackbars/dialogue
-            if (cam.name == "Camera(Clone)")
-            {
-                if (!IsGameplay)
-                {
-                    cam.aspect = BaseAspectRatio;
-                    cam.pixelRect = new Rect((MainWidth - NativeWidth) / 2f, 0, NativeWidth, MainHeight);
-                }
-                else
-                {
-                    cam.aspect = MainAspectRatio * PositiveScaleFactor;
-                    cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
-                }
-            }
-        }
+        // var cameras = Resources.FindObjectsOfTypeAll<Camera>();
+        // foreach (var cam in cameras)
+        // {
+        //    
+        //     //game play
+        //     if (cam.name == "Main Camera")
+        //     {
+        //         cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+        //     }
+        //
+        //     //hud
+        //     if (cam.name == "Camera")
+        //     {
+        //         cam.aspect = MainAspectRatio;
+        //         if (ExpandHUD.Value)
+        //         {
+        //             cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+        //         }
+        //         else
+        //         {
+        //             cam.pixelRect = new Rect((MainWidth - NativeWidth) / 2f, 0, NativeWidth, MainHeight); 
+        //         }
+        //       
+        //     }
+        //
+        //     // blackbars/dialogue
+        //     if (cam.name == "Camera(Clone)")
+        //     {
+        //         // if (!IsGameplay)
+        //         // {
+        //         //     cam.aspect = BaseAspectRatio;
+        //         //     cam.pixelRect = new Rect((MainWidth - NativeWidth) / 2f, 0, NativeWidth, MainHeight);
+        //         // }
+        //         // else
+        //         // {
+        //             cam.aspect = MainAspectRatio;
+        //             cam.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+        //         // }
+        //     }
+        // }
     }
 
     private static void UpdateFixedDeltaTime()
