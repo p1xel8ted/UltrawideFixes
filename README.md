@@ -309,7 +309,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="N"/>
-<details><summary>N (4)</summary>
+<details><summary>N (5)</summary>
 
 ## [NEO - The World Ends With Yous](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
 #### Last update: 28th April 2024
@@ -327,6 +327,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NierReplicant/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9398fce2-a837-48c6-9e19-eed921e13eb7) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d9973cdc-0f65-4aff-bc9d-0735c92b4d6a)
+
+## [NIMRODS: GunCraft Survivor](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NIMRODS)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NIMRODS/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/f7029e67-4ed0-4797-86f9-b03b7392ea6a) ![main_game2](https://github.com/user-attachments/assets/26bf03aa-60fd-4e6b-a054-95984aa316fa)
 
 ## [Nine Sols](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NineSols)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NineSols/total?label=downloads&style=for-the-badge)
@@ -468,7 +473,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="V"/>
-<details><summary>V (2)</summary>
+<details><summary>V (3)</summary>
 
 ## [Vampire Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VampireSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VampireSurvivors/total?label=downloads&style=for-the-badge)
@@ -481,6 +486,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VigilTheLongestNight/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb64afb-3123-400d-a66b-3bc27f35a80e) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c04a42e4-9bd2-480b-b74f-02abeba9f329)
+
+## [Voidwrought](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Voidwrought)  
+#### Last update: 4th November 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Voidwrought/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/cee78263-9d87-49be-8888-3b3f706aede6) ![main_game_span](https://github.com/user-attachments/assets/a72f6033-9079-46d9-9ada-08eee99f7b6a)
 
 </details>
 <div id="W"/>
