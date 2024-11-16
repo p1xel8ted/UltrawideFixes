@@ -225,13 +225,20 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="K"/>
-<details><summary>K (2)</summary>
+<details><summary>K (3)</summary>
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 #### Last update: 4th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8cdd42bb-912c-46c9-8cfa-54711993694a) ![main_game2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5f021f54-756c-4ee1-b25f-f5d370add107)
+
+## [Kingsgrave](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Kingsgrave)  
+#### Last update: 17th November 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Kingsgrave/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/fe6c1b81-0f9e-41e5-b9b1-9b432f711b6d) ![main_game_con](https://github.com/user-attachments/assets/c9f98b37-8afe-4a48-820d-125a437896e8)
+
 
 ## [Klonoa Phantasy Reverie Series](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KlonoaPRS)  
 #### Last update: 14th July 2024
