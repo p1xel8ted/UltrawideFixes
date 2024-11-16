@@ -356,6 +356,15 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_game](https://github.com/user-attachments/assets/1e3b2500-72aa-41ce-9d69-6809bc9a3042)
 
 </details>
+<div id="R"/>
+<details><summary>R (1)</summary>
+
+## [Rogue Flight](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RogueFlight)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RogueFlight/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/de2ca20a-ef91-4c7c-9ec6-8d6fde4085f4) ![main_game_cons](https://github.com/user-attachments/assets/466d0da8-e76f-44d2-a841-668330f4379e)
+
+</details>
 <div id="S"/>
 <details><summary>S (7)</summary>
 
