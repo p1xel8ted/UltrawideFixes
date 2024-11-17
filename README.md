@@ -24,7 +24,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="A"/>
-<details><summary>A (7)</summary>
+<details><summary>A (8)</summary>
   
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 #### Last update: 3rd April 2024
@@ -36,8 +36,13 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 #### Last update: 18th October 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
 
-![main_menu1](https://github.com/user-attachments/assets/6e77b4b3-2929-45ec-83bf-5c4fa5c526ab)
-![main_game](https://github.com/user-attachments/assets/e4b40a2c-26a9-488d-9795-f6825123e04b)
+![main_menu1](https://github.com/user-attachments/assets/6e77b4b3-2929-45ec-83bf-5c4fa5c526ab) ![main_game](https://github.com/user-attachments/assets/e4b40a2c-26a9-488d-9795-f6825123e04b)
+
+## [Ankora: Lost Days](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnkoraLostDays)  
+#### Last update: 17th November 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnkoraLostDays/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/da61f7ff-72f2-47cf-b228-f36e462e345e) ![main_game2](https://github.com/user-attachments/assets/05f94e84-8717-4981-a5f6-711b6e6d63e0)
 
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
 #### Last update: 19th May 2024
@@ -225,13 +230,20 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="K"/>
-<details><summary>K (2)</summary>
+<details><summary>K (3)</summary>
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 #### Last update: 4th May 2024
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/8cdd42bb-912c-46c9-8cfa-54711993694a) ![main_game2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5f021f54-756c-4ee1-b25f-f5d370add107)
+
+## [Kingsgrave](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Kingsgrave)  
+#### Last update: 17th November 2024
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Kingsgrave/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/fe6c1b81-0f9e-41e5-b9b1-9b432f711b6d) ![main_game_con](https://github.com/user-attachments/assets/c9f98b37-8afe-4a48-820d-125a437896e8)
+
 
 ## [Klonoa Phantasy Reverie Series](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KlonoaPRS)  
 #### Last update: 14th July 2024
