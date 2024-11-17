@@ -1,10 +1,10 @@
-﻿namespace MetalSlugTactics;
+﻿namespace Kingsgrave;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.metalslugtactics.uwfixes";
-    private const string PluginName = "Metal Slug Tactics Ultra-Wide";
+    private const string PluginGuid = "p1xel8ted.kingsgrave.uwfixes";
+    private const string PluginName = "Kingsgrave Ultra-Wide";
     private const string PluginVersion = "0.1.0";
 
     private static readonly float[] CustomRefreshRates =
@@ -32,7 +32,7 @@ public class Plugin : BaseUnityPlugin
         numerator = 1,
         denominator = (uint)RefreshRate
     };
-    
+
     internal static float RefreshRate
     {
         get
@@ -47,7 +47,7 @@ public class Plugin : BaseUnityPlugin
     }
 
     internal static ManualLogSource Log { get; private set; }
-    internal static float MaxRefresh => (float)Screen.resolutions.Max(a => a.refreshRateRatio.value);
+    internal static float MaxRefresh => (float)Screen.resolutions.Max(a => a.refreshRate);
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<float> CustomRefreshRate { get; set; }
@@ -67,14 +67,33 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
 
+    private static List<string> HUDAspects { get; } =
+    [
+        "16:9",
+        "21:9",
+        "21.5:9",
+        "24:10",
+        "32:9",
+        "32:10",
+        "48:9",
+        "Auto"
+    ];
+
+
+    internal static ConfigEntry<string> HUDAspect { get; private set; }
+
     private void Awake()
     {
         Debug.unityLogger.logEnabled = false;
         var customRates = MergeUnityRefreshRates();
         Log = Logger;
 
+        HUDAspect = Config.Bind("01. Display", "HUD Aspect", "Auto", new ConfigDescription("Select the aspect ratio of the HUD.", new AcceptableValueList<string>(HUDAspects.ToArray()), new ConfigurationManagerAttributes { Order = 100 }));
+        HUDAspect.SettingChanged += (_, _) => Patches.UpdateLayoutControllers();
+
+
         FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode.", null, new ConfigurationManagerAttributes { Order = 99 }));
-        FullScreenModeConfig.SettingChanged += (_, _) => { UpdateDisplay(); };
+        FullScreenModeConfig.SettingChanged += (_, _) => UpdateDisplay();
 
         DisplayToUse = Config.Bind("01. Display", "Display to Use", 0, new ConfigDescription("Select the display to use.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes { Order = 98 }));
         DisplayToUse.SettingChanged += (_, _) => UpdateDisplay();
@@ -94,7 +113,7 @@ public class Plugin : BaseUnityPlugin
         TargetFramerate.SettingChanged += (_, _) => { UpdateDisplay(); };
 
         CorrectFixedUpdateRate = Config.Bind("02. Performance", "Modify Physics Rate", true,
-            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways. It may do nothing at all.", null, new ConfigurationManagerAttributes { Order = 94 }));
+            new ConfigDescription("This is a generic Unity fix. Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways. It may do nothing at all.", null, new ConfigurationManagerAttributes { Order = 94 }));
         CorrectFixedUpdateRate.SettingChanged += (_, _) =>
         {
             UpdateDisplay();
@@ -166,7 +185,7 @@ public class Plugin : BaseUnityPlugin
 
         Display.displays[DisplayToUse.Value].Activate();
 
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, RefreshRateRatio);
+        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, Mathf.RoundToInt(RefreshRate));
 
         Application.targetFrameRate = Mathf.RoundToInt(TargetFramerate.Value);
     }
@@ -174,12 +193,11 @@ public class Plugin : BaseUnityPlugin
     private static float[] MergeUnityRefreshRates()
     {
         var unityRates = Screen.resolutions
-            .Select(a => (float)a.refreshRateRatio.value) // Convert double to float
+            .Select(a => (float)a.refreshRate) // Convert double to float
             .Distinct()
             .ToArray();
 
 
-        
         var customRates = new List<float>();
         customRates.AddRange(unityRates);
         customRates.AddRange(CustomRefreshRates);
@@ -198,6 +216,11 @@ public class Plugin : BaseUnityPlugin
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.name == "Logo")
+        {
+            SceneManager.LoadScene("Main");
+        }
+
         UpdateDisplay();
         UpdateFixedDeltaTime();
     }

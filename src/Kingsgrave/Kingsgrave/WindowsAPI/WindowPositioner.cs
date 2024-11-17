@@ -1,4 +1,4 @@
-﻿namespace MetalSlugTactics.WindowsAPI;
+﻿namespace Kingsgrave.WindowsAPI;
 
 public class WindowPositioner : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class WindowPositioner : MonoBehaviour
     public void Start()
     {
         PlayerPrefs.SetInt("UnitySelectMonitor", Plugin.DisplayToUse.Value);
-        Display.displays[Plugin.DisplayToUse.Value].Activate(Plugin.MainWidth, Plugin.MainHeight, Plugin.RefreshRateRatio);
+        Display.displays[Plugin.DisplayToUse.Value].Activate(Plugin.MainWidth, Plugin.MainHeight, Mathf.RoundToInt(Plugin.RefreshRate));
         MoveWindowToDisplay(Plugin.DisplayToUse.Value);
     }
 
@@ -24,7 +24,7 @@ public class WindowPositioner : MonoBehaviour
         var x = Plugin.MainWidth * displayIndex;
         const int y = 0;
 
-        var window = FindWindow(null, "Metal Slug Tactics");
+        var window = FindWindow(null, "Kingsgrave");
         SetWindowPos(window, 0, x, y, width, height, 0);
     }
 }
