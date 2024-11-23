@@ -1,19 +1,21 @@
 ﻿// DisplayManager.cs
 
-using SeaOfStars.Components;
-using SeaOfStars.Core;
-using SeaOfStars.Utilities;
-
 namespace SeaOfStars.Managers;
 
 public static class DisplayManager
 {
-    internal static int MainWidth => Display.displays[Configuration.Configuration.DisplayToUse.Value].systemWidth;
-    internal static int MainHeight => Display.displays[Configuration.Configuration.DisplayToUse.Value].systemHeight;
-    internal static int NormalWidth => Mathf.RoundToInt(MainHeight * 16f / 9f);
-    internal static float PositiveScaleFactor => MainWidth / (float)NormalWidth;
-    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-    internal static WriteOnceInt OriginalFixedDeltaTime { get; } = new();
+    internal static int MainWidth => Display.displays[Configuration.Configuration.DisplayToUse.Value].systemWidth; //3440
+    internal static int MainHeight => Display.displays[Configuration.Configuration.DisplayToUse.Value].systemHeight; //1440
+    internal const float NativeAspectRatio = 16f / 9f; // 1.77777777778
+    private static int NativeWidth => Mathf.RoundToInt(MainHeight * NativeAspectRatio); // 2560
+    internal static float PositiveScaleFactor => MainWidth / (float)NativeWidth; // 1.34375
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate); // 144
+    private static WriteOnceInt OriginalFixedDeltaTime { get; } = new();
+    public static float MainAspectRatio => MainWidth / (float)MainHeight; // 2.38888888889
+
+    public static float BlackBarSize => (MainWidth - NativeWidth) / 2f; //3440 - 2560 = 440
+    
+    // public static float NegativeScaleFactor => 1f / PositiveScaleFactor; // 1 / 1.34375 = 0.74418604651
 
     public static void FocusChanged(bool focus)
     {
@@ -38,21 +40,22 @@ public static class DisplayManager
                 WindowPositioner.Instance.Start(); // Explicitly call Start() if needed
             }
         }
+
         Application.runInBackground = Configuration.Configuration.RunInBackground.Value;
-        SetResolution();
+        // SetResolution();
         Application.targetFrameRate = Configuration.Configuration.TargetFramerate.Value;
     }
 
-    internal static void SetResolution(bool sixteenNine = false)
-    {
-        Display.displays[Configuration.Configuration.DisplayToUse.Value].Activate();
-        Screen.SetResolution(
-            sixteenNine ? NormalWidth : MainWidth,
-            MainHeight,
-            Configuration.Configuration.FullScreenModeConfig.Value,
-            Configuration.Configuration.UseCustomRefreshRate.Value ? Configuration.Configuration.CustomRefreshRate.Value : MaxRefresh
-        );
-    }
+    // internal static void SetResolution(bool sixteenNine = false)
+    // {
+    //     Display.displays[Configuration.Configuration.DisplayToUse.Value].Activate();
+    //     Screen.SetResolution(
+    //         sixteenNine ? NativeWidth : MainWidth,
+    //         MainHeight,
+    //         Configuration.Configuration.FullScreenModeConfig.Value,
+    //         Configuration.Configuration.UseCustomRefreshRate.Value ? Configuration.Configuration.CustomRefreshRate.Value : MaxRefresh
+    //     );
+    // }
 
     public static void UpdateFixedDeltaTime()
     {
@@ -80,6 +83,6 @@ public static class DisplayManager
             Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
         }
 
-        Plugin.Logger.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
+       // Plugin.Logger.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
     }
 }

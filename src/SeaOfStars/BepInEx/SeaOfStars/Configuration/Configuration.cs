@@ -1,18 +1,19 @@
 ﻿// Configuration.cs
 
-using SeaOfStars.Managers;
-
 namespace SeaOfStars.Configuration;
 
 public static class Configuration
 {
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    internal static ConfigEntry<KeyCode> ShiftViewportLeftKeybind { get; private set; }
-    internal static ConfigEntry<KeyCode> ShiftViewportRightKeybind { get; private set; }
-    internal static ConfigEntry<KeyCode> ResetViewportKeybind { get; private set; }
+    internal static ConfigEntry<KeyCode> UiPixelAlignmentLeftKeybind { get; private set; }
+    internal static ConfigEntry<KeyCode> UiPixelAlignmentRightKeybind { get; private set; }
+    internal static ConfigEntry<KeyCode> ResetPixelAlignmentKeybind { get; private set; }
+    // internal static ConfigEntry<KeyCode> ShiftViewportLeftKeybind { get; private set; }
+    // internal static ConfigEntry<KeyCode> ShiftViewportRightKeybind { get; private set; }
+    
     internal static ConfigEntry<KeyCode> ModifierKeybind { get; private set; }
-    internal static ConfigEntry<int> UiPosition { get; private set; }
+    // internal static ConfigEntry<float> UiPosition { get; private set; }
     internal static ConfigEntry<bool> RunInBackground { get; private set; }
     internal static ConfigEntry<bool> MuteInBackground { get; private set; }
     internal static ConfigEntry<int> CustomRefreshRate { get; private set; }
@@ -20,7 +21,11 @@ public static class Configuration
     internal static ConfigEntry<bool> CorrectFixedUpdateRate { get; private set; }
     internal static ConfigEntry<bool> UseCustomRefreshRate { get; private set; }
     internal static ConfigEntry<int> TargetFramerate { get; private set; }
-
+    internal static ConfigEntry<float> RunSpeedMultiplier { get; private set; }
+    internal static ConfigEntry<bool> CinematicLetterboxing { get; private set; }
+    internal static ConfigEntry<bool> AdjustUiPixelAlignment { get; private set; }
+    internal static ConfigEntry<float> UiPixelAlignment { get; private set; }
+    // internal static ConfigEntry<bool> AdjustUiPosition { get; private set; }
     public static void SetupConfig(ConfigFile config, int[] customRates)
     {
         FullScreenModeConfig = config.Bind(
@@ -119,44 +124,104 @@ public static class Configuration
             DisplayManager.UpdateFixedDeltaTime();
         };
 
-        ShiftViewportLeftKeybind = config.Bind(
-            "03. UI",
-            "Shift Viewport Left",
+        // AdjustUiPosition =  config.Bind(
+        //     "03. UI Position",
+        //     "Adjust UI Position",
+        //     false,
+        //     new ConfigDescription("Toggle custom UI positioning.", null, new ConfigurationManagerAttributes { Order = 84 })
+        // );
+        // AdjustUiPosition.SettingChanged += (_, _) => { SoSuiManager.UpdateUiPosition(); };
+        //
+        // UiPosition = config.Bind(
+        //     "03. UI Position",
+        //     "UI Position",
+        //     0f,
+        //     new ConfigDescription("Move the UI left/right.", new AcceptableValueRange<float>(-100f, 100f), new ConfigurationManagerAttributes { Order = 84 })
+        // );
+        // UiPosition.SettingChanged += (_, _) => { SoSuiManager.UpdateUiPosition(); };
+        //
+        // ShiftViewportLeftKeybind = config.Bind(
+        //     "03. UI Position",
+        //     "Shift Viewport Left",
+        //     KeyCode.O,
+        //     new ConfigDescription("Shift the UI viewport to the left.", null, new ConfigurationManagerAttributes { Order = 83 })
+        // );
+        //
+        //
+        // ShiftViewportRightKeybind = config.Bind(
+        //     "03. UI Position",
+        //     "Shift Viewport Right",
+        //     KeyCode.P,
+        //     new ConfigDescription("Shift the UI viewport to the right.", null, new ConfigurationManagerAttributes { Order = 82 })
+        // );
+        //
+        AdjustUiPixelAlignment = config.Bind(
+            "03. UI Pixel Alignment",
+            "Use Custom UI Width",
+            false,
+            new ConfigDescription("Only use if the UI text pixels appear misaligned. This will cause the UI to shift left/right but correct pixel alignments. You should only need extremely minor adjustments.", null, new ConfigurationManagerAttributes { Order = 86 })
+        );
+        AdjustUiPixelAlignment.SettingChanged += (_, _) => { SoSuiManager.UpdateUiWidth(); };
+
+        UiPixelAlignment = config.Bind(
+            "03. UI Pixel Alignment",
+            "UI Width",
+            640f,
+            new ConfigDescription("Resize UI at very small (0.05) increments smaller/larger horizontally until the text appears normal. You will have to close this menu to see the results. Recommended to use the keybinds.", new AcceptableValueRange<float>(500f, 1000f), new ConfigurationManagerAttributes { Order = 85 })
+        );
+        UiPixelAlignment.SettingChanged += (_, _) =>
+        {
+            //0.05 increments
+            UiPixelAlignment.Value = Mathf.Round(UiPixelAlignment.Value * 20) / 20;
+            SoSuiManager.UpdateUiWidth();
+        };
+
+        UiPixelAlignmentLeftKeybind = config.Bind(
+            "03. UI Pixel Alignment",
+            "Shrink Viewport",
             KeyCode.LeftBracket,
             new ConfigDescription("Shift the UI viewport to the left.", null, new ConfigurationManagerAttributes { Order = 91 })
         );
-        ShiftViewportRightKeybind = config.Bind(
-            "03. UI",
-            "Shift Viewport Right",
+        UiPixelAlignmentRightKeybind = config.Bind(
+            "03. UI Pixel Alignment",
+            "Expand Viewport",
             KeyCode.RightBracket,
             new ConfigDescription("Shift the UI viewport to the right.", null, new ConfigurationManagerAttributes { Order = 90 })
         );
         ModifierKeybind = config.Bind(
-            "03. UI",
+            "03. UI Pixel Alignment",
             "Modifier Key",
             KeyCode.LeftShift,
-            new ConfigDescription("The key that needs to be held to shift the viewport at a faster rate.", null, new ConfigurationManagerAttributes { Order = 89 })
+            new ConfigDescription("The key that needs to be held to update the UI at a faster rate.", null, new ConfigurationManagerAttributes { Order = 89 })
         );
-        ResetViewportKeybind = config.Bind(
-            "03. UI",
+        ResetPixelAlignmentKeybind = config.Bind(
+            "03. UI Pixel Alignment",
             "Reset Viewport",
             KeyCode.Backslash,
-            new ConfigDescription("Reset the UI viewport to the default position.", null, new ConfigurationManagerAttributes { Order = 88 })
+            new ConfigDescription("Reset the UI viewport to the default values.", null, new ConfigurationManagerAttributes { Order = 88 })
         );
 
-        UiPosition = config.Bind(
-            "03. UI",
-            "UI Position",
-            SoSuiManager.CanvasPosition,
-            new ConfigDescription(
-                "Set the position of the UI on the x-axis.",
-                new AcceptableValueRange<int>(-1000, 1000),
-                new ConfigurationManagerAttributes { Order = 92 })
+        CinematicLetterboxing = config.Bind(
+            "04. Gameplay",
+            "Cinematic Letterboxing",
+            false,
+            new ConfigDescription("Toggle cinematic letterboxing.", null, new ConfigurationManagerAttributes { Order = 87 })
         );
-        UiPosition.SettingChanged += (_, _) => { SoSuiManager.HandleShiftViewportViaUI(); };
+
+        RunSpeedMultiplier = config.Bind(
+            "04. Gameplay",
+            "Run Speed Multiplier",
+            1f,
+            new ConfigDescription("Adjust the speed of the game.", new AcceptableValueRange<float>(0.25f, 2f), new ConfigurationManagerAttributes { Order = 87 })
+        );
+        RunSpeedMultiplier.SettingChanged += (_, _) =>
+        {
+            //0.25 increments
+            RunSpeedMultiplier.Value = Mathf.Round(RunSpeedMultiplier.Value * 4) / 4;
+        };
 
         RunInBackground = config.Bind(
-            "07. Misc",
+            "05. Misc",
             "Run In Background",
             true,
             new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 82 })
@@ -164,7 +229,7 @@ public static class Configuration
         RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
 
         MuteInBackground = config.Bind(
-            "07. Misc",
+            "05. Misc",
             "Mute In Background",
             false,
             new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes { Order = 81 })

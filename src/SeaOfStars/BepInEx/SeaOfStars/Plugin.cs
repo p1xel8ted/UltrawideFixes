@@ -1,13 +1,8 @@
 ﻿// Plugin.cs
 
-using SeaOfStars.Components;
-using SeaOfStars.Handlers;
-using SeaOfStars.Managers;
-using SeaOfStars.Utilities;
+namespace SeaOfStars;
 
-namespace SeaOfStars.Core;
-
-[BepInPlugin(Constants.PluginGuid, Constants.PluginName, Constants.PluginVersion)]
+[BepInPlugin(Core.Constants.PluginGuid, Core.Constants.PluginName, Core.Constants.PluginVersion)]
 [BepInDependency("com.p1xel8ted.BepInExConfigManager", "2.1.0")]
 public class Plugin : BasePlugin
 {
@@ -18,7 +13,12 @@ public class Plugin : BasePlugin
         Logger = Log;
 
         ConfigManager.ConfigManager.OnMenuVisibilityChanged += SoSuiManager.HandleConfigManager;
+        
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceInt>();
+        ClassInjector.RegisterTypeInIl2Cpp<LayoutController>();
+        //ClassInjector.RegisterTypeInIl2Cpp<Patches.BattleOverlayController>();
+    
+        
         AddComponent<MonoMethods>();
         AddComponent<WindowPositioner>(); // Add WindowPositioner as a component
 
@@ -32,10 +32,7 @@ public class Plugin : BasePlugin
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)SceneHandlers.OnSceneLoaded;
         SceneManager.sceneUnloaded += (UnityAction<Scene>)SceneHandlers.OnSceneUnloaded;
 
-        Logger.LogInfo($"Plugin {Constants.PluginName} is loaded!");
-        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), Constants.PluginGuid);
-
-        State.FishingViewPortUpdated = false;
-        State.FishingActive = false;
+        Logger.LogInfo($"Plugin {Core.Constants.PluginName} is loaded!");
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), Core.Constants.PluginGuid);
     }
 }

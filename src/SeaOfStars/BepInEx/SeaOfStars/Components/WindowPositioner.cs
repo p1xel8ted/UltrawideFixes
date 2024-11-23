@@ -1,7 +1,5 @@
 ﻿// WindowPositioner.cs
 
-using SeaOfStars.Managers;
-
 namespace SeaOfStars.Components;
 
 public class WindowPositioner : MonoBehaviour
