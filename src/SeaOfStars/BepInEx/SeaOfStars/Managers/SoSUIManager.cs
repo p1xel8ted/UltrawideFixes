@@ -6,8 +6,8 @@ public static class SoSuiManager
 {
     internal static readonly List<Vector2> PixelPerfectRefRes = [];
     // internal static float CanvasPosition => DisplayManager.MainWidth / 2f;
-    internal static List<CanvasUpscaleViewport> CanvasUpscaleViewports => Utilities.Utilities.FindIl2CppType<CanvasUpscaleViewport>().ToList();
-    internal static List<PixelPerfectCamera> PixelPerfectCameras => Utilities.Utilities.FindIl2CppType<PixelPerfectCamera>().ToList();
+    private static List<CanvasUpscaleViewport> CanvasUpscaleViewports => Utilities.Utilities.FindIl2CppType<CanvasUpscaleViewport>().ToList();
+    private static List<PixelPerfectCamera> PixelPerfectCameras => Utilities.Utilities.FindIl2CppType<PixelPerfectCamera>().ToList();
 
     internal static List<LayoutController> LayoutControllers { get; } = [];
     
@@ -72,17 +72,4 @@ public static class SoSuiManager
             Canvas.ForceUpdateCanvases();
         }
     }
-
-    // public static void UpdateUiPosition()
-    // {
-    //     if (UIManager.Instance)
-    //     {
-    //         if (UIManager.Instance.canvasInstance)
-    //         {
-    //             UIManager.Instance.canvasInstance.enabled = false;
-    //             var newX = CanvasPosition + Configuration.Configuration.UiPosition.Value;
-    //             UIManager.Instance.canvasInstance.transform.position = new Vector3(newX, UIManager.Instance.canvasInstance.transform.position.y, UIManager.Instance.canvasInstance.transform.position.z);
-    //         }
-    //     }
-    // }
 }

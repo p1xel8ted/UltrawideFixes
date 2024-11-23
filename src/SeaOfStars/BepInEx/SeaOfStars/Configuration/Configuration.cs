@@ -5,15 +5,11 @@ namespace SeaOfStars.Configuration;
 public static class Configuration
 {
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
-    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
+    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
     internal static ConfigEntry<KeyCode> UiPixelAlignmentLeftKeybind { get; private set; }
     internal static ConfigEntry<KeyCode> UiPixelAlignmentRightKeybind { get; private set; }
     internal static ConfigEntry<KeyCode> ResetPixelAlignmentKeybind { get; private set; }
-    // internal static ConfigEntry<KeyCode> ShiftViewportLeftKeybind { get; private set; }
-    // internal static ConfigEntry<KeyCode> ShiftViewportRightKeybind { get; private set; }
-    
     internal static ConfigEntry<KeyCode> ModifierKeybind { get; private set; }
-    // internal static ConfigEntry<float> UiPosition { get; private set; }
     internal static ConfigEntry<bool> RunInBackground { get; private set; }
     internal static ConfigEntry<bool> MuteInBackground { get; private set; }
     internal static ConfigEntry<int> CustomRefreshRate { get; private set; }
@@ -25,7 +21,7 @@ public static class Configuration
     internal static ConfigEntry<bool> CinematicLetterboxing { get; private set; }
     internal static ConfigEntry<bool> AdjustUiPixelAlignment { get; private set; }
     internal static ConfigEntry<float> UiPixelAlignment { get; private set; }
-    // internal static ConfigEntry<bool> AdjustUiPosition { get; private set; }
+
     public static void SetupConfig(ConfigFile config, int[] customRates)
     {
         FullScreenModeConfig = config.Bind(
@@ -123,38 +119,7 @@ public static class Configuration
             DisplayManager.UpdateDisplay();
             DisplayManager.UpdateFixedDeltaTime();
         };
-
-        // AdjustUiPosition =  config.Bind(
-        //     "03. UI Position",
-        //     "Adjust UI Position",
-        //     false,
-        //     new ConfigDescription("Toggle custom UI positioning.", null, new ConfigurationManagerAttributes { Order = 84 })
-        // );
-        // AdjustUiPosition.SettingChanged += (_, _) => { SoSuiManager.UpdateUiPosition(); };
-        //
-        // UiPosition = config.Bind(
-        //     "03. UI Position",
-        //     "UI Position",
-        //     0f,
-        //     new ConfigDescription("Move the UI left/right.", new AcceptableValueRange<float>(-100f, 100f), new ConfigurationManagerAttributes { Order = 84 })
-        // );
-        // UiPosition.SettingChanged += (_, _) => { SoSuiManager.UpdateUiPosition(); };
-        //
-        // ShiftViewportLeftKeybind = config.Bind(
-        //     "03. UI Position",
-        //     "Shift Viewport Left",
-        //     KeyCode.O,
-        //     new ConfigDescription("Shift the UI viewport to the left.", null, new ConfigurationManagerAttributes { Order = 83 })
-        // );
-        //
-        //
-        // ShiftViewportRightKeybind = config.Bind(
-        //     "03. UI Position",
-        //     "Shift Viewport Right",
-        //     KeyCode.P,
-        //     new ConfigDescription("Shift the UI viewport to the right.", null, new ConfigurationManagerAttributes { Order = 82 })
-        // );
-        //
+        
         AdjustUiPixelAlignment = config.Bind(
             "03. UI Pixel Alignment",
             "Use Custom UI Width",
@@ -180,13 +145,13 @@ public static class Configuration
             "03. UI Pixel Alignment",
             "Shrink Viewport",
             KeyCode.LeftBracket,
-            new ConfigDescription("Shift the UI viewport to the left.", null, new ConfigurationManagerAttributes { Order = 91 })
+            new ConfigDescription("Shrink the UI viewport. Shrinking too far will squash the image.", null, new ConfigurationManagerAttributes { Order = 91 })
         );
         UiPixelAlignmentRightKeybind = config.Bind(
             "03. UI Pixel Alignment",
             "Expand Viewport",
             KeyCode.RightBracket,
-            new ConfigDescription("Shift the UI viewport to the right.", null, new ConfigurationManagerAttributes { Order = 90 })
+            new ConfigDescription("Expand the UI viewport. Expanding too far will stretch the image.", null, new ConfigurationManagerAttributes { Order = 90 })
         );
         ModifierKeybind = config.Bind(
             "03. UI Pixel Alignment",

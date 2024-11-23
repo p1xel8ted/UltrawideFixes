@@ -1,12 +1,10 @@
 ﻿// Utilities.cs
 
-using AsmResolver.DotNet;
-
 namespace SeaOfStars.Utilities;
 
 public static class Utilities
 {
-    internal static T TryAddComponent<T>(this GameObject go) where T : Component
+    private static T TryAddComponent<T>(this GameObject go) where T : Component
     {
         var component = go.GetComponent<T>();
         if (!component)
@@ -72,7 +70,7 @@ public static class Utilities
     /// <summary>
     /// Replaces an existing image component within a child object with a new background image.
     /// </summary>
-    public static void ReplaceWithBackgroundImage(Transform parentTransform)
+    private static void ReplaceWithBackgroundImage(Transform parentTransform)
     {
         // Check if the background image already exists.
         if (parentTransform.Find("BackgroundImage") != null) return;
@@ -105,20 +103,6 @@ public static class Utilities
         // Remove the old Image component.
         Object.Destroy(existingImage);
     }
-
-
-    // internal static void CreateBlackBackground(Transform parent)
-    // {
-    //     if (parent.FindChild("BlackImage")) return;
-    //
-    //     var blackImage = new GameObject("BlackImage");
-    //     blackImage.transform.SetParent(parent);
-    //     blackImage.TryAddComponent<Image>().color = Color.black;
-    //     var rect = blackImage.GetComponent<RectTransform>();
-    //     rect.sizeDelta = new Vector2(DisplayManager.MainWidth, DisplayManager.MainHeight);
-    //     rect.anchoredPosition = new Vector2(0, 0);
-    //     rect.SetAsFirstSibling();
-    // }
 
     public static List<T> FindIl2CppType<T>() where T : Object
     {

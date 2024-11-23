@@ -16,9 +16,7 @@ public class Plugin : BasePlugin
         
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceInt>();
         ClassInjector.RegisterTypeInIl2Cpp<LayoutController>();
-        //ClassInjector.RegisterTypeInIl2Cpp<Patches.BattleOverlayController>();
-    
-        
+   
         AddComponent<MonoMethods>();
         AddComponent<WindowPositioner>(); // Add WindowPositioner as a component
 

@@ -8,6 +8,7 @@ public static class Patches
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PlayerMovementProfile), nameof(PlayerMovementProfile.GetRunSpeed))]
     [HarmonyPatch(typeof(PlayerMovementProfile), nameof(PlayerMovementProfile.GetWalkSpeed))]
+    [HarmonyPatch(typeof(WorldMapPlayerController), nameof(WorldMapPlayerController.GetRunSpeed))]
     public static void PlayerMovementProfile_GetSpeed(ref float __result)
     {
         var speedMultiplier = Configuration.Configuration.RunSpeedMultiplier.Value;
@@ -54,7 +55,7 @@ public static class Patches
     {
         Utilities.Utilities.UpdateScreenTransform(__instance.transform, false, Core.Constants.TransitionIn);
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GenericPopupScreen), nameof(GenericPopupScreen.Init))]
     [HarmonyPatch(typeof(GenericPopupScreen), nameof(GenericPopupScreen.OnInDone))]
@@ -105,7 +106,7 @@ public static class Patches
     {
         Utilities.Utilities.UpdateScreenTransform(__instance.transform, true, Core.Constants.Screen);
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PanelCutsceneScreen), nameof(PanelCutsceneScreen.Init))]
     [HarmonyPatch(typeof(PanelCutsceneScreen), nameof(PanelCutsceneScreen.DisplayPanel))]
@@ -113,26 +114,26 @@ public static class Patches
     {
         Utilities.Utilities.UpdateScreenTransform(__instance.transform, true, Core.Constants.Screen);
         
-        var cloudVision = __instance.transform.FindChild("CloudVision");
+        var cloudVision = __instance.transform.FindChild(Core.Constants.CloudVision);
         
         if (!cloudVision) return;
         
-        var top = cloudVision.FindChild("Top");
+        var top = cloudVision.FindChild(Core.Constants.Top);
         if (top)
         {
             top.localScale = new Vector3(DisplayManager.PositiveScaleFactor, 1.1f, 1f);
         }
-        var bottom = cloudVision.FindChild("Bottom");
+        var bottom = cloudVision.FindChild(Core.Constants.Bottom);
         if (bottom)
         {
             bottom.localScale = new Vector3(DisplayManager.PositiveScaleFactor, 1.1f, 1f);
         }
-        var left = cloudVision.FindChild("Left");
+        var left = cloudVision.FindChild(Core.Constants.Left);
         if (left)
         {
             left.localPosition = new Vector3(-DisplayManager.BlackBarSize, 0f, 0f);
         }
-        var right = cloudVision.FindChild("Right");
+        var right = cloudVision.FindChild(Core.Constants.Right);
         if (right)
         {
             right.localPosition = new Vector3(DisplayManager.BlackBarSize, 0f, 0f);
@@ -145,19 +146,19 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CutsceneBars_OnEnable(CanvasScaler __instance)
     {
-        if (__instance.name.Contains("sinai", StringComparison.OrdinalIgnoreCase)) return;
+        if (__instance.name.Contains(Core.Constants.Sinai, StringComparison.OrdinalIgnoreCase)) return;
 
         if (__instance.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize)
         {
             __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         }
 
-        if (__instance.name == "VideoPlayerUICanvas")
+        if (__instance.name == Core.Constants.VideoPlayerUICanvas)
         {
             Utilities.Utilities.AddContentSizeFitter(__instance.gameObject, true);
         }
 
-        if (__instance.name == "CutsceneBars(Clone)")
+        if (__instance.name == Core.Constants.CutsceneBars)
         {
             var screen = __instance.transform.FindChild(Core.Constants.Screen);
             if (screen)
@@ -186,7 +187,7 @@ public static class Patches
     [HarmonyPatch(typeof(PixelPerfectCamera), nameof(PixelPerfectCamera.OnEnable))]
     public static void PixelPerfectCamera_OnEnable(PixelPerfectCamera __instance)
     {
-        if (__instance.name == "FishingPreviewCamera") return;
+        if (__instance.name == Core.Constants.FishingPreviewCamera) return;
 
         SoSuiManager.PixelPerfectRefRes.Add(new Vector2(__instance.refResolutionX, __instance.refResolutionY));
         __instance.cropFrameX = false;

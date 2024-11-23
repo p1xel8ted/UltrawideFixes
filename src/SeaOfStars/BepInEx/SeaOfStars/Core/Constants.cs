@@ -9,18 +9,18 @@ public static class Constants
     public const string Screen = "Screen";
     public const string TransitionIn = "TransitionIn";
     public const string Overlay = "Overlay";
-    public const string ScreenConst = "Screen";
-    public const string CutsceneBarsClone = "CutsceneBars(Clone)";
-    public const string LoadingScreen = "LoadingScreen";
-    public const string Transition = "Transition";
     public const string SosOcean = "SoSOcean";
-    public const string Fishing = "FishingPanelScreen(Clone)";
     public const string InitialScene = "InitialScene";
-    public const string Wizard = "Wizard";
-    public const string VideoPlayerCamera = "VideoPlayerCamera";
-    public const string UiCanvasClone = "UICanvas(Clone)";
-    public const string InventoryMarkerThing = "UICanvas(Clone)/Prompt/InGameHud(Clone)/LocalInventory/GenericBackground";
     internal const string Background = "Background";
+    public const string FishingPreviewCamera = "FishingPreviewCamera";
+    public const string CutsceneBars = "CutsceneBars(Clone)";
+    public const string VideoPlayerUICanvas = "VideoPlayerUICanvas";
+    public const string Sinai = "sinai";
+    public const string CloudVision = "CloudVision";
+    public const string Top = "Top";
+    public const string Bottom = "Bottom";
+    public const string Left = "Left";
+    public const string Right = "Right";
 
     public static readonly int[] CustomRefreshRates =
     [

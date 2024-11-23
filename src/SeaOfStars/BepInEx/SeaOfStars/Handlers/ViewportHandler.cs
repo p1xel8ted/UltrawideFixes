@@ -19,16 +19,6 @@ public static class ViewportHandler
             {
                 ResizeViewportLarger();
             }
-
-            // if (Input.GetKey(Configuration.Configuration.ShiftViewportLeftKeybind.Value))
-            // {
-            //     ShiftViewportLeft();
-            // }
-            //
-            // if (Input.GetKey(Configuration.Configuration.ShiftViewportRightKeybind.Value))
-            // {
-            //     ShiftViewportRight();
-            // }
         }
         else
         {
@@ -41,31 +31,9 @@ public static class ViewportHandler
             {
                 ResizeViewportLarger();
             }
-
-            // if (Input.GetKeyDown(Configuration.Configuration.ShiftViewportLeftKeybind.Value))
-            // {
-            //     ShiftViewportLeft();
-            // }
-            //
-            // if (Input.GetKeyDown(Configuration.Configuration.ShiftViewportRightKeybind.Value))
-            // {
-            //     ShiftViewportRight();
-            // }
         }
     }
-
-    // private static void ShiftViewportLeft()
-    // {
-    //     Configuration.Configuration.UiPosition.Value -= 0.1f;
-    //     SoSuiManager.UpdateUiPosition();
-    // }
-    //
-    // private static void ShiftViewportRight()
-    // {
-    //     Configuration.Configuration.UiPosition.Value += 0.1f;
-    //     SoSuiManager.UpdateUiPosition();
-    // }
-
+    
     public static void ResetViewportSizeKey()
     {
         if (Input.GetKeyDown(Configuration.Configuration.ResetPixelAlignmentKeybind.Value))

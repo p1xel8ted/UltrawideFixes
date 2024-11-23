@@ -1,6 +1,5 @@
 ﻿// Global using directives
 
-global using System.Diagnostics;
 global using Il2CppInterop.Runtime;
 global using SeaOfStars.Components;
 global using SeaOfStars.Handlers;

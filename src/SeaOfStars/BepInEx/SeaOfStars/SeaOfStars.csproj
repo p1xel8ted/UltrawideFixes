@@ -49,194 +49,29 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Ak.Wwise.Api.WAAPI">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Ak.Wwise.Api.WAAPI.dll</HintPath>
-      </Reference>
-      <Reference Include="AK.Wwise.Unity.API">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\AK.Wwise.Unity.API.dll</HintPath>
-      </Reference>
-      <Reference Include="AK.Wwise.Unity.API.WwiseTypes">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\AK.Wwise.Unity.API.WwiseTypes.dll</HintPath>
-      </Reference>
-      <Reference Include="AK.Wwise.Unity.MonoBehaviour">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\AK.Wwise.Unity.MonoBehaviour.dll</HintPath>
-      </Reference>
-      <Reference Include="AK.Wwise.Unity.Timeline">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\AK.Wwise.Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="AOTTypes">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\AOTTypes.dll</HintPath>
-      </Reference>
       <Reference Include="Assembly-CSharp">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Assembly-CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
       </Reference>
       <Reference Include="BepInExConfigManager.Il2Cpp.CoreCLR">
         <HintPath>libs\BepInExConfigManager.Il2Cpp.CoreCLR.dll</HintPath>
       </Reference>
-      <Reference Include="Bzk.Async">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Bzk.Async.dll</HintPath>
-      </Reference>
-      <Reference Include="Constants">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Constants.dll</HintPath>
-      </Reference>
-      <Reference Include="DomainReloadHelper.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\DomainReloadHelper.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Facepunch.Steamworks.Win64">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Facepunch.Steamworks.Win64.dll</HintPath>
-      </Reference>
-      <Reference Include="HBAO.Universal.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\HBAO.Universal.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
-      </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="MeshCombineStudio.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\MeshCombineStudio.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="MeshExtension">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\MeshExtension.dll</HintPath>
-      </Reference>
-      <Reference Include="NavMeshComponents">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\NavMeshComponents.dll</HintPath>
-      </Reference>
-      <Reference Include="OdinAOTSupport">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\OdinAOTSupport.dll</HintPath>
-      </Reference>
-      <Reference Include="OdinSerializer">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\OdinSerializer.dll</HintPath>
-      </Reference>
-      <Reference Include="Plugins.MarchingCubes">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Plugins.MarchingCubes.dll</HintPath>
-      </Reference>
-      <Reference Include="Plugins.ProceduralNoise">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Plugins.ProceduralNoise.dll</HintPath>
-      </Reference>
-      <Reference Include="Plugins.Voxelizer">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Plugins.Voxelizer.dll</HintPath>
       </Reference>
       <Reference Include="Rewired_Core">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Rewired_Core.dll</HintPath>
       </Reference>
-      <Reference Include="Rewired_Windows">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Rewired_Windows.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Windows_Functions">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Rewired_Windows_Functions.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Blackboard">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Blackboard.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.BlockGrid">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.BlockGrid.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Boids">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Boids.dll</HintPath>
-      </Reference>
       <Reference Include="Sabotage.Core">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.GameAssets">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.GameAssets.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.GameplayConditions">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.GameplayConditions.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Geometry">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Geometry.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.GlobalEmission">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.GlobalEmission.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Graph">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Graph.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.JobSystemBoids">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.JobSystemBoids.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Localization">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Localization.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Ocean">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Ocean.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Platform">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Platform.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Pooling">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Pooling.dll</HintPath>
       </Reference>
       <Reference Include="Sabotage.RenderPass">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.RenderPass.dll</HintPath>
       </Reference>
-      <Reference Include="Sabotage.StateMachine">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.StateMachine.dll</HintPath>
-      </Reference>
-      <Reference Include="Sabotage.Texture">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.Texture.dll</HintPath>
-      </Reference>
-      <Reference Include="TechArt.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\TechArt.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="TimeOfDay">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\TimeOfDay.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Burst">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Burst.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Collections">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Collections.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.InternalAPIEngineBridge.021">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.InternalAPIEngineBridge.021.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Jobs">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Jobs.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Mathematics">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Mathematics.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Polybrush">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Polybrush.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.ProBuilder.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder.KdTree">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.ProBuilder.KdTree.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder.Poly2Tri">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.ProBuilder.Poly2Tri.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProGrids">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.ProGrids.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
@@ -253,71 +88,26 @@
       <Reference Include="Unity.Splines">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Splines.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Timeline.dll</HintPath>
       </Reference>
       <Reference Include="Unity.VisualEffectGraph.Runtime">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.AIModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.AudioModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClothModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.DirectorModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
@@ -325,20 +115,8 @@
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
@@ -346,53 +124,11 @@
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UI.dll</HintPath>
@@ -400,50 +136,8 @@
       <Reference Include="UnityEngine.UIElementsModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UIElementsNativeModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UIModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UNETModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VFXModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
@@ -451,26 +145,8 @@
       <Reference Include="UnityEngine.VideoModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.XRModule">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="VerletRope">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\VerletRope.dll</HintPath>
-      </Reference>
-      <Reference Include="Whinarn.UnityMeshSimplifier.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Whinarn.UnityMeshSimplifier.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="__Generated">
-        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\__Generated.dll</HintPath>
       </Reference>
     </ItemGroup>
 </Project>
