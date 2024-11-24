@@ -32,8 +32,8 @@ public class Plugin : BaseUnityPlugin
         numerator = 1,
         denominator = (uint)RefreshRate
     };
-    
-    internal static float RefreshRate
+
+    private static float RefreshRate
     {
         get
         {
@@ -55,7 +55,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<int> DisplayToUse { get; private set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth; //3440
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight; //1440
-    internal static float MainAspect => (float)MainWidth / MainHeight;
+    private static float MainAspect => (float)MainWidth / MainHeight;
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
     private static ConfigEntry<float> TargetFramerate { get; set; }
     public static float NegScaleFactor => NativeAspect / MainAspect;

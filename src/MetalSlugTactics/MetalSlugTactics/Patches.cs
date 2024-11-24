@@ -1,10 +1,4 @@
-﻿using Leikir.MetalSlug.TacticMap.Cameras;
-using Leikir.Rendering;
-using Leikir.Tools.GUI;
-using Leikir.Tools.References;
-using UnityEngine.U2D;
-
-namespace MetalSlugTactics;
+﻿namespace MetalSlugTactics;
 
 [Harmony]
 public static class Patches
@@ -54,6 +48,12 @@ public static class Patches
         }
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(OrthographicShadowProcessor), nameof(OrthographicShadowProcessor.Awake))]
+    public static void OrthographicShadowProcessor_PreRenderShadow(OrthographicShadowProcessor __instance)
+    {
+        __instance.DisableShadows();
+    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CameraTargetCamera), nameof(CameraTargetCamera.CopyCamera))]
@@ -64,19 +64,17 @@ public static class Patches
             __instance._camera.aspect = Plugin.NativeAspect;
         }
     }
-
+    
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(PixelPerfectCamera), nameof(PixelPerfectCamera.OnEnable))]
-    public static void CameraProcessor_OnEnable(PixelPerfectCamera __instance)
+    [HarmonyPatch(typeof(ContentSizeFitter), nameof(ContentSizeFitter.OnEnable))]
+    public static void ContentSizeFitter_OnEnable(ContentSizeFitter __instance)
     {
-        if (__instance.name == "DepthMapCamera")
+        if (__instance.name == "Story Arc Narration")
         {
-            Plugin.Log.LogWarning("DepthMapCamera enabled");
-            __instance.m_Camera.enabled = true;
-            __instance.m_Camera.aspect = Plugin.MainAspect;
+            __instance.transform.localScale = new Vector3(Plugin.NegScaleFactor, 1f, 1f);
         }
     }
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(TacticMapSkybox), nameof(TacticMapSkybox.OnEnable))]
     public static void TacticMapSkybox_OnEnable(TacticMapSkybox __instance)

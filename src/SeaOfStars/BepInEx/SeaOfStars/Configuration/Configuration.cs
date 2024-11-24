@@ -17,7 +17,8 @@ public static class Configuration
     internal static ConfigEntry<bool> CorrectFixedUpdateRate { get; private set; }
     internal static ConfigEntry<bool> UseCustomRefreshRate { get; private set; }
     internal static ConfigEntry<int> TargetFramerate { get; private set; }
-    internal static ConfigEntry<float> RunSpeedMultiplier { get; private set; }
+    internal static ConfigEntry<float> GamePlayRunSpeedMultiplier { get; private set; }
+    internal static ConfigEntry<float> WorldMapRunSpeedMultiplier { get; private set; }
     internal static ConfigEntry<bool> CinematicLetterboxing { get; private set; }
     internal static ConfigEntry<bool> AdjustUiPixelAlignment { get; private set; }
     internal static ConfigEntry<float> UiPixelAlignment { get; private set; }
@@ -119,7 +120,7 @@ public static class Configuration
             DisplayManager.UpdateDisplay();
             DisplayManager.UpdateFixedDeltaTime();
         };
-        
+
         AdjustUiPixelAlignment = config.Bind(
             "03. UI Pixel Alignment",
             "Use Custom UI Width",
@@ -173,16 +174,28 @@ public static class Configuration
             new ConfigDescription("Toggle cinematic letterboxing.", null, new ConfigurationManagerAttributes { Order = 87 })
         );
 
-        RunSpeedMultiplier = config.Bind(
+        GamePlayRunSpeedMultiplier = config.Bind(
             "04. Gameplay",
             "Run Speed Multiplier",
             1f,
-            new ConfigDescription("Adjust the speed of the game.", new AcceptableValueRange<float>(0.25f, 2f), new ConfigurationManagerAttributes { Order = 87 })
+            new ConfigDescription("Adjust the run/walk speed during game-play (not the world map)", new AcceptableValueRange<float>(1f, 2f), new ConfigurationManagerAttributes { Order = 87 })
         );
-        RunSpeedMultiplier.SettingChanged += (_, _) =>
+        GamePlayRunSpeedMultiplier.SettingChanged += (_, _) =>
         {
             //0.25 increments
-            RunSpeedMultiplier.Value = Mathf.Round(RunSpeedMultiplier.Value * 4) / 4;
+            GamePlayRunSpeedMultiplier.Value = Mathf.Round(GamePlayRunSpeedMultiplier.Value * 4) / 4;
+        };
+
+        WorldMapRunSpeedMultiplier = config.Bind(
+            "04. Gameplay",
+            "World Map Run Speed Multiplier",
+            1f,
+            new ConfigDescription("Adjust the run/walk speed on the world map.", new AcceptableValueRange<float>(1f, 3f), new ConfigurationManagerAttributes { Order = 87 })
+        );
+        WorldMapRunSpeedMultiplier.SettingChanged += (_, _) =>
+        {
+            //0.25 increments
+            WorldMapRunSpeedMultiplier.Value = Mathf.Round(WorldMapRunSpeedMultiplier.Value * 4) / 4;
         };
 
         RunInBackground = config.Bind(

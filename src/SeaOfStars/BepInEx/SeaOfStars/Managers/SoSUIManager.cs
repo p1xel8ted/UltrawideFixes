@@ -5,7 +5,6 @@ namespace SeaOfStars.Managers;
 public static class SoSuiManager
 {
     internal static readonly List<Vector2> PixelPerfectRefRes = [];
-    // internal static float CanvasPosition => DisplayManager.MainWidth / 2f;
     private static List<CanvasUpscaleViewport> CanvasUpscaleViewports => Utilities.Utilities.FindIl2CppType<CanvasUpscaleViewport>().ToList();
     private static List<PixelPerfectCamera> PixelPerfectCameras => Utilities.Utilities.FindIl2CppType<PixelPerfectCamera>().ToList();
 
@@ -20,6 +19,8 @@ public static class SoSuiManager
     }
     internal static Vector2 GetPixelPerfectVector()
     {
+        PixelPerfectRefRes.RemoveAll(a => a.x.ToString(CultureInfo.InvariantCulture).Length == 2 || a.y.ToString(CultureInfo.InvariantCulture).Length == 2);
+        
         var first = PixelPerfectRefRes.LastOrDefault();
         var x = first.y * DisplayManager.NativeAspectRatio;
         var vector = new Vector2(x, first.y);
@@ -33,12 +34,12 @@ public static class SoSuiManager
     
     public static void HandleConfigManager(bool isVisible)
     {
-        foreach (var vp in CanvasUpscaleViewports.Where(vp => vp != null))
+        foreach (var vp in CanvasUpscaleViewports.Where(vp => vp))
         {
             vp.enabled = !isVisible;
         }
 
-        foreach (var pp in PixelPerfectCameras.Where(pp => pp != null))
+        foreach (var pp in PixelPerfectCameras.Where(pp => pp))
         {
             var vector = GetPixelPerfectVector();
             pp.refResolutionX = isVisible ? DisplayManager.MainWidth : Mathf.RoundToInt(vector.x);

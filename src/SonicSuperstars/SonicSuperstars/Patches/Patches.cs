@@ -1,24 +1,26 @@
+using OriPlayer;
+using OriPlayerAction;
+
 namespace SonicSuperstars.Patches;
 
 [Harmony]
 public static class Patches
 {
     private static readonly string[] RestrictResScenes = ["MovieScene", "Logo", "Mini", "Special", "Bonus"];
-
     private static readonly List<CompAreaCameraActivator> Activators = [];
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SceneManager), nameof(SceneManager.Internal_SceneLoaded))]
     public static void SceneManager_Internal_SceneLoaded(Scene scene)
     {
         if (RestrictResScenes.Any(scene.name.Contains)) return;
-        Console.WriteLine($"Scene '{scene.name}' loaded!");
+        // Console.WriteLine($"Scene '{scene.name}' loaded!");
         UpdateCameras();
         var gbc = GameScene_Helper.GetBlockController();
         if (gbc)
         {
-            gbc.visibleSafeBlock = new Vector2Int(10000, 10000);
-            Console.WriteLine("BlockController updated!");
+            gbc.visibleSafeBlock = new Vector2Int(10, 5);
+            // Console.WriteLine("BlockController updated!");
         }
 
         if (scene.name == "Zone02_Act3")

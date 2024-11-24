@@ -5,7 +5,7 @@ public static class Constants
 {
     public const string PluginGuid = "p1xel8ted.seaofstars.ultrawide";
     public const string PluginName = "Sea of Stars Ultra-Wide";
-    public const string PluginVersion = "0.3.1";
+    public const string PluginVersion = "0.3.2";
     public const string Screen = "Screen";
     public const string TransitionIn = "TransitionIn";
     public const string Overlay = "Overlay";

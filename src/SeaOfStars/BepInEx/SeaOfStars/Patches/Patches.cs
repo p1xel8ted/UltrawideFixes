@@ -5,13 +5,30 @@ namespace SeaOfStars;
 [Harmony]
 public static class Patches
 {
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PlayerWorldMapState), nameof(PlayerWorldMapState.EndMovement))]
+    [HarmonyPatch(typeof(PlayerWorldMapState), nameof(PlayerWorldMapState.StopMovement))]
+    public static void PlayerWorldMapState_StopMovement(PlayerWorldMapState __instance)
+    {
+        Time.timeScale = 1f;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PlayerWorldMapState), nameof(PlayerWorldMapState.BeginMovement))]
+    [HarmonyPatch(typeof(PlayerWorldMapState), nameof(PlayerWorldMapState.ProcessInputs))]
+    public static void PlayerWorldMapState_ProcessInputs(PlayerWorldMapState __instance)
+    {
+        Time.timeScale = Configuration.Configuration.WorldMapRunSpeedMultiplier.Value;
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PlayerMovementProfile), nameof(PlayerMovementProfile.GetRunSpeed))]
     [HarmonyPatch(typeof(PlayerMovementProfile), nameof(PlayerMovementProfile.GetWalkSpeed))]
     [HarmonyPatch(typeof(WorldMapPlayerController), nameof(WorldMapPlayerController.GetRunSpeed))]
     public static void PlayerMovementProfile_GetSpeed(ref float __result)
     {
-        var speedMultiplier = Configuration.Configuration.RunSpeedMultiplier.Value;
+        var speedMultiplier = Configuration.Configuration.GamePlayRunSpeedMultiplier.Value;
         __result *= speedMultiplier;
     }
 
@@ -113,33 +130,34 @@ public static class Patches
     public static void PanelCutSceneScreen_Init(PanelCutsceneScreen __instance)
     {
         Utilities.Utilities.UpdateScreenTransform(__instance.transform, true, Core.Constants.Screen);
-        
+
         var cloudVision = __instance.transform.FindChild(Core.Constants.CloudVision);
-        
+
         if (!cloudVision) return;
-        
+
         var top = cloudVision.FindChild(Core.Constants.Top);
         if (top)
         {
             top.localScale = new Vector3(DisplayManager.PositiveScaleFactor, 1.1f, 1f);
         }
+
         var bottom = cloudVision.FindChild(Core.Constants.Bottom);
         if (bottom)
         {
             bottom.localScale = new Vector3(DisplayManager.PositiveScaleFactor, 1.1f, 1f);
         }
+
         var left = cloudVision.FindChild(Core.Constants.Left);
         if (left)
         {
             left.localPosition = new Vector3(-DisplayManager.BlackBarSize, 0f, 0f);
         }
+
         var right = cloudVision.FindChild(Core.Constants.Right);
         if (right)
         {
             right.localPosition = new Vector3(DisplayManager.BlackBarSize, 0f, 0f);
         }
-
-
     }
 
     [HarmonyPostfix]
@@ -190,8 +208,8 @@ public static class Patches
         if (__instance.name == Core.Constants.FishingPreviewCamera) return;
 
         SoSuiManager.PixelPerfectRefRes.Add(new Vector2(__instance.refResolutionX, __instance.refResolutionY));
+
         __instance.cropFrameX = false;
-        __instance.cropFrameY = false;
     }
 
     [HarmonyPostfix]

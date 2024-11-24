@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Sea of Stars Ultra-Wide</Product>
-        <Version>0.3.1</Version>
+        <Version>0.3.2</Version>
         <AssemblyName>SeaOfStarsUltraWide</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
@@ -66,6 +66,9 @@
       </Reference>
       <Reference Include="Sabotage.RenderPass">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.RenderPass.dll</HintPath>
+      </Reference>
+      <Reference Include="Sabotage.StateMachine">
+        <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Sabotage.StateMachine.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>F:\SteamLibrary\steamapps\common\Sea of Stars\BepInEx\interop\Unity.Addressables.dll</HintPath>
