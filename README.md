@@ -339,7 +339,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="S"/>
-<details><summary>S (8)</summary>
+<details><summary>S (9)</summary>
 
 ## [Scarlet Maiden](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ScarletMaiden)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ScarletMaiden/total?label=downloads&style=for-the-badge)
@@ -377,6 +377,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SonicSuperstars/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/21c589ad-c060-49f5-b08e-dd8e176dacbe) ![main_game2](https://github.com/user-attachments/assets/f47d3d37-09c9-4dd6-8069-e56dcbad0281)
+
+## [Sorry We're Closed](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SorryWereClosed)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SorryWereClosed/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/66b08e34-d895-4831-9391-e459ce4ee7dd) ![main_game2](https://github.com/user-attachments/assets/bb8beaf6-27ba-4d14-bfa9-8f514bed6327)
 
 ## [Spiritfall](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Spiritfall)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Spiritfall/total?label=downloads&style=for-the-badge)
