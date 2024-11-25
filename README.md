@@ -335,12 +335,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="R"/>
-<details><summary>R (1)</summary>
+<details><summary>R (2)</summary>
 
 ## [Rogue Flight](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RogueFlight)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RogueFlight/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/de2ca20a-ef91-4c7c-9ec6-8d6fde4085f4) ![main_game_cons](https://github.com/user-attachments/assets/466d0da8-e76f-44d2-a841-668330f4379e)
+
+## [Ruined King: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RuinedKing)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RuinedKing/total?label=downloads&style=for-the-badge)
+
+![main_menu_pillar](https://github.com/user-attachments/assets/684807ab-8eb9-460b-88c8-f64b7d6a2df3) ![main_game_con](https://github.com/user-attachments/assets/9b84d898-2887-4722-9bd2-626ce4ee4b6a)
 
 </details>
 <div id="S"/>
