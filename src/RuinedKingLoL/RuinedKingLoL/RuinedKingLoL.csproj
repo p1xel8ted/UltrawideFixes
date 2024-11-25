@@ -37,6 +37,46 @@
     <ItemGroup>
         <EmbeddedResource Remove="obj\**"/>
         <EmbeddedResource Remove="obj\Release\**"/>
+        <None Remove="Buttons\NS_A.png" />
+        <EmbeddedResource Include="Buttons\NS_A.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_B.png" />
+        <EmbeddedResource Include="Buttons\NS_B.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_Minus.png" />
+        <EmbeddedResource Include="Buttons\NS_Minus.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_Plus.png" />
+        <EmbeddedResource Include="Buttons\NS_Plus.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_X.png" />
+        <EmbeddedResource Include="Buttons\NS_X.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_Y.png" />
+        <EmbeddedResource Include="Buttons\NS_Y.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_ZL.png" />
+        <EmbeddedResource Include="Buttons\NS_ZL.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_ZR.png" />
+        <EmbeddedResource Include="Buttons\NS_ZR.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_L.png" />
+        <EmbeddedResource Include="Buttons\NS_L.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <None Remove="Buttons\NS_R.png" />
+        <EmbeddedResource Include="Buttons\NS_R.png">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
@@ -45,98 +85,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="AdvancedFPSCounter">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\AdvancedFPSCounter.dll</HintPath>
-      </Reference>
-      <Reference Include="AlphaRaycaster">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\AlphaRaycaster.dll</HintPath>
-      </Reference>
       <Reference Include="Assembly-CSharp">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
-      <Reference Include="BetterTrails">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\BetterTrails.dll</HintPath>
-      </Reference>
-      <Reference Include="Corale.Colore">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Corale.Colore.dll</HintPath>
-      </Reference>
-      <Reference Include="EasyDecal">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\EasyDecal.dll</HintPath>
-      </Reference>
-      <Reference Include="FMODUnity">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\FMODUnity.dll</HintPath>
-      </Reference>
-      <Reference Include="FMODUnityResonance">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\FMODUnityResonance.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
-      </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Runtime">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2CppSystem.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="NavMeshComponents">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\NavMeshComponents.dll</HintPath>
-      </Reference>
-      <Reference Include="ParadoxNotion">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\ParadoxNotion.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Core">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Rewired_Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Windows">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Rewired_Windows.dll</HintPath>
-      </Reference>
-      <Reference Include="RiotForge.Telemetry">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\RiotForge.Telemetry.dll</HintPath>
-      </Reference>
-      <Reference Include="SoftMask">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\SoftMask.dll</HintPath>
-      </Reference>
-      <Reference Include="UIParticles">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UIParticles.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.Animation.Runtime">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.2D.Animation.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.2D.IK.Runtime">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.2D.IK.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.Burst.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Collections">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.Collections.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.InternalAPIEngineBridge.001">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.InternalAPIEngineBridge.001.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Mathematics">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.Mathematics.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
@@ -144,29 +97,11 @@
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Timeline">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.AIModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.AnimationModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ARModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ARModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AssetBundleModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
@@ -174,35 +109,8 @@
       <Reference Include="UnityEngine.AudioModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ClothModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ImageConversionModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -213,20 +121,8 @@
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
@@ -234,105 +130,81 @@
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.StreamingModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.TextCoreModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UIModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UNETModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VFXModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.VideoModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.XRModule">
         <HintPath>G:\FitGirl\Ruined King - A League of Legends Story\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Buttons\PS_Circle.png" />
+      <EmbeddedResource Include="Buttons\PS_Circle.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_Cross.png" />
+      <EmbeddedResource Include="Buttons\PS_Cross.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_L1.png" />
+      <EmbeddedResource Include="Buttons\PS_L1.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_L2.png" />
+      <EmbeddedResource Include="Buttons\PS_L2.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_L3.png" />
+      <EmbeddedResource Include="Buttons\PS_L3.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_Options.png" />
+      <EmbeddedResource Include="Buttons\PS_Options.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_R1.png" />
+      <EmbeddedResource Include="Buttons\PS_R1.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_R2.png" />
+      <EmbeddedResource Include="Buttons\PS_R2.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_R3.png" />
+      <EmbeddedResource Include="Buttons\PS_R3.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_Share.png" />
+      <EmbeddedResource Include="Buttons\PS_Share.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_Square.png" />
+      <EmbeddedResource Include="Buttons\PS_Square.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <None Remove="Buttons\PS_Triangle.png" />
+      <EmbeddedResource Include="Buttons\PS_Triangle.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
     
 </Project>

@@ -3,32 +3,7 @@ namespace RuinedKingLoL.Patches;
 [Harmony]
 public static class Patches
 {
-    public class AspectEnforcer : MonoBehaviour
-    {
-        private CameraResRetarget _cameraResRetarget;
-
-        private void Awake()
-        {
-            _cameraResRetarget = gameObject.GetComponent<CameraResRetarget>();
-        }
-
-        private void OnEnable()
-        {
-            _cameraResRetarget = gameObject.GetComponent<CameraResRetarget>();
-        }
-
-        private void LateUpdate()
-        {
-            if (_cameraResRetarget)
-            {
-                if (_cameraResRetarget.bCameraResRetargetEnabled)
-                {
-                    _cameraResRetarget.selfCamera.pixelRect = new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight);
-                }
-            }
-        }
-    }
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DungeonCombatUI), nameof(DungeonCombatUI.OnEnable))]
     public static void DungeonCombatUI_OnEnable(DungeonCombatUI __instance)
@@ -40,6 +15,49 @@ public static class Patches
         }
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Image), "set_sprite")]
+    private static void Image_SetSprite(Image __instance, ref Sprite value)
+    {
+        if (!value) return;
+
+        if (!value.name.StartsWith("UI_Input_Xbox"))
+        {
+            // Handle PC input icons (do not replace)
+            if (value.name.StartsWith("UI_Input_PC"))
+            {
+                //restore to original scale
+                __instance.transform.localScale = Vector3.one;
+                return;
+            }
+
+            return;
+        }
+
+        if(Plugin.ConfigPlatform.Value is Misc.PlatformHelper.Platform.Xbox)
+        {
+            __instance.transform.localScale = Vector3.one;
+            return;
+        }
+
+        // Get the appropriate sprite based on the current platform
+        var replacementSprite = Misc.PlatformHelper.GetPlatformSprite(value.name);
+
+        if (replacementSprite)
+        {
+            // Replace the sprite and reset the scale
+            Plugin.Logger.LogInfo($"Replacing {value.name} with {replacementSprite.name}");
+            value = replacementSprite;
+            __instance.transform.localScale = new Vector3(0.6f, 0.6f, 1); // Scale down to match UI
+        }
+        else
+        {
+            // Default to original Xbox sprite if no replacement is found
+            __instance.transform.localScale = Vector3.one;
+            Plugin.Logger.LogWarning($"No replacement found for {value.name}, using default Xbox sprite.");
+        }
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(StoryPopupManager), nameof(StoryPopupManager.Awake))]
     [HarmonyPatch(typeof(StoryPopupManager), nameof(StoryPopupManager.Proceed))]
@@ -50,28 +68,6 @@ public static class Patches
         {
             __instance.darkBG.rectTransform.sizeDelta = new Vector2(Plugin.MainWidth, Plugin.MainHeight);
         }
-    }
-
-    private static float GetPreferredAspect()
-    {
-        var width = Plugin.HUDAspect.Value switch
-        {
-            "16:9" => 1.777777777777778f,
-            "21:9" => 2.333333333333333f,
-            "21.5:9" => 2.388888888888889f,
-            "24:10" => 2.4f,
-            "32:9" => 3.555555555555556f,
-            "32:10" => 3.2f,
-            "48:9" => 5.333333333333333f,
-            "Auto" => Plugin.MainAspect,
-            _ => Plugin.MainAspect
-        };
-        return width;
-    }
-
-    internal static int GetHudRes(float y)
-    {
-        return Mathf.RoundToInt(y * GetPreferredAspect());
     }
 
     [HarmonyPostfix]

@@ -313,4 +313,10 @@
       <HintPath>libs\UnityEngine.XRModule.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="libs\ConfigurationManager.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

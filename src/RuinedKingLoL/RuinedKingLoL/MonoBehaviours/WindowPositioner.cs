@@ -1,4 +1,4 @@
-﻿namespace RuinedKingLoL.WindowsAPI;
+﻿namespace RuinedKingLoL.MonoBehaviours;
 
 public class WindowPositioner : MonoBehaviour
 {

@@ -48,7 +48,7 @@ public class Plugin : BasePlugin
     }
 
     internal static float MainAspect => MainWidth / (float)MainHeight; //2.388888888888889
-    private static ManualLogSource Logger { get; set; }
+    internal static ManualLogSource Logger { get; set; }
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
@@ -58,7 +58,7 @@ public class Plugin : BasePlugin
     private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
     internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth; //3440
     private static ConfigEntry<bool> RemoveAllPillarboxes { get; set; }
-
+    internal static ConfigEntry<bool> UsePlayStationButtons { get; set; }
     internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight; //1440
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
     private static WindowPositioner WindowPositioner { get; set; }
@@ -103,6 +103,9 @@ public class Plugin : BasePlugin
             audioSource.mute = !focus && MuteInBackground.Value;
         }
     }
+    
+    // Configuration entry for selecting the platform
+    internal static ConfigEntry<Misc.PlatformHelper.Platform> ConfigPlatform { get; set; }
 
     private static int[] MergeUnityRefreshRates()
     {
@@ -118,13 +121,13 @@ public class Plugin : BasePlugin
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
-        ClassInjector.RegisterTypeInIl2Cpp<Patches.Patches.AspectEnforcer>();
+        ClassInjector.RegisterTypeInIl2Cpp<AspectEnforcer>();
         ClassInjector.RegisterTypeInIl2Cpp<WindowPositioner>();
 
         Logger = Log;
 
         var customRates = MergeUnityRefreshRates();
-      
+
         FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode.", null, new ConfigurationManagerAttributes { Order = 99 }));
         FullScreenModeConfig.SettingChanged += (_, _) => UpdateAll();
 
@@ -141,15 +144,19 @@ public class Plugin : BasePlugin
 
         CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate, new ConfigDescription("Set a custom refresh rate to use instead of the maximum available.", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 96 }));
         CustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
-        
+
         CinematicLetterboxing = Config.Bind("02. Cinematics", "Enable Letterboxing", true, new ConfigDescription("Enable letterboxing during cinematic sequences. This will take effect on the next cutscene.", null, new ConfigurationManagerAttributes { Order = 85 }));
-       
+
         HUDAspect = Config.Bind("03. UI", "UI Aspect", "Auto", new ConfigDescription("Select the aspect ratio of the HUD/UI.", new AcceptableValueList<string>(HUDAspects.ToArray()), new ConfigurationManagerAttributes { Order = 100 }));
         HUDAspect.SettingChanged += (_, _) => UpdateAll();
 
         RemoveAllPillarboxes = Config.Bind("03. UI", "Remove All Pillarboxes", false, new ConfigDescription("Remove all pillarboxes. This will exposes things that shouldn't be. Setting does not apply to in-game.", null, new ConfigurationManagerAttributes { Order = 84 }));
         RemoveAllPillarboxes.SettingChanged += (_, _) => UpdatePillars();
         
+        ConfigPlatform = Config.Bind("03. UI", "Platform", Misc.PlatformHelper.Platform.Xbox, new ConfigDescription("Select the platform to use for the UI.", null, new ConfigurationManagerAttributes { Order = 83 }));
+        
+        // UsePlayStationButtons = Config.Bind("03. UI", "Use PlayStation Buttons", false, new ConfigDescription("Use PlayStation buttons instead of Xbox buttons.", null, new ConfigurationManagerAttributes { Order = 83 }));
+        //
         RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 82 }));
         RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
 
@@ -216,12 +223,12 @@ public class Plugin : BasePlugin
         foreach (var rect in rects)
         {
             var path = rect.gameObject.GetPath();
-      
+
             if (UpdateExtendingRectsBlacklist.Any(a => path.Contains(a))) continue;
 
             rect.enabled = true;
-            rect.m_maxW = Patches.Patches.GetHudRes(rect.m_maxH);
-     
+            rect.m_maxW = Utils.GetHudRes(rect.m_maxH);
+
             rect.OnRectTransformDimensionsChange();
             rect.Refresh();
             rect.enabled = true;
@@ -231,13 +238,13 @@ public class Plugin : BasePlugin
     private static void UpdatePillars()
     {
         if (!PillarBoxes) return;
-        
+
         if (RemoveAllPillarboxes.Value)
         {
             PillarBoxes.SetActive(false);
             return;
         }
-        
+
         var activeScene = SceneManager.GetActiveScene().name;
         PillarBoxes.SetActive(EnablePillarboxing.Contains(activeScene));
     }
