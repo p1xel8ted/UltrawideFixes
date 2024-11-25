@@ -292,7 +292,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <div id="N"/>
 <details><summary>N (5)</summary>
 
-## [NEO - The World Ends With Yous](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
+## [NEO - The World Ends With You](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NEOTheWorldEndsWithYou/total?label=downloads&style=for-the-badge)
 
 ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9b4b064a-1de9-4dcf-a122-3d043763fb23) ![main_dialogue](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/606974be-2735-4091-9133-67f3b8409e47)
