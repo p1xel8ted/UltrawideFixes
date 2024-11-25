@@ -256,7 +256,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="M"/>
-<details><summary>M (5)</summary>
+<details><summary>M (6)</summary>
 
 ## [Magenta Horizon](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MagentaHorizon)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MagentaHorizon/total?label=downloads&style=for-the-badge)
@@ -272,6 +272,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MetalSlugTactics/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/ea4fbe8b-b021-428b-bc27-0364cc6ca1ca) ![main_game](https://github.com/user-attachments/assets/d4afec29-0b19-4bf6-9cfb-dc49a00e5a19)
+
+## [Mind Over Magnet](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MindOverMagnet)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MindOverMagnet/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/f783e033-910b-4f2d-9272-bfdb7dea46f0) ![main_game](https://github.com/user-attachments/assets/1cefdf90-7c08-40ec-9174-e6429b8653b8)
 
 ## [Minishoot` Adventures](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MinishootAdventures)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MinishootAdventures/total?label=downloads&style=for-the-badge)
