@@ -297,7 +297,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9b4b064a-1de9-4dcf-a122-3d043763fb23) ![main_dialogue](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/606974be-2735-4091-9133-67f3b8409e47)
  
-## [New Super Lucky Tales](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NewSuperLuckyTales)
+## [New Super Lucky's Tale](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NewSuperLuckyTales)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NewSuperLuckyTales/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/1913b44d-4eb2-4536-854b-f02d9382f269) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/987cd42f-104f-4a10-be0a-44ee0e6ab2b3)
