@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.ruinedking.ultrawide";
     private const string PluginName = "Ruined King Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -90,13 +90,13 @@ public class Plugin : BasePlugin
         PillarBoxes.SetActive(true);
         Canvas.ForceUpdateCanvases();
     }
-    
+
     internal static void DisablePillarboxes()
     {
         PillarBoxes.SetActive(false);
         Canvas.ForceUpdateCanvases();
     }
-    
+
     internal static ConfigEntry<Misc.PlatformHelper.Platform> ConfigPlatform { get; private set; }
 
     private static ConfigEntry<string> VSyncSetting { get; set; }
@@ -158,7 +158,11 @@ public class Plugin : BasePlugin
                 "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
                 new AcceptableValueList<string>(GetResolutions()),
                 new ConfigurationManagerAttributes { Order = 99 }));
-        Resolution.SettingChanged += (_, _) => UpdateAll();
+        Resolution.SettingChanged += (_, _) =>
+        {
+            RequiresUpdate = true;
+            UpdateAll();
+        };
 
         FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow,
             new ConfigDescription(
@@ -170,7 +174,11 @@ public class Plugin : BasePlugin
                 "- Windowed: Runs the game in a resizable window.",
                 null,
                 new ConfigurationManagerAttributes { Order = 98 }));
-        FullScreenModeConfig.SettingChanged += (_, _) => UpdateAll();
+        FullScreenModeConfig.SettingChanged += (_, _) =>
+        {
+            RequiresUpdate = true;
+            UpdateAll();
+        };
 
         TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh,
             new ConfigDescription(
@@ -194,21 +202,29 @@ public class Plugin : BasePlugin
                 "Enable this option if Unity reports the wrong maximum refresh rate for your display. Allows setting a custom refresh rate.",
                 null,
                 new ConfigurationManagerAttributes { Order = 95 }));
-        UseCustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
+        UseCustomRefreshRate.SettingChanged += (_, _) =>
+        {
+            RequiresUpdate = true;
+            UpdateAll();
+        };
 
         CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate,
             new ConfigDescription(
                 "Manually define a refresh rate to use if 'Use Custom Refresh Rate' is enabled.",
                 new AcceptableValueList<int>(customRates),
                 new ConfigurationManagerAttributes { Order = 94 }));
-        CustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
+        CustomRefreshRate.SettingChanged += (_, _) =>
+        {
+            RequiresUpdate = true;
+            UpdateAll();
+        };
 
         SkipIntroCinematic = Config.Bind("02. In-game Cinematics", "Skip Intro Cinematic", false,
             new ConfigDescription(
                 "Enable to automatically skip the intro cinematic when starting the game.",
                 null,
                 new ConfigurationManagerAttributes { Order = 93 }));
-        
+
         CinematicLetterboxing = Config.Bind("02. In-game Cinematics", "Enable Letterboxing", true,
             new ConfigDescription(
                 "Controls the black bar artwork displayed during in-game (not pre-rendered) cinematic sequences. " +
@@ -243,6 +259,8 @@ public class Plugin : BasePlugin
 
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
 
+        RequiresUpdate = true;
+        
         UpdateAll();
 
         Logger.LogInfo($"Plugin {PluginName} is loaded!");
@@ -273,14 +291,6 @@ public class Plugin : BasePlugin
 
     private static void UpdateDisplay()
     {
-        var res = SelectedResolution;
-
-        Screen.SetResolution(res.width, res.height, FullScreenModeConfig.Value, RefreshRate);
-
-        Application.targetFrameRate = Mathf.RoundToInt(TargetFramerate.Value);
-
-        var refreshRate = RefreshRate;
-
         // Apply VSync setting using the mapped value
         if (VSyncOptions.TryGetValue(VSyncSetting.Value, out var vSyncCount))
         {
@@ -295,19 +305,15 @@ public class Plugin : BasePlugin
         // Apply target frame rate only if VSync is off
         Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
 
-        // Apply refresh rate and resolution
 
-        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, refreshRate);
-
-        if (Application.targetFrameRate == -1)
-        {
-            Logger.LogInfo($"Display updated: VSync={QualitySettings.vSyncCount}, Target FPS=Unlimited, Refresh Rate={refreshRate}Hz");
-        }
-        else
-        {
-            Logger.LogInfo($"Display updated: VSync={QualitySettings.vSyncCount}, Target FPS={Application.targetFrameRate}, Refresh Rate={refreshRate}Hz");
-        }
+        if (!RequiresUpdate) return;
+        
+        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
+        Logger.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
+        RequiresUpdate = false;
     }
+
+    private static bool RequiresUpdate { get; set; }
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

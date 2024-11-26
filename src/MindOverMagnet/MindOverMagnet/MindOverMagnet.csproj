@@ -24,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>libs\Assembly-CSharp.dll</HintPath>
+    </Reference>
     <Reference Include="ConfigurationManager">
       <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
     </Reference>
