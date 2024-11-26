@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.ruinedking.ultrawide";
     private const string PluginName = "Ruined King Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -28,13 +28,21 @@ public class Plugin : BasePlugin
     ];
 
 
-    private static readonly string[] UpdateExtendingRectsBlacklist = ["Loading", "UI_Casper_PauseMenu", "UI_Casper_MainMenu", "WideScreenProtection"];
+    private static readonly string[] UpdateExtendingRectsBlacklist = ["Loading", "UI_Casper_PauseMenu", "UI_Casper_MainMenu", "WideScreenProtection", "UI_Casper_CharacterScreen", "UI_Casper_Crafting"];
 
     private static readonly string[] EnablePillarboxing = ["Loading", "UI_Casper_MainMenu", "Empty utility stub (see CasperApplication.cs)"];
 
+    private static readonly Dictionary<string, int> VSyncOptions = new()
+    {
+        { "Disabled (Higher Performance)", 0 },
+        { "Enabled (Every Refresh)", 1 },
+        { "Enabled (Every 2nd Refresh)", 2 }
+    };
+
+
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
 
-    private static int RefreshRate
+    internal static int RefreshRate
     {
         get
         {
@@ -47,29 +55,17 @@ public class Plugin : BasePlugin
         }
     }
 
+    internal static float PositiveScaleFactor => MainAspect / NativeAspect; //0.6944444444444444
+    private const float NativeAspect = 16f / 9f; //16:9)
     internal static float MainAspect => MainWidth / (float)MainHeight; //2.388888888888889
-    internal static ManualLogSource Logger { get; set; }
-    private static ConfigEntry<bool> RunInBackground { get; set; }
-    private static ConfigEntry<bool> MuteInBackground { get; set; }
+    internal static ManualLogSource Logger { get; private set; }
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
-
     internal static ConfigEntry<bool> CinematicLetterboxing { get; private set; }
-    internal static ConfigEntry<int> DisplayToUse { get; private set; }
-    private static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; set; }
-    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth; //3440
+    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
+    internal static int MainWidth => Display.main.systemWidth; //3440
     private static ConfigEntry<bool> RemoveAllPillarboxes { get; set; }
-    internal static ConfigEntry<bool> UsePlayStationButtons { get; set; }
-    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight; //1440
+    internal static int MainHeight => Display.main.systemHeight; //1440
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
-    private static WindowPositioner WindowPositioner { get; set; }
-
-
-    private static Resolution MainRes => new()
-    {
-        height = MainHeight,
-        width = MainWidth,
-        refreshRate = RefreshRate
-    };
 
     private static List<string> HUDAspects { get; } =
     [
@@ -87,25 +83,40 @@ public class Plugin : BasePlugin
 
     private static GameObject PillarBoxes => GameObject.Find("GlobalCommonUI/Canvas_priority/WideScreenProtection");
 
-    internal static Resolution GetCustomRes()
-    {
-        //return ThirtyTwoNine;
-        // return FortyEightNine;
-        return MainRes;
-    }
 
-    private static void FocusChanged(bool focus)
+    internal static void EnablePillarboxes()
     {
-        Application.runInBackground = RunInBackground.Value;
-        var audioSources = Resources.FindObjectsOfTypeAll<AudioSource>();
-        foreach (var audioSource in audioSources)
-        {
-            audioSource.mute = !focus && MuteInBackground.Value;
-        }
+        if (RemoveAllPillarboxes.Value) return;
+        PillarBoxes.SetActive(true);
+        Canvas.ForceUpdateCanvases();
     }
     
-    // Configuration entry for selecting the platform
-    internal static ConfigEntry<Misc.PlatformHelper.Platform> ConfigPlatform { get; set; }
+    internal static void DisablePillarboxes()
+    {
+        PillarBoxes.SetActive(false);
+        Canvas.ForceUpdateCanvases();
+    }
+    
+    internal static ConfigEntry<Misc.PlatformHelper.Platform> ConfigPlatform { get; private set; }
+
+    private static ConfigEntry<string> VSyncSetting { get; set; }
+
+    private static ConfigEntry<string> Resolution { get; set; }
+
+    internal static Resolution SelectedResolution
+    {
+        get
+        {
+            var res = Resolution.Value.Split('x');
+            return new Resolution
+            {
+                width = int.Parse(res[0]),
+                height = int.Parse(res[1])
+            };
+        }
+    }
+
+    private static ConfigEntry<int> TargetFramerate { get; set; }
 
     private static int[] MergeUnityRefreshRates()
     {
@@ -116,59 +127,129 @@ public class Plugin : BasePlugin
         return customRates.Distinct().OrderBy(a => a).ToArray();
     }
 
+    private static string[] GetResolutions()
+    {
+        var mainRes = new Resolution
+        {
+            width = MainWidth,
+            height = MainHeight,
+            refreshRate = MaxRefresh
+        };
+        var resList = new List<Resolution> { mainRes };
+        resList.AddRange(Screen.resolutions);
+        resList.SortByPixelCount();
+
+        var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
+        return finalList;
+    }
+
+    internal static ConfigEntry<bool> SkipIntroCinematic { get; private set; }
+
     public override void Load()
     {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = false;
-
-        ClassInjector.RegisterTypeInIl2Cpp<AspectEnforcer>();
-        ClassInjector.RegisterTypeInIl2Cpp<WindowPositioner>();
-
         Logger = Log;
-
         var customRates = MergeUnityRefreshRates();
 
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode.", null, new ConfigurationManagerAttributes { Order = 99 }));
+        ClassInjector.RegisterTypeInIl2Cpp<AspectEnforcer>();
+        ClassInjector.RegisterTypeInIl2Cpp<ScaleForcer>();
+
+        Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
+            new ConfigDescription(
+                "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
+                new AcceptableValueList<string>(GetResolutions()),
+                new ConfigurationManagerAttributes { Order = 99 }));
+        Resolution.SettingChanged += (_, _) => UpdateAll();
+
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow,
+            new ConfigDescription(
+                "Select how the game displays on your screen:\n" +
+                "- FullScreenWindow (Recommended): Runs the game in a borderless window that covers the entire screen. " +
+                "This mode offers seamless alt-tabbing and behaves like Exclusive Fullscreen on most modern Windows versions.\n" +
+                "- Exclusive Fullscreen: Attempts to take direct control of the display for scenarios like legacy compatibility or HDR management. " +
+                "On modern systems, its behavior is nearly identical to FullScreenWindow, so this mode is generally not needed.\n" +
+                "- Windowed: Runs the game in a resizable window.",
+                null,
+                new ConfigurationManagerAttributes { Order = 98 }));
         FullScreenModeConfig.SettingChanged += (_, _) => UpdateAll();
 
-        DisplayToUse = Config.Bind("01. Display", "Display to Use", 0, new ConfigDescription("Select the display to use.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes { Order = 98 }));
-        DisplayToUse.SettingChanged += (_, _) => UpdateAll();
+        TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh,
+            new ConfigDescription(
+                "Set the maximum frame rate the game will target. This works only when VSync is turned off.",
+                new AcceptableValueList<int>(customRates),
+                new ConfigurationManagerAttributes { Order = 97 }));
+        TargetFramerate.SettingChanged += (_, _) => UpdateAll();
 
-        if (PlatformHelper.Current == MonoMod.Utils.Platform.Windows || PlatformHelper.Current == MonoMod.Utils.Platform.Wine)
-        {
-            WindowPositioner = AddComponent<WindowPositioner>();
-        }
+        VSyncSetting = Config.Bind("01. Display", "VSync Setting", "Disabled (Higher Performance)",
+            new ConfigDescription(
+                "Control how VSync synchronizes the game’s frame rate with your monitor's refresh rate to prevent screen tearing:\n" +
+                "- Disabled (Higher Performance): Turns off synchronization, potentially improving performance but may cause screen tearing.\n" +
+                "- Enabled (Every Refresh): Synchronizes with every monitor refresh, ensuring smooth visuals but might slightly reduce performance.\n" +
+                "- Enabled (Every 2nd Refresh): Synchronizes with every second monitor refresh, effectively halving the refresh rate for weaker hardware or demanding setups.",
+                new AcceptableValueList<string>(VSyncOptions.Keys.ToArray()),
+                new ConfigurationManagerAttributes { Order = 96 }));
+        VSyncSetting.SettingChanged += (_, _) => UpdateAll();
 
-        UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false, new ConfigDescription("Use a custom refresh rate instead of the maximum available in case Unity is reporting it wrong.", null, new ConfigurationManagerAttributes { Order = 97 }));
+        UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false,
+            new ConfigDescription(
+                "Enable this option if Unity reports the wrong maximum refresh rate for your display. Allows setting a custom refresh rate.",
+                null,
+                new ConfigurationManagerAttributes { Order = 95 }));
         UseCustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
 
-        CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate, new ConfigDescription("Set a custom refresh rate to use instead of the maximum available.", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 96 }));
+        CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate,
+            new ConfigDescription(
+                "Manually define a refresh rate to use if 'Use Custom Refresh Rate' is enabled.",
+                new AcceptableValueList<int>(customRates),
+                new ConfigurationManagerAttributes { Order = 94 }));
         CustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
 
-        CinematicLetterboxing = Config.Bind("02. Cinematics", "Enable Letterboxing", true, new ConfigDescription("Enable letterboxing during cinematic sequences. This will take effect on the next cutscene.", null, new ConfigurationManagerAttributes { Order = 85 }));
+        SkipIntroCinematic = Config.Bind("02. In-game Cinematics", "Skip Intro Cinematic", false,
+            new ConfigDescription(
+                "Enable to automatically skip the intro cinematic when starting the game.",
+                null,
+                new ConfigurationManagerAttributes { Order = 93 }));
+        
+        CinematicLetterboxing = Config.Bind("02. In-game Cinematics", "Enable Letterboxing", true,
+            new ConfigDescription(
+                "Controls the black bar artwork displayed during in-game (not pre-rendered) cinematic sequences. " +
+                "When enabled, the game's built-in cinematic black bars are shown. When disabled, these bars are removed for an unobstructed view.",
+                null,
+                new ConfigurationManagerAttributes { Order = 92 }));
 
-        HUDAspect = Config.Bind("03. UI", "UI Aspect", "Auto", new ConfigDescription("Select the aspect ratio of the HUD/UI.", new AcceptableValueList<string>(HUDAspects.ToArray()), new ConfigurationManagerAttributes { Order = 100 }));
+        HUDAspect = Config.Bind("03. UI", "UI Aspect", "Auto",
+            new ConfigDescription(
+                "Choose the aspect ratio for the game's user interface (UI). 'Auto' attempts to match your display's ratio.",
+                new AcceptableValueList<string>(HUDAspects.ToArray()),
+                new ConfigurationManagerAttributes { Order = 91 }));
         HUDAspect.SettingChanged += (_, _) => UpdateAll();
 
-        RemoveAllPillarboxes = Config.Bind("03. UI", "Remove All Pillarboxes", false, new ConfigDescription("Remove all pillarboxes. This will exposes things that shouldn't be. Setting does not apply to in-game.", null, new ConfigurationManagerAttributes { Order = 84 }));
-        RemoveAllPillarboxes.SettingChanged += (_, _) => UpdatePillars();
-        
-        ConfigPlatform = Config.Bind("03. UI", "Platform", Misc.PlatformHelper.Platform.Xbox, new ConfigDescription("Select the platform to use for the UI.", null, new ConfigurationManagerAttributes { Order = 83 }));
-        
-        // UsePlayStationButtons = Config.Bind("03. UI", "Use PlayStation Buttons", false, new ConfigDescription("Use PlayStation buttons instead of Xbox buttons.", null, new ConfigurationManagerAttributes { Order = 83 }));
-        //
-        RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 82 }));
-        RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
+        RemoveAllPillarboxes = Config.Bind("03. UI", "Remove All Pillarboxes", false,
+            new ConfigDescription(
+                "Removes the decorative artwork that frames certain menus (pillarboxes). This does not affect in-game content or cinematics, " +
+                "as they are already displayed without these frames. Enabling this may reveal unintended visual elements in menus.",
+                null,
+                new ConfigurationManagerAttributes { Order = 90 }));
+        RemoveAllPillarboxes.SettingChanged += (_, _) => UpdateAll();
 
-        MuteInBackground = Config.Bind("04. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes { Order = 81 }));
-
-        Application.focusChanged += (Il2CppSystem.Action<bool>)FocusChanged;
+        ConfigPlatform = Config.Bind("03. UI", "Platform", Misc.PlatformHelper.Platform.Xbox,
+            new ConfigDescription(
+                "Force the game to display button prompts for a specific platform:\n" +
+                "- Xbox: Displays Xbox-style button prompts (e.g., A, B, X, Y). Leave it set to Xbox to disable forced prompts and allow automatic detection.\n" +
+                "- PlayStation: Displays PlayStation-style button prompts (e.g., Square, Circle, X, Triangle).\n" +
+                "- Switch: Displays Nintendo Switch-style button prompts (e.g., A, B, X, Y, matching Switch layout).\n" +
+                "Use this setting to override automatic detection or match your controller preference.",
+                null,
+                new ConfigurationManagerAttributes { Order = 89 }));
 
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
 
+        UpdateAll();
+
         Logger.LogInfo($"Plugin {PluginName} is loaded!");
+
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
     }
+
 
     private static void UpdateQuality()
     {
@@ -181,7 +262,7 @@ public class Plugin : BasePlugin
         }
     }
 
-    private static void UpdateAll()
+    internal static void UpdateAll()
     {
         UpdateQuality();
         UpdateDisplay();
@@ -192,14 +273,40 @@ public class Plugin : BasePlugin
 
     private static void UpdateDisplay()
     {
-        if (WindowPositioner)
+        var res = SelectedResolution;
+
+        Screen.SetResolution(res.width, res.height, FullScreenModeConfig.Value, RefreshRate);
+
+        Application.targetFrameRate = Mathf.RoundToInt(TargetFramerate.Value);
+
+        var refreshRate = RefreshRate;
+
+        // Apply VSync setting using the mapped value
+        if (VSyncOptions.TryGetValue(VSyncSetting.Value, out var vSyncCount))
         {
-            WindowPositioner.Start();
+            QualitySettings.vSyncCount = vSyncCount;
+        }
+        else
+        {
+            Logger.LogWarning($"Invalid VSync setting: {VSyncSetting.Value}");
+            QualitySettings.vSyncCount = 1; // Default to "Every VBlank"
         }
 
-        Application.runInBackground = RunInBackground.Value;
+        // Apply target frame rate only if VSync is off
+        Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
 
-        Display.displays[DisplayToUse.Value].Activate();
+        // Apply refresh rate and resolution
+
+        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, refreshRate);
+
+        if (Application.targetFrameRate == -1)
+        {
+            Logger.LogInfo($"Display updated: VSync={QualitySettings.vSyncCount}, Target FPS=Unlimited, Refresh Rate={refreshRate}Hz");
+        }
+        else
+        {
+            Logger.LogInfo($"Display updated: VSync={QualitySettings.vSyncCount}, Target FPS={Application.targetFrameRate}, Refresh Rate={refreshRate}Hz");
+        }
     }
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)

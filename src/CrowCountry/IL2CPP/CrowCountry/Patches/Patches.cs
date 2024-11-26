@@ -67,16 +67,16 @@ public static class Patches
         {
             var onOff = __instance.transform.GetChild(0);
             Instances.ItemFovAdjusterInstance = onOff.gameObject.TryAddComponent<FovAdjuster>();
-            Instances.ItemFovAdjusterInstance.enableDuration = 0.4f;
-            Instances.ItemFovAdjusterInstance.disableDuration = 0.75f;
+            Instances.ItemFovAdjusterInstance.EnableDuration = 0.4f;
+            Instances.ItemFovAdjusterInstance.DisableDuration = 0.75f;
         }
 
         if (__instance.name.Equals(Const.TipsBackgroundPlayMaker, StringComparison.OrdinalIgnoreCase))
         {
             var onOff = __instance.transform.GetChild(0);
             Instances.TipFovAdjusterInstance = onOff.gameObject.TryAddComponent<FovAdjuster>();
-            Instances.TipFovAdjusterInstance.enableDuration = 0f;
-            Instances.ItemFovAdjusterInstance.disableDuration = 0.75f;
+            Instances.TipFovAdjusterInstance.EnableDuration = 0f;
+            Instances.ItemFovAdjusterInstance.DisableDuration = 0.75f;
         }
 
         if (__instance.name.Equals(Const.TipsPlayMaker, StringComparison.OrdinalIgnoreCase))
@@ -111,7 +111,7 @@ public static class Patches
 
         if (Application.isPlaying)
         {
-            Application.targetFrameRate = (int) Plugin.RefreshRate.value;
+            Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? Plugin.TargetFramerate.Value : -1;
         }
 
         Renderer.PixelationAdjust(__instance);
@@ -162,6 +162,13 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
+        if (__instance.name.Contains("sinai", StringComparison.OrdinalIgnoreCase)) return;
+
+        if (__instance.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize)
+        {
+            __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        }
+        
         if (__instance.name.Equals(Const.UICanvasPauseOff, StringComparison.OrdinalIgnoreCase))
         {
             ScalingCorrections.CorrectPauseScreen(__instance.transform);
@@ -184,19 +191,8 @@ public static class Patches
 
         Utils.EnablePillarBoxing();
         Instances.InventoryFovAdjusterInstance = __instance.gameObject.TryAddComponent<FovAdjuster>();
-        Instances.InventoryFovAdjusterInstance.enableDuration = 0f;
-        Instances.InventoryFovAdjusterInstance.disableDuration = 0f;
+        Instances.InventoryFovAdjusterInstance.EnableDuration = 0f;
+        Instances.InventoryFovAdjusterInstance.DisableDuration = 0f;
     }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.Handle))]
-    public static void CanvasScaler_Handle(CanvasScaler __instance)
-    {
-        if (__instance.name.Contains("sinai")) return;
-        __instance.uiScaleMode = Plugin.ScaleMode.Value;
-        __instance.screenMatchMode = Plugin.ScreenMatchMode.Value;
-        if (__instance.uiScaleMode is CanvasScaler.ScaleMode.ScaleWithScreenSize) return;
-        __instance.scaleFactor = Plugin.ScaleFactor.Value;
-        __instance.SetScaleFactor(Plugin.ScaleFactor.Value);
-    }
+    
 }

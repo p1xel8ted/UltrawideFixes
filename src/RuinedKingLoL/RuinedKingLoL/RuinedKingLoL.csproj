@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Ruined King Ultra-Wide</Product>
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
         <AssemblyName>$(Product)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
@@ -38,45 +38,25 @@
         <EmbeddedResource Remove="obj\**"/>
         <EmbeddedResource Remove="obj\Release\**"/>
         <None Remove="Buttons\NS_A.png" />
-        <EmbeddedResource Include="Buttons\NS_A.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_A.png" />
         <None Remove="Buttons\NS_B.png" />
-        <EmbeddedResource Include="Buttons\NS_B.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_B.png" />
         <None Remove="Buttons\NS_Minus.png" />
-        <EmbeddedResource Include="Buttons\NS_Minus.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_Minus.png" />
         <None Remove="Buttons\NS_Plus.png" />
-        <EmbeddedResource Include="Buttons\NS_Plus.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_Plus.png" />
         <None Remove="Buttons\NS_X.png" />
-        <EmbeddedResource Include="Buttons\NS_X.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_X.png" />
         <None Remove="Buttons\NS_Y.png" />
-        <EmbeddedResource Include="Buttons\NS_Y.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_Y.png" />
         <None Remove="Buttons\NS_ZL.png" />
-        <EmbeddedResource Include="Buttons\NS_ZL.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_ZL.png" />
         <None Remove="Buttons\NS_ZR.png" />
-        <EmbeddedResource Include="Buttons\NS_ZR.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_ZR.png" />
         <None Remove="Buttons\NS_L.png" />
-        <EmbeddedResource Include="Buttons\NS_L.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_L.png" />
         <None Remove="Buttons\NS_R.png" />
-        <EmbeddedResource Include="Buttons\NS_R.png">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </EmbeddedResource>
+        <EmbeddedResource Include="Buttons\NS_R.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -158,53 +138,29 @@
 
     <ItemGroup>
       <None Remove="Buttons\PS_Circle.png" />
-      <EmbeddedResource Include="Buttons\PS_Circle.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_Circle.png" />
       <None Remove="Buttons\PS_Cross.png" />
-      <EmbeddedResource Include="Buttons\PS_Cross.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_Cross.png" />
       <None Remove="Buttons\PS_L1.png" />
-      <EmbeddedResource Include="Buttons\PS_L1.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_L1.png" />
       <None Remove="Buttons\PS_L2.png" />
-      <EmbeddedResource Include="Buttons\PS_L2.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_L2.png" />
       <None Remove="Buttons\PS_L3.png" />
-      <EmbeddedResource Include="Buttons\PS_L3.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_L3.png" />
       <None Remove="Buttons\PS_Options.png" />
-      <EmbeddedResource Include="Buttons\PS_Options.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_Options.png" />
       <None Remove="Buttons\PS_R1.png" />
-      <EmbeddedResource Include="Buttons\PS_R1.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_R1.png" />
       <None Remove="Buttons\PS_R2.png" />
-      <EmbeddedResource Include="Buttons\PS_R2.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_R2.png" />
       <None Remove="Buttons\PS_R3.png" />
-      <EmbeddedResource Include="Buttons\PS_R3.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_R3.png" />
       <None Remove="Buttons\PS_Share.png" />
-      <EmbeddedResource Include="Buttons\PS_Share.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_Share.png" />
       <None Remove="Buttons\PS_Square.png" />
-      <EmbeddedResource Include="Buttons\PS_Square.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_Square.png" />
       <None Remove="Buttons\PS_Triangle.png" />
-      <EmbeddedResource Include="Buttons\PS_Triangle.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </EmbeddedResource>
+      <EmbeddedResource Include="Buttons\PS_Triangle.png" />
     </ItemGroup>
     
 </Project>

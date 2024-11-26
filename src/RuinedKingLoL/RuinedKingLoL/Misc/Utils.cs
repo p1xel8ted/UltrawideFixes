@@ -29,9 +29,40 @@ public static class Utils
         };
         return width;
     }
+    
+    /// <summary>
+    /// Recursively searches the hierarchy of a given Transform for a child with a specific name.
+    /// </summary>
+    /// <param name="parent">The parent Transform to search within.</param>
+    /// <param name="name">The name of the child Transform to find.</param>
+    /// <returns>The Transform of the child if found, otherwise null.</returns>
+    public static Transform DeepSearchByName(Transform parent, string name)
+    {
+        if (parent == null) return null;
+
+        // Check the current transform
+        if (parent.name == name) return parent;
+
+        // Recursively search children
+        foreach (var o in parent)
+        {
+            var child = o.TryCast<Transform>();
+            if (child == null) continue;
+            var result = DeepSearchByName(child, name);
+            if (result != null) return result;
+        }
+
+        return null; // Return null if no matching child is found
+    }
+
 
     internal static int GetHudRes(float y)
     {
         return Mathf.RoundToInt(y * GetPreferredAspect());
+    }
+    
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
+    {
+        resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
     }
 }

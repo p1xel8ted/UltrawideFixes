@@ -3,7 +3,8 @@ namespace RuinedKingLoL.Patches;
 [Harmony]
 public static class Patches
 {
-    
+    private static readonly string[] ScaleTheseBackground = ["backgroundElements", "statBGDark", "statBGDark (1)", "statBGDark (2)"];
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DungeonCombatUI), nameof(DungeonCombatUI.OnEnable))]
     public static void DungeonCombatUI_OnEnable(DungeonCombatUI __instance)
@@ -34,7 +35,7 @@ public static class Patches
             return;
         }
 
-        if(Plugin.ConfigPlatform.Value is Misc.PlatformHelper.Platform.Xbox)
+        if (Plugin.ConfigPlatform.Value is Misc.PlatformHelper.Platform.Xbox)
         {
             __instance.transform.localScale = Vector3.one;
             return;
@@ -57,7 +58,7 @@ public static class Patches
             Plugin.Logger.LogWarning($"No replacement found for {value.name}, using default Xbox sprite.");
         }
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(StoryPopupManager), nameof(StoryPopupManager.Awake))]
     [HarmonyPatch(typeof(StoryPopupManager), nameof(StoryPopupManager.Proceed))]
@@ -68,6 +69,14 @@ public static class Patches
         {
             __instance.darkBG.rectTransform.sizeDelta = new Vector2(Plugin.MainWidth, Plugin.MainHeight);
         }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VideoOptionsMenu), nameof(VideoOptionsMenu.ConfirmChanges))]
+    [HarmonyPatch(typeof(VideoOptionsMenu), nameof(VideoOptionsMenu.ApplyChanges))]
+    public static void VideoOptionsMenu_ConfirmChanges()
+    {
+        Plugin.UpdateAll();
     }
 
     [HarmonyPostfix]
@@ -95,6 +104,21 @@ public static class Patches
         __instance.logoVideoFilepaths.Clear();
     }
 
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MoviePlayer), nameof(MoviePlayer.Play))]
+    public static void MoviePlayer_OnEnable(MoviePlayer __instance)
+    {
+        __instance.m_instantSkip = true;
+        __instance.m_skippable = true;
+
+        if (Plugin.SkipIntroCinematic.Value)
+        {
+            __instance.Skip();
+        }
+    }
+
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CinematicBars), nameof(CinematicBars.ShowCinematicBars))]
     public static bool CinematicBars_ShowCinematicBars()
@@ -121,6 +145,54 @@ public static class Patches
                 bg.gameObject.SetActive(false);
             }
         }
+
+        foreach (var bg in ScaleTheseBackground)
+        {
+            var tr = Utils.DeepSearchByName(__instance.transform, bg);
+            if (!tr) continue;
+
+            tr.localScale = tr.localScale with { x = Plugin.PositiveScaleFactor };
+        }
+
+        if (__instance.name == "Canvas_craftingRoot")
+        {
+            var bg = __instance.transform.FindChild("backgroundElements");
+            if (bg)
+            {
+                bg.gameObject.TryAddComponent<ScaleForcer>();
+            }
+        }
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AirshipButton), nameof(AirshipButton.OnLeftClick))]
+    public static void AirshipButton_OnLeftClick(AirshipButton __instance)
+    {
+        if (__instance.name == "clickableInputPrompt_LeftAligned")
+        {
+            var path = __instance.gameObject.GetPath();
+            if (path.Contains("UI_Casper_CharacterScreen") || path.Contains("UI_Casper_Crafting"))
+            {
+                Plugin.DisablePillarboxes();
+            }
+        }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PageNavigationController), nameof(PageNavigationController.SetPage))]
+    public static void PageNavigationController_SetPage(int newPageIndex)
+    {
+        if (SceneManager.GetActiveScene().name.Contains("MainMenu")) return;
+
+        if (newPageIndex == -1)
+        {
+            Plugin.DisablePillarboxes();
+        }
+        else
+        {
+            Plugin.EnablePillarboxes();
+        }
     }
 
     internal static void QualitySettings_Postfix()
@@ -132,7 +204,6 @@ public static class Patches
         QualitySettings.lodBias = float.MaxValue; // Force highest LOD models
         QualitySettings.maximumLODLevel = 0; // Use highest LOD level
     }
-
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UniversalRenderPipelineAsset), nameof(UniversalRenderPipelineAsset.CreatePipeline))]

@@ -20,7 +20,7 @@ public class ResultsScreen : MonoBehaviour
 
     private void OnDisable()
     {
-        Plugin.UpdateCamera(SceneManager.GetActiveScene().name, 0f);
+        Plugin.UpdateCamera(SceneManager.GetActiveScene().path, 0f);
     }
 
     private void Setup()

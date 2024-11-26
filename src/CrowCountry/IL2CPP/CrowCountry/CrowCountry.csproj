@@ -2,9 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
+  
         <Product>Crow Country Ultra-Wide</Product>
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
         <AssemblyName>$(Product)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
@@ -13,6 +13,7 @@
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
 
     <Import Project="../zip.target"/>
@@ -48,59 +49,14 @@
       <Reference Include="Assembly-CSharp">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
-      <Reference Include="ConditionalExpression">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\ConditionalExpression.dll</HintPath>
-      </Reference>
       <Reference Include="DOTween">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\DOTween.dll</HintPath>
-      </Reference>
-      <Reference Include="Facepunch.Steamworks.Win64">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Facepunch.Steamworks.Win64.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
       </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="MeshCombineStudio.Runtime">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\MeshCombineStudio.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="MeshExtension">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\MeshExtension.dll</HintPath>
-      </Reference>
       <Reference Include="PlayMaker">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\PlayMaker.dll</HintPath>
-      </Reference>
-      <Reference Include="RenderHeads.AVProMovieCapture.Demos">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\RenderHeads.AVProMovieCapture.Demos.dll</HintPath>
-      </Reference>
-      <Reference Include="RenderHeads.AVProMovieCapture.Runtime">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\RenderHeads.AVProMovieCapture.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Rewired_Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Rewired_Windows">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Rewired_Windows.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Unity.Addressables.dll</HintPath>
@@ -114,14 +70,8 @@
       <Reference Include="Unity.ProBuilder.Poly2Tri">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Unity.ProBuilder.Poly2Tri.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Profiling.Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Unity.Profiling.Core.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.ResourceManager">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.dll</HintPath>
@@ -153,9 +103,6 @@
       <Reference Include="UnityEngine.ClusterRendererModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ContentLoadModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.ContentLoadModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
@@ -165,20 +112,11 @@
       <Reference Include="UnityEngine.DirectorModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.GameCenterModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.GIModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.GridModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ImageConversionModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -188,9 +126,6 @@
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.JSONSerializeModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -209,15 +144,6 @@
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PropertiesModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.PropertiesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ScreenCaptureModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
@@ -258,9 +184,6 @@
       <Reference Include="UnityEngine.TilemapModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
@@ -270,9 +193,6 @@
       <Reference Include="UnityEngine.UIModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
       </Reference>
@@ -281,12 +201,6 @@
       </Reference>
       <Reference Include="UnityEngine.UnityConnectModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
@@ -323,9 +237,6 @@
       </Reference>
       <Reference Include="UnityEngine.XRModule">
         <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="__Generated">
-        <HintPath>E:\SteamLibrary\steamapps\common\Crow Country\BepInEx\interop\__Generated.dll</HintPath>
       </Reference>
     </ItemGroup>
 

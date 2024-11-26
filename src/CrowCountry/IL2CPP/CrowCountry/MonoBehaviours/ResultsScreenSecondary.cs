@@ -25,7 +25,7 @@ public class ResultsScreenSecondary : MonoBehaviour
 
     private void Setup()
     {
-        sceneName = SceneManager.GetActiveScene().name;
+        sceneName = SceneManager.GetActiveScene().path;
         cover = transform.Find(Const.ResultsScreenBlackOverlays);
         if (cover)
         {

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Sorry We're Closed Ultra-Wide</Product>
     <AssemblyName>Sorry We're Closed Ultra-Wide</AssemblyName>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>

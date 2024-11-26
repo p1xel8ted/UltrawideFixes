@@ -30,6 +30,11 @@ public static class Utils
         }
     }
 
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
+    {
+        resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
+        
+    }
     internal static void DisablePillarBoxing()
     {
         CreateBlackBars();

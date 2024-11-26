@@ -118,13 +118,21 @@ public class Plugin : BasePlugin
         TargetFramerate.SettingChanged += (_, _) => UpdateAll();
        
         CorrectFixedUpdateRate = Config.Bind("02. Performance", "Modify Physics Rate", true,
-            new ConfigDescription("This is a generic Unity fix and may not be applicable to all titles. " +
-                                  ".Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways. It may do nothing at all.", null, new ConfigurationManagerAttributes { Order = 94 }));
+            new ConfigDescription(
+                "Optimizes the physics update rate to minimize camera judder based on your monitor's refresh rate. " +
+                "This is a general Unity fix that might not apply to all games. While it can improve smoothness, it may cause unintended side effects or have no noticeable impact.",
+                null,
+                new ConfigurationManagerAttributes { Order = 94 }));
         CorrectFixedUpdateRate.SettingChanged += (_, _) => UpdateAll();
 
         UseRefreshRateForFixedUpdateRate = Config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", true,
-            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes { Order = 93 }));
+            new ConfigDescription(
+                "Automatically adjusts the physics update rate to match your monitor's refresh rate for smoother gameplay. " +
+                "This setting may improve visual fluidity but could impact performance on lower-end systems.",
+                null,
+                new ConfigurationManagerAttributes { Order = 93 }));
         UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) => UpdateAll();
+        
         RunInBackground = Config.Bind("03. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 82 }));
         RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
 

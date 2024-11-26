@@ -11,7 +11,7 @@ global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using HarmonyLib;
 global using JetBrains.Annotations;
-global using MindOverMagnet.WindowsAPI;
+
 global using MonoMod.Utils;
 global using UnityEngine;
 global using UnityEngine.Experimental.Rendering.Universal;

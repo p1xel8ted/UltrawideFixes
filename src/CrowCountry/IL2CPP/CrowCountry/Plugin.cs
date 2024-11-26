@@ -1,5 +1,4 @@
 ﻿using BepInEx.Unity.IL2CPP;
-using CrowCountry.WindowsAPI;
 using Il2CppInterop.Runtime.Injection;
 using UnityEngine.Events;
 
@@ -10,13 +9,10 @@ namespace CrowCountry;
 [BepInPlugin(Const.PluginGuid, Const.PluginName, Const.PluginVersion)]
 public class Plugin : BasePlugin
 {
-    private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
-    private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
-
-    internal static RefreshRate RefreshRate => new()
+    internal static RefreshRate RefreshRateRatio => new()
     {
         denominator = 1,
-        numerator = (uint) MaxRefresh
+        numerator = (uint)RefreshRate
     };
 
     internal static ConfigEntry<bool> PsxEffect { get; private set; }
@@ -26,10 +22,10 @@ public class Plugin : BasePlugin
     internal static ConfigEntry<float> CrtEffectSaturation { get; private set; }
     internal static ConfigEntry<bool> FlashbackEffect { get; private set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth;
-    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight;
-    private static int MaxRefresh => (int) Screen.resolutions.Max(a => a.refreshRateRatio.value);
-    private static float MainAspectRatio => (float) MainWidth / MainHeight;
+    internal static int MainWidth => Display.main.systemWidth;
+    internal static int MainHeight => Display.main.systemHeight;
+    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    private static float MainAspectRatio => (float)MainWidth / MainHeight;
     private static float NativeWidth => MainHeight * Const.NativeAspectRatio;
     internal static float BlackBarSize => (MainWidth - NativeWidth) / 2f;
     internal static float PositiveScaleFactor => MainAspectRatio / Const.NativeAspectRatio;
@@ -38,22 +34,115 @@ public class Plugin : BasePlugin
     internal static ConfigEntry<bool> PoisonOverlay { get; private set; }
     internal static ConfigEntry<int> FieldOfView { get; private set; }
 
-    internal static ConfigEntry<CanvasScaler.ScreenMatchMode> ScreenMatchMode { get; private set; }
-    internal static ConfigEntry<CanvasScaler.ScaleMode> ScaleMode { get; private set; }
-    internal static ConfigEntry<float> ScaleFactor { get; private set; }
     public static ConfigEntry<int> PixelationAmount { get; private set; }
-    internal static ConfigEntry<int> DisplayToUse { get; private set; }
+
     internal static ManualLogSource Logger { get; set; }
-    private static WindowPositioner WindowPositioner { get; set; }
-    private static WriteOnceFloat OriginalFixedDeltaTime { get; } = new();
-    private static string[] IntroSkipScenes { get; } = ["Logos", "Title"];
-    private static string[] EndingSkipScenes { get; } = ["Results", "Ending Sequence", "Driving Intro"];
+
+    private static string[] IntroSkipScenes { get; } = ["Logos", "Title", "5b080084b058b87468e9f07d1aef5b74"];
+    private static string[] EndingSkipScenes { get; } = ["Results", "Ending Sequence", "8163db32a6ba9fa46bf7b9a1b510fd40"];
 
 
     private static WriteOnceFloat OriginalCameraFov { get; } = new();
 
+    private static readonly int[] CustomRefreshRates =
+    [
+        30, // Uncommon
+        50, // Uncommon
+        60, // Common
+        72, // Uncommon
+        75, // Common
+        90, // Uncommon
+        100, // Uncommon
+        120, // Common
+        144, // Common
+        165, // Common
+        180, // Common
+        200, // Uncommon
+        240, // Common
+        300, // Uncommon
+        360, // Uncommon
+        480 // Uncommon
+    ];
+
+    private static int[] MergeUnityRefreshRates()
+    {
+        var unityRates = Screen.resolutions.Select(a => a.refreshRate).Distinct().ToArray();
+        var customRates = new List<int>();
+        customRates.AddRange(unityRates);
+        customRates.AddRange(CustomRefreshRates);
+        return customRates.Distinct().OrderBy(a => a).ToArray();
+    }
+
+    private static ConfigEntry<string> Resolution { get; set; }
+
+    internal static Resolution SelectedResolution
+    {
+        get
+        {
+            var res = Resolution.Value.Split('x');
+            return new Resolution
+            {
+                width = int.Parse(res[0]),
+                height = int.Parse(res[1])
+            };
+        }
+    }
+
+    internal static ConfigEntry<int> TargetFramerate { get; set; }
+
+
+    private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
+    // private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+
+    internal static int RefreshRate
+    {
+        get
+        {
+            if (UseCustomRefreshRate != null && CustomRefreshRate != null)
+            {
+                return UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh;
+            }
+
+            return MaxRefresh;
+        }
+    }
+
+    private static readonly Dictionary<string, int> VSyncOptions = new()
+    {
+        { "Disabled (Higher Performance)", 0 },
+        { "Enabled (Every Refresh)", 1 },
+        { "Enabled (Every 2nd Refresh)", 2 }
+    };
+
+    private static string[] GetResolutions()
+    {
+        var mainRes = new Resolution
+        {
+            width = MainWidth,
+            height = MainHeight,
+            refreshRate = MaxRefresh
+        };
+        var resList = new List<Resolution> { mainRes };
+        resList.AddRange(Screen.resolutions);
+        resList.SortByPixelCount();
+
+        var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
+        return finalList;
+    }
+
+    private static ConfigEntry<string> VSyncSetting { get; set; }
+
+    private static ConfigEntry<int> CustomRefreshRate { get; set; }
+
     public override void Load()
     {
+        Logger = Log;
+        
+        foreach (var res in Screen.resolutions)
+        {
+            Plugin.Logger.LogWarning($"Resolution: {res.width}x{res.height} @ {res.refreshRate}Hz");
+        }
+
         ClassInjector.RegisterTypeInIl2Cpp<FovAdjuster>();
         ClassInjector.RegisterTypeInIl2Cpp<LetterboxDisabler>();
         ClassInjector.RegisterTypeInIl2Cpp<ResultsScreen>();
@@ -61,50 +150,77 @@ public class Plugin : BasePlugin
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceFloat>();
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceInt>();
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceVector3>();
-        ClassInjector.RegisterTypeInIl2Cpp<WindowPositioner>();
 
-       
-        
-        Logger = Log;
-
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode", null, new ConfigurationManagerAttributes {Order = 105}));
-        FullScreenModeConfig.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-        };
+        var customRates = MergeUnityRefreshRates();
 
 
-        DisplayToUse = Config.Bind("01. Display", "Display To Use", 0, new ConfigDescription("Display to use", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes {Order = 104}));
-        DisplayToUse.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-        };
+        Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
+            new ConfigDescription(
+                "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
+                new AcceptableValueList<string>(GetResolutions()),
+                new ConfigurationManagerAttributes { Order = 99 }));
+        Resolution.SettingChanged += (_, _) => UpdateAll();
 
-        if (PlatformHelper.Is(Platform.Windows) || PlatformHelper.Is(Platform.Wine))
-        {
-            WindowPositioner = AddComponent<WindowPositioner>();
-        }
+        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow,
+            new ConfigDescription(
+                "Select how the game displays on your screen:\n" +
+                "- FullScreenWindow (Recommended): Runs the game in a borderless window that covers the entire screen. " +
+                "This mode offers seamless alt-tabbing and behaves like Exclusive Fullscreen on most modern Windows versions.\n" +
+                "- Exclusive Fullscreen: Attempts to take direct control of the display for scenarios like legacy compatibility or HDR management. " +
+                "On modern systems, its behavior is nearly identical to FullScreenWindow, so this mode is generally not needed.\n" +
+                "- Windowed: Runs the game in a resizable window.",
+                null,
+                new ConfigurationManagerAttributes { Order = 98 }));
+        FullScreenModeConfig.SettingChanged += (_, _) => UpdateAll();
 
-        FieldOfView = Config.Bind("02. Camera", "Field of View", 25, new ConfigDescription("Increase or decrease the field of view of the camera by a percentage.", new AcceptableValueRange<int>(-75, 100), new ConfigurationManagerAttributes {Order = 103}));
+        TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh,
+            new ConfigDescription(
+                "Set the maximum frame rate the game will target. This works only when VSync is turned off.",
+                new AcceptableValueList<int>(customRates),
+                new ConfigurationManagerAttributes { Order = 97 }));
+        TargetFramerate.SettingChanged += (_, _) => UpdateAll();
+
+        VSyncSetting = Config.Bind("01. Display", "VSync Setting", "Disabled (Higher Performance)",
+            new ConfigDescription(
+                "Control how VSync synchronizes the game’s frame rate with your monitor's refresh rate to prevent screen tearing:\n" +
+                "- Disabled (Higher Performance): Turns off synchronization, potentially improving performance but may cause screen tearing.\n" +
+                "- Enabled (Every Refresh): Synchronizes with every monitor refresh, ensuring smooth visuals but might slightly reduce performance.\n" +
+                "- Enabled (Every 2nd Refresh): Synchronizes with every second monitor refresh, effectively halving the refresh rate for weaker hardware or demanding setups.",
+                new AcceptableValueList<string>(VSyncOptions.Keys.ToArray()),
+                new ConfigurationManagerAttributes { Order = 96 }));
+        VSyncSetting.SettingChanged += (_, _) => UpdateAll();
+
+        UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false,
+            new ConfigDescription(
+                "Enable this option if Unity reports the wrong maximum refresh rate for your display. Allows setting a custom refresh rate.",
+                null,
+                new ConfigurationManagerAttributes { Order = 95 }));
+        UseCustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
+
+        CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate,
+            new ConfigDescription(
+                "Manually define a refresh rate to use if 'Use Custom Refresh Rate' is enabled.",
+                new AcceptableValueList<int>(customRates),
+                new ConfigurationManagerAttributes { Order = 94 }));
+        CustomRefreshRate.SettingChanged += (_, _) => UpdateAll();
+
+        FieldOfView = Config.Bind("02. Camera", "Field of View", 25, new ConfigDescription("Increase or decrease the field of view of the camera by a percentage.", new AcceptableValueRange<int>(-75, 100), new ConfigurationManagerAttributes { Order = 103 }));
         FieldOfView.SettingChanged += (_, _) =>
         {
             if (Patches.Patches.FovAdjusterEnabled()) return;
-            UpdateCamera(SceneManager.GetActiveScene().name, 1f);
+            UpdateCamera(SceneManager.GetActiveScene().path, 1f);
             ScalingCorrections.UpdatePoison();
         };
 
-        PoisonOverlay = Config.Bind("03. Post-Processing", "Poison Overlay", true, new ConfigDescription("Enables the poison overlay in the game.", null, new ConfigurationManagerAttributes {Order = 102}));
-        PoisonOverlay.SettingChanged += (_, _) =>
-        {
-            ScalingCorrections.UpdatePoison();
-        };
+        PoisonOverlay = Config.Bind("03. Post-Processing", "Poison Overlay", true, new ConfigDescription("Enables the poison overlay in the game.", null, new ConfigurationManagerAttributes { Order = 102 }));
+        PoisonOverlay.SettingChanged += (_, _) => { ScalingCorrections.UpdatePoison(); };
 
-        PsxEffect = Config.Bind("03. Post-Processing", "PSX Effect", true, new ConfigDescription("Enables the PSX effect in the game.", null, new ConfigurationManagerAttributes {Order = 101}));
-        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes {Order = 100}));
+        PsxEffect = Config.Bind("03. Post-Processing", "PSX Effect", true, new ConfigDescription("Enables the PSX effect in the game.", null, new ConfigurationManagerAttributes { Order = 101 }));
+        FlashbackEffect = Config.Bind("03. Post-Processing", "Flashback Effect", false, new ConfigDescription("Enables the flashback effect in the game.", null, new ConfigurationManagerAttributes { Order = 100 }));
 
-        CrtEffect = Config.Bind("03. Post-Processing", "CRT Effect", false, new ConfigDescription("Enables the CRT effect in the game.", null, new ConfigurationManagerAttributes {Order = 99}));
+        CrtEffect = Config.Bind("03. Post-Processing", "CRT Effect", false, new ConfigDescription("Enables the CRT effect in the game.", null, new ConfigurationManagerAttributes { Order = 99 }));
 
-        CrtEffectBrightness = Config.Bind("03. Post-Processing", "CRT Effect Brightness", -0.5f, new ConfigDescription("Adjust the brightness of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 98}));
+        CrtEffectBrightness = Config.Bind("03. Post-Processing", "CRT Effect Brightness", -0.5f, new ConfigDescription("Adjust the brightness of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes { Order = 98 }));
         CrtEffectBrightness.SettingChanged += (_, _) =>
         {
             var snappedValue = Mathf.Round(CrtEffectBrightness.Value * 20f) / 20f;
@@ -112,7 +228,7 @@ public class Plugin : BasePlugin
             UpdateCrt();
         };
 
-        CrtEffectContrast = Config.Bind("03. Post-Processing", "CRT Effect Contrast", 0.4f, new ConfigDescription("Adjust the contrast of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 97}));
+        CrtEffectContrast = Config.Bind("03. Post-Processing", "CRT Effect Contrast", 0.4f, new ConfigDescription("Adjust the contrast of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes { Order = 97 }));
         CrtEffectContrast.SettingChanged += (_, _) =>
         {
             var snappedValue = Mathf.Round(CrtEffectContrast.Value * 20f) / 20f;
@@ -120,7 +236,7 @@ public class Plugin : BasePlugin
             UpdateCrt();
         };
 
-        CrtEffectSaturation = Config.Bind("03. Post-Processing", "CRT Effect Saturation", 0f, new ConfigDescription("Adjust the saturation of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes {Order = 96}));
+        CrtEffectSaturation = Config.Bind("03. Post-Processing", "CRT Effect Saturation", 0f, new ConfigDescription("Adjust the saturation of the CRT effect in the game.", new AcceptableValueRange<float>(-1f, 1f), new ConfigurationManagerAttributes { Order = 96 }));
         CrtEffectSaturation.SettingChanged += (_, _) =>
         {
             var snappedValue = Mathf.Round(CrtEffectSaturation.Value * 20f) / 20f;
@@ -128,53 +244,27 @@ public class Plugin : BasePlugin
             UpdateCrt();
         };
 
-        PixelationAmount = Config.Bind("03. Post-Processing", "Pixelation Amount", 4, new ConfigDescription("Lessens the pixelation effect in the game. 0 is off, 4 is game default.", new AcceptableValueRange<int>(0, 4), new ConfigurationManagerAttributes {Order = 93}));
-        PixelationAmount.SettingChanged += (_, _) =>
-        {
-            Renderer.PixelationAdjust(Instances.CrowCountryCamEffectInstance);
-        };
+        PixelationAmount = Config.Bind("03. Post-Processing", "Pixelation Amount", 4, new ConfigDescription("Lessens the pixelation effect in the game. 0 is off, 4 is game default.", new AcceptableValueRange<int>(0, 4), new ConfigurationManagerAttributes { Order = 93 }));
+        PixelationAmount.SettingChanged += (_, _) => { Renderer.PixelationAdjust(Instances.CrowCountryCamEffectInstance); };
 
-        CorrectFixedUpdateRate = Config.Bind("04. Performance", "Modify Physics Rate", false,
-            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This may effect the game in unexpected ways.", null, new ConfigurationManagerAttributes {Order = 92}));
-        CorrectFixedUpdateRate.SettingChanged += (_, _) =>
-        {
-            UpdateFixedDeltaTime();
-        };
+        RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 87 }));
+        RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
 
-        UseRefreshRateForFixedUpdateRate = Config.Bind("04. Performance", "Use Refresh Rate For Physics Rate", false,
-            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. If you're playing on a potato, this may have performance impacts.", null, new ConfigurationManagerAttributes {Order = 91}));
-        UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
-        {
-            UpdateFixedDeltaTime();
-        };
+        MuteInBackground = Config.Bind("04. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes { Order = 86 }));
 
-        ScaleMode = Config.Bind("05. Scalers", "Canvas Scaler Scale Mode", CanvasScaler.ScaleMode.ScaleWithScreenSize, new ConfigDescription("The scaling mode to use for the CanvasScaler component.", null, new ConfigurationManagerAttributes {Order = 90}));
-        ScreenMatchMode = Config.Bind("05. Scalers", "Canvas Scaler Screen Match Mode", CanvasScaler.ScreenMatchMode.Expand, new ConfigDescription("The screen match mode to use for the CanvasScaler component. Has no effect unless Scale Mode is set to ScaleWithScreenSize.", null, new ConfigurationManagerAttributes {Order = 89}));
-        ScaleFactor = Config.Bind("05. Scalers", "Canvas Scaler Scale Factor", 1f, new ConfigDescription("The scaling factor to use for the CanvasScaler component. Has no effect when Scale Mode is set to ScaleWithScreenSize.", new AcceptableValueRange<float>(0.5f, 10f), new ConfigurationManagerAttributes {Order = 88}));
-        ScaleFactor.SettingChanged += (_, _) =>
-        {
-            ScaleFactor.Value = Mathf.Round(ScaleFactor.Value * 4) / 4;
-        };
-
-        RunInBackground = Config.Bind("06. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes {Order = 87}));
-        RunInBackground.SettingChanged += (_, _) =>
-        {
-            Application.runInBackground = RunInBackground.Value;
-        };
-
-        MuteInBackground = Config.Bind("06. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes {Order = 86}));
-        
         AddComponent<MonoBehaviours>();
-        
+
         Application.focusChanged += (Il2CppSystem.Action<bool>)FocusChanged;
 
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)SceneManagerOnSceneLoaded;
-        
+
+        UpdateAll();
+
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), Const.PluginGuid);
         Log.LogInfo($"Plugin {Const.PluginName} is loaded!");
     }
 
-    
+
     private static void FocusChanged(bool focus)
     {
         Application.runInBackground = RunInBackground.Value;
@@ -185,12 +275,16 @@ public class Plugin : BasePlugin
         }
     }
 
-    
+    internal static void UpdateAll()
+    {
+        UpdateDisplay();
+    }
+
     public class MonoBehaviours : MonoBehaviour
     {
         private void LateUpdate()
         {
-            var scene = SceneManager.GetActiveScene().name;
+            var scene = SceneManager.GetActiveScene().path;
             if (EndingSkipScenes.Contains(scene))
             {
                 if (Camera.main)
@@ -198,9 +292,8 @@ public class Plugin : BasePlugin
                     Camera.main.fieldOfView = GetDefaultCameraFov();
                 }
             }
-        }   
+        }
     }
-    
 
 
     private static void UpdateCrt()
@@ -208,36 +301,12 @@ public class Plugin : BasePlugin
         Instances.CrowCountryCamEffectInstance.UpdateColorMatrices();
     }
 
-    private static void UpdateFixedDeltaTime()
-    {
-        OriginalFixedDeltaTime.Value = Mathf.RoundToInt(1f / Time.fixedDeltaTime);
-        if (Mathf.Approximately(MaxRefresh, OriginalFixedDeltaTime.Value) || OriginalFixedDeltaTime.Value > MaxRefresh)
-        {
-            Logger.LogInfo("Games physics update rate is already equal to (or greater than) your monitors refresh rate. Skipping update.");
-            return;
-        }
-
-        if (CorrectFixedUpdateRate.Value)
-        {
-            if (UseRefreshRateForFixedUpdateRate.Value)
-            {
-                Time.fixedDeltaTime = 1f / MaxRefresh;
-            }
-            else
-            {
-                Time.fixedDeltaTime = 1f / Utils.FindLowestFrameRateMultipleAboveFifty(MaxRefresh);
-            }
-        }
-        else
-        {
-            Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
-        }
-        Logger.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
-    }
-
     internal static void UpdateCamera(string scene, float duration)
     {
         if (!Camera.main) return;
+
+        Plugin.Logger.LogWarning($"Updating camera for scene: {scene} - current FOV: {Camera.main.fieldOfView}");
+
         if (IntroSkipScenes.Contains(scene))
         {
             Camera.main.fieldOfView = 4.6f;
@@ -263,18 +332,11 @@ public class Plugin : BasePlugin
 
     private static void SceneManagerOnSceneLoaded(Scene a, LoadSceneMode l)
     {
-        Plugin.Logger.LogWarning($"Scene loaded: {a.name}");
-        // if (a.name.Equals("Logos"))
-        // {
-        //     SceneManager.LoadScene("Title");
-        // }
-
         UpdateDisplay();
-        UpdateFixedDeltaTime();
         UpdateCamera(a.name, 1f);
         ForceCameraChanges();
+
         CorrectLetterboxing();
-        
         ScalingCorrections.UpdatePoison();
         ScalingCorrections.CorrectCreditsSky();
         ScalingCorrections.CorrectMapBackground();
@@ -297,19 +359,45 @@ public class Plugin : BasePlugin
         {
             camera.rect = new Rect(0, 0, MainWidth, MainHeight);
             camera.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
-            camera.aspect = MainWidth / (float) MainHeight;
+            camera.aspect = MainWidth / (float)MainHeight;
         }
     }
 
     private static void UpdateDisplay()
     {
-        if (WindowPositioner)
+        var res = SelectedResolution;
+
+        Screen.SetResolution(res.width, res.height, FullScreenModeConfig.Value, RefreshRate);
+
+        Application.targetFrameRate = Mathf.RoundToInt(TargetFramerate.Value);
+
+        var refreshRate = RefreshRate;
+
+        // Apply VSync setting using the mapped value
+        if (VSyncOptions.TryGetValue(VSyncSetting.Value, out var vSyncCount))
         {
-            WindowPositioner.Start();
+            QualitySettings.vSyncCount = vSyncCount;
         }
-        Application.runInBackground = RunInBackground.Value;
-        Display.displays[DisplayToUse.Value].Activate();
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, RefreshRate);
-        Application.targetFrameRate = MaxRefresh;
+        else
+        {
+            Logger.LogWarning($"Invalid VSync setting: {VSyncSetting.Value}");
+            QualitySettings.vSyncCount = 1; // Default to "Every VBlank"
+        }
+
+        // Apply target frame rate only if VSync is off
+        Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
+
+        // Apply refresh rate and resolution
+
+        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, refreshRate);
+
+        if (Application.targetFrameRate == -1)
+        {
+            Logger.LogInfo($"Display updated: VSync={QualitySettings.vSyncCount}, Target FPS=Unlimited, Refresh Rate={refreshRate}Hz");
+        }
+        else
+        {
+            Logger.LogInfo($"Display updated: VSync={QualitySettings.vSyncCount}, Target FPS={Application.targetFrameRate}, Refresh Rate={refreshRate}Hz");
+        }
     }
 }

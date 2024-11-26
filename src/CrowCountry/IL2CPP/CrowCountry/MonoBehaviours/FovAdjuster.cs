@@ -2,22 +2,22 @@
 
 public class FovAdjuster : MonoBehaviour
 {
-    internal float disableDuration;
-    internal float enableDuration;
+    internal float DisableDuration;
+    internal float EnableDuration;
 
     private void Start()
     {
-        SetFoV(Plugin.GetDefaultCameraFov(), enableDuration);
+        SetFoV(Plugin.GetDefaultCameraFov(), EnableDuration);
     }
     
     private void OnEnable()
     {
-        SetFoV(Plugin.GetDefaultCameraFov(), enableDuration);
+        SetFoV(Plugin.GetDefaultCameraFov(), EnableDuration);
     }
 
     private void OnDisable()
     {
-        Plugin.UpdateCamera(SceneManager.GetActiveScene().name, disableDuration);
+        Plugin.UpdateCamera(SceneManager.GetActiveScene().path, DisableDuration);
     }
 
     private static void SetFoV(float newFoV, float duration)
