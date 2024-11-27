@@ -4,13 +4,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NineSols", "NineSols\NineSo
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		Steam|Any CPU = Steam|Any CPU
+		GamePass|Any CPU = GamePass|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Steam|Any CPU.ActiveCfg = Steam|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Steam|Any CPU.Build.0 = Steam|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.GamePass|Any CPU.ActiveCfg = GamePass|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.GamePass|Any CPU.Build.0 = GamePass|Any CPU
 	EndGlobalSection
 EndGlobal

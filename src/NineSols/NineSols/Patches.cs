@@ -32,7 +32,9 @@ public static class Patches
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
+    #if Steam
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.StepForward))]
+    #endif
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Prepare))]
     public static void VideoPlayer_Play(VideoPlayer __instance)
     {

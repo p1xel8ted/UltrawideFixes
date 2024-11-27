@@ -1,147 +1,311 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <Product>Nine Sols Ultra-Wide</Product>
-    <AssemblyName>Nine Sols Ultra-Wide</AssemblyName>
-    <Version>0.1.0</Version>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>latest</LangVersion>
-    <IsPackable>false</IsPackable>
-    <Company>p1xel8ted</Company>
-  
-    <AssemblyVersion>$(Version)</AssemblyVersion>
-    <FileVersion>$(Version)</FileVersion>
-  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'Steam' ">
+        <Product>Nine Sols Ultra-Wide (Steam)</Product>
+        <AssemblyName>Nine Sols Ultra-Wide (Steam)</AssemblyName>
+    </PropertyGroup>
 
-  <Import Project="../../zip.target"/>
-  
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>E:\SteamLibrary\steamapps\common\Nine Sols\BepInEx\plugins</OutputPath>
-  </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)' == 'GamePAss' ">
+        <Product>Nine Sols Ultra-Wide (GamePass)</Product>
+        <AssemblyName>Nine Sols Ultra-Wide (GamePass)</AssemblyName>
+    </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>E:\SteamLibrary\steamapps\common\Nine Sols\BepInEx\plugins</OutputPath>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net481</TargetFramework>
+        <Version>0.1.1</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <IsPackable>false</IsPackable>
+        <Company>p1xel8ted</Company>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <Configurations>Steam;GamePass</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <appendTargetFrameworkToOutputPath>false</appendTargetFrameworkToOutputPath>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="5.*" />
-  </ItemGroup>
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
 
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>libs\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="rcg.rcgmakercore.Runtime">
-      <HintPath>libs\rcg.rcgmakercore.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="RubyTextMeshPro">
-      <HintPath>libs\RubyTextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>libs\Unity.2D.Animation.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>libs\Unity.2D.IK.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>libs\Unity.Addressables.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>libs\Unity.Postprocessing.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ResourceManager">
-      <HintPath>libs\Unity.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>libs\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>libs\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AIModule">
-      <HintPath>libs\UnityEngine.AIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>libs\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>libs\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CrashReportingModule">
-      <HintPath>libs\UnityEngine.CrashReportingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.DirectorModule">
-      <HintPath>libs\UnityEngine.DirectorModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.GridModule">
-      <HintPath>libs\UnityEngine.GridModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ImageConversionModule">
-      <HintPath>libs\UnityEngine.ImageConversionModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.JSONSerializeModule">
-      <HintPath>libs\UnityEngine.JSONSerializeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>libs\UnityEngine.ParticleSystemModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ScreenCaptureModule">
-      <HintPath>libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>libs\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteMaskModule">
-      <HintPath>libs\UnityEngine.SpriteMaskModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>libs\UnityEngine.SpriteShapeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TerrainModule">
-      <HintPath>libs\UnityEngine.TerrainModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>libs\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>libs\UnityEngine.TilemapModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>libs\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIElementsModule">
-      <HintPath>libs\UnityEngine.UIElementsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityAnalyticsModule">
-      <HintPath>libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityWebRequestModule">
-      <HintPath>libs\UnityEngine.UnityWebRequestModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.VideoModule">
-      <HintPath>libs\UnityEngine.VideoModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  
+    <Import Project="../../zip.target"/>
+
+    <ItemGroup>
+        <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll">
+            <Link>ConfigurationManager.dll</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Steam' ">
+        <OutputPath>E:\SteamLibrary\steamapps\common\Nine Sols\BepInEx\plugins</OutputPath>
+        <Optimize Condition=" '$(Optimize)' == '' ">true</Optimize>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'GamePass' ">
+        <OutputPath>F:\Games\GamePass\Nine Sols\Content\BepInEx\plugins</OutputPath>
+        <Optimize Condition=" '$(Optimize)' == '' ">true</Optimize>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="ConfigurationManager">
+            <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <!--GamePass References-->
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="rcg.rcgmakercore.Runtime" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\rcg.rcgmakercore.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="RubyTextMeshPro" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\RubyTextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.2D.Animation.Runtime" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.2D.Animation.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.2D.IK.Runtime" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.2D.IK.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Addressables" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.Addressables.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Postprocessing.Runtime" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.Postprocessing.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ResourceManager" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.ResourceManager.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\Unity.Timeline.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CrashReportingModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.CrashReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GridModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.GridModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.JSONSerializeModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.JSONSerializeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ScreenCaptureModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteMaskModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.SpriteMaskModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.TerrainModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TilemapModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.TilemapModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule" Condition=" '$(Configuration)' == 'GamePass' ">
+            <HintPath>libs\GamePass\UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+
+    <!--    Steam References-->
+        <ItemGroup>
+          <Reference Include="Assembly-CSharp" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Assembly-CSharp.dll</HintPath>
+          </Reference>
+          <Reference Include="rcg.rcgmakercore.Runtime" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\rcg.rcgmakercore.Runtime.dll</HintPath>
+          </Reference>
+          <Reference Include="RubyTextMeshPro" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\RubyTextMeshPro.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.2D.Animation.Runtime" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.2D.Animation.Runtime.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.2D.IK.Runtime" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.2D.IK.Runtime.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.Addressables" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.Addressables.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.Postprocessing.Runtime" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.Postprocessing.Runtime.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.ResourceManager" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.ResourceManager.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.TextMeshPro" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.TextMeshPro.dll</HintPath>
+          </Reference>
+          <Reference Include="Unity.Timeline" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\Unity.Timeline.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.AIModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.AIModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.AnimationModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.AnimationModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.AudioModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.AudioModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.CoreModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.CoreModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.CrashReportingModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.CrashReportingModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.DirectorModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.DirectorModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.GridModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.GridModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.ImageConversionModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.ImageConversionModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.IMGUIModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.IMGUIModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.InputLegacyModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.InputLegacyModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.JSONSerializeModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.JSONSerializeModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.ParticleSystemModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.ParticleSystemModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.Physics2DModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.Physics2DModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.PhysicsModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.PhysicsModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.ScreenCaptureModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.ScreenCaptureModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.SharedInternalsModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.SharedInternalsModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.SpriteMaskModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.SpriteMaskModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.SpriteShapeModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.SpriteShapeModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.TerrainModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.TerrainModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.TextRenderingModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.TextRenderingModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.TilemapModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.TilemapModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UI" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.UI.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UIElementsModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.UIElementsModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UIModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.UIModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UnityAnalyticsModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.UnityWebRequestModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.UnityWebRequestModule.dll</HintPath>
+          </Reference>
+          <Reference Include="UnityEngine.VideoModule" Condition=" '$(Configuration)' == 'Steam' ">
+            <HintPath>libs\Steam\UnityEngine.VideoModule.dll</HintPath>
+          </Reference>
+        </ItemGroup>    
+
 </Project>

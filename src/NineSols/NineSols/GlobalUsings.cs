@@ -12,7 +12,7 @@ global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using HarmonyLib;
 global using MonoMod.Utils;
-global using NineSols.WindowsAPI;
+
 global using TMPro;
 global using UnityEngine;
 global using UnityEngine.SceneManagement;

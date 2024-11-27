@@ -14,5 +14,10 @@ public static class Utils
 
         return originalRate;
     }
+    
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
+    {
+        resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
+    }
 
 }
