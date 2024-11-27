@@ -6,6 +6,7 @@ public class Plugin : BasePlugin
     private const string PluginGuid = "p1xel8ted.ruinedking.ultrawide";
     private const string PluginName = "Ruined King Ultra-Wide";
     private const string PluginVersion = "0.1.2";
+    private const float NativeAspect = 16f / 9f; //16:9)
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -56,7 +57,6 @@ public class Plugin : BasePlugin
     }
 
     internal static float PositiveScaleFactor => MainAspect / NativeAspect; //0.6944444444444444
-    private const float NativeAspect = 16f / 9f; //16:9)
     internal static float MainAspect => MainWidth / (float)MainHeight; //2.388888888888889
     internal static ManualLogSource Logger { get; private set; }
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
@@ -83,20 +83,6 @@ public class Plugin : BasePlugin
 
     private static GameObject PillarBoxes => GameObject.Find("GlobalCommonUI/Canvas_priority/WideScreenProtection");
 
-
-    internal static void EnablePillarboxes()
-    {
-        if (RemoveAllPillarboxes.Value) return;
-        PillarBoxes.SetActive(true);
-        Canvas.ForceUpdateCanvases();
-    }
-
-    internal static void DisablePillarboxes()
-    {
-        PillarBoxes.SetActive(false);
-        Canvas.ForceUpdateCanvases();
-    }
-
     internal static ConfigEntry<Misc.PlatformHelper.Platform> ConfigPlatform { get; private set; }
 
     private static ConfigEntry<string> VSyncSetting { get; set; }
@@ -117,6 +103,24 @@ public class Plugin : BasePlugin
     }
 
     private static ConfigEntry<int> TargetFramerate { get; set; }
+
+    internal static ConfigEntry<bool> SkipIntroCinematic { get; private set; }
+
+    private static bool RequiresUpdate { get; set; }
+
+
+    internal static void EnablePillarboxes()
+    {
+        if (RemoveAllPillarboxes.Value) return;
+        PillarBoxes.SetActive(true);
+        Canvas.ForceUpdateCanvases();
+    }
+
+    internal static void DisablePillarboxes()
+    {
+        PillarBoxes.SetActive(false);
+        Canvas.ForceUpdateCanvases();
+    }
 
     private static int[] MergeUnityRefreshRates()
     {
@@ -142,8 +146,6 @@ public class Plugin : BasePlugin
         var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
         return finalList;
     }
-
-    internal static ConfigEntry<bool> SkipIntroCinematic { get; private set; }
 
     public override void Load()
     {
@@ -312,8 +314,6 @@ public class Plugin : BasePlugin
         Logger.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
         RequiresUpdate = false;
     }
-
-    private static bool RequiresUpdate { get; set; }
 
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

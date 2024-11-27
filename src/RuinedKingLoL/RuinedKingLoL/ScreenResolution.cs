@@ -4,6 +4,7 @@ namespace RuinedKingLoL;
 public static class ScreenResolution
 {
     private static Resolution ChosenResolution => Plugin.SelectedResolution;
+    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(bool), typeof(int))]
     public static void Screen_SetResolution_One(ref int width, ref int height, ref bool fullscreen, ref int preferredRefreshRate)
@@ -42,4 +43,6 @@ public static class ScreenResolution
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
         preferredRefreshRate = Plugin.RefreshRate;
     }
+    
+    
 }
