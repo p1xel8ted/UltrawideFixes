@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.ruinedking.ultrawide";
     private const string PluginName = "Ruined King Ultra-Wide";
-    private const string PluginVersion = "0.1.2";
+    private const string PluginVersion = "0.1.3";
     private const float NativeAspect = 16f / 9f; //16:9)
 
     private static readonly int[] CustomRefreshRates =
@@ -62,6 +62,8 @@ public class Plugin : BasePlugin
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
     internal static ConfigEntry<bool> CinematicLetterboxing { get; private set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
+
+    internal static ConfigEntry<float> MoveSpeedMultiplier { get; private set; }
     internal static int MainWidth => Display.main.systemWidth; //3440
     private static ConfigEntry<bool> RemoveAllPillarboxes { get; set; }
     internal static int MainHeight => Display.main.systemHeight; //1440
@@ -83,7 +85,7 @@ public class Plugin : BasePlugin
 
     private static GameObject PillarBoxes => GameObject.Find("GlobalCommonUI/Canvas_priority/WideScreenProtection");
 
-    internal static ConfigEntry<Misc.PlatformHelper.Platform> ConfigPlatform { get; private set; }
+    internal static ConfigEntry<PlatformHelper.Platform> ConfigPlatform { get; private set; }
 
     private static ConfigEntry<string> VSyncSetting { get; set; }
 
@@ -249,7 +251,7 @@ public class Plugin : BasePlugin
                 new ConfigurationManagerAttributes { Order = 90 }));
         RemoveAllPillarboxes.SettingChanged += (_, _) => UpdateAll();
 
-        ConfigPlatform = Config.Bind("03. UI", "Platform", Misc.PlatformHelper.Platform.Xbox,
+        ConfigPlatform = Config.Bind("03. UI", "Platform", PlatformHelper.Platform.Xbox,
             new ConfigDescription(
                 "Force the game to display button prompts for a specific platform:\n" +
                 "- Xbox: Displays Xbox-style button prompts (e.g., A, B, X, Y). Leave it set to Xbox to disable forced prompts and allow automatic detection.\n" +
@@ -259,10 +261,27 @@ public class Plugin : BasePlugin
                 null,
                 new ConfigurationManagerAttributes { Order = 89 }));
 
+        MoveSpeedMultiplier = Config.Bind("04. Gameplay", "Run Speed Multiplier", 1f,
+            new ConfigDescription(
+                "Adjust the speed at which characters move when running. Increase this value to move faster or decrease it to move slower.",
+                new AcceptableValueRange<float>(0.25f, 5f),
+                new ConfigurationManagerAttributes { Order = 88 }));
+        
+        MoveSpeedMultiplier.SettingChanged += (_, _) =>
+        {
+            //0.25 increments
+            MoveSpeedMultiplier.Value = (float)Math.Round(MoveSpeedMultiplier.Value * 4) / 4;
+            
+            if (Patches.Patches.DungeonPlayer)
+            {
+                Patches.Patches.DungeonPlayer.moveSpeedScaling = MoveSpeedMultiplier.Value;
+            }
+        };
+
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
 
         RequiresUpdate = true;
-        
+
         UpdateAll();
 
         Logger.LogInfo($"Plugin {PluginName} is loaded!");
@@ -309,7 +328,7 @@ public class Plugin : BasePlugin
 
 
         if (!RequiresUpdate) return;
-        
+
         Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
         Logger.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
         RequiresUpdate = false;

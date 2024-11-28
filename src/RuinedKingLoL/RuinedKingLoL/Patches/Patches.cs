@@ -5,6 +5,22 @@ public static class Patches
 {
     private static readonly string[] ScaleTheseBackground = ["backgroundElements", "statBGDark", "statBGDark (1)", "statBGDark (2)"];
 
+    private static DungeonPlayer _dungeonPlayer;
+
+    internal static DungeonPlayer DungeonPlayer
+    {
+        get
+        {
+            if (!_dungeonPlayer)
+            {
+                _dungeonPlayer = Object.FindObjectOfType<DungeonPlayer>();
+            }
+
+            return _dungeonPlayer;
+        }
+        private set => _dungeonPlayer = value;
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DungeonCombatUI), nameof(DungeonCombatUI.OnEnable))]
     public static void DungeonCombatUI_OnEnable(DungeonCombatUI __instance)
@@ -35,14 +51,14 @@ public static class Patches
             return;
         }
 
-        if (Plugin.ConfigPlatform.Value is Misc.PlatformHelper.Platform.Xbox)
+        if (Plugin.ConfigPlatform.Value is PlatformHelper.Platform.Xbox)
         {
             __instance.transform.localScale = Vector3.one;
             return;
         }
 
         // Get the appropriate sprite based on the current platform
-        var replacementSprite = Misc.PlatformHelper.GetPlatformSprite(value.name);
+        var replacementSprite = PlatformHelper.GetPlatformSprite(value.name);
 
         if (replacementSprite)
         {
@@ -162,6 +178,22 @@ public static class Patches
                 bg.gameObject.TryAddComponent<ScaleForcer>();
             }
         }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.Update))]
+    public static void DungeonPlayer_Update(DungeonPlayer __instance)
+    {
+        DungeonPlayer = __instance;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(DungeonPlayer.OnEnable))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(DungeonPlayer.Start))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(DungeonPlayer.ResetSpeedScaling))]
+    public static void DungeonPlayer_OnEnable(DungeonPlayer __instance)
+    {
+        __instance.moveSpeedScaling = Plugin.MoveSpeedMultiplier.Value;
     }
 
 
