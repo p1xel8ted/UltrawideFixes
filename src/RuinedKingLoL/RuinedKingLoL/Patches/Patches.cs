@@ -188,9 +188,13 @@ public static class Patches
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(DungeonPlayer), nameof(DungeonPlayer.OnEnable))]
-    [HarmonyPatch(typeof(DungeonPlayer), nameof(DungeonPlayer.Start))]
-    [HarmonyPatch(typeof(DungeonPlayer), nameof(DungeonPlayer.ResetSpeedScaling))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.OnEnable))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.Start))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.ResetSpeedScaling))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.OnPartyChanged))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.ResetFighter))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.SetFighter))]
+    [HarmonyPatch(typeof(DungeonPlayer), nameof(global::DungeonPlayer.SpawnFighter))]
     public static void DungeonPlayer_OnEnable(DungeonPlayer __instance)
     {
         __instance.moveSpeedScaling = Plugin.MoveSpeedMultiplier.Value;
