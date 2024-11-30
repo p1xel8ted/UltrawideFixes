@@ -88,13 +88,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C (2)</summary>
+<details><summary>C (3)</summary>
 
 ## [Cat Quest (1)](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CatQuest1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CatQuest1/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/a1d0200a-55a7-4120-b88e-9d639046c453)
-![main_game](https://github.com/user-attachments/assets/76f6a3d0-a7ac-4433-8cbd-63bf4d3e2379)
+![main_menu](https://github.com/user-attachments/assets/a1d0200a-55a7-4120-b88e-9d639046c453) ![main_game](https://github.com/user-attachments/assets/76f6a3d0-a7ac-4433-8cbd-63bf4d3e2379)
+
+## [CONVERGENCE: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ConvergenceLoL)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ConvergenceLoL/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/a4c1f586-55db-401c-a4f8-5fc5a8c24e8b) ![main_game_span](https://github.com/user-attachments/assets/35ee0fd1-ed47-4025-af0f-90158facd99f)
 
 ## [Crow Country](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CrowCountry)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CrowCountry/total?label=downloads&style=for-the-badge)
