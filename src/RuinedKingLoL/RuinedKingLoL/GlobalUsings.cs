@@ -3,6 +3,7 @@
 global using System.Reflection;
 global using Airship;
 global using AirshipCamera;
+global using AirshipUI;
 global using BepInEx;
 global using BepInEx.Configuration;
 global using BepInEx.Logging;
@@ -13,6 +14,7 @@ global using RuinedKingLoL.Misc;
 global using RuinedKingLoL.MonoBehaviours;
 global using UnityEngine;
 global using UnityEngine.Events;
+global using UnityEngine.Rendering;
 global using UnityEngine.Rendering.Universal;
 global using UnityEngine.SceneManagement;
 global using UnityEngine.UI;

@@ -20,7 +20,7 @@ public class AspectEnforcer : MonoBehaviour
         {
             if (_cameraResRetarget.bCameraResRetargetEnabled)
             {
-                _cameraResRetarget.selfCamera.pixelRect = new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight);
+                _cameraResRetarget.selfCamera.pixelRect = new Rect(0, 0, Plugin.SelectedResolution.width, Plugin.MainHeight);
             }
         }
     }

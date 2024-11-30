@@ -6,6 +6,7 @@ public static class Patches
     private static readonly string[] ScaleTheseBackground = ["backgroundElements", "statBGDark", "statBGDark (1)", "statBGDark (2)"];
     private static DungeonPlayer _dungeonPlayer;
     private static readonly string[] SkippableScenes = ["Video/cinematic_cg_intro.mp4"];
+    private static readonly Dictionary<string, float> OriginalFoV = new();
 
     internal static DungeonPlayer DungeonPlayer
     {
@@ -30,7 +31,115 @@ public static class Patches
         {
             Object.Destroy(vig.gameObject);
         }
+
+        __instance.SetVisibility(!Plugin.HideHudOnStartup.Value);
     }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(DungeonCombatUI), nameof(DungeonCombatUI.Update))]
+    public static void DungeonCombatUI_Update(DungeonCombatUI __instance)
+    {
+        if (Input.GetKeyUp(Plugin.HudToggleKeybind.Value))
+        {
+            __instance.SetVisibility(!__instance.isShown);
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(InitialLoadingScreen), nameof(InitialLoadingScreen.Update))]
+    public static void InitialLoadingScreen_Start(InitialLoadingScreen __instance)
+    {
+        Plugin.DisablePillarboxes();
+
+        if (__instance.timer.elapsedSeconds > 6f)
+        {
+            Plugin.EnablePillarboxes();
+        }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.DoVisualTransition))]
+    public static void MainMenu_DoVisualTransition(ref MainMenu.MainMenuState previousState)
+    {
+        Plugin.EnablePillarboxes();
+
+        if (previousState == MainMenu.MainMenuState.Exiting)
+        {
+            Plugin.DisablePillarboxes();
+        }
+    }
+
+    internal static void UpdateDungeonCamera()
+    {
+        var dungeonCamera = Resources.FindObjectsOfTypeAll<DungeonCamera>();
+        foreach (var dc in dungeonCamera)
+        {
+            if (dc && dc.selfCamera)
+            {
+                UpdateDungeonCamera(dc);
+            }
+        }
+    }
+
+    private static void UpdateDungeonCamera(DungeonCamera dc)
+    {
+        if (!dc.selfCamera) return;
+
+        var path = dc.gameObject.GetPath();
+        if (!OriginalFoV.TryGetValue(path, out var originalFoV))
+        {
+            OriginalFoV.Add(path, dc.selfCamera.fieldOfView);
+            originalFoV = dc.selfCamera.fieldOfView;
+        }
+
+        var newFov = originalFoV * Plugin.FieldOfViewMultiplier.Value;
+        dc.selfCamera.fieldOfView = newFov;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Volume), nameof(Volume.OnEnable))]
+    public static void Volume_OnEnable(Volume __instance)
+    {
+        var caFound = __instance.profile.TryGet(out ChromaticAberration chromaticAberration);
+        if (caFound)
+        {
+            chromaticAberration.active = Plugin.ChromaticAberration.Value;
+        }
+
+        var vigFound = __instance.profile.TryGet(out Vignette vignette);
+        if (vigFound)
+        {
+            vignette.active = Plugin.Vignette.Value;
+        }
+
+        var dofFound = __instance.profile.TryGet(out DepthOfField depthOfField);
+        if (dofFound)
+        {
+            depthOfField.active = Plugin.DepthOfField.Value;
+        }
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(DungeonCamera), nameof(DungeonCamera.OnEnable))]
+    public static void DungeonCamera_OnEnable(DungeonCamera __instance)
+    {
+        UpdateDungeonCamera(__instance);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(FishingUI), nameof(FishingUI.Show))]
+    [HarmonyPatch(typeof(FishingUI), nameof(FishingUI.OnEnable))]
+    public static void FishingUI_OnEnable(FishingUI __instance)
+    {
+        Plugin.DisablePillarboxes();
+        var details = __instance.transform.FindChild("Canvas/BGDetails (2)");
+        if (details)
+        {
+            details.gameObject.SetActive(false);
+        }
+    }
+
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Image), "set_sprite")]
@@ -110,6 +219,8 @@ public static class Patches
     {
         __instance.selfCamera.pixelRect = new Rect(0, 0, Plugin.MainWidth, Plugin.MainHeight);
         __instance.gameObject.TryAddComponent<AspectEnforcer>();
+        __instance.m_targetRes = new Vector2(Plugin.MainWidth * 2, Plugin.MainHeight * 2);
+        __instance.bCameraResRetargetEnabled = true;
     }
 
     [HarmonyPostfix]
@@ -128,9 +239,9 @@ public static class Patches
         __instance.m_skippable = true;
 
         Plugin.Logger.LogInfo($"Checking if we should skip '{__instance.m_currentPath}'");
-        
+
         var path = __instance.m_currentPath;
-        if(SkippableScenes.Contains(path) && Plugin.SkipIntroCinematic.Value)
+        if (SkippableScenes.Contains(path) && Plugin.SkipIntroCinematic.Value)
         {
             Plugin.Logger.LogMessage($"Skipping '{path}'");
             __instance.Skip();
@@ -181,6 +292,15 @@ public static class Patches
                 bg.gameObject.TryAddComponent<ScaleForcer>();
             }
         }
+
+        if (__instance.name == "Canvas_mapViewer")
+        {
+            var bg = __instance.transform.FindChild("UIroot_dungeonMap/BGELements");
+            if (bg)
+            {
+                bg.transform.localScale = bg.transform.localScale with { x = Plugin.PositiveScaleFactor };
+            }
+        }
     }
 
     [HarmonyPostfix]
@@ -203,36 +323,50 @@ public static class Patches
         __instance.moveSpeedScaling = Plugin.MoveSpeedMultiplier.Value;
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CharacterScreenUI), nameof(CharacterScreenUI.ShowPage))]
+    [HarmonyPatch(typeof(CharacterScreenUI), nameof(CharacterScreenUI.Show))]
+    [HarmonyPatch(typeof(CraftingUI_Casper), nameof(CraftingUI_Casper.Show))]
+    public static void CharacterScreenUI_ShowPage()
+    {
+        Plugin.EnablePillarboxes();
+    }
+
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CharacterScreenUI), nameof(CharacterScreenUI.OnBackPressed))]
+    [HarmonyPatch(typeof(CharacterScreenUI), nameof(CharacterScreenUI.OnBackClicked))]
+    [HarmonyPatch(typeof(CraftingUI_Casper), nameof(CraftingUI_Casper.CloseMenu))]
+    public static void CharacterScreenUI_OnLeftClick()
+    {
+        Plugin.DisablePillarboxes();
+    }
+
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PauseMenuUI), nameof(PauseMenuUI.OnBackPressed))]
+    public static void PauseMenuUI_OnBackPressed()
+    {
+        Plugin.DisablePillarboxes();
+    }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(AirshipButton), nameof(AirshipButton.OnLeftClick))]
-    public static void AirshipButton_OnLeftClick(AirshipButton __instance)
+    [HarmonyPatch(typeof(UserGuideUI), nameof(UserGuideUI.ShowPage))]
+    [HarmonyPatch(typeof(UserGuideCombatUI), nameof(UserGuideCombatUI.SetPage))]
+    [HarmonyPatch(typeof(UserGuideCombatUI), nameof(UserGuideCombatUI.Awake))]
+    public static void UserGuideUI_SetPage()
     {
-        if (__instance.name == "clickableInputPrompt_LeftAligned")
-        {
-            var path = __instance.gameObject.GetPath();
-            if (path.Contains("UI_Casper_CharacterScreen") || path.Contains("UI_Casper_Crafting"))
-            {
-                Plugin.DisablePillarboxes();
-            }
-        }
+        Plugin.EnablePillarboxes();
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(PageNavigationController), nameof(PageNavigationController.SetPage))]
-    public static void PageNavigationController_SetPage(int newPageIndex)
+    [HarmonyPatch(typeof(UserGuideUI), nameof(UserGuideUI.OnBackPressed))]
+    [HarmonyPatch(typeof(UserGuideCombatUI), nameof(UserGuideCombatUI.OnBackPressed))]
+    public static void UserGuideUI_OnBackPressed()
     {
-        if (SceneManager.GetActiveScene().name.Contains("MainMenu")) return;
-
-        if (newPageIndex == -1)
-        {
-            Plugin.DisablePillarboxes();
-        }
-        else
-        {
-            Plugin.EnablePillarboxes();
-        }
+        Plugin.DisablePillarboxes();
     }
+
 
     internal static void QualitySettings_Postfix()
     {

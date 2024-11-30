@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.ruinedking.ultrawide";
     private const string PluginName = "Ruined King Ultra-Wide";
-    private const string PluginVersion = "0.1.5";
+    private const string PluginVersion = "0.1.6";
     private const float NativeAspect = 16f / 9f; //16:9)
 
     private static readonly int[] CustomRefreshRates =
@@ -29,9 +29,9 @@ public class Plugin : BasePlugin
     ];
 
 
-    private static readonly string[] UpdateExtendingRectsBlacklist = ["Loading", "UI_Casper_PauseMenu", "UI_Casper_MainMenu", "WideScreenProtection", "UI_Casper_CharacterScreen", "UI_Casper_Crafting"];
+    private static readonly string[] UpdateExtendingRectsBlacklist = ["Loading", "UI_Casper_PauseMenu", "UI_Casper_MainMenu", "WideScreenProtection", "UI_Casper_CharacterScreen", "UI_Casper_Crafting", "UI_Casper_VendorScreen"];
 
-    private static readonly string[] EnablePillarboxing = ["Loading", "UI_Casper_MainMenu", "Empty utility stub (see CasperApplication.cs)"];
+    //private static readonly string[] EnablePillarboxing = ["Loading", "UI_Casper_MainMenu", "Empty utility stub (see CasperApplication.cs)"];
 
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
@@ -64,11 +64,11 @@ public class Plugin : BasePlugin
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
 
     internal static ConfigEntry<float> MoveSpeedMultiplier { get; private set; }
-    internal static int MainWidth => Display.main.systemWidth; //3440
+    internal static int MainWidth => SelectedResolution.width; //3440
     private static ConfigEntry<bool> RemoveAllPillarboxes { get; set; }
-    internal static int MainHeight => Display.main.systemHeight; //1440
+    internal static int MainHeight => SelectedResolution.height; //1440
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
-
+    internal static ConfigEntry<KeyCode> HudToggleKeybind { get; private set; } 
     private static List<string> HUDAspects { get; } =
     [
         "16:9",
@@ -95,6 +95,8 @@ public class Plugin : BasePlugin
     {
         get
         {
+            if (Resolution == null) return new Resolution { width = Display.main.systemWidth, height = Display.main.systemHeight };
+
             var res = Resolution.Value.Split('x');
             return new Resolution
             {
@@ -110,16 +112,28 @@ public class Plugin : BasePlugin
 
     private static bool RequiresUpdate { get; set; }
 
+    internal static ConfigEntry<float> FieldOfViewMultiplier { get; private set; }
+    public static ConfigEntry<bool> ChromaticAberration { get; private set; }
+    public static ConfigEntry<bool> Vignette { get; private set; }
+    public static ConfigEntry<bool> DepthOfField { get; private set; }
+    
+    internal static ConfigEntry<bool> HideHudOnStartup { get; private set; }
+
 
     internal static void EnablePillarboxes()
     {
         if (RemoveAllPillarboxes.Value) return;
+
+        if (!PillarBoxes) return;
+
         PillarBoxes.SetActive(true);
         Canvas.ForceUpdateCanvases();
     }
 
     internal static void DisablePillarboxes()
     {
+        if (!PillarBoxes) return;
+
         PillarBoxes.SetActive(false);
         Canvas.ForceUpdateCanvases();
     }
@@ -266,18 +280,62 @@ public class Plugin : BasePlugin
                 "Adjust the speed at which characters move when running. Increase this value to move faster or decrease it to move slower.",
                 new AcceptableValueRange<float>(0.25f, 5f),
                 new ConfigurationManagerAttributes { Order = 88 }));
-        
+
         MoveSpeedMultiplier.SettingChanged += (_, _) =>
         {
             //0.25 increments
             MoveSpeedMultiplier.Value = (float)Math.Round(MoveSpeedMultiplier.Value * 4) / 4;
-            
+
             if (Patches.Patches.DungeonPlayer)
             {
                 Patches.Patches.DungeonPlayer.moveSpeedScaling = MoveSpeedMultiplier.Value;
             }
         };
+        FieldOfViewMultiplier = Config.Bind("04. Gameplay", "Field of View Multiplier", 1f,
+            new ConfigDescription(
+                "Adjust the field of view (FOV) for the game. Increase this value to see more of the game world or decrease it to zoom in.",
+                new AcceptableValueRange<float>(0.25f, 2f),
+                new ConfigurationManagerAttributes { Order = 87 }));
+        FieldOfViewMultiplier.SettingChanged += (_, _) =>
+        {
+            //0.25 increments
+            FieldOfViewMultiplier.Value = (float)Math.Round(FieldOfViewMultiplier.Value * 4) / 4;
+            Patches.Patches.UpdateDungeonCamera();
+        };
 
+        HudToggleKeybind = Config.Bind("05. HUD", "HUD Toggle Keybind", KeyCode.F1,
+            new ConfigDescription(
+                "Press this key to toggle the visibility of the game's user interface (UI).",
+                null,
+                new ConfigurationManagerAttributes { Order = 86 }));
+        
+        HideHudOnStartup = Config.Bind("05. HUD", "Hide HUD on Startup", false,
+            new ConfigDescription(
+                "Hide the game's user interface (UI) when starting the game. Press the HUD toggle keybind to show the UI.",
+                null,
+                new ConfigurationManagerAttributes { Order = 85 }));
+        
+        ChromaticAberration = Config.Bind("06. Visuals", "Chromatic Aberration", true,
+            new ConfigDescription(
+                "Enable or disable the chromatic aberration effect. Chromatic aberration causes color fringing at the edges of the screen.",
+                null,
+                new ConfigurationManagerAttributes { Order = 86 }));
+        ChromaticAberration.SettingChanged += (_, _) => UpdateAll();
+        
+        Vignette = Config.Bind("06. Visuals", "Vignette", true,
+            new ConfigDescription(
+                "Enable or disable the vignette effect. Vignette darkens the edges of the screen to draw focus to the center.",
+                null,
+                new ConfigurationManagerAttributes { Order = 85 }));
+        Vignette.SettingChanged += (_, _) => UpdateAll();
+        
+        DepthOfField = Config.Bind("06. Visuals", "Depth of Field", true,
+            new ConfigDescription(
+                "Enable or disable the depth of field effect. Depth of field blurs objects that are not in focus.",
+                null,
+                new ConfigurationManagerAttributes { Order = 84 }));
+        DepthOfField.SettingChanged += (_, _) => UpdateAll();
+        
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
 
         RequiresUpdate = true;
@@ -288,7 +346,6 @@ public class Plugin : BasePlugin
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
     }
-
 
     private static void UpdateQuality()
     {
@@ -306,8 +363,20 @@ public class Plugin : BasePlugin
         UpdateQuality();
         UpdateDisplay();
         UpdateExtendingRects();
-        UpdatePillars();
         UpdateCameras();
+        UpdateVolumes();
+    }
+    
+    private static void UpdateVolumes()
+    {
+        var volumes = Resources.FindObjectsOfTypeAll<Volume>();
+        foreach (var volume in volumes)
+        {
+            if (volume)
+            {
+                Patches.Patches.Volume_OnEnable(volume);
+            }
+        }
     }
 
     private static void UpdateDisplay()
@@ -346,14 +415,26 @@ public class Plugin : BasePlugin
             camera.aspect = MainAspect;
             camera.rect = new Rect(0, 0, 1, 1);
             camera.pixelRect = new Rect(0, 0, MainWidth, MainHeight);
+
+            var extraData = camera.GetUniversalAdditionalCameraData();
+            if (extraData)
+            {
+                extraData.renderPostProcessing = true;
+                extraData.renderShadows = true;
+                extraData.antialiasing = AntialiasingMode.SubpixelMorphologicalAntiAliasing;
+                extraData.antialiasingQuality = AntialiasingQuality.High;
+                extraData.dithering = true;
+            }
         }
     }
-
+    
     private static void UpdateExtendingRects()
     {
         var rects = Resources.FindObjectsOfTypeAll<ExpandingRectTransform>();
         foreach (var rect in rects)
         {
+            if (!rect) continue;
+
             var path = rect.gameObject.GetPath();
 
             if (UpdateExtendingRectsBlacklist.Any(a => path.Contains(a))) continue;
@@ -365,19 +446,5 @@ public class Plugin : BasePlugin
             rect.Refresh();
             rect.enabled = true;
         }
-    }
-
-    private static void UpdatePillars()
-    {
-        if (!PillarBoxes) return;
-
-        if (RemoveAllPillarboxes.Value)
-        {
-            PillarBoxes.SetActive(false);
-            return;
-        }
-
-        var activeScene = SceneManager.GetActiveScene().name;
-        PillarBoxes.SetActive(EnablePillarboxing.Contains(activeScene));
     }
 }
