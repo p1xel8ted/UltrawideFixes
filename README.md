@@ -225,7 +225,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="L"/>
-<details><summary>L (6)</summary>
+<details><summary>L (7)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LaikaAgedThroughBlood/total?label=downloads&style=for-the-badge)
@@ -251,6 +251,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LittleGoodyTwoShoes/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/43045c73-4139-43c3-9e93-3cdcec00ae76) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/79b87d95-cfe7-4b22-83f2-d6df28ce72f1)
+
+## [Loco Motive](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LocoMotive)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LocoMotive/total?label=downloads&style=for-the-badge)
+
+![main_menu1](https://github.com/user-attachments/assets/0d516321-1275-4cd5-817c-c93c518b2164) ![main_game2](https://github.com/user-attachments/assets/9076310a-1ba6-4467-951d-f65f54b8b9b3)
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
