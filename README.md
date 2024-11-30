@@ -214,7 +214,6 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_menu](https://github.com/user-attachments/assets/fe6c1b81-0f9e-41e5-b9b1-9b432f711b6d) ![main_game_con](https://github.com/user-attachments/assets/c9f98b37-8afe-4a48-820d-125a437896e8)
 
-
 ## [Klonoa Phantasy Reverie Series](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KlonoaPRS)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KlonoaPRS/total?label=downloads&style=for-the-badge)
 
@@ -345,7 +344,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Ruined King: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RuinedKing)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RuinedKing/total?label=downloads&style=for-the-badge)
 
-![main_menu_pillar](https://github.com/user-attachments/assets/684807ab-8eb9-460b-88c8-f64b7d6a2df3) ![main_game_con](https://github.com/user-attachments/assets/9b84d898-2887-4722-9bd2-626ce4ee4b6a)
+![main_menu_clean](https://github.com/user-attachments/assets/54d85d30-77fe-4497-8276-5da6f3d1e340) ![main_hud_hide](https://github.com/user-attachments/assets/875aa5c5-a65b-4fab-abc9-4ad1141eb85b)
 
 </details>
 <div id="S"/>
