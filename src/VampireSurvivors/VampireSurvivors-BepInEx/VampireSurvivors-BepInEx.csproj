@@ -1,0 +1,158 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Product>Vampire Survivors Ultra-Wide (BepInEx)</Product>
+        <Version>0.2.1</Version>
+        <AssemblyName>Vampire Survivors Ultra-Wide (BepInEx)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+		        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>portable</DebugType>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefineConstants>TRACE;BepInEx</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\plugins</OutputPath>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefineConstants>TRACE;BepInEx</DefineConstants>
+    </PropertyGroup>
+
+    <Import Project="../zip.target"/>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Remove="obj\**" />
+      <Compile Remove="obj\Release\**" />
+      <Compile Include="..\Shared\Patches.cs">
+        <Link>Patches.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+      <EmbeddedResource Remove="obj\Release\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+      <None Remove="obj\Release\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Doozy">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Doozy.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="PauseSystem">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\PauseSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="PhaserPort">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\PhaserPort.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="VampireSurvivors.Runtime">
+        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\VampireSurvivors.Runtime.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>

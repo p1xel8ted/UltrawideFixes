@@ -4,8 +4,8 @@ namespace RuinedKingLoL.Patches;
 public static class Patches
 {
     private static readonly string[] ScaleTheseBackground = ["backgroundElements", "statBGDark", "statBGDark (1)", "statBGDark (2)"];
-
     private static DungeonPlayer _dungeonPlayer;
+    private static readonly string[] SkippableScenes = ["Video/cinematic_cg_intro.mp4"];
 
     internal static DungeonPlayer DungeonPlayer
     {
@@ -120,7 +120,6 @@ public static class Patches
         __instance.logoVideoFilepaths.Clear();
     }
 
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MoviePlayer), nameof(MoviePlayer.Play))]
     public static void MoviePlayer_OnEnable(MoviePlayer __instance)
@@ -128,8 +127,12 @@ public static class Patches
         __instance.m_instantSkip = true;
         __instance.m_skippable = true;
 
-        if (Plugin.SkipIntroCinematic.Value)
+        Plugin.Logger.LogInfo($"Checking if we should skip '{__instance.m_currentPath}'");
+        
+        var path = __instance.m_currentPath;
+        if(SkippableScenes.Contains(path) && Plugin.SkipIntroCinematic.Value)
         {
+            Plugin.Logger.LogMessage($"Skipping '{path}'");
             __instance.Skip();
         }
     }

@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.ruinedking.ultrawide";
     private const string PluginName = "Ruined King Ultra-Wide";
-    private const string PluginVersion = "0.1.4";
+    private const string PluginVersion = "0.1.5";
     private const float NativeAspect = 16f / 9f; //16:9)
 
     private static readonly int[] CustomRefreshRates =

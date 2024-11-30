@@ -1,10 +1,10 @@
-﻿namespace Mouthwashing;
+namespace LocoMotive;
 
 [Harmony]
 public static class ScreenResolution
 {
     private static Resolution ChosenResolution => Plugin.SelectedResolution;
-
+    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(bool), typeof(int))]
     public static void Screen_SetResolution_One(ref int width, ref int height, ref bool fullscreen, ref int preferredRefreshRate)
@@ -34,23 +34,8 @@ public static class ScreenResolution
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(FullScreenMode), typeof(RefreshRate))]
-    public static void Screen_SetResolution_Four(ref int width, ref int height, ref FullScreenMode fullscreenMode, ref RefreshRate preferredRefreshRate)
-    {
-        width = ChosenResolution.width;
-        height = ChosenResolution.height;
-        fullscreenMode = Plugin.FullScreenModeConfig.Value;
-        var rr = new RefreshRate
-        {
-            denominator = 1,
-            numerator = (uint)Plugin.RefreshRate
-        };
-        preferredRefreshRate = rr;
-    }
-
-    [HarmonyPrefix]
     [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(FullScreenMode), typeof(int))]
-    public static void Screen_SetResolution_Five(ref int width, ref int height, ref FullScreenMode fullscreenMode, ref int preferredRefreshRate)
+    public static void Screen_SetResolution_Four(ref int width, ref int height, ref FullScreenMode fullscreenMode, ref int preferredRefreshRate)
     {
         width = ChosenResolution.width;
         height = ChosenResolution.height;

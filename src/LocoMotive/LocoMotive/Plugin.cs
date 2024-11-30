@@ -1,14 +1,13 @@
-﻿using UnityEngine.Experimental.Rendering.Universal;
-using Object = UnityEngine.Object;
+﻿namespace LocoMotive;
 
-namespace Mouthwashing;
-
-[Harmony]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+[BepInDependency("com.bepis.bepinex.configurationmanager", "99.0")]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.mouthwashing.ultrawide";
-    private const string PluginName = "Mouthwashing Ultra-Wide";
+    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
+
+    private const string PluginGuid = "p1xel8ted.locomotive.uwfixes";
+    private const string PluginName = "Loco Motive Ultra-Wide";
     private const string PluginVersion = "0.1.0";
 
     private static readonly int[] CustomRefreshRates =
@@ -31,34 +30,27 @@ public class Plugin : BaseUnityPlugin
         480 // Uncommon
     ];
 
-    internal static RefreshRate RefreshRateRatio => new()
-    {
-        denominator = 1,
-        numerator = (uint)RefreshRate
-    };
-
     internal static int RefreshRate
     {
         get
         {
             if (UseCustomRefreshRate != null && CustomRefreshRate != null)
             {
-                return Mathf.RoundToInt(UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh);
+                return UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh;
             }
 
-            return Mathf.RoundToInt(MaxRefresh);
+            return MaxRefresh;
         }
     }
 
-    internal static ManualLogSource Log { get; set; }
-
-    private static int MaxRefresh => Screen.resolutions.Max(a => Mathf.RoundToInt((float)a.refreshRateRatio.value));
+    internal static ManualLogSource Log { get; private set; }
+    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     internal static float PositiveScaleFactor => MainAspect / NativeAspect;
     private const float NativeAspect = 16f / 9f;
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    private static int MainWidth => Display.main.systemWidth; //3440
-    private static int MainHeight => Display.main.systemHeight; //1440
+    private static int MainWidth => SelectedResolution.width;
+    private static int MainHeight => SelectedResolution.height;
     internal static float MainAspect => (float)MainWidth / MainHeight;
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
     private static ConfigEntry<int> TargetFramerate { get; set; }
@@ -71,19 +63,29 @@ public class Plugin : BaseUnityPlugin
         { "Enabled (Every 2nd Refresh)", 2 }
     };
 
-
     private static ConfigEntry<string> Resolution { get; set; }
 
     internal static Resolution SelectedResolution
     {
         get
         {
-            var res = Resolution.Value.Split('x');
-            return new Resolution
+            if (Resolution != null)
             {
-                width = int.Parse(res[0]),
-                height = int.Parse(res[1])
+                var res = Resolution.Value.Split('x');
+                return new Resolution
+                {
+                    width = int.Parse(res[0]),
+                    height = int.Parse(res[1])
+                };
+            }
+
+            var mainRes = new Resolution
+            {
+                width = Display.main.systemWidth,
+                height = Display.main.systemHeight,
+                refreshRate = MaxRefresh
             };
+            return mainRes;
         }
     }
 
@@ -93,7 +95,7 @@ public class Plugin : BaseUnityPlugin
         {
             width = MainWidth,
             height = MainHeight,
-            refreshRate = RefreshRate
+            refreshRate = MaxRefresh
         };
         var resList = new List<Resolution> { mainRes };
         resList.AddRange(Screen.resolutions);
@@ -110,7 +112,7 @@ public class Plugin : BaseUnityPlugin
         var customRates = MergeUnityRefreshRates();
 
         Log = Logger;
-
+        
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(
                 "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
@@ -181,7 +183,6 @@ public class Plugin : BaseUnityPlugin
         TargetFramerate.SettingChanged += (_, _) => UpdateAll();
 
         SceneManager.sceneLoaded += OnSceneLoaded;
-        // Application.focusChanged += FocusChanged;
 
         RequiresUpdate = true;
 
@@ -191,87 +192,12 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
-    internal static Dictionary<string, float> MeshRenderers = new();
 
     private static void UpdateAll()
     {
         UpdateDisplay();
         UpdateCameras();
-
-        var meshRenderers = Object.FindObjectsOfType<MeshRenderer>();
-        foreach (var meshRenderer in meshRenderers)
-        {
-            // Get the unique path for this GameObject
-            var path = meshRenderer.gameObject.GetPath();
-
-            // Get the current X scale of the MeshRenderer's transform
-            var currentScaleX = meshRenderer.transform.localScale.x;
-
-            // Check if this path is already in the dictionary
-            if (!MeshRenderers.TryGetValue(path, out var originalScaleX))
-            {
-                // Backup the original scale if not already backed up
-                MeshRenderers.Add(path, currentScaleX);
-                originalScaleX = currentScaleX; // Use the current scale as the original
-            }
-
-            // Adjust the scale using the original X value
-            var newX = originalScaleX * PositiveScaleFactor;
-            meshRenderer.transform.localScale = new Vector3(newX, meshRenderer.transform.localScale.y, meshRenderer.transform.localScale.z);
-
-            // Log the updated scale for debugging
-            Plugin.Log.LogWarning($"MeshRenderer: {meshRenderer.gameObject.GetPath()} - Updated Scale: {meshRenderer.transform.localScale}");
-        }
     }
-
-    private static void CamFix(Camera cam)
-    {
-        if (cam.targetTexture != null)
-        {
-            RenderTexture targetTexture = cam.targetTexture;
-            RenderTextureDescriptor descriptor = targetTexture.descriptor;
-            if (descriptor.width != Display.main.systemWidth)
-            {
-                descriptor.width = Display.main.systemWidth;
-                descriptor.height = Display.main.systemHeight;
-                RenderTexture renderTexture = new RenderTexture(descriptor)
-                {
-                    filterMode = targetTexture.filterMode,
-                    name = targetTexture.name
-                };
-                cam.targetTexture = renderTexture;
-                if (cam.targetTexture == renderTexture)
-                {
-                    targetTexture.Release();
-                }
-            }
-        }
-    }
-
-    private static void UpdateCameras()
-    {
-        var cameras = Camera.allCameras;
-        foreach (var camera in cameras)
-        {
-            CamFix(camera);
-            var ppc = camera.gameObject.TryAddComponent<PixelPerfectCamera>();
-
-            if (ppc)
-            {
-                // ppc.assetsPPU = 26;
-                ppc.refResolutionX = 860;
-                ppc.refResolutionY = 360;
-                ppc.enabled = true;
-                ppc.cropFrame = PixelPerfectCamera.CropFrame.None;
-            }
-
-            camera.aspect = MainAspect;
-            camera.rect = new Rect(0, 0, 1, 1);
-            camera.pixelRect = new Rect(0, 0, 860, 360);
-        }
-    }
-
-   
 
     private static void UpdateDisplay()
     {
@@ -292,7 +218,7 @@ public class Plugin : BaseUnityPlugin
 
         if (!RequiresUpdate) return;
 
-        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRateRatio);
+        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
         Log.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
 
         if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
@@ -304,13 +230,12 @@ public class Plugin : BaseUnityPlugin
         RequiresUpdate = false;
     }
 
-    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
     private static bool RequiresUpdate { get; set; }
 
     private static int[] MergeUnityRefreshRates()
     {
         var unityRates = Screen.resolutions
-            .Select(a => Mathf.RoundToInt((float)a.refreshRateRatio.value))
+            .Select(a => a.refreshRate) // Convert double to float
             .Distinct()
             .ToArray();
 
@@ -324,46 +249,61 @@ public class Plugin : BaseUnityPlugin
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         UpdateAll();
+        DestroyDumbStuff();
     }
 
-// private static void FocusChanged(bool focus)
-// {
-//     Application.runInBackground = RunInBackground.Value;
-//     var audioSources = Resources.FindObjectsOfTypeAll<AudioSource>();
-//     foreach (var audioSource in audioSources)
-//     {
-//         audioSource.mute = !focus && MuteInBackground.Value;
-//     }
-// }
-//
+    private static void DestroyDumbStuff()
+    {
+        //fullscreen GUI error exception log???
+        var d1 = GameObject.Find("QuestGuiCamera/GuiErrorHandler(Clone)");
+        if (d1)
+        {
+            Log.LogWarning("Destroying GuiErrorHandler(Clone)...");
+            Destroy(d1);
+        }
 
-// private static void UpdateFixedDeltaTime()
-// {
-//     OriginalFixedDeltaTime.Value = Mathf.RoundToInt(1f / Time.fixedDeltaTime);
-//     if (Mathf.Approximately((float)Screen.currentResolution.refreshRateRatio.value, OriginalFixedDeltaTime.Value) ||
-//         OriginalFixedDeltaTime.Value > Screen.currentResolution.refreshRateRatio.value)
-//     {
-//         Log.LogInfo(
-//             "Games physics update rate is already equal to (or greater than) your monitors refresh rate. Skipping update.");
-//         return;
-//     }
-//
-//     if (CorrectFixedUpdateRate.Value)
-//     {
-//         if (UseRefreshRateForFixedUpdateRate.Value)
-//         {
-//             Time.fixedDeltaTime = (float)(1f / Screen.currentResolution.refreshRateRatio.value);
-//         }
-//         else
-//         {
-//             Time.fixedDeltaTime = 1f / Utils.FindLowestFrameRateMultipleAboveFifty(Screen.currentResolution.refreshRateRatio.value);
-//         }
-//     }
-//     else
-//     {
-//         Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
-//     }
-//
-//     Log.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
-// }
+        // Quantum Console
+        var d2 = GameObject.Find("PowerQuest/SystemConsole");
+        if (d2)
+        {
+            Log.LogWarning("Destroying SystemConsole...");
+            Destroy(d2);
+        }
+    }
+    
+    private static void UpdateCameras()
+    {
+        var cameras = Camera.allCameras;
+        foreach (var camera in cameras)
+        {
+            if (!camera.targetTexture) continue;
+
+            var targetTexture = camera.targetTexture;
+            var descriptor = targetTexture.descriptor;
+
+            var width = Mathf.RoundToInt(descriptor.height * MainAspect);
+            if (descriptor.width != width)
+            {
+                descriptor.width = width;
+                var renderTexture = new RenderTexture(descriptor)
+                {
+                    filterMode = targetTexture.filterMode,
+                    name = targetTexture.name,
+                    graphicsFormat = targetTexture.graphicsFormat,
+                    depthStencilFormat= targetTexture.depthStencilFormat
+                };
+                camera.targetTexture = renderTexture;
+                if (camera.targetTexture == renderTexture)
+                {
+                    targetTexture.Release();
+                }
+            }
+
+            var mr = camera.gameObject.GetComponentInChildren<MeshRenderer>();
+            if (!mr) continue;
+            var newX = mr.transform.localScale.y * MainAspect;
+            mr.transform.localScale = mr.transform.localScale with { x = newX };
+            mr.material.mainTexture = camera.targetTexture;
+        }
+    }
 }

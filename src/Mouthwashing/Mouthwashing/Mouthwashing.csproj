@@ -35,6 +35,9 @@
       <Reference Include="com.rlabrecque.steamworks.net">
         <HintPath>libs\com.rlabrecque.steamworks.net.dll</HintPath>
       </Reference>
+      <Reference Include="ConfigurationManager">
+        <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
+      </Reference>
       <Reference Include="FMODUnity">
         <HintPath>libs\FMODUnity.dll</HintPath>
       </Reference>
@@ -395,6 +398,13 @@
       <Reference Include="VFXGraph.OutputEventHandlers">
         <HintPath>libs\VFXGraph.OutputEventHandlers.dll</HintPath>
       </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll">
+        <Link>ConfigurationManager.dll</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
   
     <Import Project="..\zip.target"/>
