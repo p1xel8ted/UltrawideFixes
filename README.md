@@ -88,13 +88,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C (2)</summary>
+<details><summary>C (3)</summary>
 
 ## [Cat Quest (1)](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CatQuest1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CatQuest1/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/a1d0200a-55a7-4120-b88e-9d639046c453)
-![main_game](https://github.com/user-attachments/assets/76f6a3d0-a7ac-4433-8cbd-63bf4d3e2379)
+![main_menu](https://github.com/user-attachments/assets/a1d0200a-55a7-4120-b88e-9d639046c453) ![main_game](https://github.com/user-attachments/assets/76f6a3d0-a7ac-4433-8cbd-63bf4d3e2379)
+
+## [CONVERGENCE: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ConvergenceLoL)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ConvergenceLoL/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/a4c1f586-55db-401c-a4f8-5fc5a8c24e8b) ![main_game_span](https://github.com/user-attachments/assets/35ee0fd1-ed47-4025-af0f-90158facd99f)
 
 ## [Crow Country](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CrowCountry)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CrowCountry/total?label=downloads&style=for-the-badge)
@@ -221,7 +225,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="L"/>
-<details><summary>L (6)</summary>
+<details><summary>L (7)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LaikaAgedThroughBlood/total?label=downloads&style=for-the-badge)
@@ -247,6 +251,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LittleGoodyTwoShoes/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/43045c73-4139-43c3-9e93-3cdcec00ae76) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/79b87d95-cfe7-4b22-83f2-d6df28ce72f1)
+
+## [Loco Motive](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LocoMotive)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LocoMotive/total?label=downloads&style=for-the-badge)
+
+![main_menu1](https://github.com/user-attachments/assets/0d516321-1275-4cd5-817c-c93c518b2164) ![main_game2](https://github.com/user-attachments/assets/9076310a-1ba6-4467-951d-f65f54b8b9b3)
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
