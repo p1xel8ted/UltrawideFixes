@@ -3,6 +3,8 @@
 [Harmony]
 public static class Patches
 {
+    internal static readonly WriteOnce<Vector3> OriginalScale = new();
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(RCGUIPanel), nameof(RCGUIPanel.ShowInit))]
     public static void RCGUIPanel_Show(ref RCGUIPanel __instance)
@@ -32,9 +34,9 @@ public static class Patches
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
-    #if Steam
+#if Steam
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.StepForward))]
-    #endif
+#endif
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Prepare))]
     public static void VideoPlayer_Play(VideoPlayer __instance)
     {
@@ -66,6 +68,17 @@ public static class Patches
         }
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UIManager), nameof(UIManager.Start))]
+    [HarmonyPatch(typeof(UIManager), nameof(UIManager.FadeInPlayerUI))]
+    [HarmonyPatch(typeof(UIManager), nameof(UIManager.FadeOutPlayerUI))]
+    public static void UIManager_Update(UIManager __instance)
+    {
+        OriginalScale.Value = __instance.PlayerUI.transform.localScale;
+        __instance.PlayerUI.transform.localScale = Plugin.SteamDeck ? new Vector3(0.009f, 0.009f, 0.009f) : OriginalScale.Value;
+    }
+
+    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CullingManager), nameof(CullingManager.ExtentRect))]
     public static void CullingManager_ExtentRect(ref Rect target, ref float padding)
@@ -79,7 +92,7 @@ public static class Patches
         // Only adjust width if the aspect ratio changes
         var adjustedRect = baseRect;
 
-        if (Mathf.Approximately(Plugin.MainAspectRatio, Plugin.BaseAspectRatio)) return adjustedRect;
+        // if (Mathf.Approximately(Plugin.MainAspectRatio, Plugin.BaseAspectRatio)) return adjustedRect;
 
         // Calculate the new width while keeping the height the same
         var newWidth = baseRect.height * Plugin.MainAspectRatio;
@@ -91,15 +104,7 @@ public static class Patches
 
         return adjustedRect;
     }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
-    public static void CanvasScaler_OnEnable(CanvasScaler __instance)
-    {
-        if (__instance.name.ToLower().Contains("sinai")) return;
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-        __instance.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-    }
+    
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ResolutionSetting), nameof(ResolutionSetting.IsValidResolution), typeof(int), typeof(int), typeof(int), typeof(int))]
@@ -115,4 +120,6 @@ public static class Patches
     {
         __result = Plugin.MainAspectRatio > Plugin.BaseAspectRatio;
     }
+
+ 
 }

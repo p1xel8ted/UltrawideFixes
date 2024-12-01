@@ -50,15 +50,10 @@ public static class ScreenResolution
         ref FullScreenMode fullscreenMode,
         ref RefreshRate preferredRefreshRate)
     {
-        var refreshRateNew = new RefreshRate
-        {
-            denominator = 1,
-            numerator = (uint)Plugin.RefreshRate
-        };
         
         width = ChosenResolution.width;
         height = ChosenResolution.height;
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
-        preferredRefreshRate = refreshRateNew;
+        preferredRefreshRate = Plugin.RefreshRateNew;
     }
 }

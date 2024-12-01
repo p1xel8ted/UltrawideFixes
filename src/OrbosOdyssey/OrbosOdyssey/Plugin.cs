@@ -6,7 +6,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.orbosodyssey.uwfixes";
     private const string PluginName = "Orbos Odyssey Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -27,6 +27,9 @@ public class Plugin : BaseUnityPlugin
         360, // Uncommon
         480 // Uncommon
     ];
+
+    internal static float ScaleFactor => MainAspect / NativeAspect;
+    private static float NativeAspect => 16f / 9f;
 
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
@@ -64,13 +67,37 @@ public class Plugin : BaseUnityPlugin
 
     internal static ConfigEntry<bool> Notifications { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
-
+    private static ConfigEntry<bool> SixteenTenTesting { get; set; }
+    private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
+    private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
     private static ConfigEntry<string> Resolution { get; set; }
 
     internal static Resolution SelectedResolution
     {
         get
         {
+            if (SixteenTenTesting.Value)
+            {
+                const int height = 1200;
+                var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
+                return new Resolution { width = width, height = height };
+            }
+            
+            if (ThirtyTwoNineTesting.Value)
+            {
+                const int height = 900;
+                var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
+                return new Resolution { width = width, height = height };
+            }
+            
+            if (FourtyEightNineTesting.Value)
+            {
+                const int height = 600;
+                var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
+                return new Resolution { width = width, height = height };
+            }
+            
+            
             if (Resolution == null) return MainDisplayRes;
             
             var res = Resolution.Value.Split('x');
@@ -111,7 +138,58 @@ public class Plugin : BaseUnityPlugin
         var customRates = MergeUnityRefreshRates();
 
         Log = Logger;
-
+        
+         SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 16:10 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 102 }));
+        SixteenTenTesting.SettingChanged += (_, _) =>
+        {
+            if (SixteenTenTesting.Value)
+            {
+                ThirtyTwoNineTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+        
+        ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 32:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 101 }));
+        ThirtyTwoNineTesting.SettingChanged += (_, _) =>
+        {
+            if (ThirtyTwoNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+        
+        FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 48:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 100 }));
+        FourtyEightNineTesting.SettingChanged += (_, _) =>
+        {
+            if (FourtyEightNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                ThirtyTwoNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+        
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(
                 "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",

@@ -12,7 +12,7 @@
 
     <PropertyGroup>
         <TargetFramework>net481</TargetFramework>
-        <Version>0.1.1</Version>
+        <Version>0.1.2</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <IsPackable>false</IsPackable>

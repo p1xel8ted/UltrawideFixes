@@ -10,7 +10,7 @@ public static class Patches
     /// The starting order for configuration entries in the settings window so that post-processing effects are listed last.
     /// </summary>
     private static int _startOrder = 91;
-    
+
     /// <summary>
     /// A dictionary storing configuration entries for enabling or disabling individual post-processing effects.
     /// </summary>
@@ -32,7 +32,7 @@ public static class Patches
             if (ConfigEntries.TryAdd(vol.GetHashCode(), configEntry))
             {
                 if (!Plugin.Notifications.Value) return;
-                
+
                 MessageDisplayer.Instance.ShowMessage($"Registered {name} configuration entry...", 5, MessageDisplayer.Corner.TopLeft, 5, Color.white);
             }
         }
@@ -125,7 +125,17 @@ public static class Patches
             {
                 __instance.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
             }
+
             __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        }
+
+        if (Plugin.MainAspect > 2.4f && __instance.name == "DeathFadeCanvas")
+        {
+            var fader = __instance.transform.Find("DeathFader");
+            if (fader)
+            {
+                fader.localScale = new Vector3(Plugin.ScaleFactor, Plugin.ScaleFactor, 1);
+            }
         }
     }
 }
