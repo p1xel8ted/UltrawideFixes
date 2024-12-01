@@ -328,6 +328,15 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="P"/>
+<details><summary>O (1)</summary>
+
+## [Orbo's Odyssey](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/OrbosOdyssey)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/OrbosOdyssey/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/e68e5419-3d51-49c1-91e4-939113227f99) ![main_game1](https://github.com/user-attachments/assets/9afa94b1-27c4-45be-8c54-9ea107b5ba15)
+
+</details>
+<div id="P"/>
 <details><summary>P (2)</summary>
 
 ## [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
