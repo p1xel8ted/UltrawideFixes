@@ -46,7 +46,7 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log { get; private set; }
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     internal static float PositiveScaleFactor => MainAspect / NativeAspect;
-    private const float NativeAspect = 16f / 9f;
+    internal const float NativeAspect = 16f / 9f;
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     private static int MainWidth => SelectedResolution.width;
@@ -56,6 +56,9 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> TargetFramerate { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
 
+    private static readonly int NativeDisplayWidth = Display.main.systemWidth;
+    private static readonly int NativeDisplayHeight = Display.main.systemHeight;
+    
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
         { "Disabled (Higher Performance)", 0 },
@@ -64,31 +67,44 @@ public class Plugin : BaseUnityPlugin
     };
 
     private static ConfigEntry<string> Resolution { get; set; }
-
+    private static ConfigEntry<bool> SixteenTenTesting { get; set; }
+    private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
+     private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
     internal static Resolution SelectedResolution
     {
         get
         {
-            if (Resolution != null)
+            if (SixteenTenTesting.Value)
             {
-                var res = Resolution.Value.Split('x');
-                return new Resolution
-                {
-                    width = int.Parse(res[0]),
-                    height = int.Parse(res[1])
-                };
+                const int height = 1200;
+                var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
+                return new Resolution { width = width, height = height };
+            }
+            
+            if (ThirtyTwoNineTesting.Value)
+            {
+                const int height = 900;
+                var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
+                return new Resolution { width = width, height = height };
+            }
+            
+            if (FourtyEightNineTesting.Value)
+            {
+                const int height = 600;
+                var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
+                return new Resolution { width = width, height = height };
             }
 
-            var mainRes = new Resolution
+            if (Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
+            
+            var res = Resolution.Value.Split('x');
+            return new Resolution
             {
-                width = Display.main.systemWidth,
-                height = Display.main.systemHeight,
-                refreshRate = MaxRefresh
+                width = int.Parse(res[0]),
+                height = int.Parse(res[1])
             };
-            return mainRes;
         }
     }
-
     private static string[] GetResolutions()
     {
         var mainRes = new Resolution
@@ -112,6 +128,59 @@ public class Plugin : BaseUnityPlugin
         var customRates = MergeUnityRefreshRates();
 
         Log = Logger;
+        
+           SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 16:10 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 102 }));
+        SixteenTenTesting.SettingChanged += (_, _) =>
+        {
+            if (SixteenTenTesting.Value)
+            {
+                ThirtyTwoNineTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+      
+            UpdateAll();
+        };
+        
+        ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 32:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 101 }));
+        ThirtyTwoNineTesting.SettingChanged += (_, _) =>
+        {
+            if (ThirtyTwoNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+        
+        FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 48:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 100 }));
+        FourtyEightNineTesting.SettingChanged += (_, _) =>
+        {
+            if (FourtyEightNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                ThirtyTwoNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+
         
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(
@@ -214,8 +283,7 @@ public class Plugin : BaseUnityPlugin
 
         // Apply target frame rate only if VSync is off
         Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
-
-
+        
         if (!RequiresUpdate) return;
 
         Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
@@ -227,6 +295,8 @@ public class Plugin : BaseUnityPlugin
             ConfigurationManager.OpenWindow();
         }
 
+        Patches.ChangeThese();
+        
         RequiresUpdate = false;
     }
 

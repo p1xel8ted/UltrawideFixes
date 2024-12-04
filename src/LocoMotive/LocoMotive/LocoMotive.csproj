@@ -30,6 +30,9 @@
     <Reference Include="ConfigurationManager">
       <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
     </Reference>
+    <Reference Include="FMODUnity">
+      <HintPath>libs\FMODUnity.dll</HintPath>
+    </Reference>
     <Reference Include="Projects.Plugins.PowerQuest">
       <HintPath>libs\Projects.Plugins.PowerQuest.dll</HintPath>
     </Reference>

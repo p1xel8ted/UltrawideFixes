@@ -3,6 +3,10 @@
 [Harmony]
 public static class Patches
 {
+    private static readonly string[] AddAspectFitters = ["GuiMainMenu(Clone)", "GuiSettings(Clone)", "GuiNavigation(Clone)", "GuiSave(Clone)", "GuiTitle(Clone)"];
+    private static readonly string[] AddBlackBarsTo = ["GuiMainMenu(Clone)"];
+
+    private static readonly string[] ScaleTheseTransforms = ["ImgFade", "ImgOutro", "ImgIntro", "ImgFog"];
     private static Resolution ChosenResolution => Plugin.SelectedResolution;
 
     [HarmonyPrefix]
@@ -43,62 +47,136 @@ public static class Patches
         return false;
     }
 
-   
-    private static readonly string[] AddAspectFitters = ["GuiMainMenu(Clone)", "GuiSettings(Clone)", "GuiNavigation(Clone)", "GuiSave(Clone)"];
-    private static readonly string[] AddBlackBarsTo = ["GuiMainMenu(Clone)"];
-    
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SplashScreenVideo), nameof(SplashScreenVideo.Update))]
+    [HarmonyPatch(typeof(SplashScreenVideo), nameof(SplashScreenVideo.EndReached))]
+    public static void SplashScreenVideo_Update(SplashScreenVideo __instance)
+    {
+        __instance.m_isSkipping = true;
+        __instance.m_showLoadingScreen = false;
+    }
+
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SplashScreenVideo), nameof(SplashScreenVideo.Start))]
+    public static bool SplashScreenVideo_Start(SplashScreenVideo __instance)
+    {
+        __instance.m_videoPlayer.Stop();
+        SceneManager.LoadScene(__instance.m_sceneToLoadOnEnd);
+        return false;
+    }
+
+
     [HarmonyPostfix]
-    // [HarmonyPatch(typeof(GuiComponent), nameof(GuiComponent.Awake))]
     [HarmonyPatch(typeof(GuiComponent), nameof(GuiComponent.Start))]
     public static void GuiComponent_Start(GuiComponent __instance)
     {
         Plugin.Log.LogInfo($"Checking for AspectRatioFitter on {__instance.name}");
         if (AddAspectFitters.Contains(__instance.name))
         {
-            var aspectFitter = __instance.gameObject.TryAddComponent<AspectRatioFitter>();
-            if (aspectFitter)
+            if (__instance.name == "GuiMainMenu(Clone)")
             {
-                aspectFitter.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
-                aspectFitter.aspectRatio = 16f / 9f;
+                var addAspectFitterTo = __instance.transform.Find("LayoutGroup");
+                if (addAspectFitterTo)
+                {
+                    var le = addAspectFitterTo.gameObject.TryAddComponent<LayoutElement>();
+                    le.preferredWidth = Plugin.SelectedResolution.height * Plugin.NativeAspect;
+                    
+                    var csf = addAspectFitterTo.gameObject.TryAddComponent<ContentSizeFitter>();
+                    csf.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+                    ChangeTheseFitters.Add(csf);
+                    ChangeTheseLayoutElements.Add(le);
+                }
+
+                var imgMask = __instance.transform.Find("ImgMask/ImgBackground/ImgKeyArt");
+                if (imgMask)
+                {
+                    imgMask.localScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1.1f);
+                    ChangeTheseTransforms.Add(imgMask);
+                }
+            }
+            else
+            {
+                var aspectFitter = __instance.gameObject.TryAddComponent<AspectRatioFitter>();
+                if (aspectFitter)
+                {
+                    aspectFitter.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
+                    aspectFitter.aspectRatio = 16f / 9f;
+                }
             }
 
             var bg = __instance.transform.Find("Background");
             if (bg)
             {
                 bg.transform.localScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1.1f);
+                ChangeTheseTransforms.Add(bg);
             }
         }
-        
+
         if (AddBlackBarsTo.Contains(__instance.name))
         {
             AddBlackBars(__instance.transform);
         }
+
+        foreach (var tr in ScaleTheseTransforms)
+        {
+            var transform = __instance.transform.Find(tr);
+            if (transform)
+            {
+                transform.localScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1.1f);
+                ChangeTheseTransforms.Add(transform);
+            }
+        }
     }
-    
-    
-    private static void AddBlackBars(Transform tr){
+
+    private static readonly List<ContentSizeFitter> ChangeTheseFitters = [];
+    private static readonly List<LayoutElement> ChangeTheseLayoutElements = [];
+    private static readonly List<Transform> ChangeTheseTransforms = [];
+
+    internal static void ChangeThese()
+    {
+        foreach (var le in ChangeTheseLayoutElements.Where(a => a))
+        {
+            le.preferredWidth = Plugin.SelectedResolution.height * Plugin.NativeAspect;
+        }
+
+        foreach (var csf in ChangeTheseFitters.Where(a => a))
+        {
+            csf.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+        }
+
+        foreach (var tr in ChangeTheseTransforms.Where(a => a))
+        {
+            tr.localScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1.1f);
+        }
+    }
+
+
+    private static void AddBlackBars(Transform tr)
+    {
         var blackScreenExists = tr.Find("BlackScreen");
-        
+
         if (blackScreenExists) return;
-        
+
         // Add a full-screen black image as the first sibling in the Canvas hierarchy
         var blackScreen = new GameObject("BlackScreen");
         blackScreen.transform.SetParent(tr, false);
-        
+
         // Add an Image component and set its color to black
         var image = blackScreen.TryAddComponent<Image>();
         image.color = Color.black;
-        
+
         // Set the RectTransform anchors and offsets to make the image fill the entire canvas
         var rectTransform = blackScreen.GetComponent<RectTransform>();
         rectTransform.anchorMin = Vector2.zero; // Bottom-left corner
         rectTransform.anchorMax = Vector2.one; // Top-right corner
         rectTransform.offsetMin = Vector2.zero; // No offset from bottom-left
         rectTransform.offsetMax = Vector2.zero; // No offset from top-right
-        
+
         // Move the black screen GameObject to the first sibling position in the hierarchy
         blackScreen.transform.SetAsFirstSibling();
-        
+
         //scale to offset aspect ratio fitters restricting to 16:9
         blackScreen.transform.localScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f);
     }
@@ -115,7 +193,5 @@ public static class Patches
         {
             __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
         }
-
-
     }
 }
