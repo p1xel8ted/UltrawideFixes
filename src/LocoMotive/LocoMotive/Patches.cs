@@ -65,8 +65,17 @@ public static class Patches
         SceneManager.LoadScene(__instance.m_sceneToLoadOnEnd);
         return false;
     }
-
-
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(RoomComponent), nameof(RoomComponent.Start))]
+    [HarmonyPatch(typeof(RoomComponent), nameof(RoomComponent.SetData))]
+    [HarmonyPatch(typeof(RoomComponent), nameof(RoomComponent.OnLoadComplete))]
+    [HarmonyPatch(typeof(RoomComponent), nameof(RoomComponent.SetActiveWalkableArea))]
+    public static void RoomComponent_SetActiveWalkableArea(RoomComponent __instance)
+    {
+        Plugin.UpdateAll();
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GuiComponent), nameof(GuiComponent.Start))]
     public static void GuiComponent_Start(GuiComponent __instance)
@@ -81,7 +90,7 @@ public static class Patches
                 {
                     var le = addAspectFitterTo.gameObject.TryAddComponent<LayoutElement>();
                     le.preferredWidth = Plugin.SelectedResolution.height * Plugin.NativeAspect;
-                    
+
                     var csf = addAspectFitterTo.gameObject.TryAddComponent<ContentSizeFitter>();
                     csf.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
 

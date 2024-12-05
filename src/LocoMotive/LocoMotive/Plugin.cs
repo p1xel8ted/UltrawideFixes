@@ -8,7 +8,7 @@ public class Plugin : BaseUnityPlugin
 
     private const string PluginGuid = "p1xel8ted.locomotive.uwfixes";
     private const string PluginName = "Loco Motive Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -58,7 +58,7 @@ public class Plugin : BaseUnityPlugin
 
     private static readonly int NativeDisplayWidth = Display.main.systemWidth;
     private static readonly int NativeDisplayHeight = Display.main.systemHeight;
-    
+
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
         { "Disabled (Higher Performance)", 0 },
@@ -69,7 +69,8 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<string> Resolution { get; set; }
     private static ConfigEntry<bool> SixteenTenTesting { get; set; }
     private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
-     private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
+    private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
+
     internal static Resolution SelectedResolution
     {
         get
@@ -80,14 +81,14 @@ public class Plugin : BaseUnityPlugin
                 var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
                 return new Resolution { width = width, height = height };
             }
-            
+
             if (ThirtyTwoNineTesting.Value)
             {
                 const int height = 900;
                 var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
                 return new Resolution { width = width, height = height };
             }
-            
+
             if (FourtyEightNineTesting.Value)
             {
                 const int height = 600;
@@ -96,7 +97,7 @@ public class Plugin : BaseUnityPlugin
             }
 
             if (Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
-            
+
             var res = Resolution.Value.Split('x');
             return new Resolution
             {
@@ -105,6 +106,7 @@ public class Plugin : BaseUnityPlugin
             };
         }
     }
+
     private static string[] GetResolutions()
     {
         var mainRes = new Resolution
@@ -128,8 +130,8 @@ public class Plugin : BaseUnityPlugin
         var customRates = MergeUnityRefreshRates();
 
         Log = Logger;
-        
-           SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
+
+        SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
             new ConfigDescription(
                 "Enable this option to test 16:10 aspect ratio.",
                 null,
@@ -141,12 +143,12 @@ public class Plugin : BaseUnityPlugin
                 ThirtyTwoNineTesting.Value = false;
                 FourtyEightNineTesting.Value = false;
             }
-        
+
             RequiresUpdate = true;
-      
+
             UpdateAll();
         };
-        
+
         ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
             new ConfigDescription(
                 "Enable this option to test 32:9 aspect ratio.",
@@ -159,11 +161,11 @@ public class Plugin : BaseUnityPlugin
                 SixteenTenTesting.Value = false;
                 FourtyEightNineTesting.Value = false;
             }
-        
+
             RequiresUpdate = true;
             UpdateAll();
         };
-        
+
         FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
             new ConfigDescription(
                 "Enable this option to test 48:9 aspect ratio.",
@@ -176,12 +178,12 @@ public class Plugin : BaseUnityPlugin
                 SixteenTenTesting.Value = false;
                 ThirtyTwoNineTesting.Value = false;
             }
-        
+
             RequiresUpdate = true;
             UpdateAll();
         };
 
-        
+
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(
                 "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
@@ -262,7 +264,7 @@ public class Plugin : BaseUnityPlugin
     }
 
 
-    private static void UpdateAll()
+    internal static void UpdateAll()
     {
         UpdateDisplay();
         UpdateCameras();
@@ -283,7 +285,7 @@ public class Plugin : BaseUnityPlugin
 
         // Apply target frame rate only if VSync is off
         Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
-        
+
         if (!RequiresUpdate) return;
 
         Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
@@ -296,7 +298,7 @@ public class Plugin : BaseUnityPlugin
         }
 
         Patches.ChangeThese();
-        
+
         RequiresUpdate = false;
     }
 
@@ -340,7 +342,7 @@ public class Plugin : BaseUnityPlugin
             Destroy(d2);
         }
     }
-    
+
     private static void UpdateCameras()
     {
         var cameras = Camera.allCameras;
@@ -352,23 +354,22 @@ public class Plugin : BaseUnityPlugin
             var descriptor = targetTexture.descriptor;
 
             var width = Mathf.RoundToInt(descriptor.height * MainAspect);
-            if (descriptor.width != width)
+            
+            descriptor.width = width;
+            
+            var renderTexture = new RenderTexture(descriptor)
             {
-                descriptor.width = width;
-                var renderTexture = new RenderTexture(descriptor)
-                {
-                    filterMode = targetTexture.filterMode,
-                    name = targetTexture.name,
-                    graphicsFormat = targetTexture.graphicsFormat,
-                    depthStencilFormat= targetTexture.depthStencilFormat
-                };
-                camera.targetTexture = renderTexture;
-                if (camera.targetTexture == renderTexture)
-                {
-                    targetTexture.Release();
-                }
+                filterMode = targetTexture.filterMode,
+                name = targetTexture.name,
+                graphicsFormat = targetTexture.graphicsFormat,
+                depthStencilFormat = targetTexture.depthStencilFormat
+            };
+            camera.targetTexture = renderTexture;
+            if (camera.targetTexture == renderTexture)
+            {
+                targetTexture.Release();
             }
-
+            
             var mr = camera.gameObject.GetComponentInChildren<MeshRenderer>();
             if (!mr) continue;
             var newX = mr.transform.localScale.y * MainAspect;

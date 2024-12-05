@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Loco Motive Ultra-Wide</Product>
     <AssemblyName>Loco Motive Ultra-Wide</AssemblyName>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>latest</LangVersion>
     <IsPackable>false</IsPackable>
@@ -29,9 +29,6 @@
     </Reference>
     <Reference Include="ConfigurationManager">
       <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
-    </Reference>
-    <Reference Include="FMODUnity">
-      <HintPath>libs\FMODUnity.dll</HintPath>
     </Reference>
     <Reference Include="Projects.Plugins.PowerQuest">
       <HintPath>libs\Projects.Plugins.PowerQuest.dll</HintPath>
