@@ -3,7 +3,7 @@
 [Harmony]
 public static class Patches
 {
-    internal static readonly WriteOnce<Vector3> OriginalScale = new();
+    private static readonly WriteOnce<Vector3> OriginalScale = new();
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(RCGUIPanel), nameof(RCGUIPanel.ShowInit))]
@@ -92,7 +92,7 @@ public static class Patches
         // Only adjust width if the aspect ratio changes
         var adjustedRect = baseRect;
 
-        // if (Mathf.Approximately(Plugin.MainAspectRatio, Plugin.BaseAspectRatio)) return adjustedRect;
+        // if (Mathf.Approximately(Plugin.MainAspectRatio, Plugin.NativeAspectRatio)) return adjustedRect;
 
         // Calculate the new width while keeping the height the same
         var newWidth = baseRect.height * Plugin.MainAspectRatio;
@@ -113,13 +113,21 @@ public static class Patches
     {
         __result = true;
     }
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ResolutionSetting), nameof(ResolutionSetting.IsItUltraWideScreen))]
     public static void ResolutionSetting_IsItUltraWideScreen(ref bool __result)
     {
-        __result = Plugin.MainAspectRatio > Plugin.BaseAspectRatio;
+        __result = Plugin.MainAspectRatio > Plugin.NativeAspectRatio;
     }
-
- 
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CameraCore), nameof(CameraCore.UpdateRendertexture))]
+    public static void CameraCore_UpdateRenderTexture(CameraCore __instance)
+    {
+        foreach (var cam in __instance.LightMaskCameras)
+        {
+            cam.aspect = Plugin.NativeAspectRatio;
+        }
+    }
 }

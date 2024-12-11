@@ -1,18 +1,14 @@
-﻿using Debug = UnityEngine.Debug;
-
-namespace NineSols;
+﻿namespace ValfarisMechaTherion;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 [BepInDependency("com.bepis.bepinex.configurationmanager", "99.0")]
 public class Plugin : BaseUnityPlugin
 {
-    private const string PluginGuid = "p1xel8ted.ninesols.uwfixes";
-#if STEAM
-    private const string PluginName = "Nine Sols Ultra-Wide (Steam)";
-#else
-    private const string PluginName = "Nine Sols Ultra-Wide (GamePass)";
-#endif
-    private const string PluginVersion = "0.1.2";
+    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
+
+    private const string PluginGuid = "p1xel8ted.locomotive.uwfixes";
+    private const string PluginName = "Loco Motive Ultra-Wide";
+    private const string PluginVersion = "0.1.1";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -34,13 +30,6 @@ public class Plugin : BaseUnityPlugin
         480 // Uncommon
     ];
 
-    internal const float NativeAspectRatio = 16.0f / 9.0f;
-
-    internal static float MainAspectRatio => MainWidth / (float)MainHeight;
-    internal static ManualLogSource Log { get; set; }
-    internal static float PositiveScaleFactor => MainAspectRatio / NativeAspectRatio;
-    private static int MaxRefresh => (int)Screen.resolutions.Max(a => a.refreshRateRatio.value);
-
     internal static int RefreshRate
     {
         get
@@ -54,28 +43,21 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-
+    internal static ManualLogSource Log { get; private set; }
+    private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
+    internal static float PositiveScaleFactor => MainAspect / NativeAspect;
+    internal const float NativeAspect = 16f / 9f;
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
-
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    internal static int MainWidth => SelectedResolution.width;
-    internal static int MainHeight => SelectedResolution.height;
-
-    internal static bool SteamDeck => Mathf.Approximately(MainAspectRatio, 16f / 10f);
-
-    // internal static float NativeDisplayAspect = Display.main.systemWidth / (float)Display.main.systemHeight;
+    private static int MainWidth => SelectedResolution.width;
+    private static int MainHeight => SelectedResolution.height;
+    internal static float MainAspect => (float)MainWidth / MainHeight;
+    private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
+    private static ConfigEntry<int> TargetFramerate { get; set; }
+    private static ConfigEntry<string> VSyncSetting { get; set; }
 
     private static readonly int NativeDisplayWidth = Display.main.systemWidth;
     private static readonly int NativeDisplayHeight = Display.main.systemHeight;
-    private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
-
-    private static ConfigEntry<int> TargetFramerate { get; set; }
-    private static ConfigEntry<string> Resolution { get; set; }
-    private static ConfigEntry<string> VSyncSetting { get; set; }
-    
-    // private static ConfigEntry<bool> SixteenTenTesting { get; set; }
-    // private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
-    // private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
 
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
@@ -84,33 +66,38 @@ public class Plugin : BaseUnityPlugin
         { "Enabled (Every 2nd Refresh)", 2 }
     };
 
+    private static ConfigEntry<string> Resolution { get; set; }
+    private static ConfigEntry<bool> SixteenTenTesting { get; set; }
+    private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
+    private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
+
     internal static Resolution SelectedResolution
     {
         get
         {
-            // if (SixteenTenTesting.Value)
-            // {
-            //     const int height = 1200;
-            //     var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
-            //     return new Resolution { width = width, height = height };
-            // }
-            //
-            // if (ThirtyTwoNineTesting.Value)
-            // {
-            //     const int height = 900;
-            //     var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
-            //     return new Resolution { width = width, height = height };
-            // }
-            //
-            // if (FourtyEightNineTesting.Value)
-            // {
-            //     const int height = 600;
-            //     var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
-            //     return new Resolution { width = width, height = height };
-            // }
+            if (SixteenTenTesting.Value)
+            {
+                const int height = 1200;
+                var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
+                return new Resolution { width = width, height = height };
+            }
+
+            if (ThirtyTwoNineTesting.Value)
+            {
+                const int height = 900;
+                var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
+                return new Resolution { width = width, height = height };
+            }
+
+            if (FourtyEightNineTesting.Value)
+            {
+                const int height = 600;
+                var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
+                return new Resolution { width = width, height = height };
+            }
 
             if (Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
-            
+
             var res = Resolution.Value.Split('x');
             return new Resolution
             {
@@ -120,23 +107,14 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-    internal static ConfigEntry<string> HUDAspect { get; private set; }
-
-    internal static RefreshRate RefreshRateNew = new()
-    {
-        denominator = 1,
-        numerator = (uint)RefreshRate
-    };
-
     private static string[] GetResolutions()
     {
         var mainRes = new Resolution
         {
-            width = NativeDisplayWidth,
-            height = NativeDisplayHeight,
-            refreshRateRatio = RefreshRateNew
+            width = MainWidth,
+            height = MainHeight,
+            refreshRate = MaxRefresh
         };
-
         var resList = new List<Resolution> { mainRes };
         resList.AddRange(Screen.resolutions);
         resList.SortByPixelCount();
@@ -153,59 +131,58 @@ public class Plugin : BaseUnityPlugin
 
         Log = Logger;
 
-        // SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
-        //     new ConfigDescription(
-        //         "Enable this option to test 16:10 aspect ratio.",
-        //         null,
-        //         new ConfigurationManagerAttributes { IsAdvanced = true, Order = 102 }));
-        // SixteenTenTesting.SettingChanged += (_, _) =>
-        // {
-        //     if (SixteenTenTesting.Value)
-        //     {
-        //         ThirtyTwoNineTesting.Value = false;
-        //         FourtyEightNineTesting.Value = false;
-        //     }
-        //
-        //     RequiresUpdate = true;
-        //     
-        //     UpdateForSteamDeck();
-        //     
-        //     UpdateAll();
-        // };
-        //
-        // ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
-        //     new ConfigDescription(
-        //         "Enable this option to test 32:9 aspect ratio.",
-        //         null,
-        //         new ConfigurationManagerAttributes { IsAdvanced = true, Order = 101 }));
-        // ThirtyTwoNineTesting.SettingChanged += (_, _) =>
-        // {
-        //     if (ThirtyTwoNineTesting.Value)
-        //     {
-        //         SixteenTenTesting.Value = false;
-        //         FourtyEightNineTesting.Value = false;
-        //     }
-        //
-        //     RequiresUpdate = true;
-        //     UpdateAll();
-        // };
-        //
-        // FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
-        //     new ConfigDescription(
-        //         "Enable this option to test 48:9 aspect ratio.",
-        //         null,
-        //         new ConfigurationManagerAttributes { IsAdvanced = true, Order = 100 }));
-        // FourtyEightNineTesting.SettingChanged += (_, _) =>
-        // {
-        //     if (FourtyEightNineTesting.Value)
-        //     {
-        //         SixteenTenTesting.Value = false;
-        //         ThirtyTwoNineTesting.Value = false;
-        //     }
-        //
-        //     RequiresUpdate = true;
-        //     UpdateAll();
-        // };
+        SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 16:10 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 102 }));
+        SixteenTenTesting.SettingChanged += (_, _) =>
+        {
+            if (SixteenTenTesting.Value)
+            {
+                ThirtyTwoNineTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+
+            RequiresUpdate = true;
+
+            UpdateAll();
+        };
+
+        ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 32:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 101 }));
+        ThirtyTwoNineTesting.SettingChanged += (_, _) =>
+        {
+            if (ThirtyTwoNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+
+        FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 48:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 100 }));
+        FourtyEightNineTesting.SettingChanged += (_, _) =>
+        {
+            if (FourtyEightNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                ThirtyTwoNineTesting.Value = false;
+            }
+
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+
 
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(
@@ -216,7 +193,6 @@ public class Plugin : BaseUnityPlugin
         {
             RequiresUpdate = true;
             UpdateAll();
-            UpdateForSteamDeck();
         };
 
         FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow,
@@ -276,7 +252,7 @@ public class Plugin : BaseUnityPlugin
 
         TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh, new ConfigDescription("Set the target framerate - this will only function when VSYNC is OFF (0)", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 95 }));
         TargetFramerate.SettingChanged += (_, _) => UpdateAll();
-        
+
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         RequiresUpdate = true;
@@ -286,36 +262,13 @@ public class Plugin : BaseUnityPlugin
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
-    
-    private static int[] MergeUnityRefreshRates()
-    {
-        var unityRates = Screen.resolutions.Select(a => (int)a.refreshRateRatio.value).Distinct().ToArray();
-        var customRates = new List<int>();
-        customRates.AddRange(unityRates);
-        customRates.AddRange(CustomRefreshRates);
-        return customRates.Distinct().OrderBy(a => a).ToArray();
-    }
 
-    private static void UpdateAll()
+
+    internal static void UpdateAll()
     {
         UpdateDisplay();
+        //  UpdateCameras();
     }
-
-    private static void UpdateForSteamDeck()
-    {
-        UIManager.Instance?.FadeInPlayerUI();
-    }
-
-    private static void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        if (arg0.name == "Logo")
-        {
-            SceneManager.LoadScene("TitleScreenMenu");
-        }
-
-        UpdateDisplay();
-    }
-
 
     private static void UpdateDisplay()
     {
@@ -333,11 +286,9 @@ public class Plugin : BaseUnityPlugin
         // Apply target frame rate only if VSync is off
         Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
 
-
         if (!RequiresUpdate) return;
 
-
-        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRateNew);
+        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
         Log.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
 
         if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
@@ -349,6 +300,61 @@ public class Plugin : BaseUnityPlugin
         RequiresUpdate = false;
     }
 
-    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
     private static bool RequiresUpdate { get; set; }
+
+    private static int[] MergeUnityRefreshRates()
+    {
+        var unityRates = Screen.resolutions
+            .Select(a => a.refreshRate) // Convert double to float
+            .Distinct()
+            .ToArray();
+
+
+        var customRates = new List<int>();
+        customRates.AddRange(unityRates);
+        customRates.AddRange(CustomRefreshRates);
+        return customRates.Distinct().OrderBy(a => a).ToArray();
+    }
+
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateAll();
+          
+    }
+
+
+    private static void UpdateCameras()
+    {
+        var cameras = Camera.allCameras;
+        foreach (var camera in cameras)
+        {
+            if (!camera.targetTexture) continue;
+
+            var targetTexture = camera.targetTexture;
+            var descriptor = targetTexture.descriptor;
+
+            var width = Mathf.RoundToInt(descriptor.height * MainAspect);
+            
+            descriptor.width = width;
+            
+            var renderTexture = new RenderTexture(descriptor)
+            {
+                filterMode = targetTexture.filterMode,
+                name = targetTexture.name,
+                graphicsFormat = targetTexture.graphicsFormat,
+                depthStencilFormat = targetTexture.depthStencilFormat
+            };
+            camera.targetTexture = renderTexture;
+            if (camera.targetTexture == renderTexture)
+            {
+                targetTexture.Release();
+            }
+            
+            var mr = camera.gameObject.GetComponentInChildren<MeshRenderer>();
+            if (!mr) continue;
+            var newX = mr.transform.localScale.y * MainAspect;
+            mr.transform.localScale = mr.transform.localScale with { x = newX };
+            mr.material.mainTexture = camera.targetTexture;
+        }
+    }
 }
