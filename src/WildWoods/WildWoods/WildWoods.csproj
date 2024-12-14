@@ -1,0 +1,160 @@
+<Project Sdk="Microsoft.NET.Sdk">
+        <PropertyGroup>
+        <Product>Wild Woods (Steam)</Product>
+        <AssemblyName>$(AssemblyName)</AssemblyName>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Wild Woods\BepInEx\plugins</OutputPath>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Version>0.1.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <IsPackable>false</IsPackable>
+        <Company>p1xel8ted</Company>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <Configurations>Release</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <Optimize>true</Optimize>
+        <appendTargetFrameworkToOutputPath>false</appendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <Import Project="../../zip.target"/>
+    
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Cinemachine">
+          <HintPath>libs\Cinemachine.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Addons">
+          <HintPath>libs\Fusion.Addons.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Addressables">
+          <HintPath>libs\Fusion.Addressables.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Common">
+          <HintPath>libs\Fusion.Common.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Realtime">
+          <HintPath>libs\Fusion.Realtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Runtime">
+          <HintPath>libs\Fusion.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Scipts">
+          <HintPath>libs\Fusion.Scipts.dll</HintPath>
+        </Reference>
+        <Reference Include="Fusion.Sockets">
+          <HintPath>libs\Fusion.Sockets.dll</HintPath>
+        </Reference>
+        <Reference Include="OctofoxGames.Core.Runtime">
+          <HintPath>libs\OctofoxGames.Core.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="OctofoxGames.WildWoods.Runtime">
+          <HintPath>libs\OctofoxGames.WildWoods.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="TinyTools.TinyUI">
+          <HintPath>libs\TinyTools.TinyUI.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Addressables">
+          <HintPath>libs\Unity.Addressables.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.InputSystem">
+          <HintPath>libs\Unity.InputSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Localization">
+          <HintPath>libs\Unity.Localization.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+          <HintPath>libs\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Core.Runtime">
+          <HintPath>libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+          <HintPath>libs\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ResourceManager">
+          <HintPath>libs\Unity.ResourceManager.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Splines">
+          <HintPath>libs\Unity.Splines.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline">
+          <HintPath>libs\Unity.Timeline.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+          <HintPath>libs\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule">
+          <HintPath>libs\UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+          <HintPath>libs\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+          <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule">
+          <HintPath>libs\UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+          <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+          <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+          <HintPath>libs\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+          <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+          <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+          <HintPath>libs\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule">
+          <HintPath>libs\UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+          <HintPath>libs\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+          <HintPath>libs\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule">
+          <HintPath>libs\UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+          <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VFXModule">
+          <HintPath>libs\UnityEngine.VFXModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

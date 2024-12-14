@@ -1,0 +1,30 @@
+﻿// Global using directives
+
+global using System;
+global using System.Collections.Generic;
+global using System.Reflection;
+global using System.Text;
+global using BepInEx;
+global using BepInEx.Configuration;
+global using BepInEx.Logging;
+global using Cinemachine;
+global using Fusion;
+global using HarmonyLib;
+global using OctofoxGames.Core.Utils.CameraUtils;
+global using OctofoxGames.Core.Utils.Quality;
+global using OctofoxGames.Core.Utils.SceneManagement;
+global using OctofoxGames.Core.Utils.UI;
+global using OctofoxGames.WildWoods.Scenes.Game.UI;
+global using OctofoxGames.WildWoods.Scenes.Lobby;
+global using OctofoxGames.WildWoods.Scenes.Lobby.LobbyManager;
+global using OctofoxGames.WildWoods.Scenes.Lobby.UI;
+global using OctofoxGames.WildWoods.Utils.UI;
+global using TinyTools.TinyUI;
+global using UnityEngine;
+global using UnityEngine.Rendering;
+global using UnityEngine.Rendering.Universal;
+global using UnityEngine.SceneManagement;
+global using UnityEngine.UI;
+global using Debug = UnityEngine.Debug;
+global using ShadowQuality = UnityEngine.ShadowQuality;
+global using ShadowResolution = UnityEngine.ShadowResolution;
