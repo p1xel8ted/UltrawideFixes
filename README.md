@@ -501,8 +501,14 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="W"/>
-<details><summary>W (3)</summary>
-  
+<details><summary>W (4)</summary>
+
+## [Wild Woods](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WildWoods)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WildWoods/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/d224c1df-5bee-4748-8f2e-1b11340d203a) ![main_game](https://github.com/user-attachments/assets/266f6cc9-0203-4c75-b7aa-c63b1b34a3d0)
+
+
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
 
