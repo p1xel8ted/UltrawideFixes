@@ -1,0 +1,142 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Product>BAKERU Ultra-Wide</Product>
+        <Description>$(Product)</Description>
+        <Version>0.1.0</Version>
+        <AssemblyName>$(Product)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\plugins</OutputPath>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+   
+    </ItemDefinitionGroup>
+    
+    <Import Project="../zip.target"/>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Animation.Rigging">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.Animation.Rigging.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Localization">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.Localization.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\BAKERU\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+   
+</Project>
