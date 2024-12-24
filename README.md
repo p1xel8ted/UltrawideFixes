@@ -69,7 +69,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 <div id="B"/>
 <details><summary>B (3)</summary>
-  
+
+## [BAKERU](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/bakeru)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/bakeru/total?label=downloads&style=for-the-badge)
+
+![main_menu-constrain](https://github.com/user-attachments/assets/2511c0a3-25ee-4315-8b40-4c4ac136f206) ![main_cutscene3](https://github.com/user-attachments/assets/c72bec05-815e-4953-8539-fa31dc9f2239)
+
 ## [Beautiful Mystic Survivors](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/xMysticSurvivors)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/xMysticSurvivors/total?label=downloads&style=for-the-badge)
 
