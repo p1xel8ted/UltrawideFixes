@@ -1,4 +1,6 @@
-﻿namespace BAKERU;
+﻿using System.Text;
+
+namespace BAKERU;
 
 public static class Utils
 {
@@ -34,22 +36,22 @@ public static class Utils
         return width;
     }
 
-    // /// <summary>
-    // /// Get the full Transform hierarchy path for this provided Transform.
-    // /// </summary>
-    // public static string GetTransformPath(this Transform transform, bool includeSelf = false)
-    // {
-    //     StringBuilder sb = new();
-    //     if (includeSelf)
-    //         sb.Append(transform.name);
-    //
-    //     while (transform.parent)
-    //     {
-    //         transform = transform.parent;
-    //         sb.Insert(0, '/');
-    //         sb.Insert(0, transform.name);
-    //     }
-    //
-    //     return sb.ToString();
-    // }
+    /// <summary>
+    /// Get the full Transform hierarchy path for this provided Transform.
+    /// </summary>
+    public static string GetTransformPath(this Transform transform, bool includeSelf = false)
+    {
+        StringBuilder sb = new();
+        if (includeSelf)
+            sb.Append(transform.name);
+    
+        while (transform.parent)
+        {
+            transform = transform.parent;
+            sb.Insert(0, '/');
+            sb.Insert(0, transform.name);
+        }
+    
+        return sb.ToString();
+    }
 }

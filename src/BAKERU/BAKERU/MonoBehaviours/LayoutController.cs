@@ -1,8 +1,8 @@
-﻿namespace BAKERU;
+﻿namespace BAKERU.MonoBehaviours;
 
 internal class LayoutController : MonoBehaviour
 {
-    public Patches.Size Size { get; set; }
+    public Patches.Patches.Size Size { get; set; }
     private LayoutElement LayoutElement { get; set; }
     private ContentSizeFitter ContentSizeFitter { get; set; }
 
@@ -36,9 +36,9 @@ internal class LayoutController : MonoBehaviour
             var height = Screen.currentResolution.height;
             var width = Size switch
             {
-                Patches.Size.ConfigBased => Utils.GetHudRes(height),
-                Patches.Size.ForceFullScreen => Mathf.RoundToInt(height * Plugin.CurrentAspect),
-                Patches.Size.ForceSixteenNine => Mathf.RoundToInt(height * Plugin.CurrentAspect),
+                Patches.Patches.Size.ConfigBased => Utils.GetHudRes(height),
+                Patches.Patches.Size.ForceFullScreen => Mathf.RoundToInt(height * Plugin.CurrentAspect),
+                Patches.Patches.Size.ForceSixteenNine => Mathf.RoundToInt(height * Plugin.CurrentAspect),
                 _ => Utils.GetHudRes(height)
             };
 

@@ -1,8 +1,9 @@
-﻿namespace BAKERU;
+﻿namespace BAKERU.Patches;
 
 [Harmony]
 public class TargetMethodPatches
 {
+
     [HarmonyTargetMethods]
     public static IEnumerable<MethodBase> TargetMethods()
     {

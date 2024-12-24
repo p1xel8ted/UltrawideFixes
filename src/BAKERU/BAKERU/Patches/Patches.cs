@@ -1,25 +1,23 @@
-﻿namespace BAKERU;
+﻿namespace BAKERU.Patches;
 
 [Harmony]
 public static class Patches
 {
-    [HarmonyPostfix]
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ScreenFitter), nameof(ScreenFitter.Start))]
     [HarmonyPatch(typeof(ScreenFitter), nameof(ScreenFitter.OnEnable))]
     public static void ScreenFitter_OnEnable(ScreenFitter __instance)
     {
-        Plugin.UpdateAll();
-        ScreenManager.FixedAspectRatio = false;
-        __instance.OnDisable();
+        __instance.gameObject.TryAddComponent<ScreenFitterOverride>();
     }
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SceneCutscene), nameof(SceneCutscene.Awake))]
     [HarmonyPatch(typeof(SceneCutscene), nameof(SceneCutscene.Setup))]
-    public static void CommonCutScene_Awake(SceneCutscene __instance)
+    public static void SceneCutscene_Awake(SceneCutscene __instance)
     {
         __instance.m_ShowSkipUI = true;
     }
-
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CommonCutScene), nameof(CommonCutScene.Awake))]
@@ -30,7 +28,7 @@ public static class Patches
         __instance.m_FixedAspectRatio = false;
         __instance.m_CameraGateFitMode = Plugin.CurrentAspect > Plugin.NativeAspect ? Camera.GateFitMode.Vertical : Camera.GateFitMode.Horizontal;
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DynamicResolution), nameof(DynamicResolution.Awake))]
     [HarmonyPatch(typeof(DynamicResolution), nameof(DynamicResolution.Start))]
@@ -39,7 +37,6 @@ public static class Patches
         __instance.enabled = false;
     }
 
-    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CameraScaler), nameof(CameraScaler.OnEnable))]
     public static void CameraScaler_OnEnable(CameraScaler __instance)

@@ -5,10 +5,10 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.bakeru.ultrawide";
     private const string PluginName = "BAKERU Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
     internal const float NativeAspect = 16f / 9f;
     internal static float CurrentAspect => (float)Screen.currentResolution.width / Screen.currentResolution.height;
-    internal static ManualLogSource Logger { get; set; }
+    private static ManualLogSource Logger { get; set; }
 
     internal static ConfigEntry<string> HUDAspect { get; private set; }
 
@@ -27,6 +27,7 @@ public class Plugin : BasePlugin
     {
         Logger = Log;
         ClassInjector.RegisterTypeInIl2Cpp<LayoutController>();
+        ClassInjector.RegisterTypeInIl2Cpp<ScreenFitterOverride>();
 
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)SceneLoaded;
 
@@ -43,7 +44,7 @@ public class Plugin : BasePlugin
     }
 
     private static void SceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+    {   
         UpdateAll();
     }
 

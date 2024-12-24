@@ -1,6 +1,9 @@
 // Global using directives
 
 global using System.Reflection;
+global using System.Text;
+global using BAKERU.Misc;
+global using BAKERU.MonoBehaviours;
 global using BaseSys;
 global using BaseSys.UI;
 global using BepInEx;
