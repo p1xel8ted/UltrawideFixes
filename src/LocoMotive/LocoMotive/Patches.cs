@@ -3,18 +3,13 @@
 [Harmony]
 public static class Patches
 {
-    private static readonly string[] AddAspectFitters = ["GuiMainMenu(Clone)", "GuiSettings(Clone)", "GuiNavigation(Clone)", "GuiSave(Clone)", "GuiTitle(Clone)"];
+    private static readonly string[] AddAspectFitters = ["GuiMainMenu(Clone)", "GuiSettings(Clone)", "GuiNavigation(Clone)", "GuiSave(Clone)", "GuiTitle(Clone)", "GuiMedicalRecords(Clone)"];
     private static readonly string[] AddBlackBarsTo = ["GuiMainMenu(Clone)"];
-
     private static readonly string[] ScaleTheseTransforms = ["ImgFade", "ImgOutro", "ImgIntro", "ImgFog"];
+    private static readonly List<ContentSizeFitter> ChangeTheseFitters = [];
+    private static readonly List<LayoutElement> ChangeTheseLayoutElements = [];
+    private static readonly List<Transform> ChangeTheseTransforms = [];
     private static Resolution ChosenResolution => Plugin.SelectedResolution;
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(LetterBoxer), nameof(LetterBoxer.AddLetterBoxingCamera))]
-    public static bool LetterBoxer_AddLetterBoxingCamera(LetterBoxer __instance)
-    {
-        return false;
-    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LetterBoxer), nameof(LetterBoxer.PerformSizing))]
@@ -27,22 +22,11 @@ public static class Patches
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(QuantumConsole), nameof(QuantumConsole.Activate))]
-    public static bool QuantumConsole_Activate()
-    {
-        return false;
-    }
-
-    [HarmonyPrefix]
     [HarmonyPatch(typeof(SystemConsole), nameof(SystemConsole.Update))]
     [HarmonyPatch(typeof(QuantumConsole), nameof(QuantumConsole.Update))]
-    public static bool SystemConsole_Update()
-    {
-        return false;
-    }
-
-    [HarmonyPrefix]
     [HarmonyPatch(typeof(GuiErrorHandler), nameof(GuiErrorHandler.Show))]
-    public static bool GuiErrorHandler_Show()
+    [HarmonyPatch(typeof(LetterBoxer), nameof(LetterBoxer.AddLetterBoxingCamera))]
+    public static bool Dont_Run_These()
     {
         return false;
     }
@@ -65,7 +49,7 @@ public static class Patches
         SceneManager.LoadScene(__instance.m_sceneToLoadOnEnd);
         return false;
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(RoomComponent), nameof(RoomComponent.Start))]
     [HarmonyPatch(typeof(RoomComponent), nameof(RoomComponent.SetData))]
@@ -75,7 +59,7 @@ public static class Patches
     {
         Plugin.UpdateAll();
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GuiComponent), nameof(GuiComponent.Start))]
     public static void GuiComponent_Start(GuiComponent __instance)
@@ -138,10 +122,6 @@ public static class Patches
             }
         }
     }
-
-    private static readonly List<ContentSizeFitter> ChangeTheseFitters = [];
-    private static readonly List<LayoutElement> ChangeTheseLayoutElements = [];
-    private static readonly List<Transform> ChangeTheseTransforms = [];
 
     internal static void ChangeThese()
     {

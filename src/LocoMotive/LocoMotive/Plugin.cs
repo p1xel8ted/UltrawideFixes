@@ -4,11 +4,10 @@
 [BepInDependency("com.bepis.bepinex.configurationmanager", "99.0")]
 public class Plugin : BaseUnityPlugin
 {
-    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
-
     private const string PluginGuid = "p1xel8ted.locomotive.uwfixes";
     private const string PluginName = "Loco Motive Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
+    internal const float NativeAspect = 16f / 9f;
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -30,6 +29,18 @@ public class Plugin : BaseUnityPlugin
         480 // Uncommon
     ];
 
+    private static readonly int NativeDisplayWidth = Display.main.systemWidth;
+    private static readonly int NativeDisplayHeight = Display.main.systemHeight;
+
+    private static readonly Dictionary<string, int> VSyncOptions = new()
+    {
+        { "Disabled (Higher Performance)", 0 },
+        { "Enabled (Every Refresh)", 1 },
+        { "Enabled (Every 2nd Refresh)", 2 }
+    };
+
+    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
+
     internal static int RefreshRate
     {
         get
@@ -46,7 +57,6 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log { get; private set; }
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
     internal static float PositiveScaleFactor => MainAspect / NativeAspect;
-    internal const float NativeAspect = 16f / 9f;
     private static ConfigEntry<int> CustomRefreshRate { get; set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     private static int MainWidth => SelectedResolution.width;
@@ -55,16 +65,6 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
     private static ConfigEntry<int> TargetFramerate { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
-
-    private static readonly int NativeDisplayWidth = Display.main.systemWidth;
-    private static readonly int NativeDisplayHeight = Display.main.systemHeight;
-
-    private static readonly Dictionary<string, int> VSyncOptions = new()
-    {
-        { "Disabled (Higher Performance)", 0 },
-        { "Enabled (Every Refresh)", 1 },
-        { "Enabled (Every 2nd Refresh)", 2 }
-    };
 
     private static ConfigEntry<string> Resolution { get; set; }
     private static ConfigEntry<bool> SixteenTenTesting { get; set; }
@@ -107,21 +107,7 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-    private static string[] GetResolutions()
-    {
-        var mainRes = new Resolution
-        {
-            width = MainWidth,
-            height = MainHeight,
-            refreshRate = MaxRefresh
-        };
-        var resList = new List<Resolution> { mainRes };
-        resList.AddRange(Screen.resolutions);
-        resList.SortByPixelCount();
-
-        var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
-        return finalList;
-    }
+    private static bool RequiresUpdate { get; set; }
 
     private void Awake()
     {
@@ -263,6 +249,22 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
+    private static string[] GetResolutions()
+    {
+        var mainRes = new Resolution
+        {
+            width = MainWidth,
+            height = MainHeight,
+            refreshRate = MaxRefresh
+        };
+        var resList = new List<Resolution> { mainRes };
+        resList.AddRange(Screen.resolutions);
+        resList.SortByPixelCount();
+
+        var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
+        return finalList;
+    }
+
 
     internal static void UpdateAll()
     {
@@ -301,8 +303,6 @@ public class Plugin : BaseUnityPlugin
 
         RequiresUpdate = false;
     }
-
-    private static bool RequiresUpdate { get; set; }
 
     private static int[] MergeUnityRefreshRates()
     {
