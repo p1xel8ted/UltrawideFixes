@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <OutputPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\Mods</OutputPath>
+    </PropertyGroup>
+
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\Mods</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="AssetRipper.VersionUtilities">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AssetRipper.VersionUtilities.dll</HintPath>
+        </Reference>
+        <Reference Include="Il2CppInterop.Runtime">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="IndexRange">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\IndexRange.dll</HintPath>
+        </Reference>
+        <Reference Include="MelonLoader">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MelonLoader.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+        </Reference>
+        <Reference Include="MonoMod.Backports">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.Backports.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security.Permissions">
+            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Security.Permissions.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+</Project>

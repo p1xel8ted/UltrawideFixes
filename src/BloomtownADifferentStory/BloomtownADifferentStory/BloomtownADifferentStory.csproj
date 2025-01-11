@@ -1,0 +1,360 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Version>0.1.0</Version>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <Description>$(MSBuildProjectName)</Description>
+        <TargetFramework>net481</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <IsPackable>false</IsPackable>
+        <Authors>p1xel8ted</Authors>
+        <Company>$(Authors)</Company>
+        <Product>$(MSBuildProjectName)</Product>
+        <PackageId>$(MSBuildProjectName)</PackageId>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Bloomtown</OutputPath>
+        <RootNamespace>Doorstop</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Reference Include="0Harmony">
+            <HintPath>libs\fody\0Harmony.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="AFPSCounter.Examples">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\AFPSCounter.Examples.dll</HintPath>
+        </Reference>
+        <Reference Include="AFPSCounter.Runtime">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\AFPSCounter.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp-firstpass">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+        </Reference>
+        <Reference Include="AstarPathfindingProject">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\AstarPathfindingProject.dll</HintPath>
+        </Reference>
+        <Reference Include="com.rlabrecque.steamworks.net">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTween">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\DOTween.dll</HintPath>
+        </Reference>
+        <Reference Include="DOTweenPro">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\DOTweenPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Elringus.BlendModes.Runtime">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Elringus.BlendModes.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="FMODUnity">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\FMODUnity.dll</HintPath>
+        </Reference>
+        <Reference Include="FMODUnityResonance">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\FMODUnityResonance.dll</HintPath>
+        </Reference>
+        <Reference Include="GSFUAssembly">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\GSFUAssembly.dll</HintPath>
+        </Reference>
+        <Reference Include="LinqTools">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\LinqTools.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.CSharp">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Microsoft.CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Posix">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Mono.Posix.dll</HintPath>
+        </Reference>
+        <Reference Include="Mono.Security">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Mono.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="Pathfinding.ClipperLib">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Pathfinding.ClipperLib.dll</HintPath>
+        </Reference>
+        <Reference Include="Pathfinding.Ionic.Zip.Reduced">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
+        </Reference>
+        <Reference Include="Pathfinding.Poly2Tri">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Pathfinding.Poly2Tri.dll</HintPath>
+        </Reference>
+        <Reference Include="Rewired_Core">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Rewired_Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Rewired_Windows">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Rewired_Windows.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.OdinInspector.Attributes">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Sirenix.OdinInspector.Attributes.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.Serialization">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Sirenix.Serialization.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.Serialization.AOTGenerated">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Sirenix.Serialization.AOTGenerated.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.Serialization.Config">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Sirenix.Serialization.Config.dll</HintPath>
+        </Reference>
+        <Reference Include="Sirenix.Utilities">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Sirenix.Utilities.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Configuration">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\System.Configuration.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Net.Http">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\System.Net.Http.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Security">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\System.Security.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.2D.Tilemap.Extras">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.2D.Tilemap.Extras.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Addressables">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.Addressables.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Postprocessing.Runtime">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.Postprocessing.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ResourceManager">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.ResourceManager.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.Timeline">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.Timeline.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualScripting.Core">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.VisualScripting.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualScripting.Flow">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.VisualScripting.Flow.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.VisualScripting.State">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\Unity.VisualScripting.State.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.AccessibilityModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AIModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AndroidJNIModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AssetBundleModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClothModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterInputModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ClusterRendererModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ContentLoadModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ContentLoadModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CrashReportingModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DirectorModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.DSPGraphModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.DSPGraphModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GameCenterModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GIModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.GIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.GridModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.HotReloadModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.HotReloadModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.JSONSerializeModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.LocalizationModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PerformanceReportingModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ProfilerModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ProfilerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PropertiesModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.PropertiesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ScreenCaptureModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteMaskModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.StreamingModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubstanceModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SubsystemsModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TerrainPhysicsModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreFontEngineModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreTextEngineModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TilemapModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TLSModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.TLSModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UI.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIElementsModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UmbraModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UmbraModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityAnalyticsModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityConnectModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityCurlModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityCurlModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityTestProtocolModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VehiclesModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VFXModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VirtualTexturingModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.VirtualTexturingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.VRModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.WindModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.XRModule">
+          <HintPath>G:\SteamLibrary\steamapps\common\Bloomtown\Bloomtown a Different Story_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Costura.Fody" Version="6.0.0">
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+
+</Project>

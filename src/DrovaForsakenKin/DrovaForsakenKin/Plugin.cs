@@ -1,71 +1,187 @@
-﻿using System.Diagnostics;
+﻿
 
+using System.Reflection;
+#if BEPINEX
+using BepInEx;
+using BepInEx.Configuration;
+using BepInEx.Logging;
+using BepInEx.Unity.IL2CPP;
+using Drova;
+using Drova.GUI;
+using Drova.Vfx;
+#endif
+using DrovaForsakenKin.Misc;
+using DrovaForsakenKin.MonoBehaviours;
+using HarmonyLib;
+using Il2CppInterop.Runtime.Injection;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.SceneManagement;
+#if MELONLOADER
+using DrovaForsakenKin;
+using Il2Cpp;
+using Il2CppDrova;
+using Il2CppDrova.GUI;
+using Il2CppDrova.Vfx;
+
+using MelonLoader;
+
+
+[assembly: MelonInfo(typeof(DrovaMelon), "Drova Forsaken Kin Ultra-Wide (MelonLoader)", "0.1.2", "p1xel8ted")]
+[assembly: MelonPlatformDomain(MelonPlatformDomainAttribute.CompatibleDomains.IL2CPP)]
+namespace DrovaForsakenKin;
+
+public class DrovaMelon : MelonMod
+{
+#endif
+
+#if BEPINEX
 namespace DrovaForsakenKin;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-public class Plugin : BasePlugin
+public class BepInExPlugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.drovaforsakenkin.ultrawide";
     private const string PluginName = "Drova Forsaken Kin Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.2";
 
-    private static readonly int[] CustomRefreshRates =
-    [
-        30, // Uncommon
-        50, // Uncommon
-        60, // Common
-        72, // Uncommon
-        75, // Common
-        90, // Uncommon
-        100, // Uncommon
-        120, // Common
-        144, // Common
-        165, // Common
-        180, // Common
-        200, // Uncommon
-        240, // Common
-        300, // Uncommon
-        360, // Uncommon
-        480 // Uncommon
-    ];
+#endif
 
-    private static float _previousFixedDeltaTime = -1f;
-    private static int _previousTargetRefresh = -1;
-
-    private static Transform Fog { get; set; }
+    internal static int MainWidth => Screen.currentResolution.width; //3440
+    internal static int MainHeight => Screen.currentResolution.height; //1440
     private static ActivateByPlatform Sp { get; set; }
-
-    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
-
     internal static float MainAspect => MainWidth / (float)MainHeight; //2.388888888888889
+    private static WriteOnceFloat OriginalFixedDeltaTime { get; } = new();
+    private static float NativeAspectRatio => 16f / 9f; //1.777777777777778
+    public static float NegativeScaleFactor => NativeAspectRatio / MainAspect; //0.7454545454545455
+    public static float PositiveScaleFactor => MainAspect / NativeAspectRatio; //1.338888888888889
 
-    // internal static float PositiveScaleFactor => MainAspect / NativeAspectRatio; //1.338888888888889
-    internal static ManualLogSource Logger { get; set; }
-
+#if BEPINEX
+    private static ManualLogSource Logger { get; set; }
     private static ConfigEntry<bool> RunInBackground { get; set; }
     private static ConfigEntry<bool> MuteInBackground { get; set; }
-    private static ConfigEntry<int> CustomRefreshRate { get; set; }
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
-    internal static ConfigEntry<int> DisplayToUse { get; private set; }
-    internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
-    internal static int MainWidth => Display.displays[DisplayToUse.Value].systemWidth; //3440
-    internal static int MainHeight => Display.displays[DisplayToUse.Value].systemHeight; //1440
-
     private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
-
-    // internal static ConfigEntry<bool> ExpandUI { get; set; }
-    private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
-    private static WriteOnceFloat OriginalFixedDeltaTime { get; } = new();
-    private static WindowPositioner WindowPositioner { get; set; }
-    private static ConfigEntry<int> TargetFramerate { get; set; }
-    private static float NativeAspectRatio => 16f / 9f; //1.777777777777778
-
-    public static float NegativeScaleFactor => NativeAspectRatio / MainAspect; //0.7454545454545455
     public static ConfigEntry<float> UIScale { get; private set; }
     public static ConfigEntry<bool> ConstrainMainMenu { get; private set; }
-    private static ConfigEntry<bool> FogLayer { get; set; }
+    internal static ConfigEntry<bool> RemoveFogLayer { get; set; }
     private static ConfigEntry<bool> MainMenuSocials { get; set; }
     private static ConfigEntry<bool> FeedbackInfo { get; set; }
+
+    public override void Load()
+    {
+        ClassInjector.RegisterTypeInIl2Cpp<WriteOnceFloat>();
+        ClassInjector.RegisterTypeInIl2Cpp<WriteOnceVector2>();
+        Logger = Log;
+
+        CorrectFixedUpdateRate = Config.Bind("01. Performance", "Modify Physics Rate", true,
+            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This is a generic Unity fix, may not be applicable to this particular game.", null, new ConfigurationManagerAttributes { Order = 94 }));
+        CorrectFixedUpdateRate.SettingChanged += (_, _) => { UpdateFixedDeltaTime(); };
+
+        UseRefreshRateForFixedUpdateRate = Config.Bind("01. Performance", "Use Refresh Rate For Physics Rate", false,
+            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. Just the top option should be sufficient to reduce camera judder, but you can experiment.", null, new ConfigurationManagerAttributes { Order = 93 }));
+        UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) => { UpdateFixedDeltaTime(); };
+
+        ConstrainMainMenu = Config.Bind("02. UI", "Constrain Main Menu", true, new ConfigDescription("Keeps the main menu in the 16:9 view.", null, new ConfigurationManagerAttributes { Order = 91 }));
+        ConstrainMainMenu.SettingChanged += (_, _) => { UpdateMainMenu(); };
+
+        UIScale = Config.Bind("02. UI", "UI Scale", 4f, new ConfigDescription("Set the UI scale.", new AcceptableValueRange<float>(0.5f, 10f), new ConfigurationManagerAttributes { Order = 92 }));
+        UIScale.SettingChanged += (_, _) =>
+        {
+            UIScale.Value = Mathf.Round(UIScale.Value * 4f) / 4f;
+            UpdateScalers();
+        };
+
+        MainMenuSocials = Config.Bind("02. UI", "Main Menu Socials", true, new ConfigDescription("Toggle the socials from the main menu.", null, new ConfigurationManagerAttributes { Order = 84 }));
+        MainMenuSocials.SettingChanged += (_, _) => { UpdateSocial(); };
+
+        FeedbackInfo = Config.Bind("02. UI", "Feedback Info", true, new ConfigDescription("Toggle the feedback info from the main menu.", null, new ConfigurationManagerAttributes { Order = 85 }));
+        FeedbackInfo.SettingChanged += (_, _) => { UpdateFeedback(); };
+
+        RemoveFogLayer = Config.Bind("03. Misc", "Remove Fog Layer", false, new ConfigDescription("Remove the lower fog layer sometimes present. Doesn't scale with ultra-wide well.", null, new ConfigurationManagerAttributes { Order = 83 }));
+        RemoveFogLayer.SettingChanged += (_, _) => { UpdateFogLayer(); };
+
+        RunInBackground = Config.Bind("03. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 82 }));
+        RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
+
+        MuteInBackground = Config.Bind("03. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes { Order = 81 }));
+
+        Application.focusChanged += (Il2CppSystem.Action<bool>)FocusChanged;
+
+        SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
+
+        Logger.LogInfo($"BepInEx_Plugin {PluginName} is loaded!");
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+    }
+#endif
+
+#if MELONLOADER
+    private static MelonPreferences_Category PerformanceCategory { get; set; }
+    private static MelonPreferences_Entry<bool> CorrectFixedUpdateRate { get; set; }
+    private static MelonPreferences_Entry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
+
+    private static MelonPreferences_Category UICategory { get; set; }
+    internal static MelonPreferences_Entry<bool> ConstrainMainMenu { get; private set; }
+    internal static MelonPreferences_Entry<float> UIScale { get; private set; }
+    private static MelonPreferences_Entry<bool> MainMenuSocials { get; set; }
+    private static MelonPreferences_Entry<bool> FeedbackInfo { get; set; }
+
+    private static MelonPreferences_Category MiscCategory { get; set; }
+    internal static MelonPreferences_Entry<bool> RemoveFogLayer { get; private set; }
+
+    private static MelonPreferences_Entry<bool> RunInBackground { get; set; }
+    private static MelonPreferences_Entry<bool> MuteInBackground { get; set; }
+
+    public override void OnInitializeMelon()
+    {
+        Melon<DrovaMelon>.Logger.Msg("Initializing Ultra-Wide Mod...");
+        ClassInjector.RegisterTypeInIl2Cpp<WriteOnceFloat>();
+        ClassInjector.RegisterTypeInIl2Cpp<WriteOnceVector2>();
+        
+        // Create preferences categories and entries
+        PerformanceCategory = MelonPreferences.CreateCategory("Drova Ultra-Wide -> Performance");
+        CorrectFixedUpdateRate = PerformanceCategory.CreateEntry("ModifyPhysicsRate", true, "Modify Physics Rate","Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This is a generic Unity fix, may not be applicable to this particular game.");
+        CorrectFixedUpdateRate.OnEntryValueChanged.Subscribe((_, _) => { UpdateFixedDeltaTime(); });
+       
+        UseRefreshRateForFixedUpdateRate = PerformanceCategory.CreateEntry("UseRefreshRateForPhysicsRate", false, "Use Refresh Rate For Physics Rate","Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. Just the top option should be sufficient to reduce camera judder, but you can experiment.");
+        UseRefreshRateForFixedUpdateRate.OnEntryValueChanged.Subscribe((_, _) => { UpdateFixedDeltaTime(); });
+        
+        UICategory = MelonPreferences.CreateCategory("Drova Ultra-Wide -> UI");
+        ConstrainMainMenu = UICategory.CreateEntry("ConstrainMainMenu", true, "Constrain Main Menu", "Keeps the main menu in the 16:9 view.");
+        ConstrainMainMenu.OnEntryValueChanged.Subscribe((_, _) => { UpdateMainMenu(); });
+        
+        UIScale = UICategory.CreateEntry("UIScale", 4f, "UI Scale", "Set the UI scale.");
+        UIScale.OnEntryValueChanged.Subscribe((_, _) =>
+        {
+            UIScale.Value = Mathf.Round(UIScale.Value * 4f) / 4f;
+            UpdateScalers();
+        });
+        
+        MainMenuSocials = UICategory.CreateEntry("MainMenuSocials", false, "Main Menu Socials","Toggle the socials from the main menu.");
+        MainMenuSocials.OnEntryValueChanged.Subscribe((_, _) => { UpdateSocial(); });
+        
+        FeedbackInfo = UICategory.CreateEntry("FeedbackInfo", false, "Feedback Info","Toggle the feedback info from the main menu.");
+        FeedbackInfo.OnEntryValueChanged.Subscribe((_, _) => { UpdateFeedback(); });
+       
+        MiscCategory = MelonPreferences.CreateCategory("Drova Ultra-Wide -> Misc");
+        RemoveFogLayer = MiscCategory.CreateEntry("RemoveFogLayer", false, "Remove Fog Layer","Remove the lower fog layer sometimes present.");
+        RemoveFogLayer.OnEntryValueChanged.Subscribe((_, _) => { UpdateFogLayer(); });
+        
+        RunInBackground = MiscCategory.CreateEntry("RunInBackground", true, "Run In Background","Allows the game to run even when not in focus.");
+        RunInBackground.OnEntryValueChanged.Subscribe((_, _) => { Application.runInBackground = RunInBackground.Value; });
+        
+        MuteInBackground = MiscCategory.CreateEntry("MuteInBackground", false, "Mute In Background","Mutes the game's audio when it is not in focus.");
+      
+        MelonPreferences.Save();
+        
+        Application.focusChanged += (Il2CppSystem.Action<bool>)FocusChanged;
+        SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
+        
+        Melon<DrovaMelon>.Logger.Msg("Ultra-Wide Mod Initialized Successfully!");
+    }
+
+#endif
 
     private static void FocusChanged(bool focus)
     {
@@ -77,117 +193,25 @@ public class Plugin : BasePlugin
         }
     }
 
-    private static int[] MergeUnityRefreshRates()
-    {
-        var unityRates = Screen.resolutions.Select(a => a.refreshRate).Distinct().ToArray();
-        var customRates = new List<int>();
-        customRates.AddRange(unityRates);
-        customRates.AddRange(CustomRefreshRates);
-        return customRates.Distinct().OrderBy(a => a).ToArray();
-    }
-
-
-    public override void Load()
-    {
-        ClassInjector.RegisterTypeInIl2Cpp<WriteOnceFloat>();
-        ClassInjector.RegisterTypeInIl2Cpp<WindowPositioner>();
-
-        Logger = Log;
-
-        var customRates = MergeUnityRefreshRates();
-
-        FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow, new ConfigDescription("Set the full screen mode.", null, new ConfigurationManagerAttributes { Order = 99 }));
-        FullScreenModeConfig.SettingChanged += (_, _) => UpdateDisplay();
-
-        DisplayToUse = Config.Bind("01. Display", "Display to Use", 0, new ConfigDescription("Select the display to use.", new AcceptableValueList<int>(Display.displays.Select((_, i) => i).ToArray()), new ConfigurationManagerAttributes { Order = 98 }));
-        DisplayToUse.SettingChanged += (_, _) => UpdateDisplay();
-
-        if (PlatformHelper.Is(Platform.Windows) || PlatformHelper.Is(Platform.Wine))
-        {
-            WindowPositioner = AddComponent<WindowPositioner>();
-        }
-
-        UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false, new ConfigDescription("Use a custom refresh rate instead of the maximum available in case Unity is reporting it wrong.", null, new ConfigurationManagerAttributes { Order = 97 }));
-        UseCustomRefreshRate.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-            UpdateFixedDeltaTime();
-        };
-
-        CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", MaxRefresh, new ConfigDescription("Set a custom refresh rate to use instead of the maximum available.", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 96 }));
-        CustomRefreshRate.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-            UpdateFixedDeltaTime();
-        };
-
-        TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh, new ConfigDescription("Set the target framerate", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 95 }));
-        TargetFramerate.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-            UpdateFixedDeltaTime();
-        };
-
-        CorrectFixedUpdateRate = Config.Bind("02. Performance", "Modify Physics Rate", true,
-            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This is a generic Unity fix, may not be applicable to this particular game.", null, new ConfigurationManagerAttributes { Order = 94 }));
-        CorrectFixedUpdateRate.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-            UpdateFixedDeltaTime();
-        };
-
-        UseRefreshRateForFixedUpdateRate = Config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", false,
-            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. Just the top option should be sufficient to reduce camera judder, but you can experiment.", null, new ConfigurationManagerAttributes { Order = 93 }));
-        UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) =>
-        {
-            UpdateDisplay();
-            UpdateFixedDeltaTime();
-        };
-
-        ConstrainMainMenu = Config.Bind("03. UI", "Constrain Main Menu", true, new ConfigDescription("Keeps the main menu in the 16:9 view.", null, new ConfigurationManagerAttributes { Order = 91 }));
-        ConstrainMainMenu.SettingChanged += (_, _) => { UpdateMainMenu(); };
-
-        UIScale = Config.Bind("03. UI", "UI Scale", 4f, new ConfigDescription("Set the UI scale.", new AcceptableValueRange<float>(0.5f, 10f), new ConfigurationManagerAttributes { Order = 92 }));
-        UIScale.SettingChanged += (_, _) =>
-        {
-            UIScale.Value = Mathf.Round(UIScale.Value * 4f) / 4f;
-            UpdateScalers();
-        };
-
-        MainMenuSocials = Config.Bind("03. UI", "Main Menu Socials", true, new ConfigDescription("Togle the socials from the main menu.", null, new ConfigurationManagerAttributes { Order = 84 }));
-        MainMenuSocials.SettingChanged += (_, _) => { UpdateSocial(); };
-
-        FeedbackInfo = Config.Bind("03. UI", "Feedback Info", true, new ConfigDescription("Togle the feedback info from the main menu.", null, new ConfigurationManagerAttributes { Order = 85 }));
-        FeedbackInfo.SettingChanged += (_, _) => { UpdateFeedback(); };
-
-        FogLayer = Config.Bind("04. Misc", "Remove Fog Layer", false, new ConfigDescription("Remove the lower fog layer sometimes present. Doesn't scale with ultra-wide well.", null, new ConfigurationManagerAttributes { Order = 83 }));
-        FogLayer.SettingChanged += (_, _) => { UpdateFogLayer(); };
-
-        RunInBackground = Config.Bind("04. Misc", "Run In Background", true, new ConfigDescription("Allows the game to run even when not in focus.", null, new ConfigurationManagerAttributes { Order = 82 }));
-        RunInBackground.SettingChanged += (_, _) => { Application.runInBackground = RunInBackground.Value; };
-
-        MuteInBackground = Config.Bind("04. Misc", "Mute In Background", false, new ConfigDescription("Mutes the game's audio when it is not in focus.", null, new ConfigurationManagerAttributes { Order = 81 }));
-
-        Application.focusChanged += (Il2CppSystem.Action<bool>)FocusChanged;
-
-        SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
-
-        Logger.LogInfo($"Plugin {PluginName} is loaded!");
-        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-    }
-
     private static void UpdateFogLayer()
     {
-        Fog ??= Utils.FindIl2CppType<Transform>().FirstOrDefault(a => a.name == "Floor Fog");
-        if (Fog)
+        if (!Patches.Patches.FloorFogInstance)
         {
-            Fog.gameObject.SetActive(!FogLayer.Value);
+            Patches.Patches.FloorFogInstance = Utils.FindIl2CppType<FloorFogBhvr>().FirstOrDefault();
+        }
+
+        if (Patches.Patches.FloorFogInstance)
+        {
+            if (RemoveFogLayer.Value)
+            {
+                Patches.Patches.FloorFogInstance.ClearAll();
+            }
         }
     }
 
     private static void UpdateSocial()
     {
-        Sp ??= Utils.FindIl2CppType<ActivateByPlatform>().FirstOrDefault(a => a.name == "SocialPanel");
+        Sp = Utils.FindIl2CppType<ActivateByPlatform>().FirstOrDefault(a => a.name == "SocialPanel");
         if (Sp)
         {
             Sp.gameObject.SetActive(MainMenuSocials.Value);
@@ -218,34 +242,38 @@ public class Plugin : BasePlugin
 
     private static void UpdateScalers()
     {
-        var gui = Utils.FindIl2CppType<GUI_HUD>().FirstOrDefault();
-        if (!gui) return;
-
-        var scalers = gui.GetComponentsInChildren<CanvasScaler>();
-        foreach (var scaler in scalers)
+        foreach (var scaler in Patches.Patches.HudScalers.Where(scaler => scaler))
         {
             scaler.scaleFactor = UIScale.Value;
         }
     }
 
-    private static void UpdateFixedDeltaTime()
+    internal static void UpdateFixedDeltaTime()
     {
         OriginalFixedDeltaTime.Value = Mathf.RoundToInt(1f / Time.fixedDeltaTime);
 
-        var targetRefresh = UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh;
+        var targetRefresh = Screen.currentResolution.refreshRate;
         if (targetRefresh <= 0)
         {
+#if MELONLOADER
+            Melon<DrovaMelon>.Logger.Warning("Custom refresh rate is set to 0 or less. Skipping update.");
+#endif
+#if BEPINEX
             Logger.LogWarning("Custom refresh rate is set to 0 or less. Skipping update.");
+#endif
             return;
         }
 
         if (Mathf.Approximately(targetRefresh, OriginalFixedDeltaTime.Value) || OriginalFixedDeltaTime.Value > targetRefresh)
         {
+#if MELONLOADER
+            Melon<DrovaMelon>.Logger.Msg("Game's physics update rate is already equal to (or greater than) your chosen refresh. Skipping update.");
+#endif
+#if BEPINEX
             Logger.LogInfo("Game's physics update rate is already equal to (or greater than) your chosen refresh. Skipping update.");
+#endif
             return;
         }
-
-        if (Mathf.Approximately(Time.fixedDeltaTime, _previousFixedDeltaTime) && targetRefresh == _previousTargetRefresh) return;
 
         if (CorrectFixedUpdateRate.Value)
         {
@@ -263,54 +291,25 @@ public class Plugin : BasePlugin
             Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
         }
 
-        _previousFixedDeltaTime = Time.fixedDeltaTime;
-        _previousTargetRefresh = targetRefresh;
 
-        Logger.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
+        var currentFixedDelta = 1f / Time.fixedDeltaTime;
+        if (Mathf.Approximately(currentFixedDelta, OriginalFixedDeltaTime.Value)) return;
+#if MELONLOADER
+        Melon<DrovaMelon>.Logger.Warning($"Physics update rate set to {currentFixedDelta}Hz");
+#endif
+#if BEPINEX
+        Logger.LogInfo($"Physics update rate set to {currentFixedDelta}Hz");
+#endif
     }
 
 
-    private static void UpdateDisplay()
-    {
-        if (WindowPositioner)
-        {
-            WindowPositioner.Start();
-        }
-
-        Application.runInBackground = RunInBackground.Value;
-
-        Display.displays[DisplayToUse.Value].Activate();
-
-        Screen.SetResolution(MainWidth, MainHeight, FullScreenModeConfig.Value, UseCustomRefreshRate.Value ? CustomRefreshRate.Value : MaxRefresh);
-
-        Application.targetFrameRate = TargetFramerate.Value;
-    }
-    
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (mode == LoadSceneMode.Single)
-        {
-            UpdateMainMenu();
-            UpdateScalers();
-            UpdateDisplay();
-            UpdateFixedDeltaTime();
-            UpdateFogLayer();
-            UpdateSocial();
-            UpdateFeedback();
-        }
+        if (mode != LoadSceneMode.Single) return;
+        if (scene.name != "Scene_MainMenu") return;
 
-        if (scene.name.Contains("floor", StringComparison.OrdinalIgnoreCase))
-        {
-            UpdateFogLayer();
-        }
+        UpdateMainMenu();
+        UpdateFeedback();
+        UpdateSocial();
     }
-
-    // private static void RunWithTimer(Action action, string message)
-    // {
-    //     var timer = new Stopwatch();
-    //     timer.Start();
-    //     action();
-    //     timer.Stop();
-    //     Logger.LogWarning($"{message} in {timer.ElapsedMilliseconds}ms");
-    // }
 }

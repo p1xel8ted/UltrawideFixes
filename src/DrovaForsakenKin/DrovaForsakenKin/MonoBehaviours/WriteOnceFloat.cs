@@ -1,3 +1,6 @@
+using System.Globalization;
+using UnityEngine;
+
 namespace DrovaForsakenKin.MonoBehaviours;
 
 //MonoBehaviour is only here to satisfy IL2CPP injection
@@ -23,7 +26,7 @@ public sealed class WriteOnceFloat : MonoBehaviour
 
     public float Value
     {
-        get => !HasValue ? default : _value;
+        get => !HasValue ? 0 : _value;
         set
         {
             if (HasValue) return;

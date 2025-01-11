@@ -1,3 +1,6 @@
+#if BEPINEX
+
+using BepInEx.Configuration;
 namespace DrovaForsakenKin.Misc;
 
 /// <summary>
@@ -149,3 +152,4 @@ internal sealed class ConfigurationManagerAttributes
     /// </summary>
     public Func<string, object> StrToObj;
 }
+#endif

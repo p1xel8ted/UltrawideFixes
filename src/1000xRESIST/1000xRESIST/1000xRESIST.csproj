@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!-- Base Settings -->
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Company>p1xel8ted</Company>
+        <Authors>p1xel8ted</Authors>
+        <IsPackable>false</IsPackable>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>Publicizer001,CS1591</NoWarn>
+        <Nullable>disable</Nullable>
+        <AssemblyName>1000xRESIST</AssemblyName>
+        <Description>1000xRESIST Ultra-Wide</Description>
+        <Version>0.1.0</Version>
+        <FileVersion>$(Version)</FileVersion>
+        <ApplicationVersion>$(Version)</ApplicationVersion>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <RootNamespace>xRESIST</RootNamespace>
+    </PropertyGroup>
+
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <!-- Debug Configuration -->
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>portable</DebugType>
+        <OutputPath>G:\FitGirl\1000xRESIST\BepInEx\plugins</OutputPath>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <!-- Release Configuration -->
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>G:\FitGirl\1000xRESIST\BepInEx\pluginss</OutputPath>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <!-- Package References -->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="AmplifyImpostors">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\AmplifyImpostors.dll</HintPath>
+      </Reference>
+      <Reference Include="AmplifyImpostors.Runtime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\AmplifyImpostors.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="AmplifyShaderEditor.Samples.BuiltIn">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\AmplifyShaderEditor.Samples.BuiltIn.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="Bunny83.SimpleJSON">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Bunny83.SimpleJSON.dll</HintPath>
+      </Reference>
+      <Reference Include="Cinemachine">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Cinemachine.dll</HintPath>
+      </Reference>
+      <Reference Include="CodeStage.AFPSCounter.Examples">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\CodeStage.AFPSCounter.Examples.dll</HintPath>
+      </Reference>
+      <Reference Include="CodeStage.AFPSCounter.Runtime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\CodeStage.AFPSCounter.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="com.saladgamer.volumetriclightbeam">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\com.saladgamer.volumetriclightbeam.dll</HintPath>
+      </Reference>
+      <Reference Include="com.saladgamer.volumetriclightbeam.samples">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\com.saladgamer.volumetriclightbeam.samples.dll</HintPath>
+      </Reference>
+      <Reference Include="DialogueSystem">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\DialogueSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="FImpossibleCreations">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\FImpossibleCreations.dll</HintPath>
+      </Reference>
+      <Reference Include="FlatKit">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\FlatKit.dll</HintPath>
+      </Reference>
+      <Reference Include="FMODUnity">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\FMODUnity.dll</HintPath>
+      </Reference>
+      <Reference Include="FMODUnityResonance">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\FMODUnityResonance.dll</HintPath>
+      </Reference>
+      <Reference Include="HeathenEngineering.Core">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\HeathenEngineering.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="HeathenEngineering.Core.Samples">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\HeathenEngineering.Core.Samples.dll</HintPath>
+      </Reference>
+      <Reference Include="HeathenEngineering.Steamworks">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\HeathenEngineering.Steamworks.dll</HintPath>
+      </Reference>
+      <Reference Include="HeathenEngineering.Steamworks.Examples">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\HeathenEngineering.Steamworks.Examples.dll</HintPath>
+      </Reference>
+      <Reference Include="HellTapEntertainment.MeshKit">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\HellTapEntertainment.MeshKit.dll</HintPath>
+      </Reference>
+      <Reference Include="I2Localization">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\I2Localization.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="KriptoFX">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\KriptoFX.dll</HintPath>
+      </Reference>
+      <Reference Include="Kronnect.Beautify">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Kronnect.Beautify.dll</HintPath>
+      </Reference>
+      <Reference Include="Kronnect.TrailsFX">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Kronnect.TrailsFX.dll</HintPath>
+      </Reference>
+      <Reference Include="Kronnect.VolumetricLights">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Kronnect.VolumetricLights.dll</HintPath>
+      </Reference>
+      <Reference Include="LowPolyAnimalPackageVol2">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\LowPolyAnimalPackageVol2.dll</HintPath>
+      </Reference>
+      <Reference Include="LuxWater">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\LuxWater.dll</HintPath>
+      </Reference>
+      <Reference Include="MeshBakerCore">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\MeshBakerCore.dll</HintPath>
+      </Reference>
+      <Reference Include="MeshBakerExamples">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\MeshBakerExamples.dll</HintPath>
+      </Reference>
+      <Reference Include="MeshCombineStudio">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\MeshCombineStudio.dll</HintPath>
+      </Reference>
+      <Reference Include="MeshExtension">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\MeshExtension.dll</HintPath>
+      </Reference>
+      <Reference Include="Not_Lonely.AdvancedCableCreator">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Not_Lonely.AdvancedCableCreator.dll</HintPath>
+      </Reference>
+      <Reference Include="NPCModels">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\NPCModels.dll</HintPath>
+      </Reference>
+      <Reference Include="ogxd.kmeans-clustering">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\ogxd.kmeans-clustering.dll</HintPath>
+      </Reference>
+      <Reference Include="PerfectCullingRuntime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\PerfectCullingRuntime.dll</HintPath>
+      </Reference>
+      <Reference Include="PixelCrushers">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\PixelCrushers.dll</HintPath>
+      </Reference>
+      <Reference Include="Plawius.ControllerIcons">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Plawius.ControllerIcons.dll</HintPath>
+      </Reference>
+      <Reference Include="PSXEffects">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\PSXEffects.dll</HintPath>
+      </Reference>
+      <Reference Include="PsychoseInteractive.NGSS">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\PsychoseInteractive.NGSS.dll</HintPath>
+      </Reference>
+      <Reference Include="RayFireAssembly">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\RayFireAssembly.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Rewired.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired.Integration.UnityUI">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Rewired.Integration.UnityUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Core">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Rewired_Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Windows">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Rewired_Windows.dll</HintPath>
+      </Reference>
+      <Reference Include="RFLib_DotNet_2018">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\RFLib_DotNet_2018.dll</HintPath>
+      </Reference>
+      <Reference Include="Rokoko">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Rokoko.dll</HintPath>
+      </Reference>
+      <Reference Include="RootMotion">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\RootMotion.dll</HintPath>
+      </Reference>
+      <Reference Include="SALSA-LipSync">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SALSA-LipSync.dll</HintPath>
+      </Reference>
+      <Reference Include="sc.vegetationspawner.runtime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\sc.vegetationspawner.runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="ShapesRuntime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\ShapesRuntime.dll</HintPath>
+      </Reference>
+      <Reference Include="ShapesSamples">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\ShapesSamples.dll</HintPath>
+      </Reference>
+      <Reference Include="ShermanWaffleStudios.KowloonWalledCity">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\ShermanWaffleStudios.KowloonWalledCity.dll</HintPath>
+      </Reference>
+      <Reference Include="Steamworks.NET">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Steamworks.NET.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.1000xRESIST">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.1000xRESIST.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.Core">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.Core.CollectionUtils">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.Core.CollectionUtils.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.Core.MonitoredCollections">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.Core.MonitoredCollections.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.CoreExtensions">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.CoreExtensions.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.MeshBakerExtension">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.MeshBakerExtension.dll</HintPath>
+      </Reference>
+      <Reference Include="SunsetVisitor.VolumetricLightsExtension">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\SunsetVisitor.VolumetricLightsExtension.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ProBuilder">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Unity.ProBuilder.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.TextCoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="Vetasoft.CameraFilterPack">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\Vetasoft.CameraFilterPack.dll</HintPath>
+      </Reference>
+      <Reference Include="WanzyeeStudio.Runtime">
+        <HintPath>G:\FitGirl\1000xRESIST\BepInEx\interop\WanzyeeStudio.Runtime.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+   
+
+    <!-- Import Custom Targets -->
+    <Import Project="../zip.target" />
+
+</Project>

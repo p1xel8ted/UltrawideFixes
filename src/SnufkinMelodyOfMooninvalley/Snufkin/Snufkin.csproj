@@ -1,12 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <!-- Base Settings -->
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Company>p1xel8ted</Company>
+        <Authors>p1xel8ted</Authors>
+        <IsPackable>false</IsPackable>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>Publicizer001,CS1591</NoWarn>
+        <Nullable>disable</Nullable>
         <AssemblyName>SnufkinUltraWide</AssemblyName>
         <Description>Snufkin: Melody of Moominvalley Ultra-Wide</Description>
-        <Version>0.1.0</Version>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <LangVersion>latest</LangVersion>
+        <Version>0.1.1</Version>
+        <FileVersion>$(Version)</FileVersion>
+        <ApplicationVersion>$(Version)</ApplicationVersion>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
         <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
@@ -15,463 +27,94 @@
         <RootNamespace>Snufkin</RootNamespace>
     </PropertyGroup>
 
-  <Import Project="../zip.target"/>
-  
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <!-- Debug Configuration -->
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+        <DebugType>portable</DebugType>
+        <OutputPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\plugins</OutputPath>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
     </PropertyGroup>
 
+    <!-- Release Configuration -->
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+        <OutputPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\plugins</OutputPath>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
     </PropertyGroup>
 
+    <!-- Package References -->
     <ItemGroup>
-        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
     </ItemGroup>
-
     <ItemGroup>
-      <Reference Include="Assembly-CSharp">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Assembly-CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
-      <Reference Include="Cinemachine">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Cinemachine.dll</HintPath>
-      </Reference>
-      <Reference Include="Coffee.UIParticle">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Coffee.UIParticle.dll</HintPath>
-      </Reference>
-      <Reference Include="com.rlabrecque.steamworks.net">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
-      </Reference>
-      <Reference Include="DOTween">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\DOTween.dll</HintPath>
-      </Reference>
-      <Reference Include="DOTween.Modules">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\DOTween.Modules.dll</HintPath>
-      </Reference>
-      <Reference Include="DOTweenPro">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\DOTweenPro.dll</HintPath>
-      </Reference>
-      <Reference Include="DOTweenPro.Scripts">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\DOTweenPro.Scripts.dll</HintPath>
-      </Reference>
-      <Reference Include="FMODUnity">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FMODUnity.dll</HintPath>
-      </Reference>
-      <Reference Include="FMODUnityResonance">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FMODUnityResonance.dll</HintPath>
-      </Reference>
-      <Reference Include="FuryStudios.FurySDK">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FuryStudios.FurySDK.dll</HintPath>
-      </Reference>
-      <Reference Include="FuryStudios.FurySDK.Internal">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FuryStudios.FurySDK.Internal.dll</HintPath>
-      </Reference>
-      <Reference Include="FuryStudios.FurySDK.Noop">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FuryStudios.FurySDK.Noop.dll</HintPath>
-      </Reference>
-      <Reference Include="FuryStudios.FurySDK.StandalonePC">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FuryStudios.FurySDK.StandalonePC.dll</HintPath>
-      </Reference>
-      <Reference Include="FuryStudios.FurySDK.Steam">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\FuryStudios.FurySDK.Steam.dll</HintPath>
-      </Reference>
-      <Reference Include="GizmosExtensions">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\GizmosExtensions.dll</HintPath>
-      </Reference>
-      <Reference Include="HyperGamesTriggerSystem">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\HyperGamesTriggerSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="HyperGamesTriggerSystem.Base">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\HyperGamesTriggerSystem.Base.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppMono.Security">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
-      </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Core">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Net.Http">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.Net.Http.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Runtime.Serialization">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.Runtime.Serialization.dll</HintPath>
-      </Reference>
-      <Reference Include="Il2CppSystem.Xml">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="io.sentry.unity.runtime">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\io.sentry.unity.runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="NavMeshComponents">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\NavMeshComponents.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.Microsoft.Bcl.AsyncInterfaces">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Buffers">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Buffers.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Collections.Immutable">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Collections.Immutable.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Memory">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Memory.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Numerics.Vectors">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Numerics.Vectors.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Reflection.Metadata">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Reflection.Metadata.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Runtime.CompilerServices.Unsafe">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Text.Encodings.Web">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Text.Encodings.Web.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Text.Json">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Text.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.System.Threading.Tasks.Extensions">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.System.Threading.Tasks.Extensions.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.Unity">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.Unity.dll</HintPath>
-      </Reference>
-      <Reference Include="Sentry.Unity.Native">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sentry.Unity.Native.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.OdinInspector.Attributes">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sirenix.OdinInspector.Attributes.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.Serialization.Config">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sirenix.Serialization.Config.dll</HintPath>
-      </Reference>
-      <Reference Include="Sirenix.Utilities">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Sirenix.Utilities.dll</HintPath>
-      </Reference>
-      <Reference Include="spine-csharp">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\spine-csharp.dll</HintPath>
-      </Reference>
-      <Reference Include="spine-unity">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\spine-unity.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Addressables">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Addressables.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Burst.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Collections">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Collections.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.InputSystem">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.InputSystem.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Mathematics">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Mathematics.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Polybrush">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Polybrush.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ProBuilder">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.ProBuilder.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.ShaderLibrary">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.RenderPipelines.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Timeline">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualEffectGraph.Runtime">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClothModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CloudBuild">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.CloudBuild.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GIModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UIElementsNativeModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UNETModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VFXModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.XRModule">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGames">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGames.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGames.AI">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGames.AI.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGames.CharacterController">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGames.CharacterController.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGames.EventQueue">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGames.EventQueue.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGames.Localisation">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGames.Localisation.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGames.Navmesh">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGames.Navmesh.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
       </Reference>
       <Reference Include="_HyperGamesLibrary">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGamesLibrary.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGamesLibrary.ArtTools">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGamesLibrary.ArtTools.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGamesLibrary.Helpers.TimescaleCheater">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGamesLibrary.Helpers.TimescaleCheater.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGamesLibrary.RicherText">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGamesLibrary.RicherText.dll</HintPath>
-      </Reference>
-      <Reference Include="_HyperGamesLibrary.UISystem">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_HyperGamesLibrary.UISystem.dll</HintPath>
-      </Reference>
-      <Reference Include="_ProceduralUIImage">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_ProceduralUIImage.dll</HintPath>
-      </Reference>
-      <Reference Include="_SimpleJSON">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_SimpleJSON.dll</HintPath>
-      </Reference>
-      <Reference Include="_Snufkin">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_Snufkin.dll</HintPath>
-      </Reference>
-      <Reference Include="_Snufkin.Decals">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\_Snufkin.Decals.dll</HintPath>
-      </Reference>
-      <Reference Include="__Generated">
-        <HintPath>I:\Games\Snufkin\BepInEx\interop\__Generated.dll</HintPath>
+        <HintPath>G:\FitGirl\Snufkin - Melody of Moominvalley\BepInEx\interop\_HyperGamesLibrary.dll</HintPath>
       </Reference>
     </ItemGroup>
 
-    
+    <!-- Import Custom Targets -->
+    <Import Project="../zip.target" />
+
 </Project>

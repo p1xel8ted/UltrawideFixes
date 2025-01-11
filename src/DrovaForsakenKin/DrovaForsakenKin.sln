@@ -4,13 +4,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrovaForsakenKin", "DrovaFo
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
+		MelonLoader|Any CPU = MelonLoader|Any CPU
+		BepInEx|Any CPU = BepInEx|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.BepInEx|Any CPU.ActiveCfg = BepInEx|Any CPU
+		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.BepInEx|Any CPU.Build.0 = BepInEx|Any CPU
+		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.MelonLoader|Any CPU.ActiveCfg = MelonLoader|Any CPU
+		{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}.MelonLoader|Any CPU.Build.0 = MelonLoader|Any CPU
 	EndGlobalSection
 EndGlobal
