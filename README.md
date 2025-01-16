@@ -33,7 +33,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [AI LIMIT](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AiLimit)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
 
-![main_menu1](https://github.com/user-attachments/assets/6e77b4b3-2929-45ec-83bf-5c4fa5c526ab) ![main_game](https://github.com/user-attachments/assets/e4b40a2c-26a9-488d-9795-f6825123e04b)
+![main_menu1](https://github.com/user-attachments/assets/be305fbd-f33b-4afe-b2b7-ca0f4fdf2f8a) ![main_game](https://github.com/user-attachments/assets/53c4765f-a876-49a5-8e5e-00d6b6859929)
 
 ## [Ankora: Lost Days](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnkoraLostDays)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnkoraLostDays/total?label=downloads&style=for-the-badge)
