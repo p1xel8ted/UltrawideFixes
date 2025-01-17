@@ -21,6 +21,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/35313973-6c27-4eb7-8b36-365a26cdc35e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/372f8245-fe2b-40b8-a5ec-bffb519d7678)
 
+## [1000xRESIST](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/1000xRESIST)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/1000xRESIST/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/18aff997-e390-457f-955a-22e4b809a916) ![main_game2](https://github.com/user-attachments/assets/8fd96991-7081-4553-a78e-66fd17fd242c)
+
 </details>
 <div id="A"/>
 <details><summary>A (8)</summary>
