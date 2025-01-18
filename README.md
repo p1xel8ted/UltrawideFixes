@@ -14,7 +14,7 @@ Thank you for supporting the project!
 Expand a section, and click on the game title to access the specific fix.<br/><br/>
 
 <div id="2"/>
-<details><summary>2 (1)</summary>
+<details><summary>2 (2)</summary>
   
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
@@ -207,6 +207,8 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ## [Hero's Adventure: Road to Passion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HerosAdventureRoadToPassion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HerosAdventureRoadToPassion/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/cb1ee160-113a-4be4-93b5-c4dbeeb51335) ![main_game_spanned](https://github.com/user-attachments/assets/a528077f-b21d-40df-bb0b-c42c0b108110)
 
 ## [Hollowbody](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Hollowbody)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Hollowbody/total?label=downloads&style=for-the-badge)
