@@ -13,20 +13,41 @@ public static class TransformExtensions
 
         return path;
     }
-    
-    public static Camera.GateFitMode ToGateFitMode(this Plugin.ViewScalingMode scalingMode)
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
     {
-        return scalingMode switch
+        resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
+    }
+    
+
+    public static T TryAddComponent<T>(this GameObject gameObject) where T : Component
+    {
+        var component = gameObject.GetComponent<T>();
+        if (component == null)
         {
-            Plugin.ViewScalingMode.None => Camera.GateFitMode.None,
-            Plugin.ViewScalingMode.Vertical => Camera.GateFitMode.Vertical,
-            Plugin.ViewScalingMode.Horizontal => Camera.GateFitMode.Horizontal,
-            Plugin.ViewScalingMode.Fill => Camera.GateFitMode.Overscan // Fill would be overscan
-            ,
-            _ => Camera.GateFitMode.None
-        };
+            component = gameObject.AddComponent<T>();
+        }
+
+        return component;
     }
 
+    // Recursive method to find all children with a specific name
+    public static void FindAllChildrenByName(Transform parent, string name, List<Transform> results)
+    {
+        foreach (var obj in parent)
+        {
+            var child = obj.TryCast<Transform>();
+            if (!child) continue;
+            
+            if (child.name == name)
+            {
+                results.Add(child);
+            }
+
+            // Recursively check the child’s children
+            FindAllChildrenByName(child, name, results);
+        }
+    }
+    
     // Extension method to find a child by name recursively
     public static Transform FindChildRecursive(this Transform parent, string childName)
     {

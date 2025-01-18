@@ -1,6 +1,4 @@
-﻿using Il2CppInterop.Runtime.Injection;
-
-namespace xRESIST;
+﻿namespace xRESIST;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BasePlugin

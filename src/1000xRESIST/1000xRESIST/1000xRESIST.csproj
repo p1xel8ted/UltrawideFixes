@@ -49,7 +49,7 @@
 
     <!-- Release Configuration -->
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>G:\FitGirl\1000xRESIST\BepInEx\pluginss</OutputPath>
+        <OutputPath>G:\FitGirl\1000xRESIST\BepInEx\plugins\</OutputPath>
         <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
     </PropertyGroup>
 

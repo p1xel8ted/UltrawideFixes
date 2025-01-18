@@ -1,20 +1,40 @@
 // ReSharper disable Unity.IncorrectMonoBehaviourInstantiation
 
+using Object = UnityEngine.Object;
+
 namespace AI_Limit.Patches;
 
 [Harmony]
 public static class Patches
 {
-    private static UIMovieBgController _movieBgController;
-    private static Dictionary<string, WriteOnceFloat> OriginalSizes { get; } = new();
+    private static readonly Dictionary<int,Transform> PositiveScaleMe = [];
+    private static readonly Dictionary<int,Transform> NegativeScaleMe = [];
     private static WriteOnceFloat OriginalFoV { get; } = new();
     private static CinemachineBrain MainCamera { get; set; }
+
+    private static GameObject MovieBgBackground { get; set; }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
         __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+    }
+
+    // need this here, as well as adding the custom component to force it
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Camera), "set_gateFit")]
+    public static void Camera_set_gateFit(ref Camera.GateFitMode value)
+    {
+        value = Plugin.CurrentAspect > Plugin.NativeAspect ? Camera.GateFitMode.Vertical : Camera.GateFitMode.Horizontal;
+    }
+
+    // need this here, as well as adding the custom component to force it
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Camera), "get_gateFit")]
+    public static void Camera_get_gateFit(ref Camera.GateFitMode __result)
+    {
+        __result = Plugin.CurrentAspect > Plugin.NativeAspect ? Camera.GateFitMode.Vertical : Camera.GateFitMode.Horizontal;
     }
 
     [HarmonyPrefix]
@@ -38,46 +58,144 @@ public static class Patches
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(PaperView), nameof(PaperView.OnShow))]
+    public static void PaperView_OnShow(PaperView __instance)
+    {
+        var bg = __instance.transform.FindChild("HUD_TutorialView/Bg");
+        if (bg)
+        {
+            PositiveScaleMe.TryAdd(bg.GetInstanceID(),bg);
+        }
+
+        for (var i = 0; i < __instance.transform.childCount; i++)
+        {
+            var child = __instance.transform.GetChild(i);
+            if (child)
+            {
+                NegativeScaleMe.TryAdd(child.GetInstanceID(),child);
+            }
+        }
+        
+        UpdateTransforms();
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Tutorial), nameof(Tutorial.OnEnable))]
+    public static void Tutorial_OnEnable(Tutorial __instance)
+    {
+        var bg = __instance.transform.FindChild("Bg");
+        if (bg)
+        {
+            PositiveScaleMe.TryAdd(bg.GetInstanceID(),bg);
+        }
+        
+        UpdateTransforms();
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UI_Dialog), nameof(UI_Dialog.OnEnable))]
+    public static void UI_Dialog_OnEnable(UI_Dialog __instance)
+    {
+        var dlg = __instance.transform.FindChild("UIRppt/DialogGroup/Bg");
+        {
+            if (dlg)
+            {
+                PositiveScaleMe.TryAdd(dlg.GetInstanceID(),dlg);
+            }
+        }
+        
+        UpdateTransforms();
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(TransferView), nameof(TransferView.OnShow))]
+    [HarmonyPatch(typeof(TransferView), nameof(TransferView.OnEnable))]
     [HarmonyPatch(typeof(TitleView), nameof(TitleView.OnShow))]
     [HarmonyPatch(typeof(TitleView), nameof(TitleView.OnGameSettingViewClose))]
     [HarmonyPatch(typeof(TitleView), nameof(TitleView.OnEnable))]
-    public static void TitleView_OnEnable(TitleView __instance)
+    [HarmonyPatch(typeof(ArchiveView), nameof(ArchiveView.OnEnable))]
+    [HarmonyPatch(typeof(ArchiveView), nameof(ArchiveView.OnNoticeShow))]
+    [HarmonyPatch(typeof(FunctionView), nameof(FunctionView.OnShow))]
+    [HarmonyPatch(typeof(FunctionView), nameof(FunctionView.ChangeTab))]
+    [HarmonyPatch(typeof(FunctionView), nameof(FunctionView.OnNoticeViewStateChange))]
+    public static void UIBehaviour_OnEnable(UIBehaviour __instance)
     {
-        var aspectRatio = Plugin.MainAspect;
-
-        // Process the main RectTransform
-        var rectTransform = __instance.GetComponent<RectTransform>();
-        if (rectTransform)
+        
+        var infoHeader = __instance.transform.FindChild("Tutorial/Footer/Bg");
+        if (infoHeader)
         {
-            var path = rectTransform.GetPath();
-            UpdateRectTransformSize(rectTransform, path, aspectRatio);
+            PositiveScaleMe.TryAdd(infoHeader.GetInstanceID(),infoHeader);
+        }
+        
+        var bg = __instance.transform.FindChild("GameSettingView/Bg");
+        if (bg)
+        {
+            PositiveScaleMe.TryAdd(bg.GetInstanceID(),bg);
         }
 
-        var gsv = __instance.transform.Find("GameSettingView");
-        if (gsv)
+        var bg2 = __instance.transform.FindChild("Bg");
+        if (bg2)
         {
-            var bg = gsv.Find("Bg");
-            if (bg)
-            {
-                bg.transform.localScale = Plugin.ExpandUI.Value ? new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f) : Vector3.one;
-            }
+            PositiveScaleMe.TryAdd(bg2.GetInstanceID(),bg2);
+        }
 
-            var footer = gsv.Find("Footer");
-            if (footer)
+        var footer = __instance.transform.FindChild("Footer/Bg");
+        if (footer)
+        {
+            PositiveScaleMe.TryAdd(footer.GetInstanceID(),footer);
+        }
+
+        var footer2 = __instance.transform.FindChild("GameSettingView/Footer/Bg");
+        if (footer2)
+        {
+            PositiveScaleMe.TryAdd(footer2.GetInstanceID(),footer2);
+        }
+
+        var header = __instance.transform.FindChild("GameSettingView/HeaderSimple/Bg");
+        if (header)
+        {
+            PositiveScaleMe.TryAdd(header.GetInstanceID(),header);
+        }
+
+        var header2 = __instance.transform.FindChild("HeaderSimple/Bg");
+        if (header2)
+        {
+            PositiveScaleMe.TryAdd(header2.GetInstanceID(),header2);
+        }
+
+        if (__instance is FunctionView fv)
+        {
+            // List to hold the results
+            var footerChildren = new List<Transform>();
+
+            // Start the recursive search
+            TransformExtensions.FindAllChildrenByName(fv.transform, "Footer", footerChildren);
+
+            // Now `footerChildren` contains all transforms named "Footer"
+            foreach (var bg3 in from foot in footerChildren where foot select foot.transform.FindChild("Bg") into bg3 where bg3 select bg3)
             {
-                var footerBg = footer.Find("Bg");
-                if (footerBg)
-                {
-                    var footerBgRectTransform = footerBg.GetComponent<RectTransform>();
-                    if (footerBgRectTransform)
-                    {
-                        var path = footerBgRectTransform.GetPath();
-                        UpdateFooterRectTransformSize(footerBgRectTransform, path);
-                    }
-                }
+                Plugin.Logger.LogWarning(bg3.GetPath());
+                PositiveScaleMe.TryAdd(bg3.GetInstanceID(),bg3);
             }
+        }
+        
+        
+        UpdateTransforms();
+    }
+
+    internal static void UpdateTransforms()
+    {
+        foreach (var t in PositiveScaleMe.Where(t => t.Value))
+        {
+            t.Value.transform.localScale = t.Value.transform.localScale with { x = Plugin.PositiveScaleFactor };
+        }
+        
+        foreach (var t in NegativeScaleMe.Where(t => t.Value))
+        {
+            t.Value.transform.localScale = t.Value.transform.localScale with { x = Plugin.NegativeScaleFactor };
         }
     }
+
 
     internal static void UpdateCamera()
     {
@@ -94,8 +212,6 @@ public static class Patches
 
                 MainCamera.OutputCamera.fieldOfView = OriginalFoV.Value + OriginalFoV.Value * pct;
             }
-
-            MainCamera.OutputCamera.gateFit = Plugin.ViewScalingModeConfig.Value.ToGateFitMode();
         }
     }
 
@@ -112,131 +228,38 @@ public static class Patches
         }
     }
 
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(FunctionView), nameof(FunctionView.OnShow))]
-    [HarmonyPatch(typeof(FunctionView), nameof(FunctionView.ChangeTab))]
-    [HarmonyPatch(typeof(FunctionView), nameof(FunctionView.OnNoticeViewStateChange))]
-    public static void FunctionView_OnEnable(FunctionView __instance)
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(UIMovieBgController), nameof(UIMovieBgController.OnDisable))]
+    public static void UIMovieBgController_OnDisable(UIMovieBgController __instance)
     {
-        // Cache main aspect ratio once
-        var aspectRatio = Plugin.MainAspect;
-
-        // Process the main RectTransform
-        var rectTransform = __instance.GetComponent<RectTransform>();
-        if (rectTransform)
-        {
-            var path = rectTransform.GetPath();
-            UpdateRectTransformSize(rectTransform, path, aspectRatio);
-        }
-
-        // Process the background RectTransform
-        var bg = __instance.transform.Find("Bg");
-        if (bg)
-        {
-            var bgRectTransform = bg.GetComponent<RectTransform>();
-            if (bgRectTransform)
-            {
-                var path = bgRectTransform.GetPath();
-                UpdateRectTransformSize(bgRectTransform, path, aspectRatio);
-            }
-        }
-
-        // Process Footer children and parents
-        var allRectTransforms = __instance.GetComponentsInChildren<RectTransform>()
-            .Concat(__instance.GetComponentsInParent<RectTransform>());
-
-        foreach (var footer in allRectTransforms)
-        {
-            if (footer.name == "Footer")
-            {
-                var footerBg = footer.Find("Bg");
-                if (footerBg)
-                {
-                    var footerBgRectTransform = footerBg.GetComponent<RectTransform>();
-                    if (footerBgRectTransform)
-                    {
-                        var path = footerBgRectTransform.GetPath();
-                        UpdateFooterRectTransformSize(footerBgRectTransform, path);
-                    }
-                }
-            }
-        }
-    }
-
-
-    private static void UpdateRectTransformSize(RectTransform rectTransform, string path, float aspectRatio)
-    {
-        if (rectTransform == null || rectTransform.sizeDelta.y <= 0) return;
-
-        var y = rectTransform.sizeDelta.y;
-        var x = rectTransform.sizeDelta.x;
-
-        // Check if this RectTransform has been adjusted before
-        if (!OriginalSizes.TryGetValue(path, out var size))
-        {
-            OriginalSizes[path] = new WriteOnceFloat(x);
-        }
-        else
-        {
-            x = size;
-        }
-
-        // Adjust size based on aspect ratio
-        rectTransform.sizeDelta = Plugin.ExpandUI.Value
-            ? rectTransform.sizeDelta with { x = y * aspectRatio }
-            : rectTransform.sizeDelta with { x = x };
-    }
-
-    private static void UpdateFooterRectTransformSize(RectTransform rectTransform, string path)
-    {
-        if (rectTransform == null) return;
-
-        var x = rectTransform.sizeDelta.x;
-
-        // Check if this RectTransform has been adjusted before
-        if (!OriginalSizes.TryGetValue(path, out var size))
-        {
-            OriginalSizes[path] = new WriteOnceFloat(x);
-        }
-        else
-        {
-            x = size;
-        }
-
-        // For footers, simply adjust the `x` value without the aspect ratio multiplier
-        rectTransform.sizeDelta = Plugin.ExpandUI.Value
-            ? rectTransform.sizeDelta with { x = x * Plugin.PositiveScaleFactor } // Optional multiplier for footers
-            : rectTransform.sizeDelta with { x = x };
-    }
-
-    internal static void UpdateMovieBgController()
-    {
-        if (!_movieBgController)
-        {
-            _movieBgController = Resources.FindObjectsOfTypeAll<UIMovieBgController>().FirstOrDefault();
-        }
-
-        if (_movieBgController)
-        {
-            _movieBgController.transform.localScale = Plugin.ScaleMenuBackground.Value ? new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f) : Vector3.one;
-        }
+        if (!MovieBgBackground) return;
+        
+        Object.Destroy(MovieBgBackground);
+        MovieBgBackground = null;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIMovieBgController), nameof(UIMovieBgController.OnEnable))]
     public static void UIMovieBgController_OnEnable(UIMovieBgController __instance)
     {
-        _movieBgController = __instance;
+        var arf = __instance.gameObject.TryAddComponent<AspectRatioFitter>();
+        arf.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
+        arf.aspectRatio = Plugin.NativeAspect;
+        
+        // Add a new GameObject as a fullscreen black background
+        var go = new GameObject("BlackBG");
+        go.transform.SetParent(__instance.transform.parent, false); // Maintain correct local positioning
+        var img = go.AddComponent<Image>();
+        img.color = Color.black;
 
-        UpdateMovieBgController();
-    }
+        // Set the rect transform to cover the entire parent
+        var rectTransform = img.rectTransform;
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.sizeDelta = Vector2.zero;
 
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(AspectRatioFitter), nameof(AspectRatioFitter.OnEnable))]
-    public static void AspectRatioFitter_OnEnable(AspectRatioFitter __instance)
-    {
-        __instance.aspectMode = AspectRatioFitter.AspectMode.None;
-        __instance.enabled = false;
-        // Object.Destroy(__instance);
+        // Move the background behind everything else
+        go.transform.SetAsFirstSibling();
+        MovieBgBackground = go;
     }
 }

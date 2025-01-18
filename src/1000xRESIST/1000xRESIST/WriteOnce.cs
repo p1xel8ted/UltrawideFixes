@@ -1,6 +1,4 @@
-﻿using System.Globalization;
-
-namespace xRESIST;
+﻿namespace xRESIST;
 
 public sealed class WriteOnceFloat : MonoBehaviour
 {
