@@ -14,12 +14,17 @@ Thank you for supporting the project!
 Expand a section, and click on the game title to access the specific fix.<br/><br/>
 
 <div id="2"/>
-<details><summary>2 (1)</summary>
+<details><summary>2 (2)</summary>
   
 ## [20 Minutes Till Dawn](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/20MinutesTillDawn)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/20MinutesTillDawn/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/35313973-6c27-4eb7-8b36-365a26cdc35e) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/372f8245-fe2b-40b8-a5ec-bffb519d7678)
+
+## [1000xRESIST](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/1000xRESIST)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/1000xRESIST/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/18aff997-e390-457f-955a-22e4b809a916) ![main_game2](https://github.com/user-attachments/assets/8fd96991-7081-4553-a78e-66fd17fd242c)
 
 </details>
 <div id="A"/>
@@ -33,7 +38,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [AI LIMIT](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AiLimit)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
 
-![main_menu1](https://github.com/user-attachments/assets/6e77b4b3-2929-45ec-83bf-5c4fa5c526ab) ![main_game](https://github.com/user-attachments/assets/e4b40a2c-26a9-488d-9795-f6825123e04b)
+![main_menu1](https://github.com/user-attachments/assets/be305fbd-f33b-4afe-b2b7-ca0f4fdf2f8a) ![main_game](https://github.com/user-attachments/assets/53c4765f-a876-49a5-8e5e-00d6b6859929)
 
 ## [Ankora: Lost Days](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnkoraLostDays)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnkoraLostDays/total?label=downloads&style=for-the-badge)
@@ -202,6 +207,8 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ## [Hero's Adventure: Road to Passion](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HerosAdventureRoadToPassion)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HerosAdventureRoadToPassion/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/cb1ee160-113a-4be4-93b5-c4dbeeb51335) ![main_game_spanned](https://github.com/user-attachments/assets/a528077f-b21d-40df-bb0b-c42c0b108110)
 
 ## [Hollowbody](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Hollowbody)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Hollowbody/total?label=downloads&style=for-the-badge)
