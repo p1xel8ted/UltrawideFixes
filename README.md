@@ -387,6 +387,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_game_spanned](https://github.com/user-attachments/assets/5a14816a-4115-4529-8f50-81eb391b09bc)
 
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-2.1k-brightgreen?style=for-the-badge)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/c0d9c6a7-de95-471f-a69b-acfe5953d7ec)
