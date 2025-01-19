@@ -372,6 +372,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/de2ca20a-ef91-4c7c-9ec6-8d6fde4085f4) ![main_game_cons](https://github.com/user-attachments/assets/466d0da8-e76f-44d2-a841-668330f4379e)
 
 ## [Ruined King: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RuinedKing)  
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-35-brightgreen?style=for-the-badge)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RuinedKing/total?label=downloads&style=for-the-badge)
 
 ![main_menu_clean](https://github.com/user-attachments/assets/54d85d30-77fe-4497-8276-5da6f3d1e340) ![main_hud_hide](https://github.com/user-attachments/assets/875aa5c5-a65b-4fab-abc9-4ad1141eb85b)
