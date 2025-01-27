@@ -4,6 +4,28 @@
 public static class Patches
 {
     private static readonly WriteOnce<Vector3> OriginalScale = new();
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScaleModes = new();
+    internal static readonly List<CanvasScaler> Scalers = [];
+    
+    internal static void ProcessScaler(CanvasScaler scaler)
+    {
+        var instanceID = scaler.GetInstanceID();
+        if (!OriginalScaleModes.TryGetValue(instanceID, out var mode))
+        {
+            OriginalScaleModes.Add(instanceID, scaler.screenMatchMode);
+            mode = scaler.screenMatchMode;
+            Scalers.Add(scaler);
+        }
+
+        scaler.screenMatchMode = Plugin.MainAspectRatio > Plugin.NativeAspectRatio ? CanvasScaler.ScreenMatchMode.Expand : mode;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
+    {
+        ProcessScaler(__instance);
+    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(RCGUIPanel), nameof(RCGUIPanel.ShowInit))]
@@ -74,11 +96,14 @@ public static class Patches
     [HarmonyPatch(typeof(UIManager), nameof(UIManager.FadeOutPlayerUI))]
     public static void UIManager_Update(UIManager __instance)
     {
-        OriginalScale.Value = __instance.PlayerUI.transform.localScale;
-        __instance.PlayerUI.transform.localScale = Plugin.SteamDeck ? new Vector3(0.009f, 0.009f, 0.009f) : OriginalScale.Value;
+        if (__instance.PlayerUI)
+        {
+            OriginalScale.Value = __instance.PlayerUI.transform.localScale;
+            __instance.PlayerUI.transform.localScale = Plugin.SteamDeck ? new Vector3(0.009f, 0.009f, 0.009f) : OriginalScale.Value;
+        }
     }
 
-    
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CullingManager), nameof(CullingManager.ExtentRect))]
     public static void CullingManager_ExtentRect(ref Rect target, ref float padding)
@@ -104,7 +129,7 @@ public static class Patches
 
         return adjustedRect;
     }
-    
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ResolutionSetting), nameof(ResolutionSetting.IsValidResolution), typeof(int), typeof(int), typeof(int), typeof(int))]
@@ -113,14 +138,14 @@ public static class Patches
     {
         __result = true;
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ResolutionSetting), nameof(ResolutionSetting.IsItUltraWideScreen))]
     public static void ResolutionSetting_IsItUltraWideScreen(ref bool __result)
     {
         __result = Plugin.MainAspectRatio > Plugin.NativeAspectRatio;
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CameraCore), nameof(CameraCore.UpdateRendertexture))]
     public static void CameraCore_UpdateRenderTexture(CameraCore __instance)

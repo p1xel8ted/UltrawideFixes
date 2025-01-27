@@ -15,6 +15,16 @@ public static class Utilities
         return component;
     }
 
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
+    {
+        var tList = resolutions.ToArray().ToList();
+        tList.Sort((a, b) => a.width * a.height - b.width * b.height);
+        resolutions.Clear();
+        foreach (var res in tList)
+        {
+            resolutions.Add(res);
+        }
+    }
     internal static void SortByPixelCount(this Il2CppSystem.Collections.Generic.List<Resolution> resolutions)
     {
         var tList = resolutions.ToArray().ToList();
@@ -111,12 +121,35 @@ public static class Utilities
         return list;
     }
 
+    private static readonly int[] CustomRefreshRates =
+    [
+        30, // Uncommon
+        50, // Uncommon
+        60, // Common
+        72, // Uncommon
+        75, // Common
+        90, // Uncommon
+        100, // Uncommon
+        120, // Common
+        144, // Common
+        165, // Common
+        180, // Common
+        200, // Uncommon
+        240, // Common
+        300, // Uncommon
+        360, // Uncommon
+        480 // Uncommon
+    ];
+    
     public static int[] MergeUnityRefreshRates()
     {
         var unityRates = Screen.resolutions.Select(a => a.refreshRate).Distinct().ToArray();
-        return unityRates.Concat(Core.Constants.CustomRefreshRates).Distinct().OrderBy(a => a).ToArray();
+        var customRates = new List<int>();
+        customRates.AddRange(unityRates);
+        customRates.AddRange(CustomRefreshRates);
+        return customRates.Distinct().OrderBy(a => a).ToArray();
     }
-
+    
     internal static int FindLowestFrameRateMultipleAboveFifty(int originalRate)
     {
         for (var rate = originalRate / 2; rate > 50; rate--)

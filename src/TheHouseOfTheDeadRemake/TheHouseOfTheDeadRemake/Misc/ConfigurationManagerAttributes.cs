@@ -1,4 +1,4 @@
-﻿namespace TalesOfGracesRemastered;
+﻿namespace TheHouseOfTheDeadRemake.Misc;
 
 /// <summary>
 /// Class that specifies how a setting should be displayed inside the ConfigurationManager settings window.

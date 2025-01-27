@@ -12,7 +12,7 @@ global using Doozy.Runtime.UIManager.Layouts;
 global using HarmonyLib;
 global using Il2CppInterop.Runtime;
 global using MonoMod.Utils;
-global using RoguePrinceOfPersia.WindowsAPI;
+
 global using UnityEngine;
 global using UnityEngine.Events;
 global using UnityEngine.Rendering;

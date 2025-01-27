@@ -12,7 +12,7 @@
 
     <PropertyGroup>
         <TargetFramework>net481</TargetFramework>
-        <Version>0.1.2</Version>
+        <Version>0.1.3</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
         <IsPackable>false</IsPackable>
@@ -57,7 +57,7 @@
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'GamePass' ">
-        <OutputPath>F:\Games\GamePass\Nine Sols\Content\BepInEx\plugins</OutputPath>
+        <OutputPath>F:\Games\GamePass\Nine Sols_1\Content\BepInEx\plugins</OutputPath>
         <Optimize Condition=" '$(Optimize)' == '' ">true</Optimize>
     </PropertyGroup>
 

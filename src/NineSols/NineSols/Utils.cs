@@ -14,13 +14,24 @@ public static class Utils
 
         return originalRate;
     }
-    
+
+    internal static bool TryAdd<TKey, TValue>(this Dictionary<TKey, TValue> dictionary, TKey key, TValue value)
+    {
+        if (dictionary.ContainsKey(key))
+        {
+            return false;
+        }
+
+        dictionary.Add(key, value);
+        return true;
+    }
+
     internal static int GetHudRes(float y)
     {
         return Mathf.RoundToInt(y * GetPreferredAspect());
     }
 
-    
+
     private static float GetPreferredAspect()
     {
         var width = Plugin.HUDAspect.Value switch
@@ -38,10 +49,9 @@ public static class Utils
         };
         return width;
     }
-    
+
     internal static void SortByPixelCount(this List<Resolution> resolutions)
     {
         resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
     }
-
 }

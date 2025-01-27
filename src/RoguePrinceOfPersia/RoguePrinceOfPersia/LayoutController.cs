@@ -1,4 +1,4 @@
-﻿namespace TalesOfGracesRemastered;
+﻿namespace RoguePrinceOfPersia;
 
 internal class LayoutController : MonoBehaviour
 {
@@ -10,6 +10,23 @@ internal class LayoutController : MonoBehaviour
 
     private bool _useAspectRatioFitter;
 
+    internal static void AddLayoutControllerPath(Transform transform, string findPath, LayoutController.LayoutSize size, float customSize, bool useAspectRatioFitter)
+    {
+        var foundTransform = transform.Find(findPath);
+
+        if (!foundTransform) return;
+
+        AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter);
+    }
+
+
+    internal static void AddLayoutControllerRoot(Transform transform, LayoutSize size, float customSize, bool useAspectRatioFitter)
+    {
+        var lc = transform.gameObject.TryAddComponent<LayoutController>();
+        lc.Init(size, customSize, useAspectRatioFitter);
+        lc.UpdateAspect();
+    }
+    
     internal void Init(LayoutSize size, float customSize, bool useArf)
     {
         _size = size;
@@ -39,22 +56,23 @@ internal class LayoutController : MonoBehaviour
     {
         if (_layoutElement)
         {
-            var height = Screen.currentResolution.height;
+            const int height = 1080;
             var width = _size switch
             {
                 LayoutSize.Custom => _customSize,
-                LayoutSize.ConfigBased => Util.GetHudRes(height),
                 LayoutSize.ForceFullScreen => Mathf.RoundToInt(height * Plugin.CurrentAspect),
-                LayoutSize.ForceSixteenNine => Mathf.RoundToInt(height * Plugin.CurrentAspect),
-                _ => Util.GetHudRes(height)
+                LayoutSize.ForceSixteenNine => Mathf.RoundToInt(height * Plugin.NativeAspect),
+                _ => throw new ArgumentOutOfRangeException()
             };
 
             _layoutElement.preferredWidth = width;
+            _layoutElement.enabled = true;
         }
 
         if (_contentSizeFitter)
         {
             _contentSizeFitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            _contentSizeFitter.enabled = true;
         }
 
         if (_aspectRatioFitter)
@@ -62,19 +80,18 @@ internal class LayoutController : MonoBehaviour
             var aspect = _size switch
             {
                 LayoutSize.Custom => _customSize,
-                LayoutSize.ConfigBased => Util.GetPreferredAspect(),
                 LayoutSize.ForceFullScreen => Plugin.CurrentAspect,
                 LayoutSize.ForceSixteenNine => Plugin.NativeAspect,
                 _ => Plugin.CurrentAspect
             };
             _aspectRatioFitter.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
             _aspectRatioFitter.aspectRatio = aspect;
+            _aspectRatioFitter.enabled = true;
         }
     }
 
     internal enum LayoutSize
     {
-        ConfigBased,
         ForceFullScreen,
         ForceSixteenNine,
         Custom,

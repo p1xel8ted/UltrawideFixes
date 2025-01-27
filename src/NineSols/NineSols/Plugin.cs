@@ -12,7 +12,7 @@ public class Plugin : BaseUnityPlugin
 #else
     private const string PluginName = "Nine Sols Ultra-Wide (GamePass)";
 #endif
-    private const string PluginVersion = "0.1.2";
+    private const string PluginVersion = "0.1.3";
 
     private static readonly int[] CustomRefreshRates =
     [
@@ -72,7 +72,7 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> TargetFramerate { get; set; }
     private static ConfigEntry<string> Resolution { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
-    
+
     // private static ConfigEntry<bool> SixteenTenTesting { get; set; }
     // private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
     // private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
@@ -110,7 +110,7 @@ public class Plugin : BaseUnityPlugin
             // }
 
             if (Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
-            
+
             var res = Resolution.Value.Split('x');
             return new Resolution
             {
@@ -144,6 +144,7 @@ public class Plugin : BaseUnityPlugin
         var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
         return finalList;
     }
+
 
     private void Awake()
     {
@@ -214,8 +215,7 @@ public class Plugin : BaseUnityPlugin
                 new ConfigurationManagerAttributes { Order = 99 }));
         Resolution.SettingChanged += (_, _) =>
         {
-            RequiresUpdate = true;
-            UpdateAll();
+            UpdateAll(true);
             UpdateForSteamDeck();
         };
 
@@ -229,11 +229,7 @@ public class Plugin : BaseUnityPlugin
                 "- Windowed: Runs the game in a resizable window.",
                 null,
                 new ConfigurationManagerAttributes { Order = 98 }));
-        FullScreenModeConfig.SettingChanged += (_, _) =>
-        {
-            RequiresUpdate = true;
-            UpdateAll();
-        };
+        FullScreenModeConfig.SettingChanged += (_, _) => UpdateAll(true);
 
         TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh,
             new ConfigDescription(
@@ -250,33 +246,25 @@ public class Plugin : BaseUnityPlugin
                 "- Enabled (Every 2nd Refresh): Synchronizes with every second monitor refresh, effectively halving the refresh rate for weaker hardware or demanding setups.",
                 new AcceptableValueList<string>(VSyncOptions.Keys.ToArray()),
                 new ConfigurationManagerAttributes { Order = 96 }));
-        VSyncSetting.SettingChanged += (_, _) => UpdateAll();
+        VSyncSetting.SettingChanged += (_, _) => UpdateAll(true);
 
         UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false,
             new ConfigDescription(
                 "Enable this option if Unity reports the wrong maximum refresh rate for your display. Allows setting a custom refresh rate.",
                 null,
                 new ConfigurationManagerAttributes { Order = 95 }));
-        UseCustomRefreshRate.SettingChanged += (_, _) =>
-        {
-            RequiresUpdate = true;
-            UpdateAll();
-        };
+        UseCustomRefreshRate.SettingChanged += (_, _) => UpdateAll(true);
 
         CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate,
             new ConfigDescription(
                 "Manually define a refresh rate to use if 'Use Custom Refresh Rate' is enabled.",
                 new AcceptableValueList<int>(customRates),
                 new ConfigurationManagerAttributes { Order = 94 }));
-        CustomRefreshRate.SettingChanged += (_, _) =>
-        {
-            RequiresUpdate = true;
-            UpdateAll();
-        };
+        CustomRefreshRate.SettingChanged += (_, _) => UpdateAll(true);
 
         TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh, new ConfigDescription("Set the target framerate - this will only function when VSYNC is OFF (0)", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 95 }));
         TargetFramerate.SettingChanged += (_, _) => UpdateAll();
-        
+
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         RequiresUpdate = true;
@@ -286,7 +274,7 @@ public class Plugin : BaseUnityPlugin
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
-    
+
     private static int[] MergeUnityRefreshRates()
     {
         var unityRates = Screen.resolutions.Select(a => (int)a.refreshRateRatio.value).Distinct().ToArray();
@@ -296,9 +284,9 @@ public class Plugin : BaseUnityPlugin
         return customRates.Distinct().OrderBy(a => a).ToArray();
     }
 
-    private static void UpdateAll()
+    private static void UpdateAll(bool force = false)
     {
-        UpdateDisplay();
+        UpdateDisplay(force);
     }
 
     private static void UpdateForSteamDeck()
@@ -314,10 +302,20 @@ public class Plugin : BaseUnityPlugin
         }
 
         UpdateDisplay();
+        UpdateCanvasScalers();
+    }
+
+    private static void UpdateCanvasScalers()
+    {
+        var scalers = Patches.Scalers;
+        foreach (var scaler in scalers)
+        {
+            Patches.ProcessScaler(scaler);
+        }
     }
 
 
-    private static void UpdateDisplay()
+    private static void UpdateDisplay(bool force = false)
     {
         // Apply VSync setting using the mapped value
         if (VSyncOptions.TryGetValue(VSyncSetting.Value, out var vSyncCount))
@@ -333,6 +331,10 @@ public class Plugin : BaseUnityPlugin
         // Apply target frame rate only if VSync is off
         Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
 
+        if (force)
+        {
+            RequiresUpdate = true;
+        }
 
         if (!RequiresUpdate) return;
 

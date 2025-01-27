@@ -1,32 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-    <!-- Base Settings -->
-    <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <LangVersion>latest</LangVersion>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <Company>p1xel8ted</Company>
-        <Authors>p1xel8ted</Authors>
-        <IsPackable>false</IsPackable>
-        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <NoWarn>Publicizer001,CS1591</NoWarn>
-        <Nullable>disable</Nullable>
-        <AssemblyName>TalesOfGracesF-Remastered</AssemblyName>
-        <Description>Tales of Graces F Remastered</Description>
+        <PropertyGroup>
+        <Product>houseofthedeadremake</Product>
+        <AssemblyName>houseofthedeadremake</AssemblyName>
+        <OutputPath>G:\SteamLibrary\steamapps\common\THE HOUSE OF THE DEAD Remake\BepInEx\plugins</OutputPath>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Version>0.1.0</Version>
-        <FileVersion>$(Version)</FileVersion>
-        <ApplicationVersion>$(Version)</ApplicationVersion>
-        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <IsPackable>false</IsPackable>
+        <Company>p1xel8ted</Company>
         <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <Configurations>Release;Debug</Configurations>
+        <Platforms>AnyCPU</Platforms>
+        <Optimize>true</Optimize>
+        <appendTargetFrameworkToOutputPath>false</appendTargetFrameworkToOutputPath>
     </PropertyGroup>
+        <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+          <Optimize>false</Optimize>
+        </PropertyGroup>
+        <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+          <DebugSymbols>true</DebugSymbols>
+        </PropertyGroup>
 
-    <!-- Default all references to CopyLocal False -->
     <ItemDefinitionGroup>
         <Reference>
             <Private>False</Private>
@@ -39,78 +40,54 @@
         </PackageReference>
     </ItemDefinitionGroup>
 
-    <!-- Debug Configuration -->
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DebugType>portable</DebugType>
-        <OutputPath>G:\SteamLibrary\steamapps\common\Tales of Graces f Remastered\BepInEx\plugins</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-    </PropertyGroup>
-
-    <!-- Release Configuration -->
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>G:\SteamLibrary\steamapps\common\Tales of Graces f Remastered\BepInEx\plugins</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-    </PropertyGroup>
+    <Import Project="../../zip.target"/>
+    
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.*"/>
+    </ItemGroup>
+    
     <ItemGroup>
       <Reference Include="Assembly-CSharp">
         <HintPath>libs\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="com.rlabrecque.steamworks.net">
-        <HintPath>libs\com.rlabrecque.steamworks.net.dll</HintPath>
-      </Reference>
-      <Reference Include="CriMw.CriWare.Runtime">
-        <HintPath>libs\CriMw.CriWare.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="CriMw.CriWare.Vp9.Runtime">
-        <HintPath>libs\CriMw.CriWare.Vp9.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Mono.Security">
-        <HintPath>libs\Mono.Security.dll</HintPath>
-      </Reference>
-      <Reference Include="Newtonsoft.Json">
-        <HintPath>libs\Newtonsoft.Json.dll</HintPath>
-      </Reference>
-      <Reference Include="SimpleAnimationComponent">
-        <HintPath>libs\SimpleAnimationComponent.dll</HintPath>
+      <Reference Include="Cinemachine">
+        <HintPath>libs\Cinemachine.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>libs\Unity.Addressables.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Burst">
-        <HintPath>libs\Unity.Burst.dll</HintPath>
+      <Reference Include="Unity.Animation.Rigging">
+        <HintPath>libs\Unity.Animation.Rigging.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>libs\Unity.Burst.Unsafe.dll</HintPath>
+      <Reference Include="Unity.Formats.Fbx.Runtime">
+        <HintPath>libs\Unity.Formats.Fbx.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.InputSystem">
-        <HintPath>libs\Unity.InputSystem.dll</HintPath>
+      <Reference Include="Unity.ProBuilder">
+        <HintPath>libs\Unity.ProBuilder.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.InputSystem.ForUI">
-        <HintPath>libs\Unity.InputSystem.ForUI.dll</HintPath>
+      <Reference Include="Unity.ProBuilder.Csg">
+        <HintPath>libs\Unity.ProBuilder.Csg.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Mathematics">
-        <HintPath>libs\Unity.Mathematics.dll</HintPath>
+      <Reference Include="Unity.ProBuilder.KdTree">
+        <HintPath>libs\Unity.ProBuilder.KdTree.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>libs\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      <Reference Include="Unity.ProBuilder.Poly2Tri">
+        <HintPath>libs\Unity.ProBuilder.Poly2Tri.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ProBuilder.Stl">
+        <HintPath>libs\Unity.ProBuilder.Stl.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ProGrids">
+        <HintPath>libs\Unity.ProGrids.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-        <HintPath>libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+      <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
+        <HintPath>libs\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-        <HintPath>libs\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
-        <HintPath>libs\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>libs\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-        <HintPath>libs\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+      <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+        <HintPath>libs\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
         <HintPath>libs\Unity.ResourceManager.dll</HintPath>
@@ -118,23 +95,14 @@
       <Reference Include="Unity.ScriptableBuildPipeline">
         <HintPath>libs\Unity.ScriptableBuildPipeline.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
+      <Reference Include="Unity.TerrainTools">
+        <HintPath>libs\Unity.TerrainTools.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>libs\Unity.Timeline.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-        <HintPath>libs\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualScripting.Core">
-        <HintPath>libs\Unity.VisualScripting.Core.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualScripting.Flow">
-        <HintPath>libs\Unity.VisualScripting.Flow.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualScripting.State">
-        <HintPath>libs\Unity.VisualScripting.State.dll</HintPath>
+      <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>libs\Unity.VisualEffectGraph.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine">
         <HintPath>libs\UnityEngine.dll</HintPath>
@@ -169,9 +137,6 @@
       <Reference Include="UnityEngine.ClusterRendererModule">
         <HintPath>libs\UnityEngine.ClusterRendererModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ContentLoadModule">
-        <HintPath>libs\UnityEngine.ContentLoadModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
@@ -181,20 +146,11 @@
       <Reference Include="UnityEngine.DirectorModule">
         <HintPath>libs\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>libs\UnityEngine.DSPGraphModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.GameCenterModule">
         <HintPath>libs\UnityEngine.GameCenterModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.GIModule">
-        <HintPath>libs\UnityEngine.GIModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.GridModule">
         <HintPath>libs\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>libs\UnityEngine.HotReloadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ImageConversionModule">
         <HintPath>libs\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -205,17 +161,11 @@
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.InputModule">
-        <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.JSONSerializeModule">
         <HintPath>libs\UnityEngine.JSONSerializeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.LocalizationModule">
         <HintPath>libs\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.NVIDIAModule">
-        <HintPath>libs\UnityEngine.NVIDIAModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
         <HintPath>libs\UnityEngine.ParticleSystemModule.dll</HintPath>
@@ -228,15 +178,6 @@
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>libs\UnityEngine.ProfilerModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PropertiesModule">
-        <HintPath>libs\UnityEngine.PropertiesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>libs\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ScreenCaptureModule">
         <HintPath>libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
@@ -265,11 +206,8 @@
       <Reference Include="UnityEngine.TerrainPhysicsModule">
         <HintPath>libs\UnityEngine.TerrainPhysicsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>libs\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>libs\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      <Reference Include="UnityEngine.TextCoreModule">
+        <HintPath>libs\UnityEngine.TextCoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>libs\UnityEngine.TextRenderingModule.dll</HintPath>
@@ -277,35 +215,26 @@
       <Reference Include="UnityEngine.TilemapModule">
         <HintPath>libs\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TLSModule">
-        <HintPath>libs\UnityEngine.TLSModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>libs\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
         <HintPath>libs\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>libs\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine.UIModule">
         <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>libs\UnityEngine.UmbraModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>libs\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>libs\UnityEngine.UNETModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsModule">
         <HintPath>libs\UnityEngine.UnityAnalyticsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityConnectModule">
         <HintPath>libs\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>libs\UnityEngine.UnityCurlModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
         <HintPath>libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
@@ -344,14 +273,30 @@
         <HintPath>libs\UnityEngine.XRModule.dll</HintPath>
       </Reference>
     </ItemGroup>
-    <ItemGroup>
-      <PackageReference Include="BepInEx.BaseLib" Version="5.4.21" />
-      <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-    </ItemGroup>
-        
-   
 
-    <!-- Import Custom Targets -->
-    <Import Project="../zip.target" />
-
+  <ItemGroup>
+    <Reference Include="ConfigurationManager">
+      <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll">
+      <Link>ConfigurationManager.dll</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="libs\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <EmbeddedResource Remove="libs\**" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Remove="libs\**" />
+  </ItemGroup>
+  
 </Project>

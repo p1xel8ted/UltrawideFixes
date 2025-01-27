@@ -1,18 +1,18 @@
-﻿namespace TalesOfGracesRemastered;
+﻿namespace RoguePrinceOfPersia;
 
-public sealed class WriteOnceFloat : MonoBehaviour
+public sealed class WriteOnceVector3 : MonoBehaviour
 {
-    private float _value;
+    private Vector3 _value;
     private bool _hasValue;
 
     // Constructor to initialize with a value
-    public WriteOnceFloat(float value)
+    public WriteOnceVector3(Vector3 value)
     {
         Value = value;
     }
 
     // Default constructor
-    public WriteOnceFloat()
+    public WriteOnceVector3()
     {
     }
 
@@ -20,13 +20,13 @@ public sealed class WriteOnceFloat : MonoBehaviour
     public override string ToString()
     {
         // Handle culture-specific formatting if needed
-        return _hasValue ? _value.ToString(CultureInfo.InvariantCulture) : "";
+        return _hasValue ? _value.ToString() : "";
     }
 
     // Property to get or set the value, ensuring it's only set once
-    public float Value
+    public Vector3 Value
     {
-        get => !_hasValue ? 0 : _value;
+        get => !_hasValue ? default : _value;
         set
         {
             if (_hasValue) return;
@@ -36,7 +36,7 @@ public sealed class WriteOnceFloat : MonoBehaviour
     }
 
     // Implicit operator to allow easy conversion from WriteOnceFloat to float
-    public static implicit operator float(WriteOnceFloat value)
+    public static implicit operator Vector3(WriteOnceVector3 value)
     {
         return value.Value;
     }

@@ -4,15 +4,65 @@ namespace SeaOfStars.Managers;
 
 public static class DisplayManager
 {
-    internal static int MainWidth => Display.displays[Configuration.Configuration.DisplayToUse.Value].systemWidth; //3440
-    internal static int MainHeight => Display.displays[Configuration.Configuration.DisplayToUse.Value].systemHeight; //1440
     internal const float NativeAspectRatio = 16f / 9f; // 1.77777777778
     private static int NativeWidth => Mathf.RoundToInt(MainHeight * NativeAspectRatio); // 2560
     internal static float PositiveScaleFactor => MainWidth / (float)NativeWidth; // 1.34375
-    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate); // 144
+
     private static WriteOnceInt OriginalFixedDeltaTime { get; } = new();
     public static float MainAspectRatio => MainWidth / (float)MainHeight; // 2.38888888889
     public static float BlackBarSize => (MainWidth - NativeWidth) / 2f; //3440 - 2560 = 440
+    internal static int MainWidth => SelectedResolution.width;
+    internal static int MainHeight => SelectedResolution.height;
+
+    internal static Resolution SelectedResolution
+    {
+        get
+        {
+            if (Configuration.Configuration.Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
+
+            var res = Configuration.Configuration.Resolution.Value.Split('x');
+            return new Resolution
+            {
+                width = int.Parse(res[0]),
+                height = int.Parse(res[1])
+            };
+        }
+    }
+
+    internal static string[] GetResolutions()
+    {
+        var mainRes = new Resolution
+        {
+            width = NativeDisplayWidth,
+            height = NativeDisplayHeight,
+            refreshRate = RefreshRate
+        };
+
+        var resList = new List<Resolution> { mainRes };
+        resList.AddRange(Screen.resolutions);
+        resList.SortByPixelCount();
+
+        var finalList = resList.Select(a => $"{a.width}x{a.height}").Distinct().ToArray();
+        return finalList;
+    }
+
+    private static readonly int NativeDisplayWidth = Display.main.systemWidth;
+    private static readonly int NativeDisplayHeight = Display.main.systemHeight;
+
+    internal static int RefreshRate
+    {
+        get
+        {
+            if (Configuration.Configuration.UseCustomRefreshRate != null && Configuration.Configuration.CustomRefreshRate != null)
+            {
+                return Configuration.Configuration.UseCustomRefreshRate.Value ? Configuration.Configuration.CustomRefreshRate.Value : MaxRefresh;
+            }
+
+            return MaxRefresh;
+        }
+    }
+
+    internal static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
 
     public static void FocusChanged(bool focus)
     {
@@ -24,22 +74,46 @@ public static class DisplayManager
         }
     }
 
-    public static void UpdateDisplay()
+    internal static void UpdateDisplay(bool force = false)
     {
-        if (PlatformHelper.Is(Platform.Windows))
+        // Apply VSync setting using the mapped value
+        if (Configuration.Configuration.VSyncOptions.TryGetValue(Configuration.Configuration.VSyncSetting.Value, out var vSyncCount))
         {
-            if (WindowPositioner.Instance == null)
-            {
-                Plugin.Logger.LogWarning("WindowPositioner instance is not initialized.");
-            }
-            else
-            {
-                WindowPositioner.Instance.Start(); // Explicitly call Start() if needed
-            }
+            QualitySettings.vSyncCount = vSyncCount;
+        }
+        else
+        {
+            Plugin.Logger.LogWarning($"Invalid VSync setting: {Configuration.Configuration.VSyncSetting.Value}");
+            QualitySettings.vSyncCount = 1; // Default to "Every VBlank"
         }
 
-        Application.runInBackground = Configuration.Configuration.RunInBackground.Value;
-        Application.targetFrameRate = Configuration.Configuration.TargetFramerate.Value;
+        // Apply target frame rate only if VSync is off
+        Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? Configuration.Configuration.TargetFramerate.Value : -1;
+
+        if (force)
+        {
+            Configuration.Configuration.RequiresUpdate = true;
+        }
+
+        if (!Configuration.Configuration.RequiresUpdate) return;
+
+        Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, Configuration.Configuration.FullScreenModeConfig.Value, RefreshRate);
+        Plugin.Logger.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={Configuration.Configuration.FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
+
+        if (ConfigManager.UI.UIManager.ShowMenu)
+        {
+            SoSuiManager.HandleConfigManager(false);
+            SoSuiManager.HandleConfigManager(true);
+        }
+            
+        Configuration.Configuration.RequiresUpdate = false;
+    }
+
+
+    internal static void UpdateAll(bool force = false)
+    {
+        UpdateDisplay(force);
+        UpdateFixedDeltaTime();
     }
 
     public static void UpdateFixedDeltaTime()

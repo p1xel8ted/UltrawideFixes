@@ -16,10 +16,7 @@ public class Plugin : BasePlugin
         
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceInt>();
         ClassInjector.RegisterTypeInIl2Cpp<LayoutController>();
-   
-        AddComponent<MonoMethods>();
-        AddComponent<WindowPositioner>(); // Add WindowPositioner as a component
-
+        
         var customRates = Utilities.Utilities.MergeUnityRefreshRates();
 
         // Configuration setup

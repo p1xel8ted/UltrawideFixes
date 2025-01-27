@@ -1,4 +1,8 @@
-﻿namespace RoguePrinceOfPersia;
+﻿using Doozy.Runtime.UIManager.Containers;
+using UnityEngine.Playables;
+using UnityEngine.Video;
+
+namespace RoguePrinceOfPersia;
 
 [Harmony]
 public static class Patches
@@ -7,11 +11,11 @@ public static class Patches
     private const string Raycast = "raycast";
     internal static bool VolumeUpdateRequired;
 
-    private static readonly List<ContentSizeFitter> NormalUIContentSizeFitters = [];
-
-    private static readonly List<ContentSizeFitter> HUDContentSizeFitters = [];
-
     private static readonly List<GameObject> CleanMenuItems = [];
+
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScaleModes = new();
+    internal static readonly List<CanvasScaler> Scalers = [];
+    internal static CanvasScaler ConfigCanvasScaler { get; private set; }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Volume), nameof(Volume.Update))]
@@ -24,66 +28,13 @@ public static class Patches
         }
     }
 
-    internal static void UpdateSpanHUD()
-    {
-        NormalUIContentSizeFitters.RemoveAll(a => !a);
-        HUDContentSizeFitters.RemoveAll(a => !a);
-
-        foreach (var fitter in NormalUIContentSizeFitters)
-        {
-            try
-            {
-                var le = fitter.GetComponent<LayoutElement>();
-                if (le)
-                {
-                    le.preferredWidth = 1920;
-                    le.layoutPriority = 9999;
-                }
-
-                if (Plugin.RestrictHUD.Value && Plugin.IncludeUI.Value)
-                {
-                    fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-                }
-                else
-                {
-                    fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
-                }
-
-                fitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
-            }
-            catch (Exception e)
-            {
-                Plugin.Logger.LogWarning($"Error updating ContentSizeFitter: {e.Message}");
-            }
-        }
-
-        foreach (var fitter in HUDContentSizeFitters)
-        {
-            try
-            {
-                var le = fitter.GetComponent<LayoutElement>();
-                if (le)
-                {
-                    le.preferredWidth = 1920;
-                    le.layoutPriority = 9999;
-                }
-
-                fitter.horizontalFit = Plugin.RestrictHUD.Value ? ContentSizeFitter.FitMode.PreferredSize : ContentSizeFitter.FitMode.Unconstrained;
-                fitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
-            }
-            catch (Exception e)
-            {
-                Plugin.Logger.LogWarning($"Error updating ContentSizeFitter: {e.Message}");
-            }
-        }
-    }
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Volume), nameof(Volume.Update))]
     private static void Volume_Update(Volume __instance)
     {
         if (!VolumeUpdateRequired) return;
         VolumeUpdateRequired = false;
+
         var ap = __instance.profile;
 
         if (ap.TryGet(out Bloom bloomComponent))
@@ -115,129 +66,71 @@ public static class Patches
         }
     }
 
-    private static float GetNewScale(float reference)
-    {
-        var scale = 1f / (reference / Plugin.MainHeight);
-        return scale;
-    }
-
-    private static void AddContentSizeFitter(GameObject go, string hudName = null)
-    {
-        var le = go.GetComponent<LayoutElement>() ?? go.AddComponent<LayoutElement>();
-
-        var csf = go.GetComponent<ContentSizeFitter>() ?? go.AddComponent<ContentSizeFitter>();
-
-        if (le)
-        {
-            le.preferredWidth = 1920;
-            le.layoutPriority = 9999;
-            le.enabled = true;
-        }
-
-        if (csf)
-        {
-            //     Plugin.Logger.LogInfo($"Adding ContentSizeFitter to {go.name}");
-            csf.horizontalFit = Plugin.RestrictHUD.Value ? ContentSizeFitter.FitMode.PreferredSize : ContentSizeFitter.FitMode.Unconstrained;
-            csf.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
-            csf.enabled = true;
-
-            if (string.IsNullOrWhiteSpace(hudName))
-            {
-                if (!Plugin.IncludeUI.Value)
-                {
-                    csf.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
-                }
-
-                //normal UI component
-                NormalUIContentSizeFitters.Add(csf);
-            }
-            else
-            {
-                //hud component
-                HUDContentSizeFitters.Add(csf);
-            }
-        }
-    }
-
-    private static void UpdateBottomBar(Transform tr)
-    {
-        var bottomBar = tr.FindChild("InputFrame/Hrz Layout Group/Image");
-        if (bottomBar)
-        {
-            var rect = bottomBar.GetComponent<RectTransform>();
-            if (rect)
-            {
-                rect.sizeDelta = new Vector2(Plugin.MainWidth, 0);
-            }
-        }
-    }
-
-    private static void UpdateRectWidth(Transform tr, string find)
-    {
-        var parent = tr.FindChild(find);
-        if (parent)
-        {
-            var rect = parent.GetComponent<RectTransform>();
-            if (rect)
-            {
-                rect.sizeDelta = new Vector2(Plugin.MainWidth, 0);
-            }
-        }
-    }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ConfirmationPopup), nameof(ConfirmationPopup.Show))]
     private static void ConfirmationPopup_Show(ConfirmationPopup __instance)
     {
-        var rect = __instance.GetComponent<RectTransform>();
-        if (rect)
-        {
-            rect.sizeDelta = new Vector2(Plugin.MainWidth, 0);
-        }
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(BackgroundBlurred), nameof(BackgroundBlurred.OnEnable))]
     private static void BackgroundBlurred_OnEnable(BackgroundBlurred __instance)
     {
-        var rect = __instance.GetComponent<RectTransform>();
-        if (rect)
-        {
-            rect.sizeDelta = new Vector2(1080 * Plugin.MainAspectRatio, 1080);
-        }
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0, true);
     }
-
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SaveSlotsViewUI), nameof(SaveSlotsViewUI.OnEnable))]
+    private static void SaveSlotsViewUI_OnEnable(SaveSlotsViewUI __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+    }
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ImageColorTarget), nameof(ImageColorTarget.SetColor))]
     private static void ImageColorTarget_SetColor(ImageColorTarget __instance, Color value)
     {
-        if (__instance.Target.name.Equals("Background") && value.a < 0.5f)
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0, true);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PlayableDirector), nameof(PlayableDirector.Play), [])]
+    private static void PlayableDirector_Play(PlayableDirector __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, false);
+        
+        var videoPlayerRawImage = __instance.transform.FindChild("Canvas/VideoPanel");
+        if (videoPlayerRawImage)
         {
-            var rect = __instance.GetComponent<RectTransform>();
-            if (rect)
-            {
-                rect.sizeDelta = new Vector2(Plugin.MainWidth, 0);
-            }
+            LayoutController.AddLayoutControllerRoot(videoPlayerRawImage.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
         }
+        
+        var ee =  __instance.transform.FindChild("Canvas/EE");
+        if (ee)
+        {
+            LayoutController.AddLayoutControllerRoot(ee.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+        }
+        
+        var ubiLogo =  __instance.transform.FindChild("Canvas/Ubisoft");
+        if (ubiLogo)
+        {
+            LayoutController.AddLayoutControllerRoot(ubiLogo.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+        }
+        
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PauseStackController), nameof(PauseStackController.Pause))]
     private static void PauseStackController_Pause(PauseStackController __instance)
     {
-        //Pause Menu
-        var pauseMenu = __instance.GetComponent<PauseUIView>();
-        if (pauseMenu)
+        var pauseView = __instance.transform.FindChild("Pause View");
+        if (pauseView)
         {
-            AddContentSizeFitter(__instance.gameObject);
-            var bottomBar = __instance.transform.FindChild("Foreground");
-            if (bottomBar)
-            {
-                UpdateBottomBar(bottomBar.transform);
-            }
-
-            UpdateRectWidth(__instance.transform, "Background");
+            LayoutController.AddLayoutControllerRoot(pauseView, LayoutController.LayoutSize.ForceSixteenNine, 0, true);    
         }
+       
     }
 
     internal static void UpdateCleanMenu()
@@ -260,188 +153,63 @@ public static class Patches
     [HarmonyPatch(typeof(UIBehaviourHandler), nameof(UIBehaviourHandler.OnEnable))]
     private static void UIBehaviourHandler_OnEnable(UIBehaviourHandler __instance)
     {
-        var patchNotesButton = __instance.transform.FindChild("Button Patch Notes");
-        if (patchNotesButton)
-        {
-            CleanMenuItems.Add(patchNotesButton.gameObject);
-            UpdateCleanMenu();
-        }
-
-        var creditsButton = __instance.transform.FindChild("Button Credits");
-        if (creditsButton)
-        {
-            CleanMenuItems.Add(creditsButton.gameObject);
-            UpdateCleanMenu();
-        }
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ForgeMenuController), nameof(ForgeMenuController.Start))]
     private static void ForgeMenuController_Start(ForgeMenuController __instance)
     {
-        AddContentSizeFitter(__instance.gameObject);
-        var forgeView = __instance.transform.FindChild("ForgeView");
-        if (forgeView)
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);    
+    }
+
+    internal static void ProcessScaler(CanvasScaler scaler)
+    {
+        if (scaler.name.Contains("sinai", StringComparison.OrdinalIgnoreCase) && !scaler.name.Contains("BepInExConfigManager", StringComparison.OrdinalIgnoreCase)) return;
+
+        var instanceID = scaler.GetInstanceID();
+        if (!OriginalScaleModes.TryGetValue(instanceID, out var mode))
         {
-            UpdateRectWidth(forgeView, "Background_black");
-            UpdateBottomBar(forgeView.transform);
+            OriginalScaleModes.Add(instanceID, scaler.screenMatchMode);
+            mode = scaler.screenMatchMode;
+            Scalers.Add(scaler);
         }
+
+        if (scaler.name.Contains("BepInExConfigManager", StringComparison.OrdinalIgnoreCase))
+        {
+            ConfigCanvasScaler = scaler;
+            scaler.uiScaleMode = Plugin.CurrentAspect >= 3.7f ? CanvasScaler.ScaleMode.ScaleWithScreenSize : CanvasScaler.ScaleMode.ConstantPixelSize;
+        }
+
+        scaler.screenMatchMode = Plugin.MainAspectRatio > Plugin.NativeAspect ? CanvasScaler.ScreenMatchMode.Expand : mode;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CutsceneDirector), nameof(CutsceneDirector.Init))]
+    private static void CutsceneDirector_Init(CutsceneDirector __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(NarratorDialogueView), nameof(NarratorDialogueView.Awake))]
+    private static void NarratorDialogueView_Awake(NarratorDialogueView __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
-    private static void CanvasScaler_OnEnable(CanvasScaler __instance)
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
-        //Map/Skills
-        var tabbedView = __instance.transform.FindChild("TabbedView");
-        if (tabbedView)
-        {
-            var mask = tabbedView.GetComponentsInChildren<Mask>();
-            foreach (var m in mask)
-            {
-                m.enabled = false;
-            }
-
-            AddContentSizeFitter(tabbedView.gameObject);
-            var bottomBar1 = tabbedView.transform.FindChild("Tab Layout/Content/TrinketTabView/trinket_inventory/trinket_inventory_ui");
-            if (bottomBar1)
-            {
-                var rect1 = bottomBar1.GetComponent<RectTransform>();
-                if (rect1)
-                {
-                    rect1.sizeDelta = new Vector2(Plugin.MainWidth, 0);
-                }
-
-                UpdateRectWidth(bottomBar1, "BackgroundPattern");
-
-                var content = bottomBar1.FindChild("Content");
-                
-                UpdateBottomBar(content.transform);
-            }
-
-            var bottomBar2 = tabbedView.transform.FindChild("Tab Layout/Content/Minimap View/MinimapPanel");
-            if (bottomBar2)
-            {
-                UpdateBottomBar(bottomBar2.transform);
-            }
-
-            var bottomBar3 = tabbedView.transform.FindChild("Tab Layout/Content/WorldMapTabView/Content");
-            if (bottomBar3)
-            {
-                UpdateBottomBar(bottomBar3.transform);
-            }
-
-            var bottomBar4 = tabbedView.transform.FindChild("Tab Layout/Content/MindMapTabView/Content/MindMapPanel");
-            if (bottomBar4)
-            {
-                UpdateBottomBar(bottomBar4.transform);
-            }
-
-            UpdateRectWidth(tabbedView, "Background");
-        }
-
-
-        var trinketView = __instance.transform.FindChild("TrinketCollectionView");
-        if (trinketView)
-        {
-            AddContentSizeFitter(trinketView.gameObject);
-            UpdateBottomBar(trinketView.transform);
-            UpdateRectWidth(trinketView, "Background_black");
-        }
-
-        var wepCraftingView = __instance.transform.FindChild("WeaponCollectionViewVariant");
-        if (wepCraftingView)
-        {
-            AddContentSizeFitter(wepCraftingView.gameObject);
-            UpdateBottomBar(wepCraftingView.transform);
-            UpdateRectWidth(wepCraftingView, "Background_black");
-        }
-
-        //Skill Tree
-        var skillMenu = __instance.transform.FindChild("SkillTreeView");
-        if (skillMenu)
-        {
-            AddContentSizeFitter(__instance.gameObject);
-            var bottomBar = skillMenu.transform.FindChild("Content/MapPanel");
-            if (bottomBar)
-            {
-                UpdateBottomBar(bottomBar.transform);
-            }
-        
-            UpdateRectWidth(skillMenu, "Background");
-        }
-
-
-        //Main Menu
-        var mainMenu = __instance.transform.FindChild("View_MainMenu");
-        if (mainMenu)
-        {
-            AddContentSizeFitter(__instance.gameObject);
-            UpdateBottomBar(mainMenu.transform);
-        }
-
-
-        //Map
-        var map = __instance.transform.FindChild("Teleport View");
-        if (map)
-        {
-            AddContentSizeFitter(map.gameObject);
-            var bottomBar = map.transform.FindChild("MinimapPanel");
-            if (bottomBar)
-            {
-                UpdateBottomBar(bottomBar.transform);
-            }
-
-            UpdateRectWidth(map, "Background");
-        }
-
-        //Left HUD
-        var mainHUD = __instance.transform.FindChild("MainHUD");
-        if (mainHUD)
-        {
-            AddContentSizeFitter(__instance.gameObject, "Left HUD");
-        }
-
-        //Right HUD
-        var currencyView = __instance.transform.FindChild("CurrencyUIPrefab");
-        if (currencyView)
-        {
-            AddContentSizeFitter(__instance.gameObject, "Right HUD");
-        }
-
-        //Options Menu
-        var optionsMenu = __instance.transform.FindChild("Options View");
-        if (optionsMenu)
-        {
-            AddContentSizeFitter(__instance.gameObject);
-            var bottomBar = optionsMenu.transform.FindChild("MainContainer");
-            if (bottomBar)
-            {
-                UpdateBottomBar(bottomBar.transform);
-                UpdateRectWidth(bottomBar, "Dark Overlay");
-            }
-        }
-
-        UpdateScaler(__instance);
+        ProcessScaler(__instance);
     }
 
-    private static void UpdateScaler(CanvasScaler scaler)
+    internal static void UpdateCanvasScalers()
     {
-        if (scaler.name.Contains(Sinai, StringComparison.OrdinalIgnoreCase)) return;
-        if (scaler.name.Contains(Raycast, StringComparison.OrdinalIgnoreCase)) return;
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-        var newScale = GetNewScale(scaler.referenceResolution.y);
-        var pctFactor = Plugin.ScaleAdjustment.Value / 100f;
-        var adjustedScale = newScale + newScale * pctFactor;
-        scaler.scaleFactor = adjustedScale;
-    }
-
-    internal static void UpdateScalers()
-    {
-        foreach (var scaler in Utils.FindIl2CppType<CanvasScaler>())
+        var scalers = Scalers;
+        foreach (var scaler in scalers.Where(scaler => scaler))
         {
-            UpdateScaler(scaler);
+            ProcessScaler(scaler);
         }
     }
 }

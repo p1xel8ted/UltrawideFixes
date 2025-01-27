@@ -19,8 +19,7 @@ public static class SceneHandlers
             Time.timeScale = 10000f;
         }
 
-        DisplayManager.UpdateDisplay();
-        DisplayManager.UpdateFixedDeltaTime();
+        DisplayManager.UpdateAll();
         
         SoSuiManager.ProcessSceneElements();
 

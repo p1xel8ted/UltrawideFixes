@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.1000xresist.ultrawide";
     private const string PluginName = "1000xRESIST Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     internal const float NativeAspect = 16.0f / 9.0f;
 
@@ -32,11 +32,11 @@ public class Plugin : BasePlugin
 
     private static readonly int NativeDisplayWidth = Display.main.systemWidth;
     private static readonly int NativeDisplayHeight = Display.main.systemHeight;
-
+#if DEBUG
     private static ConfigEntry<bool> SixteenTenTesting { get; set; }
     private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
     private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
-
+#endif
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
         { "Disabled (Higher Performance)", 0 },
@@ -45,7 +45,7 @@ public class Plugin : BasePlugin
     };
 
     internal static float NegativeScaleFactor => NativeAspect / MainAspectRatio;
-
+    internal static float PositiveScaleFactor => MainAspectRatio / NativeAspect;
     internal static float MainAspectRatio => MainWidth / (float)MainHeight;
     public static ManualLogSource Logger { get; private set; }
     private static int MaxRefresh => Screen.resolutions.Max(a => a.refreshRate);
@@ -72,6 +72,9 @@ public class Plugin : BasePlugin
 
     private static ConfigEntry<bool> UseCustomRefreshRate { get; set; }
 
+    internal static ConfigEntry<float> OffsetX { get; set; }
+    internal static ConfigEntry<float> OffsetY { get; set; }
+    internal static ConfigEntry<float> OffsetZ { get; set; }
     private static ConfigEntry<int> TargetFramerate { get; set; }
     private static ConfigEntry<string> Resolution { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
@@ -80,6 +83,7 @@ public class Plugin : BasePlugin
     {
         get
         {
+#if DEBUG
             if (SixteenTenTesting.Value)
             {
                 const int height = 1200;
@@ -100,6 +104,7 @@ public class Plugin : BasePlugin
                 var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
                 return new Resolution { width = width, height = height };
             }
+#endif
 
             if (Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
 
@@ -114,7 +119,7 @@ public class Plugin : BasePlugin
 
     private static bool RequiresUpdate { get; set; }
 
-    private static float CurrentAspect => (float)SelectedResolution.width / SelectedResolution.height;
+    internal static float CurrentAspect => (float)SelectedResolution.width / SelectedResolution.height;
 
     private static string[] GetResolutions()
     {
@@ -147,9 +152,12 @@ public class Plugin : BasePlugin
     {
         Logger = Log;
         ClassInjector.RegisterTypeInIl2Cpp<WriteOnceFloat>();
-
+        ClassInjector.RegisterTypeInIl2Cpp<LayoutController>();
+        ClassInjector.RegisterTypeInIl2Cpp<Patches.Forcer>();
         var customRates = MergeUnityRefreshRates();
 
+
+#if DEBUG
         SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
             new ConfigDescription(
                 "Enable this option to test 16:10 aspect ratio.",
@@ -197,13 +205,13 @@ public class Plugin : BasePlugin
 
             UpdateAll(true);
         };
-
+#endif
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(
                 "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
                 new AcceptableValueList<string>(GetResolutions()),
                 new ConfigurationManagerAttributes { Order = 99 }));
-        Resolution.SettingChanged += (_, _) =>    UpdateAll(true);
+        Resolution.SettingChanged += (_, _) => UpdateAll(true);
 
         FullScreenModeConfig = Config.Bind("01. Display", "Full Screen Mode", FullScreenMode.FullScreenWindow,
             new ConfigDescription(
@@ -215,14 +223,14 @@ public class Plugin : BasePlugin
                 "- Windowed: Runs the game in a resizable window.",
                 null,
                 new ConfigurationManagerAttributes { Order = 98 }));
-        FullScreenModeConfig.SettingChanged += (_, _) =>    UpdateAll(true);
+        FullScreenModeConfig.SettingChanged += (_, _) => UpdateAll(true);
 
         TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh,
             new ConfigDescription(
                 "Set the maximum frame rate the game will target. This works only when VSync is turned off.",
                 new AcceptableValueList<int>(customRates),
                 new ConfigurationManagerAttributes { Order = 97 }));
-        TargetFramerate.SettingChanged += (_, _) =>    UpdateAll(true);
+        TargetFramerate.SettingChanged += (_, _) => UpdateAll(true);
 
         VSyncSetting = Config.Bind("01. Display", "VSync Setting", "Disabled (Higher Performance)",
             new ConfigDescription(
@@ -232,25 +240,41 @@ public class Plugin : BasePlugin
                 "- Enabled (Every 2nd Refresh): Synchronizes with every second monitor refresh, effectively halving the refresh rate for weaker hardware or demanding setups.",
                 new AcceptableValueList<string>(VSyncOptions.Keys.ToArray()),
                 new ConfigurationManagerAttributes { Order = 96 }));
-        VSyncSetting.SettingChanged += (_, _) =>     UpdateAll(true);
+        VSyncSetting.SettingChanged += (_, _) => UpdateAll(true);
 
         UseCustomRefreshRate = Config.Bind("01. Display", "Use Custom Refresh Rate", false,
             new ConfigDescription(
                 "Enable this option if Unity reports the wrong maximum refresh rate for your display. Allows setting a custom refresh rate.",
                 null,
                 new ConfigurationManagerAttributes { Order = 95 }));
-        UseCustomRefreshRate.SettingChanged += (_, _) =>    UpdateAll(true);
+        UseCustomRefreshRate.SettingChanged += (_, _) => UpdateAll(true);
 
         CustomRefreshRate = Config.Bind("01. Display", "Custom Refresh Rate", RefreshRate,
             new ConfigDescription(
                 "Manually define a refresh rate to use if 'Use Custom Refresh Rate' is enabled.",
                 new AcceptableValueList<int>(customRates),
                 new ConfigurationManagerAttributes { Order = 94 }));
-        CustomRefreshRate.SettingChanged += (_, _) =>    UpdateAll(true);
+        CustomRefreshRate.SettingChanged += (_, _) => UpdateAll(true);
 
         TargetFramerate = Config.Bind("01. Display", "Target Framerate", MaxRefresh, new ConfigDescription("Set the target framerate - this will only function when VSYNC is OFF (0)", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 95 }));
-        TargetFramerate.SettingChanged += (_, _) =>     UpdateAll(true);
+        TargetFramerate.SettingChanged += (_, _) => UpdateAll(true);
 
+        OffsetX =  Config.Bind("00. Testing", "OffsetX", Plugin.PositiveScaleFactor,
+            new ConfigDescription(
+                "Offset",
+                new AcceptableValueRange<float>(-25f,25f),
+                new ConfigurationManagerAttributes { Order = 102 }));
+        OffsetY =  Config.Bind("00. Testing", "OffsetY", Plugin.PositiveScaleFactor,
+            new ConfigDescription(
+                "Offset",
+                new AcceptableValueRange<float>(-25f,25f),
+                new ConfigurationManagerAttributes { Order = 102 }));
+        OffsetZ =  Config.Bind("00. Testing", "OffsetZ", Plugin.PositiveScaleFactor,
+            new ConfigDescription(
+                "Offset",
+                new AcceptableValueRange<float>(-25f,25f),
+                new ConfigurationManagerAttributes { Order = 102 }));
+        
         SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)SceneManagerOnSceneLoaded;
         RequiresUpdate = true;
 
@@ -302,6 +326,11 @@ public class Plugin : BasePlugin
         }
 
         if (!RequiresUpdate) return;
+
+        if (Patches.ConfigCanvasScaler)
+        {
+            Patches.ConfigCanvasScaler.OnEnable();
+        }
 
         Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
         Logger.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
