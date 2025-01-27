@@ -432,7 +432,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (8)</summary>
+<details><summary>T (9)</summary>
   
 ## [Tails of Iron](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TailsOfIron) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TailsOfIron/total?label=downloads&style=for-the-badge)
@@ -444,6 +444,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TerraMemoria/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/441e6c6f-680f-42f4-baef-d73b838dbbcc) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/fff2c21f-f701-4c5c-ab31-4a3678c37e4a)
+
+## [THE HOUSE OF THE DEAD Remake](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheHouseOfTheDeadRemake) 
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheHouseOfTheDeadRemake/total?label=downloads&style=for-the-badge)
+
+![main_main_menu_21-9](https://github.com/user-attachments/assets/5c096354-bcc1-4c4f-8d3e-6f53d7ff3d41) ![main_cut_scene_21-9_clean](https://github.com/user-attachments/assets/df0918eb-03f1-403d-a4e9-233feb5b529c)
 
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
