@@ -372,6 +372,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/de2ca20a-ef91-4c7c-9ec6-8d6fde4085f4) ![main_game_cons](https://github.com/user-attachments/assets/466d0da8-e76f-44d2-a841-668330f4379e)
 
 ## [Ruined King: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RuinedKing)  
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-35-brightgreen?style=for-the-badge)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RuinedKing/total?label=downloads&style=for-the-badge)
 
 ![main_menu_clean](https://github.com/user-attachments/assets/54d85d30-77fe-4497-8276-5da6f3d1e340) ![main_hud_hide](https://github.com/user-attachments/assets/875aa5c5-a65b-4fab-abc9-4ad1141eb85b)
@@ -387,6 +388,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_game_spanned](https://github.com/user-attachments/assets/5a14816a-4115-4529-8f50-81eb391b09bc)
 
 ## [Sea of Stars](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/SeaOfStars)  
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-2.1k-brightgreen?style=for-the-badge)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/SeaOfStars/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/c0d9c6a7-de95-471f-a69b-acfe5953d7ec)
@@ -430,7 +432,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (8)</summary>
+<details><summary>T (9)</summary>
   
 ## [Tails of Iron](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TailsOfIron) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TailsOfIron/total?label=downloads&style=for-the-badge)
@@ -442,6 +444,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TerraMemoria/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/441e6c6f-680f-42f4-baef-d73b838dbbcc) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/fff2c21f-f701-4c5c-ab31-4a3678c37e4a)
+
+## [THE HOUSE OF THE DEAD Remake](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheHouseOfTheDeadRemake) 
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheHouseOfTheDeadRemake/total?label=downloads&style=for-the-badge)
+
+![main_main_menu_21-9](https://github.com/user-attachments/assets/5c096354-bcc1-4c4f-8d3e-6f53d7ff3d41) ![main_cut_scene_21-9_clean](https://github.com/user-attachments/assets/df0918eb-03f1-403d-a4e9-233feb5b529c)
 
 ## [The Last Campfire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheLastCampfire)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheLastCampfire/total?label=downloads&style=for-the-badge)
