@@ -1,11 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Assets.Code.Loading;
-using HarmonyLib;
-using UnityEngine;
-
-namespace DarkestDungeon2UltrawideFix;
+﻿namespace DarkestDungeon2UltrawideFix;
 
 /// <summary>
 /// A Harmony patch to intercept Unity's Screen.resolutions method and add custom resolutions.
@@ -39,7 +32,7 @@ public static class ScreenResolutionsPatch
     [HarmonyTargetMethods]
     private static IEnumerable<MethodBase> TargetMethods()
     {
-        yield return AccessTools.Method(typeof(LoadingSceneBhv), nameof(LoadingSceneBhv.DoMininumResolutionCheck));
+        // yield return AccessTools.Method(typeof(LoadingSceneBhv), nameof(LoadingSceneBhv.DoMininumResolutionCheck));
         yield return AccessTools.Method(typeof(RedHookSplashSceneBhv), nameof(RedHookSplashSceneBhv.DoMininumResolutionCheck));
     }
 

@@ -9,7 +9,7 @@
         // Plugin Metadata
         private const string PluginGuid = "p1xel8ted.houseofthedeadremake.uwfixes";
         private const string PluginName = "The House of the Dead Remake Ultra-Wide";
-        private const string PluginVersion = "0.1.0";
+        private const string PluginVersion = "0.1.1";
         internal static ManualLogSource Log { get; private set; }
 
         // Configuration Fields

@@ -5,6 +5,7 @@ public static class ScreenResolution
 {
     private static Resolution ChosenResolution => Plugin.SelectedResolution;
 
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(bool), typeof(int))]
     public static void Screen_SetResolution_One(ref int width, ref int height, ref bool fullscreen, ref int preferredRefreshRate)
@@ -41,5 +42,34 @@ public static class ScreenResolution
         height = ChosenResolution.height;
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
         preferredRefreshRate = Plugin.RefreshRate;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(FullScreenMode), typeof(RefreshRate))]
+    public static void Screen_SetResolution_Five(ref int width, ref int height, ref FullScreenMode fullscreenMode, ref RefreshRate preferredRefreshRate)
+    {
+        width = ChosenResolution.width;
+        height = ChosenResolution.height;
+        fullscreenMode = Plugin.FullScreenModeConfig.Value;
+        var rr = new RefreshRate
+        {
+            denominator = 1,
+            numerator = (uint)Plugin.RefreshRate
+        };
+        preferredRefreshRate = rr;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), "set_fullScreen")]
+    public static void Screen_fullScreen_Setter(ref bool value)
+    {
+        value = Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow;
+    }
+    
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), "set_fullScreenMode")]
+    public static void Screen_fullScreenMode_Setter(ref FullScreenMode value)
+    {
+        value = Plugin.FullScreenModeConfig.Value;
     }
 }

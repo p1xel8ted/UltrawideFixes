@@ -1,10 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Base Settings -->
   <PropertyGroup>
-    <Version>0.1.1</Version>
+    <Description>$(MSBuildProjectName)</Description>
+    <TargetFramework>net481</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <IsPackable>false</IsPackable>
+    <Authors>p1xel8ted</Authors>
+    <Company>$(Authors)</Company>
+    <Product>$(MSBuildProjectName)</Product>
+    <PackageId>$(MSBuildProjectName)</PackageId>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <Version>0.1.2</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
   </PropertyGroup>
+
+  <!-- Output Paths -->
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>G:\SteamLibrary\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>G:\SteamLibrary\steamapps\common\Darkest Dungeon® II\BepInEx\plugins\$(MSBuildProjectName)</OutputPath>
+  </PropertyGroup>
+
+  <!-- References -->
+  <ItemDefinitionGroup>
+    <Reference><Private>False</Private></Reference>
+    <ProjectReference><Private>False</Private></ProjectReference>
+    <PackageReference><Private>False</Private></PackageReference>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="IronCrown">
@@ -29,6 +66,7 @@
       <HintPath>..\lib\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  
+
   <Import Project="../../zip.target" />
+
 </Project>

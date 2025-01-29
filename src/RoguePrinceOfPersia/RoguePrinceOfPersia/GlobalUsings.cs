@@ -11,10 +11,12 @@ global using Doozy.Runtime.Reactor.Targets;
 global using Doozy.Runtime.UIManager.Layouts;
 global using HarmonyLib;
 global using Il2CppInterop.Runtime;
+global using Il2CppInterop.Runtime.Injection;
 global using MonoMod.Utils;
 
 global using UnityEngine;
 global using UnityEngine.Events;
+global using UnityEngine.Playables;
 global using UnityEngine.Rendering;
 global using UnityEngine.Rendering.Universal;
 global using UnityEngine.SceneManagement;

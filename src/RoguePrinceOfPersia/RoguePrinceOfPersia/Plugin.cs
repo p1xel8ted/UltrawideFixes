@@ -1,6 +1,4 @@
-﻿using Il2CppInterop.Runtime.Injection;
-
-namespace RoguePrinceOfPersia;
+﻿namespace RoguePrinceOfPersia;
 
 [Harmony]
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -27,6 +25,7 @@ internal class Plugin : BasePlugin
 
     internal static ConfigEntry<bool> RestrictHUD { get; private set; }
     internal static ConfigEntry<bool> IncludeUI { get; private set; }
+    internal static ConfigEntry<string> HUDAspect { get; private set; }
     internal static ConfigEntry<FullScreenMode> FullScreenModeConfig { get; private set; }
     
     private static readonly int[] CustomRefreshRates =
@@ -162,6 +161,18 @@ internal class Plugin : BasePlugin
         customRates.AddRange(CustomRefreshRates);
         return customRates.Distinct().OrderBy(a => a).ToArray();
     }
+    
+    private static List<string> HUDAspects { get; } =
+    [
+        "16:10",
+        "16:9",
+        "21:9",
+        "21.5:9",
+        "32:9",
+        "32:10",
+        "48:9",
+        "Auto"
+    ];
     
     internal static ConfigEntry<bool> CleanMenu { get; private set; }
  
@@ -307,6 +318,13 @@ internal class Plugin : BasePlugin
         SmokyColor.SettingChanged += (_, _) => { ToggleEffects(); };
         Vignette = Config.Bind("04. Post-Processing", "Vignette", false, new ConfigDescription("Toggles the vignette effect.", null, new ConfigurationManagerAttributes { Order = 0 }));
 
+        HUDAspect = Config.Bind("02. UI", "UI Aspect", "Auto",
+            new ConfigDescription(
+                "Choose the aspect ratio for the game's user interface (UI). 'Auto' attempts to match your display's ratio.",
+                new AcceptableValueList<string>(HUDAspects.ToArray()),
+                new ConfigurationManagerAttributes { Order = 93 }));
+        HUDAspect.SettingChanged += (_, _) => LayoutController.UpdateLayoutControllers();
+        
         // RestrictHUD = Config.Bind("05. UI", "Restrict HUD", false, new ConfigDescription("Restrict the HUD to 16:9.", null, new ConfigurationManagerAttributes { Order = 22 }));
         // RestrictHUD.SettingChanged += (_, _) => { Patches.UpdateSpanHUD(); };
         //
@@ -356,6 +374,9 @@ internal class Plugin : BasePlugin
         Screen.SetResolution(SelectedResolution.width, SelectedResolution.height, FullScreenModeConfig.Value, RefreshRate);
         Logger.LogInfo($"Resolution updated: {SelectedResolution.width}x{SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={RefreshRate}Hz");
 
+        LayoutController.UpdateLayoutControllers();
+        // Patches.UpdateVideoPanelScale();
+        
         RequiresUpdate = false;
     }
     

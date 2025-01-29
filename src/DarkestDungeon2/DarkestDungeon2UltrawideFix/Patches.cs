@@ -1,23 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Assets.Code.Audio.Sfx;
-using Assets.Code.Loading;
-using Assets.Code.Platform;
-using Assets.Code.Rendering;
-using Assets.Code.UI.Screens;
-using Assets.Code.UI.Widgets;
-using HarmonyLib;
-using TMPro;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.Video;
-using Display = UnityEngine.Display;
-using Math = System.Math;
-
-namespace DarkestDungeon2UltrawideFix;
+﻿namespace DarkestDungeon2UltrawideFix;
 
 /// <summary>
 /// A class to hold patches for manipulating screen resolutions and other game aspects.
@@ -55,6 +36,7 @@ public static class Patches
                 b = a % b;
                 a = temp;
             }
+
             return a;
         }
     }
@@ -71,7 +53,7 @@ public static class Patches
     {
         var resolutions = Screen.resolutions;
         var maxResolution = resolutions.OrderByDescending(r => r.width * r.height).First();
-        var aspectRatio = maxResolution.width / (float) maxResolution.height;
+        var aspectRatio = maxResolution.width / (float)maxResolution.height;
 
         // Simplify the check by using a helper function
         __result = GetClosestAspectRatio(aspectRatio);
@@ -80,15 +62,13 @@ public static class Patches
     // Helper function to determine the closest aspect ratio
     private static ResolutionAspectRatio GetClosestAspectRatio(float aspectRatio)
     {
-        if (Math.Abs(aspectRatio - 16f / 10f) < 0.01)
-            return ResolutionAspectRatio.AR_16x10;
-        if (Math.Abs(aspectRatio - 16f / 9f) < 0.01)
-            return ResolutionAspectRatio.AR_16x9;
+        if (Mathf.Approximately(aspectRatio, 16f / 10f)) return ResolutionAspectRatio.AR_16x10;
+        if (Mathf.Approximately(aspectRatio, 16f / 9f)) return ResolutionAspectRatio.AR_16x9;
 
-        var sCurrent = ConvertResolutionToRatio(Display.main.systemWidth, Display.main.systemHeight);
-        var currentAspectRatio = sCurrent.SimplifiedWidth / (float) sCurrent.SimplifiedHeight;
-        if (Math.Abs(aspectRatio - currentAspectRatio) < 0.01)
-            return (ResolutionAspectRatio) 3;
+        var sCurrent = ConvertResolutionToRatio(Plugin.MainWidth, Plugin.MainHeight);
+        var currentAspectRatio = sCurrent.SimplifiedWidth / (float)sCurrent.SimplifiedHeight;
+        
+        if (Mathf.Approximately(aspectRatio, currentAspectRatio)) return (ResolutionAspectRatio)3;
 
         return ResolutionAspectRatio.AR_16x9;
     }
@@ -100,7 +80,7 @@ public static class Patches
     /// <remarks>
     /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
     /// </remarks>
-    private readonly static WriteOnce<List<TMP_Dropdown.OptionData>> ResolutionDropdown = new();
+    private static readonly WriteOnce<List<TMP_Dropdown.OptionData>> ResolutionDropdown = new();
 
     /// <summary>
     /// A WriteOnce list of integers that represents the index mappings for the resolution dropdown.
@@ -109,7 +89,7 @@ public static class Patches
     /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
     /// Each integer in this list corresponds to an index in the resolution dropdown options.
     /// </remarks>
-    private readonly static WriteOnce<List<int>> DropdownIndexMappings = new();
+    private static readonly WriteOnce<List<int>> DropdownIndexMappings = new();
 
 
     /// <summary>
@@ -136,7 +116,7 @@ public static class Patches
         else
         {
             var resolutions = ScreenResolutionsPatch.MyResolutions();
-            __instance.AddResolutionsMatchingAspectRatio((ResolutionAspectRatio) 3, currentWindowMode, resolutions);
+            __instance.AddResolutionsMatchingAspectRatio((ResolutionAspectRatio)3, currentWindowMode, resolutions);
 
             ResolutionDropdown.Value = __instance.m_resolutionDropdown.options;
             DropdownIndexMappings.Value = __instance.m_dropdownIndexMappings;
@@ -155,85 +135,53 @@ public static class Patches
     /// </remarks>
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainMenuUiScreenBhv), nameof(MainMenuUiScreenBhv.Awake))]
+    [HarmonyPatch(typeof(MainMenuUiScreenBhv), nameof(MainMenuUiScreenBhv.SetMainMenuSelectablesEnabled))]
+    [HarmonyPatch(typeof(MainMenuUiScreenBhv), nameof(MainMenuUiScreenBhv.Show))]
     public static void MainMenuUiScreenBhv_Awake(ref MainMenuUiScreenBhv __instance)
     {
-        __instance.m_disclaimerShown = true;
-        
-        var optionsButton = GameObject.Find("MainMenuUI/MainMenuUIScreen/UI/OptionsButton");
-        if (optionsButton)
+        var options = __instance.transform.Find("MainMenuUIScreen/UI/OptionsButton");
+        if (options)
         {
-            optionsButton.SetActive(true);
+            options.gameObject.SetActive(true);
         }
 
-        var m1 = GameObject.Find("MainMenuUI/MainMenuUIScreen/Background_Far_Mountains");
-        var m2 = GameObject.Find("MainMenuUI/MainMenuUIScreen/Background_Near_Mountains");
-
-        m1.AddComponent<Scaler>();
-        m2.AddComponent<Scaler>();
-    }
-
-
-    private class Scaler : MonoBehaviour
-    {
-        private void LateUpdate()
+        var mailingList = __instance.transform.Find("MainMenuUIScreen/UI/BottomLeftButtons/MailingListButton");
+        var patchNotes = __instance.transform.Find("MainMenuUIScreen/UI/BottomLeftButtons/PatchNotesButton");
+        var buttons = new[] { options, mailingList, patchNotes };
+        foreach (var button in buttons)
         {
-            transform.localScale = new Vector3(Plugin.PositiveScaleFactor, 1.0f, 1.0f);
+            if (button)
+            {
+                button.gameObject.SetActive(false);
+            }
         }
-    }
-
-    /// <summary>
-    /// Postfix patch for the <see cref="ButtonAudioBhv.Awake"/> method.
-    /// </summary>
-    /// <param name="__instance">The instance of <see cref="ButtonAudioBhv"/> that this method is operating on.</param>
-    /// <remarks>
-    /// This patch deactivates the FeedbackButton, CreditsButton, and MailingListButton in the UI when the <see cref="ButtonAudioBhv.Awake"/> method is invoked.
-    /// </remarks>
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(ButtonAudioBhv), nameof(ButtonAudioBhv.Awake))]
-    public static void ButtonAudioBhv_Awake(ref ButtonAudioBhv __instance)
-    {
-        if (__instance.m_button.name.Equals("FeedbackButton") || __instance.m_button.name.Equals("CreditsButton") || __instance.m_button.name.Equals("MailingListButton"))
-        {
-            __instance.m_button.gameObject.SetActive(false);
-        }
-    }
-
-
-    /// <summary>
-    /// Postfix patch for the <see cref="PauseMenuButtonBhv.Awake"/> method.
-    /// </summary>
-    /// <param name="__instance">The instance of <see cref="PauseMenuButtonBhv"/> that this method is operating on.</param>
-    /// <remarks>
-    /// This patch deactivates the FeedbackButton in the pause menu UI when the <see cref="PauseMenuButtonBhv.Awake"/> method is invoked.
-    /// </remarks>
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(PauseMenuButtonBhv), nameof(PauseMenuButtonBhv.Awake))]
-    public static void PauseMenuButtonBhv_Awake(ref PauseMenuButtonBhv __instance)
-    {
-        if (__instance.m_button.name.Equals("FeedbackButton"))
-        {
-            __instance.m_button.gameObject.SetActive(false);
-        }
-    }
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(MainMenuUiScreenBhv), nameof(MainMenuUiScreenBhv.OnMainMenuPress))]
-    public static void MainMenuUiScreenBhv_OnMainMenuPress(ref MainMenuUiScreenBhv __instance)
-    {
-        __instance.m_disclaimerShown = true;
     }
 
     
+    private static readonly string[] DisableMe = ["PatchNotesButton","MailingListButton","FeedbackButton","CreditsButton"];
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ButtonAudioBhv), nameof(ButtonAudioBhv.Awake))]
+    public static void ButtonAudioBhv_OnEnable(ButtonAudioBhv __instance)
+    {
+        if (DisableMe.Contains(__instance.name))
+        {
+            __instance.gameObject.SetActive(false);
+        }
+    }
+    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.StepForward))]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Play))]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.Prepare))]
     public static void VideoPlayer_Play(ref VideoPlayer __instance)
     {
-        if (__instance.clip.name.Contains("RED_HOOK_INTRO", StringComparison.OrdinalIgnoreCase))
+        if (__instance.clip.name.Contains("RED_HOOK_INTRO"))
         {
             __instance.playbackSpeed = 1000f;
         }
+
         __instance.aspectRatio = VideoAspectRatio.FitVertically;
     }
 
@@ -316,7 +264,7 @@ public static class Patches
         var newResolution = ScriptableObject.CreateInstance<ScreenResolution>();
         newResolution.height = Plugin.MainHeight;
         newResolution.width = Plugin.MainWidth;
-        newResolution.aspectRatio = (ResolutionAspectRatio) 3;
+        newResolution.aspectRatio = (ResolutionAspectRatio)3;
         return newResolution;
     }
 
@@ -357,11 +305,10 @@ public static class Patches
         {
             ResolutionAspectRatio.AR_16x9 => " (16 : 9)",
             ResolutionAspectRatio.AR_16x10 => " (16 : 10)",
-            (ResolutionAspectRatio) 3 => $" ({sCurrent.SimplifiedWidth} : {sCurrent.SimplifiedHeight})",
+            (ResolutionAspectRatio)3 => $" ({sCurrent.SimplifiedWidth} : {sCurrent.SimplifiedHeight})",
             _ => " (unknown)"
         };
 
         __result = $"{resolution.width} x {resolution.height}{aspectRatioText}";
     }
-
 }
