@@ -1,4 +1,4 @@
-namespace DarkestDungeon2UltrawideFix;
+namespace DarkestDungeon2;
 
 public sealed class WriteOnce<T>
 {

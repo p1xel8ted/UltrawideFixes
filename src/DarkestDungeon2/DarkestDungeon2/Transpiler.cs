@@ -1,4 +1,4 @@
-﻿namespace DarkestDungeon2UltrawideFix;
+﻿namespace DarkestDungeon2;
 
 /// <summary>
 /// A Harmony patch to intercept Unity's Screen.resolutions method and add custom resolutions.

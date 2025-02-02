@@ -1,11 +1,11 @@
-﻿namespace DarkestDungeon2UltrawideFix;
+﻿namespace DarkestDungeon2;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.darkestdungeon2.ultrawide";
     private const string PluginName = "Darkest Dungeon 2 Ultra-Wide";
-    private const string PluginVersion = "0.1.2";
+    private const string PluginVersion = "0.1.3";
         
     internal static int MainWidth => Display.main.systemWidth;
     internal static int MainHeight => Display.main.systemHeight;

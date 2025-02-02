@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/GlobalUsings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/TargetPatches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/projectSettingsUpdater.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Utils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/DarkestDungeon2UltrawideFix.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/DarkestDungeon2UltrawideFix.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Directory.Build.props" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/GlobalUsings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/GlobalUsings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/LayoutController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/LayoutController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Patches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/ScreenResolution.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/ScreenResolution.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake/Patches/ScreenResolution.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake/Patches/ScreenResolution.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake/TheHouseOfTheDeadRemake.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +31,7 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/JetBrains/Shared/vAny/DecompilerCache/decompiler/51987594b478476284ad9db0eb4fd985223c00/2d/26511ca0/ScreenResolutionWidgetBhv.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://C:/Users/Ben/OneDrive/Development/Ultrawide/1AAAA-UltrawideFixes/DarkestDungeon2/DarkestDungeon2UltrawideFix/Patches.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/WriteOnce.cs" root0="FORCE_HIGHLIGHTING" />
@@ -141,6 +125,7 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
     <MESSAGE value="/" />
     <MESSAGE value="." />
-    <option name="LAST_COMMIT_MESSAGE" value="." />
+    <MESSAGE value="Work Work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Work Work" />
   </component>
 </project>

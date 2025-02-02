@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkestDungeon2UltrawideFix", "DarkestDungeon2UltrawideFix\DarkestDungeon2UltrawideFix.csproj", "{7577C18F-0B1C-4722-ADE7-318C75F4143A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DarkestDungeon2", "DarkestDungeon2\DarkestDungeon2.csproj", "{7577C18F-0B1C-4722-ADE7-318C75F4143A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -86,16 +86,16 @@ public static class Patches
         LayoutController.AddLayoutControllerPath(__instance.transform, "MainContainer/InputHints/Separator", LayoutController.LayoutSize.ForceFullScreen, 0, false);
     }
 
-    // private static Transform VideoIntroPanel { get; set; }
-    //
-    // internal static void UpdateVideoPanelScale()
-    // {
-    //     var newScale = new Vector3(Plugin.PositiveScaleFactor, Plugin.PositiveScaleFactor, 1f);
-    //     if (VideoIntroPanel)
-    //     {
-    //         VideoIntroPanel.localScale = newScale;
-    //     }
-    // }
+    private static Transform VideoIntroPanel { get; set; }
+
+    internal static void UpdateVideoPanelScale()
+    {
+        var newScale = new Vector3(1.2f, 1.2f, 1f);
+        if (VideoIntroPanel)
+        {
+            VideoIntroPanel.localScale = newScale;
+        }
+    }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PlayableDirector), nameof(PlayableDirector.Play), [])]
@@ -103,13 +103,14 @@ public static class Patches
     {
         LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, false);
 
-        // var videoPanel = __instance.transform.FindChild("Canvas/VideoPanel");
-        // if (videoPanel)
-        // {
-        //     LayoutController.AddLayoutControllerRoot(videoPanel, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
-        //     VideoIntroPanel = videoPanel;
-        //     UpdateVideoPanelScale();
-        // }
+        var videoPanel = __instance.transform.FindChild("Canvas/VideoPanel");
+        if (videoPanel)
+        {
+            LayoutController.AddLayoutControllerRoot(videoPanel, LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+            VideoIntroPanel = videoPanel;
+            UpdateVideoPanelScale();
+        }
+
         LayoutController.AddLayoutControllerPath(__instance.transform, "Canvas/VideoPanel", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
         LayoutController.AddLayoutControllerPath(__instance.transform, "Canvas/EE", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
         LayoutController.AddLayoutControllerPath(__instance.transform, "Canvas/Ubisoft", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
@@ -124,7 +125,7 @@ public static class Patches
         {
             //footer background
             LayoutController.AddLayoutControllerPath(__instance.transform, "Foreground/InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-            
+
             //footer buttons
             LayoutController.AddLayoutControllerPath(__instance.transform, "Foreground/InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
         }
@@ -135,7 +136,7 @@ public static class Patches
         {
             //main pause menu
             LayoutController.AddLayoutControllerRoot(pauseView, LayoutController.LayoutSize.ConfigBased, 0, true);
-            
+
             //backgrounds
             var bgs = __instance.transform.FindChildrenByName("Background");
             foreach (var bg in bgs)
@@ -155,7 +156,7 @@ public static class Patches
 
             //footer background
             LayoutController.AddLayoutControllerPath(__instance.transform, "MainContainer/InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-            
+
             //footer buttons
             LayoutController.AddLayoutControllerPath(__instance.transform, "MainContainer/InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
         }
@@ -172,25 +173,25 @@ public static class Patches
     {
         //main menu
         LayoutController.AddLayoutControllerRoot(transform, LayoutController.LayoutSize.ConfigBased, 0, true);
-       
+
         //footer background
         LayoutController.AddLayoutControllerPath(transform, "InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-        
+
         //footer buttons
         LayoutController.AddLayoutControllerPath(transform, "InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
-        
+
         var socials = transform.FindChild("Socials");
         var newsPanel = transform.FindChild("NewsPanel");
         var patchNotes = transform.FindChild("Menu_Right/Selection_Buttons/Button Patch Notes");
         var creditsButton = transform.FindChild("Menu_Right/Selection_Buttons/Button Credits");
-        var transforms = new List<Transform>{socials, newsPanel, patchNotes, creditsButton};
+        var transforms = new List<Transform> { socials, newsPanel, patchNotes, creditsButton };
         foreach (var t in transforms.Where(t => t))
         {
             CleanMenuItems.Add(t.gameObject);
             UpdateCleanMenu();
         }
     }
-    
+
     internal static void UpdateCleanMenu()
     {
         foreach (var go in CleanMenuItems.Where(go => go))
@@ -204,10 +205,11 @@ public static class Patches
     [HarmonyPatch(typeof(NotificationBehavior), nameof(NotificationBehavior.ShowNotification))]
     private static void NotificationBehavior_ShowNotification(NotificationBehavior __instance)
     {
-        LayoutController.AddLayoutControllerRoot(__instance.transform,LayoutController.LayoutSize.ConfigBased, 0, true);
-        LayoutController.AddLayoutControllerPath(__instance.transform, "Background",LayoutController.LayoutSize.ForceFullScreen, 0, true);
+        // LayoutController.AddLayoutControllerRoot(__instance.transform,LayoutController.LayoutSize.ConfigBased, 0, true);
+        //LayoutController.AddLayoutControllerPath(__instance.transform, "Background",LayoutController.LayoutSize.ForceFullScreen, 0, true);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Gradient", LayoutController.LayoutSize.ForceFullScreen, 0, false);
     }
-        
+
     // [HarmonyPostfix]
     // [HarmonyPatch(typeof(NotificationManager), nameof(NotificationManager.Awake))]
     // [HarmonyPatch(typeof(NotificationManager), nameof(NotificationManager.ShowNotification))]
@@ -217,82 +219,121 @@ public static class Patches
     //     LayoutController.AddLayoutControllerPath(__instance.transform, "NotificationBiomeUnlockPrefab(Clone)/Background",LayoutController.LayoutSize.ForceFullScreen, 0, true);
     // }
 
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(UIView), nameof(UIView.Awake))]
-    [HarmonyPatch(typeof(UIView), nameof(UIView.Execute))]
-    private static void UIView_Awake(UIView __instance)
+    private static void SetupCraftViews(Transform transform)
     {
-        var name = __instance.name;
+        var name = transform.name;
 
         if (name is "ForgeView" or "WeaponCollectionViewVariant" or "TrinketCollectionView")
         {
             //main ui
-           // LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0, true);
-            
+            // LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0, true);
+
             //container
-            LayoutController.AddLayoutControllerPath(__instance.transform, "Container", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
-            
+            LayoutController.AddLayoutControllerPath(transform, "Container", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+
             //background
-            LayoutController.AddLayoutControllerPath(__instance.transform, "Background_black", LayoutController.LayoutSize.ForceFullScreen, 0, true);
-            
+            LayoutController.AddLayoutControllerPath(transform, "Background_black", LayoutController.LayoutSize.ForceFullScreen, 0, true);
+
             //frame
-            LayoutController.AddLayoutControllerPath(__instance.transform, "Window", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-            // LayoutController.AddLayoutControllerPath(__instance.transform, "Container/Window", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-            
+            LayoutController.AddLayoutControllerPath(transform, "Window", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+            LayoutController.AddLayoutControllerPath(transform, "Container/Window", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+
             //footer background
-            LayoutController.AddLayoutControllerPath(__instance.transform, "InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-            
+            LayoutController.AddLayoutControllerPath(transform, "InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+
             //buttons
-            LayoutController.AddLayoutControllerPath(__instance.transform, "InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
-            
+            LayoutController.AddLayoutControllerPath(transform, "InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
         }
-        
+
         if (name == "Teleport View")
         {
             //main ui
-            LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0, true);  
-            
+            LayoutController.AddLayoutControllerRoot(transform, LayoutController.LayoutSize.ConfigBased, 0, true);
+
             //background
-            LayoutController.AddLayoutControllerPath(__instance.transform, "Image", LayoutController.LayoutSize.ForceFullScreen, 0, true);  
-            
+            LayoutController.AddLayoutControllerPath(transform, "Image", LayoutController.LayoutSize.ForceFullScreen, 0, true);
+
             //footer background
-            LayoutController.AddLayoutControllerPath(__instance.transform, "MinimapPanel/InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-            
+            LayoutController.AddLayoutControllerPath(transform, "MinimapPanel/InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+
             //buttons
-            LayoutController.AddLayoutControllerPath(__instance.transform, "MinimapPanel/InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
+            LayoutController.AddLayoutControllerPath(transform, "MinimapPanel/InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
         }
-        
+
         if (name == "View_MainMenu")
         {
-            ProcessMainMenu(__instance.transform);
+            ProcessMainMenu(transform);
         }
-        
+
         if (name == "SkillTreeView")
         {
             //main skill ui
-            LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0, true);
-           
+            LayoutController.AddLayoutControllerRoot(transform, LayoutController.LayoutSize.ConfigBased, 0, true);
+
             //footer background
-            LayoutController.AddLayoutControllerPath(__instance.transform, "Content/MapPanel/InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
-           
+            LayoutController.AddLayoutControllerPath(transform, "Content/MapPanel/InputFrame/Hrz Layout Group/Image", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+
             //footer buttons
-            LayoutController.AddLayoutControllerPath(__instance.transform, "Content/MapPanel/InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
+            LayoutController.AddLayoutControllerPath(transform, "Content/MapPanel/InputFrame/Hrz Layout Group", LayoutController.LayoutSize.ConfigBased, 0, false);
 
             //backgrounds 
-            var bgOne = __instance.transform.FindChild("Content/MapPanel/MainMapUICanvas/MapMask/MapParent/BackgroundPattern");
-            var bgTwo =     __instance.transform.FindChild("Content/MapPanel/MainMapUICanvas/MapMask/MapParent/FakeMask");
-            var backgrounds = new List<Transform> {bgOne, bgTwo};
+            var bgOne = transform.FindChild("Content/MapPanel/MainMapUICanvas/MapMask/MapParent/BackgroundPattern");
+            var bgTwo = transform.FindChild("Content/MapPanel/MainMapUICanvas/MapMask/MapParent/FakeMask");
+            var backgrounds = new List<Transform> { bgOne, bgTwo };
             foreach (var bg in backgrounds)
             {
                 var image = bg.GetComponent<Image>();
                 image.maskable = false;
                 image.m_IncludeForMasking = false;
                 image.MarkDirty();
+                Canvas.ForceUpdateCanvases();
                 LayoutController.AddLayoutControllerRoot(bg, LayoutController.LayoutSize.ForceFullScreen, 0, true);
             }
         }
     }
+
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(CraftCollectionTabMenuView), nameof(CraftCollectionTabMenuView.SetupCollection))]
+    // private static void CraftCollectionTabMenuView_SetupCollection(CraftCollectionTabMenuView __instance)
+    // {
+    //     Plugin.Logger.LogWarning($"$CraftCollectionTabMenuView.SetupCollection: {__instance.name}");
+    //     SetupCraftViews(__instance.transform);
+    // }
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(UIView), nameof(UIView.Awake))]
+    // private static void UIView_Awake(UIView __instance)
+    // {
+    //     Plugin.Logger.LogWarning($"$UIView.Awake: {__instance.name}");
+    //     SetupCraftViews(__instance.transform);
+    // }
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(UIView), nameof(UIView.Execute))]
+    // private static void UIView_Execute(UIView __instance)
+    // {
+    //     Plugin.Logger.LogWarning($"$UIView.Execute: {__instance.name}");
+    //     SetupCraftViews(__instance.transform);
+    // }
     
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UIContainer), nameof(UIContainer.Show),[])]
+    [HarmonyPatch(typeof(UIContainer), nameof(UIContainer.Show), typeof(bool))]
+    private static void UIView_Show(UIView __instance)
+    {
+        // Plugin.Logger.LogWarning($"$UIView.Show: {__instance.name}");
+        SetupCraftViews(__instance.transform);
+    }
+
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(UIView), nameof(UIView.RunBehaviour))]
+    // private static void UIView_RunBehaviour(UIView __instance)
+    // {
+    //     Plugin.Logger.LogWarning($"$UIView.RunBehaviour: {__instance.name}");
+    //     SetupCraftViews(__instance.transform);
+    // }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(BuildInfoWatermark), nameof(BuildInfoWatermark.Start))]
@@ -300,7 +341,7 @@ public static class Patches
     {
         var parent = __instance.transform.parent;
         LayoutController.AddLayoutControllerRoot(parent, LayoutController.LayoutSize.ConfigBased, 0, false);
-        
+
         CleanMenuItems.Add(parent.gameObject);
         UpdateCleanMenu();
     }
@@ -327,7 +368,7 @@ public static class Patches
         //     scaler.enabled = false;
         //     return;
         // }
-        
+
         if (scaler.name.Contains("sinai", StringComparison.OrdinalIgnoreCase) && !scaler.name.Contains("BepInExConfigManager", StringComparison.OrdinalIgnoreCase)) return;
 
         var instanceID = scaler.GetInstanceID();

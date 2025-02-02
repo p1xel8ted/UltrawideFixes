@@ -1,4 +1,4 @@
-﻿namespace DarkestDungeon2UltrawideFix;
+﻿namespace DarkestDungeon2;
 
 /// <summary>
 /// A class to hold patches for manipulating screen resolutions and other game aspects.
@@ -7,6 +7,26 @@
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class Patches
 {
+    /// <summary>
+    /// A WriteOnce list of <see cref="TMP_Dropdown.OptionData"/> that represents the options for the resolution dropdown.
+    /// </summary>
+    /// <remarks>
+    /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
+    /// </remarks>
+    private static readonly WriteOnce<List<TMP_Dropdown.OptionData>> ResolutionDropdown = new();
+
+    /// <summary>
+    /// A WriteOnce list of integers that represents the index mappings for the resolution dropdown.
+    /// </summary>
+    /// <remarks>
+    /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
+    /// Each integer in this list corresponds to an index in the resolution dropdown options.
+    /// </remarks>
+    private static readonly WriteOnce<List<int>> DropdownIndexMappings = new();
+
+
+    private static readonly string[] DisableMe = ["PatchNotesButton", "MailingListButton", "FeedbackButton", "CreditsButton"];
+
     /// <summary>
     /// Converts a resolution to a simplified ratio using the Greatest Common Divisor (GCD).
     /// </summary>
@@ -67,29 +87,11 @@ public static class Patches
 
         var sCurrent = ConvertResolutionToRatio(Plugin.MainWidth, Plugin.MainHeight);
         var currentAspectRatio = sCurrent.SimplifiedWidth / (float)sCurrent.SimplifiedHeight;
-        
+
         if (Mathf.Approximately(aspectRatio, currentAspectRatio)) return (ResolutionAspectRatio)3;
 
         return ResolutionAspectRatio.AR_16x9;
     }
-
-
-    /// <summary>
-    /// A WriteOnce list of <see cref="TMP_Dropdown.OptionData"/> that represents the options for the resolution dropdown.
-    /// </summary>
-    /// <remarks>
-    /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
-    /// </remarks>
-    private static readonly WriteOnce<List<TMP_Dropdown.OptionData>> ResolutionDropdown = new();
-
-    /// <summary>
-    /// A WriteOnce list of integers that represents the index mappings for the resolution dropdown.
-    /// </summary>
-    /// <remarks>
-    /// WriteOnce is a custom data type that allows a value to be set once and then prevents further modifications.
-    /// Each integer in this list corresponds to an index in the resolution dropdown options.
-    /// </remarks>
-    private static readonly WriteOnce<List<int>> DropdownIndexMappings = new();
 
 
     /// <summary>
@@ -157,9 +159,6 @@ public static class Patches
         }
     }
 
-    
-    private static readonly string[] DisableMe = ["PatchNotesButton","MailingListButton","FeedbackButton","CreditsButton"];
-    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ButtonAudioBhv), nameof(ButtonAudioBhv.Awake))]
     public static void ButtonAudioBhv_OnEnable(ButtonAudioBhv __instance)
@@ -169,7 +168,19 @@ public static class Patches
             __instance.gameObject.SetActive(false);
         }
     }
-    
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(RestWidgetBhv), nameof(RestWidgetBhv.OnEnable))]
+    public static void RestWidgetBhv_OnEnable(RestWidgetBhv __instance)
+    {
+        var arf = __instance.gameObject.TryAddComponent<AspectRatioFitter>();
+        if (arf)
+        {
+            arf.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
+            arf.aspectRatio = 16f / 9f;
+        }
+    }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoPlayer), nameof(VideoPlayer.StepForward))]
