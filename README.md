@@ -217,6 +217,16 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_game_1](https://github.com/user-attachments/assets/43f26305-655b-4769-a3e1-acea994bf86d)
 
 </details>
+<div id="I"/>
+<details><summary>I (1)</summary>
+
+## [Isle of Jura](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/IsleOfJura)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/IsleOfJura/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/7ee5ea15-7c62-4e7e-9561-ee66b807630e)
+![main_game_default_fov](https://github.com/user-attachments/assets/da527e3a-2a0e-4b92-8626-5a69c77bbe07)
+
+</details>
 <div id="K"/>
 <details><summary>K (3)</summary>
 
