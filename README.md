@@ -432,7 +432,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (9)</summary>
+<details><summary>T (10)</summary>
   
 ## [Tails of Iron](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TailsOfIron) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TailsOfIron/total?label=downloads&style=for-the-badge)
@@ -461,6 +461,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_menu_spanned](https://github.com/user-attachments/assets/975ee15f-f4ad-440b-b865-54921cd44dbc)
 ![main_hud_constrained](https://github.com/user-attachments/assets/7d8803b9-4ba3-4373-82c5-2ba3fcf4d0b9)
+
+## [The Stone of Madness](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheStoneOfMadness)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheStoneOfMadness/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/2f8c6d38-a917-43d9-8b20-e3af1ca5f459)
+![main_game](https://github.com/user-attachments/assets/152db0c3-0db0-4c37-8982-6d42c366ba53)
 
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
@@ -526,7 +532,6 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WildWoods/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/d224c1df-5bee-4748-8f2e-1b11340d203a) ![main_game](https://github.com/user-attachments/assets/266f6cc9-0203-4c75-b7aa-c63b1b34a3d0)
-
 
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
