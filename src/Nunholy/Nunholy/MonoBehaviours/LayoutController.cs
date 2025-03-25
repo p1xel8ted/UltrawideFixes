@@ -19,44 +19,42 @@ public class LayoutController : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// Adds a LayoutController to a child Transform found by path and configures its layout.
-    /// </summary>
-    internal static LayoutController AddLayoutControllerPath(
-        Transform transform, 
-        string findPath, 
-        LayoutSize size, 
-        float customSize, 
-        bool useAspectRatioFitter)
-    {
-        var foundTransform = transform.Find(findPath);
-        return !foundTransform ? null : AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter);
-    }
+    // /// <summary>
+    // /// Adds a LayoutController to a child Transform found by path and configures its layout.
+    // /// </summary>
+    // internal static LayoutController AddLayoutControllerPath(
+    //     Transform transform, 
+    //     string findPath, 
+    //     LayoutSize size, 
+    //     float customSize, 
+    //     bool useAspectRatioFitter)
+    // {
+    //     var foundTransform = transform.Find(findPath);
+    //     return !foundTransform ? null : AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter);
+    // }
 
-    /// <summary>
-    /// Changes the layout size and custom dimensions, and updates the aspect ratio or size fitting.
-    /// </summary>
-    internal void ChangeSize(LayoutSize size, float customSize)
-    {
-        _size = size;
-        _customSize = customSize;
-        UpdateAspect();
-    }
+    // /// <summary>
+    // /// Changes the layout size and custom dimensions, and updates the aspect ratio or size fitting.
+    // /// </summary>
+    // internal void ChangeSize(LayoutSize size, float customSize)
+    // {
+    //     _size = size;
+    //     _customSize = customSize;
+    //     UpdateAspect();
+    // }
 
     /// <summary>
     /// Adds a LayoutController to the root Transform and configures its layout.
     /// </summary>
-    internal static LayoutController AddLayoutControllerRoot(
-        Transform transform, 
-        LayoutSize size, 
-        float customSize, 
+    internal static void AddLayoutControllerRoot(Transform transform,
+        LayoutSize size,
+        float customSize,
         bool useAspectRatioFitter)
     {
         var lc = transform.gameObject.TryAddComponent<LayoutController>();
         lc.Init(size, customSize, useAspectRatioFitter);
         lc.UpdateAspect();
         LayoutControllers.Add(lc);
-        return lc;
     }
 
     /// <summary>
@@ -91,7 +89,7 @@ public class LayoutController : MonoBehaviour
     /// <summary>
     /// Updates the layout properties (e.g., width, aspect ratio) based on the current configuration.
     /// </summary>
-    internal void UpdateAspect()
+    private void UpdateAspect()
     {
         if (_layoutElement)
         {

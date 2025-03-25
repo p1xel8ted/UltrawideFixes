@@ -21,7 +21,8 @@ public static class Patches
                 image.gameObject.SetActive(true);
             }
 
-            LayoutController.AddLayoutControllerRoot(bg, LayoutController.LayoutSize.ForceFullScreen, 0f, false);
+            var width = Screen.width * 2f;
+            LayoutController.AddLayoutControllerRoot(bg, LayoutController.LayoutSize.Custom, width, false);
         }
     }
 
@@ -72,7 +73,7 @@ public static class Patches
     [HarmonyPatch(typeof(DamageCurtain), nameof(DamageCurtain.Awake))]
     public static void DamageCurtain_Awake(DamageCurtain __instance)
     {
-        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, false);
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, true);
     }
 
 
@@ -98,7 +99,46 @@ public static class Patches
     [HarmonyPatch(typeof(Curtain), nameof(Curtain.OnEnable))]
     public static void Curtain_OnEnable(Curtain __instance)
     {
-        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, false);
+        var posScale = Resolutions.CurrentAspect / Resolutions.NativeAspect;
+        __instance.transform.localScale = new Vector3(posScale, posScale, 1f);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Inventory), nameof(Inventory.Start))]
+    public static void Inventory_Start(Inventory __instance)
+    {
+        var panel = __instance.transform.Find("_Panel");
+        if (panel)
+        {
+            // Check if "BackgroundNew" already exists
+            if (panel.Find("BackgroundNew")) return;
+
+            // Find the first Image component in the panel and clone it
+            var originalImage = panel.GetComponent<Image>();
+            if (originalImage)
+            {
+                var image = Utils.CloneImage(originalImage, panel, "BackgroundNew", true);
+                if (image)
+                {
+                    originalImage.enabled = false;
+                    LayoutController.AddLayoutControllerRoot(image.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, true);
+                }
+            }
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UICanvas), nameof(UICanvas.OnEnable))]
+    public static void AlertBox_OnEnable(UICanvas __instance)
+    {
+        if (__instance is AlertBox ab)
+        {
+            var rect = ab.transform.parent.GetComponent<RectTransform>();
+            if (rect)
+            {
+                rect.sizeDelta = new Vector2(Resolutions.MainWidth, Resolutions.MainHeight);
+            }
+        }
     }
 
     [HarmonyPostfix]
@@ -106,21 +146,19 @@ public static class Patches
     [HarmonyPatch(typeof(SelectSlotCanvas), nameof(SelectSlotCanvas.OnEnable))]
     [HarmonyPatch(typeof(SelectCharacterCanvas), nameof(SelectCharacterCanvas.OnEnable))]
     [HarmonyPatch(typeof(PauseCanvas), nameof(PauseCanvas.OnEnable))]
+    [HarmonyPatch(typeof(VampiricPowerManager), nameof(VampiricPowerManager.OnEnable))]
     public static void UICanvas_OnEnable(UICanvas __instance)
     {
         var panel = __instance.transform.Find("Pannel");
         if (panel)
         {
-            var alertPanel = __instance.transform.Find("_AlertPannel");
-            if (alertPanel)
-            {
-                var rect = alertPanel.GetComponent<RectTransform>();
-                if (rect)
-                {
-                    rect.sizeDelta = new Vector2(Resolutions.MainWidth, Resolutions.MainHeight);
-                }
-            }
 
+            var desPanel = panel.Find("SubDesParent");
+            if (desPanel)
+            {
+                desPanel.transform.localPosition = desPanel.transform.localPosition with { x = Resolutions.WidthDifference };
+            }
+            
             // Apply the layout controller
             LayoutController.AddLayoutControllerRoot(panel, LayoutController.LayoutSize.ForceSixteenNine, 0f, true);
 
@@ -131,7 +169,7 @@ public static class Patches
             var originalImage = panel.GetComponent<Image>();
             if (originalImage)
             {
-                var image = CloneImage(originalImage, panel, "BackgroundNew", true);
+                var image = Utils.CloneImage(originalImage, panel, "BackgroundNew", true);
                 if (image)
                 {
                     originalImage.enabled = false;
@@ -139,51 +177,6 @@ public static class Patches
                 }
             }
         }
-    }
-
-    /// <summary>
-    /// Clones an Image component and applies it to a new GameObject.
-    /// </summary>
-    /// <param name="originalImage">The original Image component to clone.</param>
-    /// <param name="parent">The parent Transform to attach the cloned image to.</param>
-    /// <param name="newName">The name of the new GameObject.</param>
-    /// <param name="setAsFirstSibling">If true, moves the new image to be the first child.</param>
-    /// <returns>The newly created Image component.</returns>
-    private static Image CloneImage(Image originalImage, Transform parent, string newName, bool setAsFirstSibling = false)
-    {
-        if (!originalImage || !parent) return null;
-
-        // Create a new GameObject for the cloned image
-        var newBackground = new GameObject(newName, typeof(RectTransform), typeof(Image));
-        newBackground.transform.SetParent(parent, false);
-
-        if (setAsFirstSibling)
-        {
-            newBackground.transform.SetAsFirstSibling();
-        }
-
-        // Copy Image properties
-        var newImage = newBackground.GetComponent<Image>();
-        newImage.sprite = originalImage.sprite;
-        newImage.color = originalImage.color;
-        newImage.material = originalImage.material;
-        newImage.raycastTarget = originalImage.raycastTarget;
-        newImage.type = originalImage.type;
-        newImage.preserveAspect = originalImage.preserveAspect;
-        newImage.fillCenter = originalImage.fillCenter;
-
-        // Copy RectTransform properties
-        var newRect = newBackground.GetComponent<RectTransform>();
-        var originalRect = originalImage.GetComponent<RectTransform>();
-        newRect.anchorMin = originalRect.anchorMin;
-        newRect.anchorMax = originalRect.anchorMax;
-        newRect.pivot = originalRect.pivot;
-        newRect.anchoredPosition = originalRect.anchoredPosition;
-        newRect.sizeDelta = originalRect.sizeDelta;
-        newRect.rotation = originalRect.rotation;
-        newRect.localScale = originalRect.localScale;
-
-        return newImage;
     }
 
 
@@ -215,17 +208,7 @@ public static class Patches
     [HarmonyPatch(typeof(VolumeManager), nameof(VolumeManager.Register))]
     public static void VolumeManager_Register(Volume volume)
     {
-        foreach (var vol in volume.profile.components)
-        {
-            var name = vol.name.Replace("(Clone)", "");
-            var configEntryGlobal = Plugin.ConfigFile.Bind("06. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes.StartOrder-- }));
-            configEntryGlobal.SettingChanged += (_, _) => { Volumes.UpdateVolumes(); };
-            if (Volumes.ConfigEntriesGlobal.TryAdd(name, configEntryGlobal))
-            {
-                if (!Plugin.Notifications.Value) return;
-                MessageDisplayer.Instance.ShowMessage($"Registered '{name}' configuration entry...", 5, MessageDisplayer.Corner.TopRight, 5, Color.white);
-            }
-        }
+        Volumes.ProcessVolumeRegistration(volume);
     }
 
     [HarmonyPostfix]

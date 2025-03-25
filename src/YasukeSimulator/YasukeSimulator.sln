@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YasukeSimulator", "YasukeSimulator\YasukeSimulator.csproj", "{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Release|Any CPU = Release|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{575FD581-9DA0-4381-BFA6-1C9A0B2AEA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal

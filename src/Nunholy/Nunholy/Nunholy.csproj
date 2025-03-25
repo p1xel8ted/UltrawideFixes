@@ -51,80 +51,14 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>libs\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="AstarPathfindingProject">
-      <HintPath>libs\AstarPathfindingProject.dll</HintPath>
-    </Reference>
-    <Reference Include="Cinemachine">
-      <HintPath>libs\Cinemachine.dll</HintPath>
-    </Reference>
     <Reference Include="ConfigurationManager">
       <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
-    </Reference>
-    <Reference Include="DemiLib">
-      <HintPath>libs\DemiLib.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTween">
-      <HintPath>libs\DOTween.dll</HintPath>
-    </Reference>
-    <Reference Include="DOTweenPro">
-      <HintPath>libs\DOTweenPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Drawing">
-      <HintPath>libs\Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="Facepunch.Steamworks.Win64">
-      <HintPath>libs\Facepunch.Steamworks.Win64.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Security">
-      <HintPath>libs\Mono.Security.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>libs\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PackageTools">
-      <HintPath>libs\PackageTools.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.ClipperLib">
-      <HintPath>libs\Pathfinding.ClipperLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.Ionic.Zip.Reduced">
-      <HintPath>libs\Pathfinding.Ionic.Zip.Reduced.dll</HintPath>
-    </Reference>
-    <Reference Include="Pathfinding.Poly2Tri">
-      <HintPath>libs\Pathfinding.Poly2Tri.dll</HintPath>
-    </Reference>
-    <Reference Include="spine-csharp">
-      <HintPath>libs\spine-csharp.dll</HintPath>
-    </Reference>
-    <Reference Include="spine-unity">
-      <HintPath>libs\spine-unity.dll</HintPath>
-    </Reference>
-    <Reference Include="UIEffect">
-      <HintPath>libs\UIEffect.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Addressables">
       <HintPath>libs\Unity.Addressables.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>libs\Unity.Burst.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Burst.Unsafe">
-      <HintPath>libs\Unity.Burst.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Collections">
-      <HintPath>libs\Unity.Collections.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>libs\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.InputSystem">
       <HintPath>libs\Unity.InputSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.InputSystem.ForUI">
-      <HintPath>libs\Unity.InputSystem.ForUI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.013">
       <HintPath>libs\Unity.InternalAPIEngineBridge.013.dll</HintPath>
@@ -132,20 +66,11 @@
     <Reference Include="Unity.Localization">
       <HintPath>libs\Unity.Localization.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>libs\Unity.Mathematics.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
       <HintPath>libs\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>libs\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-      <HintPath>libs\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>libs\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">
       <HintPath>libs\Unity.RenderPipelines.Universal.Config.Runtime.dll</HintPath>
@@ -153,32 +78,14 @@
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
       <HintPath>libs\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>libs\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.ResourceManager">
       <HintPath>libs\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ScriptableBuildPipeline">
       <HintPath>libs\Unity.ScriptableBuildPipeline.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>libs\Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Antlr3.Runtime">
-      <HintPath>libs\Unity.VisualScripting.Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>libs\Unity.VisualScripting.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>libs\Unity.VisualScripting.Flow.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-      <HintPath>libs\Unity.VisualScripting.State.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>libs\UnityEngine.dll</HintPath>
@@ -213,9 +120,6 @@
     <Reference Include="UnityEngine.ClusterRendererModule">
       <HintPath>libs\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.ContentLoadModule">
-      <HintPath>libs\UnityEngine.ContentLoadModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>libs\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
@@ -225,20 +129,11 @@
     <Reference Include="UnityEngine.DirectorModule">
       <HintPath>libs\UnityEngine.DirectorModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.DSPGraphModule">
-      <HintPath>libs\UnityEngine.DSPGraphModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.GameCenterModule">
       <HintPath>libs\UnityEngine.GameCenterModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.GIModule">
-      <HintPath>libs\UnityEngine.GIModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.GridModule">
       <HintPath>libs\UnityEngine.GridModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.HotReloadModule">
-      <HintPath>libs\UnityEngine.HotReloadModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ImageConversionModule">
       <HintPath>libs\UnityEngine.ImageConversionModule.dll</HintPath>
@@ -248,9 +143,6 @@
     </Reference>
     <Reference Include="UnityEngine.InputLegacyModule">
       <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputModule">
-      <HintPath>libs\UnityEngine.InputModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.JSONSerializeModule">
       <HintPath>libs\UnityEngine.JSONSerializeModule.dll</HintPath>
@@ -272,15 +164,6 @@
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ProfilerModule">
-      <HintPath>libs\UnityEngine.ProfilerModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PropertiesModule">
-      <HintPath>libs\UnityEngine.PropertiesModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-      <HintPath>libs\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ScreenCaptureModule">
       <HintPath>libs\UnityEngine.ScreenCaptureModule.dll</HintPath>
@@ -321,9 +204,6 @@
     <Reference Include="UnityEngine.TilemapModule">
       <HintPath>libs\UnityEngine.TilemapModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.TLSModule">
-      <HintPath>libs\UnityEngine.TLSModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>libs\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -333,9 +213,6 @@
     <Reference Include="UnityEngine.UIModule">
       <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UmbraModule">
-      <HintPath>libs\UnityEngine.UmbraModule.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
       <HintPath>libs\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
     </Reference>
@@ -344,12 +221,6 @@
     </Reference>
     <Reference Include="UnityEngine.UnityConnectModule">
       <HintPath>libs\UnityEngine.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityCurlModule">
-      <HintPath>libs\UnityEngine.UnityCurlModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UnityTestProtocolModule">
-      <HintPath>libs\UnityEngine.UnityTestProtocolModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
       <HintPath>libs\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>

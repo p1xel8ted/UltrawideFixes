@@ -3,6 +3,7 @@
 /// <summary>
 /// Harmony patches for overriding screen resolution settings.
 /// </summary>
+[Harmony]
 public static class ScreenResolution
 {
     /// <summary>

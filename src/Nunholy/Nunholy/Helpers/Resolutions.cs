@@ -17,20 +17,20 @@ public static class Resolutions
     /// </summary>
     internal static int MainHeight => SelectedResolution.height;
 
-    /// <summary>
-    /// Calculates the negative scale factor for adjusting resolutions to the native aspect ratio.
-    /// </summary>
-    internal static float NegativeScaleFactor => NativeAspect / MainAspectRatio;
+    // /// <summary>
+    // /// Calculates the negative scale factor for adjusting resolutions to the native aspect ratio.
+    // /// </summary>
+    // internal static float NegativeScaleFactor => NativeAspect / MainAspectRatio;
+    //
+    // /// <summary>
+    // /// Calculates the positive scale factor for adjusting resolutions to the native aspect ratio.
+    // /// </summary>
+    // internal static float PositiveScaleFactor => MainAspectRatio / NativeAspect;
 
-    /// <summary>
-    /// Calculates the positive scale factor for adjusting resolutions to the native aspect ratio.
-    /// </summary>
-    internal static float PositiveScaleFactor => MainAspectRatio / NativeAspect;
-
-    /// <summary>
-    /// Calculates the aspect ratio of the main resolution.
-    /// </summary>
-    private static float MainAspectRatio => MainWidth / (float)MainHeight;
+    // /// <summary>
+    // /// Calculates the aspect ratio of the main resolution.
+    // /// </summary>
+    // private static float MainAspectRatio => MainWidth / (float)MainHeight;
 
     /// <summary>
     /// Gets the maximum refresh rate among all available screen resolutions.
@@ -116,9 +116,9 @@ public static class Resolutions
     /// A predefined list of custom refresh rates for compatibility.
     /// </summary>
     private static readonly int[] CustomRefreshRates =
-    {
+    [
         30, 50, 60, 72, 75, 90, 100, 120, 144, 165, 180, 200, 240, 300, 360, 480
-    };
+    ];
 
     /// <summary>
     /// Gets the native display width of the main display.
@@ -129,6 +129,9 @@ public static class Resolutions
     /// Gets the native display height of the main display.
     /// </summary>
     private static readonly int NativeDisplayHeight = Display.main.systemHeight;
+
+
+    internal static float WidthDifference => SelectedResolution.width - (SelectedResolution.height * NativeAspect);
 
     /// <summary>
     /// Retrieves a list of unique resolutions available, sorted by pixel count, and includes the main resolution.

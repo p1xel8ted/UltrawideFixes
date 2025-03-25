@@ -2,15 +2,15 @@
 
 public static class Utils
 {
-    /// <summary>
-    /// Attempts to add a key-value pair to a dictionary. Returns false if the key already exists.
-    /// </summary>
-    internal static bool TryAdd<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
-    {
-        if (dict.ContainsKey(key)) return false;
-        dict.Add(key, value);
-        return true;
-    }
+    // /// <summary>
+    // /// Attempts to add a key-value pair to a dictionary. Returns false if the key already exists.
+    // /// </summary>
+    // internal static bool TryAdd<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value)
+    // {
+    //     if (dict.ContainsKey(key)) return false;
+    //     dict.Add(key, value);
+    //     return true;
+    // }
 
     internal static float FindLowestFrameRateMultipleAboveFifty(float originalRate)
     {
@@ -34,12 +34,57 @@ public static class Utils
         resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
     }
     
+    // /// <summary>
+    // /// Sorts a list of resolutions by pixel count in ascending order.
+    // /// </summary>
+    // internal static void SortByPixelCount(this List<Vector2Int> resolutions)
+    // {
+    //     resolutions.Sort((a, b) => a.x * a.y - b.x * b.y);
+    // }
+    
     /// <summary>
-    /// Sorts a list of resolutions by pixel count in ascending order.
+    /// Clones an Image component and applies it to a new GameObject.
     /// </summary>
-    internal static void SortByPixelCount(this List<Vector2Int> resolutions)
+    /// <param name="originalImage">The original Image component to clone.</param>
+    /// <param name="parent">The parent Transform to attach the cloned image to.</param>
+    /// <param name="newName">The name of the new GameObject.</param>
+    /// <param name="setAsFirstSibling">If true, moves the new image to be the first child.</param>
+    /// <returns>The newly created Image component.</returns>
+    public static Image CloneImage(Image originalImage, Transform parent, string newName, bool setAsFirstSibling = false)
     {
-        resolutions.Sort((a, b) => a.x * a.y - b.x * b.y);
+        if (!originalImage || !parent) return null;
+
+        // Create a new GameObject for the cloned image
+        var newBackground = new GameObject(newName, typeof(RectTransform), typeof(Image));
+        newBackground.transform.SetParent(parent, false);
+
+        if (setAsFirstSibling)
+        {
+            newBackground.transform.SetAsFirstSibling();
+        }
+
+        // Copy Image properties
+        var newImage = newBackground.GetComponent<Image>();
+        newImage.sprite = originalImage.sprite;
+        newImage.color = originalImage.color;
+        newImage.material = originalImage.material;
+        newImage.raycastTarget = originalImage.raycastTarget;
+        newImage.type = originalImage.type;
+        newImage.preserveAspect = originalImage.preserveAspect;
+        newImage.fillCenter = originalImage.fillCenter;
+
+        // Copy RectTransform properties
+        var newRect = newBackground.GetComponent<RectTransform>();
+        var originalRect = originalImage.GetComponent<RectTransform>();
+        newRect.anchorMin = originalRect.anchorMin;
+        newRect.anchorMax = originalRect.anchorMax;
+        newRect.pivot = originalRect.pivot;
+        newRect.anchoredPosition = originalRect.anchoredPosition;
+        newRect.sizeDelta = originalRect.sizeDelta;
+        newRect.rotation = originalRect.rotation;
+        newRect.localScale = originalRect.localScale;
+
+        return newImage;
     }
 
 
@@ -86,18 +131,18 @@ public static class Utils
         return width;
     }
 
-    /// <summary>
-    /// Constructs the full path of a Transform in the hierarchy, starting from the root.
-    /// </summary>
-    public static string GetPath(this Transform tr)
-    {
-        var path = tr.name;
-        while (tr.parent != null)
-        {
-            tr = tr.parent;
-            path = tr.name + "/" + path;
-        }
-
-        return path;
-    }
+    // /// <summary>
+    // /// Constructs the full path of a Transform in the hierarchy, starting from the root.
+    // /// </summary>
+    // public static string GetPath(this Transform tr)
+    // {
+    //     var path = tr.name;
+    //     while (tr.parent != null)
+    //     {
+    //         tr = tr.parent;
+    //         path = tr.name + "/" + path;
+    //     }
+    //
+    //     return path;
+    // }
 }

@@ -11,7 +11,7 @@ public class Plugin : BaseUnityPlugin
     // Plugin Metadata
     private const string PluginGuid = "p1xel8ted.nunholy.uwfixes";
     private const string PluginName = "Nunholy Ultra-Wide";
-    private const string PluginVersion = "0.1.1";
+    private const string PluginVersion = "0.1.0";
     internal static ManualLogSource Log { get; private set; }
 
     // Configuration Fields
@@ -74,8 +74,8 @@ public class Plugin : BaseUnityPlugin
         SetupUIConfigurations(); //02
         // SetupCameraConfigurations(); //03
         // SetupGameConfigurations(); //04
-        SetupGraphicsConfigurations(); //05
-        SetupPostProcessConfigurations(); //06
+        SetupGraphicsConfigurations(); //03
+        SetupPostProcessConfigurations(); //04
         //reflection generated options //07
 
         RequiresUpdate = true;
@@ -138,8 +138,8 @@ public class Plugin : BaseUnityPlugin
     /// </summary>
     private void SetupPostProcessConfigurations()
     {
-        Notifications = Config.Bind("06. Post-Processing", "Post-Process Registration Notifications", true,
-            new ConfigDescription("Enable or disable notifications for post-processing effects being registered for configuration.", null, new ConfigurationManagerAttributes { Order = 89 }));
+        Notifications = Config.Bind("04. Post-Processing", "Post-Process Registration Notifications", true,
+            new ConfigDescription("Enable or disable notifications for post-processing effects being registered for configuration.", null, new ConfigurationManagerAttributes { Order = 86 }));
     }
 
     private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
@@ -205,16 +205,15 @@ public class Plugin : BaseUnityPlugin
                 new ConfigurationManagerAttributes { Order = 94 }));
         CustomRefreshRate.SettingChanged += (_, _) => UpdateAll(true);
 
-        TargetFramerate = Config.Bind("01. Display", "Target Framerate", Resolutions.MaxRefresh, new ConfigDescription("Set the target framerate - this will only function when VSYNC is OFF (0)", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 95 }));
+        TargetFramerate = Config.Bind("01. Display", "Target Framerate", Resolutions.MaxRefresh, new ConfigDescription("Set the target framerate - this will only function when VSYNC is OFF (0)", new AcceptableValueList<int>(customRates), new ConfigurationManagerAttributes { Order = 93 }));
         TargetFramerate.SettingChanged += (_, _) => UpdateAll(true);
 
         CorrectFixedUpdateRate = Config.Bind("02. Performance", "Modify Physics Rate", true,
-            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. The games controls are tied to this, so you may have to reduce mouse/controller sensitivity.", null, new ConfigurationManagerAttributes { Order = 94 }));
+            new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. The games controls are tied to this, so you may have to reduce mouse/controller sensitivity.", null, new ConfigurationManagerAttributes { Order = 92 }));
         CorrectFixedUpdateRate.SettingChanged += (_, _) => UpdateFixedDeltaTime();
-        ;
 
-        UseRefreshRateForFixedUpdateRate = Config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", false,
-            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. Just the top option should be sufficient to reduce camera judder, but you can experiment.", null, new ConfigurationManagerAttributes { Order = 93 }));
+        UseRefreshRateForFixedUpdateRate = Config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", true,
+            new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. Just the top option should be sufficient to reduce camera judder, but you can experiment.", null, new ConfigurationManagerAttributes { Order = 91 }));
         UseRefreshRateForFixedUpdateRate.SettingChanged += (_, _) => UpdateFixedDeltaTime();
         ;
     }
@@ -224,24 +223,24 @@ public class Plugin : BaseUnityPlugin
     /// </summary>
     private void SetupGraphicsConfigurations()
     {
-        MaximumQuality = Config.Bind("05. Graphics", "Maximum Quality", false,
+        MaximumQuality = Config.Bind("03. Graphics", "Maximum Quality", false,
             new ConfigDescription(
                 "Enable this to use the highest quality settings for the game. This may reduce performance. If you disable this, you will need to restart the game to undo the changes.",
                 null,
-                new ConfigurationManagerAttributes { Order = 98 }));
+                new ConfigurationManagerAttributes { Order = 90 }));
         MaximumQuality.SettingChanged += (_, _) => { UpdateAll(); };
 
-        MSAA = Config.Bind("05. Graphics", "MSAA", 0,
+        MSAA = Config.Bind("03. Graphics", "MSAA", 0,
             new ConfigDescription(
                 "Set the level of Multi-Sample Anti-Aliasing (MSAA) to use. Higher values result in better quality but lower performance.",
                 new AcceptableValueList<int>(0, 2, 4, 8),
-                new ConfigurationManagerAttributes { Order = 97 }));
+                new ConfigurationManagerAttributes { Order = 89 }));
         MSAA.SettingChanged += (_, _) => UpdateAll();
 
-        AntialiasingModeConfig = Config.Bind("05. Graphics", "Anti-Aliasing Mode", AntialiasingMode.TemporalAntiAliasing,
+        AntialiasingModeConfig = Config.Bind("03. Graphics", "Anti-Aliasing Mode", AntialiasingMode.TemporalAntiAliasing,
             new ConfigDescription(
                 "Choose the anti-aliasing mode to use for the game. Different modes offer varying levels of quality and performance.",null,
-                new ConfigurationManagerAttributes { Order = 96 }));
+                new ConfigurationManagerAttributes { Order = 88 }));
         AntialiasingModeConfig.SettingChanged += (_, _) => UpdateAll();
     }
 
@@ -254,7 +253,7 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription(
                 "Choose the aspect ratio for the game's user interface (UI). 'Auto' attempts to match your display's ratio.",
                 new AcceptableValueList<string>(HUDAspects.ToArray()),
-                new ConfigurationManagerAttributes { Order = 93 }));
+                new ConfigurationManagerAttributes { Order = 87 }));
         HUDAspect.SettingChanged += (_, _) => LayoutController.UpdateControllers();
     }
 
@@ -267,6 +266,7 @@ public class Plugin : BaseUnityPlugin
         QualSettings.UpdateSettings();
         UpdateDisplay(force);
         UpdateFixedDeltaTime();
+        LayoutController.UpdateControllers();
     }
 
     internal static void UpdateFixedDeltaTime()
@@ -357,6 +357,8 @@ public class Plugin : BaseUnityPlugin
             ConfigurationManager.CloseWindow();
             ConfigurationManager.OpenWindow();
         }
+        
+        LayoutController.UpdateControllers();
 
         RequiresUpdate = false;
     }

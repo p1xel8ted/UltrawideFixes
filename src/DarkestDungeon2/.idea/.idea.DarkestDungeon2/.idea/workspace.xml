@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DarkestDungeon2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Patches.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../RoguePrinceOfPersia/RoguePrinceOfPersia/Patches.cs" afterDir="false" />
-    </list>
+    <list default="true" id="ba68ac3f-e7bb-40d3-b296-446287f75e35" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,10 +26,13 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Patches.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Plugin.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/Transpiler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/DarkestDungeon2UltrawideFix/WriteOnce.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9262983d582b454b908af6ae965b05f3548600/33/0a92327c/ScreenResolutionWidgetBhv.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9262983d582b454b908af6ae965b05f3548600/86/122155b0/EventResolutionChanged.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2/Patches.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2/Plugin.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2/Transpiler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/DarkestDungeon2/WriteOnce.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Nunholy/Nunholy/Misc/ConfigurationManagerAttributes.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -126,6 +124,7 @@
     <MESSAGE value="/" />
     <MESSAGE value="." />
     <MESSAGE value="Work Work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Work Work" />
+    <MESSAGE value="Nunholy + Darkest Dungeon 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nunholy + Darkest Dungeon 2" />
   </component>
 </project>

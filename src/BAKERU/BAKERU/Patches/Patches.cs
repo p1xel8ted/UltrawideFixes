@@ -9,8 +9,38 @@ public static class Patches
     public static void ScreenFitter_OnEnable(ScreenFitter __instance)
     {
         __instance.gameObject.TryAddComponent<ScreenFitterOverride>();
+
+        string[] children = ["BG_L", "BG_R", "BG_B", "BG_T", "Top", "Bottom"];
+        foreach (var child in children)
+        {
+            var found = __instance.transform.FindChild(child);
+            if (found)
+            {
+                found.gameObject.SetActive(false);
+            }
+        }
+
+
+        var back = __instance.transform.FindChild("Back");
+        if (back)
+        {
+            AddLayoutElementAndContentSizeFitterRoot(back, Size.ForceFullScreen);
+            back.transform.position = back.transform.position with { x = 0 };
+        }
     }
-    
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(FadeManager), nameof(FadeManager.Initialize))]
+    [HarmonyPatch(typeof(FadeManager), nameof(FadeManager.FadeIn))]
+    [HarmonyPatch(typeof(FadeManager), nameof(FadeManager.FadeOut))]
+    public static void FadeManager_Initialize(FadeManager __instance)
+    {
+        if (__instance && __instance.transform)
+        {
+            AddLayoutElementAndContentSizeFitterPath(__instance.transform, "FadeCanvas/FadeImage", Size.ForceFullScreen);
+        }
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SceneCutscene), nameof(SceneCutscene.Awake))]
     [HarmonyPatch(typeof(SceneCutscene), nameof(SceneCutscene.Setup))]
@@ -35,6 +65,27 @@ public static class Patches
     public static void DynamicResolution_Start(DynamicResolution __instance)
     {
         __instance.enabled = false;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CameraScaler), nameof(CameraScaler.UpdateCameraRect))]
+    [HarmonyPatch(typeof(CameraScaler), nameof(CameraScaler.UpdateCameraStackRect))]
+    public static void CameraScaler_UpdateCameraRect(CameraScaler __instance)
+    {
+        var camera = __instance.GetComponent<Camera>();
+        if (camera)
+        {
+            camera.aspect = Resolutions.CurrentAspect;
+            camera.rect = new Rect(0, 0, 1, 1);
+            camera.pixelRect = new Rect(0, 0, Resolutions.SelectedResolution.width, Resolutions.SelectedResolution.height);
+        }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CameraScaler), nameof(CameraScaler.UpdateCameraStackRect))]
+    public static void CameraScaler_UpdateCameraStackRect(CameraScaler __instance, ref Rect newRect)
+    {
+        newRect = new Rect(0, 0, 1, 1);
     }
 
     [HarmonyPostfix]
@@ -69,6 +120,18 @@ public static class Patches
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(MainMenuHub), nameof(MainMenuHub.OnEnable))]
+    [HarmonyPatch(typeof(MainMenuHub), nameof(MainMenuHub.Initialize))]
+    public static void MainMenuHub_OnEnable(WorldMapHub __instance)
+    {
+        if (__instance && __instance.transform)
+        {
+            AddLayoutElementAndContentSizeFitterPath(__instance.transform, "Canvas_Back", Size.ConfigBased);
+        }
+    }
+
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(TitleMenuController), nameof(TitleMenuController.Initialize))]
     public static void TitleMenuController_Initialize(TitleMenuController __instance)
     {
@@ -99,6 +162,17 @@ public static class Patches
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(SaveMenuController), nameof(SaveMenuController.Awake))]
+    public static void SaveMenuController_Awake(SaveMenuController __instance)
+    {
+        if (__instance.transform)
+        {
+            AddLayoutElementAndContentSizeFitterRoot(__instance.transform, Size.ConfigBased);
+            AddLayoutElementAndContentSizeFitterPath(__instance.transform, "BlackBoard", Size.ForceFullScreen);
+        }
+    }
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(TitleHUD), nameof(TitleHUD.Start))]
     public static void TitleHUD_Start(TitleHUD __instance)
     {
@@ -122,6 +196,7 @@ public static class Patches
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIPlayHUD), nameof(UIPlayHUD.Start))]
+    [HarmonyPatch(typeof(UITutorialPlayerHUD), nameof(UITutorialPlayerHUD.Start))]
     [HarmonyPatch(typeof(UITutorialPlayerHUD), nameof(UITutorialPlayerHUD.Start))]
     public static void UIPlayHUD_Start(MonoBehaviour __instance)
     {
@@ -154,6 +229,13 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
+        if (__instance.name.Contains("BepInExConfigManager", StringComparison.OrdinalIgnoreCase))
+        {
+            __instance.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+            return;
+        }
+
         if (__instance.name.Contains("sinai", StringComparison.OrdinalIgnoreCase)) return;
 
         if (__instance.uiScaleMode == CanvasScaler.ScaleMode.ScaleWithScreenSize)
@@ -197,6 +279,7 @@ public static class Patches
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ScreenManager), nameof(ScreenManager.IsAvailableAspectRatio))]
+    [HarmonyPatch(typeof(ScreenFitter), nameof(ScreenFitter.IsAspectModeValid))]
     public static void ScreenManager_IsAvailableAspectRatio(ref bool __result)
     {
         __result = true;

@@ -7,14 +7,14 @@ public sealed class WriteOnce<T>
 {
     private T _value; // Holds the value of the instance
 
-    /// <summary>
-    /// Constructor to initialize the instance with a value.
-    /// </summary>
-    /// <param name="value">The value to initialize with.</param>
-    public WriteOnce(T value)
-    {
-        Value = value;
-    }
+    // /// <summary>
+    // /// Constructor to initialize the instance with a value.
+    // /// </summary>
+    // /// <param name="value">The value to initialize with.</param>
+    // public WriteOnce(T value)
+    // {
+    //     Value = value;
+    // }
 
     /// <summary>
     /// Default constructor for creating an uninitialized instance.
