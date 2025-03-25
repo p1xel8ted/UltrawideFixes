@@ -557,5 +557,16 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WonhonAVengefulSpirit/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/6012989c-1eb5-477c-9241-b1e170bdce69) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/d95d2919-1575-4089-aedd-6abc23be4d15)
-</div>
+
 </details>
+<div id="Y"/>
+<details><summary>Y (1)</summary>
+
+## [Yasuke Simulator](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/YasukeSimulator)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/YasukeSimulator/total?label=downloads&style=for-the-badge)
+
+![main_cutscene](https://github.com/user-attachments/assets/008da94a-3ef3-496c-8d73-92e4d2cd7578)
+![main_game](https://github.com/user-attachments/assets/5efc3365-ea9c-4864-8ea1-c7224574860c)
+
+</details>
+</div>
