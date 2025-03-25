@@ -28,8 +28,8 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="A"/>
-<details><summary>A (8)</summary>
-  
+<details><summary>A (9)</summary>
+
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
 
@@ -39,11 +39,6 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
 
 ![main_menu1](https://github.com/user-attachments/assets/be305fbd-f33b-4afe-b2b7-ca0f4fdf2f8a) ![main_game](https://github.com/user-attachments/assets/53c4765f-a876-49a5-8e5e-00d6b6859929)
-
-## [Ankora: Lost Days](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnkoraLostDays)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnkoraLostDays/total?label=downloads&style=for-the-badge)
-
-![main_menu](https://github.com/user-attachments/assets/da61f7ff-72f2-47cf-b228-f36e462e345e) ![main_game2](https://github.com/user-attachments/assets/05f94e84-8717-4981-a5f6-711b6e6d63e0)
 
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
@@ -58,8 +53,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Anima Flux](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnimaFlux)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnimaFlux/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/767236d3-d3c6-4551-bc0a-c68c96cdfa99)
-![main_game1](https://github.com/user-attachments/assets/7413f9a3-2d02-413a-9c56-75ece27b3a9f)
+![main_menu](https://github.com/user-attachments/assets/767236d3-d3c6-4551-bc0a-c68c96cdfa99) ![main_game1](https://github.com/user-attachments/assets/7413f9a3-2d02-413a-9c56-75ece27b3a9f)
+
+## [Ankora: Lost Days](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnkoraLostDays)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnkoraLostDays/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/da61f7ff-72f2-47cf-b228-f36e462e345e) ![main_game2](https://github.com/user-attachments/assets/05f94e84-8717-4981-a5f6-711b6e6d63e0)
 
 ## [Anode Heart](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AnodeHeart)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AnodeHeart/total?label=downloads&style=for-the-badge)
@@ -71,7 +70,13 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_main](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/80636591-ac38-4fbc-97ed-e8bf22284dd3) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/84811463-1670-4287-98d4-575b023c748a)
 
+## [Astronomics](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Astronomics)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Astronomics/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/2e1aeca3-54a2-437e-a2b6-99ce0f808949) ![main_game](https://github.com/user-attachments/assets/933a288a-397e-46b1-8439-11f3cf51d601)
+
 </details>
+
 <div id="B"/>
 <details><summary>B (3)</summary>
 
