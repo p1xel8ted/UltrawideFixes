@@ -325,7 +325,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="N"/>
-<details><summary>N (5)</summary>
+<details><summary>N (6)</summary>
 
 ## [NEO - The World Ends With You](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NEOTheWorldEndsWithYou)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NEOTheWorldEndsWithYou/total?label=downloads&style=for-the-badge)
@@ -350,8 +350,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Nine Sols](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NineSols)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NineSols/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/e05a9313-6201-41b6-9f9c-66f35e14db52)
-![main_game](https://github.com/user-attachments/assets/4fb09915-d5f3-4451-8654-41a9672235dc)
+![main_menu](https://github.com/user-attachments/assets/e05a9313-6201-41b6-9f9c-66f35e14db52) ![main_game](https://github.com/user-attachments/assets/4fb09915-d5f3-4451-8654-41a9672235dc)
+
+## [Nunholy](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Nunholy)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Nunholy/total?label=downloads&style=for-the-badge)
+
+![main_main-menu](https://github.com/user-attachments/assets/81e820f4-7322-4d2b-b882-286f69431c4e) ![main_game](https://github.com/user-attachments/assets/f37a40ae-5ea9-40cb-abcc-358eea0cd090)
 
 </details>
 <div id="P"/>
