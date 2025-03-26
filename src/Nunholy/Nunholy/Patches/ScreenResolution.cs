@@ -6,6 +6,8 @@
 [Harmony]
 public static class ScreenResolution
 {
+    internal static Action<Resolution>  OnResolutionChanged;  
+        
     /// <summary>
     /// Gets the selected resolution based on the plugin configuration.
     /// </summary>
@@ -30,6 +32,7 @@ public static class ScreenResolution
         fullscreen = Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow;
 #endif
         preferredRefreshRate = Resolutions.RefreshRate;
+        OnResolutionChanged?.Invoke(ChosenResolution);
     }
 
     /// <summary>
@@ -49,6 +52,7 @@ public static class ScreenResolution
 #else
         fullscreen = Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow;
 #endif
+            OnResolutionChanged?.Invoke(ChosenResolution);
     }
 
     /// <summary>
@@ -68,6 +72,7 @@ public static class ScreenResolution
 #else
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
 #endif
+            OnResolutionChanged?.Invoke(ChosenResolution);
     }
 
     /// <summary>
@@ -89,6 +94,7 @@ public static class ScreenResolution
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
 #endif
         preferredRefreshRate = Resolutions.RefreshRate;
+        OnResolutionChanged?.Invoke(ChosenResolution);
     }
 
     [HarmonyPrefix]
@@ -105,6 +111,7 @@ public static class ScreenResolution
 #endif
 
         preferredRefreshRate = Resolutions.RefreshRateRatio;
+        OnResolutionChanged?.Invoke(ChosenResolution);
     }
 
     [HarmonyPrefix]
@@ -116,6 +123,7 @@ public static class ScreenResolution
 #else
         value = Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow;
 #endif
+            OnResolutionChanged?.Invoke(ChosenResolution);
     }
 
     [HarmonyPrefix]
@@ -127,5 +135,6 @@ public static class ScreenResolution
 #else
         value = Plugin.FullScreenModeConfig.Value;
 #endif
+            OnResolutionChanged?.Invoke(ChosenResolution);
     }
 }

@@ -19,19 +19,22 @@ public class LayoutController : MonoBehaviour
         }
     }
     
-    // /// <summary>
-    // /// Adds a LayoutController to a child Transform found by path and configures its layout.
-    // /// </summary>
-    // internal static LayoutController AddLayoutControllerPath(
-    //     Transform transform, 
-    //     string findPath, 
-    //     LayoutSize size, 
-    //     float customSize, 
-    //     bool useAspectRatioFitter)
-    // {
-    //     var foundTransform = transform.Find(findPath);
-    //     return !foundTransform ? null : AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter);
-    // }
+    /// <summary>
+    /// Adds a LayoutController to a child Transform found by path and configures its layout.
+    /// </summary>
+    internal static void AddLayoutControllerPath(
+        Transform transform, 
+        string findPath, 
+        LayoutSize size, 
+        float customSize, 
+        bool useAspectRatioFitter)
+    {
+        var foundTransform = transform.Find(findPath);
+        if (foundTransform)
+        {
+            AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter);
+        }
+    }
 
     // /// <summary>
     // /// Changes the layout size and custom dimensions, and updates the aspect ratio or size fitting.

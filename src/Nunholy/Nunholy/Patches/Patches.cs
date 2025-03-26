@@ -107,24 +107,7 @@ public static class Patches
     [HarmonyPatch(typeof(Inventory), nameof(Inventory.Start))]
     public static void Inventory_Start(Inventory __instance)
     {
-        var panel = __instance.transform.Find("_Panel");
-        if (panel)
-        {
-            // Check if "BackgroundNew" already exists
-            if (panel.Find("BackgroundNew")) return;
-
-            // Find the first Image component in the panel and clone it
-            var originalImage = panel.GetComponent<Image>();
-            if (originalImage)
-            {
-                var image = Utils.CloneImage(originalImage, panel, "BackgroundNew", true);
-                if (image)
-                {
-                    originalImage.enabled = false;
-                    LayoutController.AddLayoutControllerRoot(image.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, true);
-                }
-            }
-        }
+        ReplaceAndExpandBackgroundFullscreen(__instance.transform, "_Panel");
     }
 
     [HarmonyPostfix]
@@ -142,41 +125,100 @@ public static class Patches
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(ConfigCanvas), nameof(ConfigCanvas.OnEnable))]
-    [HarmonyPatch(typeof(SelectSlotCanvas), nameof(SelectSlotCanvas.OnEnable))]
-    [HarmonyPatch(typeof(SelectCharacterCanvas), nameof(SelectCharacterCanvas.OnEnable))]
-    [HarmonyPatch(typeof(PauseCanvas), nameof(PauseCanvas.OnEnable))]
-    [HarmonyPatch(typeof(VampiricPowerManager), nameof(VampiricPowerManager.OnEnable))]
-    public static void UICanvas_OnEnable(UICanvas __instance)
+    [HarmonyPatch(typeof(DialogCanvas), nameof(DialogCanvas.StartDialog))]
+    [HarmonyPatch(typeof(DialogCanvas), nameof(DialogCanvas.DisplayDialogue))]
+    [HarmonyPatch(typeof(NPCDialog), nameof(NPCDialog.ShowDialog))]
+    [HarmonyPatch(typeof(NPCDialog), nameof(NPCDialog.Start))]
+    public static void DialogCanvas_StartDialog(UICanvas __instance)
     {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Pannel", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Pannel/Top", LayoutController.LayoutSize.Custom, Screen.width * 2f, false);
+
+        //fullscreen semi-transparent background
+        ReplaceAndExpandBackgroundFullscreen(__instance.transform, "Pannel");
+
+        //top/bottom gradients
         var panel = __instance.transform.Find("Pannel");
         if (panel)
         {
-
-            var desPanel = panel.Find("SubDesParent");
-            if (desPanel)
+            //disable masking so we can expand the bg
+            var rectMask2d = panel.GetComponent<RectMask2D>();
+            if (rectMask2d)
             {
-                desPanel.transform.localPosition = desPanel.transform.localPosition with { x = Resolutions.WidthDifference };
+                rectMask2d.enabled = false;
             }
-            
-            // Apply the layout controller
-            LayoutController.AddLayoutControllerRoot(panel, LayoutController.LayoutSize.ForceSixteenNine, 0f, true);
 
-            // Check if "BackgroundNew" already exists
-            if (panel.Find("BackgroundNew")) return;
+            //expand bg to fit the screen (Width only)
+            ReplaceAndExpandBackgroundWidth(panel, "Bottom");
+        }
+    }
 
-            // Find the first Image component in the panel and clone it
-            var originalImage = panel.GetComponent<Image>();
-            if (originalImage)
+    private static Transform ReplaceBackground(Transform parent, string trWithImage)
+    {
+        var panel = parent.Find(trWithImage);
+        // Check if "BackgroundNew" already exists
+        var bgNew = panel.Find("BackgroundNew");
+        if (bgNew) return bgNew;
+
+        // Find the first Image component in the panel and clone it
+        var originalImage = panel.GetComponent<Image>();
+        if (originalImage)
+        {
+            var image = Utils.CloneImage(originalImage, panel, "BackgroundNew", true);
+            if (image)
             {
-                var image = Utils.CloneImage(originalImage, panel, "BackgroundNew", true);
-                if (image)
-                {
-                    originalImage.enabled = false;
-                    LayoutController.AddLayoutControllerRoot(image.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, true);
-                }
+                originalImage.enabled = false;
+                return image.transform;
             }
         }
+
+        return null;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(KeepsakeManager), nameof(KeepsakeManager.OnEnable))]
+    public static void KeepsakeManager_OnEnable(KeepsakeManager __instance)
+    {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Pannel", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+        ReplaceAndExpandBackgroundFullscreen(__instance.transform, "Pannel");
+    }
+
+    private static void ReplaceAndExpandBackgroundFullscreen(Transform parent, string trWithImage)
+    {
+        var bg = ReplaceBackground(parent, trWithImage);
+        if (bg)
+        {
+            LayoutController.AddLayoutControllerRoot(bg, LayoutController.LayoutSize.ForceFullScreen, 0f, true);
+        }
+    }
+
+    private static void ReplaceAndExpandBackgroundWidth(Transform parent, string trWithImage)
+    {
+        var bg = ReplaceBackground(parent, trWithImage);
+        if (bg)
+        {
+            LayoutController.AddLayoutControllerRoot(bg, LayoutController.LayoutSize.Custom, Screen.width * 2f, false);
+        }
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SelectSlotCanvas), nameof(SelectSlotCanvas.OnEnable))]
+    [HarmonyPatch(typeof(SelectCharacterCanvas), nameof(SelectCharacterCanvas.OnEnable))]
+    [HarmonyPatch(typeof(VampiricPowerManager), nameof(VampiricPowerManager.OnEnable))]
+    public static void UICanvas_OnEnable_ExpandBackgrounds(UICanvas __instance)
+    {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Pannel", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
+        ReplaceAndExpandBackgroundFullscreen(__instance.transform, "Pannel");
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ConfigCanvas), nameof(ConfigCanvas.OnEnable))]
+    [HarmonyPatch(typeof(PauseCanvas), nameof(PauseCanvas.OnEnable))]
+    [HarmonyPatch(typeof(AchivementCanvas), nameof(AchivementCanvas.OnEnable))]
+    public static void UICanvas_OnEnable_LeaveBackgroundsSixteenNine(UICanvas __instance)
+    {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Pannel", LayoutController.LayoutSize.ForceSixteenNine, 0, true);
     }
 
 
@@ -215,11 +257,7 @@ public static class Patches
     [HarmonyPatch(typeof(UIControl), nameof(UIControl.OnEnable))]
     public static void UIControl_OnEnable(UIControl __instance)
     {
-        var scaler = __instance.transform.Find("Scaler");
-        if (scaler)
-        {
-            LayoutController.AddLayoutControllerRoot(scaler, LayoutController.LayoutSize.ConfigBased, 0f, true);
-        }
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Scaler", LayoutController.LayoutSize.ConfigBased, 0f, true);
     }
 
     /// <summary>
@@ -232,20 +270,34 @@ public static class Patches
         Volumes.UpdateVolumes();
     }
 
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
+    private static readonly List<CanvasScaler> CanvasScalers = [];
 
-    /// <summary>
-    /// Corrects scaling for certain UI components    
-    /// </summary>
+    internal static void UpdateScalers()
+    {
+        foreach (var scaler in CanvasScalers.Where(scaler => scaler))
+        {
+            if (!OriginalScreenMatchModes.TryGetValue(scaler.GetInstanceID(), out var originalMode))
+            {
+                OriginalScreenMatchModes.Add(scaler.GetInstanceID(), scaler.screenMatchMode);
+                originalMode = scaler.screenMatchMode;
+            }
+
+            scaler.screenMatchMode = Resolutions.CurrentAspect > Resolutions.NativeAspect ? CanvasScaler.ScreenMatchMode.Expand : originalMode;
+        }
+    }
+
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
         //unity explorer
         if (__instance.name.Contains("sinai")) return;
-
-        //the post-processing notifications canvas
         if (__instance.name == "MessageCanvas") return;
 
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        CanvasScalers.Add(__instance);
+
+        UpdateScalers();
     }
 }

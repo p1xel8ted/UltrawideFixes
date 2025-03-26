@@ -54,6 +54,9 @@
     <Reference Include="ConfigurationManager">
       <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
     </Reference>
+    <Reference Include="spine-unity">
+      <HintPath>libs\spine-unity.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Addressables">
       <HintPath>libs\Unity.Addressables.dll</HintPath>
     </Reference>

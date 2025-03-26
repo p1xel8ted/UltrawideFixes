@@ -1,4 +1,5 @@
-﻿using UnityEngine.Rendering.Universal;
+﻿using Nunholy.Patches;
+using UnityEngine.Rendering.Universal;
 
 namespace Nunholy;
 
@@ -80,6 +81,12 @@ public class Plugin : BaseUnityPlugin
 
         RequiresUpdate = true;
 
+        ScreenResolution.OnResolutionChanged += _ =>
+        {
+            LayoutController.UpdateControllers();
+            Patches.Patches.UpdateScalers();
+        };
+        
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
@@ -267,6 +274,7 @@ public class Plugin : BaseUnityPlugin
         UpdateDisplay(force);
         UpdateFixedDeltaTime();
         LayoutController.UpdateControllers();
+        Patches.Patches.UpdateScalers();
     }
 
     internal static void UpdateFixedDeltaTime()
@@ -307,8 +315,7 @@ public class Plugin : BaseUnityPlugin
     private static void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         var force = Screen.width != Resolutions.SelectedResolution.width || Screen.height != Resolutions.SelectedResolution.height || Screen.fullScreenMode != FullScreenModeConfig.Value;
-        UpdateDisplay(force);
-        UpdateFixedDeltaTime();
+        UpdateAll(force);
     }
 
     private static void UpdateDisplay(bool force = false)

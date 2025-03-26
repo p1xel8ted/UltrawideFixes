@@ -72,7 +72,9 @@ public static class Utils
         newImage.type = originalImage.type;
         newImage.preserveAspect = originalImage.preserveAspect;
         newImage.fillCenter = originalImage.fillCenter;
-
+        newImage.maskable = false;
+        newImage.m_Maskable = false;
+        
         // Copy RectTransform properties
         var newRect = newBackground.GetComponent<RectTransform>();
         var originalRect = originalImage.GetComponent<RectTransform>();
