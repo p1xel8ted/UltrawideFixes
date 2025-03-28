@@ -15,7 +15,7 @@ internal class CameraGateFitEnforcer : MonoBehaviour
     {
         if (_camera)
         {
-            _camera.gateFit = Plugin.CurrentAspect >Plugin.NativeAspect ? Camera.GateFitMode.Vertical : _originalGateFit.Value;
+            _camera.gateFit = Resolutions.CurrentAspect >Resolutions.NativeAspect ? Camera.GateFitMode.Vertical : _originalGateFit.Value;
         }
     }
 }

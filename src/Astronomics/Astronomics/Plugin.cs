@@ -36,6 +36,7 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo($"Plugin {PluginName} is loaded!");
     }
     internal static ConfigEntry<bool> Notifications { get; private set; }
+    
     /// <summary>
     /// Sets up configurations related to post-processing.
     /// </summary>
