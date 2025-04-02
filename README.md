@@ -198,7 +198,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="H"/>
-<details><summary>H (4)</summary>
+<details><summary>H (5)</summary>
+
+## [HASTE](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Haste)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Haste/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/bfdfbf0c-00e6-4f50-ae00-e91a6b9d1894) ![main_game-16-9](https://github.com/user-attachments/assets/c665ac23-e023-4f10-af1e-f0579b863ac2)
 
 ## [Heaven Dust](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HeavenDust1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HeavenDust1/total?label=downloads&style=for-the-badge)
