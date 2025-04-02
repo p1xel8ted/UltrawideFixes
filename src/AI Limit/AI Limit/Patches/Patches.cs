@@ -1,9 +1,5 @@
 // ReSharper disable Unity.IncorrectMonoBehaviourInstantiation
 
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-using UnityEngine.Rendering;
-using Object = UnityEngine.Object;
-
 namespace AI_Limit.Patches;
 
 [Harmony]
@@ -86,22 +82,27 @@ public static class Patches
     [HarmonyPatch(typeof(PaperView), nameof(PaperView.OnShow))]
     public static void PaperView_OnShow(PaperView __instance)
     {
-        var bg = __instance.transform.FindChild("HUD_TutorialView/Bg");
+        var bg = __instance.transform.FindChild("BG");
         if (bg)
         {
             PositiveScaleMe.TryAdd(bg.GetInstanceID(), bg);
-        }
 
-        for (var i = 0; i < __instance.transform.childCount; i++)
+            NegativeScaleChildren(bg);
+        }
+        
+        UpdateTransforms();
+    }
+
+    private static void NegativeScaleChildren(Transform tr)
+    {
+        for (var i = 0; i < tr.childCount; i++)
         {
-            var child = __instance.transform.GetChild(i);
+            var child = tr.GetChild(i);
             if (child)
             {
                 NegativeScaleMe.TryAdd(child.GetInstanceID(), child);
             }
-        }
-
-        UpdateTransforms();
+        }  
     }
 
     [HarmonyPostfix]
@@ -267,8 +268,7 @@ public static class Patches
         Object.Destroy(MovieBgBackground);
         MovieBgBackground = null;
     }
-
-
+    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GameSettingElement), nameof(GameSettingElement.InitValue), typeof(Il2CppSystem.Action<int>), typeof(int), typeof(Il2CppStringArray), typeof(string))]
     public static void GameSettingElement_InitValue(GameSettingElement __instance, Il2CppSystem.Action<int> valueChangeAction,

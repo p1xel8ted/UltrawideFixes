@@ -5,7 +5,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.ailimit.ultrawide";
     private const string PluginName = "AI Limit Ultra-Wide";
-    private const string PluginVersion = "0.1.3";
+    private const string PluginVersion = "0.1.4";
 
     internal static ManualLogSource Logger { get; set; }
     // private static WriteOnceFloat OriginalFixedDeltaTime { get; } = new();

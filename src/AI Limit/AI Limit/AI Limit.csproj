@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Ai Limit Ultra-Wide</Product>
-        <Version>0.1.3</Version>
+        <Version>0.1.4</Version>
         <AssemblyName>$(Product)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version])</FileVersion>
@@ -49,17 +49,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="Assembly-CSharp">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Assembly-CSharp.dll</HintPath>
-      </Reference>
       <Reference Include="Cinemachine">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Cinemachine.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="InputSystem.Samples.Visualizers">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\InputSystem.Samples.Visualizers.dll</HintPath>
       </Reference>
       <Reference Include="SenseGame.Logic">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\SenseGame.Logic.dll</HintPath>
@@ -70,20 +64,11 @@
       <Reference Include="Unity.Addressables">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.Addressables.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Animation.Rigging">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.Animation.Rigging.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.InputSystem">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.InputSystem.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Polybrush">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.Polybrush.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.RenderPipelines.HighDefinition.Config.Runtime">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.RenderPipelines.HighDefinition.Config.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
@@ -91,32 +76,14 @@
       <Reference Include="Unity.ResourceManager">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
       </Reference>
-      <Reference Include="Unity.Splines">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.Splines.dll</HintPath>
-      </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.Timeline.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.VisualEffectGraph.Runtime">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.AnimationModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
@@ -124,29 +91,11 @@
       <Reference Include="UnityEngine.ClothModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.CoreModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.DirectorModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.GridModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
@@ -154,20 +103,8 @@
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.NVIDIAModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.NVIDIAModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
@@ -175,44 +112,14 @@
       <Reference Include="UnityEngine.PhysicsModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TerrainModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UI.dll</HintPath>
@@ -223,50 +130,8 @@
       <Reference Include="UnityEngine.UIModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VFXModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.VideoModule">
         <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.VRModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.WindModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.XRModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\AI Limit\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
       </Reference>
     </ItemGroup>
 
