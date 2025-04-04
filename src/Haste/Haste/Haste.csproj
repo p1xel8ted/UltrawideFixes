@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net481</TargetFramework>
-    <Product>Haste Ultra-Wide</Product>
-    <Version>0.1.0</Version>
+    <Product>HASTE Ultra-Wide</Product>
+    <Version>0.1.1</Version>
     <AssemblyName>$(Product)</AssemblyName>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version])</FileVersion>
@@ -160,6 +160,9 @@
     </Reference>
     <Reference Include="Zorro.JiggleBones">
       <HintPath>libs\Zorro.JiggleBones.dll</HintPath>
+    </Reference>
+    <Reference Include="Zorro.UI.Runtime">
+      <HintPath>libs\Zorro.UI.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

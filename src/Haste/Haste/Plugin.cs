@@ -4,9 +4,9 @@
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.haste.ultrawide";
-    private const string PluginName = "Haste Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
-
+    private const string PluginName = "HASTE Ultra-Wide";
+    private const string PluginVersion = "0.1.1";
+internal static ManualLogSource Log { get; set; }
     internal static ConfigEntry<string> HUDAspect { get; private set; }
     internal static ConfigFile ConfigFile { get; private set; }
     public static ConfigEntry<float> CameraFieldOfView { get; private set; }
@@ -16,8 +16,9 @@ public class Plugin : BaseUnityPlugin
 
     private void Awake()
     {
+        Log = Logger;
         ConfigFile = Config;
-        Logger.LogInfo($"Plugin {PluginName} is loaded!");
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
         SetupUIConfigurations(); //01
         SetupCameraConfigurations(); //02
         SetupPostProcessConfigurations(); //03
@@ -62,6 +63,11 @@ public class Plugin : BaseUnityPlugin
 
     private static void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
+        // Log.LogWarning($"Scene loaded: {arg0.name}");
+        if (arg0.name.StartsWith("LogoScene", StringComparison.OrdinalIgnoreCase))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
         UpdateCameraGateFit();
     }
 

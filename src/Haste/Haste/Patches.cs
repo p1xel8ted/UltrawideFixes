@@ -43,6 +43,86 @@ public static class Patches
         __instance.enabled = false;
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PostGameScreen), nameof(PostGameScreen.Start))]
+    public static void PostGameScreen_Start(PostGameScreen __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AlltimeStatsScreen), nameof(AlltimeStatsScreen.Start))]
+    public static void AlltimeStatsScreen_Start(AlltimeStatsScreen __instance)
+    {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "StatScreen", LayoutController.LayoutSize.Custom, 10000f, false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MainMenuMainPage), nameof(MainMenuMainPage.Start))]
+    public static void MainMenuMainPage_Start(MainMenuMainPage __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(TutorialPopUpHandler), nameof(TutorialPopUpHandler.OpenNewPopup))]
+    [HarmonyPatch(typeof(TutorialPopUpHandler), nameof(TutorialPopUpHandler.TriggerPopUp))]
+    public static void TutorialPopUpHandler_Start(TutorialPopUpHandler __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(EscapeMenuMainPage), nameof(EscapeMenuMainPage.Start))]
+    public static void EscapeMenuMainPage_Start(EscapeMenuMainPage __instance)
+    {
+        DisableButtons(__instance.transform);
+    }
+
+    private static void DisableButtons(Transform tr)
+    {
+        var buttons = tr.Find("ExtraButtons");
+        if (buttons)
+        {
+            buttons.gameObject.SetActive(false);
+        }
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.Start))]
+    public static void MainMenu_Start(MainMenu __instance)
+    {
+        DisableButtons(__instance.transform);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UI_UnlockedItemsScreen), nameof(UI_UnlockedItemsScreen.Start))]
+    public static void UI_UnlockedItemsScreen_Start(UI_UnlockedItemsScreen __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.itemsScreen.transform, LayoutController.LayoutSize.ConfigBased, 0, false); 
+        LayoutController.AddLayoutControllerPath(__instance.itemsScreen.transform, "Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(UI_Stop), nameof(UI_Stop.Start))]
+    public static void UI_Stop_Start(UI_Stop __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "StopUI/Fog_1", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "StopUI/Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "StopUI/Fog", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(EscapeMenu), nameof(EscapeMenu.Start))]
+    public static void EscapeMenu_Start(EscapeMenu __instance)
+    {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Enabled", LayoutController.LayoutSize.ConfigBased, 0f, false);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Enabled/Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+        LayoutController.AddLayoutControllerPath(__instance.transform, "Enabled/Stripes", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+    }
 
     [HarmonyFinalizer]
     [HarmonyPatch(typeof(JiggleBone), nameof(JiggleBone.LateLateUpdate))]
@@ -52,9 +132,20 @@ public static class Patches
     [HarmonyPatch(typeof(LevelSelectionNode), nameof(LevelSelectionNode.Update))]
     [HarmonyPatch(typeof(Portal), nameof(Portal.Update))]
     [HarmonyPatch(typeof(SlowStep), nameof(SlowStep.OnEnable))]
+    [HarmonyPatch(typeof(MaterialPropertyBlock), nameof(MaterialPropertyBlock.SetTexture),typeof(string), typeof(Texture) )]
     public static Exception ExceptionSpamSuppress()
     {
         return null;
+    }
+    
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MainMenuSettingsPage), nameof(MainMenuSettingsPage.Start))]
+    public static void MainMenuSettingsPage_Start(MainMenuSettingsPage __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.settinsPage.transform.parent, LayoutController.LayoutSize.ConfigBased, 0, false);
+        LayoutController.AddLayoutControllerPath(__instance.settinsPage.transform.parent, "Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+        LayoutController.AddLayoutControllerPath(__instance.settinsPage.transform.parent, "Stripes", LayoutController.LayoutSize.ForceFullScreen, 0, false);
     }
 
     [HarmonyPostfix]
@@ -64,11 +155,34 @@ public static class Patches
         if (__instance.name.Contains("sinai")) return;
         if (__instance.name.Contains("MessageCanvas")) return;
 
-        CanvasScalers.Add(__instance);
+
+        if (__instance.name == "UI_Gameplay_Minimal")
+        {
+            LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
+        }
         
+        CanvasScalers.Add(__instance);
+
         UpdateScalers(Plugin.CurrentAspect);
     }
-    
+
+
+    // private static Type CallingMethod(int framesToSkip = 3)
+    // {
+    //     var stackTrace = new StackTrace();
+    //     var callerFrame = stackTrace.GetFrame(framesToSkip);
+    //
+    //     if (callerFrame != null)
+    //     {
+    //         var method = callerFrame.GetMethod();
+    //         var declaringType = method.DeclaringType;
+    //
+    //         return declaringType;
+    //     }
+    //
+    //     return null;
+    // }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GameplayUIManager), nameof(GameplayUIManager.Start))]
     public static void GameplayUIManager_Start(GameplayUIManager __instance)
