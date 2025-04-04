@@ -13,7 +13,7 @@ public static class Utils
         dictionary.Add(key, value);
         return true;
     }
-    
+
     /// <summary>
     /// Tries to get a component of the specified type from a GameObject. If it doesn't exist, adds it.
     /// </summary>
@@ -56,5 +56,4 @@ public static class Utils
         };
         return width;
     }
-
 }

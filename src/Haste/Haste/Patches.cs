@@ -11,16 +11,22 @@ public static class Patches
     [HarmonyPatch(typeof(PostProcessManager), nameof(PostProcessManager.Register), typeof(PostProcessVolume))]
     public static void PostProcessManager_Register(PostProcessVolume volume)
     {
-        Volumes.ProcessVolumeRegistration(volume);
+        if (Volumes.ValidateVolume(volume))
+        {
+            Volumes.ProcessVolumeRegistration(volume);
+        }
     }
-
+    
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PostProcessVolume), nameof(PostProcessVolume.OnEnable))]
     public static void PostProcessVolume_OnEnable(PostProcessVolume __instance)
     {
-        Volumes.UpdateVolumes();
+        if (Volumes.ValidateVolume(__instance))
+        {
+            Volumes.UpdateVolume(__instance);
+        }
     }
-
 
     internal static void UpdateScalers(float aspect)
     {
@@ -63,7 +69,7 @@ public static class Patches
     {
         LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(TutorialPopUpHandler), nameof(TutorialPopUpHandler.OpenNewPopup))]
     [HarmonyPatch(typeof(TutorialPopUpHandler), nameof(TutorialPopUpHandler.TriggerPopUp))]
@@ -87,19 +93,19 @@ public static class Patches
             buttons.gameObject.SetActive(false);
         }
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainMenu), nameof(MainMenu.Start))]
     public static void MainMenu_Start(MainMenu __instance)
     {
         DisableButtons(__instance.transform);
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UI_UnlockedItemsScreen), nameof(UI_UnlockedItemsScreen.Start))]
     public static void UI_UnlockedItemsScreen_Start(UI_UnlockedItemsScreen __instance)
     {
-        LayoutController.AddLayoutControllerRoot(__instance.itemsScreen.transform, LayoutController.LayoutSize.ConfigBased, 0, false); 
+        LayoutController.AddLayoutControllerRoot(__instance.itemsScreen.transform, LayoutController.LayoutSize.ConfigBased, 0, false);
         LayoutController.AddLayoutControllerPath(__instance.itemsScreen.transform, "Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
     }
 
@@ -114,6 +120,13 @@ public static class Patches
         LayoutController.AddLayoutControllerPath(__instance.transform, "StopUI/Fog", LayoutController.LayoutSize.ForceFullScreen, 0, false);
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(WinShardEffect), nameof(WinShardEffect.Awake))]
+    [HarmonyPatch(typeof(WinShardEffect), nameof(WinShardEffect.PlayEffect))]
+    public static void WinShardEffect_Awake(WinShardEffect __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceFullScreen, 0f, false);
+    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(EscapeMenu), nameof(EscapeMenu.Start))]
@@ -132,12 +145,15 @@ public static class Patches
     [HarmonyPatch(typeof(LevelSelectionNode), nameof(LevelSelectionNode.Update))]
     [HarmonyPatch(typeof(Portal), nameof(Portal.Update))]
     [HarmonyPatch(typeof(SlowStep), nameof(SlowStep.OnEnable))]
-    [HarmonyPatch(typeof(MaterialPropertyBlock), nameof(MaterialPropertyBlock.SetTexture),typeof(string), typeof(Texture) )]
+    [HarmonyPatch(typeof(MaterialPropertyBlock), nameof(MaterialPropertyBlock.SetTexture), typeof(string), typeof(Texture))]
+    [HarmonyPatch(typeof(SpeedPPSRenderer), nameof(SpeedPPSRenderer.Render))]
+    [HarmonyPatch(typeof(PostProcessLayer), nameof(PostProcessLayer.OnPreCull))]
+    [HarmonyPatch(typeof(PostProcessEffectRendererExtensions), nameof(PostProcessEffectRendererExtensions.RenderOrLog))]
     public static Exception ExceptionSpamSuppress()
     {
         return null;
     }
-    
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainMenuSettingsPage), nameof(MainMenuSettingsPage.Start))]
@@ -160,28 +176,12 @@ public static class Patches
         {
             LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
         }
-        
+
         CanvasScalers.Add(__instance);
 
         UpdateScalers(Plugin.CurrentAspect);
     }
 
-
-    // private static Type CallingMethod(int framesToSkip = 3)
-    // {
-    //     var stackTrace = new StackTrace();
-    //     var callerFrame = stackTrace.GetFrame(framesToSkip);
-    //
-    //     if (callerFrame != null)
-    //     {
-    //         var method = callerFrame.GetMethod();
-    //         var declaringType = method.DeclaringType;
-    //
-    //         return declaringType;
-    //     }
-    //
-    //     return null;
-    // }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GameplayUIManager), nameof(GameplayUIManager.Start))]

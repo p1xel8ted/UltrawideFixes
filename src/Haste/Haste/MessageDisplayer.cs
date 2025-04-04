@@ -2,6 +2,17 @@
 
 public class MessageDisplayer : MonoBehaviour
 {
+    /// <summary>
+    /// Specifies the corners of the screen where a message can be displayed.
+    /// </summary>
+    public enum Corner
+    {
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
+    }
+
     private static MessageDisplayer _instance;
     private Canvas _canvas;
     private RectTransform _container;
@@ -161,16 +172,5 @@ public class MessageDisplayer : MonoBehaviour
 
         // Destroy the message after the specified duration
         Destroy(messageObject, duration);
-    }
-
-    /// <summary>
-    /// Specifies the corners of the screen where a message can be displayed.
-    /// </summary>
-    public enum Corner
-    {
-        TopLeft,
-        TopRight,
-        BottomLeft,
-        BottomRight
     }
 }

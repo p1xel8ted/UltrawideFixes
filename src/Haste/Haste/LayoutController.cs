@@ -2,14 +2,13 @@
 
 public class LayoutController : MonoBehaviour
 {
+    private static readonly List<LayoutController> LayoutControllers = [];
     private AspectRatioFitter _aspectRatioFitter; // Manages aspect ratio adjustments for UI elements
     private ContentSizeFitter _contentSizeFitter; // Ensures the UI element's size fits its content
     private float _customSize; // Custom size for specific layout configurations
     private LayoutElement _layoutElement; // Allows manual size control of UI elements
     private LayoutSize _size; // Enum representing different layout size options
     private bool _useAspectRatioFitter; // Determines whether to use aspect ratio fitting or size fitting
-
-    private static readonly List<LayoutController> LayoutControllers = [];
 
     internal static void UpdateControllers()
     {
@@ -18,7 +17,7 @@ public class LayoutController : MonoBehaviour
             controller.UpdateAspect();
         }
     }
-    
+
     /// <summary>
     /// Adds a LayoutController to a child Transform found by path and configures its layout.
     /// </summary>
