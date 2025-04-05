@@ -31,5 +31,21 @@ public static class ScreenResolution
 #if DEBUG
         Screen.fullScreenMode = FullScreenMode.Windowed;
 #endif
+        
     }
+#if DEBUG  
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), nameof(Screen.fullScreen), MethodType.Setter)]
+    public static void Screen_fullScreen_Setter(ref bool value)
+    {
+        value = false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), nameof(Screen.fullScreenMode), MethodType.Setter)]
+    public static void Screen_fullScreenMode_Setter(ref FullScreenMode value)
+    {
+        value = FullScreenMode.Windowed;
+    }
+#endif
 }

@@ -7,13 +7,19 @@ public class Plugin : BaseUnityPlugin
     private const string PluginName = "HASTE Ultra-Wide";
     private const string PluginVersion = "0.1.1";
     public const float NativeAspect = 16f / 9f;
-    private static ManualLogSource Log { get; set; }
+    internal static ManualLogSource Log { get; set; }
     internal static ConfigEntry<string> HUDAspect { get; private set; }
     internal static ConfigFile ConfigFile { get; private set; }
     public static ConfigEntry<float> CameraFieldOfView { get; private set; }
     internal static ConfigEntry<bool> Notifications { get; private set; }
     private static ConfigEntry<bool> UnityLogging { get; set; }
-    public static float CurrentAspect => Screen.width / (float)Screen.height;
+
+#if DEBUG
+    public static float CurrentAspect => 3200f / 900f;
+#else
+        public static float CurrentAspect => Screen.width / (float)Screen.height;
+#endif
+
     private static List<string> HUDAspects { get; } =
     [
         "16:10",
@@ -37,7 +43,7 @@ public class Plugin : BaseUnityPlugin
         SetupPostProcessConfigurations(); //03
 
         Debug.unityLogger.logEnabled = UnityLogging.Value;
-        
+
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
     }

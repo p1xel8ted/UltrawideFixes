@@ -16,7 +16,14 @@ public static class Patches
             Volumes.ProcessVolumeRegistration(volume);
         }
     }
-    
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PostLevelScreenHandler), nameof(PostLevelScreenHandler.PostLevel))]
+    [HarmonyPatch(typeof(PostLevelScreenHandler), nameof(PostLevelScreenHandler.Start))]
+    public static void PostLevelScreenHandler_Start(PostLevelScreenHandler __instance)
+    {
+        __instance.gameObject.TryAddComponent<ScaleForcer>();
+    }
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(PostProcessVolume), nameof(PostProcessVolume.OnEnable))]
@@ -107,6 +114,14 @@ public static class Patches
     {
         LayoutController.AddLayoutControllerRoot(__instance.itemsScreen.transform, LayoutController.LayoutSize.ConfigBased, 0, false);
         LayoutController.AddLayoutControllerPath(__instance.itemsScreen.transform, "Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ShardSettingsUI), nameof(ShardSettingsUI.Open))]
+    [HarmonyPatch(typeof(ShardSettingsUI), nameof(ShardSettingsUI.Awake))]
+    public static void ShardSettingsUI_Open(ShardSettingsUI __instance)
+    {
+        LayoutController.AddLayoutControllerPath(__instance.transform, "StatScreen/Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
     }
 
 
