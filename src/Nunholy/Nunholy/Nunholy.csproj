@@ -52,7 +52,7 @@
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="ConfigurationManager">
-      <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
+      <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5+6 Mono (use this)\ConfigurationManager-BepInEx5-Mono.dll</HintPath>
     </Reference>
     <Reference Include="spine-unity">
       <HintPath>libs\spine-unity.dll</HintPath>
@@ -262,10 +262,10 @@
       <HintPath>libs\UnityEngine.XRModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  
+
   <ItemGroup>
-    <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll">
-      <Link>ConfigurationManager.dll</Link>
+    <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5+6 Mono (use this)\ConfigurationManager-BepInEx5-Mono.dll">
+      <Link>ConfigurationManager-BepInEx5-Mono.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
