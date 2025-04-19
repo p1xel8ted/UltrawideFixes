@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <!-- Base Settings -->
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Company>p1xel8ted</Company>
+        <Authors>p1xel8ted</Authors>
+        <IsPackable>false</IsPackable>
+        <DisableTransitiveProjectReferences>true</DisableTransitiveProjectReferences>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <NoWarn>Publicizer001,CS1591</NoWarn>
+        <Nullable>disable</Nullable>
+        <AssemblyName>BluePrince</AssemblyName>
+        <Description>Blue Prince Ultra-Wide</Description>
+        <Version>0.1.0</Version>
+        <FileVersion>$(Version)</FileVersion>
+        <ApplicationVersion>$(Version)</ApplicationVersion>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+    </PropertyGroup>
+
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <!-- Debug Configuration -->
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <DebugType>portable</DebugType>
+        <OutputPath>G:\FitGirl\Blue Prince\BepInEx\plugins</OutputPath>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <!-- Release Configuration -->
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <OutputPath>G:\FitGirl\Blue Prince\BepInEx\plugins\</OutputPath>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+    </PropertyGroup>
+
+    <!-- Package References -->
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="com.rlabrecque.steamworks.net">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+      </Reference>
+      <Reference Include="ConditionalExpression">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\ConditionalExpression.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\DOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween.Modules">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\DOTween.Modules.dll</HintPath>
+      </Reference>
+      <Reference Include="FluffyUnderware.DevTools">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FluffyUnderware.DevTools.dll</HintPath>
+      </Reference>
+      <Reference Include="FurySdkProjectUtils">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FurySdkProjectUtils.dll</HintPath>
+      </Reference>
+      <Reference Include="FuryStudios.FuryBuildSystem">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FuryStudios.FuryBuildSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="FuryStudios.FurySDK">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FuryStudios.FurySDK.dll</HintPath>
+      </Reference>
+      <Reference Include="FuryStudios.FurySDK.Internal">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FuryStudios.FurySDK.Internal.dll</HintPath>
+      </Reference>
+      <Reference Include="FuryStudios.FurySDK.Noop">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FuryStudios.FurySDK.Noop.dll</HintPath>
+      </Reference>
+      <Reference Include="FuryStudios.FurySDK.StandalonePC">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FuryStudios.FurySDK.StandalonePC.dll</HintPath>
+      </Reference>
+      <Reference Include="FuryStudios.FurySDK.Steam">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\FuryStudios.FurySDK.Steam.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="LibTessDotNet">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\LibTessDotNet.dll</HintPath>
+      </Reference>
+      <Reference Include="PlayMaker">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\PlayMaker.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Core">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Rewired_Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Windows">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Rewired_Windows.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Windows_Functions">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Rewired_Windows_Functions.dll</HintPath>
+      </Reference>
+      <Reference Include="SoundeR">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\SoundeR.dll</HintPath>
+      </Reference>
+      <Reference Include="ToolBuddy.ArraysPooling">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\ToolBuddy.ArraysPooling.dll</HintPath>
+      </Reference>
+      <Reference Include="ToolBuddy.Curvy">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\ToolBuddy.Curvy.dll</HintPath>
+      </Reference>
+      <Reference Include="ToolBuddy.Dependencies.VectorGraphics">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\ToolBuddy.Dependencies.VectorGraphics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.PixelPerfect">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.2D.PixelPerfect.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.ForUI">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Microsoft.GDK.Tools">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.Microsoft.GDK.Tools.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ProfilerModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ProfilerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UNETModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>G:\FitGirl\Blue Prince\BepInEx\interop\__Generated.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+   
+
+    <!-- Import Custom Targets -->
+    <Import Project="../zip.target" />
+
+</Project>

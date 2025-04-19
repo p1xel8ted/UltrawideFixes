@@ -48,8 +48,8 @@ public class BepInExPlugin : BasePlugin
 
 #endif
 
-    internal static int MainWidth => Screen.currentResolution.width; //3440
-    internal static int MainHeight => Screen.currentResolution.height; //1440
+    internal static int MainWidth => Display.main.systemWidth; //3440
+    internal static int MainHeight => Display.main.systemHeight; //1440
     private static ActivateByPlatform Sp { get; set; }
     internal static float MainAspect => MainWidth / (float)MainHeight; //2.388888888888889
     private static WriteOnceFloat OriginalFixedDeltaTime { get; } = new();

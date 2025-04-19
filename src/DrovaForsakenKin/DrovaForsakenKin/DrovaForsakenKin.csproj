@@ -3,7 +3,7 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'MelonLoader' ">
         <Product>Drova Forsaken Kin Ultra-Wide (MelonLoader)</Product>
         <AssemblyName>Drova Forsaken Kin Ultra-Wide (MelonLoader)</AssemblyName>
-        <OutputPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\Mods</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\Mods</OutputPath>
         <Optimize>true</Optimize>
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
@@ -11,7 +11,7 @@
     <PropertyGroup Condition=" '$(Configuration)' == 'BepInEx' ">
         <Product>Drova Forsaken Kin Ultra-Wide</Product>
         <AssemblyName>Drova Forsaken Kin Ultra-Wide</AssemblyName>
-        <OutputPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\plugins</OutputPath>
         <Optimize>true</Optimize>
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
@@ -59,650 +59,650 @@
 
     <ItemGroup Condition=" '$(Configuration)' == 'BepInEx'">
         <Reference Include="Drova">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Drova.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Drova.dll</HintPath>
         </Reference>
         <Reference Include="Gilzoide.UpdateManager">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Gilzoide.UpdateManager.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Gilzoide.UpdateManager.dll</HintPath>
         </Reference>
         <Reference Include="Il2Cppmscorlib">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
         </Reference>
         <Reference Include="Just2D">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Just2D.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Just2D.dll</HintPath>
         </Reference>
         <Reference Include="OpenWorld.Runtime">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\OpenWorld.Runtime.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\OpenWorld.Runtime.dll</HintPath>
         </Reference>
         <Reference Include="Unity.2D.Tilemap.Extras">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.2D.Tilemap.Extras.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.2D.Tilemap.Extras.dll</HintPath>
         </Reference>
         <Reference Include="Unity.Addressables">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.Addressables.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.Addressables.dll</HintPath>
         </Reference>
         <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
         </Reference>
         <Reference Include="Unity.RenderPipelines.Core.Runtime">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
         </Reference>
         <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
         </Reference>
         <Reference Include="Unity.ResourceManager">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
         </Reference>
         <Reference Include="Unity.TextMeshPro">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.AnimationModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.AudioModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.GridModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.IMGUIModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.InputLegacyModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.ParticleSystemModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.Physics2DModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.PhysicsModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.SharedInternalsModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.TextRenderingModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.TilemapModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UI">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.UI.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UIElementsModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.UIModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
         </Reference>
         <Reference Include="UnityEngine.VideoModule">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
         </Reference>
     </ItemGroup>
 
 
     <ItemGroup Condition=" '$(Configuration)' == 'MelonLoader'">
       <Reference Include="Assembly-CSharp">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Assembly-CSharp-firstpass">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppandywiecko.BurstTriangulator">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppandywiecko.BurstTriangulator.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppandywiecko.BurstTriangulator.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppAstarPathfindingProject">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppAstarPathfindingProject.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppAstarPathfindingProject.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppAutoValidation">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppAutoValidation.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppAutoValidation.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppcom.rlabrecque.steamworks.net">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppcom.rlabrecque.steamworks.net.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppcom.rlabrecque.steamworks.net.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppCrann">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppCrann.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppCrann.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppCritterSystem">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppCritterSystem.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppCritterSystem.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppDrawing">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppDrawing.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppDrawing.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppDrova">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppDrova.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppDrova.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppDrova.Workspace">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppDrova.Workspace.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppDrova.Workspace.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppFileHandling">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppFileHandling.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppFileHandling.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppGalaxyCSharp">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppGalaxyCSharp.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppGalaxyCSharp.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppGilzoide.UpdateManager">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppGilzoide.UpdateManager.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppGilzoide.UpdateManager.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppinc8877.OdinLZ4Extension">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppinc8877.OdinLZ4Extension.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppinc8877.OdinLZ4Extension.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppJust2D">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppJust2D.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppJust2D.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppJust2D.Localization">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppJust2D.Localization.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppJust2D.Localization.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppK4os.Compression.LZ4.Unity">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppK4os.Compression.LZ4.Unity.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppK4os.Compression.LZ4.Unity.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppMemoryPack.Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppMemoryPack.Core.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppMemoryPack.Core.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppMimeMapping">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppMimeMapping.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppMimeMapping.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppMono.Security">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppMono.Security.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppMono.Security.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppNewtonsoft.Json">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppNewtonsoft.Json.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppNewtonsoft.Json.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppNintendoSDK">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppNintendoSDK.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppNintendoSDK.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppOpenWorld.Runtime">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppOpenWorld.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppOpenWorld.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppPackageTools">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppPackageTools.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppPackageTools.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppParadoxAutoValidFoo">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppParadoxAutoValidFoo.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppParadoxAutoValidFoo.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppParadoxNotion">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppParadoxNotion.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppParadoxNotion.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppPathfinding.Ionic.Zip.Reduced">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppPathfinding.Ionic.Zip.Reduced.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppPathfinding.Ionic.Zip.Reduced.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppRewired_Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppRewired_Core.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppRewired_Windows">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppRewired_Windows.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppRewired_Windows.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppRewired_Windows_Functions">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppRewired_Windows_Functions.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppRewired_Windows_Functions.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSirenix.OdinInspector.Modules.Unity.Addressables">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.OdinInspector.Modules.Unity.Addressables.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.OdinInspector.Modules.Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSirenix.Serialization">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSirenix.Utilities">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Utilities.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Utilities.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Core.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Data">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Data.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Data.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.IO.Compression">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.IO.Compression.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.IO.Compression.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Net.Http">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Net.Http.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Net.Http.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Numerics">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Numerics.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Numerics.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Xml">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Xml.Linq">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.Linq.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Xml.Linq.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppUniTask">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppUniTask.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppUniTask.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppUniTask.Addressables">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppUniTask.Addressables.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppUniTask.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cpp__Generated">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cpp__Generated.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2Cpp__Generated.dll</HintPath>
       </Reference>
       <Reference Include="MelonLoader">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MelonLoader.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MelonLoader.dll</HintPath>
       </Reference>
       <Reference Include="Unity.2D.Tilemap.Extras">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Burst">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Burst.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Burst.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Collections">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Collections.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Collections.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Collections.LowLevel.ILSupport">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.InputSystem.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.InputSystem.dll</HintPath>
       </Reference>
       <Reference Include="Unity.InputSystem.ForUI">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.InputSystem.ForUI.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Mathematics">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Mathematics.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Profiling.Core">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Profiling.Core.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Profiling.Core.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="Unity.TextMeshPro">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AccessibilityModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AccessibilityModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AccessibilityModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AndroidJNIModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AndroidJNIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AndroidJNIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ARModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ARModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ARModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClothModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ClothModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ClothModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClusterInputModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ClusterInputModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ClusterInputModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ClusterRendererModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ClusterRendererModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ClusterRendererModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CrashReportingModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.CrashReportingModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.CrashReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DirectorModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.DirectorModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.DirectorModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GameCenterModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.GameCenterModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.GameCenterModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GridModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.GridModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.GridModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ImageConversionModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.JSONSerializeModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.JSONSerializeModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.JSONSerializeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.LocalizationModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.LocalizationModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.LocalizationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.NVIDIAModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.NVIDIAModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.NVIDIAModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PerformanceReportingModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.PerformanceReportingModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ScreenCaptureModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ScreenCaptureModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ScreenCaptureModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteMaskModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteMaskModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteShapeModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteShapeModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteShapeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.StreamingModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.StreamingModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.StreamingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SubstanceModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SubstanceModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SubstanceModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SubsystemsModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SubsystemsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.SubsystemsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TerrainModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TerrainPhysicsModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TerrainPhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextCoreFontEngineModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextCoreTextEngineModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TilemapModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityAnalyticsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityConnectModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityConnectModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityConnectModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestAudioModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestTextureModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestWWWModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VehiclesModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VehiclesModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VehiclesModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VFXModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VFXModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VirtualTexturingModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VirtualTexturingModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VirtualTexturingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VRModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VRModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.VRModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.WindModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.WindModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.WindModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.XRModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.XRModule.dll</HintPath>
       </Reference>
         <Reference Include="Il2CppInterop.Runtime">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
         </Reference>
         <Reference Include="0Harmony">
-            <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\0Harmony.dll</HintPath>
+            <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\0Harmony.dll</HintPath>
         </Reference>
       <Reference Include="AsmResolver">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.dll</HintPath>
       </Reference>
       <Reference Include="AsmResolver.DotNet">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.DotNet.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.DotNet.dll</HintPath>
       </Reference>
       <Reference Include="AsmResolver.PE">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.PE.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.PE.dll</HintPath>
       </Reference>
       <Reference Include="AsmResolver.PE.File">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.PE.File.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AsmResolver.PE.File.dll</HintPath>
       </Reference>
       <Reference Include="AssetRipper.VersionUtilities">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AssetRipper.VersionUtilities.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AssetRipper.VersionUtilities.dll</HintPath>
       </Reference>
       <Reference Include="AssetsTools.NET">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AssetsTools.NET.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\AssetsTools.NET.dll</HintPath>
       </Reference>
       <Reference Include="bHapticsLib">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\bHapticsLib.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\bHapticsLib.dll</HintPath>
       </Reference>
       <Reference Include="Iced">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Iced.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Iced.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppInterop.Common">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Common.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppInterop.Generator">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Generator.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.Generator.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppInterop.HarmonySupport">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.HarmonySupport.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Il2CppInterop.HarmonySupport.dll</HintPath>
       </Reference>
       <Reference Include="IndexRange">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\IndexRange.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\IndexRange.dll</HintPath>
       </Reference>
       <Reference Include="MelonLoader.NativeHost">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MelonLoader.NativeHost.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MelonLoader.NativeHost.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Bcl.AsyncInterfaces">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Diagnostics.NETCore.Client">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Diagnostics.NETCore.Client.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Diagnostics.NETCore.Client.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Diagnostics.Runtime">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Diagnostics.Runtime.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Diagnostics.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Configuration">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Configuration.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Configuration.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Configuration.Binder">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Logging">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Logging.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Logging.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Logging.Abstractions">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Options">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Options.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Options.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Extensions.Primitives">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Primitives.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Extensions.Primitives.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.Win32.SystemEvents">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Win32.SystemEvents.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Microsoft.Win32.SystemEvents.dll</HintPath>
       </Reference>
       <Reference Include="Mono.Cecil">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.dll</HintPath>
       </Reference>
       <Reference Include="Mono.Cecil.Mdb">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.Mdb.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.Mdb.dll</HintPath>
       </Reference>
       <Reference Include="Mono.Cecil.Pdb">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.Pdb.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.Pdb.dll</HintPath>
       </Reference>
       <Reference Include="Mono.Cecil.Rocks">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.Rocks.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Mono.Cecil.Rocks.dll</HintPath>
       </Reference>
       <Reference Include="MonoMod">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.dll</HintPath>
       </Reference>
       <Reference Include="MonoMod.Backports">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.Backports.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.Backports.dll</HintPath>
       </Reference>
       <Reference Include="MonoMod.ILHelpers">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.ILHelpers.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.ILHelpers.dll</HintPath>
       </Reference>
       <Reference Include="MonoMod.RuntimeDetour">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.RuntimeDetour.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.RuntimeDetour.dll</HintPath>
       </Reference>
       <Reference Include="MonoMod.Utils">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.Utils.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\MonoMod.Utils.dll</HintPath>
       </Reference>
       <Reference Include="Newtonsoft.Json">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Newtonsoft.Json.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Newtonsoft.Json.dll</HintPath>
       </Reference>
       <Reference Include="System.Configuration.ConfigurationManager">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Configuration.ConfigurationManager.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Configuration.ConfigurationManager.dll</HintPath>
       </Reference>
       <Reference Include="System.Drawing.Common">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Drawing.Common.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Drawing.Common.dll</HintPath>
       </Reference>
       <Reference Include="System.Security.Cryptography.ProtectedData">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Security.Cryptography.ProtectedData.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Security.Cryptography.ProtectedData.dll</HintPath>
       </Reference>
       <Reference Include="System.Security.Permissions">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Security.Permissions.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Security.Permissions.dll</HintPath>
       </Reference>
       <Reference Include="System.Windows.Extensions">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Windows.Extensions.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\System.Windows.Extensions.dll</HintPath>
       </Reference>
       <Reference Include="Tomlet">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Tomlet.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\Tomlet.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Il2CppAssetBundleManager">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Il2CppImageConversionManager">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\UnityEngine.Il2CppImageConversionManager.dll</HintPath>
       </Reference>
       <Reference Include="WebSocketDotNet">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\WebSocketDotNet.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\net6\WebSocketDotNet.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppClipper2Lib">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppClipper2Lib.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppClipper2Lib.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSirenix.OdinInspector.Attributes">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.OdinInspector.Attributes.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.OdinInspector.Attributes.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSirenix.Serialization.AOTGenerated">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.AOTGenerated.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.AOTGenerated.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSirenix.Serialization.Config">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.Config.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.Config.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Collections.Immutable">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Collections.Immutable.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Collections.Immutable.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Configuration">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Configuration.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Configuration.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Drawing">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Drawing.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Drawing.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppSystem.Runtime.Serialization">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Il2CppSystem.Runtime.Serialization.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Burst.Unsafe">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Burst.Unsafe.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\Unity.Burst.Unsafe.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ContentLoadModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ContentLoadModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ContentLoadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.DSPGraphModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.DSPGraphModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.DSPGraphModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.GIModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.GIModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.GIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.HotReloadModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.HotReloadModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.HotReloadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.InputModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.InputModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ProfilerModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ProfilerModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.ProfilerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PropertiesModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.PropertiesModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.PropertiesModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TLSModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TLSModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.TLSModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UmbraModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UmbraModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UmbraModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityCurlModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityCurlModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityCurlModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityTestProtocolModule">
-        <HintPath>E:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+        <HintPath>G:\SteamLibrary\steamapps\common\Drova - Forsaken Kin\MelonLoader\Il2CppAssemblies\UnityEngine.UnityTestProtocolModule.dll</HintPath>
       </Reference>
     </ItemGroup>
 
