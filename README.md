@@ -198,7 +198,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="H"/>
-<details><summary>H (5)</summary>
+<details><summary>H (6)</summary>
 
 ## [HASTE](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Haste)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Haste/total?label=downloads&style=for-the-badge)
@@ -223,8 +223,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Hollowbody](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Hollowbody)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Hollowbody/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/17ea3f3d-817a-455e-8197-2daa68f82e37)
-![main_game_1](https://github.com/user-attachments/assets/43f26305-655b-4769-a3e1-acea994bf86d)
+![main_menu](https://github.com/user-attachments/assets/17ea3f3d-817a-455e-8197-2daa68f82e37) ![main_game_1](https://github.com/user-attachments/assets/43f26305-655b-4769-a3e1-acea994bf86d)
+
+## [Hollow Knight](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HollowKnight)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HollowKnight/total?label=downloads&style=for-the-badge)
+
+![main_main_menu](https://github.com/user-attachments/assets/54db76e6-e8b8-4b2e-a75c-cc6aca49ab16) ![main_game_lightenabled](https://github.com/user-attachments/assets/4112dc45-7d57-41a2-a78a-c6768f60d89f)
 
 </details>
 <div id="I"/>
