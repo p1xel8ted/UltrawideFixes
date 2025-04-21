@@ -189,7 +189,7 @@ public static class Patches
     public static void ForceCameraAspect_Awake(ForceCameraAspect __instance)
     {
         ForceCameraAspect.CurrentViewportAspect = Plugin.CurrentAspect;
-        ;
+       
     }
 
     [HarmonyPostfix]

@@ -1,9 +1,12 @@
-﻿namespace VigilTheLongestNight;
+﻿using VigilTheLongestNight.HUD;
+
+#pragma warning disable CS0618 // Type or member is obsolete
+namespace VigilTheLongestNight;
 
 [Harmony]
 public static class Patches
 {
-    private readonly static string[] BackgroundsToScale =
+    private static readonly string[] BackgroundsToScale =
     [
         "BG",
         "whitebox",
@@ -11,41 +14,15 @@ public static class Patches
         "MASK"
     ];
 
-   
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
+    private static readonly List<CanvasScaler> CanvasScalers = [];
 
-    private static GameObject LeftHud;
-    private static GameObject RightHud;
+    private static readonly WriteOnce<float> OriginalX = new();
+    private static readonly WriteOnce<float> OriginalY = new();
 
-    //no longer needed as of game update 0513
-    
-    // private readonly static Dictionary<int, float> TimeOnScreen = new();
-    
-    // [HarmonyPrefix]
-    // [HarmonyWrapSafe]
-    // [HarmonyPatch(typeof(DamageInfoMan), nameof(DamageInfoMan.work))]
-    // public static void DamageInfoMan_work(ref DamageInfoMan __instance)
-    // {
-    //     var damageInfos = GameObject.Find("Damage Info");
-    //     if (!damageInfos) return;
-    //
-    //     foreach (var o in damageInfos.transform)
-    //     {
-    //         var child = o.TryCast<Transform>();
-    //         if (!child || !child.gameObject.activeSelf) continue;
-    //
-    //         var instanceId = child.gameObject.GetInstanceID();
-    //
-    //         if (!TimeOnScreen.TryAdd(instanceId, 0))
-    //         {
-    //             TimeOnScreen[instanceId] += Time.deltaTime;
-    //         }
-    //
-    //         if (!(TimeOnScreen[instanceId] > 2f)) continue;
-    //
-    //         child.gameObject.SetActive(false);
-    //         TimeOnScreen.Remove(instanceId);
-    //     }
-    // }
+    private static GameObject LeftHud { get; set; }
+    private static GameObject RightHud { get; set; }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LayerScroller), nameof(LayerScroller.Start))]
@@ -61,20 +38,21 @@ public static class Patches
             var path = bg.transform.GetPath();
             if (path.Contains("layer/GROUND/BLACK", StringComparison.OrdinalIgnoreCase)) continue;
             if (path.Contains("layer/House0.5/HOLE", StringComparison.OrdinalIgnoreCase)) continue;
+            if (path.Contains("Dirt05_Hole (1)", StringComparison.OrdinalIgnoreCase)) continue;
 
-            var originalScale = bg.transform.localScale;
+            //var originalScale = bg.transform.localScale;
             var x = bg.transform.localScale.x * Plugin.PositiveScaleFactor;
             x += x * 0.50f;
-            Plugin.Logger.LogInfo($"Scaling {bg.transform.GetPath()} from {originalScale.x} to {x}");
-            bg.transform.localScale = bg.transform.localScale with {x = x};
+            //Plugin.Log.LogInfo($"Scaling {bg.transform.GetPath()} from {originalScale.x} to {x}");
+            bg.transform.localScale = bg.transform.localScale with { x = x };
         }
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LayerStageMask), nameof(LayerStageMask.stagePosToMapPos))]
-    public static void LayerStageMask_stagePosToMapPos(ref LayerStageMask __instance, ref Point posInStage, ref Point __result)
+    public static void LayerStageMask_stagePosToMapPos(ref Point __result)
     {
-        __result = __result with {y = __result.y * Plugin.PositiveScaleFactor};
+        __result = __result with { y = __result.y * Plugin.PositiveScaleFactor };
     }
 
     [HarmonyPostfix]
@@ -102,6 +80,7 @@ public static class Patches
         {
             topLeft.transform.SetParent(LeftHud.transform, true);
         }
+
         if (bottomLeft)
         {
             bottomLeft.transform.SetParent(LeftHud.transform, true);
@@ -110,6 +89,7 @@ public static class Patches
         RightHud ??= new GameObject("RightHUD");
 
         RightHud.transform.SetParent(parent.transform, true);
+
         if (bottomRight)
         {
             bottomRight.transform.SetParent(RightHud.transform, true);
@@ -120,31 +100,103 @@ public static class Patches
         RightHud.TryAddComponent<RightHudMover>();
     }
 
+    private static void UpdateScalers(float aspect)
+    {
+        foreach (var scaler in CanvasScalers.Where(scaler => scaler))
+        {
+            if (!OriginalScreenMatchModes.TryGetValue(scaler.GetInstanceID(), out var originalMode))
+            {
+                OriginalScreenMatchModes.Add(scaler.GetInstanceID(), scaler.screenMatchMode);
+                originalMode = scaler.screenMatchMode;
+            }
+
+            scaler.screenMatchMode = aspect > Plugin.NativeAspect ? CanvasScaler.ScreenMatchMode.Expand : originalMode;
+        }
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VideoCom), nameof(VideoCom.init))]
     [HarmonyPatch(typeof(VideoCom), nameof(VideoCom.play))]
-    public static void VideoCom_Start(ref VideoCom __instance)
+    [HarmonyPatch(typeof(VideoCom), nameof(VideoCom.PlayVideo))]
+    [HarmonyPatch(typeof(VideoCom), nameof(VideoCom.PlayVideo), MethodType.Enumerator)]
+    public static void VideoCom_Start(VideoCom __instance)
     {
-        __instance.videoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
-        var scaler = __instance.GetComponentInChildren<CanvasScaler>();
-        scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
-        scaler.uiScaleMode = CanvasScaler.ScaleMode.ConstantPixelSize;
-        scaler.scaleFactor = 1.6f; //unsure of this value - I can't work out how to get the correct value mathematically
+        if (__instance?.videoPlayer)
+        {
+            __instance.videoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
+            var rawImage = __instance.rawImage;
+            if (rawImage)
+            {
+                OriginalX.Value = rawImage.transform.localScale.x;
+                OriginalY.Value = rawImage.transform.localScale.y;
+
+                var newX = OriginalX.Value * Plugin.NegativeScaleFactor;
+                var newY = OriginalY.Value * Plugin.NegativeScaleFactor;
+
+                rawImage.transform.localScale = new Vector3(newX, newY, 1f);
+            }
+        }
     }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
+    public static void CanvasScaler_OnEnable(CanvasScaler __instance)
+    {
+        if (__instance.name.Contains("sinai")) return;
+
+        CanvasScalers.Add(__instance);
+
+        UpdateScalers(Plugin.CurrentAspect);
+    }
+
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ResolutionListUI), nameof(ResolutionListUI.work))]
-    public static void ResolutionListUI_work(ref ResolutionListUI __instance)
+    public static void ResolutionListUI_work(ResolutionListUI __instance)
     {
-        var myResExists = __instance.vValidResolution.ToArray().Any(a => a.width == Plugin.MainWidth && a.height == Plugin.MainHeight);
-        if (myResExists) return;
-        var myRes = new Resolution
-        {
-            width = Plugin.MainWidth,
-            height = Plugin.MainHeight,
-            refreshRate = Plugin.MaxRefresh
-        };
+        var refreshRates = Screen.resolutions
+            .Select(r => r.refreshRate)
+            .Distinct()
+            .OrderBy(r => r)
+            .ToArray();
 
-        __instance.addValidResolution(myRes);
+        var resList = new List<Resolution>();
+
+        if (!Plugin.ShowMainResolutionOnly.Value)
+        {
+            resList.AddRange(Screen.resolutions);
+        }
+
+        resList.AddRange(refreshRates.Select(refreshRate => new Resolution { width = Display.main.systemWidth, height = Display.main.systemHeight, refreshRate = refreshRate }));
+
+        var unique = resList
+            .Distinct(new ResolutionComparer())
+            .OrderBy(r => r.width)
+            .ThenBy(r => r.height)
+            .ThenBy(r => r.refreshRate)
+            .ToArray();
+
+        __instance.vValidResolution.Clear();
+        __instance.vValidResolution.AddRange(unique);
+    }
+
+    private class ResolutionComparer : IEqualityComparer<Resolution>
+    {
+        public bool Equals(Resolution a, Resolution b) =>
+            a.width == b.width &&
+            a.height == b.height &&
+            Mathf.Approximately((float)a.refreshRateRatio.value, (float)b.refreshRateRatio.value);
+
+        public int GetHashCode(Resolution r)
+        {
+            unchecked
+            {
+                var hash = 17;
+                hash = hash * 23 + r.width;
+                hash = hash * 23 + r.height;
+                hash = hash * 23 + Mathf.RoundToInt((float)r.refreshRateRatio.value);
+                return hash;
+            }
+        }
     }
 }

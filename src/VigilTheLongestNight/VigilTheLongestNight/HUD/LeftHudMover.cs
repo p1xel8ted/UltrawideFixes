@@ -2,27 +2,27 @@ namespace VigilTheLongestNight.HUD;
 
 public class LeftHudMover : MonoBehaviour
 {
-    private static float innerPosition;
-    private static float outerPosition;
+    private static float _innerPosition;
+    private static float _outerPosition;
     
     private void Start()
     {
-        Plugin.Logger.LogInfo($"HUD Mover (Left Side) started on {gameObject.name}");
-        innerPosition = Plugin.WidthDifference / 100f;
-        outerPosition = 0;
+        Plugin.Log.LogInfo($"HUD Mover (Left Side) started on {gameObject.name}");
+        _innerPosition = Plugin.WidthDifference / 100f;
+        _outerPosition = 0;
     }
     
     private void LateUpdate()
     {
         if (!transform) return;
 
-        if (Plugin.SpannedHUD.Value)
+        if (Plugin.SpanHUD.Value)
         {
-            transform.position = transform.position with {x = outerPosition};
+            transform.position = transform.position with {x = _outerPosition};
         }
         else
         {
-            transform.position = transform.position with {x = innerPosition};
+            transform.position = transform.position with {x = _innerPosition};
         }
     }
     
