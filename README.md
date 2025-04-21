@@ -400,8 +400,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/de2ca20a-ef91-4c7c-9ec6-8d6fde4085f4) ![main_game_cons](https://github.com/user-attachments/assets/466d0da8-e76f-44d2-a841-668330f4379e)
 
 ## [Ruined King: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RuinedKing)  
-![Static Badge](https://img.shields.io/badge/Pre--Cleanup-35-brightgreen?style=for-the-badge)
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RuinedKing/total?label=downloads&style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-35-brightgreen?style=for-the-badge) ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RuinedKing/total?label=downloads&style=for-the-badge)
 
 ![main_menu_clean](https://github.com/user-attachments/assets/54d85d30-77fe-4497-8276-5da6f3d1e340) ![main_hud_hide](https://github.com/user-attachments/assets/875aa5c5-a65b-4fab-abc9-4ad1141eb85b)
 
@@ -543,7 +542,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_game](https://github.com/user-attachments/assets/32e0537f-1fc1-49aa-93f3-b53a67c6df1e)
 
 ## [Vigil: The Longest Night](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/VigilTheLongestNight)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VigilTheLongestNight/total?label=downloads&style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-67-brightgreen?style=for-the-badge) ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/VigilTheLongestNight/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb64afb-3123-400d-a66b-3bc27f35a80e) ![main_game_spanned](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/c04a42e4-9bd2-480b-b74f-02abeba9f329)
 
