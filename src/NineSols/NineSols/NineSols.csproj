@@ -44,7 +44,7 @@
     <Import Project="../../zip.target"/>
 
     <ItemGroup>
-        <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll">
+        <Content Include="libs\ConfigurationManager.dll">
             <Link>ConfigurationManager.dll</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
@@ -67,7 +67,7 @@
 
     <ItemGroup>
         <Reference Include="ConfigurationManager">
-            <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll</HintPath>
+            <HintPath>libs\ConfigurationManager.dll</HintPath>
         </Reference>
     </ItemGroup>
 
