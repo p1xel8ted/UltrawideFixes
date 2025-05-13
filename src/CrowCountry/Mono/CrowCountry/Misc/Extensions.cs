@@ -2,7 +2,11 @@
 
 public static class Extensions
 {
-
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
+    {
+        resolutions.Sort((a, b) => a.width * a.height - b.width * b.height);
+    }
+    
     public static T TryAddComponent<T>(this GameObject gameObject) where T : Component
     {
         var component = gameObject.GetComponent<T>();

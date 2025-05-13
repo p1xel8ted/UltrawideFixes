@@ -1,4 +1,6 @@
-﻿namespace CrowCountry.Misc;
+﻿using RenderMode = UnityEngine.RenderMode;
+
+namespace CrowCountry.Misc;
 
 public static class Utils
 {

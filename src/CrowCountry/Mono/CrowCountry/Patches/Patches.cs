@@ -7,11 +7,11 @@ public static class Patches
 {
 
 
-    private readonly static int ColorMat = Shader.PropertyToID("colorMat");
-    private readonly static int BlurTex = Shader.PropertyToID("_BlurTex");
+    private static readonly int ColorMat = Shader.PropertyToID("colorMat");
+    private static readonly int BlurTex = Shader.PropertyToID("_BlurTex");
 
-    private readonly static WriteOnce<float> BgMainX = new();
-    private readonly static WriteOnce<float> BgMainY = new();
+    private static readonly WriteOnce<float> BgMainX = new();
+    private static readonly WriteOnce<float> BgMainY = new();
 
 
     [HarmonyPostfix]
@@ -113,7 +113,7 @@ public static class Patches
 
         if (Application.isPlaying)
         {
-            Application.targetFrameRate = (int) Plugin.RefreshRate.value;
+            Application.targetFrameRate = (int) Plugin.RefreshRateNew.value;
         }
 
         Renderer.PixelationAdjust(__instance);
@@ -189,16 +189,27 @@ public static class Patches
         Instances.InventoryFovAdjusterInstance.enableDuration = 0f;
         Instances.InventoryFovAdjusterInstance.disableDuration = 0f;
     }
+    
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScaleModes = new();
+    internal static readonly List<CanvasScaler> Scalers = [];
+    
+    internal static void ProcessScaler(CanvasScaler scaler)
+    {
+        var instanceID = scaler.GetInstanceID();
+        if (!OriginalScaleModes.TryGetValue(instanceID, out var mode))
+        {
+            OriginalScaleModes.Add(instanceID, scaler.screenMatchMode);
+            mode = scaler.screenMatchMode;
+            Scalers.Add(scaler);
+        }
+
+        scaler.screenMatchMode = Plugin.MainAspectRatio > Plugin.NativeAspectRatio ? CanvasScaler.ScreenMatchMode.Expand : mode;
+    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.Handle))]
     public static void CanvasScaler_Handle(CanvasScaler __instance)
     {
-        if (__instance.name.Contains("sinai")) return;
-        __instance.uiScaleMode = Plugin.ScaleMode.Value;
-        __instance.screenMatchMode = Plugin.ScreenMatchMode.Value;
-        if (__instance.uiScaleMode is CanvasScaler.ScaleMode.ScaleWithScreenSize) return;
-        __instance.scaleFactor = Plugin.ScaleFactor.Value;
-        __instance.SetScaleFactor(Plugin.ScaleFactor.Value);
+        ProcessScaler(__instance);
     }
 }

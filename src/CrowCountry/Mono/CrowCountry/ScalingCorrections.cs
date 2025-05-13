@@ -4,17 +4,17 @@ namespace CrowCountry;
 
 internal static class ScalingCorrections
 {
-    private readonly static Dictionary<RectTransform, WriteOnce<Vector3>> MapScales = new();
-    private readonly static WriteOnce<float> CreditsSkyY = new();
+    private static readonly Dictionary<RectTransform, WriteOnce<Vector3>> MapScales = new();
+    private static readonly WriteOnce<float> CreditsSkyY = new();
 
 
-    internal readonly static WriteOnce<Vector3> PoisonScale = new();
+    internal static readonly WriteOnce<Vector3> PoisonScale = new();
 
-    private readonly static WriteOnce<float> CreditsHeaderFooterX = new();
-    private readonly static WriteOnce<float> CreditsBackgroundX = new();
-    private readonly static WriteOnce<float> CreditsTransitionX = new();
+    private static readonly WriteOnce<float> CreditsHeaderFooterX = new();
+    private static readonly WriteOnce<float> CreditsBackgroundX = new();
+    private static readonly WriteOnce<float> CreditsTransitionX = new();
 
-    private readonly static WriteOnce<float> PauseScreenBackgroundX = new();
+    private static readonly WriteOnce<float> PauseScreenBackgroundX = new();
 
     internal static void CorrectResultsScreen(Transform transform)
     {
@@ -77,8 +77,8 @@ internal static class ScalingCorrections
         }
     }
 
-    private readonly static WriteOnce<float> DrivingRoadX = new();
-    private readonly static WriteOnce<float> DrivingRoadZ = new();
+    private static readonly WriteOnce<float> DrivingRoadX = new();
+    private static readonly WriteOnce<float> DrivingRoadZ = new();
     internal static void CorrectDrivingIntroRoad()
     {
         var road = GameObject.Find("level/level/road");
@@ -155,7 +155,7 @@ internal static class ScalingCorrections
         sky.transform.localScale = sky.transform.localScale with {y = y + y * 0.25f};
     }
 
-    private readonly static WriteOnce<float> FooterX = new();
+    private static readonly WriteOnce<float> FooterX = new();
 
     internal static void CorrectFooter(Transform transform)
     {
