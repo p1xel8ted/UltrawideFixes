@@ -261,12 +261,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="L"/>
-<details><summary>L (7)</summary>
+<details><summary>L (8)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LaikaAgedThroughBlood/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/5153ed6a-d2a3-4337-b1bb-38683c303247) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/39cedd05-2c92-40e5-82c9-f57001586581)
+
+## [Land of War - The Beginning](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LandOfWar)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LandOfWar/total?label=downloads&style=for-the-badge)
+
+![main_cutscene](https://github.com/user-attachments/assets/5d27903d-e988-419f-ae8f-de885aee62c3) ![main_game](https://github.com/user-attachments/assets/591fb2c6-e8fe-46bd-b8e6-0e60013df59c)
 
 ## [Last Cloudia](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LastCloudia)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LastCloudia/total?label=downloads&style=for-the-badge)
