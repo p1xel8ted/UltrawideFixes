@@ -2,7 +2,7 @@
         <PropertyGroup>
         <Product>LandOfWarUltraWide</Product>
         <AssemblyName>LandOfWarUltraWide</AssemblyName>
-        <OutputPath>G:\FitGirl\LandOfWar\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Land of War - The Beginning\BepInEx\plugins</OutputPath>
         <TargetFramework>net481</TargetFramework>
         <Version>0.1.0</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -368,7 +368,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5 (use this)\ConfigurationManager.dll">
+    <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5+6 Mono (use this)\ConfigurationManager-BepInEx5-Mono.dll">
       <Link>ConfigurationManager.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
