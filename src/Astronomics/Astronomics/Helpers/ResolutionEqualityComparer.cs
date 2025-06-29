@@ -4,9 +4,8 @@ public class ResolutionEqualityComparer : IEqualityComparer<Resolution>
 {
     public bool Equals(Resolution x, Resolution y)
     {
-        return x.width == y.width &&
-               x.height == y.height &&
-               Mathf.Approximately((float)x.refreshRateRatio.value,(float)y.refreshRateRatio.value);
+        return Mathf.Approximately(x.width, y.width) &&
+               Mathf.Approximately(x.height,y.height);
     }
 
     public int GetHashCode(Resolution obj)
@@ -16,7 +15,6 @@ public class ResolutionEqualityComparer : IEqualityComparer<Resolution>
             var hash = 17;
             hash = hash * 23 + obj.width.GetHashCode();
             hash = hash * 23 + obj.height.GetHashCode();
-            hash = hash * 23 + ((float)obj.refreshRateRatio.value).GetHashCode();
             return hash;
         }
     }

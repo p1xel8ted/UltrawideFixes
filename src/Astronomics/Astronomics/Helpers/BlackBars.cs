@@ -1,6 +1,4 @@
-﻿using UnityEngine.Video;
-
-namespace Astronomics.Helpers;
+﻿namespace Astronomics.Helpers;
 
 public static class BlackBars
 {

@@ -1,6 +1,4 @@
-﻿using Astronomics.Helpers;
-
-namespace Astronomics.Misc;
+﻿namespace Astronomics.Misc;
 
 public class LayoutController : MonoBehaviour
 {

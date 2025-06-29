@@ -1,7 +1,4 @@
-﻿using Astronomics.Misc;
-using UnityEngine.Rendering.PostProcessing;
-
-namespace Astronomics.Helpers;
+﻿namespace Astronomics.Helpers;
 
 public static class Volumes
 {
@@ -20,7 +17,7 @@ public static class Volumes
         foreach (var vol in volume.profile.settings)
         {
             var name = vol.name.Replace("(Clone)", "");
-            var configEntryGlobal = Plugin.ConfigFile.Bind("02. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
+            var configEntryGlobal = Plugin.ConfigFile.Bind("01. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
             configEntryGlobal.SettingChanged += (_, _) => { UpdateVolumes(); };
             if (Volumes.ConfigEntriesGlobal.TryAdd(name, configEntryGlobal))
             {
@@ -29,7 +26,19 @@ public static class Volumes
             }
         }
     }
-    
+
+    public static void UpdateSingleVolume(PostProcessVolume volume)
+    {
+        foreach (var volComp in volume.profile.settings)
+        {
+            var name = volComp.name.Replace("(Clone)", "");
+            if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
+            {
+                volComp.active = configEntryGlobal.Value;
+            }
+        }
+    }
+
     /// <summary>
     /// Updates all volume components to reflect the current state of their associated configuration entries.
     /// </summary>
