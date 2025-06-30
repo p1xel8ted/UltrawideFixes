@@ -55,7 +55,10 @@ public static class Utils
         if (!originalImage || !parent) return null;
 
         // Create a new GameObject for the cloned image
-        var newBackground = new GameObject(newName, typeof(RectTransform), typeof(Image));
+        var newBackground = new GameObject(newName);
+        newBackground.TryAddComponent<RectTransform>();
+        newBackground.TryAddComponent<Image>();
+        
         newBackground.transform.SetParent(parent, false);
 
         if (setAsFirstSibling)

@@ -1,7 +1,11 @@
-﻿using MapMinimap;
+﻿using System.Net.Mime;
+using BepInEx.Unity.IL2CPP;
+using Il2CppInterop.Runtime.Injection;
+using MapMinimap;
 using RuffyAndTheRiverside.Helpers;
 using RuffyAndTheRiverside.Misc;
 using RuffyAndTheRiverside.MonoBehaviours;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 namespace RuffyAndTheRiverside;
@@ -10,13 +14,13 @@ namespace RuffyAndTheRiverside;
 /// Main plugin class for "The House of the Dead Remake Ultra-Wide" modifications.
 /// </summary>
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
-public class Plugin : BaseUnityPlugin
+public class Plugin : BasePlugin
 {
     // Plugin Metadata
     private const string PluginGuid = "p1xel8ted.ruffyandtheriverside.uwfixes";
     private const string PluginName = "Ruffy and the Riverside Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
-    internal static ManualLogSource Log { get; private set; }
+    private const string PluginVersion = "0.1.1";
+    internal static ManualLogSource Logger { get; private set; }
 
     // Configuration Fields
     private static List<string> HUDAspects { get; } =
@@ -31,8 +35,8 @@ public class Plugin : BaseUnityPlugin
         "Auto"
     ];
 
-    private static ConfigurationManager.ConfigurationManager ConfigurationManager =>
-        global::ConfigurationManager.ConfigurationManager.Instance;
+    // private static ConfigurationManager.ConfigurationManager ConfigurationManager =>
+    //     global::ConfigurationManager.ConfigurationManager.Instance;
 
 #if DEBUG
     internal static ConfigEntry<bool> SixteenTenTesting { get; set; }
@@ -70,11 +74,13 @@ public class Plugin : BaseUnityPlugin
     /// <summary>
     /// Initializes the plugin, setting up configuration entries, debug options, and event handlers.
     /// </summary>
-    private void Awake()
+    public override void Load()
     {
         ConfigFile = Config;
-        Log = Logger;
+        Logger = Log;
 
+        ClassInjector.RegisterTypeInIl2Cpp<LayoutController>();
+        ClassInjector.RegisterTypeInIl2Cpp<MessageDisplayer>();
 #if DEBUG
         SetupDebugConfigurations();
 #endif
@@ -88,10 +94,10 @@ public class Plugin : BaseUnityPlugin
 
         RequiresUpdate = true;
 
-        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        SceneManager.sceneLoaded += (UnityAction<Scene, LoadSceneMode>)SceneManagerOnSceneLoaded;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
-        Log.LogInfo($"Plugin {PluginName} is loaded!");
+        Logger.LogInfo($"Plugin {PluginName} is loaded!");
     }
 
 #if DEBUG
@@ -282,13 +288,13 @@ public class Plugin : BaseUnityPlugin
         var targetRefresh = Resolutions.RefreshRate;
         if (targetRefresh <= 0)
         {
-            Log.LogWarning("Custom refresh rate is set to 0 or less. Skipping update.");
+            Logger.LogWarning("Custom refresh rate is set to 0 or less. Skipping update.");
             return;
         }
 
         if (Mathf.Approximately(targetRefresh, OriginalFixedDeltaTime.Value) || OriginalFixedDeltaTime.Value > targetRefresh)
         {
-            Log.LogInfo("Games physics update rate is already equal to (or greater than) your chosen refresh. Skipping update.");
+            Logger.LogInfo("Games physics update rate is already equal to (or greater than) your chosen refresh. Skipping update.");
             return;
         }
 
@@ -308,7 +314,7 @@ public class Plugin : BaseUnityPlugin
             Time.fixedDeltaTime = 1f / OriginalFixedDeltaTime.Value;
         }
 
-        Log.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
+        Logger.LogInfo($"Physics update rate set to {1f / Time.fixedDeltaTime}Hz");
     }
 
     private static void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
@@ -339,7 +345,7 @@ public class Plugin : BaseUnityPlugin
         }
         else
         {
-            Log.LogWarning($"Invalid VSync setting: {VSyncSetting.Value}");
+            Logger.LogWarning($"Invalid VSync setting: {VSyncSetting.Value}");
             QualitySettings.vSyncCount = 1; // Default to "Every VBlank"
         }
 
@@ -355,13 +361,13 @@ public class Plugin : BaseUnityPlugin
 
 
         Screen.SetResolution(Resolutions.SelectedResolution.width, Resolutions.SelectedResolution.height, FullScreenModeConfig.Value, Resolutions.RefreshRateRatio);
-        Log.LogInfo($"Resolution updated: {Resolutions.SelectedResolution.width}x{Resolutions.SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={Resolutions.RefreshRateRatio.value}Hz");
+        Logger.LogInfo($"Resolution updated: {Resolutions.SelectedResolution.width}x{Resolutions.SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={Resolutions.RefreshRateRatio.value}Hz");
         
-        if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
-        {
-            ConfigurationManager.CloseWindow();
-            ConfigurationManager.OpenWindow();
-        }
+        // if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
+        // {
+        //     ConfigurationManager.CloseWindow();
+        //     ConfigurationManager.OpenWindow();
+        // }
 
         RequiresUpdate = false;
     }
