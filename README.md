@@ -566,7 +566,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/d224c1df-5bee-4748-8f2e-1b11340d203a) ![main_game](https://github.com/user-attachments/assets/266f6cc9-0203-4c75-b7aa-c63b1b34a3d0)
 
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-259-brightgreen?style=for-the-badge) ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb01e5c-f4b9-4135-855c-fd1338aebc2d) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/57aa628f-5019-4c89-b7ba-1451af016e14)
 
