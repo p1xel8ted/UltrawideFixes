@@ -566,7 +566,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/d224c1df-5bee-4748-8f2e-1b11340d203a) ![main_game](https://github.com/user-attachments/assets/266f6cc9-0203-4c75-b7aa-c63b1b34a3d0)
 
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
-![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/Pre--Cleanup-259-brightgreen?style=for-the-badge) ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ecb01e5c-f4b9-4135-855c-fd1338aebc2d) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/57aa628f-5019-4c89-b7ba-1451af016e14)
 
@@ -582,13 +582,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="Y"/>
-<details><summary>Y (1)</summary>
+<details><summary>Y (2)</summary>
 
 ## [Yasuke Simulator](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/YasukeSimulator)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/YasukeSimulator/total?label=downloads&style=for-the-badge)
 
-![main_cutscene](https://github.com/user-attachments/assets/008da94a-3ef3-496c-8d73-92e4d2cd7578)
-![main_game](https://github.com/user-attachments/assets/5efc3365-ea9c-4864-8ea1-c7224574860c)
+![main_cutscene](https://github.com/user-attachments/assets/008da94a-3ef3-496c-8d73-92e4d2cd7578) ![main_game](https://github.com/user-attachments/assets/5efc3365-ea9c-4864-8ea1-c7224574860c)
+
+## [You Will Die Here Tonight](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/YouWillDieHereTonight)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/YouWillDieHereTonight/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/21b24390-9274-4e2a-ae7a-5296a55bf3d4) ![main_game](https://github.com/user-attachments/assets/fc86c9a3-1183-4ace-a224-0d267739803b)
 
 </details>
 </div>
