@@ -27,7 +27,7 @@ public static class Patches
         "Body/Gold"
     ];
 
-    private readonly static string[] RightItems =
+    private static readonly string[] RightItems =
     [
         "Body/MapName",
         "Body/Icon_SkipScene",
@@ -35,8 +35,15 @@ public static class Patches
         "Body/RightUp"
     ];
 
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScaleModes = new();
+    internal static readonly List<CanvasScaler> Scalers = [];
+
+    internal static bool VolumeUpdateRequired;
+
     private static GameObject LeftHud { get; set; }
     private static GameObject RightHud { get; set; }
+
+    private static MainCamera MainCameraInstance { get; set; }
 
     private static void AdjustBlackImages()
     {
@@ -79,15 +86,13 @@ public static class Patches
         __instance.gameObject.TryAddComponent<ClothsToggler>();
     }
 
-    private static MainCamera MainCameraInstance { get; set; }
-
     internal static void UpdateCamera()
     {
         if (SceneManager.GetActiveScene().name.Equals(TitleScene)) return;
         if (SceneManager.GetActiveScene().name.Equals(HomePieberryScene)) return;
         MainCameraInstance.thisCamera.fieldOfView = 24 + 24 * (Plugin.FieldOfView.Value / 100f);
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainCamera), nameof(MainCamera.Update))]
     public static void MainCamera_Update(ref MainCamera __instance)
@@ -180,11 +185,24 @@ public static class Patches
         AdjustBlackImages();
     }
 
+    internal static void ProcessScaler(CanvasScaler scaler)
+    {
+        var instanceID = scaler.GetInstanceID();
+        if (!OriginalScaleModes.TryGetValue(instanceID, out var mode))
+        {
+            OriginalScaleModes.Add(instanceID, scaler.screenMatchMode);
+            mode = scaler.screenMatchMode;
+            Scalers.Add(scaler);
+        }
+
+        scaler.screenMatchMode = Plugin.MainAspect > Plugin.NativeAspectRatio ? CanvasScaler.ScreenMatchMode.Expand : mode;
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        ProcessScaler(__instance);
         RunFixes();
     }
 
@@ -215,6 +233,7 @@ public static class Patches
         }
 
         LeftHud.TryAddComponent<LeftHudMover>();
+        LeftHud.TryAddComponent<FieldMenuToggler>();
         RightHud.TryAddComponent<RightHudMover>();
 
         var mapPanel = __instance.transform.FindChild(RightHudMiniMapPanel);
@@ -228,10 +247,13 @@ public static class Patches
         {
             miniMap.gameObject.TryAddComponent<MiniMapMover>();
         }
+
+        FieldMenu = LeftHud.transform.FindChild("FieldMenu");
+        FieldMenu.gameObject.SetActive(false);
     }
     
-    internal static bool VolumeUpdateRequired;
-    
+    private static Transform FieldMenu { get; set; }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Volume), nameof(Volume.Update))]
     public static void Volume_Update(ref Volume __instance)

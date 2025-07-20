@@ -1,11 +1,4 @@
-﻿using Hazard.Camera;
-using Hazard.Menus;
-using Hazard.Menus.MainMenu;
-using Hazard.UI;
-using SpottedZebra.Foundation.Events;
-using UnityEngine.Rendering;
-
-namespace YouWillDieTonight.Patches;
+﻿namespace YouWillDieTonight.Patches;
 
 [Harmony]
 public static class Patches
@@ -48,6 +41,40 @@ public static class Patches
         }
     }
 
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(ScreenEffects), nameof(ScreenEffects.PlayEffect), typeof(string), typeof(bool))]
+    private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var code = new List<CodeInstruction>(instructions);
+        var modifyMethod = AccessTools.Method(typeof(Patches), nameof(ModifyFx));
+
+        for (var i = 0; i < code.Count - 2; i++)
+        {
+            if (
+                code[i].opcode == OpCodes.Ldloc_0 &&
+                code[i + 1].opcode == OpCodes.Ldfld && code[i + 1].operand is FieldInfo { Name: "fx" } f1 &&
+                code[i + 2].opcode == OpCodes.Ldfld && code[i + 2].operand is FieldInfo { Name: "Run" })
+            {
+                // Inject: ldloc.0 → ldfld fx → call ModifyFx(fx)
+                code.Insert(i, new CodeInstruction(OpCodes.Ldloc_0));
+                code.Insert(i + 1, new CodeInstruction(OpCodes.Ldfld, f1));
+                code.Insert(i + 2, new CodeInstruction(OpCodes.Call, modifyMethod));
+                break;
+            }
+        }
+
+        return code;
+    }
+
+    public static void ModifyFx(ScreenEffect fx)
+    {
+        if (fx)
+        {
+            Plugin.Log.LogInfo($"Modifying ScreenEffect: {fx.name} ({fx.Id})");
+            LayoutController.AddLayoutControllerRoot(fx.transform, LayoutController.LayoutSize.ForceFullScreen, 0, false);
+        }
+    }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(AspectUtility), nameof(AspectUtility.Awake))]
@@ -61,6 +88,11 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
+        if (__instance.name == "Video Canvas")
+        {
+            LayoutController.AddLayoutControllerPath(__instance.transform, "Root/Background", LayoutController.LayoutSize.ForceFullScreen, 0, false);
+        }
+
         ProcessScaler(__instance);
     }
 

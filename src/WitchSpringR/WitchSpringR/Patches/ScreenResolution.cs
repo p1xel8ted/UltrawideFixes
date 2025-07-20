@@ -40,6 +40,27 @@ public static class ScreenResolution
         fullscreenMode = Plugin.FullScreenModeConfig.Value;
         preferredRefreshRate = Plugin.MaxRefresh;
     }
+    
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), nameof(Screen.fullScreen), MethodType.Setter)]
+    public static void Screen_fullScreen_Setter(ref bool value)
+    {
+#if DEBUG
+        value = false;
+#else
+        value = Plugin.FullScreenModeConfig.Value == FullScreenMode.ExclusiveFullScreen || Plugin.FullScreenModeConfig.Value == FullScreenMode.FullScreenWindow;
+#endif
+    }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Screen), nameof(Screen.fullScreenMode), MethodType.Setter)]
+    public static void Screen_fullScreenMode_Setter(ref FullScreenMode value)
+    {
+#if DEBUG
+        value = FullScreenMode.Windowed;
+#else
+        value = Plugin.FullScreenModeConfig.Value;
+#endif
+    }
 
 }

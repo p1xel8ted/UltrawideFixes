@@ -1,6 +1,4 @@
-﻿using Hazard.Camera;
-
-namespace YouWillDieTonight;
+﻿namespace YouWillDieTonight;
 
 [Harmony]
 [BepInPlugin(Const.PluginGuid, Const.PluginName, Const.PluginVersion)]
@@ -203,7 +201,7 @@ public class Plugin : BaseUnityPlugin
                 }
             }
         };
-        Notifications = Config.Bind("05. Post-Processing", "Post-Process Registration Notifications", true,
+        Notifications = Config.Bind("04. Post-Processing", "Post-Process Registration Notifications", true,
             new ConfigDescription("Enable or disable notifications for post-processing effects being registered for configuration.", null, new ConfigurationManagerAttributes { Order = 86 }));
 
         Application.focusChanged += focus => AudioListener.pause = !focus && MuteInBackground.Value;

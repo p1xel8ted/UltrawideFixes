@@ -1,9 +1,4 @@
-﻿using Astronomics.Misc;
-using SCPE;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
-
-namespace YouWillDieTonight.Misc;
+﻿namespace YouWillDieTonight.Misc;
 
 public static class Volumes
 {
@@ -43,7 +38,7 @@ public static class Volumes
             }
 
             var name = vol.GetType().Name;
-            var configEntryGlobal = Plugin.ConfigFile.Bind("05. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
+            var configEntryGlobal = Plugin.ConfigFile.Bind("04. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
             configEntryGlobal.SettingChanged += (_, _) => { UpdateVolumes(); };
             if (ConfigEntriesGlobal.TryAdd(name, configEntryGlobal))
             {
