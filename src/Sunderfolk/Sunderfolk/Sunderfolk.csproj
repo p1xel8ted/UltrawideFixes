@@ -1,0 +1,122 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Product>Sunderfolk Ultra-Wide</Product>
+        <Version>0.1.0</Version>
+        <AssemblyName>SunderfolkUltraWide</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+		        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+    </PropertyGroup>
+
+    <Import Project="../../zip.target"/>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+      <OutputPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\plugins</OutputPath>
+      <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+      <OutputPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\plugins</OutputPath>
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Compile Remove="obj\**" />
+      <Compile Remove="obj\Release\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="obj\**" />
+      <EmbeddedResource Remove="obj\Release\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="obj\**" />
+      <None Remove="obj\Release\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Localization">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.Localization.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.SecretDoor.Blackrazor.Runtime.Shared">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.SecretDoor.Blackrazor.Runtime.Shared.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>E:\SteamLibrary\steamapps\common\Sunderfolk\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+
+</Project>
