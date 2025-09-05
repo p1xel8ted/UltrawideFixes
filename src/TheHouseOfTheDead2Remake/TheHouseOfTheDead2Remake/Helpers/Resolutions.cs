@@ -115,9 +115,9 @@ public static class Resolutions
     /// A predefined list of custom refresh rates for compatibility.
     /// </summary>
     private static readonly int[] CustomRefreshRates =
-    {
+    [
         30, 50, 60, 72, 75, 90, 100, 120, 144, 165, 180, 200, 240, 300, 360, 480
-    };
+    ];
 
     /// <summary>
     /// Gets the native display width of the main display.

@@ -1,6 +1,4 @@
-﻿using TheHouseOfTheDead2Remake.Helpers;
-
-namespace TheHouseOfTheDead2Remake.MonoBehaviours;
+﻿namespace TheHouseOfTheDead2Remake.MonoBehaviours;
 
 public class LayoutController : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class LayoutController : MonoBehaviour
     private LayoutElement _layoutElement; // Allows manual size control of UI elements
     private LayoutSize _size; // Enum representing different layout size options
     private bool _useAspectRatioFitter; // Determines whether to use aspect ratio fitting or size fitting
-
+private static readonly List<LayoutController> LayoutControllers = new();
     /// <summary>
     /// Adds a LayoutController to a child Transform found by path and configures its layout.
     /// </summary>
@@ -47,6 +45,7 @@ public class LayoutController : MonoBehaviour
         var lc = transform.gameObject.TryAddComponent<LayoutController>();
         lc.Init(size, customSize, useAspectRatioFitter);
         lc.UpdateAspect();
+        LayoutControllers.Add(lc);
         return lc;
     }
 
@@ -82,7 +81,7 @@ public class LayoutController : MonoBehaviour
     /// <summary>
     /// Updates the layout properties (e.g., width, aspect ratio) based on the current configuration.
     /// </summary>
-    internal void UpdateAspect()
+    private void UpdateAspect()
     {
         if (_layoutElement)
         {
@@ -134,5 +133,13 @@ public class LayoutController : MonoBehaviour
         Custom,
         ConfigBased,
         ConfigBasedWithOffset
+    }
+
+    public static void UpdateAllLayouts()
+    {
+        foreach (var lc in LayoutControllers)
+        {
+            lc.UpdateAspect();
+        }
     }
 }

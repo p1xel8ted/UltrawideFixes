@@ -1,6 +1,4 @@
-﻿using TheHouseOfTheDead2Remake.Helpers;
-
-namespace TheHouseOfTheDead2Remake.Patches;
+﻿namespace TheHouseOfTheDead2Remake.Patches;
 
 
 [Harmony]

@@ -1,7 +1,4 @@
-﻿using TheHouseOfTheDead2Remake.Helpers;
-using TheHouseOfTheDead2Remake.Misc;
-
-namespace TheHouseOfTheDead2Remake;
+﻿namespace TheHouseOfTheDead2Remake;
 
 /// <summary>
 /// Main plugin class for "The House of the Dead Remake Ultra-Wide" modifications.
@@ -60,7 +57,7 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<int> CustomRefreshRate { get; private set; }
     internal static ConfigEntry<HDAdditionalCameraData.AntialiasingMode> PostProcessAntialiasingMode { get; private set; }
     internal static ConfigEntry<float> PostProcessTaaSharpeningStrength { get; private set; }
-    internal static ConfigEntry<float> FieldOfView { get; private set; }
+    internal static ConfigEntry<float> PlayerFieldOfView { get; private set; }
     internal static ConfigEntry<bool> UseCustomRefreshRate { get; private set; }
     internal static ConfigEntry<string> Resolution { get; private set; }
     internal static ConfigEntry<bool> ExpandBloodOverlay { get; private set; }
@@ -86,8 +83,8 @@ public class Plugin : BaseUnityPlugin
         SetupDisplayConfigurations(); //01
         SetupUIConfigurations(); //02
         SetupCameraConfigurations(); //03
-        SetupGameConfigurations(); //04
-        SetupGraphicsConfigurations(); //05
+       // SetupGameConfigurations(); //04
+      // SetupGraphicsConfigurations(); //05
         SetupPostProcessConfigurations(); //06
         //reflection generated options //07
 
@@ -145,21 +142,21 @@ public class Plugin : BaseUnityPlugin
         };
     }
 #endif
-    /// <summary>
-    /// Sets up configurations related to game settings.
-    /// </summary>
-    private void SetupGameConfigurations()
-    {
-        EndingToShow = Config.Bind("04. Game", "Ending To Show", ModdedGameEnding.Disabled,
-            new ConfigDescription("Choose the ending to show when the game is completed. Disabled will let the game decide.", null, new ConfigurationManagerAttributes { Order = 92 }));
-    }
+    // /// <summary>
+    // /// Sets up configurations related to game settings.
+    // /// </summary>
+    // private void SetupGameConfigurations()
+    // {
+    //     EndingToShow = Config.Bind("04. Game", "Ending To Show", ModdedGameEnding.Disabled,
+    //         new ConfigDescription("Choose the ending to show when the game is completed. Disabled will let the game decide.", null, new ConfigurationManagerAttributes { Order = 92 }));
+    // }
 
     /// <summary>
     /// Sets up configurations related to post-processing.
     /// </summary>
     private void SetupPostProcessConfigurations()
     {
-        Notifications = Config.Bind("06. Post-Processing", "Post-Process Registration Notifications", true,
+        Notifications = Config.Bind("04. Post-Processing", "Post-Process Registration Notifications", true,
             new ConfigDescription("Enable or disable notifications for post-processing effects being registered for configuration.", null, new ConfigurationManagerAttributes { Order = 89 }));
     }
 
@@ -224,55 +221,51 @@ public class Plugin : BaseUnityPlugin
         TargetFramerate.SettingChanged += (_, _) => UpdateAll(true);
     }
 
-    /// <summary>
-    /// Sets up configurations related to graphics settings.
-    /// </summary>
-    private void SetupGraphicsConfigurations()
-    {
-        MaximumQuality = Config.Bind("05. Graphics", "Maximum Quality", false,
-            new ConfigDescription(
-                "Enable this to use the highest quality settings for the game. This may reduce performance. If you disable this, you will need to restart the game to undo the changes.",
-                null,
-                new ConfigurationManagerAttributes { Order = 98 }));
-        MaximumQuality.SettingChanged += (_, _) => { UpdateAll(); };
-
-        MSAA = Config.Bind("05. Graphics", "MSAA", 0,
-            new ConfigDescription(
-                "Set the level of Multi-Sample Anti-Aliasing (MSAA) to use. Higher values result in better quality but lower performance.",
-                new AcceptableValueList<int>(0, 2, 4, 8),
-                new ConfigurationManagerAttributes { Order = 97 }));
-        MSAA.SettingChanged += (_, _) => UpdateAll();
-
-        PostProcessAntialiasingMode = Config.Bind("05. Graphics", "Post-Process Antialiasing Mode", HDAdditionalCameraData.AntialiasingMode.TemporalAntialiasing,
-            new ConfigDescription("Choose the antialiasing mode for post-processing effects.", null, new ConfigurationManagerAttributes { Order = 91 }));
-        PostProcessAntialiasingMode.SettingChanged += (_, _) => Cameras.UpdatePostProcessingAA();
-
-        PostProcessTaaSharpeningStrength = Config.Bind("05. Graphics", "Post-Process TAA Sharpening Strength", 1f,
-            new ConfigDescription("Choose the sharpening strength for post-processing effects.", new AcceptableValueRange<float>(0f, 5f), new ConfigurationManagerAttributes { Order = 90 }));
-        PostProcessTaaSharpeningStrength.SettingChanged += (_, _) =>
-        {
-            //0.25 increments
-            PostProcessTaaSharpeningStrength.Value = Mathf.Round(PostProcessTaaSharpeningStrength.Value * 4) / 4;
-
-            Cameras.UpdatePostProcessingAA();
-        };
-    }
+    // /// <summary>
+    // /// Sets up configurations related to graphics settings.
+    // /// </summary>
+    // private void SetupGraphicsConfigurations()
+    // {
+    //     MaximumQuality = Config.Bind("05. Graphics", "Maximum Quality", false,
+    //         new ConfigDescription(
+    //             "Enable this to use the highest quality settings for the game. This may reduce performance. If you disable this, you will need to restart the game to undo the changes.",
+    //             null,
+    //             new ConfigurationManagerAttributes { Order = 98 }));
+    //     MaximumQuality.SettingChanged += (_, _) => { UpdateAll(); };
+    //     
+    //     MSAA = Config.Bind("05. Graphics", "MSAA", 0,
+    //         new ConfigDescription(
+    //             "Set the level of Multi-Sample Anti-Aliasing (MSAA) to use. Higher values result in better quality but lower performance.",
+    //             new AcceptableValueList<int>(0, 2, 4, 8),
+    //             new ConfigurationManagerAttributes { Order = 97 }));
+    //     MSAA.SettingChanged += (_, _) => UpdateAll();
+    //     
+    //     PostProcessAntialiasingMode = Config.Bind("05. Graphics", "Post-Process Antialiasing Mode", HDAdditionalCameraData.AntialiasingMode.TemporalAntialiasing,
+    //         new ConfigDescription("Choose the antialiasing mode for post-processing effects.", null, new ConfigurationManagerAttributes { Order = 91 }));
+    //     PostProcessAntialiasingMode.SettingChanged += (_, _) => Cameras.UpdatePostProcessingAA();
+    //     
+    //     PostProcessTaaSharpeningStrength = Config.Bind("05. Graphics", "Post-Process TAA Sharpening Strength", 1f,
+    //         new ConfigDescription("Choose the sharpening strength for post-processing effects.", new AcceptableValueRange<float>(0f, 5f), new ConfigurationManagerAttributes { Order = 90 }));
+    //     PostProcessTaaSharpeningStrength.SettingChanged += (_, _) =>
+    //     {
+    //         //0.25 increments
+    //         PostProcessTaaSharpeningStrength.Value = Mathf.Round(PostProcessTaaSharpeningStrength.Value * 4) / 4;
+    //     
+    //         Cameras.UpdatePostProcessingAA();
+    //     };
+    // }
 
     /// <summary>
     /// Sets up configurations related to UI settings.
     /// </summary>
     private void SetupUIConfigurations()
     {
-        ExpandBloodOverlay = Config.Bind("02. UI", "Expand Blood Overlay", false,
-            new ConfigDescription("Enable or disable expanding the blood overlay to fill the screen.", null, new ConfigurationManagerAttributes { Order = 94 }));
-        ExpandBloodOverlay.SettingChanged += (_, _) => HudLayout.UpdateBloodOverlays();
-
         HUDAspect = Config.Bind("02. UI", "UI Aspect", "Auto",
             new ConfigDescription(
                 "Choose the aspect ratio for the game's user interface (UI). 'Auto' attempts to match your display's ratio.",
                 new AcceptableValueList<string>(HUDAspects.ToArray()),
                 new ConfigurationManagerAttributes { Order = 93 }));
-        HUDAspect.SettingChanged += (_, _) => HudLayout.UpdateHUD();
+        HUDAspect.SettingChanged += (_, _) => LayoutController.UpdateAllLayouts();
     }
 
     /// <summary>
@@ -280,23 +273,35 @@ public class Plugin : BaseUnityPlugin
     /// </summary>
     private void SetupCameraConfigurations()
     {
-        FieldOfView = Config.Bind("03. Camera", "Field of View", 0f,
-            new ConfigDescription("Modify the games field of view by a percentage. This will introduce 'minor' pop-in if too high.", new AcceptableValueRange<float>(-50f, 100f), new ConfigurationManagerAttributes { Order = 92 }));
-        FieldOfView.SettingChanged += (_, _) =>
+        PlayerFieldOfView = Config.Bind("03. Camera", "Player Field of View", 0f,
+            new ConfigDescription("Modify the games field of view.", new AcceptableValueRange<float>(0, 10f), new ConfigurationManagerAttributes { Order = 92 }));
+        PlayerFieldOfView.SettingChanged += (_, _) =>
         {
-            FieldOfView.Value = Mathf.Round(FieldOfView.Value * 4) / 4;
-           // FoV.UpdateFieldOfView();
+            PlayerFieldOfView.Value = Mathf.Round(PlayerFieldOfView.Value * 4) / 4;
         };
     }
+
+
 
     /// <summary>
     /// Updates all systems based on configuration changes.
     /// </summary>
     private static void UpdateAll(bool force = false)
     {
-        QualSettings.UpdateSettings();
+       // QualSettings.UpdateSettings();
         UpdateDisplay(force);
-        HudLayout.UpdateBloodOverlays();
+   
+        Patches.Patches.UpdateAllCameras();
+        Volumes.UpdateVolumes();
+    }
+
+    private void LateUpdate()
+    {
+        if (Keyboard.current.f1Key.wasPressedThisFrame)
+        {
+            ConfigurationManager.ToggleWindow();
+        }
+      
     }
 
 
@@ -306,6 +311,8 @@ public class Plugin : BaseUnityPlugin
         var force = Screen.width != Resolutions.SelectedResolution.width || Screen.height != Resolutions.SelectedResolution.height || Screen.fullScreenMode != FullScreenModeConfig.Value;
         UpdateDisplay(force);
        // ReflectionConfigGeneration.GenerateHdDataConfig();
+       
+       Patches.Patches.UpdateAllCameras();
     }
 
     private static void UpdateDisplay(bool force = false)
@@ -331,7 +338,7 @@ public class Plugin : BaseUnityPlugin
 
         if (!RequiresUpdate) return;
 
-        Videos.UpdateAllPlayers();
+      //  Videos.UpdateAllPlayers();
 
         Screen.SetResolution(Resolutions.SelectedResolution.width, Resolutions.SelectedResolution.height, FullScreenModeConfig.Value, Resolutions.MaxRefreshRate);
         Log.LogInfo($"Resolution updated: {Resolutions.SelectedResolution.width}x{Resolutions.SelectedResolution.height}, Full Screen Mode={FullScreenModeConfig.Value}, Refresh Rate={Resolutions.RefreshRate}Hz");

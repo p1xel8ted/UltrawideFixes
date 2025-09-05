@@ -17,6 +17,32 @@ public static class Patches
         LayoutController.AddLayoutControllerPath(__instance.transform, "Main HUD Group/ShinyRockEffects/heavy-vignette", LayoutController.LayoutSize.ForceFullScreen, 0f, false);
     }
 
+    internal static void UpdateAllCameras()
+    {
+        var cameras = Camera.allCameras.ToList();
+        foreach (var cam in cameras)
+        {
+            UpdateCamera(cam);
+        }
+    }
+    
+    
+    private static readonly Dictionary<int, Camera.GateFitMode> OriginalGateFits = new();
+    private static void UpdateCamera(Camera cam)
+    {
+        if (!cam) return;
+        
+        var cameraID = cam.GetInstanceID();
+        var gateFit = cam.gateFit;
+        if (!OriginalGateFits.TryGetValue(cameraID, out var originalGateFit))
+        {
+            OriginalGateFits.Add(cameraID, gateFit);
+            originalGateFit = gateFit;
+        }
+        
+        cam.gateFit = Plugin.CurrentAspect > Plugin.NativeAspect ? Camera.GateFitMode.Vertical : originalGateFit;
+    }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(BTitleOverlay), nameof(BTitleOverlay.OnEnable))]
