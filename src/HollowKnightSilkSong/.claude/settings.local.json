@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Ben/OneDrive/Development/Ultrawide/1AAAA-UltrawideFixes/**)",
+      "Bash(dir:*)",
+      "Bash(dotnet build:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
