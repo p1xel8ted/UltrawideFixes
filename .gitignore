@@ -7,6 +7,78 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# === AI / Agent directories (including hidden) ===
+claude/
+openai/
+agents/
+anthropic/
+llama/
+gemini/
+ai_agents/
+chatbots/
+autogen/
+.claude/
+.openai/
+.agents/
+.anthropic/
+.llama/
+.gemini/
+.ai_agents/
+.chatbots/
+.autogen/
+
+# === AI / ML / Agents / Claude / OpenAI ===
+
+# Ignore common model files and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.pb
+*.joblib
+*.pkl
+*.sav
+
+# Ignore common experiment/output folders
+data/
+datasets/
+outputs/
+results/
+models/
+checkpoints/
+logs/
+wandb/
+mlruns/
+tensorboard/
+runs/
+experiments/
+
+# Ignore config and environment files
+*.yaml
+*.yml
+*.json
+*.cfg
+*.env
+
+# Ignore documentation drafts
+claude.md
+openai.md
+agents.md
+ai.md
+
+# Ignore Python virtual environments
+venv/
+.env/
+.venv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore temporary files for AI projects
+*.log
+*.tmp
+*.cache
+
 /src/*/*/obj/
 obj
 /obj
