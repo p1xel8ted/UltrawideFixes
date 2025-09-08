@@ -1,4 +1,4 @@
-﻿namespace YouWillDieTonight.Misc;
+﻿namespace TheWildAtHeart.Misc;
 
 public static class Utils
 {

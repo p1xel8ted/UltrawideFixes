@@ -8,7 +8,9 @@ public class LayoutController : MonoBehaviour
     private LayoutElement _layoutElement; // Allows manual size control of UI elements
     private LayoutSize _size; // Enum representing different layout size options
     private bool _useAspectRatioFitter; // Determines whether to use aspect ratio fitting or size fitting
-private static readonly List<LayoutController> LayoutControllers = new();
+    private float _customHeight = 1080; // Default custom height for calculations
+    
+private static readonly List<LayoutController> LayoutControllers = [];
     /// <summary>
     /// Adds a LayoutController to a child Transform found by path and configures its layout.
     /// </summary>
@@ -17,10 +19,11 @@ private static readonly List<LayoutController> LayoutControllers = new();
         string findPath, 
         LayoutSize size, 
         float customSize, 
-        bool useAspectRatioFitter)
+        bool useAspectRatioFitter,
+        float customHeight = 1080)
     {
         var foundTransform = transform.Find(findPath);
-        return !foundTransform ? null : AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter);
+        return !foundTransform ? null : AddLayoutControllerRoot(foundTransform, size, customSize, useAspectRatioFitter, customHeight);
     }
 
     /// <summary>
@@ -40,24 +43,28 @@ private static readonly List<LayoutController> LayoutControllers = new();
         Transform transform, 
         LayoutSize size, 
         float customSize, 
-        bool useAspectRatioFitter)
+        bool useAspectRatioFitter,
+        float customHeight = 1080)
     {
         var lc = transform.gameObject.TryAddComponent<LayoutController>();
-        lc.Init(size, customSize, useAspectRatioFitter);
+        lc.Init(size, customSize, useAspectRatioFitter, customHeight);
         lc.UpdateAspect();
-        LayoutControllers.Add(lc);
+     
         return lc;
     }
 
     /// <summary>
     /// Initializes the LayoutController with specified size and aspect ratio settings.
     /// </summary>
-    private void Init(LayoutSize size, float customSize, bool useArf)
+    private void Init(LayoutSize size, float customSize, bool useArf, float customHeight)
     {
         _size = size;
         _useAspectRatioFitter = useArf;
         _customSize = customSize;
+        _customHeight = customHeight;
+        LayoutControllers.Add(this);
         AddUpdateFitters();
+        
     }
 
     /// <summary>
@@ -85,7 +92,7 @@ private static readonly List<LayoutController> LayoutControllers = new();
     {
         if (_layoutElement)
         {
-            const int height = 1080;
+            var height = _customHeight; // Use the current screen height for calculations
             var width = _size switch
             {
                 LayoutSize.Custom => _customSize,

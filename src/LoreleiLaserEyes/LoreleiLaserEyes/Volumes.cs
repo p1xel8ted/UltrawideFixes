@@ -1,4 +1,4 @@
-﻿namespace TheWildAtHeart.Misc;
+﻿namespace LoreleiLaserEyes;
 
 public static class Volumes
 {
@@ -12,52 +12,50 @@ public static class Volumes
     /// </summary>
     private static readonly Dictionary<string, ConfigEntry<bool>> ConfigEntriesGlobal = new();
 
-    private static readonly Type[] ToBeProcessed =
-    [
-        typeof(DepthOfField),
-        typeof(Bloom),
-        typeof(ColorAdjustments),
-        typeof(Vignette),
-        typeof(FilmGrain),
-        typeof(LensDistortion),
-        typeof(MotionBlur),
-        typeof(ChromaticAberration),
-        typeof(ChannelMixer),
-        typeof(LiftGammaGain),
-        typeof(ShadowsMidtonesHighlights)
-    ];
+    private static readonly HashSet<PostProcessLayer> Layers = [];
 
-    internal static void ProcessVolumeRegistration(Volume volume)
+    internal static void UpdateAntialiasing()
     {
-        foreach (var vol in volume.profile.components)
+        foreach (var layer in Layers.Where(layer => layer))
         {
-            if (!ToBeProcessed.Contains(vol.GetType()))
+            layer.antialiasingMode = Plugin.Antialiasing.Value;
+            if (layer.antialiasingMode == PostProcessLayer.Antialiasing.TemporalAntialiasing)
             {
-                Plugin.Log.LogInfo($"Skipping volume component '{vol.GetType().Name}' as it is not in the list of post-processing effects to be processed.");
-                continue;
+                layer.temporalAntialiasing.sharpness = Plugin.TaaSharpness.Value;
             }
+        }
+    }
 
+    internal static void ProcessVolumeRegistration(PostProcessVolume volume)
+    {
+        var layer = volume.GetComponent<PostProcessLayer>();
+        if (layer)
+        {
+            Layers.Add(layer);
+            layer.antialiasingMode = Plugin.Antialiasing.Value;
+        }
+        foreach (var vol in volume.profile.settings)
+        {
             var name = vol.GetType().Name;
             var configEntryGlobal = Plugin.ConfigFile.Bind("04. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
             configEntryGlobal.SettingChanged += (_, _) => { UpdateVolumes(); };
             if (ConfigEntriesGlobal.TryAdd(name, configEntryGlobal))
             {
                 if (!Plugin.Notifications.Value) return;
-                MessageDisplayer.Instance.ShowMessage($"Registered '{name}' configuration entry...", 5, MessageDisplayer.Corner.TopRight, 10, Color.white);
+                MessageDisplayer.Instance.ShowMessage($"Registered '{name}' configuration entry...", 3, MessageDisplayer.Corner.TopRight, 10, Color.white);
             }
         }
     }
 
-    public static void UpdateSingleVolume(Volume volume)
+    public static void UpdateSingleVolume(PostProcessEffectSettings volume)
     {
-        foreach (var volComp in volume.profile.components)
-        {
-            var name = volComp.GetType().Name;
+      
+             var name = volume.GetType().Name;
             if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
             {
-                volComp.active = configEntryGlobal.Value;
+                volume.active = configEntryGlobal.Value;
             }
-        }
+      
     }
 
     /// <summary>
@@ -65,17 +63,16 @@ public static class Volumes
     /// </summary>
     private static void UpdateVolumes()
     {
-        var volumes = Resources.FindObjectsOfTypeAll<Volume>();
+        var volumes = Resources.FindObjectsOfTypeAll<PostProcessEffectSettings>();
         foreach (var vol in volumes)
         {
-            foreach (var volComp in vol.profile.components)
-            {
-                var name = volComp.GetType().Name;
+            
+                var name = vol.GetType().Name;
                 if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
                 {
-                    volComp.active = configEntryGlobal.Value;
+                    vol.active = configEntryGlobal.Value;
                 }
-            }
+           
         }
     }
 }

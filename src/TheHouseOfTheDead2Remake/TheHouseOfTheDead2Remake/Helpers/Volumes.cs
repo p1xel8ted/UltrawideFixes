@@ -5,7 +5,7 @@ public static class Volumes
     /// <summary>
     /// The starting order for configuration entries in the settings window so that post-processing effects are listed last.
     /// </summary>
-    private static int _startOrder = 80;
+    internal static int _startOrder = 80;
 
     /// <summary>
     /// A dictionary storing configuration entries for enabling or disabling individual post-processing effects.
@@ -30,7 +30,7 @@ public static class Volumes
         foreach (var vol in volume.profile.components)
         {
             var name = vol.GetType().Name;
-            var configEntryGlobal = Plugin.ConfigFile.Bind("04. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
+            var configEntryGlobal = Plugin.ConfigFile.Bind("05. Post-Processing", name, vol.active, new ConfigDescription("Enable or disable this post-processing effect on a global level. The default value may not be accurate. Enabling it may not have an effect (in the current scene).", null, new ConfigurationManagerAttributes { Order = Volumes._startOrder-- }));
             configEntryGlobal.SettingChanged += (_, _) => { UpdateVolumes(); };
             if (ConfigEntriesGlobal.TryAdd(name, configEntryGlobal))
             {

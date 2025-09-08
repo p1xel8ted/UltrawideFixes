@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
-        <Product>Hollow Knight Silk Song Ultra-Wide</Product>
-        <Version>0.1.2</Version>
+        <TargetFramework>net481</TargetFramework>
+        <Product>Lorelei and the Laser Eyes Ultra-Wide</Product>
+        <Version>0.1.0</Version>
         <AssemblyName>$(Product)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
@@ -15,7 +15,7 @@
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-        <OutputPath>E:\SteamLibrary\steamapps\common\Hollow Knight Silksong\BepInEx\plugins</OutputPath>
+        <OutputPath>E:\SteamLibrary\steamapps\common\Lorelei and the Laser Eyes\BepInEx\plugins</OutputPath>
     </PropertyGroup>
 
     <!-- Default all references to CopyLocal False -->
@@ -48,26 +48,11 @@
       <Reference Include="Assembly-CSharp">
         <HintPath>libs\Assembly-CSharp.dll</HintPath>
       </Reference>
-      <Reference Include="SharpDX">
-        <HintPath>libs\SharpDX.dll</HintPath>
+      <Reference Include="Unity.Formats.Fbx.Runtime">
+        <HintPath>libs\Unity.Formats.Fbx.Runtime.dll</HintPath>
       </Reference>
-      <Reference Include="TeamCherry.TK2D">
-        <HintPath>libs\TeamCherry.TK2D.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Addressables">
-        <HintPath>libs\Unity.Addressables.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.Recorder">
-        <HintPath>libs\Unity.Recorder.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ResourceManager">
-        <HintPath>libs\Unity.ResourceManager.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.ScriptableBuildPipeline">
-        <HintPath>libs\Unity.ScriptableBuildPipeline.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>libs\Unity.TextMeshPro.dll</HintPath>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>libs\Unity.Postprocessing.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>libs\Unity.Timeline.dll</HintPath>
@@ -80,9 +65,6 @@
       </Reference>
       <Reference Include="UnityEngine.AIModule">
         <HintPath>libs\UnityEngine.AIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.AMDModule">
-        <HintPath>libs\UnityEngine.AMDModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AndroidJNIModule">
         <HintPath>libs\UnityEngine.AndroidJNIModule.dll</HintPath>
@@ -129,9 +111,6 @@
       <Reference Include="UnityEngine.IMGUIModule">
         <HintPath>libs\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
-      <Reference Include="UnityEngine.InputForUIModule">
-        <HintPath>libs\UnityEngine.InputForUIModule.dll</HintPath>
-      </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
         <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
@@ -140,12 +119,6 @@
       </Reference>
       <Reference Include="UnityEngine.LocalizationModule">
         <HintPath>libs\UnityEngine.LocalizationModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.MarshallingModule">
-        <HintPath>libs\UnityEngine.MarshallingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.MultiplayerModule">
-        <HintPath>libs\UnityEngine.MultiplayerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.NVIDIAModule">
         <HintPath>libs\UnityEngine.NVIDIAModule.dll</HintPath>
@@ -207,8 +180,14 @@
       <Reference Include="UnityEngine.UIElementsModule">
         <HintPath>libs\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>libs\UnityEngine.UIElementsNativeModule.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine.UIModule">
         <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>libs\UnityEngine.UNETModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
         <HintPath>libs\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
@@ -257,6 +236,7 @@
       </Reference>
     </ItemGroup>
 
+  
    
    
 </Project>

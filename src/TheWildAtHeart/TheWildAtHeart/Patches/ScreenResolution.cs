@@ -1,4 +1,4 @@
-﻿namespace YouWillDieTonight.Patches;
+﻿namespace TheWildAtHeart.Patches;
 
 [Harmony]
 public static class ScreenResolution

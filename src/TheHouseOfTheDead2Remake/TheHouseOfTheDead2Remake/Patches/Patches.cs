@@ -1,7 +1,4 @@
-﻿using Cinemachine;
-using Object = UnityEngine.Object;
-
-namespace TheHouseOfTheDead2Remake.Patches;
+﻿namespace TheHouseOfTheDead2Remake.Patches;
 
 [Harmony]
 public static class Patches
@@ -51,7 +48,6 @@ public static class Patches
         }
 
         cam.gateFit = Resolutions.CurrentAspect > Resolutions.NativeAspect ? Camera.GateFitMode.Vertical : originalGateFit;
-        Plugin.Log.LogWarning($"Camera '{cam.name}' gate fit changed from '{gateFit}' to '{cam.gateFit}' (original: '{originalGateFit}')");
     }
 
 
@@ -59,7 +55,36 @@ public static class Patches
     [HarmonyPatch(typeof(CR_HUD), nameof(CR_HUD.Awake))]
     public static void CR_HUD_Awake(CR_HUD __instance)
     {
-        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false);
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false, 1080f);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CR_NewGampaignMenu), nameof(CR_NewGampaignMenu.OnEnable))]
+    public static void CR_NewCampaignMenu_Awake(CR_NewGampaignMenu __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false, Screen.height);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CR_CharacterSelectionMenu), nameof(CR_CharacterSelectionMenu.OnEnable))]
+    public static void CR_CharacterSelectionMenu_Awake(CR_CharacterSelectionMenu __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ConfigBased, 0f, false, Screen.height);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CR_CreditsManager), nameof(CR_CreditsManager.OnEnable))]
+    public static void CR_CreditsManager_Play(CR_CreditsManager __instance)
+    {
+        LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0, false);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CR_ChapterSelectionMenu), nameof(CR_ChapterSelectionMenu.OnEnable))]
+    public static void CR_ChapterSelectionMenu_Awake(CR_ChapterSelectionMenu __instance)
+    {
+       //  LayoutController.AddLayoutControllerRoot(__instance.transform, LayoutController.LayoutSize.ForceSixteenNine, 0f, false, Screen.height);
+       // // LayoutController.AddLayoutControllerPath(__instance.transform, "parent_Menu", LayoutController.LayoutSize.ConfigBased, 0f, false);
     }
 
     [HarmonyPostfix]
@@ -67,13 +92,13 @@ public static class Patches
     public static void MP_HDRPVolumeSetter_initComponents(MP_HDRPVolumeSetter __instance)
     {
         Volumes.ProcessVolumeRegistration(__instance.volume);
-        
+
         __instance.AmbientOcclusion?.SetQuality(ScalableSettingLevelParameter.Level.High);
         __instance.Bloom?.SetQuality(ScalableSettingLevelParameter.Level.High);
         __instance.ContactShadows?.SetQuality(ScalableSettingLevelParameter.Level.High);
         __instance.DepthOfField?.SetQuality(ScalableSettingLevelParameter.Level.High);
         __instance.MotionBlur?.SetQuality(ScalableSettingLevelParameter.Level.High);
-        
+
         Volumes.UpdateSingleVolume(__instance.volume);
     }
 
@@ -192,26 +217,6 @@ public static class Patches
         return false;
     }
 
-    // /// <summary>
-    // /// Dynamically registers configuration entries for each volume component when a new volume is registered.
-    // /// </summary>
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(VolumeManager), nameof(VolumeManager.Register))]
-    // public static void VolumeManager_Register(Volume volume)
-    // {
-    //     Volumes.ProcessVolumeRegistration(volume);
-    // }
-    //
-    // /// <summary>
-    // /// Updates volume components when a volume is enabled.
-    // /// </summary>
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(Volume), nameof(Volume.OnEnable))]
-    // public static void Volume_OnEnable(Volume __instance)
-    // {
-    //     Volumes.UpdateSingleVolume(__instance);
-    // }
-
     /// <summary>
     /// Corrects scaling for certain UI components    
     /// </summary>
@@ -265,5 +270,21 @@ public static class Patches
     public static void MP_VideoPlayableAsset_CreateVideoPlayer(MP_VideoPlayableAsset __instance)
     {
         __instance.AspectRatio = VideoAspectRatio.FitVertically;
+    }
+    
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(CR_EndingManager), nameof(CR_EndingManager.GetEnding))]
+    public static void CR_EndingManager_GetEnding(CR_EndingManager __instance, ref GameEnding __result)
+    {
+        if (Plugin.EndingToShow.Value != Plugin.ModdedGameEnding.Disabled)
+        {
+            __result = Plugin.EndingToShow.Value switch
+            {
+                Plugin.ModdedGameEnding.NormalEnding => GameEnding.Normal,
+                Plugin.ModdedGameEnding.GoodEnding => GameEnding.Good,
+                Plugin.ModdedGameEnding.BadEnding => GameEnding.Bad,
+                _ => __result
+            };
+        }
     }
 }

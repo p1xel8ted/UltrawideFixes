@@ -1,11 +1,14 @@
 ﻿// ReSharper disable InconsistentNaming
 
+using UnityEngine.SceneManagement;
+using UnityEngine.U2D;
+
 namespace HollowKnightSilkSong;
 
 [Harmony]
 public static class Patches
 {
-    private const float UltraWideAspectThreshold = 2.38f; // ~21.5:9 aspect ratio
+    private const float UltraWideAspectThreshold = 2.5f; // ~21.5:9 aspect ratio
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
     private static readonly List<CanvasScaler> CanvasScalers = [];
 
@@ -16,13 +19,15 @@ public static class Patches
     private static bool _cachedHeroLight;
     private static bool _cachedHeroLightDonut;
     private static bool _cachedVignette;
+
     private static float _cachedVignetteAlpha;
-    private static float _cachedVignetteHorizontalSize;
-    private static float _cachedVignetteVerticalSize;
+
+    // private static float _cachedVignetteHorizontalSize;
+    // private static float _cachedVignetteVerticalSize;
     private static float _cachedFieldOfView;
     private static float _cachedHudOffset;
 
-    private static readonly WriteOnce<float> OriginalBorderScaleX = new();
+    // private static readonly WriteOnce<float> OriginalBorderScaleX = new();
     private static readonly WriteOnce<float> OriginalFOV = new();
     private static SpriteRenderer DonutLightTransform { get; set; }
     private static WriteOnce<float> OriginalAlpha { get; } = new();
@@ -41,7 +46,7 @@ public static class Patches
         OriginalBorderSize.ResetValue();
         OriginalBackboardSize.ResetValue();
         OriginalMapSize.ResetValue();
-        OriginalBorderScaleX.ResetValue();
+        // OriginalBorderScaleX.ResetValue();
         OriginalFOV.ResetValue();
         OriginalVignetteAlpha.ResetValue();
         OriginalVignetteSize.ResetValue();
@@ -55,8 +60,8 @@ public static class Patches
         _cachedFieldOfView = Plugin.CameraFieldOfView.Value;
         _cachedHudOffset = Plugin.HudOffset.Value;
         _cachedVignetteAlpha = Plugin.VignetteAlpha.Value;
-        _cachedVignetteHorizontalSize = Plugin.VignetteHorizontalSize.Value;
-        _cachedVignetteVerticalSize = Plugin.VignetteVerticalSize.Value;
+        // _cachedVignetteHorizontalSize = Plugin.VignetteHorizontalSize.Value;
+        // _cachedVignetteVerticalSize = Plugin.VignetteVerticalSize.Value;
     }
 
     private static void UpdateScalers(float aspect)
@@ -119,8 +124,14 @@ public static class Patches
         {
             resList.AddRange(Screen.resolutions);
         }
-
-        resList.AddRange(refreshRates.Select(refreshRate => new Resolution { width = Display.main.systemWidth, height = Display.main.systemHeight, refreshRateRatio = refreshRate }));
+#if DEBUG
+        const int resWidth = 3200;
+        const int resHeight = 600;
+#else
+        var resWidth = Display.main.systemWidth;
+        var resHeight = Display.main.systemHeight;
+#endif
+        resList.AddRange(refreshRates.Select(refreshRate => new Resolution { width = resWidth, height = resHeight, refreshRateRatio = refreshRate }));
 
         var unique = resList
             .Distinct(new ResolutionComparer())
@@ -134,6 +145,49 @@ public static class Patches
         __instance.RefreshCurrentIndex();
         __instance.PushUpdateOptionList();
         __instance.UpdateText();
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MenuButtonList), nameof(MenuButtonList.SetupActive))]
+    public static void MenuButtonList_SetupActive(MenuButtonList __instance)
+    {
+        foreach (var entry in __instance.entries)
+        {
+            if (entry.selectable.name == "ExtrasButton")
+            {
+                entry.selectable.gameObject.SetActive(Plugin.MenuClutter.Value);
+            }
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.Awake))]
+    public static void ForceCameraAspect_Awake()
+    {
+        ForceCameraAspect.CurrentViewportAspect = Plugin.CurrentAspect;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.SetOverscanViewport))]
+    public static void ForceCameraAspect_SetOverscanViewport(ref float adjustment)
+    {
+        adjustment = 0;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewport))]
+    public static void ForceCameraAspect_AutoScaleViewport(ref float __result)
+    {
+        __result = Plugin.CurrentAspect;
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VideoMenuOptions), nameof(VideoMenuOptions.ConfigureNavigation))]
+    public static void VideoMenuOptions_ConfigureNavigation(VideoMenuOptions __instance)
+    {
+        __instance.screenScaleOption.gameObject.SetActive(false);
     }
 
     [HarmonyPostfix]
@@ -160,14 +214,8 @@ public static class Patches
             if (!__instance.vignette.enabled) return;
 
             OriginalVignetteAlpha.Value = __instance.vignette.color.a;
-            OriginalVignetteSize.Value = __instance.vignette.transform.localScale;
 
             __instance.vignette.color = __instance.vignette.color with { a = _cachedVignetteAlpha };
-
-            var x = OriginalVignetteSize.Value.x + _cachedVignetteHorizontalSize;
-            var y = OriginalVignetteSize.Value.y + _cachedVignetteVerticalSize;
-
-            __instance.vignette.transform.localScale = new Vector3(x, y, OriginalVignetteSize.Value.z);
         }
     }
 
@@ -217,40 +265,106 @@ public static class Patches
         }
     }
 
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(CustomSceneManager), nameof(CustomSceneManager.DrawBlackBorders))]
-    public static void CustomSceneManager_DrawBlackBorders(CustomSceneManager __instance)
+    public static float GetScaleFactor()
     {
-        var featheredEdge = __instance.borderPrefab.transform.Find("Feathered Edge");
-        if (Plugin.CurrentAspect > UltraWideAspectThreshold)
+        return DoScalingStuff() ? 5f : 1f;
+    }
+
+    private static bool DoScalingStuff()
+    {
+        if (!Plugin.ScaleBlackEdges.Value) return false;
+        return Plugin.CameraFieldOfView.Value > 0f || Plugin.CurrentAspect > UltraWideAspectThreshold;
+    }
+    
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(CustomSceneManager), nameof(CustomSceneManager.DrawBlackBorders))]
+    private static IEnumerable<CodeInstruction> DrawBlackBorders_Transpiler(IEnumerable<CodeInstruction> instructions)
+    {
+        var codes = new List<CodeInstruction>(instructions);
+        var modifiedCodes = new List<CodeInstruction>(codes);
+
+        try
         {
-            OriginalBorderScaleX.Value = __instance.borderPrefab.transform.localScale.x;
+            var modifyMethod = AccessTools.Method(typeof(Patches), nameof(ModifyGameObject));
+            var getScaleFactorMethod = AccessTools.Method(typeof(Patches), nameof(GetScaleFactor));
+            var moveGameObjectMethod = AccessTools.Method(typeof(SceneManager), nameof(SceneManager.MoveGameObjectToScene));
+            var getSceneMethod = AccessTools.PropertyGetter(typeof(GameObject), nameof(GameObject.scene));
 
-            __instance.borderPrefab.transform.localScale = __instance.borderPrefab.transform.localScale with { x = OriginalBorderScaleX.Value * (Plugin.CurrentAspect / Plugin.NativeAspect) };
-
-            if (featheredEdge)
+            // First, add the scale factor multiplication after x is stored
+            for (int i = 0; i < modifiedCodes.Count; i++)
             {
-                featheredEdge.gameObject.SetActive(false);
+                if (modifiedCodes[i].opcode == OpCodes.Stloc_0)
+                {
+                    modifiedCodes.InsertRange(i + 1, [
+                        new CodeInstruction(OpCodes.Ldloc_0),
+                        new CodeInstruction(OpCodes.Call, getScaleFactorMethod),
+                        new CodeInstruction(OpCodes.Mul),
+                        new CodeInstruction(OpCodes.Stloc_0)
+                    ]);
+                    break;
+                }
             }
+
+            // Then, add ModifyGameObject calls before each MoveGameObjectToScene
+            for (var i = modifiedCodes.Count - 1; i >= 0; i--)
+            {
+                if (modifiedCodes[i].Calls(moveGameObjectMethod))
+                {
+                    // Find where get_scene is called
+                    int insertIndex = i - 1;
+                    while (insertIndex > 0 && !modifiedCodes[insertIndex].Calls(getSceneMethod))
+                    {
+                        insertIndex--;
+                    }
+
+                    if (insertIndex > 0)
+                    {
+                        // Find the ldarg.0 before get_scene
+                        while (insertIndex > 0 && modifiedCodes[insertIndex].opcode != OpCodes.Ldarg_0)
+                        {
+                            insertIndex--;
+                        }
+
+                        // Insert our call before loading 'this'
+                        modifiedCodes.InsertRange(insertIndex, [
+                            new CodeInstruction(OpCodes.Dup), // Duplicate the GameObject
+                            new CodeInstruction(OpCodes.Call, modifyMethod) // Call ModifyGameObject
+                        ]);
+
+                        i += 2; // Adjust index since we inserted 2 instructions
+                    }
+                }
+            }
+
+            return modifiedCodes;
         }
-        else
+        catch (Exception ex)
         {
-            __instance.borderPrefab.transform.localScale = __instance.borderPrefab.transform.localScale with { x = OriginalBorderScaleX.Value };
-            if (featheredEdge)
-            {
-                featheredEdge.gameObject.SetActive(true);
-            }
+            Plugin.Log.LogError($"[TRANSPILER] Transpiler failed in DrawBlackBorders: {ex}");
+            return codes;
         }
     }
 
+    public static void ModifyGameObject(GameObject go)
+    {
+        if (DoScalingStuff())
+        {
+            var featheredEdge = go.transform.Find("Feathered Edge");
+            if (featheredEdge && featheredEdge.gameObject.activeSelf)
+            {
+                featheredEdge.gameObject.SetActive(Plugin.FeatheredEdgeInDoorways.Value);
+            }
+        }
+    }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LogoLanguage), nameof(LogoLanguage.OnEnable))]
     public static void LogoLanguage_OnEnable(LogoLanguage __instance)
     {
-        if (__instance.uiImage && !Plugin.MenuClutter.Value)
+        if (__instance.uiImage)
         {
-            __instance.uiImage.enabled = false;
+            __instance.uiImage.enabled = Plugin.MenuClutter.Value;
         }
     }
 
@@ -259,9 +373,9 @@ public static class Patches
     [HarmonyPatch(typeof(SetVersionNumber), nameof(SetVersionNumber.Start))]
     public static void SetVersionNumber_Start(SetVersionNumber __instance)
     {
-        if (__instance.textUi && !Plugin.MenuClutter.Value)
+        if (__instance.textUi)
         {
-            __instance.textUi.enabled = false;
+            __instance.textUi.enabled = Plugin.MenuClutter.Value;
         }
     }
 

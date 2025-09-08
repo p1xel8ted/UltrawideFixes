@@ -1,4 +1,4 @@
-﻿namespace TheWildAtHeart.Misc;
+﻿namespace LoreleiLaserEyes;
 
 public class MessageDisplayer : MonoBehaviour
 {

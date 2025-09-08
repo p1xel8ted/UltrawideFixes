@@ -60,9 +60,10 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<float> PlayerFieldOfView { get; private set; }
     internal static ConfigEntry<bool> UseCustomRefreshRate { get; private set; }
     internal static ConfigEntry<string> Resolution { get; private set; }
-    internal static ConfigEntry<bool> ExpandBloodOverlay { get; private set; }
+   // internal static ConfigEntry<bool> ExpandBloodOverlay { get; private set; }
     internal static ConfigEntry<bool> Notifications { get; private set; }
     internal static ConfigEntry<ModdedGameEnding> EndingToShow { get; private set; }
+
     private static ConfigEntry<int> TargetFramerate { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
     private static bool RequiresUpdate { get; set; }
@@ -83,11 +84,11 @@ public class Plugin : BaseUnityPlugin
         SetupDisplayConfigurations(); //01
         SetupUIConfigurations(); //02
         SetupCameraConfigurations(); //03
-       // SetupGameConfigurations(); //04
+       SetupGameConfigurations(); //04
       // SetupGraphicsConfigurations(); //05
         SetupPostProcessConfigurations(); //06
         //reflection generated options //07
-
+        ReflectionConfigGeneration.GenerateHdDataConfig();
         RequiresUpdate = true;
 
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
@@ -142,21 +143,21 @@ public class Plugin : BaseUnityPlugin
         };
     }
 #endif
-    // /// <summary>
-    // /// Sets up configurations related to game settings.
-    // /// </summary>
-    // private void SetupGameConfigurations()
-    // {
-    //     EndingToShow = Config.Bind("04. Game", "Ending To Show", ModdedGameEnding.Disabled,
-    //         new ConfigDescription("Choose the ending to show when the game is completed. Disabled will let the game decide.", null, new ConfigurationManagerAttributes { Order = 92 }));
-    // }
+    /// <summary>
+    /// Sets up configurations related to game settings.
+    /// </summary>
+    private void SetupGameConfigurations()
+    {
+        EndingToShow = Config.Bind("04. Game", "Ending To Show", ModdedGameEnding.Disabled,
+            new ConfigDescription("Choose the ending to show when the game is completed. Disabled will let the game decide.", null, new ConfigurationManagerAttributes { Order = 92 }));
+    }
 
     /// <summary>
     /// Sets up configurations related to post-processing.
     /// </summary>
     private void SetupPostProcessConfigurations()
     {
-        Notifications = Config.Bind("04. Post-Processing", "Post-Process Registration Notifications", true,
+        Notifications = Config.Bind("05. Post-Processing", "Post-Process Registration Notifications", true,
             new ConfigDescription("Enable or disable notifications for post-processing effects being registered for configuration.", null, new ConfigurationManagerAttributes { Order = 89 }));
     }
 
