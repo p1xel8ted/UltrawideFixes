@@ -230,6 +230,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_main_menu](https://github.com/user-attachments/assets/54db76e6-e8b8-4b2e-a75c-cc6aca49ab16) ![main_game_lightenabled](https://github.com/user-attachments/assets/4112dc45-7d57-41a2-a78a-c6768f60d89f)
 
+## [Hollow Knight Silksong](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/HollowKnightSilkSong)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/HollowKnightSilkSong/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/31622bf3-7abd-4273-9344-2706d090732c) ![main_game_32-9](https://github.com/user-attachments/assets/3b013322-626e-4d09-9dba-ccffb70ff466)
+
 </details>
 <div id="I"/>
 <details><summary>I (1)</summary>
