@@ -275,7 +275,7 @@ public static class Patches
         if (!Plugin.ScaleBlackEdges.Value) return false;
         return Plugin.CameraFieldOfView.Value > 0f || Plugin.CurrentAspect > UltraWideAspectThreshold;
     }
-    
+
 
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(CustomSceneManager), nameof(CustomSceneManager.DrawBlackBorders))]
@@ -357,6 +357,7 @@ public static class Patches
             }
         }
     }
+    
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LogoLanguage), nameof(LogoLanguage.OnEnable))]

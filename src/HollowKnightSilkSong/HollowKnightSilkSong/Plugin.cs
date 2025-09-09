@@ -1,12 +1,10 @@
-﻿
-
-namespace HollowKnightSilkSong;
+﻿namespace HollowKnightSilkSong;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.silksonghollowknight.ultrawide";
-    private const string PluginName = "Hollow Knight Silk Song Ultra-Wide";
+    private const string PluginName = "Hollow Knight Silksong Ultra-Wide";
     private const string PluginVersion = "0.1.2";
     public const float NativeAspect = 16f / 9f;
     internal static ManualLogSource Log { get; private set; }
