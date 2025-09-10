@@ -266,7 +266,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="L"/>
-<details><summary>L (8)</summary>
+<details><summary>L (9)</summary>
 
 ## [Laika: Aged Through Blood](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LaikaAgedThroughBlood)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LaikaAgedThroughBlood/total?label=downloads&style=for-the-badge)
@@ -302,6 +302,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LocoMotive/total?label=downloads&style=for-the-badge)
 
 ![main_menu1](https://github.com/user-attachments/assets/0d516321-1275-4cd5-817c-c93c518b2164) ![main_game2](https://github.com/user-attachments/assets/9076310a-1ba6-4467-951d-f65f54b8b9b3)
+
+## [Lorelei and the Laser Eyes](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/LoreleiLaserEyes)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/LoreleiLaserEyes/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/b89db593-2651-469e-a193-88b65ab25adf) ![main_game](https://github.com/user-attachments/assets/68c42c4e-9e2e-449b-8471-9e275fdf9191)
 
 ## [Lunacid](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Lunacid)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Lunacid/total?label=downloads&style=for-the-badge)
