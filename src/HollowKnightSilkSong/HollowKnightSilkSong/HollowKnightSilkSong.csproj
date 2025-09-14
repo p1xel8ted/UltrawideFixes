@@ -16,6 +16,20 @@
         </RestoreAdditionalProjectSources>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <OutputPath>E:\SteamLibrary\steamapps\common\Hollow Knight Silksong\BepInEx\plugins</OutputPath>
+        <DebugType>embedded</DebugType>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+    </PropertyGroup>
+    
+    
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugSymbols>true</DebugSymbols>
+      <DebugType>embedded</DebugType>
     </PropertyGroup>
 
     <!-- Default all references to CopyLocal False -->
