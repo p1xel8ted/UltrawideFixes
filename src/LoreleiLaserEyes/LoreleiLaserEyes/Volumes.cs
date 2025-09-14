@@ -34,6 +34,7 @@ public static class Volumes
             Layers.Add(layer);
             layer.antialiasingMode = Plugin.Antialiasing.Value;
         }
+
         foreach (var vol in volume.profile.settings)
         {
             var name = vol.GetType().Name;
@@ -49,13 +50,11 @@ public static class Volumes
 
     public static void UpdateSingleVolume(PostProcessEffectSettings volume)
     {
-      
-             var name = volume.GetType().Name;
-            if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
-            {
-                volume.active = configEntryGlobal.Value;
-            }
-      
+        var name = volume.GetType().Name;
+        if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
+        {
+            volume.active = configEntryGlobal.Value;
+        }
     }
 
     /// <summary>
@@ -66,13 +65,11 @@ public static class Volumes
         var volumes = Resources.FindObjectsOfTypeAll<PostProcessEffectSettings>();
         foreach (var vol in volumes)
         {
-            
-                var name = vol.GetType().Name;
-                if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
-                {
-                    vol.active = configEntryGlobal.Value;
-                }
-           
+            var name = vol.GetType().Name;
+            if (ConfigEntriesGlobal.TryGetValue(name, out var configEntryGlobal))
+            {
+                vol.active = configEntryGlobal.Value;
+            }
         }
     }
 }
