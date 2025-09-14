@@ -9,8 +9,7 @@ global using BepInEx;
 global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using HarmonyLib;
+global using JetBrains.Annotations;
 global using UnityEngine;
-#if DEBUG
 global using UnityEngine.SceneManagement;
-#endif
 global using UnityEngine.UI;

@@ -1,61 +1,47 @@
 ﻿// ReSharper disable InconsistentNaming
 
-using UnityEngine.SceneManagement;
-using UnityEngine.U2D;
-
 namespace HollowKnightSilkSong;
 
 [Harmony]
 public static class Patches
 {
-    internal const float UltraWideAspectThreshold = 2.4f; // ~21.5:9 aspect ratio
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
     private static readonly List<CanvasScaler> CanvasScalers = [];
-
     private static readonly WriteOnce<float> OriginalBorderSize = new();
     private static readonly WriteOnce<float> OriginalBackboardSize = new();
     private static readonly WriteOnce<float> OriginalMapSize = new();
-
     private static bool _cachedHeroLight;
     private static bool _cachedHeroLightDonut;
     private static bool _cachedVignette;
-
     private static float _cachedVignetteAlpha;
-
-    // private static float _cachedVignetteHorizontalSize;
-    // private static float _cachedVignetteVerticalSize;
     private static float _cachedFieldOfView;
     private static float _cachedHudOffset;
-
-    // private static readonly WriteOnce<float> OriginalBorderScaleX = new();
     private static readonly WriteOnce<float> OriginalFOV = new();
     private static SpriteRenderer DonutLightTransform { get; set; }
     private static WriteOnce<float> OriginalAlpha { get; } = new();
     private static Transform AnchorTransform { get; set; }
-
     private static WriteOnce<float> OriginalVignetteAlpha { get; } = new();
     private static WriteOnce<Vector3> OriginalVignetteSize { get; } = new();
 
     internal static void Cleanup()
     {
+        // Clear collections
         CanvasScalers.Clear();
         OriginalScreenMatchModes.Clear();
+        TrackedBorders.Clear();
+
+        // Reset transforms
         DonutLightTransform = null;
         AnchorTransform = null;
+
+        // Reset WriteOnce values
         OriginalAlpha.ResetValue();
         OriginalBorderSize.ResetValue();
         OriginalBackboardSize.ResetValue();
         OriginalMapSize.ResetValue();
-        // OriginalBorderScaleX.ResetValue();
         OriginalFOV.ResetValue();
         OriginalVignetteAlpha.ResetValue();
         OriginalVignetteSize.ResetValue();
-
-        CanvasScalers.Clear();
-        OriginalScreenMatchModes.Clear();
-        TrackedBorders.Clear(); // Add this line to clear tracked borders
-        DonutLightTransform = null;
-        AnchorTransform = null;
     }
 
     internal static void UpdateConfigCache()
@@ -83,9 +69,11 @@ public static class Patches
         var showFeathering = Plugin.ShouldScaleBlackEdges && !Plugin.ShouldRemoveFeathering;
 
         Plugin.Log.LogInfo($"[BORDERS] Updating {TrackedBorders.Count} borders - Scale: {scaleFactor}, Feathering: {showFeathering}");
-
-        foreach (var border in TrackedBorders.Where(b => b.GameObject != null))
+        
+        foreach (var border in TrackedBorders)
         {
+            if (!border.GameObject) continue;
+
             var transform = border.GameObject.transform;
 
             // Calculate the scale change ratio
@@ -275,27 +263,25 @@ public static class Patches
             DonutLightTransform.enabled = !_cachedHeroLightDonut;
         }
 
-        if (__instance.vignette)
-        {
-            __instance.vignette.enabled = _cachedVignette;
+        if (!__instance.vignette) return;
+        
+        __instance.vignette.enabled = _cachedVignette;
 
-            if (!__instance.vignette.enabled) return;
+        if (!__instance.vignette.enabled) return;
 
-            OriginalVignetteAlpha.Value = __instance.vignette.color.a;
+        OriginalVignetteAlpha.Value = __instance.vignette.color.a;
 
-            __instance.vignette.color = __instance.vignette.color with { a = _cachedVignetteAlpha };
-        }
+        __instance.vignette.color = __instance.vignette.color with { a = _cachedVignetteAlpha };
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(tk2dCamera), nameof(tk2dCamera.UpdateCameraMatrix))]
     public static void tk2dCamera_UpdateCameraMatrix(tk2dCamera __instance)
     {
-        if (GameManager.SilentInstance && GameManager.SilentInstance.IsGameplayScene())
-        {
-            OriginalFOV.Value = __instance.SettingsRoot.CameraSettings.fieldOfView;
-            __instance.SettingsRoot.CameraSettings.fieldOfView = OriginalFOV.Value + _cachedFieldOfView;
-        }
+        if (!GameManager.SilentInstance || !GameManager.SilentInstance.IsGameplayScene()) return;
+        
+        OriginalFOV.Value = __instance.SettingsRoot.CameraSettings.fieldOfView;
+        __instance.SettingsRoot.CameraSettings.fieldOfView = OriginalFOV.Value + _cachedFieldOfView;
     }
 
     [HarmonyTranspiler]
@@ -333,21 +319,10 @@ public static class Patches
         }
     }
 
-    // public static float GetScaleFactor()
-    // {
-    //     return DoScalingStuff() ? 5f : 1f;
-    // }
-
     public static float GetScaleFactor()
     {
         return Plugin.ShouldScaleBlackEdges ? 5f : 1f;
     }
-
-    // private static bool DoScalingStuff()
-    // {
-    //     if (!Plugin.ScaleBlackEdges.Value) return false;
-    //     return Plugin.CameraFieldOfView.Value > 0f || Plugin.CurrentAspect > UltraWideAspectThreshold;
-    // }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(CustomSceneManager), nameof(CustomSceneManager.DrawBlackBorders))]
@@ -358,75 +333,20 @@ public static class Patches
         Plugin.Log.LogInfo("[BORDERS] Clearing tracked borders for new scene transition");
     }
 
-    // [HarmonyTranspiler]
-    // [HarmonyPatch(typeof(CustomSceneManager), nameof(CustomSceneManager.DrawBlackBorders))]
-    // private static IEnumerable<CodeInstruction> DrawBlackBorders_Transpiler(IEnumerable<CodeInstruction> instructions)
-    // {
-    //     var codes = new List<CodeInstruction>(instructions);
-    //     var modifiedCodes = new List<CodeInstruction>(codes);
-    //
-    //     try
-    //     {
-    //         var modifyMethod = AccessTools.Method(typeof(Patches), nameof(ModifyGameObject));
-    //         var getScaleFactorMethod = AccessTools.Method(typeof(Patches), nameof(GetScaleFactor));
-    //         var moveGameObjectMethod = AccessTools.Method(typeof(SceneManager), nameof(SceneManager.MoveGameObjectToScene));
-    //         var getSceneMethod = AccessTools.PropertyGetter(typeof(GameObject), nameof(GameObject.scene));
-    //
-    //         // First, add the scale factor multiplication after x is stored
-    //         for (var i = 0; i < modifiedCodes.Count; i++)
-    //         {
-    //             if (modifiedCodes[i].opcode == OpCodes.Stloc_0)
-    //             {
-    //                 modifiedCodes.InsertRange(i + 1, [
-    //                     new CodeInstruction(OpCodes.Ldloc_0),
-    //                     new CodeInstruction(OpCodes.Call, getScaleFactorMethod),
-    //                     new CodeInstruction(OpCodes.Mul),
-    //                     new CodeInstruction(OpCodes.Stloc_0)
-    //                 ]);
-    //                 break;
-    //             }
-    //         }
-    //
-    //         // Then, add ModifyGameObject calls before each MoveGameObjectToScene
-    //         for (var i = modifiedCodes.Count - 1; i >= 0; i--)
-    //         {
-    //             if (modifiedCodes[i].Calls(moveGameObjectMethod))
-    //             {
-    //                 // Find where get_scene is called
-    //                 var insertIndex = i - 1;
-    //                 while (insertIndex > 0 && !modifiedCodes[insertIndex].Calls(getSceneMethod))
-    //                 {
-    //                     insertIndex--;
-    //                 }
-    //
-    //                 if (insertIndex > 0)
-    //                 {
-    //                     // Find the ldarg.0 before get_scene
-    //                     while (insertIndex > 0 && modifiedCodes[insertIndex].opcode != OpCodes.Ldarg_0)
-    //                     {
-    //                         insertIndex--;
-    //                     }
-    //
-    //                     // Insert our call before loading 'this'
-    //                     modifiedCodes.InsertRange(insertIndex, [
-    //                         new CodeInstruction(OpCodes.Dup), // Duplicate the GameObject
-    //                         new CodeInstruction(OpCodes.Call, modifyMethod) // Call ModifyGameObject
-    //                     ]);
-    //
-    //                     i += 2; // Adjust index since we inserted 2 instructions
-    //                 }
-    //             }
-    //         }
-    //
-    //         return modifiedCodes;
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         Plugin.Log.LogError($"[TRANSPILER] Transpiler failed in DrawBlackBorders: {ex}");
-    //         return codes;
-    //     }
-    // }
-
+    /// <summary>
+    /// Complex IL transpiler that modifies the DrawBlackBorders method to:
+    /// 1. Scale border width by multiplying with GetScaleFactor()
+    /// 2. Inject ModifyGameObject and StoreGameObjectPosition calls for each border
+    ///
+    /// This transpiler is brittle and may break with game updates. It modifies the IL at runtime by:
+    /// - Finding where the border width (x) is stored (Stloc_0) and multiplying it by our scale factor
+    /// - Finding all MoveGameObjectToScene calls and injecting our tracking methods before them
+    ///
+    /// WARNING: This uses low-level IL manipulation and assumes specific compiler output patterns.
+    /// If the game's CustomSceneManager.DrawBlackBorders method changes, this will likely break.
+    /// </summary>
+    /// <param name="instructions">Original IL instructions from DrawBlackBorders method</param>
+    /// <returns>Modified IL instructions with our scaling and tracking injected</returns>
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(CustomSceneManager), nameof(CustomSceneManager.DrawBlackBorders))]
     private static IEnumerable<CodeInstruction> DrawBlackBorders_Transpiler(IEnumerable<CodeInstruction> instructions)
@@ -441,47 +361,74 @@ public static class Patches
             var getScaleFactorMethod = AccessTools.Method(typeof(Patches), nameof(GetScaleFactor));
             var moveGameObjectMethod = AccessTools.Method(typeof(SceneManager), nameof(SceneManager.MoveGameObjectToScene));
 
-            // First, add the scale factor multiplication after x is stored (line 5)
+            // PHASE 1: Scale the border width by our scale factor
+            // Original C#: float x = Screen.width / 4f;
+            // We modify this to: x = x * GetScaleFactor();
+            //
+            // IL Pattern we're looking for:
+            // ldsfld    valuetype UnityEngine.Screen::width
+            // ldc.r4    4
+            // div
+            // stloc.0   <- We insert our scaling here
+            //
+            // What we insert after stloc.0:
+            // ldloc.0   (load x back onto stack)
+            // call      GetScaleFactor
+            // mul       (multiply x * scale factor)
+            // stloc.0   (store modified x back to local variable)
             for (var i = 0; i < modifiedCodes.Count; i++)
             {
-                if (modifiedCodes[i].opcode == OpCodes.Stloc_0)
-                {
-                    modifiedCodes.InsertRange(i + 1, [
-                        new CodeInstruction(OpCodes.Ldloc_0),
-                        new CodeInstruction(OpCodes.Call, getScaleFactorMethod),
-                        new CodeInstruction(OpCodes.Mul),
-                        new CodeInstruction(OpCodes.Stloc_0)
-                    ]);
-                    break;
-                }
+                if (modifiedCodes[i].opcode != OpCodes.Stloc_0) continue;
+                
+                modifiedCodes.InsertRange(i + 1, [
+                    new CodeInstruction(OpCodes.Ldloc_0),        // Load x
+                    new CodeInstruction(OpCodes.Call, getScaleFactorMethod), // Get our scale factor
+                    new CodeInstruction(OpCodes.Mul),            // Multiply x * scale
+                    new CodeInstruction(OpCodes.Stloc_0)         // Store scaled x
+                ]);
+                break; // Only modify the first stloc.0 (the border width variable)
             }
 
-            // Find all MoveGameObjectToScene calls and insert our methods before them
+            // PHASE 2: Inject our tracking methods before each border is moved to the scene
+            // Original C# looks like: SceneManager.MoveGameObjectToScene(gameObject, this.gameObject.scene);
+            //
+            // IL Pattern we're looking for:
+            // [GameObject on stack]
+            // ldarg.0              <- 'this' reference
+            // call get_gameObject  <- get this.gameObject
+            // call get_scene       <- get scene property
+            // call MoveGameObjectToScene <- The call we're hooking
+            //
+            // What we want to inject before ldarg.0:
+            // dup                  (duplicate GameObject for our first call)
+            // call ModifyGameObject (our method to set up border tracking)
+            // dup                  (duplicate GameObject for our second call)
+            // call StoreGameObjectPosition (our method to capture final positioning)
+            //
+            // We iterate backwards to avoid index shifting issues when inserting
             for (var i = modifiedCodes.Count - 1; i >= 0; i--)
             {
-                if (modifiedCodes[i].Calls(moveGameObjectMethod))
+                if (!modifiedCodes[i].Calls(moveGameObjectMethod)) continue;
+                
+                // Walk backwards to find the ldarg.0 that loads 'this' for the MoveGameObjectToScene call
+                var insertIndex = i - 2; // Start looking before the call
+                while (insertIndex > 0 && modifiedCodes[insertIndex].opcode != OpCodes.Ldarg_0)
                 {
-                    // The GameObject is on the stack before ldarg.0
-                    // We need to insert right before the ldarg.0 that precedes MoveGameObjectToScene
-                    var insertIndex = i - 2; // Go back to find ldarg.0
-                    while (insertIndex > 0 && modifiedCodes[insertIndex].opcode != OpCodes.Ldarg_0)
-                    {
-                        insertIndex--;
-                    }
-
-                    if (insertIndex > 0)
-                    {
-                        // Insert our methods before ldarg.0
-                        modifiedCodes.InsertRange(insertIndex, [
-                            new CodeInstruction(OpCodes.Dup), // Duplicate GameObject for ModifyGameObject
-                            new CodeInstruction(OpCodes.Call, modifyMethod), // Call ModifyGameObject
-                            new CodeInstruction(OpCodes.Dup), // Duplicate GameObject for StoreGameObjectPosition
-                            new CodeInstruction(OpCodes.Call, storePositionMethod) // Call StoreGameObjectPosition (after positioning is done)
-                        ]);
-
-                        i += 4; // Adjust index since we inserted 4 instructions
-                    }
+                    insertIndex--;
                 }
+
+                if (insertIndex <= 0) continue;
+                
+                // Insert our border tracking calls before the ldarg.0
+                // At this point, the GameObject is on the stack ready for MoveGameObjectToScene
+                modifiedCodes.InsertRange(insertIndex, [
+                    new CodeInstruction(OpCodes.Dup),                    // Copy GameObject reference
+                    new CodeInstruction(OpCodes.Call, modifyMethod),     // Call our ModifyGameObject method
+                    new CodeInstruction(OpCodes.Dup),                    // Copy GameObject reference again
+                    new CodeInstruction(OpCodes.Call, storePositionMethod) // Call our StoreGameObjectPosition method
+                ]);
+
+                i += 4; // Adjust loop counter since we inserted 4 instructions
             }
 
             return modifiedCodes;
@@ -508,10 +455,18 @@ public static class Patches
             OriginalScaleX = originalScaleX,
             FeatheredEdge = featheredEdge
         };
+
+        // Add with memory management - remove oldest if at capacity
+        if (TrackedBorders.Count >= MaxTrackedBorders)
+        {
+            // Remove oldest entry (first in list)
+            TrackedBorders.RemoveAt(0);
+            Plugin.Log.LogInfo($"[BORDERS] Reached max capacity ({MaxTrackedBorders}), removed oldest border");
+        }
         TrackedBorders.Add(borderInfo);
 
         // Apply initial feathering state
-        if (Plugin.ShouldScaleBlackEdges && featheredEdge != null && featheredEdge.activeSelf)
+        if (Plugin.ShouldScaleBlackEdges && featheredEdge && featheredEdge.activeSelf)
         {
             featheredEdge.SetActive(!Plugin.ShouldRemoveFeathering);
         }
@@ -530,66 +485,23 @@ public static class Patches
     public static void StoreGameObjectPosition(GameObject go)
     {
         // Find the matching border info and store final positioning
-        var borderInfo = TrackedBorders.FirstOrDefault(b => b.GameObject == go);
-        if (borderInfo != null)
-        {
-            borderInfo.FinalPosition = go.transform.localPosition;
-            borderInfo.FinalScale = go.transform.localScale;
-            borderInfo.FinalRotation = go.transform.eulerAngles;
+        // Optimized loop without LINQ for better performance
+        var borderInfo = TrackedBorders.FirstOrDefault(t => t.GameObject == go);
 
-            Plugin.Log.LogInfo($"[BORDER] Stored position for border: Pos={borderInfo.FinalPosition}, Scale={borderInfo.FinalScale}");
-        }
+        if (borderInfo == null) return;
+        
+        borderInfo.FinalPosition = go.transform.localPosition;
+        borderInfo.FinalScale = go.transform.localScale;
+        borderInfo.FinalRotation = go.transform.eulerAngles;
+
+        Plugin.Log.LogInfo($"[BORDER] Stored position for border: Pos={borderInfo.FinalPosition}, Scale={borderInfo.FinalScale}");
     }
 
-    // private class BorderInfo
-    // {
-    //     public GameObject GameObject { get; set; }
-    //     public float OriginalScaleX { get; set; }
-    //     public GameObject FeatheredEdge { get; set; }
-    // }
-
     private static readonly List<BorderInfo> TrackedBorders = [];
+    private const int MaxTrackedBorders = 100; // Prevent unbounded list growth
     private static bool _lastScaleState;
     private static bool _lastFeatherState;
 
-    // public static void ModifyGameObject(GameObject go)
-    // {
-    //     // Store original scale before modification
-    //     var originalScaleX = go.transform.localScale.x / GetScaleFactor();
-    //
-    //     var featheredEdge = go.transform.Find("Feathered Edge")?.gameObject;
-    //
-    //     // Track this border
-    //     TrackedBorders.Add(new BorderInfo
-    //     {
-    //         GameObject = go,
-    //         OriginalScaleX = originalScaleX,
-    //         FeatheredEdge = featheredEdge
-    //     });
-    //
-    //     // Apply initial state
-    //     if (Plugin.ShouldScaleBlackEdges && featheredEdge != null && featheredEdge.activeSelf)
-    //     {
-    //         featheredEdge.SetActive(!Plugin.ShouldRemoveFeathering);
-    //     }
-    // }
-
-    // public static void StoreGameObjectPosition(GameObject go)
-    // {
-    //     // This method can be expanded if needed to store positions
-    // }
-
-    // public static void ModifyGameObject(GameObject go)
-    // {
-    //     if (DoScalingStuff())
-    //     {
-    //         var featheredEdge = go.transform.Find("Feathered Edge");
-    //         if (featheredEdge && featheredEdge.gameObject.activeSelf)
-    //         {
-    //             featheredEdge.gameObject.SetActive(Plugin.FeatheredEdgeInDoorways.Value);
-    //         }
-    //     }
-    // }
 
 
     [HarmonyPostfix]
@@ -630,27 +542,26 @@ public static class Patches
 
             foreach (var t in modifiedCode)
             {
-                if (t.opcode == OpCodes.Ldc_R4)
+                if (t.opcode != OpCodes.Ldc_R4) continue;
+                
+                var value = (float)t.operand;
+
+                // Replace minimum value for 4:3 support
+                if (!foundMin && Mathf.Approximately(value, defaultMin))
                 {
-                    var value = (float)t.operand;
-
-                    // Replace minimum value for 4:3 support
-                    if (!foundMin && Mathf.Approximately(value, defaultMin))
-                    {
-                        t.operand = 1.0f; // Lower minimum to support 4:3 (1.333)
-                        Plugin.Log.LogInfo($"[TRANSPILER] Replaced min aspect {defaultMin} with 1.0 for 4:3 support.");
-                        foundMin = true;
-                    }
-                    // Replace maximum value for ultra-wide support
-                    else if (!foundMax && Mathf.Approximately(value, defaultMax))
-                    {
-                        t.operand = 10f; // Higher maximum for ultra-wide
-                        Plugin.Log.LogInfo($"[TRANSPILER] Replaced max aspect {defaultMax} with 10 for ultra-wide support.");
-                        foundMax = true;
-                    }
-
-                    if (foundMin && foundMax) break;
+                    t.operand = 1.0f; // Lower minimum to support 4:3 (1.333)
+                    Plugin.Log.LogInfo($"[TRANSPILER] Replaced min aspect {defaultMin} with 1.0 for 4:3 support.");
+                    foundMin = true;
                 }
+                // Replace maximum value for ultra-wide support
+                else if (!foundMax && Mathf.Approximately(value, defaultMax))
+                {
+                    t.operand = 10f; // Higher maximum for ultra-wide
+                    Plugin.Log.LogInfo($"[TRANSPILER] Replaced max aspect {defaultMax} with 10 for ultra-wide support.");
+                    foundMax = true;
+                }
+
+                if (foundMin && foundMax) break;
             }
 
             return modifiedCode.AsEnumerable();

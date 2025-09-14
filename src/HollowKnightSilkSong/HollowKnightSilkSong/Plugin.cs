@@ -1,6 +1,4 @@
-﻿using JetBrains.Annotations;
-
-namespace HollowKnightSilkSong;
+﻿namespace HollowKnightSilkSong;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
 public class Plugin : BaseUnityPlugin
@@ -14,7 +12,29 @@ public class Plugin : BaseUnityPlugin
     private const float BaseThreshold = 3.556f;
     private const float FOVFactor = 0.0711f;
 
+    // Rounding precision multipliers
+    private const float FOVRoundingMultiplier = 10f; // 0.1 precision
+    private const float VignetteRoundingMultiplier = 20f; // 0.05 precision
+    private const float HudOffsetRoundingMultiplier = 2f; // 0.5 precision
+
+    // Configuration value ranges
+    private const float MinFOV = -5f;
+    private const float MaxFOV = 25f;
+    private const float DefaultFOV = 0f;
+
+    private const float MinHudOffset = -50f;
+    private const float MaxHudOffset = 50f;
+    private const float DefaultHudOffset = 0f;
+
+    private const float MinVignetteAlpha = 0f;
+    private const float MaxVignetteAlpha = 1f;
+    private const float DefaultVignetteAlpha = 1f;
+
     internal static ManualLogSource Log { get; private set; }
+
+    // UI element cache for performance
+    private static readonly Dictionary<Type, Array> CachedUIElements = new();
+    private static bool _uiCacheValid;
 
     // Config entries
     public static ConfigEntry<float> CameraFieldOfView { get; private set; }
@@ -26,12 +46,11 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<bool> MenuClutter { get; private set; }
     public static ConfigEntry<float> HudOffset { get; private set; }
     public static ConfigEntry<float> VignetteAlpha { get; private set; }
-    public static ConfigEntry<EdgeFixQuality> EdgeQuality { get; private set; }
-
-    internal const int TestWidth = 3200;
-    internal const int TestHeight = 300;
+    private static ConfigEntry<EdgeFixQuality> EdgeQuality { get; set; }
 
 #if DEBUG
+    internal const int TestWidth = 3200;
+    internal const int TestHeight = 300;
     public static float CurrentAspect => TestWidth / (float)TestHeight;
 #else
     public static float CurrentAspect => Screen.width / (float)Screen.height;
@@ -62,26 +81,15 @@ public class Plugin : BaseUnityPlugin
     private void Awake()
     {
         Log = Logger;
-#if DEBUG
-        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-#endif
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
         SetupConfigs(Config);
         ValidateAllSettings();
         SetupConfigBindings();
 
         // Subscribe to resolution changes
-        ResChangeAction.OnResolutionChange += newRes =>
-        {
-            Patches.UpdateConfigCache();
-            
-            if (HudOffset.Value == 0f) return;
-            
-            HudOffset.Value = 0f;
-            Log.LogInfo($"Reset HUD Offset to 0 due to resolution change to {newRes.x}x{newRes.y}");
-          
-            Patches.UpdateHudOffset();
-        };
+        ResChangeAction.OnResolutionChange += OnResolutionChanged;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
         Patches.UpdateConfigCache(); // Initialize cache
@@ -94,34 +102,40 @@ public class Plugin : BaseUnityPlugin
         Log.LogInfo("Validating settings loaded from config file...");
 
         // Round values to their proper increments
-        CameraFieldOfView.Value = (float)Math.Round(CameraFieldOfView.Value * 10f) / 10f;
-        VignetteAlpha.Value = (float)Math.Round(VignetteAlpha.Value * 20f) / 20f;
-        HudOffset.Value = (float)Math.Round(HudOffset.Value * 2f) / 2f;
+        CameraFieldOfView.Value = (float)Math.Round(CameraFieldOfView.Value * FOVRoundingMultiplier) / FOVRoundingMultiplier;
+        VignetteAlpha.Value = (float)Math.Round(VignetteAlpha.Value * VignetteRoundingMultiplier) / VignetteRoundingMultiplier;
+        HudOffset.Value = (float)Math.Round(HudOffset.Value * HudOffsetRoundingMultiplier) / HudOffsetRoundingMultiplier;
 
         // Validate ranges
-        if (CameraFieldOfView.Value is < -5f or > 25f)
+        if (CameraFieldOfView.Value is < MinFOV or > MaxFOV)
         {
-            Log.LogWarning($"FOV value {CameraFieldOfView.Value} out of range, resetting to 0");
-            CameraFieldOfView.Value = 0f;
+            Log.LogWarning($"FOV value {CameraFieldOfView.Value} out of range, resetting to {DefaultFOV}");
+            CameraFieldOfView.Value = DefaultFOV;
         }
 
-        if (HudOffset.Value is < -50f or > 50f)
+        if (HudOffset.Value is < MinHudOffset or > MaxHudOffset)
         {
-            Log.LogWarning($"HUD Offset value {HudOffset.Value} out of range, resetting to 0");
-            HudOffset.Value = 0f;
+            Log.LogWarning($"HUD Offset value {HudOffset.Value} out of range, resetting to {DefaultHudOffset}");
+            HudOffset.Value = DefaultHudOffset;
         }
 
-        if (VignetteAlpha.Value is < 0f or > 1f)
+        if (VignetteAlpha.Value is < MinVignetteAlpha or > MaxVignetteAlpha)
         {
-            Log.LogWarning($"Vignette Alpha value {VignetteAlpha.Value} out of range, resetting to 1");
-            VignetteAlpha.Value = 1f;
+            Log.LogWarning($"Vignette Alpha value {VignetteAlpha.Value} out of range, resetting to {DefaultVignetteAlpha}");
+            VignetteAlpha.Value = DefaultVignetteAlpha;
         }
 
-        // Validate dependent settings
+        // Validate dependent settings (bidirectional validation)
         if (!HeroLight.Value && ReduceHeroLight.Value)
         {
             ReduceHeroLight.Value = false;
             Log.LogInfo("Disabled 'Reduce Hero Light' since 'Hero Light' is disabled");
+        }
+
+        if (ReduceHeroLight.Value && !HeroLight.Value)
+        {
+            HeroLight.Value = true;
+            Log.LogInfo("Enabled 'Hero Light' since 'Reduce Hero Light' is enabled");
         }
 
         // Log edge fix status
@@ -129,6 +143,41 @@ public class Plugin : BaseUnityPlugin
 
         Log.LogInfo($"Settings validated: FOV={CameraFieldOfView.Value:F1}, Aspect={CurrentAspect:F3}, " +
                     $"EdgeQuality={EdgeQuality.Value}");
+    }
+
+    private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InvalidateUICache();
+    }
+
+    private static void OnResolutionChanged(Vector2 newRes)
+    {
+        Patches.UpdateConfigCache();
+
+        if (Mathf.Approximately(HudOffset.Value, DefaultHudOffset)) return;
+
+        HudOffset.Value = DefaultHudOffset;
+        Log.LogInfo($"Reset HUD Offset to 0 due to resolution change to {newRes.x}x{newRes.y}");
+
+        Patches.UpdateHudOffset();
+    }
+
+    private static T[] GetCachedUIElements<T>() where T : UnityEngine.Object
+    {
+        var type = typeof(T);
+
+        if (!_uiCacheValid || !CachedUIElements.ContainsKey(type))
+        {
+            CachedUIElements[type] = Resources.FindObjectsOfTypeAll<T>();
+        }
+
+        return (T[])CachedUIElements[type];
+    }
+
+    private static void InvalidateUICache()
+    {
+        CachedUIElements.Clear();
+        _uiCacheValid = false;
     }
 
     private static void LogEdgeStatus()
@@ -144,9 +193,9 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription("Show only your displays native resolution in the settings menu.",
                 null, new ConfigurationManagerAttributes { Order = 91 }));
 
-        CameraFieldOfView = config.Bind("02. Camera", "Field of View", 0f,
+        CameraFieldOfView = config.Bind("02. Camera", "Field of View", DefaultFOV,
             new ConfigDescription("Adjust the camera's field of view in degrees.",
-                new AcceptableValueRange<float>(-5f, 25f),
+                new AcceptableValueRange<float>(MinFOV, MaxFOV),
                 new ConfigurationManagerAttributes { Order = 90 }));
 
         HeroLight = config.Bind("03. Hero", "Hero Light", true,
@@ -161,9 +210,9 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription("Toggle the vignette effect that darkens the edges of the screen.",
                 null, new ConfigurationManagerAttributes { Order = 87 }));
 
-        VignetteAlpha = config.Bind("04. Screen", "Vignette Alpha", 1f,
+        VignetteAlpha = config.Bind("04. Screen", "Vignette Alpha", DefaultVignetteAlpha,
             new ConfigDescription("Adjust the vignette alpha to your liking.",
-                new AcceptableValueRange<float>(0f, 1f),
+                new AcceptableValueRange<float>(MinVignetteAlpha, MaxVignetteAlpha),
                 new ConfigurationManagerAttributes { Order = 83 }));
 
         SplashScreens = config.Bind("05. Misc", "Splash Screens", true,
@@ -174,9 +223,9 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription("Control menu clutter on the main menu i.e. logos, version numbers, credits etc",
                 null, new ConfigurationManagerAttributes { Order = 85 }));
 
-        HudOffset = config.Bind("06. HUD", "HUD Offset", 0f,
+        HudOffset = config.Bind("06. HUD", "HUD Offset", DefaultHudOffset,
             new ConfigDescription("Adjust the HUD offset to your liking.",
-                new AcceptableValueRange<float>(-50f, 50f),
+                new AcceptableValueRange<float>(MinHudOffset, MaxHudOffset),
                 new ConfigurationManagerAttributes { Order = 84 }));
 
         EdgeQuality = config.Bind("07. Display", "Edge Fix Quality", EdgeFixQuality.High,
@@ -192,7 +241,7 @@ public class Plugin : BaseUnityPlugin
     {
         ShowMainResolutionOnly.SettingChanged += (_, _) =>
         {
-            var mrs = Resources.FindObjectsOfTypeAll<MenuResolutionSetting>().ToList();
+            var mrs = GetCachedUIElements<MenuResolutionSetting>().ToList();
             foreach (var setting in mrs)
             {
                 setting.RefreshAvailableResolutions();
@@ -201,18 +250,37 @@ public class Plugin : BaseUnityPlugin
 
         CameraFieldOfView.SettingChanged += (_, _) =>
         {
-            CameraFieldOfView.Value = (float)Math.Round(CameraFieldOfView.Value * 10f) / 10f;
+            CameraFieldOfView.Value = (float)Math.Round(CameraFieldOfView.Value * FOVRoundingMultiplier) / FOVRoundingMultiplier;
             LogEdgeStatus(); // Log when threshold changes
             Patches.UpdateConfigCache();
         };
 
-        HeroLight.SettingChanged += (_, _) => Patches.UpdateConfigCache();
-        ReduceHeroLight.SettingChanged += (_, _) => Patches.UpdateConfigCache();
+        HeroLight.SettingChanged += (_, _) =>
+        {
+            // Validate dependent setting - disable ReduceHeroLight if HeroLight is disabled
+            if (!HeroLight.Value && ReduceHeroLight.Value)
+            {
+                ReduceHeroLight.Value = false;
+                Log.LogInfo("Disabled 'Reduce Hero Light' since 'Hero Light' was disabled");
+            }
+            Patches.UpdateConfigCache();
+        };
+
+        ReduceHeroLight.SettingChanged += (_, _) =>
+        {
+            // Validate dependent setting - enable HeroLight if ReduceHeroLight is enabled
+            if (ReduceHeroLight.Value && !HeroLight.Value)
+            {
+                HeroLight.Value = true;
+                Log.LogInfo("Enabled 'Hero Light' since 'Reduce Hero Light' was enabled");
+            }
+            Patches.UpdateConfigCache();
+        };
 
         Vignette.SettingChanged += (_, _) => Patches.UpdateConfigCache();
         VignetteAlpha.SettingChanged += (_, _) =>
         {
-            VignetteAlpha.Value = (float)Math.Round(VignetteAlpha.Value * 20f) / 20f;
+            VignetteAlpha.Value = (float)Math.Round(VignetteAlpha.Value * VignetteRoundingMultiplier) / VignetteRoundingMultiplier;
             Patches.UpdateConfigCache();
         };
 
@@ -220,7 +288,7 @@ public class Plugin : BaseUnityPlugin
 
         HudOffset.SettingChanged += (_, _) =>
         {
-            HudOffset.Value = (float)Math.Round(HudOffset.Value * 2f) / 2f;
+            HudOffset.Value = (float)Math.Round(HudOffset.Value * HudOffsetRoundingMultiplier) / HudOffsetRoundingMultiplier;
             Patches.UpdateConfigCache();
             Patches.UpdateHudOffset();
         };
@@ -234,37 +302,35 @@ public class Plugin : BaseUnityPlugin
 
     private void OnDestroy()
     {
-#if DEBUG
-        SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
-#endif
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        // Unsubscribe from resolution changes
+        ResChangeAction.OnResolutionChange -= OnResolutionChanged;
+
         Patches.Cleanup();
     }
 
-#if DEBUG
-    private static void SceneManagerOnSceneLoaded(Scene name, LoadSceneMode mode)
-    {
-        Screen.SetResolution(TestWidth, TestHeight, FullScreenMode.Windowed, 0);
-    }
-#endif
-
     private static void UpdateMenuClutter()
     {
-        var logoLanguages = Resources.FindObjectsOfTypeAll<LogoLanguage>().ToList();
+        var logoLanguages = GetCachedUIElements<LogoLanguage>().ToList();
         foreach (var logo in logoLanguages)
         {
             logo.OnEnable();
         }
 
-        var versionNumbers = Resources.FindObjectsOfTypeAll<SetVersionNumber>().ToList();
+        var versionNumbers = GetCachedUIElements<SetVersionNumber>().ToList();
         foreach (var version in versionNumbers)
         {
             version.Start();
         }
 
-        var mainMenu = Resources.FindObjectsOfTypeAll<MenuButtonList>().ToList();
+        var mainMenu = GetCachedUIElements<MenuButtonList>().ToList();
         foreach (var menu in mainMenu)
         {
             menu.SetupActive();
         }
+
+        // Mark cache as valid after first use
+        _uiCacheValid = true;
     }
 }

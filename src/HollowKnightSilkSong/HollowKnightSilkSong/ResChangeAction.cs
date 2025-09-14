@@ -31,12 +31,10 @@ public static class ResChangeAction
         var newRes = new Vector2(width, height);
         
         // Skip if resolution didn't change
-        if (newRes == __state)
-            return;
+        if (newRes == __state) return;
         
         // Only process once per frame (handles multiple overloads in same frame)
-        if (_lastProcessedFrame == Time.frameCount && _pendingResolution == newRes)
-            return;
+        if (_lastProcessedFrame == Time.frameCount && _pendingResolution == newRes) return;
         
         _pendingResolution = newRes;
         _lastProcessedFrame = Time.frameCount;

@@ -2,19 +2,17 @@
 
 /// <summary>
 /// A generic class that allows a value to be written only once.
+/// Once set, the value cannot be changed unless explicitly reset.
 /// </summary>
+/// <remarks>
+/// This class is designed for single-threaded use within Unity's main thread.
+/// Setting the value multiple times will silently fail (by design) - only the first assignment takes effect.
+/// Use ResetValue() to allow the value to be set again.
+/// </remarks>
+/// <typeparam name="T">The type of value to store</typeparam>
 public sealed class WriteOnce<T>
 {
     private T _value; // Holds the value of the instance
-
-    // /// <summary>
-    // /// Constructor to initialize the instance with a value.
-    // /// </summary>
-    // /// <param name="value">The value to initialize with.</param>
-    // public WriteOnce(T value)
-    // {
-    //     Value = value;
-    // }
 
     /// <summary>
     /// Default constructor for creating an uninitialized instance.
@@ -44,17 +42,24 @@ public sealed class WriteOnce<T>
     /// <summary>
     /// Gets or sets the value. Can only be set once unless reset.
     /// </summary>
+    /// <value>
+    /// When getting: Returns the stored value if set, otherwise returns default(T).
+    /// When setting: Only the first assignment succeeds; subsequent assignments are silently ignored.
+    /// </value>
     public T Value
     {
         get => !HasValue ? default : _value;
         set
         {
-            if (HasValue) return; // Prevent multiple assignments
+            if (HasValue) return; // Silent failure by design - prevents multiple assignments
             _value = value;
             HasValue = true;
         }
     }
 
+    /// <summary>
+    /// Gets whether a value has been set.
+    /// </summary>
     public bool HasValue { get; private set; }
 
     /// <summary>
