@@ -614,7 +614,6 @@ public static void StoreGameObjectPosition(GameObject go)
     borderInfo.FinalRotation = go.transform.eulerAngles;
     
     // Store which border this is based on position (we need this for recalculation)
-    // Assuming you have access to GameManager for scene dimensions
     var gm = GameManager.instance;
     if (gm)
     {
