@@ -272,6 +272,11 @@ public static class Patches
             {
                 entry.selectable.gameObject.SetActive(Plugin.MenuClutter.Value);
             }
+            
+            if (entry.selectable.name == "ScreenScaleButton")
+            {
+                entry.selectable.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -306,18 +311,6 @@ public static class Patches
     public static void ForceCameraAspect_AutoScaleViewport(ref float __result)
     {
         __result = Plugin.CurrentAspect;
-    }
-
-
-    /// <summary>
-    /// Harmony postfix patch for VideoMenuOptions.ConfigureNavigation.
-    /// Hides the screen scale option in the video menu for clarity.
-    /// </summary>
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(VideoMenuOptions), nameof(VideoMenuOptions.ConfigureNavigation))]
-    public static void VideoMenuOptions_ConfigureNavigation(VideoMenuOptions __instance)
-    {
-        __instance.screenScaleOption.gameObject.SetActive(false);
     }
 
     /// <summary>

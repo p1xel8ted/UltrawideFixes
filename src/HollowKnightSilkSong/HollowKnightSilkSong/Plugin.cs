@@ -8,7 +8,7 @@ public class Plugin : BaseUnityPlugin
     // Plugin metadata constants used for BepInEx registration
     private const string PluginGuid = "p1xel8ted.silksonghollowknight.ultrawide"; // Unique identifier for the plugin
     private const string PluginName = "Hollow Knight Silksong Ultra-Wide"; // Display name for the plugin
-    private const string PluginVersion = "0.1.3"; // Current version of the plugin
+    private const string PluginVersion = "0.1.4"; // Current version of the plugin
     public const float NativeAspect = 16f / 9f; // Native aspect ratio for the game (16:9)
 
     // Constants for edge threshold calculation (used to determine when to fix black edges)
