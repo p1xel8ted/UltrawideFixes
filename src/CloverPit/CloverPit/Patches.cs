@@ -23,6 +23,46 @@ public static class Patches
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(PowerupTriggerAnimController), nameof(PowerupTriggerAnimController.Awake))]
+    public static void PowerupTriggerAnimController_Awake(PowerupTriggerAnimController __instance)
+    {
+        var descriptor = __instance.myCamera.targetTexture.descriptor;
+        var newWidth = Mathf.RoundToInt(descriptor.height * Plugin.CurrentAspect);
+        if (descriptor.width != newWidth)
+        {
+            descriptor.width = newWidth;
+            __instance.myCamera.targetTexture.Release();
+            __instance.myCamera.targetTexture.descriptor = descriptor;
+            __instance.myCamera.targetTexture.Create();
+        }
+
+        __instance.myCamera.aspect = Plugin.CurrentAspect;
+    }
+
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(UnityTwitch), nameof(UnityTwitch.CreatePAL))]
+    // [HarmonyPatch(typeof(UnityTwitch), nameof(UnityTwitch.InitializeInternally))]
+    // [HarmonyPatch(typeof(UnityTwitch.UnityPAL), nameof(UnityTwitch.UnityPAL.Start))]
+    // private static bool UnityTwitch_CreatePAL()
+    // {
+    //     return false;
+    // }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(AspectRatioFitter), nameof(AspectRatioFitter.OnEnable))]
+    [HarmonyPatch(typeof(AspectRatioFitter), nameof(AspectRatioFitter.Start))]
+    public static void AspectRatioFitter_OnEnable(AspectRatioFitter __instance)
+    {
+        if (__instance.name == "Powerup Trigger Anim Renderer")
+        {
+            __instance.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
+            __instance.aspectRatio = Plugin.CurrentAspect;
+            __instance.transform.position = __instance.transform.position with { x = Plugin.ScaleFactor };
+        }
+    }
+
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
@@ -67,6 +107,15 @@ public static class Patches
     }
 
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(PhoneUiScript), nameof(PhoneUiScript.Awake))]
+    [HarmonyPatch(typeof(PhoneUiScript), nameof(PhoneUiScript.Start))]
+    private static void PhoneUiScript_Awake(PhoneUiScript __instance)
+    {
+        AddFitter(__instance.gameObject, Plugin.NativeAspect);
+    }
+
+
     private static void AddFitter(GameObject go, float aspect = 0)
     {
         if (!go) return;
@@ -81,13 +130,13 @@ public static class Patches
             arf.aspectRatio = arf.aspectRatio = Plugin.GetPreferredAspect();
         }
     }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(PowerupTriggerAnimController), nameof(PowerupTriggerAnimController.Start))]
-    private static void PowerupTriggerAnimController_Start(PowerupTriggerAnimController __instance)
-    {
-        __instance.myBackImage.rectTransform.localScale = new Vector3(Plugin.ScaleFactor, Plugin.ScaleFactor, 1);
-    }
+
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(PowerupTriggerAnimController), nameof(PowerupTriggerAnimController.Start))]
+    // private static void PowerupTriggerAnimController_Start(PowerupTriggerAnimController __instance)
+    // {
+    //     __instance.myBackImage.rectTransform.localScale = new Vector3(Plugin.ScaleFactor, Plugin.ScaleFactor, 1);
+    // }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DialogueScript), nameof(DialogueScript.Awake))]
@@ -137,7 +186,11 @@ public static class Patches
     [HarmonyPatch(typeof(Data.SettingsData), nameof(Data.SettingsData.ResolutionDesiredWidthGet))]
     public static void SettingsData_ResolutionDesiredWidthGet(ref int __result)
     {
+#if DEBUG
+        __result = Plugin.Width;
+#else
         __result = Display.main.systemWidth;
+#endif
         Plugin.Log.LogInfo($"Adjusted desired width for aspect ratio: {Plugin.CurrentAspect} - {__result}");
     }
 
@@ -145,7 +198,11 @@ public static class Patches
     [HarmonyPatch(typeof(Data.SettingsData), nameof(Data.SettingsData.ResolutionDesiredHeightGet))]
     public static void SettingsData_ResolutionDesiredHeightGet(ref int __result)
     {
+#if DEBUG
+        __result = Plugin.Height;
+#else
         __result = Display.main.systemHeight;
+#endif
         Plugin.Log.LogInfo($"Adjusted desired height for aspect ratio: {Plugin.CurrentAspect} - {__result}");
     }
 

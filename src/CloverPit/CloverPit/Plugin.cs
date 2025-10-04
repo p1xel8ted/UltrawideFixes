@@ -10,13 +10,15 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log { get; private set; }
 
 #if DEBUG
-    public static float CurrentAspect => 3200f / 600f;
+    public const int Width = 3200;
+    public const int Height = 600;
+    public static float CurrentAspect => Width / (float)Height;
 #else
     public static float CurrentAspect => Screen.width / (float)Screen.height;
 #endif
-    
+
     internal static float ScaleFactor => CurrentAspect / NativeAspect;
-    
+
     /// <summary>
     /// Retrieves the preferred aspect ratio based on configuration or defaults to the current screen aspect ratio.
     /// </summary>
@@ -37,7 +39,7 @@ public class Plugin : BaseUnityPlugin
         };
         return width;
     }
-    
+
     private static List<string> HUDAspects { get; } =
     [
         "16:10",
@@ -57,24 +59,23 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<Volumes.AntialiasingMode> Antialiasing { get; private set; }
     internal static ConfigEntry<float> TaaSharpness { get; private set; }
 
-    
 
     private void Awake()
     {
         Log = Logger;
-       ConfigFile = Config;
-  
+        ConfigFile = Config;
+
         HUDAspect = Config.Bind("01. UI", "UI Aspect", "Auto",
             new ConfigDescription(
                 "Choose the aspect ratio for the game's user interface (UI). 'Auto' attempts to match your display's ratio.",
                 new AcceptableValueList<string>(HUDAspects.ToArray()),
                 new ConfigurationManagerAttributes { Order = 93 }));
-        HUDAspect.SettingChanged += (_, _) => { Patches.UpdateHUD();};
-        
+        HUDAspect.SettingChanged += (_, _) => { Patches.UpdateHUD(); };
+
         Antialiasing = Config.Bind("02. Antialiasing", "Antialiasing Mode", Volumes.AntialiasingMode.TemporalAntialiasing,
             new ConfigDescription("Set the antialiasing mode for post-processing effects. Options include None, Fast Approximate Antialiasing (FXAA), Subpixel Morphological Antialiasing (SMAA), and Temporal Antialiasing (TAA).", null, new ConfigurationManagerAttributes { Order = 85 }));
         Antialiasing.SettingChanged += (_, _) => Volumes.UpdateAntialiasing();
-        
+
         TaaSharpness = Config.Bind("02. Antialiasing", "Temporal AA Sharpness", 0.25f,
             new ConfigDescription("Set the sharpness for Temporal Antialiasing (TAA). A value of 0 is the softest, while 1 is the sharpest.", new AcceptableValueRange<float>(-5f, 5f), new ConfigurationManagerAttributes { Order = 84 }));
         TaaSharpness.SettingChanged += (_, _) =>
@@ -88,7 +89,7 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription("Enable or disable notifications for post-processing effects being registered for configuration.", null, new ConfigurationManagerAttributes { Order = 86 }));
 
         SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-        
+
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
 
         Log.LogInfo($"Plugin {PluginName} is loaded!");
@@ -96,7 +97,7 @@ public class Plugin : BaseUnityPlugin
 
     private static void SceneManagerOnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-      Patches.UpdateHUD();
-      Patches.UpdateScalers(CurrentAspect);
+        Patches.UpdateHUD();
+        Patches.UpdateScalers(CurrentAspect);
     }
 }
