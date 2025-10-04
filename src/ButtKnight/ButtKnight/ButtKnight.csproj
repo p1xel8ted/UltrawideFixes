@@ -1,0 +1,278 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Product>ButtKnight Ultra-Wide</Product>
+        <Version>0.1.0</Version>
+        <AssemblyName>$(Product)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\ButtKnight\BepInEx\plugins</OutputPath>
+        <DebugType>embedded</DebugType>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+    </PropertyGroup>
+
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <Import Project="../zip.target"/>
+    
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5+6 Mono (use this)\ConfigurationManager-BepInEx5-Mono.dll">
+            <Link>ConfigurationManager-BepInEx5-Mono.dll</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="ConfigurationManager-BepInEx5-Mono" publicize="true">
+            <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5+6 Mono (use this)\ConfigurationManager-BepInEx5-Mono.dll</HintPath>
+        </Reference>
+      <Reference Include="Assembly-CSharp" publicize="true">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Elringus.BlendModes.Runtime" publicize="true">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Elringus.BlendModes.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Elringus.Naninovel.Runtime" publicize="true">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Elringus.Naninovel.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Heathen.Core" publicize="true">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Heathen.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.Animation.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.2D.Animation.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.Common.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.2D.Common.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.IK.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.2D.IK.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.PixelPerfect">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.2D.PixelPerfect.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.SpriteShape.Runtime">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InternalAPIEngineBridge.001">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime" publicize="true">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Splines">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.Splines.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ARModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ARModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.NVIDIAModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.NVIDIAModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI" publicize="true">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityUIExtensions">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityUIExtensions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+   
+    
+
+</Project>
