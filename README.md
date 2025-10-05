@@ -108,12 +108,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C (3)</summary>
+<details><summary>C (4)</summary>
 
 ## [Cat Quest (1)](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CatQuest1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CatQuest1/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/a1d0200a-55a7-4120-b88e-9d639046c453) ![main_game](https://github.com/user-attachments/assets/76f6a3d0-a7ac-4433-8cbd-63bf4d3e2379)
+
+## [CloverPit](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CloverPit)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CloverPit/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/002799bb-0cab-455f-a417-98b238804daa) ![main_game-16-9](https://github.com/user-attachments/assets/2960eef1-2c50-4427-9029-7245146a655d)
 
 ## [CONVERGENCE: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ConvergenceLoL)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ConvergenceLoL/total?label=downloads&style=for-the-badge)
