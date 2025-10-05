@@ -1,6 +1,3 @@
-using ButtKnight.Patches;
-using ClimbGames.Base;
-
 namespace ButtKnight.Configuration;
 
 internal static class ConfigManager
@@ -38,7 +35,7 @@ internal static class ConfigManager
         var customRates = Resolutions.MergeUnityRefreshRates();
 
         // Display Settings
-        Resolution = config.Bind("01. Display", "Resolution", $"{Resolutions.MainWidth}x{Resolutions.MainHeight}",
+        Resolution = config.Bind("01. Display", "Resolution", $"{Display.main.systemWidth}x{Display.main.systemHeight}",
             new ConfigDescription(
                 "Choose the screen resolution for the game. Options are based on your monitor's supported resolutions.",
                 new AcceptableValueList<string>(Resolutions.GetResolutions()),
@@ -159,6 +156,79 @@ internal static class ConfigManager
                 ButtKnight.Patches.Patches.TrySetSteamPresence();
             }
         };
+
+        // Validate all config values to handle external config file edits
+        ValidateConfigValues(customRates);
+    }
+
+    private static void ValidateConfigValues(int[] customRates)
+    {
+        // Validate Resolution
+        var availableResolutions = Resolutions.GetResolutions();
+        Plugin.Log.LogInfo($"Validating resolution '{Resolution.Value}'. Display.main reports: {Display.main.systemWidth}x{Display.main.systemHeight}");
+        Plugin.Log.LogInfo($"Available resolutions: {string.Join(", ", availableResolutions)}");
+        
+        var nativeRes = $"{Display.main.systemWidth}x{Display.main.systemHeight}";
+        
+        if (!availableResolutions.Contains(Resolution.Value))
+        {
+            Plugin.Log.LogWarning($"Resolution '{Resolution.Value}' is not valid. Resetting to native resolution '{nativeRes}'.");
+            Resolution.Value = nativeRes;
+        }
+        
+        if (Resolutions.SelectedResolution.width != Display.main.systemWidth || Resolutions.SelectedResolution.height != Display.main.systemHeight)
+        {
+            Plugin.Log.LogWarning($"Selected resolution '{Resolution.Value}' does not match native resolution '{nativeRes}'. This may lead to suboptimal display quality.");
+            Plugin.PopupManagerInstance.ShowPopupDlg(
+                $"The selected resolution '{Resolution.Value}' does not match your display's native resolution '{nativeRes}'. " +
+                "This may lead to suboptimal display quality. It is recommended to use the native resolution for the best experience.",
+                "resolution_mismatch_warning",
+                true);
+        }
+        
+
+        // Validate FullScreenModeConfig
+        if (!Enum.IsDefined(typeof(FullScreenMode), FullScreenModeConfig.Value))
+        {
+            Plugin.Log.LogWarning($"FullScreenMode '{FullScreenModeConfig.Value}' is not valid. Resetting to 'FullScreenWindow'.");
+            FullScreenModeConfig.Value = FullScreenMode.FullScreenWindow;
+        }
+
+        // Validate VSyncSetting
+        if (!VSyncOptions.ContainsKey(VSyncSetting.Value))
+        {
+            Plugin.Log.LogWarning($"VSync Setting '{VSyncSetting.Value}' is not valid. Resetting to 'Disabled (Higher Performance)'.");
+            VSyncSetting.Value = "Disabled (Higher Performance)";
+        }
+
+        // Validate TargetFramerate
+        if (!customRates.Contains(TargetFramerate.Value))
+        {
+            Plugin.Log.LogWarning($"Target Framerate '{TargetFramerate.Value}' is not valid. Resetting to {Resolutions.MaxRefresh}.");
+            TargetFramerate.Value = Resolutions.MaxRefresh;
+        }
+
+        // Validate CustomRefreshRate
+        if (!customRates.Contains(CustomRefreshRate.Value))
+        {
+            Plugin.Log.LogWarning($"Custom Refresh Rate '{CustomRefreshRate.Value}' is not valid. Resetting to {Resolutions.RefreshRate}.");
+            CustomRefreshRate.Value = Resolutions.RefreshRate;
+        }
+
+        // Validate SkipChoiceConfig
+        if (!Enum.IsDefined(typeof(Plugin.SkipChoice), SkipChoiceConfig.Value))
+        {
+            Plugin.Log.LogWarning($"SkipChoice '{SkipChoiceConfig.Value}' is not valid. Resetting to 'SkipNone'.");
+            SkipChoiceConfig.Value = Plugin.SkipChoice.SkipNone;
+        }
+
+        // Validate HUDAspect
+        var availableAspects = Resolutions.GetAvailableHUDAspects();
+        if (!availableAspects.Contains(HUDAspect.Value))
+        {
+            Plugin.Log.LogWarning($"HUD Aspect '{HUDAspect.Value}' is not available for current display aspect ratio. Resetting to 'Auto'.");
+            HUDAspect.Value = "Auto";
+        }
     }
 
     internal static int GetVSyncCount()

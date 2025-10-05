@@ -1,8 +1,5 @@
 // ReSharper disable InconsistentNaming
 
-using ClimbGames.Base;
-using Steamworks;
-
 namespace ButtKnight.Patches;
 
 [Harmony]
@@ -71,7 +68,16 @@ public static class Patches
     #endregion
 
     #region Helper Methods
-
+    
+    private static void ToggleGalleryButton(bool visible)
+    {
+        var galleryButton = GameObject.Find("[UI]/UICamping/Root/@RB/Gallery");
+        if (galleryButton)
+        {
+            galleryButton.gameObject.SetActive(visible);
+        }
+    }
+    
     internal static void UpdateScalers(float aspect)
     {
         foreach (var scaler in CanvasScalers.Where(scaler => scaler))
@@ -161,7 +167,7 @@ public static class Patches
 
             // Recalculate buffer ONLY for worldmap gradients
             var currentBuffer = tracked.recalculateBuffer ? Resolutions.GetGradientBuffer(Resolutions.CurrentAspect) : tracked.buffer;
-            var scaleFactor = currentBuffer != 0 && currentBuffer != -1 ? Resolutions.PositiveScaleFactor + currentBuffer : Resolutions.PositiveScaleFactor;
+            var scaleFactor = currentBuffer != 0 && !Mathf.Approximately(currentBuffer, -1) ? Resolutions.PositiveScaleFactor + currentBuffer : Resolutions.PositiveScaleFactor;
             var newX = baseScale * scaleFactor;
 
             var baseScaleY = tracked.originalScale.y != 0 ? tracked.originalScale.y : 1f;
@@ -278,7 +284,7 @@ public static class Patches
 
         try
         {
-            MonoSingleton<PresenceManager>.Instance.SetPresence(actualPresenceType, null);
+            MonoSingleton<PresenceManager>.Instance.SetPresence(actualPresenceType);
         }
         catch (Exception ex)
         {
@@ -470,7 +476,7 @@ public static class Patches
         }
     }
 
-    internal static string SceneName => SceneManager.GetActiveScene().name;
+    private static string SceneName => SceneManager.GetActiveScene().name;
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(WorldStageController), nameof(WorldStageController.Start))]
@@ -540,15 +546,11 @@ public static class Patches
     }
 
 
-    private static SpriteRenderer CreateBackgroundFiller(Transform parent, string name, Color color, bool checkExisting = true)
+    private static void CreateBackgroundFiller(Transform parent, string name, Color color, bool checkExisting = true)
     {
         if (checkExisting && parent.Find(name))
         {
-            var sr = parent.Find(name).GetComponent<SpriteRenderer>();
-            if (sr)
-            {
-                return sr;
-            }
+            return;
         }
 
         var bgObject = new GameObject(name);
@@ -568,7 +570,6 @@ public static class Patches
         // Scale to fill screen
         bgObject.transform.localScale = new Vector3(Screen.width, Screen.height, 1);
         bgObject.transform.localPosition = Vector3.zero;
-        return spriteRenderer;
     }
 
 
@@ -619,6 +620,24 @@ public static class Patches
         {
             CorrectTransformScale(__instance.transform);
         }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Gallery), nameof(Gallery.Open))]
+    public static void Gallery_Open(Gallery __instance)
+    {
+        if (Resolutions.GetPreferredAspect() > Resolutions.NativeAspect)
+        {
+            ToggleGalleryButton(false);
+        }
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Gallery), nameof(Gallery.Close))]
+    public static void Gallery_Close(Gallery __instance)
+    {
+        ToggleGalleryButton(true);
     }
 
     #endregion

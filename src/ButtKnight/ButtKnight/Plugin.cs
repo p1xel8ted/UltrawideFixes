@@ -59,6 +59,7 @@ public class Plugin : BaseUnityPlugin
 
         // Re-apply all scales for new aspect ratio
         Patches.Patches.UpdateAllTransformScales();
+        Patches.Patches.UpdateScalers(Resolutions.CurrentAspect);
 
         if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
         {

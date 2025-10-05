@@ -38,27 +38,34 @@ public static class Resolutions
         numerator = (uint)RefreshRate
     };
 
+    private static readonly Dictionary<string, float> HUDAspectValues = new()
+    {
+        { "4:3", 1.333333333333333f },
+        { "16:10", 1.6f },
+        { "16:9", 1.777777777777778f },
+        { "21:9", 2.333333333333333f },
+        { "21.5:9", 2.388888888888889f },
+        { "24:10", 2.4f },
+        { "27:9", 3.0f },
+        { "32:10", 3.2f },
+        { "32:9", 3.555555555555556f },
+        { "48:9", 5.333333333333333f }
+    };
+
     /// <summary>
     /// Retrieves the preferred aspect ratio based on configuration or defaults to the current screen aspect ratio.
     /// </summary>
     internal static float GetPreferredAspect()
     {
-        var width = ConfigManager.HUDAspect.Value switch
+        var hudAspect = ConfigManager.HUDAspect.Value;
+
+        if (hudAspect == "Auto")
         {
-            "4:3" => 1.333333333333333f,
-            "16:10" => 1.6f,
-            "16:9" => 1.777777777777778f,
-            "21:9" => 2.333333333333333f,
-            "21.5:9" => 2.388888888888889f,
-            "24:10" => 2.4f,
-            "27:9" => 3.0f,
-            "32:10" => 3.2f,
-            "32:9" => 3.555555555555556f,
-            "48:9" => 5.333333333333333f,
-            "Auto" => CurrentAspect,
-            _ => throw new ArgumentOutOfRangeException()
-        };
-        return width;
+            return CurrentAspect;
+        }
+
+        // Return value from dictionary if valid, otherwise fallback to CurrentAspect
+        return HUDAspectValues.TryGetValue(hudAspect, out var aspectValue) ? aspectValue : CurrentAspect;
     }
 
     internal static List<string> HUDAspects { get; } =
@@ -75,6 +82,22 @@ public static class Resolutions
         "48:9",     // Triple ultrawide (5.333)
         "Auto"
     ];
+
+    /// <summary>
+    /// Gets available HUD aspect ratios filtered to only include ratios <= current display aspect ratio.
+    /// </summary>
+    internal static string[] GetAvailableHUDAspects()
+    {
+        var currentAspect = CurrentAspect;
+        var availableAspects = HUDAspectValues
+            .Where(kvp => kvp.Value <= currentAspect + 0.01f) // Small tolerance for floating point comparison
+            .OrderBy(kvp => kvp.Value)
+            .Select(kvp => kvp.Key)
+            .ToList();
+
+        availableAspects.Add("Auto");
+        return availableAspects.ToArray();
+    }
 
     // var rr = new RefreshRate
     // {
@@ -107,12 +130,28 @@ public static class Resolutions
         {
             if (ConfigManager.Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
 
-            var res = ConfigManager.Resolution.Value.Split('x');
-            return new Resolution
+            try
             {
-                width = int.Parse(res[0]),
-                height = int.Parse(res[1])
-            };
+                var res = ConfigManager.Resolution.Value.Split('x');
+                if (res.Length != 2)
+                {
+                    Plugin.Log.LogWarning($"Invalid resolution format: {ConfigManager.Resolution.Value}. Using native resolution.");
+                    return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
+                }
+
+                if (!int.TryParse(res[0], out var width) || !int.TryParse(res[1], out var height) || width <= 0 || height <= 0)
+                {
+                    Plugin.Log.LogWarning($"Invalid resolution values: {ConfigManager.Resolution.Value}. Using native resolution.");
+                    return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
+                }
+
+                return new Resolution { width = width, height = height };
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogError($"Error parsing resolution {ConfigManager.Resolution.Value}: {ex.Message}. Using native resolution.");
+                return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
+            }
         }
     }
 
