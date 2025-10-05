@@ -28,7 +28,7 @@ internal static class ConfigManager
     internal static ConfigEntry<bool> RichPresence { get; private set; }
     internal static ConfigEntry<bool> HidePresenceDuringAdultContent { get; private set; }
     internal static ConfigEntry<bool> UseGenericPresenceText { get; private set; }
-    
+    internal static ConfigEntry<bool> SkipTutorial { get; private set; }
 
     internal static void Initialize(ConfigFile config, Action onDisplayUpdate, Action onHUDUpdate, Action onScanLinesUpdate, Action onVignetteUpdate, Action onForestSidesUpdate, Action onAlternateMapUpdate, Action onAlternateMapColorUpdate)
     {
@@ -126,8 +126,10 @@ internal static class ConfigManager
             new ConfigDescription("Choose the background color for the alternate world map view.", null, new ConfigurationManagerAttributes { Order = 89 }));
         AlternateMapColor.SettingChanged += (_, _) => onAlternateMapColorUpdate();
 
+        SkipTutorial =  config.Bind("06. Game", "Skip Tutorial", false, new ConfigDescription("Skip the tutorial on game start.", null, new ConfigurationManagerAttributes { Order = 17 }));
+        
         // Privacy Settings
-        RichPresence = config.Bind("06. Privacy", "Rich Presence", true,
+        RichPresence = config.Bind("07. Privacy", "Rich Presence", true,
             new ConfigDescription("Completely disable Steam and Discord Rich Presence for privacy.",
                 null, new ConfigurationManagerAttributes { Order = 20 }));
         RichPresence.SettingChanged += (_, _) =>
@@ -143,11 +145,11 @@ internal static class ConfigManager
             }
         };
 
-        HidePresenceDuringAdultContent = config.Bind("06. Privacy", "Hide Presence During Adult Content", false,
+        HidePresenceDuringAdultContent = config.Bind("07. Privacy", "Hide Presence During Adult Content", false,
             new ConfigDescription("Hide Rich Presence during H-scenes and adult content.",
                 null, new ConfigurationManagerAttributes { Order = 19 }));
 
-        UseGenericPresenceText = config.Bind("06. Privacy", "Use Generic Presence Text", false,
+        UseGenericPresenceText = config.Bind("07. Privacy", "Use Generic Presence Text", false,
             new ConfigDescription("Replace all presence text with generic 'Daydreaming' status.",
                 null, new ConfigurationManagerAttributes { Order = 18 }));
         UseGenericPresenceText.SettingChanged += (_, _) =>

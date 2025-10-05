@@ -70,7 +70,7 @@ public static class Patches
     #endregion
 
     #region Helper Methods
-    
+
     private static void ToggleGalleryButton(bool visible)
     {
         var galleryButton = GameObject.Find("[UI]/UICamping/Root/@RB/Gallery");
@@ -79,7 +79,7 @@ public static class Patches
             galleryButton.gameObject.SetActive(visible);
         }
     }
-    
+
     internal static void UpdateScalers(float aspect)
     {
         foreach (var scaler in CanvasScalers.Where(scaler => scaler))
@@ -413,6 +413,28 @@ public static class Patches
     }
 
     [HarmonyPrefix]
+    [HarmonyPatch(typeof(StoryPlayer), nameof(StoryPlayer.RunScript))]
+    public static bool StoryPlayer_RunScript(string scriptName)
+    {
+        if (!ConfigManager.SkipTutorial.Value) return true;
+        if (scriptName != "IntroStory") return true;
+        Singleton<ClimbGames.Client.SceneManager>.Instance.LoadScene("Stage00_01", null, null, null);
+        return false;
+    }
+
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ClimbGames.Client.SceneManager), nameof(ClimbGames.Client.SceneManager.LoadScene), typeof(string), typeof(string), typeof(Sprite), typeof(Action<AsyncOperation>))]
+    public static void SceneManager_LoadScene(ref string sceneName)
+    {
+        if (!ConfigManager.SkipTutorial.Value) return;
+        if (sceneName == "Tutorial")
+        {
+            sceneName = "Stage00_01";
+        }
+    }
+
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(TransitionManager), nameof(TransitionManager.LoadSceneWithTransition))]
     public static void TransitionManager_LoadSceneWithTransition(ref TransitionSettings transition)
     {
@@ -434,7 +456,7 @@ public static class Patches
         }
 
         __instance.text.SetActive(false);
-        __instance.targetXPos = __instance.transform.Find("CutIn_Img").transform.position.x * (Resolutions.CurrentAspect / 1.6f);
+        __instance.targetXPos = __instance.transform.Find("CutIn_Img").transform.position.x * (Resolutions.CurrentAspect / 1.4f);
         __instance.bossCutInImage.transform.position = new Vector3(25f, __instance.bossCutInImage.transform.position.y);
         LeanTween.moveX(__instance.bossCutInImage, __instance.targetXPos, 0.75f).setOnComplete(() => { __instance.text.SetActive(true); });
 
@@ -477,7 +499,6 @@ public static class Patches
             blackBox.gameObject.SetActive(false);
         }
     }
-
 
 
     [HarmonyPostfix]
