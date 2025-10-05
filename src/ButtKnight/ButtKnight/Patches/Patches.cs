@@ -476,7 +476,7 @@ public static class Patches
         }
     }
 
-    private static string SceneName => SceneManager.GetActiveScene().name;
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(WorldStageController), nameof(WorldStageController.Start))]
@@ -517,7 +517,7 @@ public static class Patches
             // var sr = CreateBackgroundFiller(__instance.transform, "NewBackground", ConfigManager.AlternateMapColor.Value);
             // CreatedBackgroundFillers.Add(sr);
 
-            if (Camera.main && SceneName == "World")
+            if (Camera.main && UIManager.SceneName == "World")
             {
                 Camera.main.backgroundColor = ConfigManager.AlternateMapColor.Value;
             }
@@ -701,7 +701,7 @@ public static class Patches
     [HarmonyPatch(typeof(ChangeBackgroundByCharm), nameof(ChangeBackgroundByCharm.Start))]
     public static void ChangeBackgroundByCharm_Start()
     {
-        if (Camera.main && SceneName == "GameOver")
+        if (Camera.main && UIManager.SceneName == "GameOver")
         {
             Camera.main.backgroundColor = new Color(0.0824f, 0.0706f, 0.0627f, 1f);
         }

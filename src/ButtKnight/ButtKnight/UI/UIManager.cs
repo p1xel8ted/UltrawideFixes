@@ -8,6 +8,8 @@ internal static class UIManager
     private static HashSet<Image> TouchBlockerImages { get; set; } = [];
     private static HashSet<SpriteRenderer> ForestSideSpriteRenderers { get; set; } = [];
 
+    internal static string SceneName => SceneManager.GetActiveScene().name;
+
     internal static void CacheSceneImages()
     {
         var allImages = Resources.FindObjectsOfTypeAll<Image>().ToList();
@@ -19,7 +21,7 @@ internal static class UIManager
 
         BonkImages = new HashSet<Image>(allImages.Where(a => a.activeSprite && a.activeSprite.name == "UnitSquare"));
         Plugin.Log.LogInfo($"Found and cached {BonkImages.Count} bonk images.");
-        
+
         TouchBlockerImages = new HashSet<Image>(allImages.Where(a => a.name == "TouchBlocker"));
         Plugin.Log.LogInfo($"Found and cached {TouchBlockerImages.Count} touch blocker images.");
 
@@ -28,16 +30,6 @@ internal static class UIManager
         Plugin.Log.LogInfo($"Found and cached {ForestSideSpriteRenderers.Count} forest side images.");
     }
 
-
-    internal static void UpdateWorldMapBackgroundColor()
-    {
-        if (Patches.Patches.CreatedBackgroundFillers == null) return;
-
-        foreach (var sr in Patches.Patches.CreatedBackgroundFillers.Where(sr => sr))
-        {
-            sr.color = ConfigManager.AlternateMapColor.Value;
-        }
-    }
 
     internal static void UpdateAllImagesScale()
     {
@@ -110,6 +102,22 @@ internal static class UIManager
                 Patches.Patches.CorrectTransformScale(bg.transform);
                 bg.transform.position = Vector3.zero;
             }
+        }
+    }
+
+    public static void ShowAlternateMapMessage()
+    {
+        Plugin.PopupManagerInstance.ShowPopupDlg(
+            "The 'Alternate Map Color' setting has been changed. This setting only applies to the World Map screen. Please visit a new map or restart the game to see the effect.",
+            "alternate_map_color_changed",
+            true);
+    }
+
+    public static void AlternateMapColor()
+    {
+        if (Camera.main && SceneName == "World")
+        {
+            Camera.main.backgroundColor = ConfigManager.AlternateMapColor.Value;
         }
     }
 }

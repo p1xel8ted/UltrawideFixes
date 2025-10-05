@@ -25,7 +25,8 @@ public class Plugin : BaseUnityPlugin
             onScanLinesUpdate: UIManager.ToggleScanLineImages,
             onVignetteUpdate: UIManager.ToggleVignetteImages,
             onForestSidesUpdate: UIManager.ToggleForestSides,
-            onAlternateMapColorUpdate: UIManager.UpdateWorldMapBackgroundColor);
+            onAlternateMapUpdate: UIManager.ShowAlternateMapMessage,
+            onAlternateMapColorUpdate: UIManager.AlternateMapColor);
 
         SaveManager.RegisterDeleteSaveConfig(Config);
 

@@ -30,7 +30,7 @@ internal static class ConfigManager
     internal static ConfigEntry<bool> UseGenericPresenceText { get; private set; }
     
 
-    internal static void Initialize(ConfigFile config, Action onDisplayUpdate, Action onHUDUpdate, Action onScanLinesUpdate, Action onVignetteUpdate, Action onForestSidesUpdate, Action onAlternateMapColorUpdate)
+    internal static void Initialize(ConfigFile config, Action onDisplayUpdate, Action onHUDUpdate, Action onScanLinesUpdate, Action onVignetteUpdate, Action onForestSidesUpdate, Action onAlternateMapUpdate, Action onAlternateMapColorUpdate)
     {
         var customRates = Resolutions.MergeUnityRefreshRates();
 
@@ -120,6 +120,7 @@ internal static class ConfigManager
         
         AlternateWorldMapView = config.Bind("05. World Map", "Alternate World Map View", true,
             new ConfigDescription("Enable or disable the alternate world map view.", null, new ConfigurationManagerAttributes { Order = 90 }));
+        AlternateWorldMapView .SettingChanged += (_, _) => onAlternateMapUpdate();
         
         AlternateMapColor = config.Bind("05. World Map", "Alternate Map Color", new Color(0.0896f, 0.0532f, 0.1032f, 1f),
             new ConfigDescription("Choose the background color for the alternate world map view.", null, new ConfigurationManagerAttributes { Order = 89 }));
