@@ -1,4 +1,4 @@
-﻿namespace ButtKnight;
+﻿namespace ButtKnight.Core;
 
 public static class Resolutions
 {

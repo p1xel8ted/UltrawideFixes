@@ -1,6 +1,4 @@
-using System.IO;
-
-namespace ButtKnight;
+namespace ButtKnight.Managers;
 
 internal static class SaveManager
 {
@@ -8,7 +6,7 @@ internal static class SaveManager
 
     internal static void RegisterDeleteSaveConfig(ConfigFile config)
     {
-        config.Bind("05. NUCLEAR", "RESET PROGRESS", false, new ConfigDescription(
+        config.Bind("07. NUCLEAR", "RESET PROGRESS", false, new ConfigDescription(
             "WARNING: This will delete all your progress.",
             null,
             new ConfigurationManagerAttributes { Order = 0, CustomDrawer = DeleteSaveDrawer }));

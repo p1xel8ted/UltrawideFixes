@@ -10,7 +10,6 @@ public class Plugin : BaseUnityPlugin
     internal static ManualLogSource Log { get; private set; }
     private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
     private static bool RequiresUpdate { get; set; }
-
     internal static PopupManager PopupManagerInstance { get; private set; }
 
     private void Awake()
@@ -22,10 +21,11 @@ public class Plugin : BaseUnityPlugin
         ConfigManager.Initialize(
             Config,
             onDisplayUpdate: () => UpdateAll(true),
-            onHUDUpdate: Patches.UpdateFitters,
+            onHUDUpdate: Patches.Patches.UpdateFitters,
             onScanLinesUpdate: UIManager.ToggleScanLineImages,
             onVignetteUpdate: UIManager.ToggleVignetteImages,
-            onForestSidesUpdate: UIManager.ToggleForestSides);
+            onForestSidesUpdate: UIManager.ToggleForestSides,
+            onAlternateMapColorUpdate: UIManager.UpdateWorldMapBackgroundColor);
 
         SaveManager.RegisterDeleteSaveConfig(Config);
 
@@ -38,7 +38,7 @@ public class Plugin : BaseUnityPlugin
 
     private static void UpdateAll(bool force = false)
     {
-        Patches.UpdateAllCameras();
+        Patches.Patches.UpdateAllCameras();
         UpdateDisplay(force);
     }
 
@@ -56,6 +56,9 @@ public class Plugin : BaseUnityPlugin
 
         Screen.SetResolution(Resolutions.SelectedResolution.width, Resolutions.SelectedResolution.height, ConfigManager.FullScreenModeConfig.Value, Resolutions.MaxRefreshRate);
         Log.LogInfo($"Resolution updated: {Resolutions.SelectedResolution.width}x{Resolutions.SelectedResolution.height}, Full Screen Mode={ConfigManager.FullScreenModeConfig.Value}, Refresh Rate={Resolutions.RefreshRate}Hz");
+
+        // Re-apply all scales for new aspect ratio
+        Patches.Patches.UpdateAllTransformScales();
 
         if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
         {

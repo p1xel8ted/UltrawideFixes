@@ -1,4 +1,4 @@
-﻿namespace ButtKnight;
+﻿namespace ButtKnight.UI;
 
 public class CutInUIEnforcer : MonoBehaviour
 {

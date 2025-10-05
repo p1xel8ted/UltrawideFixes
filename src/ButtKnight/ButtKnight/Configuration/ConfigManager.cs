@@ -1,4 +1,7 @@
-namespace ButtKnight;
+using ButtKnight.Patches;
+using ClimbGames.Base;
+
+namespace ButtKnight.Configuration;
 
 internal static class ConfigManager
 {
@@ -20,9 +23,17 @@ internal static class ConfigManager
     internal static ConfigEntry<bool> ForestSides { get; private set; }
     internal static ConfigEntry<bool> Vignette { get; private set; }
     internal static ConfigEntry<bool> FasterSceneTransitions { get; private set; }
+    
+    internal static ConfigEntry<bool> AlternateWorldMapView { get; private set; }
     internal static ConfigEntry<Plugin.SkipChoice> SkipChoiceConfig { get; private set; }
+    internal static ConfigEntry<Color> AlternateMapColor { get; private set; }
 
-    internal static void Initialize(ConfigFile config, Action onDisplayUpdate, Action onHUDUpdate, Action onScanLinesUpdate, Action onVignetteUpdate, Action onForestSidesUpdate)
+    internal static ConfigEntry<bool> RichPresence { get; private set; }
+    internal static ConfigEntry<bool> HidePresenceDuringAdultContent { get; private set; }
+    internal static ConfigEntry<bool> UseGenericPresenceText { get; private set; }
+    
+
+    internal static void Initialize(ConfigFile config, Action onDisplayUpdate, Action onHUDUpdate, Action onScanLinesUpdate, Action onVignetteUpdate, Action onForestSidesUpdate, Action onAlternateMapColorUpdate)
     {
         var customRates = Resolutions.MergeUnityRefreshRates();
 
@@ -109,6 +120,45 @@ internal static class ConfigManager
         
         FasterSceneTransitions = config.Bind("04. UI", "Faster Scene Transitions", true,
             new ConfigDescription("Enable or disable faster scene transition effects.", null, new ConfigurationManagerAttributes { Order = 91 }));
+        
+        AlternateWorldMapView = config.Bind("05. World Map", "Alternate World Map View", true,
+            new ConfigDescription("Enable or disable the alternate world map view.", null, new ConfigurationManagerAttributes { Order = 90 }));
+        
+        AlternateMapColor = config.Bind("05. World Map", "Alternate Map Color", new Color(0.0896f, 0.0532f, 0.1032f, 1f),
+            new ConfigDescription("Choose the background color for the alternate world map view.", null, new ConfigurationManagerAttributes { Order = 89 }));
+        AlternateMapColor.SettingChanged += (_, _) => onAlternateMapColorUpdate();
+
+        // Privacy Settings
+        RichPresence = config.Bind("06. Privacy", "Rich Presence", true,
+            new ConfigDescription("Completely disable Steam and Discord Rich Presence for privacy.",
+                null, new ConfigurationManagerAttributes { Order = 20 }));
+        RichPresence.SettingChanged += (_, _) =>
+        {
+            if (!Singleton<SteamworksManager>.Instance.IsInitialized)
+            {
+                Singleton<SteamworksManager>.Instance.Initialize();  
+            }
+            
+            if (!RichPresence.Value)
+            {
+                ButtKnight.Patches.Patches.ClearRichPresence();
+            }
+        };
+
+        HidePresenceDuringAdultContent = config.Bind("06. Privacy", "Hide Presence During Adult Content", false,
+            new ConfigDescription("Hide Rich Presence during H-scenes and adult content.",
+                null, new ConfigurationManagerAttributes { Order = 19 }));
+
+        UseGenericPresenceText = config.Bind("06. Privacy", "Use Generic Presence Text", false,
+            new ConfigDescription("Replace all presence text with generic 'Daydreaming' status.",
+                null, new ConfigurationManagerAttributes { Order = 18 }));
+        UseGenericPresenceText.SettingChanged += (_, _) =>
+        {
+            if (UseGenericPresenceText.Value)
+            {
+                ButtKnight.Patches.Patches.TrySetSteamPresence();
+            }
+        };
     }
 
     internal static int GetVSyncCount()

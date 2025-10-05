@@ -1,4 +1,4 @@
-﻿namespace ButtKnight;
+﻿namespace ButtKnight.Core;
 
 [Harmony]
 public static class ScreenResolution

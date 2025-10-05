@@ -48,6 +48,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Reference Include="com.rlabrecque.steamworks.net">
+          <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\com.rlabrecque.steamworks.net.dll</HintPath>
+        </Reference>
         <Reference Include="ConfigurationManager-BepInEx5-Mono" publicize="true">
             <HintPath>..\..\..\..\..\ZIPS\Custom ConfigManager BepInEx 5+6 Mono (use this)\ConfigurationManager-BepInEx5-Mono.dll</HintPath>
         </Reference>
@@ -89,9 +92,6 @@
       </Reference>
       <Reference Include="Unity.Splines">
         <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.Splines.dll</HintPath>
-      </Reference>
-      <Reference Include="Unity.TextMeshPro">
-        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Timeline">
         <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.Timeline.dll</HintPath>
@@ -209,6 +209,9 @@
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
         <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\Unity.TextMeshPro.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
         <HintPath>G:\SteamLibrary\steamapps\common\ButtKnight\ButtKnight_Data\Managed\UnityEngine.TilemapModule.dll</HintPath>

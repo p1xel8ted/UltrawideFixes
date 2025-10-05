@@ -1,14 +1,14 @@
-﻿namespace ButtKnight;
+﻿namespace ButtKnight.UI;
 
 internal class PopupManager : MonoBehaviour
 {
-    internal bool ShowPopup;
+    private bool _showPopup;
     private string _popupMessage = "";
     private Rect _popupRect;
     private GUIStyle _messageStyle;
     private GUIStyle _windowStyle;
     private GUIStyle _titleStyle;
-    private readonly HashSet<string> _suppressedPopupIds = new();
+    private readonly HashSet<string> _suppressedPopupIds = [];
     private bool _ignoreDontShow;
     private string _currentPopupId;
 
@@ -40,7 +40,7 @@ internal class PopupManager : MonoBehaviour
 
     private void OnGUI()
     {
-        if (ShowPopup)
+        if (_showPopup)
         {
             _popupRect = new Rect(
                 Screen.width / 2f - 250,
@@ -68,14 +68,14 @@ internal class PopupManager : MonoBehaviour
         GUILayout.FlexibleSpace();
         if (GUILayout.Button("OK", GUILayout.Width(100), GUILayout.Height(40)))
         {
-            ShowPopup = false;
+            _showPopup = false;
         }
         if (!_ignoreDontShow)
         {
             if (GUILayout.Button("Close & Don't Show Again This Session", GUILayout.Width(250), GUILayout.Height(40)))
             {
                 _suppressedPopupIds.Add(_currentPopupId);
-                ShowPopup = false;
+                _showPopup = false;
             }
         }
         GUILayout.FlexibleSpace();
@@ -89,6 +89,6 @@ internal class PopupManager : MonoBehaviour
         if (_suppressedPopupIds.Contains(popupId) && showCloseAndDontShowAgain) return;
         _popupMessage = message;
         _currentPopupId = popupId;
-        ShowPopup = true;
+        _showPopup = true;
     }
 }

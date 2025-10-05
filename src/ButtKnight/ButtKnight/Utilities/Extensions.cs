@@ -1,4 +1,4 @@
-﻿namespace ButtKnight;
+﻿namespace ButtKnight.Utilities;
 
 public static class Extensions
 {
