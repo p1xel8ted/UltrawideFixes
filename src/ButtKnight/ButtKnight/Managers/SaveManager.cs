@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace ButtKnight.Managers;
 
 internal static class SaveManager
@@ -53,7 +55,7 @@ internal static class SaveManager
         var basePath = Application.persistentDataPath;
         var saveBasePath = Path.Combine(basePath, "NaninovelData", "Saves");
 
-        var results = new System.Text.StringBuilder();
+        var results = new StringBuilder();
         results.AppendLine("Progress Reset Results:");
         results.AppendLine();
 

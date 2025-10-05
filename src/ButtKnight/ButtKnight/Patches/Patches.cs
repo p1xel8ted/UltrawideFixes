@@ -1,5 +1,7 @@
 // ReSharper disable InconsistentNaming
 
+using CameraManager = Naninovel.CameraManager;
+
 namespace ButtKnight.Patches;
 
 [Harmony]
@@ -351,9 +353,9 @@ public static class Patches
 
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Naninovel.CameraManager), nameof(Naninovel.CameraManager.InitializeMainCamera))]
-    [HarmonyPatch(typeof(Naninovel.CameraManager), nameof(Naninovel.CameraManager.InitializeUICamera))]
-    public static void CameraConfiguration_EvaluateSceneRect(Naninovel.CameraManager __instance, ref Camera __result)
+    [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.InitializeMainCamera))]
+    [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.InitializeUICamera))]
+    public static void CameraConfiguration_EvaluateSceneRect(CameraManager __instance, ref Camera __result)
     {
         __result.aspect = Resolutions.CurrentAspect;
         __result.pixelRect = new Rect(0, 0, Resolutions.MainWidth, Resolutions.MainHeight);

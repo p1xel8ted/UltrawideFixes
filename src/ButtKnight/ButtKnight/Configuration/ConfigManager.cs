@@ -139,7 +139,7 @@ internal static class ConfigManager
             
             if (!RichPresence.Value)
             {
-                ButtKnight.Patches.Patches.ClearRichPresence();
+                Patches.Patches.ClearRichPresence();
             }
         };
 
@@ -154,7 +154,7 @@ internal static class ConfigManager
         {
             if (UseGenericPresenceText.Value)
             {
-                ButtKnight.Patches.Patches.TrySetSteamPresence();
+                Patches.Patches.TrySetSteamPresence();
             }
         };
 
