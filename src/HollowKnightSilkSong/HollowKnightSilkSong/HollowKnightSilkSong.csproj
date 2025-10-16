@@ -5,7 +5,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Product>Hollow Knight Silk Song Ultra-Wide</Product>
-    <Version>0.1.4</Version>
+    <Version>0.1.5</Version>
     <AssemblyName>$(Product)</AssemblyName>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
