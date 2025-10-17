@@ -1,4 +1,4 @@
-﻿// ReSharper disable InconsistentNaming
+// ReSharper disable InconsistentNaming
 
 
 // Main namespace for the Hollow Knight Silksong Ultra-Wide mod
@@ -67,6 +67,7 @@ public static class Patches
         _cachedHeroLightDonut = Plugin.ReduceHeroLight.Value;
         _cachedVignette = Plugin.Vignette.Value;
         _cachedFieldOfView = Plugin.CameraFieldOfView.Value;
+        ApplyFovOffset();
         _cachedHudOffset = Plugin.HudOffset.Value;
         _cachedVignetteAlpha = Plugin.VignetteAlpha.Value;
         var currentScaleState = Plugin.ShouldScaleBlackEdges;
@@ -170,6 +171,22 @@ public static class Patches
         if (AnchorTransform)
         {
             AnchorTransform.localPosition = AnchorTransform.localPosition with { x = _cachedHudOffset };
+        }
+    }
+
+    /// <summary>
+    /// Applies the cached FOV offset to the game's camera system using ForceCameraAspect.SetExtraFovOffset.
+    /// </summary>
+    internal static void ApplyFovOffset()
+    {
+        // Only apply FOV changes during actual gameplay, not in menus or cutscenes
+        if (!GameManager.SilentInstance || !GameManager.SilentInstance.IsGameplayScene()) return;
+
+        var forceCameraAspect = GameCameras.instance.forceCameraAspect;
+        if (forceCameraAspect != null)
+        {
+            forceCameraAspect.SetExtraFovOffset(_cachedFieldOfView);
+            Plugin.Log.LogInfo($"[FOV] Applied FOV offset: {_cachedFieldOfView}");
         }
     }
 
@@ -314,6 +331,17 @@ public static class Patches
     }
 
     /// <summary>
+    /// Harmony postfix patch for GameCameras.StartScene.
+    /// Calls ApplyFovOffset after the game camera has initialized for the new scene.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(GameCameras), nameof(GameCameras.StartScene))]
+    public static void GameCameras_StartScene()
+    {
+        ApplyFovOffset();
+    }
+
+    /// <summary>
     /// Harmony postfix patch for HeroController.FixedUpdate.
     /// Updates hero light, donut light, and vignette effect based on plugin config values.
     /// </summary>
@@ -346,22 +374,6 @@ public static class Patches
         // Store original alpha and apply configured intensity
         OriginalVignetteAlpha.Value = __instance.vignette.color.a;
         __instance.vignette.color = __instance.vignette.color with { a = _cachedVignetteAlpha };
-    }
-
-    /// <summary>
-    /// Harmony prefix patch for tk2dCamera.UpdateCameraMatrix.
-    /// Adjusts the camera field of view for gameplay scenes based on plugin config.
-    /// </summary>
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(tk2dCamera), nameof(tk2dCamera.UpdateCameraMatrix))]
-    public static void tk2dCamera_UpdateCameraMatrix(tk2dCamera __instance)
-    {
-        // Only apply FOV changes during actual gameplay, not in menus or cutscenes
-        if (!GameManager.SilentInstance || !GameManager.SilentInstance.IsGameplayScene()) return;
-
-        // Store original FOV and apply configured adjustment
-        OriginalFOV.Value = __instance.SettingsRoot.CameraSettings.fieldOfView;
-        __instance.SettingsRoot.CameraSettings.fieldOfView = OriginalFOV.Value + _cachedFieldOfView;
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿// Main namespace for the Hollow Knight Silksong Ultra-Wide mod
+// Main namespace for the Hollow Knight Silksong Ultra-Wide mod
 
 namespace HollowKnightSilkSong;
 
