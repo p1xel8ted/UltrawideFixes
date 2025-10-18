@@ -1,0 +1,74 @@
+﻿namespace ImmortalLegacyTheJadeCipher;
+
+[BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+public class Plugin : BaseUnityPlugin
+{
+    private const string PluginGuid = "p1xel8ted.immortallegacythejadecipher.ultrawide";
+    internal const string PluginName = "Immortal Legacy The Jade Cipher Ultra-Wide";
+    private const string PluginVersion = "0.1.0";
+
+    internal static ManualLogSource Log { get; private set; }
+    private static ConfigurationManager.ConfigurationManager ConfigurationManager => global::ConfigurationManager.ConfigurationManager.Instance;
+    private static bool RequiresUpdate { get; set; }
+    // internal static PopupManager PopupManagerInstance { get; private set; }
+
+    private void Awake()
+    {
+        Log = Logger;
+
+        // PopupManagerInstance = gameObject.AddComponent<PopupManager>();
+
+        ConfigManager.Initialize(
+            Config,
+            onDisplayUpdate: () => UpdateAll(true)); //,
+        //onHUDUpdate: Patches.Patches.UpdateFitters);
+
+
+        SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+
+        Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+
+        Log.LogInfo($"Plugin {PluginName} is loaded!");
+    }
+
+    private static void UpdateAll(bool force = false)
+    {
+      UpdateDisplay(force);
+        Volumes.UpdateVolumes();
+        Volumes.UpdateAntialiasing();
+    }
+
+    private static void UpdateDisplay(bool force = false)
+    {
+        QualitySettings.vSyncCount = ConfigManager.GetVSyncCount();
+        Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? ConfigManager.TargetFramerate.Value : -1;
+
+        if (force)
+        {
+            RequiresUpdate = true;
+        }
+
+        if (!RequiresUpdate) return;
+
+        Screen.SetResolution(Resolutions.SelectedResolution.width, Resolutions.SelectedResolution.height, ConfigManager.FullScreenModeConfig.Value, Resolutions.MaxRefresh);
+        Log.LogInfo($"Resolution updated: {Resolutions.SelectedResolution.width}x{Resolutions.SelectedResolution.height}, Full Screen Mode={ConfigManager.FullScreenModeConfig.Value}, Refresh Rate={Resolutions.RefreshRate}Hz");
+
+        // Re-apply all scales for new aspect ratio
+        // Patches.Patches.UpdateAllTransformScales();
+        Patches.Patches.UpdateScalers(Resolutions.CurrentAspect);
+
+        if (ConfigurationManager && ConfigurationManager.DisplayingWindow)
+        {
+            ConfigurationManager.CloseWindow();
+            ConfigurationManager.OpenWindow();
+        }
+        
+        RequiresUpdate = false;
+    }
+
+    private static void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode arg1)
+    {
+        UpdateAll();
+    }
+
+}

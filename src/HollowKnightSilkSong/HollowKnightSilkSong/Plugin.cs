@@ -19,9 +19,9 @@ public class Plugin : BaseUnityPlugin
     private const float MaxThresholdBuffer = 1f;
 
     // Multipliers for rounding config values to user-friendly increments
-    private const float FOVRoundingMultiplier = 10f; // Rounds FOV to nearest 0.1
-    private const float VignetteRoundingMultiplier = 20f; // Rounds vignette alpha to nearest 0.05
-    private const float HudOffsetRoundingMultiplier = 2f; // Rounds HUD offset to nearest 0.5
+    private const float FOVRoundingMultiplier = 40f; // Rounds FOV to nearest 0.025
+    private const float VignetteRoundingMultiplier = 40f; // Rounds vignette alpha to nearest 0.025
+    private const float HudOffsetRoundingMultiplier = 40f; // Rounds HUD offset to nearest 0.025
 
     // Value ranges for configuration options
     private const float MinFOV = -5f; // Minimum allowed FOV adjustment
@@ -61,7 +61,7 @@ public class Plugin : BaseUnityPlugin
 #if DEBUG
     // Debug-only test resolution for aspect calculations
     internal const int TestWidth = 3200;
-    internal const int TestHeight = 300;
+    internal const int TestHeight = 600;
     public static float CurrentAspect => TestWidth / (float)TestHeight;
 #else
     // Actual aspect ratio based on current screen resolution
@@ -78,7 +78,7 @@ public class Plugin : BaseUnityPlugin
 
     private const float BaseThreshold = 4.7056f;
     private const float FOVFactor = 0.1192f;
-    
+
     // SUBTRACT buffer to make threshold lower (edge scaling kicks in earlier)
     private static float EdgeThreshold => BaseThreshold - FOVFactor * CameraFieldOfView.Value - EdgeThresholdBuffer.Value;
 
@@ -110,6 +110,7 @@ public class Plugin : BaseUnityPlugin
 
     // Determines if feathering should be removed (for High quality edge fix)
     public static bool ShouldRemoveFeathering => EdgeQuality.Value == EdgeFixQuality.High && ShouldScaleBlackEdges;
+    public static float PositiveScaleFactor => CurrentAspect / NativeAspect;
 
     /// <summary>
     /// Called when the plugin is loaded. Sets up config, event handlers, and applies patches.
@@ -325,7 +326,7 @@ public class Plugin : BaseUnityPlugin
         EdgeThresholdBuffer = config.Bind("07. Display", "Edge Detection Sensitivity", 0.2f,
             new ConfigDescription("Lower values = edges must be more obvious before scaling. Higher values = scale preemptively.",
                 new AcceptableValueRange<float>(MinThresholdBuffer, MaxThresholdBuffer),
-                new ConfigurationManagerAttributes { Order = 79}));
+                new ConfigurationManagerAttributes { Order = 79 }));
     }
 
 

@@ -2,6 +2,10 @@
 
 
 // Main namespace for the Hollow Knight Silksong Ultra-Wide mod
+
+using System.Collections;
+using Object = UnityEngine.Object;
+
 namespace HollowKnightSilkSong;
 
 /// <summary>
@@ -13,12 +17,16 @@ public static class Patches
 {
     // Stores the original screen match mode for each CanvasScaler instance, so it can be restored if needed
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
+
     // Tracks all CanvasScaler components for aspect ratio adjustments
     private static readonly List<CanvasScaler> CanvasScalers = [];
+
     // WriteOnce wrappers to store original sizes for UI elements and prevent accidental overwrites
     private static readonly WriteOnce<float> OriginalBorderSize = new();
     private static readonly WriteOnce<float> OriginalBackboardSize = new();
+
     private static readonly WriteOnce<float> OriginalMapSize = new();
+
     // Cached config values for performance and consistency
     private static bool _cachedHeroLight;
     private static bool _cachedHeroLightDonut;
@@ -26,7 +34,9 @@ public static class Patches
     private static float _cachedVignetteAlpha;
     private static float _cachedFieldOfView;
     private static float _cachedHudOffset;
+
     private static readonly WriteOnce<float> OriginalFOV = new();
+
     // References to specific UI and light transforms for runtime manipulation
     private static SpriteRenderer DonutLightTransform { get; set; }
     private static WriteOnce<float> OriginalAlpha { get; } = new();
@@ -80,6 +90,8 @@ public static class Patches
             _lastScaleState = currentScaleState;
             _lastFeatherState = currentFeatherState;
         }
+
+        UpdateHudOffset();
     }
 
     //rotation 0 0 0 == left edge
@@ -101,19 +113,19 @@ public static class Patches
             // Only scale left/right borders
             var isLeftBorder = Mathf.Approximately(border.FinalRotation.z, 0f);
             var isRightBorder = Mathf.Approximately(border.FinalRotation.z, 180f);
-        
+
             if (isLeftBorder || isRightBorder)
             {
                 var transform = border.GameObject.transform;
-            
+
                 // Calculate new border width
                 var newX = border.OriginalScaleX * scaleFactor;
-            
+
                 // Update scale
                 var newScale = border.FinalScale;
                 newScale.x = newX;
                 transform.localScale = newScale;
-            
+
                 // Recalculate position based on new border width
                 var newPos = border.FinalPosition;
                 if (isLeftBorder)
@@ -121,17 +133,18 @@ public static class Patches
                     // Left border: position.x = -(x/2)
                     newPos.x = -(newX / 2f);
                 }
-                else  // Must be right border
+                else // Must be right border
                 {
                     // Right border: position.x = sceneWidth + (x/2)
                     newPos.x = border.SceneWidth + newX / 2f;
                 }
+
                 transform.localPosition = newPos;
-            
+
                 // Force Unity to update
                 transform.hasChanged = true;
             }
-        
+
             // Update feathered edge for all borders
             if (border.FeatheredEdge)
             {
@@ -162,49 +175,97 @@ public static class Patches
         }
     }
 
+    private static float previousFov = -1f;
+
+    /// <summary>
+    /// Applies the cached FOV offset to the game's camera system using ForceCameraAspect.SetExtraFovOffset.
+    /// </summary>
+    private static void ApplyFovOffset()
+    {
+        // Only apply FOV changes during actual gameplay, not in menus or cutscenes
+        if (!InGameplayScene()) return;
+
+        // Avoid redundant FOV updates
+        if (Mathf.Approximately(previousFov, _cachedFieldOfView)) return;
+
+
+        var forceCameraAspect = GameCameras.SilentInstance.forceCameraAspect;
+
+        if (!forceCameraAspect) return;
+
+        forceCameraAspect.SetExtraFovOffset(_cachedFieldOfView);
+        previousFov = _cachedFieldOfView;
+
+        Plugin.Log.LogInfo($"[FOV] Applied FOV offset: {_cachedFieldOfView}");
+    }
+
+
+    // /// <summary>
+    // /// Harmony prefix patch for HUDCamera.SetIsGameplayMode. Sets up anchor transform for HUD offset when entering gameplay mode.
+    // /// </summary>
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(HUDCamera), nameof(HUDCamera.SetIsGameplayMode))]
+    // public static void HUDCamera_SetIsGameplayMode(HUDCamera __instance, bool isGameplayMode)
+    // {
+    //     if (!isGameplayMode) return;
+    //
+    //     var anchor = __instance.transform.Find("In-game/Anchor TL");
+    //     if (!anchor) return;
+    //     AnchorTransform = anchor;
+    //     UpdateHudOffset();
+    // }
+
+    private static bool InGameplayScene()
+    {
+        return GameManager.SilentInstance && GameManager.SilentInstance.IsGameplayScene();
+    }
 
     /// <summary>
     /// Updates the HUD anchor's X position to match the configured HUD offset.
     /// </summary>
     internal static void UpdateHudOffset()
     {
+        if (!InGameplayScene()) return;
+
         if (AnchorTransform)
         {
-            AnchorTransform.localPosition = AnchorTransform.localPosition with { x = _cachedHudOffset };
+            var pos = AnchorTransform.localPosition;
+            pos.x = _cachedHudOffset;
+            AnchorTransform.localPosition = pos;
         }
-    }
-
-    /// <summary>
-    /// Applies the cached FOV offset to the game's camera system using ForceCameraAspect.SetExtraFovOffset.
-    /// </summary>
-    internal static void ApplyFovOffset()
-    {
-        // Only apply FOV changes during actual gameplay, not in menus or cutscenes
-        if (!GameManager.SilentInstance || !GameManager.SilentInstance.IsGameplayScene()) return;
-
-        var forceCameraAspect = GameCameras.instance.forceCameraAspect;
-        if (forceCameraAspect != null)
+        else
         {
-            forceCameraAspect.SetExtraFovOffset(_cachedFieldOfView);
-            Plugin.Log.LogInfo($"[FOV] Applied FOV offset: {_cachedFieldOfView}");
+            Plugin.Log.LogWarning("[HUD OFFSET] AnchorTransform is null, cannot update HUD offset");
         }
     }
 
-
     /// <summary>
-    /// Harmony prefix patch for HUDCamera.SetIsGameplayMode. Sets up anchor transform for HUD offset when entering gameplay mode.
+    /// Updates the HUD anchor's X position to match the configured HUD offset.
     /// </summary>
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(HUDCamera), nameof(HUDCamera.SetIsGameplayMode))]
-    public static void HUDCamera_SetIsGameplayMode(HUDCamera __instance, bool isGameplayMode)
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(HudGlobalHide), nameof(HudGlobalHide.OnEnable))]
+    [HarmonyPatch(typeof(HudGlobalHide), nameof(HudGlobalHide.UpdateLocation))]
+    public static void HudGlobalHide_UpdateLocation(HudGlobalHide __instance)
     {
-        if (!isGameplayMode) return;
+        if (!AnchorTransform)
+        {
+            AnchorTransform = __instance.transform.parent;
+        }
 
-        var anchor = __instance.transform.Find("In-game/Anchor TL");
-        if (!anchor) return;
-        AnchorTransform = anchor;
         UpdateHudOffset();
     }
+
+    // private static Transform GetHudAnchorTransform()
+    // {
+    //     // Already cached, this shouldn't be called unless AnchorTransform is null
+    //     var attemptOne = GameObject.Find("_GameCameras/HudCamera/In-game/Anchor TL/")?.transform;
+    //     if (attemptOne)
+    //     {
+    //         return attemptOne;
+    //     }
+    //
+    //     return Object.FindFirstObjectByType<HudGlobalHide>()?.transform.parent;
+    // }
 
     /// <summary>
     /// Harmony prefix patch for MenuResolutionSetting.ResetToDefaultResolution.
@@ -237,9 +298,9 @@ public static class Patches
         // Extract all unique refresh rates from available system resolutions
         // This ensures we can offer native resolution at all supported refresh rates
         var refreshRates = Screen.resolutions
-            .Select(r => r.refreshRateRatio)    // Get refresh rate from each resolution
-            .Distinct()                         // Remove duplicates
-            .OrderBy(r => r)                    // Sort ascending
+            .Select(r => r.refreshRateRatio) // Get refresh rate from each resolution
+            .Distinct() // Remove duplicates
+            .OrderBy(r => r) // Sort ascending
             .ToArray();
 
         var resList = new List<Resolution>();
@@ -262,10 +323,10 @@ public static class Patches
 
         // Remove duplicate resolutions and sort by dimensions, then refresh rate
         var unique = resList
-            .Distinct(new ResolutionComparer())         // Remove duplicates using custom comparer
-            .OrderBy(r => r.width)                      // Primary sort: width (ascending)
-            .ThenBy(r => r.height)                      // Secondary sort: height (ascending)
-            .ThenBy(r => r.refreshRateRatio.value)      // Tertiary sort: refresh rate (ascending)
+            .Distinct(new ResolutionComparer()) // Remove duplicates using custom comparer
+            .OrderBy(r => r.width) // Primary sort: width (ascending)
+            .ThenBy(r => r.height) // Secondary sort: height (ascending)
+            .ThenBy(r => r.refreshRateRatio.value) // Tertiary sort: refresh rate (ascending)
             .ToArray();
 
         __instance.availableResolutions = unique;
@@ -289,7 +350,7 @@ public static class Patches
             {
                 entry.selectable.gameObject.SetActive(Plugin.MenuClutter.Value);
             }
-            
+
             if (entry.selectable.name == "ScreenScaleButton")
             {
                 entry.selectable.gameObject.SetActive(false);
@@ -297,10 +358,7 @@ public static class Patches
         }
     }
 
-    /// <summary>
-    /// Harmony postfix patch for ForceCameraAspect.Awake.
-    /// Sets the current viewport aspect ratio to match the plugin's calculated aspect.
-    /// </summary>
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.Awake))]
     public static void ForceCameraAspect_Awake()
@@ -328,6 +386,7 @@ public static class Patches
     public static void ForceCameraAspect_AutoScaleViewport(ref float __result)
     {
         __result = Plugin.CurrentAspect;
+        UpdateHudOffset();
     }
 
     /// <summary>
@@ -369,7 +428,7 @@ public static class Patches
         // Control vignette effect (screen darkening around edges)
         if (!__instance.vignette) return;
         __instance.vignette.enabled = _cachedVignette;
-        if (!__instance.vignette.enabled) return;   // Skip alpha changes if vignette is disabled
+        if (!__instance.vignette.enabled) return; // Skip alpha changes if vignette is disabled
 
         // Store original alpha and apply configured intensity
         OriginalVignetteAlpha.Value = __instance.vignette.color.a;
@@ -400,9 +459,9 @@ public static class Patches
                 // Look for the pattern: ldarg.0, ldc.i4.1, stfld <showIntroSequence>
                 // This represents: this.showIntroSequence = true;
                 if (i + 2 < modifiedCode.Count &&
-                    modifiedCode[i].opcode == OpCodes.Ldarg_0 &&      // Load 'this' onto stack
+                    modifiedCode[i].opcode == OpCodes.Ldarg_0 && // Load 'this' onto stack
                     modifiedCode[i + 1].opcode == OpCodes.Ldc_I4_1 && // Load constant 1 (true)
-                    modifiedCode[i + 2].opcode == OpCodes.Stfld &&    // Store field
+                    modifiedCode[i + 2].opcode == OpCodes.Stfld && // Store field
                     modifiedCode[i + 2].operand is FieldInfo fi && fi.Name.Contains("<showIntroSequence>"))
                 {
                     // Replace ldc.i4.1 (load constant 1) with ldc.i4.0 (load constant 0)
@@ -492,12 +551,12 @@ public static class Patches
             for (var i = 0; i < modifiedCodes.Count; i++)
             {
                 if (modifiedCodes[i].opcode != OpCodes.Stloc_0) continue;
-                
+
                 modifiedCodes.InsertRange(i + 1, [
-                    new CodeInstruction(OpCodes.Ldloc_0),        // Load x
+                    new CodeInstruction(OpCodes.Ldloc_0), // Load x
                     new CodeInstruction(OpCodes.Call, getScaleFactorMethod), // Get our scale factor
-                    new CodeInstruction(OpCodes.Mul),            // Multiply x * scale
-                    new CodeInstruction(OpCodes.Stloc_0)         // Store scaled x
+                    new CodeInstruction(OpCodes.Mul), // Multiply x * scale
+                    new CodeInstruction(OpCodes.Stloc_0) // Store scaled x
                 ]);
                 break; // Only modify the first stloc.0 (the border width variable)
             }
@@ -522,7 +581,7 @@ public static class Patches
             for (var i = modifiedCodes.Count - 1; i >= 0; i--)
             {
                 if (!modifiedCodes[i].Calls(moveGameObjectMethod)) continue;
-                
+
                 // Walk backwards to find the ldarg.0 that loads 'this' for the MoveGameObjectToScene call
                 var insertIndex = i - 2; // Start looking before the call
                 while (insertIndex > 0 && modifiedCodes[insertIndex].opcode != OpCodes.Ldarg_0)
@@ -531,13 +590,13 @@ public static class Patches
                 }
 
                 if (insertIndex <= 0) continue;
-                
+
                 // Insert our border tracking calls before the ldarg.0
                 // At this point, the GameObject is on the stack ready for MoveGameObjectToScene
                 modifiedCodes.InsertRange(insertIndex, [
-                    new CodeInstruction(OpCodes.Dup),                    // Copy GameObject reference
-                    new CodeInstruction(OpCodes.Call, modifyMethod),     // Call our ModifyGameObject method
-                    new CodeInstruction(OpCodes.Dup),                    // Copy GameObject reference again
+                    new CodeInstruction(OpCodes.Dup), // Copy GameObject reference
+                    new CodeInstruction(OpCodes.Call, modifyMethod), // Call our ModifyGameObject method
+                    new CodeInstruction(OpCodes.Dup), // Copy GameObject reference again
                     new CodeInstruction(OpCodes.Call, storePositionMethod) // Call our StoreGameObjectPosition method
                 ]);
 
@@ -583,6 +642,7 @@ public static class Patches
             TrackedBorders.RemoveAt(0);
             Plugin.Log.LogInfo($"[BORDERS] Reached max capacity ({MaxTrackedBorders}), removed oldest border");
         }
+
         TrackedBorders.Add(borderInfo);
 
         // Apply initial feathering state based on current configuration
@@ -604,38 +664,40 @@ public static class Patches
         public Vector3 FinalPosition { get; set; }
         public Vector3 FinalScale { get; set; }
         public Vector3 FinalRotation { get; set; }
+
         public float SceneWidth { get; set; }
-        public float SceneHeight { get; set; }
+        //public float SceneHeight { get; set; }
     }
 
-public static void StoreGameObjectPosition(GameObject go)
-{
-    var borderInfo = TrackedBorders.FirstOrDefault(t => t.GameObject == go);
-    if (borderInfo == null) return;
-
-    // Store the final transform data
-    borderInfo.FinalPosition = go.transform.localPosition;
-    borderInfo.FinalScale = go.transform.localScale;
-    borderInfo.FinalRotation = go.transform.eulerAngles;
-    
-    // Store which border this is based on position (we need this for recalculation)
-    var gm = GameManager.instance;
-    if (gm)
+    public static void StoreGameObjectPosition(GameObject go)
     {
-        borderInfo.SceneWidth = gm.sceneWidth;
-        borderInfo.SceneHeight = gm.sceneHeight;
+        var borderInfo = TrackedBorders.FirstOrDefault(t => t.GameObject == go);
+        if (borderInfo == null) return;
+
+        // Store the final transform data
+        borderInfo.FinalPosition = go.transform.localPosition;
+        borderInfo.FinalScale = go.transform.localScale;
+        borderInfo.FinalRotation = go.transform.eulerAngles;
+
+        // Store which border this is based on position (we need this for recalculation)
+        var gm = GameManager.SilentInstance;
+        if (gm)
+        {
+            borderInfo.SceneWidth = gm.sceneWidth;
+            // borderInfo.SceneHeight = gm.sceneHeight;
+        }
     }
-}
 
 
     // List of all tracked border GameObjects for scaling and positioning
     private static readonly List<BorderInfo> TrackedBorders = [];
+
     // Maximum number of borders to track to prevent memory leaks
     private const int MaxTrackedBorders = 100;
+
     // Last known scale and feathering states to avoid redundant updates
     private static bool _lastScaleState;
     private static bool _lastFeatherState;
-
 
 
     /// <summary>
@@ -682,7 +744,7 @@ public static void StoreGameObjectPosition(GameObject go)
         var modifiedCode = new List<CodeInstruction>(originalCode);
 
         // Original hardcoded aspect ratio limits in the game
-        const float defaultMin = 1.6f;      // Original minimum aspect (16:10)
+        const float defaultMin = 1.6f; // Original minimum aspect (16:10)
         const float defaultMax = 2.3916667f; // Original maximum aspect (21.5:9)
 
         try
@@ -701,15 +763,15 @@ public static void StoreGameObjectPosition(GameObject go)
                 // Replace minimum aspect ratio limit for 4:3 display support
                 if (!foundMin && Mathf.Approximately(value, defaultMin))
                 {
-                    t.operand = 1.0f; // Lower minimum to support 4:3 (1.333) and other narrow aspects
-                    Plugin.Log.LogInfo($"[TRANSPILER] Replaced min aspect {defaultMin} with 1.0 for 4:3 support.");
+                    t.operand = 0.1f; // Lower minimum to support 4:3 (1.333) and other narrow aspects
+                    Plugin.Log.LogInfo($"[TRANSPILER] Replaced min aspect {defaultMin} with 0.1 for 4:3 support.");
                     foundMin = true;
                 }
                 // Replace maximum aspect ratio limit for ultra-wide display support
                 else if (!foundMax && Mathf.Approximately(value, defaultMax))
                 {
-                    t.operand = 10f; // Higher maximum for ultra-wide displays (32:9 = 3.56, so 10 gives plenty of headroom)
-                    Plugin.Log.LogInfo($"[TRANSPILER] Replaced max aspect {defaultMax} with 10 for ultra-wide support.");
+                    t.operand = 200f; // Higher maximum for ultra-wide displays (32:9 = 3.56, so 20 gives plenty of headroom)
+                    Plugin.Log.LogInfo($"[TRANSPILER] Replaced max aspect {defaultMax} with 20 for ultra-wide support.");
                     foundMax = true;
                 }
 
