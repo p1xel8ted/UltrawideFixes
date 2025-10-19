@@ -3,9 +3,6 @@
 
 // Main namespace for the Hollow Knight Silksong Ultra-Wide mod
 
-using System.Collections;
-using Object = UnityEngine.Object;
-
 namespace HollowKnightSilkSong;
 
 /// <summary>
@@ -15,6 +12,9 @@ namespace HollowKnightSilkSong;
 [Harmony]
 public static class Patches
 {
+    // Maximum number of borders to track to prevent memory leaks
+    private const int MaxTrackedBorders = 100;
+
     // Stores the original screen match mode for each CanvasScaler instance, so it can be restored if needed
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
 
@@ -36,6 +36,16 @@ public static class Patches
     private static float _cachedHudOffset;
 
     private static readonly WriteOnce<float> OriginalFOV = new();
+
+    private static float previousFov = -1f;
+
+
+    // List of all tracked border GameObjects for scaling and positioning
+    private static readonly List<BorderInfo> TrackedBorders = [];
+
+    // Last known scale and feathering states to avoid redundant updates
+    private static bool _lastScaleState;
+    private static bool _lastFeatherState;
 
     // References to specific UI and light transforms for runtime manipulation
     private static SpriteRenderer DonutLightTransform { get; set; }
@@ -65,11 +75,22 @@ public static class Patches
         OriginalFOV.ResetValue();
         OriginalVignetteAlpha.ResetValue();
         OriginalVignetteSize.ResetValue();
+
+        // Reset FOV tracking
+        previousFov = -1f;
     }
 
+    /// <summary>
+    /// Resets FOV tracking so it gets reapplied on next gameplay scene entry.
+    /// Called on scene transitions to ensure FOV is properly reapplied after the game resets it.
+    /// </summary>
+    internal static void ResetFovTracking()
+    {
+        previousFov = -1f;
+    }
 
     /// <summary>
-    /// Updates cached config values for performance and triggers border updates if edge fix settings changed.
+    /// Updates cached config values for performance, applies FOV offset, and triggers border updates if edge fix settings changed.
     /// </summary>
     internal static void UpdateConfigCache()
     {
@@ -99,7 +120,7 @@ public static class Patches
     //rotation 0 0 90 == bottom edge
     //rotation 0 0 270 == top edge
 
-    internal static void UpdateAllBorders()
+    private static void UpdateAllBorders()
     {
         var scaleFactor = Plugin.ShouldScaleBlackEdges ? 5f : 1f;
         var showFeathering = Plugin.ShouldScaleBlackEdges && !Plugin.ShouldRemoveFeathering;
@@ -175,8 +196,6 @@ public static class Patches
         }
     }
 
-    private static float previousFov = -1f;
-
     /// <summary>
     /// Applies the cached FOV offset to the game's camera system using ForceCameraAspect.SetExtraFovOffset.
     /// </summary>
@@ -198,22 +217,6 @@ public static class Patches
 
         Plugin.Log.LogInfo($"[FOV] Applied FOV offset: {_cachedFieldOfView}");
     }
-
-
-    // /// <summary>
-    // /// Harmony prefix patch for HUDCamera.SetIsGameplayMode. Sets up anchor transform for HUD offset when entering gameplay mode.
-    // /// </summary>
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(HUDCamera), nameof(HUDCamera.SetIsGameplayMode))]
-    // public static void HUDCamera_SetIsGameplayMode(HUDCamera __instance, bool isGameplayMode)
-    // {
-    //     if (!isGameplayMode) return;
-    //
-    //     var anchor = __instance.transform.Find("In-game/Anchor TL");
-    //     if (!anchor) return;
-    //     AnchorTransform = anchor;
-    //     UpdateHudOffset();
-    // }
 
     private static bool InGameplayScene()
     {
@@ -240,7 +243,7 @@ public static class Patches
     }
 
     /// <summary>
-    /// Updates the HUD anchor's X position to match the configured HUD offset.
+    /// Harmony postfix patch for HudGlobalHide that captures the HUD anchor transform and applies the configured HUD offset.
     /// </summary>
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HudGlobalHide), nameof(HudGlobalHide.OnEnable))]
@@ -254,18 +257,6 @@ public static class Patches
 
         UpdateHudOffset();
     }
-
-    // private static Transform GetHudAnchorTransform()
-    // {
-    //     // Already cached, this shouldn't be called unless AnchorTransform is null
-    //     var attemptOne = GameObject.Find("_GameCameras/HudCamera/In-game/Anchor TL/")?.transform;
-    //     if (attemptOne)
-    //     {
-    //         return attemptOne;
-    //     }
-    //
-    //     return Object.FindFirstObjectByType<HudGlobalHide>()?.transform.parent;
-    // }
 
     /// <summary>
     /// Harmony prefix patch for MenuResolutionSetting.ResetToDefaultResolution.
@@ -379,7 +370,7 @@ public static class Patches
 
     /// <summary>
     /// Harmony postfix patch for ForceCameraAspect.AutoScaleViewport.
-    /// Forces the viewport aspect ratio to match the plugin's calculated aspect.
+    /// Forces the viewport aspect ratio to match the plugin's calculated aspect and updates HUD offset.
     /// </summary>
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewport))]
@@ -652,23 +643,6 @@ public static class Patches
         }
     }
 
-    /// <summary>
-    /// Data structure to track information about border GameObjects.
-    /// Stores original dimensions and references needed for runtime scaling adjustments.
-    /// </summary>
-    private class BorderInfo
-    {
-        public GameObject GameObject { get; set; }
-        public float OriginalScaleX { get; set; }
-        public GameObject FeatheredEdge { get; set; }
-        public Vector3 FinalPosition { get; set; }
-        public Vector3 FinalScale { get; set; }
-        public Vector3 FinalRotation { get; set; }
-
-        public float SceneWidth { get; set; }
-        //public float SceneHeight { get; set; }
-    }
-
     public static void StoreGameObjectPosition(GameObject go)
     {
         var borderInfo = TrackedBorders.FirstOrDefault(t => t.GameObject == go);
@@ -687,17 +661,6 @@ public static class Patches
             // borderInfo.SceneHeight = gm.sceneHeight;
         }
     }
-
-
-    // List of all tracked border GameObjects for scaling and positioning
-    private static readonly List<BorderInfo> TrackedBorders = [];
-
-    // Maximum number of borders to track to prevent memory leaks
-    private const int MaxTrackedBorders = 100;
-
-    // Last known scale and feathering states to avoid redundant updates
-    private static bool _lastScaleState;
-    private static bool _lastFeatherState;
 
 
     /// <summary>
@@ -806,6 +769,23 @@ public static class Patches
 
         // Immediately apply appropriate scaling mode based on current aspect ratio
         UpdateScalers(Plugin.CurrentAspect);
+    }
+
+    /// <summary>
+    /// Data structure to track information about border GameObjects.
+    /// Stores original dimensions and references needed for runtime scaling adjustments.
+    /// </summary>
+    private class BorderInfo
+    {
+        public GameObject GameObject { get; set; }
+        public float OriginalScaleX { get; set; }
+        public GameObject FeatheredEdge { get; set; }
+        public Vector3 FinalPosition { get; set; }
+        public Vector3 FinalScale { get; set; }
+        public Vector3 FinalRotation { get; set; }
+
+        public float SceneWidth { get; set; }
+        //public float SceneHeight { get; set; }
     }
 
     /// <summary>

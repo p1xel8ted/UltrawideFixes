@@ -60,12 +60,13 @@ public sealed class WriteOnce<T>
     /// <summary>
     /// Gets whether a value has been set.
     /// </summary>
-    public bool HasValue { get; private set; }
+    private bool HasValue { get; set; }
 
     /// <summary>
-    /// Implicitly converts a WriteOnce<T> instance to its value.
+    /// Implicitly converts a <see cref="WriteOnce{T}"/> instance to its value.
     /// </summary>
-    /// <param name="value">The WriteOnce<T> instance to convert.</param>
+    /// <param name="value">The <see cref="WriteOnce{T}"/> instance to convert.</param>
+    /// <returns>The underlying <typeparamref name="T"/> value.</returns>
     public static implicit operator T(WriteOnce<T> value)
     {
         return value.Value;

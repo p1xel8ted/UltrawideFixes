@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿#if DEBUG
+using System.IO;
 using System.Text;
 
 namespace HollowKnightSilkSong;
@@ -293,3 +294,4 @@ public class TestResolutions : MonoBehaviour
         
     ];
 }
+#endif

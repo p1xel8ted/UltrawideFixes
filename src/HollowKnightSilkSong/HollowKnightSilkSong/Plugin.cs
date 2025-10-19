@@ -8,7 +8,7 @@ public class Plugin : BaseUnityPlugin
     // Plugin metadata constants used for BepInEx registration
     private const string PluginGuid = "p1xel8ted.silksonghollowknight.ultrawide"; // Unique identifier for the plugin
     private const string PluginName = "Hollow Knight Silksong Ultra-Wide"; // Display name for the plugin
-    private const string PluginVersion = "0.1.4"; // Current version of the plugin
+    private const string PluginVersion = "0.1.6"; // Current version of the plugin
     public const float NativeAspect = 16f / 9f; // Native aspect ratio for the game (16:9)
 
     // Constants for edge threshold calculation (used to determine when to fix black edges)
@@ -110,7 +110,7 @@ public class Plugin : BaseUnityPlugin
 
     // Determines if feathering should be removed (for High quality edge fix)
     public static bool ShouldRemoveFeathering => EdgeQuality.Value == EdgeFixQuality.High && ShouldScaleBlackEdges;
-    public static float PositiveScaleFactor => CurrentAspect / NativeAspect;
+    //public static float PositiveScaleFactor => CurrentAspect / NativeAspect;
 
     /// <summary>
     /// Called when the plugin is loaded. Sets up config, event handlers, and applies patches.
@@ -119,8 +119,9 @@ public class Plugin : BaseUnityPlugin
     {
         Log = Logger; // Initialize logger
 
+#if DEBUG
         gameObject.AddComponent<TestResolutions>();
-
+#endif
         // Listen for scene load events to invalidate UI cache
         SceneManager.sceneLoaded += OnSceneLoaded;
 
@@ -200,11 +201,15 @@ public class Plugin : BaseUnityPlugin
     }
 
     /// <summary>
-    /// Called when a new scene is loaded. Invalidates the UI cache so elements are refreshed.
+    /// Called when a new scene is loaded. Invalidates the UI cache and resets FOV tracking so elements are refreshed.
     /// </summary>
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         InvalidateUICache();
+
+        // Reset FOV tracking so it gets reapplied when entering gameplay
+        Patches.ResetFovTracking();
+
 #if DEBUG
         Screen.SetResolution(TestWidth, TestHeight, FullScreenMode.Windowed, Screen.currentResolution.refreshRateRatio); // For testing purposes
 #endif

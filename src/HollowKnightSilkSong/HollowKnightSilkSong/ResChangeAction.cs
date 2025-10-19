@@ -1,5 +1,6 @@
 ﻿
 // Namespace for Hollow Knight Silksong Ultra-Wide mod
+// ReSharper disable InconsistentNaming
 namespace HollowKnightSilkSong;
 
 
