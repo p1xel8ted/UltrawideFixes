@@ -54,6 +54,12 @@ public static class Patches
     private static WriteOnce<float> OriginalVignetteAlpha { get; } = new();
     private static WriteOnce<Vector3> OriginalVignetteSize { get; } = new();
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(GameCameras), nameof(GameCameras.SetOverscan))]
+    public static void GameCameras_SetOverscan(GameCameras __instance, ref float value)
+    {
+        value = 0;
+    }
 
     /// <summary>
     /// Cleans up all cached and tracked state for the mod, typically called on plugin unload.
@@ -337,10 +343,10 @@ public static class Patches
     {
         foreach (var entry in __instance.entries)
         {
-            if (entry.selectable.name == "ExtrasButton")
-            {
-                entry.selectable.gameObject.SetActive(Plugin.MenuClutter.Value);
-            }
+            // if (entry.selectable.name == "ExtrasButton")
+            // {
+            //     entry.selectable.gameObject.SetActive(Plugin.MenuClutter.Value);
+            // }
 
             if (entry.selectable.name == "ScreenScaleButton")
             {

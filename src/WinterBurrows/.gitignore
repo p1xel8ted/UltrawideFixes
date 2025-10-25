@@ -1,0 +1,16 @@
+# User-specific environment properties
+HollowKnightSilkSong/Environment.props
+
+# Build artifacts
+[Bb]in/
+[Oo]bj/
+temp/
+AAA_Releases/
+HollowKnightSilkSong/libs/
+
+# IDE files
+.vs/
+.idea/
+
+# Rider files
+*.sln.DotSettings.user

@@ -6,8 +6,14 @@ public static class Patches
     private const string StartManager = "StartManager";
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
     private static readonly List<CanvasScaler> CanvasScalers = [];
+    private static readonly WriteOnce<float> OriginalBorderSize = new();
+    private static readonly WriteOnce<float> OriginalBackboardSize = new();
+    private static readonly WriteOnce<float> OriginalMapSize = new();
+    private static readonly WriteOnce<float> OriginalHudOffset = new();
+    private static SpriteRenderer DonutLightTransform { get; set; }
+    private static Transform HudTransform { get; set; }
 
-    private static void UpdateScalers(float aspect)
+    internal static void UpdateScalers(float aspect)
     {
         foreach (var scaler in CanvasScalers.Where(scaler => scaler))
         {
@@ -38,26 +44,6 @@ public static class Patches
     {
         __instance.fadeSpeed = 0;
         duration = 0;
-    }
-
-    private class ResolutionComparer : IEqualityComparer<Resolution>
-    {
-        public bool Equals(Resolution a, Resolution b) =>
-            a.width == b.width &&
-            a.height == b.height &&
-            a.refreshRate == b.refreshRate;
-
-        public int GetHashCode(Resolution r)
-        {
-            unchecked
-            {
-                var hash = 17;
-                hash = hash * 23 + r.width;
-                hash = hash * 23 + r.height;
-                hash = hash * 23 + r.refreshRate;
-                return hash;
-            }
-        }
     }
 
     [HarmonyPrefix]
@@ -119,8 +105,6 @@ public static class Patches
         __result = new Vector2(Screen.width, Screen.height);
     }
 
-    private static SpriteRenderer DonutLightTransform { get; set; }
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HeroController), nameof(HeroController.FixedUpdate))]
     public static void HeroController_FixedUpdate(HeroController __instance)
@@ -134,23 +118,52 @@ public static class Patches
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(XB1CinematicVideoPlayer), nameof(XB1CinematicVideoPlayer.Play))]
+    public static void XB1CinematicVideoPlayer_Play(XB1CinematicVideoPlayer __instance)
+    {
+        __instance.videoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CinematicSequence), nameof(CinematicSequence.Begin))]
+    public static void CinematicSequence_Begin(CinematicSequence __instance)
+    {
+        var ogX = __instance.targetRenderer.transform.localScale.x;
+        var newX = ogX * (Plugin.CurrentAspect / Plugin.NativeAspect);
+        __instance.targetRenderer.transform.localScale = __instance.targetRenderer.transform.localScale with { x = newX };
+        __instance.blankerRenderer.gameObject.SetActive(false);
+    }
+
+    private static bool InGame()
+    {
+        return GameManager.UnsafeInstance && GameManager.UnsafeInstance.IsGameplayScene();
+    }
+
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(tk2dCamera), nameof(tk2dCamera.UpdateCameraMatrix))]
     public static void tk2dCamera_UpdateCameraMatrix(tk2dCamera __instance)
     {
+        if (!InGame()) return;
+
         if (__instance._unityCamera)
         {
             __instance._unityCamera.fieldOfView *= Plugin.CameraFieldOfView.Value;
         }
     }
-
-    private static readonly WriteOnce<float> OriginalBorderSize = new();
-    private static readonly WriteOnce<float> OriginalBackboardSize = new();
-    private static readonly WriteOnce<float> OriginalMapSize = new();
-
+    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HUDCamera), nameof(HUDCamera.OnEnable))]
     public static void HUDCamera_OnEnable(HUDCamera __instance)
     {
+        var hud = __instance.transform.Find("Hud Canvas");
+        if (!HudTransform)
+        {
+            HudTransform = hud;
+        }
+
+        UpdateHudOffset();
+
+
         var scaleFactor = Plugin.CurrentAspect / Plugin.NativeAspect;
 
         var b1 = __instance.transform.Find("Inventory/Border/Menu_Border_Black");
@@ -175,6 +188,20 @@ public static class Patches
         }
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(MenuButtonList), nameof(MenuButtonList.OnEnable))]
+    [HarmonyPatch(typeof(MenuButtonList), nameof(MenuButtonList.Start))]
+    public static void MenuButtonList_SetupActive(MenuButtonList __instance)
+    {
+        foreach (var entry in __instance.entries)
+        {
+            if (entry.selectable.name == "ScreenScaleButton")
+            {
+                entry.selectable.gameObject.SetActive(false);
+            }
+        }
+    }
+
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LogoLanguage), nameof(LogoLanguage.OnEnable))]
@@ -189,19 +216,55 @@ public static class Patches
     public static void ForceCameraAspect_Awake(ForceCameraAspect __instance)
     {
         ForceCameraAspect.CurrentViewportAspect = Plugin.CurrentAspect;
-       
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.SetOverscanViewport))]
+    public static void ForceCameraAspect_SetOverscanViewport(ref float adjustment)
+    {
+        adjustment = 0;
+    }
+
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.Awake))]
+    public static void ForceCameraAspect_Awake()
+    {
+        ForceCameraAspect.CurrentViewportAspect = Plugin.CurrentAspect;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewport))]
     public static void ForceCameraAspect_AutoScaleViewport(ForceCameraAspect __instance, ref float __result)
     {
-        var aspect = Plugin.CurrentAspect;
-        ForceCameraAspect.CurrentViewportAspect = aspect;
         var rect = new Rect(0, 0, 1, 1);
         __instance.tk2dCam.CameraSettings.rect = rect;
         __instance.hudCam.rect = rect;
-        __result = aspect;
+        __result = Plugin.CurrentAspect;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(GameCameras), nameof(GameCameras.SetOverscan))]
+    public static void GameCameras_SetOverscan(GameCameras __instance, ref float value)
+    {
+        value = 0;
+    }
+
+    internal static void UpdateHudOffset()
+    {
+        if (!InGame()) return;
+
+        if (HudTransform)
+        {
+            var pos = HudTransform.localPosition;
+            OriginalHudOffset.Value = pos.x;
+            pos.x = OriginalHudOffset.Value + Plugin.HudOffset.Value;
+            HudTransform.localPosition = pos;
+        }
+        else
+        {
+            Plugin.Log.LogWarning("[HUD OFFSET] HudTransform is null, cannot update HUD offset");
+        }
     }
 
 
@@ -214,5 +277,25 @@ public static class Patches
         CanvasScalers.Add(__instance);
 
         UpdateScalers(Plugin.CurrentAspect);
+    }
+
+    private class ResolutionComparer : IEqualityComparer<Resolution>
+    {
+        public bool Equals(Resolution a, Resolution b) =>
+            a.width == b.width &&
+            a.height == b.height &&
+            a.refreshRate == b.refreshRate;
+
+        public int GetHashCode(Resolution r)
+        {
+            unchecked
+            {
+                var hash = 17;
+                hash = hash * 23 + r.width;
+                hash = hash * 23 + r.height;
+                hash = hash * 23 + r.refreshRate;
+                return hash;
+            }
+        }
     }
 }

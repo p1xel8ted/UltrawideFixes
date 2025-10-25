@@ -1,0 +1,20 @@
+<Project>
+    <PropertyGroup>
+        <!-- Name of your game folder -->
+        <GameFolderName>Winter Burrow</GameFolderName>
+        
+         <!-- Path to your game installation -->
+        <GamePath>F:\SteamLibrary\steamapps\common\WinterBurrowDemo\WinterBurrowDemo</GamePath>
+        
+        <!-- Path to your game's managed folder -->
+        <ManagedPath>$(GamePath)\$(GameFolderName)_Data\Managed</ManagedPath>
+  
+        <!-- Path to your BepInEx plugins folder -->
+        <BepInExPluginsPath>$(GamePath)\BepInEx\plugins</BepInExPluginsPath>
+
+        <!-- Path to your stripped libs folder -->
+        <StrippedLibs>$(MSBuildProjectDirectory)\libs</StrippedLibs>
+        
+        <ConfigManagerPath>..\..\ConfigManager</ConfigManagerPath>
+    </PropertyGroup>
+</Project>
