@@ -247,13 +247,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="I"/>
-<details><summary>I (1)</summary>
+<details><summary>I (2)</summary>
+
+## [Immortal Legacy: The Jade Cipher](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ImmortalLegacyTheJadeCipher)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ImmortalLegacyTheJadeCipher/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/437ea395-5d1f-49fc-832c-e7c9421685de) ![main_game](https://github.com/user-attachments/assets/2f849765-0c61-46f2-b9e5-f6f5b54d603a)
 
 ## [Isle of Jura](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/IsleOfJura)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/IsleOfJura/total?label=downloads&style=for-the-badge)
 
-![main_menu](https://github.com/user-attachments/assets/7ee5ea15-7c62-4e7e-9561-ee66b807630e)
-![main_game_default_fov](https://github.com/user-attachments/assets/da527e3a-2a0e-4b92-8626-5a69c77bbe07)
+![main_menu](https://github.com/user-attachments/assets/7ee5ea15-7c62-4e7e-9561-ee66b807630e) ![main_game_default_fov](https://github.com/user-attachments/assets/da527e3a-2a0e-4b92-8626-5a69c77bbe07)
 
 </details>
 <div id="K"/>
