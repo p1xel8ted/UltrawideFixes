@@ -1,95 +1,156 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <Product>Scarlet Maiden Ultra-Wide</Product>
+        <Version>0.1.1</Version>
+        <AssemblyName>$(Product)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>$(BepInExPluginsPath)</OutputPath>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>ScarletMaidenUltraWide</AssemblyName>
-    <Version>0.1.0</Version>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>latest</LangVersion>
-    <IsPackable>false</IsPackable>
-    <Company>p1xel8ted</Company>
-    <Product>Scarlet Maiden Ultra-Wide</Product>
-    <AssemblyVersion>$(Version)</AssemblyVersion>
-    <FileVersion>$(Version)</FileVersion>
-  </PropertyGroup>
+    <Import Project="../../zip.target"/>
 
-  <Import Project="../../zip.target"/>
-  
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <OutputPath>F:\SteamLibrary\steamapps\common\Scarlet Maiden\BepInEx\plugins</OutputPath>
-  </PropertyGroup>
+    <ItemGroup>
+        <Content Include="$(ConfigManagerPath)\ConfigurationManager-BepInEx5-Mono.dll">
+            <Link>ConfigurationManager-BepInEx5-Mono.dll</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
 
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <OutputPath>F:\SteamLibrary\steamapps\common\Scarlet Maiden\BepInEx\plugins</OutputPath>
-  </PropertyGroup>
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BepInEx.Core" Version="5.*" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
+    </ItemGroup>
+    <ItemGroup>
+        
+        <Reference Include="ConfigurationManager-BepInEx5-Mono.dll">
+            <HintPath>$(ConfigManagerPath)\ConfigurationManager-BepInEx5-Mono.dll</HintPath>
+            <publicize>True</publicize>
+        </Reference>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\libs\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Localization">
-      <HintPath>libs\Unity.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>libs\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ResourceManager">
-      <HintPath>libs\Unity.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>..\libs\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\libs\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>libs\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AudioModule">
-      <HintPath>libs\UnityEngine.AudioModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>..\libs\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>..\libs\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.InputLegacyModule">
-      <HintPath>libs\UnityEngine.InputLegacyModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.ParticleSystemModule">
-      <HintPath>libs\UnityEngine.ParticleSystemModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Physics2DModule">
-      <HintPath>libs\UnityEngine.Physics2DModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.PhysicsModule">
-      <HintPath>libs\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SharedInternalsModule">
-      <HintPath>libs\UnityEngine.SharedInternalsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.SpriteShapeModule">
-      <HintPath>libs\UnityEngine.SpriteShapeModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextCoreModule">
-      <HintPath>libs\UnityEngine.TextCoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule">
-      <HintPath>libs\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TilemapModule">
-      <HintPath>libs\UnityEngine.TilemapModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>libs\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
+            <publicize>True</publicize>
+        </Reference>
+        <Reference Include="Unity.Localization">
+            <HintPath>$(ManagedPath)\Unity.Localization.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+            <HintPath>$(ManagedPath)\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.ResourceManager">
+            <HintPath>$(ManagedPath)\Unity.ResourceManager.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>$(ManagedPath)\Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AnimationModule">
+            <HintPath>$(ManagedPath)\UnityEngine.AnimationModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.AudioModule">
+            <HintPath>$(ManagedPath)\UnityEngine.AudioModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+            <HintPath>$(ManagedPath)\UnityEngine.ImageConversionModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>$(ManagedPath)\UnityEngine.IMGUIModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.InputLegacyModule">
+            <HintPath>$(ManagedPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+            <HintPath>$(ManagedPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.Physics2DModule">
+            <HintPath>$(ManagedPath)\UnityEngine.Physics2DModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.PhysicsModule">
+            <HintPath>$(ManagedPath)\UnityEngine.PhysicsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SharedInternalsModule">
+            <HintPath>$(ManagedPath)\UnityEngine.SharedInternalsModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.SpriteShapeModule">
+            <HintPath>$(ManagedPath)\UnityEngine.SpriteShapeModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextCoreModule">
+            <HintPath>$(ManagedPath)\UnityEngine.TextCoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TextRenderingModule">
+            <HintPath>$(ManagedPath)\UnityEngine.TextRenderingModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.TilemapModule">
+            <HintPath>$(ManagedPath)\UnityEngine.TilemapModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
+            <publicize>True</publicize>
+        </Reference>
+        <Reference Include="UnityEngine.UIModule">
+            <HintPath>$(ManagedPath)\UnityEngine.UIModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Images\char_menu_bg1_fixed.png" />
+      <EmbeddedResource Include="Images\char_menu_bg1_fixed.png" />
+      <None Remove="Images\journal_menu_bg1_fixed.png" />
+      <EmbeddedResource Include="Images\journal_menu_bg1_fixed.png" />
+      <None Remove="Images\skill_tree_background1_fixed.png" />
+      <EmbeddedResource Include="Images\skill_tree_background1_fixed.png" />
+      <None Remove="Images\item_pickup_menu_bg1_fixed.png" />
+      <EmbeddedResource Include="Images\item_pickup_menu_bg1_fixed.png" />
+      <None Remove="Images\game_over_screen_bg1_fixed.png" />
+      <EmbeddedResource Include="Images\game_over_screen_bg1_fixed.png" />
+      <None Remove="Images\gallery_bg1_fixed.png" />
+      <EmbeddedResource Include="Images\gallery_bg1_fixed.png" />
+      <None Remove="Images\level_transition_overlay1_fixed.png" />
+      <EmbeddedResource Include="Images\level_transition_overlay1_fixed.png" />
+    </ItemGroup>
+
+    <Target Name="ShowGameProps" BeforeTargets="Build">
+        <Message Importance="High" Text="GameFolderName=$(GameFolderName)"/>
+        <Message Importance="High" Text="GamePath=$(GamePath)"/>
+        <Message Importance="High" Text="ManagedPath=$(ManagedPath)"/>
+        <Message Importance="High" Text="BepInExPluginsPath=$(BepInExPluginsPath)"/>
+        <Message Importance="High" Text="StrippedLibs=$(StrippedLibs)"/>
+        <Message Importance="High" Text="ConfigManagerPath=$(ConfigManagerPath)"/>
+    </Target>
+
 </Project>

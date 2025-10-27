@@ -1,0 +1,410 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Product>Once Upon a Katamari Ultra-Wide</Product>
+        <Version>0.1.0</Version>
+        <AssemblyName>$(Product)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>$(BepInExPluginsPath)</OutputPath>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <OutputPath>G:\Once Upon A KATAMARI\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+  
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <OutputPath>G:\Once Upon A KATAMARI\BepInEx\plugins</OutputPath>
+    </PropertyGroup>
+
+    <Import Project="../../zip.target"/>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Accessibility">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Accessibility.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="com.rlabrecque.steamworks.net">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\com.rlabrecque.steamworks.net.dll</HintPath>
+      </Reference>
+      <Reference Include="CriMw.CriWare.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\CriMw.CriWare.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="CriMw.CriWare.Vp9.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\CriMw.CriWare.Vp9.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cppmscorlib">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Drawing">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Drawing.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Text.Encodings.Web">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Text.Encodings.Web.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Text.Json">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Text.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Windows.Forms">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Windows.Forms.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="KinoBloom.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\KinoBloom.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="nn">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\nn.dll</HintPath>
+      </Reference>
+      <Reference Include="PlayFab">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\PlayFab.dll</HintPath>
+      </Reference>
+      <Reference Include="PlayFabMultiplayerSDK">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\PlayFabMultiplayerSDK.dll</HintPath>
+      </Reference>
+      <Reference Include="StylizedWaterForURP">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\StylizedWaterForURP.dll</HintPath>
+      </Reference>
+      <Reference Include="ToonyColorsPro.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\ToonyColorsPro.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="ToonyColorsPro2.Demo">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\ToonyColorsPro2.Demo.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem.ForUI">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.InputSystem.ForUI.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Microsoft.GDK.Tools">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Microsoft.GDK.Tools.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Profiling.Core">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Profiling.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Timeline">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.Timeline.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualEffectGraph.Runtime">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.VisualEffectGraph.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.VisualScripting.Core">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\Unity.VisualScripting.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.AndroidJNIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AnimationModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AssetBundleModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AudioModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ContentLoadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GraphicsStateCollectionSerializerModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.GraphicsStateCollectionSerializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HierarchyCoreModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.HierarchyCoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ImageConversionModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.IMGUIModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputForUIModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.InputForUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputLegacyModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.MarshallingModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.MarshallingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.MultiplayerModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.MultiplayerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ParticleSystemModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.PerformanceReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.Physics2DModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PhysicsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ShaderVariantAnalyticsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.ShaderVariantAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SharedInternalsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextRenderingModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.TLSModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.VFXModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VideoModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>G:\Once Upon A KATAMARI\BepInEx\interop\__Generated.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+ 
+
+
+</Project>

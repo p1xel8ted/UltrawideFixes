@@ -40,7 +40,8 @@ public class Plugin : BaseUnityPlugin
         CameraFieldOfView = Config.Bind("02. Camera", "Field of View", 1f, new ConfigDescription("Adjust the camera's field of view multiplier.", new AcceptableValueRange<float>(0.75f, 3f), new ConfigurationManagerAttributes { Order = 90 }));
         CameraFieldOfView.SettingChanged += (_, _) =>
         {
-            if (CameraFieldOfView.Value == 0)
+            // Protect against invalid values that could break camera rendering (e.g., manual config edits)
+            if (CameraFieldOfView.Value <= 0.01f)
             {
                 CameraFieldOfView.Value = 1f;
             }

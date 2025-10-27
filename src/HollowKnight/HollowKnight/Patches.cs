@@ -27,6 +27,8 @@ public static class Patches
         }
     }
 
+    // Disable startup fade animation by forcing all animator bools to false for StartManager
+    // Note: Patches all Animator.SetBool calls globally for performance, but only affects StartManager instance
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Animator), nameof(Animator.SetBool), typeof(string), typeof(bool))]
     public static void Animator_SetBool(Animator __instance, ref bool value)
@@ -128,9 +130,12 @@ public static class Patches
     [HarmonyPatch(typeof(CinematicSequence), nameof(CinematicSequence.Begin))]
     public static void CinematicSequence_Begin(CinematicSequence __instance)
     {
+        // Stretch cinematic to fill ultrawide screen
         var ogX = __instance.targetRenderer.transform.localScale.x;
         var newX = ogX * (Plugin.CurrentAspect / Plugin.NativeAspect);
         __instance.targetRenderer.transform.localScale = __instance.targetRenderer.transform.localScale with { x = newX };
+
+        // Disable black bars (blanker) that would appear on ultrawide displays
         __instance.blankerRenderer.gameObject.SetActive(false);
     }
 
@@ -225,14 +230,6 @@ public static class Patches
         adjustment = 0;
     }
 
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.Awake))]
-    public static void ForceCameraAspect_Awake()
-    {
-        ForceCameraAspect.CurrentViewportAspect = Plugin.CurrentAspect;
-    }
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewport))]
     public static void ForceCameraAspect_AutoScaleViewport(ForceCameraAspect __instance, ref float __result)
@@ -272,6 +269,7 @@ public static class Patches
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
+        // Skip UnityExplorer UI canvases (by sinai-dev) to avoid interfering with debugging tools
         if (__instance.name.Contains("sinai")) return;
 
         CanvasScalers.Add(__instance);

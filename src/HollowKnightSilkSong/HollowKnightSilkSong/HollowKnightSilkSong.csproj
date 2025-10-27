@@ -275,5 +275,13 @@
         </Reference>
     </ItemGroup>
 
-
+    <Target Name="ShowGameProps" BeforeTargets="Build">
+        <Message Importance="High" Text="GameFolderName=$(GameFolderName)" />
+        <Message Importance="High" Text="GamePath=$(GamePath)" />
+        <Message Importance="High" Text="ManagedPath=$(ManagedPath)" />
+        <Message Importance="High" Text="BepInExPluginsPath=$(BepInExPluginsPath)" />
+        <Message Importance="High" Text="StrippedLibs=$(StrippedLibs)" />
+        <Message Importance="High" Text="ConfigManagerPath=$(ConfigManagerPath)" />
+    </Target>
+    
 </Project>
