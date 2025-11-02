@@ -7,18 +7,24 @@
     </PackageReference>
   </ItemGroup>
   
+<PropertyGroup>
+  <!-- Default to project-local releases folder. Override only when SolutionDir is set and not the MSBuild placeholder '*Undefined*'. -->
+  <ReleasesDir>$(MSBuildProjectDirectory)\AAA_Releases</ReleasesDir>
+  <ReleasesDir Condition=" '$(SolutionDir)' != '' and '$(SolutionDir)' != '*Undefined*'">$(SolutionDir)AAA_Releases</ReleasesDir>
+</PropertyGroup>
+
 <Target Name="ZipOutputPath" AfterTargets="Build">
         <PropertyGroup>
             <TempDir>$(MSBuildProjectDirectory)\temp</TempDir>
               <PluginDir>$(MSBuildProjectDirectory)\temp</PluginDir>
         </PropertyGroup>
         <MakeDir Directories="$(TempDir)" />
-        <MakeDir Directories="$(SolutionDir)\AAA_Releases" />
+        <MakeDir Directories="$(ReleasesDir)" />
         <Exec Command="xcopy /V &quot;$(OutputPath)&quot; &quot;$(TempDir)&quot; /E /I /Y" />
         <Exec Command="del &quot;$(TempDir)\*.zip&quot; &quot;$(TempDir)\*.json&quot; &quot;$(TempDir)\*.pdb&quot;" />
         <ZipDirectory Condition="'$(Configuration)'=='Release'" Overwrite="true"
-                SourceDirectory="temp"
-                DestinationFile="$(SolutionDir)\AAA_Releases\$(MSBuildProjectName)_v$(Version)_BepInEx.zip" />
+                SourceDirectory="$(TempDir)"
+                DestinationFile="$(ReleasesDir)\$(MSBuildProjectName)_v$(Version)_BepInEx.zip" />
         <RemoveDir Directories="$(MSBuildProjectDirectory)\temp" />
     </Target>
 </Project>

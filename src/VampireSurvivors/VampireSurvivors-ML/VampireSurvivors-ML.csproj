@@ -1,20 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Vampire Survivors Ultra-Wide (ML)</Product>
-        <Version>0.2.1</Version>
+        <Version>0.2.2</Version>
         <AssemblyName>Vampire Survivors Ultra-Wide (ML)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
-		        <RestoreAdditionalProjectSources>
+        <PlatformTarget>x64</PlatformTarget>
+        <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <LangVersion>latest</LangVersion>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+        <OutputPath>$(ModsOutputPath)</OutputPath>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefineConstants>Melon</DefineConstants>
     </PropertyGroup>
 
     <ItemDefinitionGroup>
@@ -28,136 +37,111 @@
             <Private>False</Private>
         </PackageReference>
     </ItemDefinitionGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DebugType>portable</DebugType>
-        <DefineConstants>TRACE;Melon</DefineConstants>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\Mods</OutputPath>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\Mods</OutputPath>
-        <DefineConstants>TRACE;Melon</DefineConstants>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    </PropertyGroup>
     
     <Import Project="../zip.target"/>
-  
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
-    </PropertyGroup>
     
     
     <ItemGroup>
-      <Compile Remove="obj\**" />
-      <Compile Remove="obj\Release\**" />
       <Compile Include="..\Shared\Patches.cs">
         <Link>Patches.cs</Link>
       </Compile>
+      <Compile Include="..\Shared\DisplayMetrics.cs">
+        <Link>DisplayMetrics.cs</Link>
+      </Compile>
+      <Compile Include="..\Shared\Logger.cs">
+        <Link>Logger.cs</Link>
+      </Compile>
+      <Compile Include="..\Shared\PatchConstants.cs">
+        <Link>PatchConstants.cs</Link>
+      </Compile>
     </ItemGroup>
 
-    <ItemGroup>
-      <EmbeddedResource Remove="obj\**" />
-      <EmbeddedResource Remove="obj\Release\**" />
-    </ItemGroup>
 
-    <ItemGroup>
-      <None Remove="obj\**" />
-      <None Remove="obj\Release\**" />
-    </ItemGroup>
 
     <ItemGroup>
       <Reference Include="0Harmony">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\net6\0Harmony.dll</HintPath>
+        <HintPath>$(MelonLoaderNet6Path)\0Harmony.dll</HintPath>
       </Reference>
-      <Reference Include="AssetRipper.VersionUtilities">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\net6\AssetRipper.VersionUtilities.dll</HintPath>
-      </Reference>
+<!--      <Reference Include="AssetRipper.VersionUtilities">-->
+<!--        <HintPath>$(MelonLoaderNet6Path)\AssetRipper.VersionUtilities.dll</HintPath>-->
+<!--      </Reference>-->
       <Reference Include="Il2CppDoozy">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Il2CppDoozy.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppDoozy.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppInterop.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
+        <HintPath>$(MelonLoaderNet6Path)\Il2CppInterop.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2Cppmscorlib.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppPauseSystem">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Il2CppPauseSystem.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppPauseSystem.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppPhaserPort">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Il2CppPhaserPort.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppPhaserPort.dll</HintPath>
       </Reference>
       <Reference Include="Il2CppVampireSurvivors.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Il2CppVampireSurvivors.Runtime.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppVampireSurvivors.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="MelonLoader">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\net6\MelonLoader.dll</HintPath>
+        <HintPath>$(MelonLoaderNet6Path)\MelonLoader.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Unity.Addressables.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Addressables.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\Unity.ResourceManager.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Unity.ResourceManager.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.AudioModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.CoreModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.InputLegacyModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.InputLegacyModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.ParticleSystemModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.PhysicsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.PhysicsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.SpriteMaskModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SpriteMaskModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.TilemapModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\MelonLoader\Il2CppAssemblies\UnityEngine.VideoModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VideoModule.dll</HintPath>
       </Reference>
     </ItemGroup>
     

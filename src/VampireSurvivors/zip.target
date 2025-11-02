@@ -10,15 +10,17 @@
 <Target Name="ZipOutputPath" AfterTargets="Build">
         <PropertyGroup>
             <TempDir>$(MSBuildProjectDirectory)\temp</TempDir>
-              <PluginDir>$(MSBuildProjectDirectory)\temp</PluginDir>
+            <PluginDir>$(MSBuildProjectDirectory)\temp</PluginDir>
+            <SolutionDir Condition="'$(SolutionDir)'=='' OR '$(SolutionDir)'=='*Undefined*'">$(MSBuildProjectDirectory)\..\</SolutionDir>
+            <ReleasesDir>$(SolutionDir)AAA_Releases</ReleasesDir>
         </PropertyGroup>
         <MakeDir Directories="$(TempDir)" />
-        <MakeDir Directories="$(SolutionDir)\AAA_Releases" />
+        <MakeDir Directories="$(ReleasesDir)" />
         <Exec Command="xcopy /V &quot;$(OutputPath)&quot; &quot;$(TempDir)&quot; /E /I /Y" />
         <Exec Command="del &quot;$(TempDir)\*.zip&quot; &quot;$(TempDir)\*.json&quot; &quot;$(TempDir)\*.pdb&quot;" />
         <ZipDirectory Condition="'$(Configuration)'=='Release'" Overwrite="true"
                 SourceDirectory="temp"
-                DestinationFile="$(SolutionDir)\AAA_Releases\$(MSBuildProjectName)_v$(Version).zip" />
+                DestinationFile="$(ReleasesDir)\$(MSBuildProjectName)_v$(Version).zip" />
         <RemoveDir Directories="$(MSBuildProjectDirectory)\temp" />
     </Target>
 </Project>

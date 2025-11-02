@@ -1,43 +1,39 @@
-﻿[assembly: MelonInfo(typeof(VampireSurvivors.Plugin), "Vampire Survivors Ultra-Wide (Melon)", "0.2.1", "p1xel8ted")]
+﻿using Patches = Shared.Patches;
+using DisplayMetrics = Shared.DisplayMetrics;
+
+[assembly: MelonInfo(typeof(Plugin), Plugin.PluginName, Plugin.PluginVersion, "p1xel8ted")]
 
 namespace VampireSurvivors;
 
 public class Plugin : MelonMod
 {
-    private const float NativeAspectRatio = 1.6f;
-    internal static readonly int MainWidth = Display.main.systemWidth;
-    internal static readonly int MainHeight = Display.main.systemHeight; //1440
-    internal static readonly float MainAspect = MainWidth / (float)MainHeight; //2.388888888888889
-    internal static readonly float PositiveScaleFactor = MainAspect / NativeAspectRatio; //1.493827160493827
+    internal const string PluginName = "Vampire Survivors Ultra-Wide (Melon)";
+    internal const string PluginVersion = "0.2.2";
+
     public static MelonPreferences_Entry<bool> ExpandSpawnZone { get; private set; }
+    internal static MelonPreferences_Entry<KeyCode> ExpandSpawnZoneToggle { get; set; }
     private static MelonPreferences_Category ConfigCategory { get; set; }
-    
+
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();
 
         ConfigCategory = MelonPreferences.CreateCategory("UW", "Ultra-Wide Settings");
         ExpandSpawnZone = ConfigCategory.CreateEntry("ExpandSpawnZone", true, "Expands the spawn zone to fit the new resolution.");
-        ExpandSpawnZone.OnEntryValueChanged.Subscribe(UpdateStageRects);
-        
-        if (ExpandSpawnZone == null)
-        {
-            MelonLogger.Error("Failed to initialize ExpandSpawnZone setting.");
-            return;
-        }
+        ExpandSpawnZone.OnEntryValueChanged.Subscribe((_, _) => Patches.UpdateStageRects());
+
+        ExpandSpawnZoneToggle = ConfigCategory.CreateEntry("ExpandSpawnZoneToggle", KeyCode.F9, "Key to toggle expanding the spawn zone.");
 
         ConfigCategory.SaveToFile(false);
 
-        MelonLogger.Msg("Vampire Survivors Ultra-Wide (Melon) has been initialized.");
+        // Log initialization details and validate scale factor
+        DisplayMetrics.LogInitialization();
+        DisplayMetrics.ValidateScaleFactor();
     }
- 
-    private static void UpdateStageRects(bool b, bool b1)
+
+    public override void OnLateUpdate()
     {
-        var stage = Resources.FindObjectsOfTypeAll<Stage>().FirstOrDefault();
-        if (stage)
-        {
-            MelonLogger.Msg($"Updating stage {stage.name} spawn zone.");
-            stage.InitRects();
-        }
+        base.OnLateUpdate();
+        Patches.UpdateMethod();
     }
 }

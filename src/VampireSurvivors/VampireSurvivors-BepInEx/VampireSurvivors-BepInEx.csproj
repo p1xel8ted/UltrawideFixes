@@ -1,20 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Vampire Survivors Ultra-Wide (BepInEx)</Product>
-        <Version>0.2.1</Version>
+        <Version>0.2.2</Version>
         <AssemblyName>Vampire Survivors Ultra-Wide (BepInEx)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
-		        <RestoreAdditionalProjectSources>
+        <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <LangVersion>latest</LangVersion>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+        <OutputPath>$(ModsOutputPath)</OutputPath>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefineConstants>BepInEx</DefineConstants>
     </PropertyGroup>
 
     <ItemDefinitionGroup>
@@ -29,130 +37,627 @@
         </PackageReference>
     </ItemDefinitionGroup>
 
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DebugType>portable</DebugType>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefineConstants>TRACE;BepInEx</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <OutputPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\plugins</OutputPath>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <OutputPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\plugins</OutputPath>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefineConstants>TRACE;BepInEx</DefineConstants>
-    </PropertyGroup>
 
     <Import Project="../zip.target"/>
-  
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
-    </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile"/>
-    </ItemGroup>
     
     <ItemGroup>
-      <Compile Remove="obj\**" />
-      <Compile Remove="obj\Release\**" />
-      <Compile Include="..\Shared\Patches.cs">
-        <Link>Patches.cs</Link>
-      </Compile>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.738" IncludeAssets="compile"/>
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="obj\**" />
-      <EmbeddedResource Remove="obj\Release\**" />
+        <Compile Include="..\Shared\Patches.cs">
+            <Link>Patches.cs</Link>
+        </Compile>
+        <Compile Include="..\Shared\DisplayMetrics.cs">
+            <Link>DisplayMetrics.cs</Link>
+        </Compile>
+        <Compile Include="..\Shared\Logger.cs">
+            <Link>Logger.cs</Link>
+        </Compile>
+        <Compile Include="..\Shared\PatchConstants.cs">
+            <Link>PatchConstants.cs</Link>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="obj\**" />
-      <None Remove="obj\Release\**" />
-    </ItemGroup>
-
-    <ItemGroup>
+      <Reference Include="AppleAuth">
+        <HintPath>$(Il2CppAssembliesPath)\AppleAuth.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>$(Il2CppAssembliesPath)\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Beardy.BeardsGridLayoutGroup.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Beardy.BeardsGridLayoutGroup.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Coffee.UIParticle">
+        <HintPath>$(Il2CppAssembliesPath)\Coffee.UIParticle.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Auth">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Auth.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Brisk">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Brisk.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Brook">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Brook.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Common">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Connection.Web">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Connection.Web.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Core">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Core.Native">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Core.Native.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Cram">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Cram.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Entities">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Entities.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Interop.Generated">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Interop.Generated.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Interpolation">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Interpolation.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.JWT">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.JWT.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Log">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Log.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Plugins">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Plugins.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Prefs">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Prefs.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.ProtocolDef">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.ProtocolDef.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.ReplicationServer">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.ReplicationServer.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL.Brisk">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.Brisk.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL.EntityManager">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.EntityManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL.Extensions">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.Extensions.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL.ReplicationManager">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.ReplicationManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL.Tickers">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.Tickers.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.RSL.Transport">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.RSL.Transport.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Serializer">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Serializer.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.SimulationFrame">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.SimulationFrame.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Stats">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Stats.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Tend">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Tend.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Toolkit">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Toolkit.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Transport">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Transport.dll</HintPath>
+      </Reference>
+      <Reference Include="Coherence.Utils">
+        <HintPath>$(Il2CppAssembliesPath)\Coherence.Utils.dll</HintPath>
+      </Reference>
+      <Reference Include="Cyanilux.BlitRenderFeature">
+        <HintPath>$(Il2CppAssembliesPath)\Cyanilux.BlitRenderFeature.dll</HintPath>
+      </Reference>
+      <Reference Include="DDebug">
+        <HintPath>$(Il2CppAssembliesPath)\DDebug.dll</HintPath>
+      </Reference>
       <Reference Include="Doozy">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Doozy.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Doozy.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween">
+        <HintPath>$(Il2CppAssembliesPath)\DOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTween.Modules">
+        <HintPath>$(Il2CppAssembliesPath)\DOTween.Modules.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTweenPro">
+        <HintPath>$(Il2CppAssembliesPath)\DOTweenPro.dll</HintPath>
+      </Reference>
+      <Reference Include="DOTweenPro.Scripts">
+        <HintPath>$(Il2CppAssembliesPath)\DOTweenPro.Scripts.dll</HintPath>
+      </Reference>
+      <Reference Include="Dreamteck.Splines">
+        <HintPath>$(Il2CppAssembliesPath)\Dreamteck.Splines.dll</HintPath>
+      </Reference>
+      <Reference Include="Dreamteck.Utilities">
+        <HintPath>$(Il2CppAssembliesPath)\Dreamteck.Utilities.dll</HintPath>
+      </Reference>
+      <Reference Include="Facepunch.Steamworks.Win64">
+        <HintPath>$(Il2CppAssembliesPath)\Facepunch.Steamworks.Win64.dll</HintPath>
+      </Reference>
+      <Reference Include="GdkUtilities">
+        <HintPath>$(Il2CppAssembliesPath)\GdkUtilities.dll</HintPath>
+      </Reference>
+      <Reference Include="GKNativeExtensions">
+        <HintPath>$(Il2CppAssembliesPath)\GKNativeExtensions.dll</HintPath>
+      </Reference>
+      <Reference Include="GradientTextureAssembly">
+        <HintPath>$(Il2CppAssembliesPath)\GradientTextureAssembly.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppMono.Security.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Configuration">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Data">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Data.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Drawing">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Drawing.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Net.Http">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Net.Http.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Numerics">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Numerics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Runtime.Serialization">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml.Linq">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Xml.Linq.dll</HintPath>
+      </Reference>
+      <Reference Include="IngameDebugConsole.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\IngameDebugConsole.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="IronSourceAdQuality.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\IronSourceAdQuality.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="l2localization">
+        <HintPath>$(Il2CppAssembliesPath)\l2localization.dll</HintPath>
+      </Reference>
+      <Reference Include="lexonegit.unity-twitch-chat">
+        <HintPath>$(Il2CppAssembliesPath)\lexonegit.unity-twitch-chat.dll</HintPath>
+      </Reference>
+      <Reference Include="MAScripts">
+        <HintPath>$(Il2CppAssembliesPath)\MAScripts.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json">
+        <HintPath>$(Il2CppAssembliesPath)\Newtonsoft.Json.dll</HintPath>
+      </Reference>
+      <Reference Include="Newtonsoft.Json.UnityConverters">
+        <HintPath>$(Il2CppAssembliesPath)\Newtonsoft.Json.UnityConverters.dll</HintPath>
+      </Reference>
+      <Reference Include="NintendoSDK.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\NintendoSDK.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="PauseSystem">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\PauseSystem.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\PauseSystem.dll</HintPath>
       </Reference>
       <Reference Include="PhaserPort">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\PhaserPort.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\PhaserPort.dll</HintPath>
+      </Reference>
+      <Reference Include="PlayFab">
+        <HintPath>$(Il2CppAssembliesPath)\PlayFab.dll</HintPath>
+      </Reference>
+      <Reference Include="PlayFabParty">
+        <HintPath>$(Il2CppAssembliesPath)\PlayFabParty.dll</HintPath>
+      </Reference>
+      <Reference Include="Poncle.Schema.Attributes">
+        <HintPath>$(Il2CppAssembliesPath)\Poncle.Schema.Attributes.dll</HintPath>
+      </Reference>
+      <Reference Include="ProCamera2D">
+        <HintPath>$(Il2CppAssembliesPath)\ProCamera2D.dll</HintPath>
+      </Reference>
+      <Reference Include="QFSW.MOP2">
+        <HintPath>$(Il2CppAssembliesPath)\QFSW.MOP2.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired.NintendoSwitch.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired.NintendoSwitch.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Core">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_CSharp">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Examples_CSharp">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_Examples_CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_TouchControls_CSharp">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_TouchControls_CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_UnityUI_CSharp">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_UnityUI_CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Windows">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_Windows.dll</HintPath>
+      </Reference>
+      <Reference Include="Rewired_Windows_Functions">
+        <HintPath>$(Il2CppAssembliesPath)\Rewired_Windows_Functions.dll</HintPath>
+      </Reference>
+      <Reference Include="RIEditor">
+        <HintPath>$(Il2CppAssembliesPath)\RIEditor.dll</HintPath>
+      </Reference>
+      <Reference Include="SimpleHttp">
+        <HintPath>$(Il2CppAssembliesPath)\SimpleHttp.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.OdinInspector.Attributes">
+        <HintPath>$(Il2CppAssembliesPath)\Sirenix.OdinInspector.Attributes.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.OdinInspector.Modules.Unity.Addressables">
+        <HintPath>$(Il2CppAssembliesPath)\Sirenix.OdinInspector.Modules.Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Serialization">
+        <HintPath>$(Il2CppAssembliesPath)\Sirenix.Serialization.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Serialization.Config">
+        <HintPath>$(Il2CppAssembliesPath)\Sirenix.Serialization.Config.dll</HintPath>
+      </Reference>
+      <Reference Include="Sirenix.Utilities">
+        <HintPath>$(Il2CppAssembliesPath)\Sirenix.Utilities.dll</HintPath>
+      </Reference>
+      <Reference Include="SuperTiled2Unity">
+        <HintPath>$(Il2CppAssembliesPath)\SuperTiled2Unity.dll</HintPath>
+      </Reference>
+      <Reference Include="Tayx.Graphy">
+        <HintPath>$(Il2CppAssembliesPath)\Tayx.Graphy.dll</HintPath>
+      </Reference>
+      <Reference Include="UIEffect">
+        <HintPath>$(Il2CppAssembliesPath)\UIEffect.dll</HintPath>
+      </Reference>
+      <Reference Include="UniTask">
+        <HintPath>$(Il2CppAssembliesPath)\UniTask.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Unity.Addressables.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Burst.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Burst.Unsafe">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Burst.Unsafe.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Collections.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Collections.LowLevel.ILSupport">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.LevelPlay">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.LevelPlay.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Mathematics">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Mathematics.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Profiling.Core">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Profiling.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Core.Runtime.Shared">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipelines.Core.Runtime.Shared.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.GPUDriven.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipelines.GPUDriven.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipelines.Universal.2D.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       </Reference>
       <Reference Include="Unity.ResourceManager">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\Unity.ResourceManager.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Configuration">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Configuration.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Device">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Device.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Environments.Internal">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Environments.Internal.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Internal">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Internal.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Registration">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Registration.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Scheduler">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Scheduler.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Telemetry">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Telemetry.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Services.Core.Threading">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Services.Core.Threading.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AccessibilityModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AIModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AndroidJNIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AnimationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ClothModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterInputModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ClusterInputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClusterRendererModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ClusterRendererModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ContentLoadModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ContentLoadModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DSPGraphModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.DSPGraphModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GIModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.GIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GraphicsStateCollectionSerializerModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.GraphicsStateCollectionSerializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HierarchyCoreModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.HierarchyCoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.HotReloadModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.HotReloadModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.IMGUIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputForUIModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.InputForUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.InputModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.InputModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.LocalizationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.MarshallingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.MarshallingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.MultiplayerModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.MultiplayerModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PropertiesModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.PropertiesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ScreenCaptureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ShaderVariantAnalyticsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ShaderVariantAnalyticsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SharedInternalsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SpriteMaskModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.SpriteMaskModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextRenderingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TilemapModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.TilemapModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TilemapModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TLSModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TLSModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIElementsModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UmbraModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UmbraModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityCurlModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityCurlModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityTestProtocolModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VFXModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VirtualTexturingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VirtualTexturingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.WindModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.XRModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnsafeAccess">
+        <HintPath>$(Il2CppAssembliesPath)\UnsafeAccess.dll</HintPath>
       </Reference>
       <Reference Include="VampireSurvivors.Runtime">
-        <HintPath>F:\SteamLibrary\steamapps\common\Vampire Survivors\BepInEx\interop\VampireSurvivors.Runtime.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\VampireSurvivors.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Zenject">
+        <HintPath>$(Il2CppAssembliesPath)\Zenject.dll</HintPath>
+      </Reference>
+      <Reference Include="Zenject-usage">
+        <HintPath>$(Il2CppAssembliesPath)\Zenject-usage.dll</HintPath>
+      </Reference>
+      <Reference Include="__Generated">
+        <HintPath>$(Il2CppAssembliesPath)\__Generated.dll</HintPath>
       </Reference>
     </ItemGroup>
 
+    
 </Project>
