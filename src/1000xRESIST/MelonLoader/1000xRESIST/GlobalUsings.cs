@@ -1,0 +1,19 @@
+﻿global using System;
+global using System.Collections.Generic;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Globalization;
+global using System.Linq;
+global using System.Reflection;
+
+global using HarmonyLib;
+global using Il2CppCinemachine;
+global using Il2CppInterop.Runtime.Injection;
+global using Il2CppSunsetVisitor._1000xRESIST;
+global using Il2CppSunsetVisitor.Core;
+global using MelonLoader;
+global using UnityEngine;
+global using UnityEngine.Events;
+global using UnityEngine.SceneManagement;
+global using UnityEngine.UI;
+global using UnityEngine.Video;
+global using xRESIST;
