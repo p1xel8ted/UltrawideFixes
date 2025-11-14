@@ -588,12 +588,18 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="W"/>
-<details><summary>W (4)</summary>
+<details><summary>W (5)</summary>
 
 ## [Wild Woods](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WildWoods)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WildWoods/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/d224c1df-5bee-4748-8f2e-1b11340d203a) ![main_game](https://github.com/user-attachments/assets/266f6cc9-0203-4c75-b7aa-c63b1b34a3d0)
+
+## [Winter Burrow](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WinterBurrow)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WinterBurrow/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/c632f388-f58a-4eca-9706-35b858a1bc8b)
+![main_constrained](https://github.com/user-attachments/assets/d7308cbd-01b3-4180-911d-0022315297db)
 
 ## [WitchSpring R](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/WitchSpringR)  
 ![Static Badge](https://img.shields.io/badge/Pre--Cleanup-259-brightgreen?style=for-the-badge) ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/WitchSpringR/total?label=downloads&style=for-the-badge)
