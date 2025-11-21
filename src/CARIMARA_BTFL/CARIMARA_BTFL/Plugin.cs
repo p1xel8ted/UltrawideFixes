@@ -1,4 +1,6 @@
-﻿namespace CARIMARA_BTFL;
+﻿using CARIMARA_BTFL.Configuration;
+
+namespace CARIMARA_BTFL;
 
 /// <summary>
 /// Main BepInEx plugin class that coordinates ultra-wide monitor support for CARIMARA Beneath The Forlorn Limbs.
@@ -86,7 +88,7 @@ public class Plugin : BaseUnityPlugin
     /// </summary>
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        UpdateAll();
+        UpdateAll(true);
     }
 
     /// <summary>

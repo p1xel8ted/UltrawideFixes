@@ -1,3 +1,5 @@
+using CARIMARA_BTFL.Configuration;
+
 namespace CARIMARA_BTFL.Resolutions;
 
 /// <summary>

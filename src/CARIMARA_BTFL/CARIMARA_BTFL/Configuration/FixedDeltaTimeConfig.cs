@@ -1,4 +1,4 @@
-﻿namespace CARIMARA_BTFL.Core.Configuration;
+﻿namespace CARIMARA_BTFL.Configuration;
 
 public static class FixedDeltaTimeConfig
 {
@@ -12,10 +12,13 @@ public static class FixedDeltaTimeConfig
     /// <param name="config">The BepInEx configuration file to bind settings to.</param>
     public static void Initialize(ConfigFile config)
     {
-        CorrectFixedUpdateRate = config.Bind("02. Performance", "Modify Physics Rate", true,
+        config.Bind("02. Performance", "**WARNING**", false,
+            new ConfigDescription("TURN ALL THESE OFF IF YOU GET STUCK IN CERTAIN AREAS OF THE GAME", null, new ConfigurationManagerAttributes { Order = 93 }));
+        
+        CorrectFixedUpdateRate = config.Bind("02. Performance", "Modify Physics Rate", false,
             new ConfigDescription("Adjusts the fixed update rate to minimum amount to reduce camera judder based on your refresh rate. This is a generic Unity fix and may or may not do anything in this particular title.", null, new ConfigurationManagerAttributes { Order = 92 }));
 
-        UseRefreshRateForFixedUpdateRate = config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", true,
+        UseRefreshRateForFixedUpdateRate = config.Bind("02. Performance", "Use Refresh Rate For Physics Rate", false,
             new ConfigDescription("Sets the fixed update rate based on the monitor's refresh rate for smoother gameplay. Just the top option should be sufficient to reduce camera judder, but you can experiment.", null, new ConfigurationManagerAttributes { Order = 91 }));
     }
     

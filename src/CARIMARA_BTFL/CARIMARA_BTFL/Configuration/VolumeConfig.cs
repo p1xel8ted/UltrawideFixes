@@ -1,4 +1,4 @@
-﻿namespace CARIMARA_BTFL.Core.Configuration;
+﻿namespace CARIMARA_BTFL.Configuration;
 
 /// <summary>
 /// Manages UI-related configuration settings including HUD aspect ratio preferences.

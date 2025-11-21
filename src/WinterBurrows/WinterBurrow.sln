@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BluePrince", "BluePrince\BluePrince.csproj", "{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinterBurrow", "WinterBurrow\WinterBurrow.csproj", "{D59DBE8D-FE14-4B42-84A4-F8665C60F46C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,16 +1,14 @@
 <Project>
     <PropertyGroup>        
          <!-- Path to your game installation -->
-        <GamePath>G:\SteamLibrary\steamapps\common\CARIMARA Beneath the forlorn limbs\CARIMARA_BTFL</GamePath>
+        <GamePath>E:\SteamLibrary\steamapps\common\CARIMARA Beneath the forlorn limbs\CARIMARA_BTFL</GamePath>
         
         <!-- Path to your game's managed folder -->
-        <ManagedPath>G:\SteamLibrary\steamapps\common\CARIMARA Beneath the forlorn limbs\CARIMARA_BTFL\CARIMARA_BeneathTheForlornLimbs_Data\Managed</ManagedPath>
+        <ManagedPath>E:\SteamLibrary\steamapps\common\CARIMARA Beneath the forlorn limbs\CARIMARA_BTFL\CARIMARA_BeneathTheForlornLimbs_Data\Managed</ManagedPath>
   
         <!-- Path to your BepInEx plugins folder -->
         <BepInExPluginsPath>$(GamePath)\BepInEx\plugins</BepInExPluginsPath>
 
-        <!-- Path to your stripped libs folder -->
-        <StrippedLibs>$(MSBuildProjectDirectory)\libs</StrippedLibs>
         
         <ConfigManagerPath>..\..\ConfigManager</ConfigManagerPath>
     </PropertyGroup>

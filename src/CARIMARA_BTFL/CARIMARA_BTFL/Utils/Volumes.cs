@@ -1,4 +1,6 @@
-﻿namespace CARIMARA_BTFL.Utils;
+﻿using CARIMARA_BTFL.Configuration;
+
+namespace CARIMARA_BTFL.Utils;
 
 public static class Volumes
 {

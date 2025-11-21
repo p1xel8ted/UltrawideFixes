@@ -1,4 +1,6 @@
-namespace CARIMARA_BTFL.Configuration;
+using WinterBurrow.Resolutions;
+
+namespace WinterBurrow.Core.Configuration;
 
 /// <summary>
 /// Manages display-related configuration settings including resolution, fullscreen mode, VSync, and refresh rates.
@@ -66,7 +68,7 @@ public static class DisplayConfig
                 null,
                 new ConfigurationManagerAttributes { Order = 95 }));
 
-        CustomRefreshRate = config.Bind("01. Display", "Custom Refresh Rate", ResolutionManager.MaxRefresh,
+        CustomRefreshRate = config.Bind("01. Display", "Custom Refresh Rate", ResolutionManager.RefreshRate,
             new ConfigDescription(
                 "Manually define a refresh rate to use if 'Use Custom Refresh Rate' is enabled.",
                 new AcceptableValueList<int>(ResolutionManager.MergeUnityRefreshRates()),
@@ -95,20 +97,5 @@ public static class DisplayConfig
     /// Converts the user-friendly VSync setting name to Unity's VSync count value.
     /// </summary>
     /// <returns>The VSync count value (0=disabled, 1=every refresh, 2=every 2nd refresh). Defaults to 1 if invalid.</returns>
-    public static int GetVSyncValue()
-    {
-        if (VSyncOptions.TryGetValue(VSyncSetting.Value, out var value))
-        {
-            return value;
-        }
-
-        // Invalid value found - log warning and reset to valid default
-        var invalidValue = VSyncSetting.Value;
-        const string defaultValue = "Enabled (Every Refresh)";
-
-        Plugin.Log.LogWarning($"Invalid VSync setting '{invalidValue}'. Resetting to '{defaultValue}'.");
-        VSyncSetting.Value = defaultValue;
-
-        return 1; // Default to VSync enabled
-    }
+    public static int GetVSyncValue() => VSyncOptions.GetValueOrDefault(VSyncSetting.Value, 1);
 }
