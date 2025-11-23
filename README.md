@@ -78,7 +78,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 
 <div id="B"/>
-<details><summary>B (5)</summary>
+<details><summary>B (6)</summary>
 
 ## [BAKERU](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/bakeru)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/bakeru/total?label=downloads&style=for-the-badge)
@@ -99,6 +99,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BlueOakBridge/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/ccf13f2f-ade9-4a3d-b333-46e5f23c8aa1) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/a0499349-578d-45f4-9fbd-ed6bdb1ef661)
+
+## [Blue Prince](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/BluePrince)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/BluePrince/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/40f67a8a-2f84-4be4-b3df-4d9d3e3f9dc7) ![main_cutscene](https://github.com/user-attachments/assets/a032cb6b-e766-4582-b887-b391291fb85f)
 
 ## [ButtKnight](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ButtKnight)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ButtKnight/total?label=downloads&style=for-the-badge)
