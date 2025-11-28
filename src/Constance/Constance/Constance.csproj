@@ -1,0 +1,73 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Product>Constance Ultra-Wide</Product>
+        <Version>0.1.0</Version>
+        <AssemblyName>$(Product)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>$(BepInExPluginsPath)</OutputPath>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <Import Project="../zip.target"/>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
+    </ItemGroup>
+    
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+    <ItemGroup>
+        <Reference Include="Constance.Core">
+          <HintPath>$(ManagedPath)\Constance.Core.dll</HintPath>
+            <Publicize>true</Publicize>
+        </Reference>
+        <Reference Include="Constance.Rendering">
+          <HintPath>$(ManagedPath)\Constance.Rendering.dll</HintPath>
+            <Publicize>true</Publicize>
+        </Reference>
+        <Reference Include="Constance.Ui">
+          <HintPath>$(ManagedPath)\Constance.Ui.dll</HintPath>
+            <Publicize>true</Publicize>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
+            <Publicize>true</Publicize>
+        </Reference>
+        <Reference Include="UnityEngine.Engine">
+            <HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+            <Publicize>true</Publicize>
+        </Reference>
+        <Reference Include="UnityEngine.VideoModule">
+            <HintPath>$(ManagedPath)\UnityEngine.VideoModule.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+</Project>
