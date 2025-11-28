@@ -1,24 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
-        <LangVersion>latest</LangVersion>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Product>FANTASIAN Neo Dimension Ultra-Wide</Product>
-        <Description>$(MSBuildProjectName)</Description>
-        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <Product>Blue Prince Ultra-Wide</Product>
         <Version>0.1.0</Version>
-        <Company>p1xel8ted</Company>
-        <Authors>p1xel8ted</Authors>
         <AssemblyName>$(Product)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
+        <PlatformTarget>x64</PlatformTarget>
         <RestoreAdditionalProjectSources>
             https://api.nuget.org/v3/index.json;
             https://nuget.bepinex.dev/v3/index.json;
             https://nuget.samboy.dev/v3/index.json
         </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <LangVersion>latest</LangVersion>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+        <OutputPath>$(ModsOutputPath)</OutputPath>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <DefineConstants>Melon</DefineConstants>
     </PropertyGroup>
 
     <ItemDefinitionGroup>
@@ -32,88 +37,265 @@
             <Private>False</Private>
         </PackageReference>
     </ItemDefinitionGroup>
-    
-    <Import Project="../zip.target"/>
-
-
-    <PropertyGroup>
-        <OutputPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\plugins</OutputPath>
-    </PropertyGroup>
-    
-    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
-    </PropertyGroup>
-
-    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
-    </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.729" IncludeAssets="compile"/>
-    </ItemGroup>
+      <!-- MelonLoader Core References -->
+      <Reference Include="0Harmony">
+        <HintPath>$(MelonLoaderNet6Path)\0Harmony.dll</HintPath>
+      </Reference>
+      <Reference Include="Assembly-CSharp-firstpass">
+        <HintPath>$(Il2CppAssembliesPath)\Assembly-CSharp-firstpass.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppDOTween">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppDOTween.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppFurySdkProjectUtils">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppFurySdkProjectUtils.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppFuryStudios.FuryBuildSystem">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppFuryStudios.FuryBuildSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppFuryStudios.FurySDK.Steam">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppFuryStudios.FurySDK.Steam.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppInterop.Runtime">
+        <HintPath>$(MelonLoaderNet6Path)\Il2CppInterop.Runtime.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppMono.Security">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppMono.Security.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppPlayMaker">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppPlayMaker.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppRewired_Core">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppRewired_Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppRewired_Windows">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppRewired_Windows.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSoundeR">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSoundeR.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Core">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppSystem.Xml">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppSystem.Xml.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppToolBuddy.Curvy">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppToolBuddy.Curvy.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2CppToolBuddy.Dependencies.VectorGraphics">
+        <HintPath>$(Il2CppAssembliesPath)\Il2CppToolBuddy.Dependencies.VectorGraphics.dll</HintPath>
+      </Reference>
+      <Reference Include="Il2Cpp__Generated">
+        <HintPath>$(Il2CppAssembliesPath)\Il2Cpp__Generated.dll</HintPath>
+      </Reference>
+      <Reference Include="MelonLoader">
+        <HintPath>$(MelonLoaderNet6Path)\MelonLoader.dll</HintPath>
+      </Reference>
 
-    <ItemGroup>
+      <!-- Game-Specific Assemblies -->
       <Reference Include="Assembly-CSharp">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\Assembly-CSharp.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Assembly-CSharp.dll</HintPath>
       </Reference>
       <Reference Include="Il2Cppmscorlib">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\Il2Cppmscorlib.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\Il2Cppmscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.2D.PixelPerfect">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.2D.PixelPerfect.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Addressables">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Addressables.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.InputSystem">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.InputSystem.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.Postprocessing.Runtime">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.Postprocessing.Runtime.dll</HintPath>
+      </Reference>
+
+
+      <!-- Unity Modules -->
+        
+      <Reference Include="Unity.ResourceManager">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.ResourceManager.dll</HintPath>
+      </Reference>
+      <Reference Include="Unity.TextMeshPro">
+        <HintPath>$(Il2CppAssembliesPath)\Unity.TextMeshPro.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AccessibilityModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AccessibilityModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AIModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.AIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.AndroidJNIModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AndroidJNIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AnimationModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.AnimationModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AnimationModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ARModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ARModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AssetBundleModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.AssetBundleModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AssetBundleModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.AudioModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.AudioModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.AudioModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ClothModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ClothModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.CoreModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.CoreModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CrashReportingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.CrashReportingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.DirectorModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.DirectorModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GameCenterModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.GameCenterModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.GridModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.GridModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ImageConversionModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ImageConversionModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.IMGUIModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.IMGUIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.IMGUIModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.InputLegacyModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.InputLegacyModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.InputLegacyModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.JSONSerializeModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.JSONSerializeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.LocalizationModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.LocalizationModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.ParticleSystemModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.ParticleSystemModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ParticleSystemModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.PerformanceReportingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.PerformanceReportingModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.Physics2DModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.Physics2DModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.Physics2DModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.PhysicsModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.PhysicsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.PhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.ScreenCaptureModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.ScreenCaptureModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.SharedInternalsModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.SharedInternalsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SharedInternalsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteMaskModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SpriteMaskModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SpriteShapeModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SpriteShapeModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.StreamingModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.StreamingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubstanceModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SubstanceModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.SubsystemsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.SubsystemsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TerrainModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TerrainPhysicsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreFontEngineModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TextCoreTextEngineModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextCoreTextEngineModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.TextRenderingModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.TextRenderingModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TextRenderingModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.TilemapModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.TilemapModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UI">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.UI.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UI.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIElementsModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.UIElementsModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIElementsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIElementsNativeModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIElementsNativeModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UIModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.UIModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UNETModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UNETModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsCommonModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityAnalyticsCommonModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityAnalyticsModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityConnectModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityConnectModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.UnityWebRequestModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.UnityWebRequestModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VehiclesModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VehiclesModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VFXModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VFXModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.VideoModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.VideoModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VideoModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.VRModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.VRModule.dll</HintPath>
       </Reference>
       <Reference Include="UnityEngine.WindModule">
-        <HintPath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension\BepInEx\interop\UnityEngine.WindModule.dll</HintPath>
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.WindModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.XRModule">
+        <HintPath>$(Il2CppAssembliesPath)\UnityEngine.XRModule.dll</HintPath>
       </Reference>
     </ItemGroup>
-        
+
+    <ItemGroup>
+      <PackageReference Remove="BepInEx.AssemblyPublicizer.MSBuild" />
+    </ItemGroup>
     
 </Project>

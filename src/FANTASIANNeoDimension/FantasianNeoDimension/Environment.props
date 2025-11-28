@@ -1,0 +1,14 @@
+<Project>
+    <PropertyGroup>
+        <!-- Path to your ML game installation -->
+        <GamePath>G:\SteamLibrary\steamapps\common\FANTASIAN Neo Dimension</GamePath>
+
+        <!-- MelonLoader paths -->
+        <MelonLoaderPath>$(GamePath)\MelonLoader</MelonLoaderPath>
+        <MelonLoaderNet6Path>$(MelonLoaderPath)\net6</MelonLoaderNet6Path>
+        <Il2CppAssembliesPath>$(MelonLoaderPath)\Il2CppAssemblies</Il2CppAssembliesPath>
+
+        <!-- Output path for MelonLoader mods -->
+        <ModsOutputPath>$(GamePath)\Mods</ModsOutputPath>
+    </PropertyGroup>
+</Project>

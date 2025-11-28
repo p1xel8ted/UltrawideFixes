@@ -1,79 +1,114 @@
-using System.Diagnostics;
-using Il2CppInterop.Runtime;
-using Il2CppInterop.Runtime.InteropTypes.Arrays;
-
-namespace FantasianNeoDimension.Patches;
+namespace FANTASIANNeoDimension.Patches;
 
 [Harmony]
+[SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class Patches
 {
-    private static readonly int AspectRatio = Shader.PropertyToID("_AspectRatio");
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(GameOption), nameof(GameOption.GetAvailableResolutions))]
-    public static void GameOption_GetAvailableResolutions(ref Il2CppStructArray<Vector2Int> __result)
-    {
-        var myResX = new Vector2Int(3440, 0);
-        var myResY = new Vector2Int(1440, 0);
-        var existingResolutions = __result.ToList();
-        existingResolutions.Add(myResX);
-        existingResolutions.Add(myResY);
-        __result = new Il2CppStructArray<Vector2Int>(existingResolutions.ToArray());
-    }
-
-    public static List<T> FindIl2CppType<T>() where T : Object
-    {
-        var list = new List<T>();
-        list.AddRange(Resources.FindObjectsOfTypeAll(Il2CppType.Of<T>()).Select(obj => obj.TryCast<T>()).Where(o => o != null));
-        return list;
-    }
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(UzuraManager), nameof(UzuraManager.updateCameraArea))]
-    public static void UzuraManager_updateCameraArea(UzuraManager __instance)
-    {
-        Plugin.Logger.LogWarning($"UzuraManager.updateCameraArea");
-    }
+    private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScaleModes = new();
+    internal static readonly List<CanvasScaler> Scalers = [];
 
 
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(CameraImageInfo), nameof(CameraImageInfo.ApplyCamera))]
-    public static void CameraImageInfo_ApplyCamera(CameraImageInfo __instance, Camera camera, CameraClipper cameraClipper, float scale)
+    internal static void ProcessScaler(CanvasScaler scaler)
     {
-        __instance.useAreaSize = 1.348f;
-        __instance.useTrimedTexture = true;
-        // __instance.useAreaOffset *= Plugin.NegativeScaleFactor;
-        // __instance.
-        Plugin.Logger.LogWarning($"CameraImageInfo.ApplyCamera: {camera.name} -{__instance.useTrimedTexture} - {__instance.useAreaOffset}");
-    }
-    
-    
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(ScreenMonitor), nameof(ScreenMonitor.UpdateRenderingSize))]
-    public static void ScreenMonitor_UpdateRenderingSize(ref float scale)
-    {
-        scale = Plugin.PositiveScaleFactor;
-        Plugin.Logger.LogWarning($"ScreenMonitor.UpdateRenderingSize: {scale}");
-    }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(MoviePlayer), nameof(MoviePlayer.Load))]
-    [HarmonyPatch(typeof(MoviePlayer), nameof(MoviePlayer.Update))]
-    [HarmonyPatch(typeof(MoviePlayer), nameof(MoviePlayer.Play))]
-    public static void MoviePlayer_OnEnable(MoviePlayer __instance)
-    {
-        if (__instance.movieInfo != null)
+        var instanceID = scaler.GetInstanceID();
+        if (!OriginalScaleModes.TryGetValue(instanceID, out var mode))
         {
-            __instance.videoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
-            __instance.movieInfo.enableSkip = true;
-            __instance.movieInfo.fastForward = true;
+            OriginalScaleModes.Add(instanceID, scaler.screenMatchMode);
+            mode = scaler.screenMatchMode;
+            Scalers.Add(scaler);
         }
+
+        scaler.screenMatchMode = Mod.MainAspect > Mod.NativeAspectRatio ? CanvasScaler.ScreenMatchMode.Expand : mode;
     }
+
+    private static void UpdateCam(Camera cam)
+    {
+        if (!cam) return;
+
+        cam.aspect = Mod.MainAspect;
+        cam.rect = new Rect(0, 0, 1, 1);
+        cam.pixelRect = new Rect(0, 0, Mod.NativeDisplayWidth, Mod.NativeDisplayHeight);
+    }
+
+
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(LetterboxCamera), nameof(LetterboxCamera.ResetCamera))]
+    // [HarmonyPatch(typeof(LetterboxCamera), nameof(LetterboxCamera.Awake))]
+    // [HarmonyPatch(typeof(LetterboxCamera), nameof(LetterboxCamera.UpdateCamera))]
+    // public static void LetterboxCamera_Awake(LetterboxCamera __instance)
+    // {
+    //     __instance.targetAspect = Mod.MainAspect;
+    //     UpdateCam(__instance.cam);
+    // }
+
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(FixedAspectRatio), nameof(FixedAspectRatio.Start))]
+    // [HarmonyPatch(typeof(FixedAspectRatio), nameof(FixedAspectRatio.UpdateViewport))]
+    // public static void FixedAspectRatio_Start(FixedAspectRatio __instance)
+    // {
+    //     __instance.targetAspect = Mod.MainAspect;
+    //     UpdateCam(__instance.cam);
+    // }
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(LetterboxCameraBars), nameof(LetterboxCameraBars.Awake))]
+    // [HarmonyPatch(typeof(LetterboxCameraBars), nameof(LetterboxCameraBars.SetBar))]
+    // [HarmonyPatch(typeof(LetterboxCameraBars), nameof(LetterboxCameraBars.UpdateBars))]
+    // public static void LetterboxCameraBars_Awake(LetterboxCameraBars __instance)
+    // {
+    //     __instance.targetAspect = Mod.MainAspect;
+    //     __instance.barBottom.enabled = false;
+    //     __instance.barTop.enabled = false;
+    //     __instance.barLeft.enabled = false;
+    //     __instance.barRight.enabled = false;
+    // }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
-    public static void CanvasScaler_OnEnable(CanvasScaler __instance)
+    public static void CanvasScaler_OnEnable(ref CanvasScaler __instance)
     {
-        __instance.screenMatchMode = CanvasScaler.ScreenMatchMode.Expand;
+        ProcessScaler(__instance);
     }
+
+    // private static PostProcessVolume MainVolume => Camera.allCameras.FirstOrDefault(c => c.name == "FirstPersonCharacter")?.GetComponent<PostProcessVolume>();
+    //
+    // internal static void UpdatePostProcessing()
+    // {
+    //     var volume = MainVolume;
+    //     if (!volume) return;
+    //     
+    //     foreach (var setting in volume.profile.settings)
+    //     {
+    //         UpdateSetting(setting);
+    //     }
+    // }
+    //
+    // private static void UpdateSetting(PostProcessEffectSettings setting)
+    // {
+    //     setting.active = setting.GetIl2CppType().Name switch
+    //     {
+    //         "Vignette" => Mod.Vignette.Value,
+    //         "ChromaticAberration" => Mod.ChromaticAberration.Value,
+    //         "LensDistortion" => Mod.LensDistortion.Value,
+    //         "AmbientOcclusion" => Mod.AmbientOcclusion.Value,
+    //         "Bloom" => Mod.Bloom.Value,
+    //         "ColorGrading" => Mod.ColorGrading.Value,
+    //         "MotionBlur" => Mod.MotionBlur.Value,
+    //         "Grain" => Mod.Grain.Value,
+    //         _ => setting.active
+    //     };
+    // }
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(PostProcessVolume), nameof(PostProcessVolume.OnEnable))]
+    // public static void PostProcessEffectSettings_OnEnable(PostProcessVolume __instance)
+    // {
+    //     if (__instance.name != "FirstPersonCharacter") return;
+    //
+    //     foreach (var setting in __instance.profile.settings)
+    //     {
+    //         UpdateSetting(setting);
+    //     }
+    // }
 }
