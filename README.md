@@ -113,7 +113,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 </details>
 </details>
 <div id="C"/>
-<details><summary>C (4)</summary>
+<details><summary>C (5)</summary>
 
 ## [Cat Quest (1)](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/CatQuest1)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CatQuest1/total?label=downloads&style=for-the-badge)
@@ -124,6 +124,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/CloverPit/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/002799bb-0cab-455f-a417-98b238804daa) ![main_game-16-9](https://github.com/user-attachments/assets/2960eef1-2c50-4427-9029-7245146a655d)
+
+## [Constance](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Constance)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Constance/total?label=downloads&style=for-the-badge)
+
+![main_mainmenu](https://github.com/user-attachments/assets/934111e1-1696-48e6-824d-3b099b468ba6) ![main_game_169](https://github.com/user-attachments/assets/106a5953-7e0e-41e0-b384-3ca1007ea638)
 
 ## [CONVERGENCE: A League of Legends Story™](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ConvergenceLoL)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ConvergenceLoL/total?label=downloads&style=for-the-badge)
