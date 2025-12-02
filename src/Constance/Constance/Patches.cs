@@ -67,35 +67,46 @@ public static class Patches
         Object.Destroy(__instance);
     }
 
-    // Replaces hardcoded 16:9 aspect ratio with actual camera aspect for frustum calculations
+    // Helper method for confiner transpiler - returns 16:9 aspect when yAxis is Locked
+    // Parameter order matches stack order: aspect is loaded first, then vcam
+    public static float GetConfinerAspect(float originalAspect, CinemachineVirtualCameraBase vcam)
+    {
+        var camBase = vcam?.GetComponent<CConCamBase>();
+        if (camBase && camBase.yAxis == ConCameraAxisType.Locked)
+        {
+            return Plugin.NativeAspect;
+        }
+        return originalAspect;
+    }
+
+    // Fixes camera vertical position in boss arenas by using 16:9 aspect for confiner bounds
+    // when yAxis is Locked. This prevents the camera from being positioned under the floor.
     [HarmonyTranspiler]
-    [HarmonyPatch(typeof(ConCameraScaleUtils), nameof(ConCameraScaleUtils.CalculateFrustumFillBounds))]
-    public static IEnumerable<CodeInstruction> ConCameraScaleUtils_CalculateFrustumFillBounds_Transpiler(IEnumerable<CodeInstruction> instructions)
+    [HarmonyPatch(typeof(ConCinemachineConfiner2D), nameof(ConCinemachineConfiner2D.PostPipelineStageCallback))]
+    public static IEnumerable<CodeInstruction> ConCinemachineConfiner2D_PostPipelineStageCallback_Transpiler(IEnumerable<CodeInstruction> instructions)
     {
         var codes = new List<CodeInstruction>(instructions);
+        var aspectGetter = AccessTools.PropertyGetter(typeof(LensSettings), nameof(LensSettings.Aspect));
+
         for (var i = 0; i < codes.Count; i++)
         {
-            if (codes[i].opcode == OpCodes.Ldc_R4 && codes[i].operand is float f && Mathf.Approximately(f, 1.7777778f))
-            {
-                Plugin.Log.LogInfo("Patching ConCameraScaleUtils: Replacing hardcoded 1.7777778f with Camera.main.aspect");
-
-                codes[i] = new CodeInstruction(OpCodes.Call, AccessTools.PropertyGetter(typeof(Camera), nameof(Camera.main)));
-                codes.Insert(i + 1, new CodeInstruction(OpCodes.Callvirt, AccessTools.PropertyGetter(typeof(Camera), nameof(Camera.aspect))));
-                break;
-            }
+            if (!codes[i].Calls(aspectGetter)) continue;
+            
+            // After call get_Aspect(), stack has: aspect (float)
+            // Insert: ldarg.1 (vcam), call GetConfinerAspect(float, vcam)
+            i++; // Move past call get_Aspect()
+            codes.Insert(i, new CodeInstruction(OpCodes.Ldarg_1));  // Load vcam
+            i++;
+            codes.Insert(i, new CodeInstruction(OpCodes.Call,
+                AccessTools.Method(typeof(Patches), nameof(GetConfinerAspect))));
+            Plugin.Log.LogInfo("Patched ConCinemachineConfiner2D: Injected GetConfinerAspect after get_Aspect()");
+            break;
         }
 
         return codes;
     }
 
-    // Forces MoreMountains camera component to use screen ratio instead of fixed aspect (dont think this actually gets used, but just in case)
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(MMCameraAspectRatio), nameof(MMCameraAspectRatio.ApplyAspectRatio))]
-    public static void MMCameraAspectRatio_ApplyAspectRatio(MMCameraAspectRatio __instance)
-    {
-        Plugin.Log.LogInfo($"MMCameraAspectRatio detected on {__instance.TargetCamera?.name ?? "unknown"}, forcing ScreenRatio mode");
-        __instance.Mode = MMCameraAspectRatio.Modes.ScreenRatio;
-    }
+
 
     // Unlocks camera X-axis to allow horizontal panning on ultrawide displays
     [HarmonyPrefix]

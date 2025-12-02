@@ -10,6 +10,7 @@ global using System.Reflection.Emit;
 global using BepInEx;
 global using BepInEx.Configuration;
 global using BepInEx.Logging;
+global using Cinemachine;
 global using Constance.Utils;
 global using HarmonyLib;
 global using JetBrains.Annotations;

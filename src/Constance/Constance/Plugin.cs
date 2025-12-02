@@ -5,7 +5,7 @@ public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.constance.ultrawide";
     private const string PluginName = "Constance Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     internal static ManualLogSource Log { get; private set; }
 
@@ -15,7 +15,7 @@ public class Plugin : BaseUnityPlugin
     internal const float NativeAspect = 16f / 9f; //1.777778
     private const float ReferenceHeight = 2160f; // 4K reference resolution height
     private static ConfigEntry<string> HUDAspect { get; set; }
-    public static int NativeWidth => (int)(NativeAspect * CurrentHeight); //2560
+
 
     private static float GetCanvasOffset(float targetAspect)
     {
