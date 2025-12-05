@@ -1,20 +1,8 @@
 <Project>
+<!--    BepInEx IL2CPP Environment Properties-->
     <PropertyGroup>
-        <!-- Name of your game folder -->
-        <GameFolderName>Lego Party</GameFolderName>
-        
-         <!-- Path to your game installation -->
         <GamePath>G:\SteamLibrary\steamapps\common\Lego Party</GamePath>
-        
-        <!-- Path to your game's managed folder -->
-        <ManagedPath>G:\SteamLibrary\steamapps\common\Lego Party\BepInEx\interop</ManagedPath>
-  
-        <!-- Path to your BepInEx plugins folder -->
-        <BepInExPluginsPath>G:\SteamLibrary\steamapps\common\Lego Party\BepInEx\plugins</BepInExPluginsPath>
-
-        <!-- Path to your stripped libs folder -->
-        <StrippedLibs>$(MSBuildProjectDirectory)\libs</StrippedLibs>
-        
-        <ConfigManagerPath>..\..\ConfigManager</ConfigManagerPath>
+        <InteropPath>$(GamePath)\BepInEx\interop</InteropPath>
+        <BepInExPluginsPath>$(GamePath)\BepInEx\plugins</BepInExPluginsPath>
     </PropertyGroup>
 </Project>
