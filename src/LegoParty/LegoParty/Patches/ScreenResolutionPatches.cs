@@ -1,10 +1,13 @@
 namespace LegoParty.Patches;
 
+/// <summary>
+/// Intercepts all Screen.SetResolution overloads to force native display resolution.
+/// Prevents the game from setting a lower or different resolution.
+/// </summary>
 [Harmony]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class ScreenResolution
 {
-    
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Screen), nameof(Screen.SetResolution), typeof(int), typeof(int), typeof(bool), typeof(int))]
     public static void Screen_SetResolution_BoolWithInt(ref int width, ref int height, ref bool fullscreen, ref int preferredRefreshRate)
@@ -44,5 +47,4 @@ public static class ScreenResolution
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
     }
-    
 }
