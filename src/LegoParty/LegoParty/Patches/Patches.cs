@@ -1,3 +1,4 @@
+using Koala.Board;
 using LegoParty.MonoBehaviours;
 
 namespace LegoParty.Patches;
@@ -173,6 +174,35 @@ public static class Patches
             else
             {
                 Plugin.Logger.LogWarning($"[MainMenuPlayScreen_OnSetup] TopEdging not found on MainMenuPlayScreen ModalBar Raiser '{raiser.gameObject.name}'");
+            }
+        }
+    }
+
+
+    //Koala.UI.OptionsMenuScreenCommonContent
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(BaseOptionsMenuScreen), nameof(BaseOptionsMenuScreen.OnShow))]
+    [HarmonyPatch(typeof(BaseOptionsMenuScreen), nameof(BaseOptionsMenuScreen.OnSetup))]
+    private static void BaseOptionsMenuScreen_OnEnable(BaseOptionsMenuScreen __instance)
+    {
+        if (__instance is BoardOptionsMenuScreen boms)
+        {
+            var commonContent = boms._commonContent.transform;
+            var bg = commonContent.FindChild("prefab_core_ui_background_transparent_purpleFancyTODO");
+            if (bg)
+            {
+                var bgArf = bg.gameObject.GetOrAddComponent<AspectRatioFitter>();
+                bgArf.aspectMode = AspectRatioFitter.AspectMode.HeightControlsWidth;
+                bgArf.aspectRatio = Plugin.MainAspectRatio;
+                Plugin.Logger.LogInfo($"[BaseOptionsMenuScreen_OnEnable] Added AspectRatioFitter to BoardOptionsMenuScreen background '{bg.gameObject.name}' to enforce aspect ratio {Plugin.MainAspectRatio}");
+            }
+
+            var header = commonContent.FindChild("prefab_core_ui_header_screen/BackingStrip");
+            if (header)
+            {
+                header.localScale = header.localScale with { x = Plugin.PositiveScaleFactor };
+                Plugin.Logger.LogInfo($"[BaseOptionsMenuScreen_OnEnable] Adjusted BoardOptionsMenuScreen header scale on '{header.gameObject.name}' to x scale {header.localScale.x} to accommodate aspect ratio {Plugin.MainAspectRatio}");
             }
         }
     }
