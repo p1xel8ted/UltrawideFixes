@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>disable</Nullable>
+    <IsMac>false</IsMac>
+    <DebugType>embedded</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+    <Author>p1xel8ted</Author>
+    <Authors>$(Author)</Authors>
+    <Company>$(Author)</Company>
+    <Product>Quackstrain</Product>
+    <Description>Quackstrain - A HUD constraint mod for Escape from Duckov</Description>
+    <Deterministic>true</Deterministic>
+    <Version>0.1.0</Version>
+    <FileVersion>$(Version)</FileVersion>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>G:\SteamLibrary\steamapps\common\Escape from Duckov\Duckov_Data\Mods\$(MSBuildProjectName)\</OutputPath>
+
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    
+    <IsMac Condition="'$([System.Runtime.InteropServices.RuntimeInformation]::IsOSPlatform($([System.Runtime.InteropServices.OSPlatform]::OSX)))'">true</IsMac>
+    
+    <DuckovPath>G:\SteamLibrary\steamapps\common\Escape from Duckov</DuckovPath>
+    
+    <DuckovPath Condition="'$(IsMac)'">/Users/Somebody/Library/Application Support/Steam/steamapps/common/Escape from Duckov</DuckovPath>
+
+    <SubPath>\Duckov_Data\Managed\</SubPath>
+    <SubPath Condition="'$(IsMac)'">/Duckov.app/Contents/Resources/Data/Managed/</SubPath>
+    <LangVersion>latest</LangVersion>
+
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <Reference Include="$(DuckovPath)$(SubPath)TeamSoda.*">
+      <Private>False</Private>
+      <copylocal>False</copylocal>
+      <publicize>true</publicize>
+    </Reference>
+    <Reference Include="$(DuckovPath)$(SubPath)ItemStatsSystem.dll">
+      <publicize>true</publicize>
+      <Private>False</Private>
+      <copylocal>False</copylocal>
+    </Reference>
+    <Reference Include="$(DuckovPath)$(SubPath)Unity*">
+      <publicize>true</publicize>
+      <Private>False</Private>
+      <copylocal>False</copylocal>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>G:\SteamLibrary\steamapps\workshop\content\3167020\3589088839\0Harmony.dll</HintPath>
+      <copylocal>False</copylocal>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="$(DuckovPath)$(SubPath)LeTai.*">
+      <Private>False</Private>
+      <publicize>true</publicize>
+      <copylocal>False</copylocal>
+    </Reference>
+  </ItemGroup>
+
+</Project>
