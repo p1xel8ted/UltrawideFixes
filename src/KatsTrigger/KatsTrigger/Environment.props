@@ -1,0 +1,13 @@
+<Project>
+    <PropertyGroup>
+        
+        <!-- Path to your game installation -->
+        <GamePath>G:\SteamLibrary\steamapps\common\KatsTrigger</GamePath>
+        
+        <!-- Path to your game's managed folder -->
+        <InteropPath>$(GamePath)\BepInEx\interop</InteropPath>
+  
+        <!-- Path to your BepInEx plugins folder -->
+        <ModsOutputPath>$(GamePath)\BepInEx\plugins</ModsOutputPath>
+    </PropertyGroup>
+</Project>
