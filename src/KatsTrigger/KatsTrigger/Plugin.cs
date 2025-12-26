@@ -1,3 +1,7 @@
+using Il2CppInterop.Runtime.Injection;
+using KatsTrigger.MonoBehaviours;
+using KatsTrigger.Utils;
+
 namespace KatsTrigger;
 
 /// <summary>
@@ -17,6 +21,17 @@ public class Plugin : BasePlugin
     /// UI scaling switches to Expand mode when the current aspect ratio exceeds this value.
     /// </summary>
     internal const float NativeAspectRatio = 16f / 9f;
+
+    /// <summary>
+    /// The scene name that requires special FPS handling due to animation timing issues.
+    /// </summary>
+    private const string SpecialFPSScene = "JKScene_CH0_1";
+
+    /// <summary>
+    /// Cached flag indicating if the current scene requires special FPS handling.
+    /// Updated on scene load to avoid repeated string comparisons in hot paths.
+    /// </summary>
+    internal static bool IsSpecialFPSScene { get; private set; }
 
     #region Resolution Caching
 
@@ -192,8 +207,8 @@ public class Plugin : BasePlugin
     {
         UpdateResolution();
         UpdateScreenMode();
-        UpdateFramerateSettings();
         UpdateCanvasScalers(MainAspect);
+        ApplySceneFPSOverride();
     }
 
     /// <summary>
@@ -228,7 +243,7 @@ public class Plugin : BasePlugin
     /// When VSync is disabled, targetFrameRate is set to the user's configured value.
     /// Only applies changes if the current settings differ from the target.
     /// </summary>
-    private static void UpdateFramerateSettings()
+    internal static void UpdateFramerateSettings()
     {
         var targetVSync = GetVSyncValue();
         var targetFramerate = targetVSync == 0 ? TargetFramerate.Value : -1;
@@ -328,6 +343,7 @@ public class Plugin : BasePlugin
     /// </summary>
     public override void Load()
     {
+        ClassInjector.RegisterTypeInIl2Cpp<FramerateRestorer>();
         Logger = Log;
 
         // Resolution config with dropdown of available resolutions
@@ -394,8 +410,28 @@ public class Plugin : BasePlugin
     /// </summary>
     private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        // Cache the special scene flag to avoid string comparisons in hot paths
+        IsSpecialFPSScene = scene.name == SpecialFPSScene;
         Logger.LogInfo($"Scene '{scene.name}' loaded.");
         UpdateAll();
+    }
+
+    /// <summary>
+    /// Applies scene-specific FPS overrides. Some scenes have animation timing issues
+    /// at high framerates and require a temporary 60 FPS lock.
+    /// </summary>
+    private static void ApplySceneFPSOverride()
+    {
+        if (IsSpecialFPSScene)
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+            Logger.LogInfo($"Applied special framerate limit of 60 FPS for {SpecialFPSScene}.");
+        }
+        else
+        {
+            UpdateFramerateSettings();
+        }
     }
 
     /// <summary>

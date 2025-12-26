@@ -44,11 +44,16 @@
     
     <ItemGroup>
 
+        <Reference Include="Assembly-CSharp">
+          <HintPath>$(InteropPath)\Assembly-CSharp.dll</HintPath>
+        </Reference>
+
         <Reference Include="Il2Cppmscorlib">
             <HintPath>$(InteropPath)\Il2Cppmscorlib.dll</HintPath>
         </Reference>
         <Reference Include="Unity.2D.Animation.Runtime">
             <HintPath>$(InteropPath)\Unity.2D.Animation.Runtime.dll</HintPath>
+            <publicize>true</publicize>
         </Reference>
         <Reference Include="Unity.InputSystem">
             <HintPath>$(InteropPath)\Unity.InputSystem.dll</HintPath>
@@ -82,6 +87,7 @@
         </Reference>
         <Reference Include="UnityEngine.AnimationModule">
             <HintPath>$(InteropPath)\UnityEngine.AnimationModule.dll</HintPath>
+            <publicize>true</publicize>
         </Reference>
         <Reference Include="UnityEngine.AssetBundleModule">
             <HintPath>$(InteropPath)\UnityEngine.AssetBundleModule.dll</HintPath>
