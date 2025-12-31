@@ -271,7 +271,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="K"/>
-<details><summary>K (3)</summary>
+<details><summary>K (4)</summary>
+
+## [Kats Trigger](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KatsTrigger)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KatsTrigger/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/39e28fbb-38cd-4d6d-a8c0-85bf74f2ce8c) ![main_game](https://github.com/user-attachments/assets/5cd8cab0-ddb9-4ccc-ac03-41c9d7edd730)
 
 ## [Kaze And The Wild Masks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/KazeAndTheWildMasks)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/KazeAndTheWildMasks/total?label=downloads&style=for-the-badge)
