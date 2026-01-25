@@ -76,11 +76,21 @@ public static class Patches
 
     /// <summary>
     /// Filters resolutions to only keep the highest refresh rate for each width x height.
+    /// Includes native display resolution as fallback in case Unity filters it out.
     /// </summary>
     private static Resolution[] GetFilteredResolutions()
     {
         var resolutions = Screen.resolutions;
         var bestBySize = new Dictionary<string, Resolution>();
+
+        // Add native display resolution first (in case Unity's supported aspect ratios filter it out)
+        var nativeKey = Display.main.systemWidth + "x" + Display.main.systemHeight;
+        bestBySize[nativeKey] = new Resolution
+        {
+            width = Display.main.systemWidth,
+            height = Display.main.systemHeight,
+            refreshRate = Screen.currentResolution.refreshRate
+        };
 
         for (var i = 0; i < resolutions.Length; i++)
         {
