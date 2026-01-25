@@ -42,12 +42,12 @@ public class Plugin : BasePlugin
 
     /// <summary>
     /// Flag indicating whether the cached resolution is valid.
-    /// Set to false when the resolution config changes to trigger re-parsing.
+    /// Set to false when the resolution config changes to trigger reparsing.
     /// </summary>
     private static bool _resolutionCacheValid;
 
     /// <summary>
-    /// Invalidates the resolution cache, forcing a re-parse on next access.
+    /// Invalidates the resolution cache, forcing a reparse on next access.
     /// Called when the user changes the resolution setting.
     /// </summary>
     private static void InvalidateResolutionCache() => _resolutionCacheValid = false;

@@ -1,3 +1,6 @@
+using System.Net.Mime;
+using System.Numerics;
+
 namespace WinterBurrow;
 
 /// <summary>
@@ -100,7 +103,7 @@ public class Plugin : BaseUnityPlugin
     {
         // Apply VSync and framerate settings
         QualitySettings.vSyncCount = DisplayConfig.GetVSyncValue();
-        Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? DisplayConfig.TargetFramerate.Value : -1;
+        MediaTypeNames.Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? DisplayConfig.TargetFramerate.Value : -1;
 
         if (force)
         {
