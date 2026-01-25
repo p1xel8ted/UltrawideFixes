@@ -1,0 +1,10 @@
+# AI
+.claude/
+CLAUDE.md
+.cursorrules
+.cursorignore
+copilot-instructions.md
+.github/copilot-instructions.md
+
+# Game code (for reference only)
+game_code/
