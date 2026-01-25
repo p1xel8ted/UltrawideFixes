@@ -7,6 +7,43 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# === AI Coding Assistants ===
+
+# Claude Code / Anthropic
+.claude/
+CLAUDE.md
+claude.md
+
+# Cursor
+.cursor/
+.cursorrules
+.cursorignore
+
+# GitHub Copilot
+.copilot/
+copilot-instructions.md
+.github/copilot-instructions.md
+
+# Aider
+.aider*
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v3/
+
+# Windsurf / Codeium
+.windsurf/
+.windsurfrules
+.codeium/
+
+# Continue.dev
+.continue/
+.continuerules
+
+# Other AI assistants
+.tabnine/
+.kite/
+.sourcery/
+
 # === AI / Agent directories (including hidden) ===
 claude/
 openai/
@@ -17,7 +54,6 @@ gemini/
 ai_agents/
 chatbots/
 autogen/
-.claude/
 .openai/
 .agents/
 .anthropic/
@@ -27,7 +63,7 @@ autogen/
 .chatbots/
 .autogen/
 
-# === AI / ML / Agents / Claude / OpenAI ===
+# === AI / ML Model Files ===
 
 # Ignore common model files and checkpoints
 *.pt
@@ -53,28 +89,23 @@ tensorboard/
 runs/
 experiments/
 
-# Ignore config and environment files
-*.yaml
-*.yml
-*.json
-*.cfg
-*.env
-
-# Ignore documentation drafts
-claude.md
+# Ignore AI documentation drafts
 openai.md
 agents.md
 ai.md
+AGENTS.md
 
-# Ignore Python virtual environments
+# === Python / Notebooks ===
+
+# Python virtual environments
 venv/
 .env/
 .venv/
 
-# Ignore Jupyter Notebook checkpoints
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
-# Ignore temporary files for AI projects
+# Temporary files
 *.log
 *.tmp
 *.cache
