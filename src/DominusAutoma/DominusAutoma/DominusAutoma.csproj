@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
+    <PropertyGroup>
+        <TargetFramework>net481</TargetFramework>
+        <Product>Dominus Automa Ultra-Wide</Product>
+        <Version>0.1.0</Version>
+        <AssemblyName>$(Product)</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <OutputPath>$(BepInExPluginsPath)</OutputPath>
+        <DebugType>embedded</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+        <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+        <Deterministic>true</Deterministic>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <Import Project="../zip.target"/>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Core" Version="5.4.21"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Game assemblies -->
+        <Reference Include="Assembly-CSharp">
+            <HintPath>$(ManagedPath)\Assembly-CSharp.dll</HintPath>
+            <publicize>true</publicize>
+        </Reference>
+        <Reference Include="RPGUI">
+            <HintPath>$(ManagedPath)\RPGUI.dll</HintPath>
+            <publicize>true</publicize>
+        </Reference>
+
+        <!-- Core Unity modules -->
+        <Reference Include="UnityEngine">
+            <HintPath>$(ManagedPath)\UnityEngine.dll</HintPath>
+            <publicize>true</publicize>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>$(ManagedPath)\UnityEngine.CoreModule.dll</HintPath>
+            <publicize>true</publicize>
+        </Reference>
+        <Reference Include="UnityEngine.IMGUIModule">
+            <HintPath>$(ManagedPath)\UnityEngine.IMGUIModule.dll</HintPath>
+            <publicize>true</publicize>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>$(ManagedPath)\UnityEngine.UI.dll</HintPath>
+            <publicize>true</publicize>
+        </Reference>
+    </ItemGroup>
+
+    <!-- Default all references to CopyLocal False -->
+    <ItemDefinitionGroup>
+        <Reference>
+            <Private>False</Private>
+        </Reference>
+        <ProjectReference>
+            <Private>False</Private>
+        </ProjectReference>
+        <PackageReference>
+            <Private>False</Private>
+        </PackageReference>
+    </ItemDefinitionGroup>
+
+</Project>
