@@ -118,10 +118,12 @@ obj
 /obj
 /src/WitchSpringR/.idea/
 .idea
-AAA_Releases
+AAA_Release/
+AAA_Releases/
+Environment.props
 /src/*/.idea/*
-/src/*/AAA_Releases/
-/src/*/*/AAA_Releases/*
+/src/*/AAA_Release*/
+/src/*/*/AAA_Release*/*
 /src/*/obj/*
 # User-specific files
 *.rsuser

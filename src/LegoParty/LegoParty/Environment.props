@@ -1,8 +1,0 @@
-<Project>
-<!--    BepInEx IL2CPP Environment Properties-->
-    <PropertyGroup>
-        <GamePath>G:\SteamLibrary\steamapps\common\Lego Party</GamePath>
-        <InteropPath>$(GamePath)\BepInEx\interop</InteropPath>
-        <BepInExPluginsPath>$(GamePath)\BepInEx\plugins</BepInExPluginsPath>
-    </PropertyGroup>
-</Project>
