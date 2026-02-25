@@ -1,4 +1,4 @@
-namespace Shared;
+namespace VampireSurvivors;
 
 /// <summary>
 /// Configuration constants for Harmony patches and ultra-wide adjustments.

@@ -1,16 +1,14 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using VampireSurvivors;
-using static Shared.DisplayMetrics;
-using static Shared.PatchConstants;
-using static Shared.Logger;
+using System.Diagnostics.CodeAnalysis;
+using static VampireSurvivors.DisplayMetrics;
+using static VampireSurvivors.PatchConstants;
+using static VampireSurvivors.Logger;
 
-namespace Shared;
+namespace VampireSurvivors;
 
-[Harmony]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class Patches
 {
-    private static readonly Dictionary<Stage, StageRectsBackup> StageBackups = new();
+    private static readonly Dictionary<int, StageRectsBackup> StageBackups = new();
 
     /// <summary>
     /// Immutable backup of stage rectangles for restoration when spawn zone expansion is toggled off.
@@ -24,6 +22,8 @@ public static class Patches
         public Rect TiledInnerRect { get; init; }
         public Rect TiledOuterRect { get; init; }
         public float WidthRect { get; init; }
+        // Backed up for restoration but not scaled during expansion
+        // because ultrawide only affects horizontal (width) scaling
         public float HeightRect { get; init; }
     }
 
@@ -31,15 +31,12 @@ public static class Patches
     private static float _lastToggleTime = -999f;
 
     /// <summary>
-    /// Update method called every frame to check for spawn zone toggle key press.
+    /// Called every frame from LateUpdate to check for spawn zone toggle key press.
+    /// Only handles input polling — the actual rect updates are triggered by the
+    /// SettingChanged event handler in Plugin.cs.
     /// </summary>
-#if Melon
-    internal static void UpdateMethod()
-#else
-    internal static void UpdateMethod(object sender, EventArgs eventArgs)
-#endif
+    internal static void CheckToggleKey()
     {
-        // Check for toggle key with debounce protection
         if (!Input.GetKeyDown(Plugin.ExpandSpawnZoneToggle.Value)) return;
 
         var currentTime = Time.time;
@@ -47,12 +44,6 @@ public static class Patches
         {
             _lastToggleTime = currentTime;
             Plugin.ExpandSpawnZone.Value = !Plugin.ExpandSpawnZone.Value;
-
-            var state = Plugin.ExpandSpawnZone.Value ? "ENABLED" : "DISABLED";
-            Info($"Toggle key '{Plugin.ExpandSpawnZoneToggle.Value}' pressed. Spawn zone expansion: {state}");
-
-            // Apply or restore rects based on new setting
-            UpdateStageRects();
         }
         else
         {
@@ -79,7 +70,7 @@ public static class Patches
     /// <param name="stage">The stage to backup.</param>
     private static void BackupStageRects(Stage stage)
     {
-        StageBackups[stage] = new StageRectsBackup
+        StageBackups[stage.GetInstanceID()] = new StageRectsBackup
         {
             ContainmentExactRect = stage._containmentExactRect,
             ContainmentScreenRect = stage._containmentScreenRect,
@@ -100,7 +91,7 @@ public static class Patches
     /// <param name="stage">The stage to restore.</param>
     private static void RestoreStageRects(Stage stage)
     {
-        if (!StageBackups.TryGetValue(stage, out var backup))
+        if (!StageBackups.TryGetValue(stage.GetInstanceID(), out var backup))
         {
             Warning($"No backup found for stage: {stage.name}");
             return;
@@ -131,15 +122,16 @@ public static class Patches
     /// <param name="stage">The stage to modify.</param>
     internal static void ModifyStage(Stage stage)
     {
-        if (!StageBackups.ContainsKey(stage))
+        var id = stage.GetInstanceID();
+
+        if (!StageBackups.ContainsKey(id))
         {
             BackupStageRects(stage);
         }
 
         if (Plugin.ExpandSpawnZone.Value)
         {
-            Info("ExpandSpawnZone is ENABLED - applying adjustments");
-            var backup = StageBackups[stage];
+            var backup = StageBackups[id];
             stage._spawnInnerRect = AdjustRect(backup.SpawnInnerRect);
             stage._spawnOuterRect = AdjustRect(backup.SpawnOuterRect);
             stage._containmentExactRect = AdjustRect(backup.ContainmentExactRect);
@@ -150,7 +142,6 @@ public static class Patches
         }
         else
         {
-            Info("ExpandSpawnZone is DISABLED - restoring original values");
             RestoreStageRects(stage);
         }
     }

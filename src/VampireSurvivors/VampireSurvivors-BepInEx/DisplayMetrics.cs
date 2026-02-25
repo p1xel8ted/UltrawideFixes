@@ -1,9 +1,10 @@
-namespace Shared;
+namespace VampireSurvivors;
 
-using static Shared.Logger;
+using static VampireSurvivors.Logger;
 
 /// <summary>
-/// Framework-agnostic display metrics and ultra-wide scaling calculations.
+/// Display metrics and ultra-wide scaling calculations.
+/// Values are cached at initialization since display resolution doesn't change at runtime.
 /// </summary>
 public static class DisplayMetrics
 {
@@ -15,34 +16,41 @@ public static class DisplayMetrics
     /// <summary>
     /// Current display width in pixels.
     /// </summary>
-    public static int MainWidth => Display.main.systemWidth;
+    public static int MainWidth { get; private set; }
 
     /// <summary>
     /// Current display height in pixels.
     /// </summary>
-    public static int MainHeight => Display.main.systemHeight;
+    public static int MainHeight { get; private set; }
 
     /// <summary>
     /// Current display aspect ratio (width / height).
     /// </summary>
-    public static float MainAspect => MainWidth / (float)MainHeight;
+    public static float MainAspect { get; private set; }
 
     /// <summary>
     /// Scaling factor for ultra-wide displays relative to native 16:10 aspect ratio.
-    /// Values > 1.0 indicate ultra-wide displays, values &lt; 1.0 indicate narrower displays.
+    /// Values &gt; 1.0 indicate ultra-wide displays, values &lt; 1.0 indicate narrower displays.
     /// </summary>
-    public static float PositiveScaleFactor => MainAspect / NativeAspectRatio;
+    public static float PositiveScaleFactor { get; private set; }
+
+    /// <summary>
+    /// Caches display metrics from the current display. Call once during plugin initialization.
+    /// </summary>
+    public static void Initialize()
+    {
+        MainWidth = Display.main.systemWidth;
+        MainHeight = Display.main.systemHeight;
+        MainAspect = MainWidth / (float)MainHeight;
+        PositiveScaleFactor = MainAspect / NativeAspectRatio;
+    }
 
     /// <summary>
     /// Logs initialization details including resolution, aspect ratio, and scale factor.
     /// </summary>
     public static void LogInitialization()
     {
-#if Melon
-        Info("Vampire Survivors Ultra-Wide (Melon) has been initialized.");
-#else
         Info("Vampire Survivors Ultra-Wide (BepInEx) has been initialized.");
-#endif
         Info($"Display Resolution: {MainWidth}x{MainHeight}");
         Info($"Aspect Ratio: {MainAspect:F4} (Native: {NativeAspectRatio:F4})");
         Info($"Scale Factor: {PositiveScaleFactor:F4}");

@@ -1,28 +1,21 @@
-namespace Shared;
+namespace VampireSurvivors;
 
 /// <summary>
-/// Framework-agnostic logging utility with conditional compilation for MelonLoader and BepInEx.
+/// Logging utility wrapping BepInEx Logger.
 /// </summary>
 internal static class Logger
 {
     /// <summary>
-    /// Logs a message using the appropriate framework-specific logger.
+    /// Logs a message using the BepInEx logger.
     /// </summary>
     /// <param name="message">The message to log.</param>
-    /// <param name="warning">If true, logs as a warning; otherwise logs as info/message.</param>
+    /// <param name="warning">If true, logs as a warning; otherwise logs as info.</param>
     private static void Log(string message, bool warning = false)
     {
-#if Melon
         if (warning)
-            MelonLogger.Warning(message);
+            Plugin.Logger.LogWarning(message);
         else
-            MelonLogger.Msg(message);
-#else
-        if (warning)
-            VampireSurvivors.Plugin.Logger.LogWarning(message);
-        else
-            VampireSurvivors.Plugin.Logger.LogInfo(message);
-#endif
+            Plugin.Logger.LogInfo(message);
     }
 
     /// <summary>

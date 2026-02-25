@@ -4,7 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Product>Vampire Survivors Ultra-Wide (BepInEx)</Product>
-        <Version>0.2.2</Version>
+        <Version>0.2.3</Version>
         <AssemblyName>Vampire Survivors Ultra-Wide (BepInEx)</AssemblyName>
         <AssemblyVersion>$(Version)</AssemblyVersion>
         <FileVersion>$(Version)</FileVersion>
@@ -22,7 +22,6 @@
         <IsPackable>false</IsPackable>
         <OutputPath>$(ModsOutputPath)</OutputPath>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <DefineConstants>BepInEx</DefineConstants>
     </PropertyGroup>
 
     <ItemDefinitionGroup>
@@ -41,24 +40,12 @@
     <Import Project="../zip.target"/>
     
     <ItemGroup>
-        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.738" IncludeAssets="compile"/>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.754" IncludeAssets="compile"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Compile Include="..\Shared\Patches.cs">
-            <Link>Patches.cs</Link>
-        </Compile>
-        <Compile Include="..\Shared\DisplayMetrics.cs">
-            <Link>DisplayMetrics.cs</Link>
-        </Compile>
-        <Compile Include="..\Shared\Logger.cs">
-            <Link>Logger.cs</Link>
-        </Compile>
-        <Compile Include="..\Shared\PatchConstants.cs">
-            <Link>PatchConstants.cs</Link>
-        </Compile>
-    </ItemGroup>
-
+    <!-- Game and Unity assemblies. Directly used: Doozy, PhaserPort, PauseSystem,
+         VampireSurvivors.Runtime. All others are transitive dependencies required for
+         IL2CPP publicized assembly type resolution. -->
     <ItemGroup>
       <Reference Include="AppleAuth">
         <HintPath>$(Il2CppAssembliesPath)\AppleAuth.dll</HintPath>

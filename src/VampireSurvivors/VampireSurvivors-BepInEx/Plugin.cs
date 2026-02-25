@@ -1,6 +1,4 @@
 ﻿using Il2CppInterop.Runtime.Injection;
-using Patches = Shared.Patches;
-using DisplayMetrics = Shared.DisplayMetrics;
 
 namespace VampireSurvivors;
 
@@ -9,7 +7,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.vampiresurvivors.ultrawide";
     private const string PluginName = "Vampire Survivors Ultra-Wide (BepInEx)";
-    private const string PluginVersion = "0.2.2";
+    private const string PluginVersion = "0.2.3";
 
     internal static ManualLogSource Logger { get; private set; }
     public static ConfigEntry<bool> ExpandSpawnZone { get; private set; }
@@ -21,12 +19,13 @@ public class Plugin : BasePlugin
         ClassInjector.RegisterTypeInIl2Cpp<UnityEvents>();
         AddComponent<UnityEvents>();
 
-        ExpandSpawnZone = Config.Bind("01. Gameplay", "Expand Spawn Zone", true, new ConfigDescription("Expands the spawn zone to fit the new resolution.", null, new ConfigurationManagerAttributes { Order = 92 }));
-        ExpandSpawnZone.SettingChanged += Patches.UpdateMethod;
+        ExpandSpawnZone = Config.Bind("01. Gameplay", "Expand Spawn Zone", true, new ConfigDescription("Expands the spawn zone to fit the new resolution.", null, new ConfigurationManagerAttributes { Order = 93 }));
+        ExpandSpawnZone.SettingChanged += OnExpandSpawnZoneChanged;
 
-        ExpandSpawnZoneToggle = Config.Bind("01. Gameplay", "Expand Spawn Zone Toggle Key", KeyCode.F9, new ConfigDescription("Key to toggle expanding the spawn zone.", null, new ConfigurationManagerAttributes { Order = 93 }));
+        ExpandSpawnZoneToggle = Config.Bind("01. Gameplay", "Expand Spawn Zone Toggle Key", KeyCode.F9, new ConfigDescription("Key to toggle expanding the spawn zone.", null, new ConfigurationManagerAttributes { Order = 92 }));
 
-        // Log initialization details and validate scale factor
+        // Cache display metrics and log initialization
+        DisplayMetrics.Initialize();
         DisplayMetrics.LogInitialization();
         DisplayMetrics.ValidateScaleFactor();
 
@@ -34,11 +33,18 @@ public class Plugin : BasePlugin
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
     }
 
+    private static void OnExpandSpawnZoneChanged(object sender, EventArgs e)
+    {
+        var state = ExpandSpawnZone.Value ? "ENABLED" : "DISABLED";
+        Logger.LogInfo($"Spawn zone expansion: {state}");
+        Patches.UpdateStageRects();
+    }
+
     public class UnityEvents : MonoBehaviour
     {
         private void LateUpdate()
         {
-            Patches.UpdateMethod(this, EventArgs.Empty);
+            Patches.CheckToggleKey();
         }
     }
 }
