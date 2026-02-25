@@ -794,3 +794,4 @@ fabric.properties
 /src/SmushiComeHome/libs
 *.jpg
 /src/SmushiComeHome/.idea
+.serena/

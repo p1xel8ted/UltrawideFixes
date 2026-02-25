@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: G:\SteamLibrary\steamapps\common\REPLACED Demo\BepInEx\interop\ArticyRuntime.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80BC423E-B568-4652-991B-27667449421E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>ArticyRuntime</AssemblyName>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <ApplicationVersion>1.3.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>Articy.Unity</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Il2CppSystem">
+      <HintPath>lib\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>lib\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>lib\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>lib\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="_PrivateImplementationDetails_.cs" />
+    <Compile Include="ArticyAssetCaretaker.cs" />
+    <Compile Include="ArticyBoolVariable.cs" />
+    <Compile Include="ArticyBranchSortByPosition.cs" />
+    <Compile Include="ArticyCodeGenerationHashAttribute.cs" />
+    <Compile Include="ArticyDatabase.cs" />
+    <Compile Include="ArticyEditorAuxiliary.cs" />
+    <Compile Include="ArticyEnumValueInfo.cs" />
+    <Compile Include="LocalizedTextAssignMethod.cs" />
+    <Compile Include="ArticyLocaCaretaker.cs" />
+    <Compile Include="ArticyLanguage.cs" />
+    <Compile Include="LanguageChangedEvent.cs" />
+    <Compile Include="CustomTextLookup.cs" />
+    <Compile Include="ArticyLocalizationManager.cs" />
+    <Compile Include="ArticyLocalizationPackage.cs" />
+    <Compile Include="ArticyMultiLanguageString.cs" />
+    <Compile Include="ArticyLogSubsystem.cs" />
+    <Compile Include="ArticyLogVerbosity.cs" />
+    <Compile Include="ArticyLogger.cs" />
+    <Compile Include="ArticyLog.cs" />
+    <Compile Include="ArticyLogMessages.cs" />
+    <Compile Include="ArticyPropertyConstraint.cs" />
+    <Compile Include="ArticyPropertyInfo.cs" />
+    <Compile Include="ArticyRefModes.cs" />
+    <Compile Include="ArticyRef.cs" />
+    <Compile Include="ArticyHierarchyNode.cs" />
+    <Compile Include="SerializableArticyHierarchyNode.cs" />
+    <Compile Include="ArticyHierarchyManager.cs" />
+    <Compile Include="ArticyIntVariable.cs" />
+    <Compile Include="ArticyObject.cs" />
+    <Compile Include="ArticyNotificationManager.cs" />
+    <Compile Include="ArticyPackageDefinition.cs" />
+    <Compile Include="ArticyPackage.cs" />
+    <Compile Include="IArticyPrimitive.cs" />
+    <Compile Include="ArticyPrimitive.cs" />
+    <Compile Include="FlowPlayerFinishFlags.cs" />
+    <Compile Include="OnFlowPlayerPausedCallback.cs" />
+    <Compile Include="OnBranchesUpdatedCallback.cs" />
+    <Compile Include="ArticyFlowPlayer.cs" />
+    <Compile Include="ArticyProject.cs" />
+    <Compile Include="ArticyRefComplexAttribute.cs" />
+    <Compile Include="ArticyReference.cs" />
+    <Compile Include="ArticyRuntimeSettings.cs" />
+    <Compile Include="ArticyString.cs" />
+    <Compile Include="ArticyStringVariable.cs" />
+    <Compile Include="ArticyTextChangedEvent.cs" />
+    <Compile Include="ArticyText.cs" />
+    <Compile Include="ArticyTextComponent.cs" />
+    <Compile Include="TokenType.cs" />
+    <Compile Include="TextExtensionResolvedToken.cs" />
+    <Compile Include="TextExtensionPropertyInfo.cs" />
+    <Compile Include="ArticyTextToken.cs" />
+    <Compile Include="ArticyTextExtension.cs" />
+    <Compile Include="ArticyCustomFilterCallback.cs" />
+    <Compile Include="ArticyCustomFilterAttribute.cs" />
+    <Compile Include="TextExtensionInternalMethods.cs" />
+    <Compile Include="ArticyTypeProperties.cs" />
+    <Compile Include="ArticyType.cs" />
+    <Compile Include="ArticyTypeConstraintAttribute.cs" />
+    <Compile Include="ArticyTypeSystem.cs" />
+    <Compile Include="IArticyCustomValueClone.cs" />
+    <Compile Include="IArticyValue`1.cs" />
+    <Compile Include="ArticyValue`1.cs" />
+    <Compile Include="ArticyValueArticyModelList.cs" />
+    <Compile Include="ArticyValueArticyObject.cs" />
+    <Compile Include="ArticyValueArticyString.cs" />
+    <Compile Include="ArticyValueArticyMultiLanguageString.cs" />
+    <Compile Include="IArticyScriptFragment.cs" />
+    <Compile Include="ArticyScriptCondition.cs" />
+    <Compile Include="ArticyScriptInstruction.cs" />
+    <Compile Include="ArticyValueArticyScriptCondition.cs" />
+    <Compile Include="ArticyValueArticyScriptInstruction.cs" />
+    <Compile Include="ShadowState.cs" />
+    <Compile Include="CheckForFallback.cs" />
+    <Compile Include="UseActualFallbackValue.cs" />
+    <Compile Include="IStoredVariable.cs" />
+    <Compile Include="StoredBaseVariable.cs" />
+    <Compile Include="StoredBoolVariable.cs" />
+    <Compile Include="StoredIntVariable.cs" />
+    <Compile Include="StoredStringVariable.cs" />
+    <Compile Include="BaseGlobalVariables.cs" />
+    <Compile Include="PausableObjectTypes.cs" />
+    <Compile Include="Branch.cs" />
+    <Compile Include="ExecutionEngine.cs" />
+    <Compile Include="IArticyFlowPlayerCallbacks.cs" />
+    <Compile Include="IArticyFlowPlayerLogHandler.cs" />
+    <Compile Include="IBaseScriptMethodProvider.cs" />
+    <Compile Include="IObjectCloning.cs" />
+    <Compile Include="IFlowObject.cs" />
+    <Compile Include="ArticyChangedProperty.cs" />
+    <Compile Include="ArticyObjectNotificationManager.cs" />
+    <Compile Include="PreviewImageViewBoxModes.cs" />
+    <Compile Include="PreviewImage.cs" />
+    <Compile Include="Transformation.cs" />
+    <Compile Include="Utils\ArticyAssetHelper.cs" />
+    <Compile Include="Utils\BaseArticyAddressablesHelper.cs" />
+    <Compile Include="Utils\TrimmingType.cs" />
+    <Compile Include="Utils\CleanupType.cs" />
+    <Compile Include="Utils\StringUtils.cs" />
+    <Compile Include="Utils\ArticyTransformEx.cs" />
+    <Compile Include="Utils\ArticyUtility.cs" />
+    <Compile Include="Interfaces\IArticyObject.cs" />
+    <Compile Include="Interfaces\IArticyNamespace.cs" />
+    <Compile Include="Interfaces\IArticyBaseObject.cs" />
+    <Compile Include="Interfaces\IArticyReference.cs" />
+    <Compile Include="Interfaces\ScriptDataProxy.cs" />
+    <Compile Include="Interfaces\ScriptObjectProxy.cs" />
+    <Compile Include="Interfaces\BaseScriptFragments.cs" />
+    <Compile Include="Interfaces\IArticyVariable.cs" />
+    <Compile Include="Interfaces\IArticyVariable`1.cs" />
+    <Compile Include="Interfaces\AssetCategory.cs" />
+    <Compile Include="Interfaces\IAsset.cs" />
+    <Compile Include="Interfaces\IComment.cs" />
+    <Compile Include="Interfaces\ICondition.cs" />
+    <Compile Include="Interfaces\IConditionEvaluator.cs" />
+    <Compile Include="Interfaces\IDialogue.cs" />
+    <Compile Include="Interfaces\IDialogueFragment.cs" />
+    <Compile Include="Interfaces\IDocument.cs" />
+    <Compile Include="Interfaces\IEntity.cs" />
+    <Compile Include="Interfaces\IFlowFragment.cs" />
+    <Compile Include="Interfaces\IGlobalVariables.cs" />
+    <Compile Include="Interfaces\IHub.cs" />
+    <Compile Include="Interfaces\IIncomingConnection.cs" />
+    <Compile Include="Interfaces\IInputPin.cs" />
+    <Compile Include="Interfaces\IInputPinsOwner.cs" />
+    <Compile Include="Interfaces\IJump.cs" />
+    <Compile Include="Interfaces\ILink.cs" />
+    <Compile Include="Interfaces\ILocation.cs" />
+    <Compile Include="Interfaces\ILocationAnchor.cs" />
+    <Compile Include="Interfaces\ILocationImage.cs" />
+    <Compile Include="Interfaces\ILocationText.cs" />
+    <Compile Include="Interfaces\IArticyRefChangedNotifier.cs" />
+    <Compile Include="Interfaces\IObjectWithAttachments.cs" />
+    <Compile Include="Interfaces\IObjectWithColor.cs" />
+    <Compile Include="Interfaces\IObjectWithDisplayName.cs" />
+    <Compile Include="Interfaces\IObjectWithExternalId.cs" />
+    <Compile Include="Interfaces\IObjectWithLocalizableDisplayName.cs" />
+    <Compile Include="Interfaces\IObjectWithLocalizableMenuText.cs" />
+    <Compile Include="Interfaces\IObjectWithLocalizableStageDirections.cs" />
+    <Compile Include="Interfaces\IObjectWithLocalizableText.cs" />
+    <Compile Include="Interfaces\IObjectWithPosition.cs" />
+    <Compile Include="Interfaces\IObjectWithPreviewImage.cs" />
+    <Compile Include="Interfaces\IObjectWithMenuText.cs" />
+    <Compile Include="Interfaces\IObjectWithShortId.cs" />
+    <Compile Include="Interfaces\IObjectWithSize.cs" />
+    <Compile Include="Interfaces\IObjectWithSpeaker.cs" />
+    <Compile Include="Interfaces\IObjectWithStageDirections.cs" />
+    <Compile Include="Interfaces\IObjectWithTarget.cs" />
+    <Compile Include="Interfaces\IObjectWithText.cs" />
+    <Compile Include="Interfaces\IObjectWithTransformation.cs" />
+    <Compile Include="Interfaces\IObjectWithVertices.cs" />
+    <Compile Include="Interfaces\IInstruction.cs" />
+    <Compile Include="Interfaces\IObjectWithZIndex.cs" />
+    <Compile Include="Interfaces\ArticyZIndexComparer.cs" />
+    <Compile Include="Interfaces\IOutcomeEvaluator.cs" />
+    <Compile Include="Interfaces\IOutgoingConnection.cs" />
+    <Compile Include="Interfaces\IOutputPin.cs" />
+    <Compile Include="Interfaces\IOutputPinsOwner.cs" />
+    <Compile Include="Interfaces\IPath.cs" />
+    <Compile Include="Interfaces\IPropertyProvider.cs" />
+    <Compile Include="Interfaces\ISpot.cs" />
+    <Compile Include="Interfaces\ITextObject.cs" />
+    <Compile Include="Interfaces\IUserFolder.cs" />
+    <Compile Include="Interfaces\IZone.cs" />
+    <Compile Include="Constraints\BaseReferenceConstraint.cs" />
+    <Compile Include="Constraints\BooleanConstraint.cs" />
+    <Compile Include="Constraints\EnumSortMode.cs" />
+    <Compile Include="Constraints\EnumConstraint.cs" />
+    <Compile Include="Constraints\NumberConstraint.cs" />
+    <Compile Include="Constraints\QueryReferenceStripConstraint.cs" />
+    <Compile Include="Constraints\ReferenceSlotConstraint.cs" />
+    <Compile Include="Constraints\ReferenceStripConstraint.cs" />
+    <Compile Include="Constraints\ScriptType.cs" />
+    <Compile Include="Constraints\ScriptConstraint.cs" />
+    <Compile Include="Constraints\TextConstraint.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

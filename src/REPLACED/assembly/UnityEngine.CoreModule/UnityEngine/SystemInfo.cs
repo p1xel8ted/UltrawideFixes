@@ -1,0 +1,1945 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.SystemInfo
+// Assembly: UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: E159F43B-803F-461A-9433-870981D20FB6
+// Assembly location: G:\SteamLibrary\steamapps\common\REPLACED Demo\BepInEx\interop\UnityEngine.CoreModule.dll
+
+using Il2CppInterop.Common.Attributes;
+using Il2CppInterop.Runtime;
+using System.Runtime.InteropServices;
+using UnityEngine.Bindings;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+
+#nullable disable
+namespace UnityEngine;
+
+public sealed class SystemInfo(System.IntPtr pointer) : Il2CppSystem.Object(pointer)
+{
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_operatingSystem_Public_Static_get_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_operatingSystemFamily_Public_Static_get_OperatingSystemFamily_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_processorType_Public_Static_get_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_processorCount_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_systemMemorySize_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_deviceName_Public_Static_get_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_deviceModel_Public_Static_get_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_deviceType_Public_Static_get_DeviceType_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsMemorySize_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsDeviceName_Public_Static_get_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsDeviceVendorID_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsDeviceType_Public_Static_get_GraphicsDeviceType_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsUVStartsAtTop_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsDeviceVersion_Public_Static_get_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_graphicsShaderLevel_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_foveatedRenderingCaps_Public_Static_get_FoveatedRenderingCaps_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsComputeShaders_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsRenderTargetArrayIndexFromVertexShader_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsInstancing_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportedRenderTargetCount_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsMultisampleAutoResolve_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_usesReversedZBuffer_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_maxTiledPixelStorageSize_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_IsValidEnumValue_Private_Static_Boolean_Enum_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsTextureFormat_Public_Static_Boolean_TextureFormat_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_maxTextureSize_Public_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_maxRenderTextureSize_Internal_Static_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsGraphicsFence_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_maxGraphicsBufferSize_Public_Static_get_Int64_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsMultiview_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_supportsIndirectArgumentsBuffer_Public_Static_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetOperatingSystem_Private_Static_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetOperatingSystemFamily_Private_Static_OperatingSystemFamily_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetProcessorType_Private_Static_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetProcessorCount_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetPhysicalMemoryMB_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetDeviceName_Private_Static_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetDeviceModel_Private_Static_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetDeviceType_Private_Static_DeviceType_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsMemorySize_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsDeviceName_Private_Static_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsDeviceVendorID_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsDeviceType_Private_Static_GraphicsDeviceType_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsUVStartsAtTop_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsDeviceVersion_Private_Static_String_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsShaderLevel_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetFoveatedRenderingCaps_Private_Static_FoveatedRenderingCaps_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsComputeShaders_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsRenderTargetArrayIndexFromVertexShader_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsInstancing_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportedRenderTargetCount_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsMultisampleAutoResolve_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_UsesReversedZBuffer_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsTextureFormatNative_Private_Static_Boolean_TextureFormat_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetMaxTextureSize_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetMaxRenderTextureSize_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsGPUFence_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_MaxGraphicsBufferSize_Private_Static_Int64_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_IsFormatSupported_Public_Static_Boolean_GraphicsFormat_GraphicsFormatUsage_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetCompatibleFormat_Public_Static_GraphicsFormat_GraphicsFormat_GraphicsFormatUsage_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsFormat_Public_Static_GraphicsFormat_DefaultFormat_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetTiledRenderTargetStorageSize_Public_Static_Int32_GraphicsFormat_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsMultiview_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SupportsIndirectArgumentsBuffer_Private_Static_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_MaxTiledPixelStorageSize_Private_Static_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetOperatingSystem_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetProcessorType_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetDeviceName_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetDeviceModel_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsDeviceName_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetGraphicsDeviceVersion_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0;
+  public const string unsupportedIdentifier = "n/a";
+  private static readonly SystemInfo.GetBatteryLevelDelegate GetBatteryLevelDelegateField;
+  private static readonly SystemInfo.GetBatteryStatusDelegate GetBatteryStatusDelegateField;
+  private static readonly SystemInfo.GetProcessorFrequencyMHzDelegate GetProcessorFrequencyMHzDelegateField;
+  private static readonly SystemInfo.SupportsAccelerometerDelegate SupportsAccelerometerDelegateField;
+  private static readonly SystemInfo.IsGyroAvailableDelegate IsGyroAvailableDelegateField;
+  private static readonly SystemInfo.SupportsLocationServiceDelegate SupportsLocationServiceDelegateField;
+  private static readonly SystemInfo.SupportsVibrationDelegate SupportsVibrationDelegateField;
+  private static readonly SystemInfo.SupportsAudioDelegate SupportsAudioDelegateField;
+  private static readonly SystemInfo.GetGraphicsDeviceIDDelegate GetGraphicsDeviceIDDelegateField;
+  private static readonly SystemInfo.GetGraphicsMultiThreadedDelegate GetGraphicsMultiThreadedDelegateField;
+  private static readonly SystemInfo.GetRenderingThreadingModeDelegate GetRenderingThreadingModeDelegateField;
+  private static readonly SystemInfo.HasHiddenSurfaceRemovalOnGPUDelegate HasHiddenSurfaceRemovalOnGPUDelegateField;
+  private static readonly SystemInfo.HasDynamicUniformArrayIndexingInFragmentShadersDelegate HasDynamicUniformArrayIndexingInFragmentShadersDelegateField;
+  private static readonly SystemInfo.SupportsShadowsDelegate SupportsShadowsDelegateField;
+  private static readonly SystemInfo.SupportsRawShadowDepthSamplingDelegate SupportsRawShadowDepthSamplingDelegateField;
+  private static readonly SystemInfo.SupportsMotionVectorsDelegate SupportsMotionVectorsDelegateField;
+  private static readonly SystemInfo.Supports3DTexturesDelegate Supports3DTexturesDelegateField;
+  private static readonly SystemInfo.SupportsCompressed3DTexturesDelegate SupportsCompressed3DTexturesDelegateField;
+  private static readonly SystemInfo.Supports2DArrayTexturesDelegate Supports2DArrayTexturesDelegateField;
+  private static readonly SystemInfo.Supports3DRenderTexturesDelegate Supports3DRenderTexturesDelegateField;
+  private static readonly SystemInfo.SupportsCubemapArrayTexturesDelegate SupportsCubemapArrayTexturesDelegateField;
+  private static readonly SystemInfo.SupportsAnisotropicFilterDelegate SupportsAnisotropicFilterDelegateField;
+  private static readonly SystemInfo.GetCopyTextureSupportDelegate GetCopyTextureSupportDelegateField;
+  private static readonly SystemInfo.SupportsGeometryShadersDelegate SupportsGeometryShadersDelegateField;
+  private static readonly SystemInfo.SupportsTessellationShadersDelegate SupportsTessellationShadersDelegateField;
+  private static readonly SystemInfo.SupportsHardwareQuadTopologyDelegate SupportsHardwareQuadTopologyDelegateField;
+  private static readonly SystemInfo.Supports32bitsIndexBufferDelegate Supports32bitsIndexBufferDelegateField;
+  private static readonly SystemInfo.SupportsSparseTexturesDelegate SupportsSparseTexturesDelegateField;
+  private static readonly SystemInfo.SupportsSeparatedRenderTargetsBlendDelegate SupportsSeparatedRenderTargetsBlendDelegateField;
+  private static readonly SystemInfo.SupportedRandomWriteTargetCountDelegate SupportedRandomWriteTargetCountDelegateField;
+  private static readonly SystemInfo.MaxComputeBufferInputsVertexDelegate MaxComputeBufferInputsVertexDelegateField;
+  private static readonly SystemInfo.MaxComputeBufferInputsFragmentDelegate MaxComputeBufferInputsFragmentDelegateField;
+  private static readonly SystemInfo.MaxComputeBufferInputsGeometryDelegate MaxComputeBufferInputsGeometryDelegateField;
+  private static readonly SystemInfo.MaxComputeBufferInputsDomainDelegate MaxComputeBufferInputsDomainDelegateField;
+  private static readonly SystemInfo.MaxComputeBufferInputsHullDelegate MaxComputeBufferInputsHullDelegateField;
+  private static readonly SystemInfo.MaxComputeBufferInputsComputeDelegate MaxComputeBufferInputsComputeDelegateField;
+  private static readonly SystemInfo.SupportsMultisampledTexturesDelegate SupportsMultisampledTexturesDelegateField;
+  private static readonly SystemInfo.SupportsMultisampled2DArrayTexturesDelegate SupportsMultisampled2DArrayTexturesDelegateField;
+  private static readonly SystemInfo.SupportsMultisampledBackBufferDelegate SupportsMultisampledBackBufferDelegateField;
+  private static readonly SystemInfo.SupportsTextureWrapMirrorOnceDelegate SupportsTextureWrapMirrorOnceDelegateField;
+  private static readonly SystemInfo.HasRenderTextureNativeDelegate HasRenderTextureNativeDelegateField;
+  private static readonly SystemInfo.SupportsBlendingOnRenderTextureFormatNativeDelegate SupportsBlendingOnRenderTextureFormatNativeDelegateField;
+  private static readonly SystemInfo.SupportsRandomWriteOnRenderTextureFormatNativeDelegate SupportsRandomWriteOnRenderTextureFormatNativeDelegateField;
+  private static readonly SystemInfo.SupportsVertexAttributeFormatNativeDelegate SupportsVertexAttributeFormatNativeDelegateField;
+  private static readonly SystemInfo.GetNPOTSupportDelegate GetNPOTSupportDelegateField;
+  private static readonly SystemInfo.GetMaxTexture3DSizeDelegate GetMaxTexture3DSizeDelegateField;
+  private static readonly SystemInfo.GetMaxTextureArraySlicesDelegate GetMaxTextureArraySlicesDelegateField;
+  private static readonly SystemInfo.GetMaxCubemapSizeDelegate GetMaxCubemapSizeDelegateField;
+  private static readonly SystemInfo.GetMaxAnisotropyLevelDelegate GetMaxAnisotropyLevelDelegateField;
+  private static readonly SystemInfo.GetMaxComputeWorkGroupSizeDelegate GetMaxComputeWorkGroupSizeDelegateField;
+  private static readonly SystemInfo.GetMaxComputeWorkGroupSizeXDelegate GetMaxComputeWorkGroupSizeXDelegateField;
+  private static readonly SystemInfo.GetMaxComputeWorkGroupSizeYDelegate GetMaxComputeWorkGroupSizeYDelegateField;
+  private static readonly SystemInfo.GetMaxComputeWorkGroupSizeZDelegate GetMaxComputeWorkGroupSizeZDelegateField;
+  private static readonly SystemInfo.GetComputeSubGroupSizeDelegate GetComputeSubGroupSizeDelegateField;
+  private static readonly SystemInfo.SupportsAsyncComputeDelegate SupportsAsyncComputeDelegateField;
+  private static readonly SystemInfo.SupportsGpuRecorderDelegate SupportsGpuRecorderDelegateField;
+  private static readonly SystemInfo.SupportsAsyncGPUReadbackDelegate SupportsAsyncGPUReadbackDelegateField;
+  private static readonly SystemInfo.SupportsParallelPSOCreationDelegate SupportsParallelPSOCreationDelegateField;
+  private static readonly SystemInfo.SupportsRayTracingDelegate SupportsRayTracingDelegateField;
+  private static readonly SystemInfo.SupportsRayTracingShadersDelegate SupportsRayTracingShadersDelegateField;
+  private static readonly SystemInfo.SupportsInlineRayTracingDelegate SupportsInlineRayTracingDelegateField;
+  private static readonly SystemInfo.SupportsIndirectDispatchRaysDelegate SupportsIndirectDispatchRaysDelegateField;
+  private static readonly SystemInfo.SupportsSetConstantBufferDelegate SupportsSetConstantBufferDelegateField;
+  private static readonly SystemInfo.MinConstantBufferOffsetAlignmentDelegate MinConstantBufferOffsetAlignmentDelegateField;
+  private static readonly SystemInfo.MaxConstantBufferSizeDelegate MaxConstantBufferSizeDelegateField;
+  private static readonly SystemInfo.HasMipMaxLevelDelegate HasMipMaxLevelDelegateField;
+  private static readonly SystemInfo.SupportsMipStreamingDelegate SupportsMipStreamingDelegateField;
+  private static readonly SystemInfo.UsesLoadStoreActionsDelegate UsesLoadStoreActionsDelegateField;
+  private static readonly SystemInfo.GetHDRDisplaySupportFlagsDelegate GetHDRDisplaySupportFlagsDelegateField;
+  private static readonly SystemInfo.SupportsConservativeRasterDelegate SupportsConservativeRasterDelegateField;
+  private static readonly SystemInfo.SupportsStoreAndResolveActionDelegate SupportsStoreAndResolveActionDelegateField;
+  private static readonly SystemInfo.SupportsMultisampleResolveDepthDelegate SupportsMultisampleResolveDepthDelegateField;
+  private static readonly SystemInfo.SupportsMultisampleResolveStencilDelegate SupportsMultisampleResolveStencilDelegateField;
+  private static readonly SystemInfo.SupportsDepthFetchInRenderPassDelegate SupportsDepthFetchInRenderPassDelegateField;
+  private static readonly SystemInfo.SupportsDynamicResolutionDelegate SupportsDynamicResolutionDelegateField;
+  private static readonly SystemInfo.GetProcessorModel_InjectedDelegate GetProcessorModel_InjectedDelegateField;
+  private static readonly SystemInfo.GetProcessorManufacturer_InjectedDelegate GetProcessorManufacturer_InjectedDelegateField;
+  private static readonly SystemInfo.GetDeviceUniqueIdentifier_InjectedDelegate GetDeviceUniqueIdentifier_InjectedDelegateField;
+  private static readonly SystemInfo.GetGraphicsDeviceVendor_InjectedDelegate GetGraphicsDeviceVendor_InjectedDelegateField;
+  private static readonly SystemInfo.GetRenderTextureSupportedMSAASampleCount_InjectedDelegate GetRenderTextureSupportedMSAASampleCount_InjectedDelegateField;
+
+  static SystemInfo()
+  {
+    Il2CppClassPointerStore<SystemInfo>.NativeClassPtr = IL2CPP.GetIl2CppClass("UnityEngine.CoreModule.dll", "UnityEngine", nameof (SystemInfo));
+    IL2CPP.il2cpp_runtime_class_init(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr);
+    SystemInfo.NativeMethodInfoPtr_get_operatingSystem_Public_Static_get_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668515);
+    SystemInfo.NativeMethodInfoPtr_get_operatingSystemFamily_Public_Static_get_OperatingSystemFamily_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668516);
+    SystemInfo.NativeMethodInfoPtr_get_processorType_Public_Static_get_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668517);
+    SystemInfo.NativeMethodInfoPtr_get_processorCount_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668518);
+    SystemInfo.NativeMethodInfoPtr_get_systemMemorySize_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668519);
+    SystemInfo.NativeMethodInfoPtr_get_deviceName_Public_Static_get_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668520);
+    SystemInfo.NativeMethodInfoPtr_get_deviceModel_Public_Static_get_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668521);
+    SystemInfo.NativeMethodInfoPtr_get_deviceType_Public_Static_get_DeviceType_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668522);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsMemorySize_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668523);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceName_Public_Static_get_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668524);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceVendorID_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668525);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceType_Public_Static_get_GraphicsDeviceType_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668526);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsUVStartsAtTop_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668527);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceVersion_Public_Static_get_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668528);
+    SystemInfo.NativeMethodInfoPtr_get_graphicsShaderLevel_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668529);
+    SystemInfo.NativeMethodInfoPtr_get_foveatedRenderingCaps_Public_Static_get_FoveatedRenderingCaps_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668530);
+    SystemInfo.NativeMethodInfoPtr_get_supportsComputeShaders_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668531);
+    SystemInfo.NativeMethodInfoPtr_get_supportsRenderTargetArrayIndexFromVertexShader_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668532);
+    SystemInfo.NativeMethodInfoPtr_get_supportsInstancing_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668533);
+    SystemInfo.NativeMethodInfoPtr_get_supportedRenderTargetCount_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668534);
+    SystemInfo.NativeMethodInfoPtr_get_supportsMultisampleAutoResolve_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668535);
+    SystemInfo.NativeMethodInfoPtr_get_usesReversedZBuffer_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668536);
+    SystemInfo.NativeMethodInfoPtr_get_maxTiledPixelStorageSize_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668537);
+    SystemInfo.NativeMethodInfoPtr_IsValidEnumValue_Private_Static_Boolean_Enum_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668538);
+    SystemInfo.NativeMethodInfoPtr_SupportsTextureFormat_Public_Static_Boolean_TextureFormat_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668539);
+    SystemInfo.NativeMethodInfoPtr_get_maxTextureSize_Public_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668540);
+    SystemInfo.NativeMethodInfoPtr_get_maxRenderTextureSize_Internal_Static_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668541);
+    SystemInfo.NativeMethodInfoPtr_get_supportsGraphicsFence_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668542);
+    SystemInfo.NativeMethodInfoPtr_get_maxGraphicsBufferSize_Public_Static_get_Int64_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668543);
+    SystemInfo.NativeMethodInfoPtr_get_supportsMultiview_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668544);
+    SystemInfo.NativeMethodInfoPtr_get_supportsIndirectArgumentsBuffer_Public_Static_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668545);
+    SystemInfo.NativeMethodInfoPtr_GetOperatingSystem_Private_Static_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668546);
+    SystemInfo.NativeMethodInfoPtr_GetOperatingSystemFamily_Private_Static_OperatingSystemFamily_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668547);
+    SystemInfo.NativeMethodInfoPtr_GetProcessorType_Private_Static_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668548);
+    SystemInfo.NativeMethodInfoPtr_GetProcessorCount_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668549);
+    SystemInfo.NativeMethodInfoPtr_GetPhysicalMemoryMB_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668550);
+    SystemInfo.NativeMethodInfoPtr_GetDeviceName_Private_Static_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668551);
+    SystemInfo.NativeMethodInfoPtr_GetDeviceModel_Private_Static_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668552);
+    SystemInfo.NativeMethodInfoPtr_GetDeviceType_Private_Static_DeviceType_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668553);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsMemorySize_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668554);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceName_Private_Static_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668555);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceVendorID_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668556);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceType_Private_Static_GraphicsDeviceType_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668557);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsUVStartsAtTop_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668558);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceVersion_Private_Static_String_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668559);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsShaderLevel_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668560);
+    SystemInfo.NativeMethodInfoPtr_GetFoveatedRenderingCaps_Private_Static_FoveatedRenderingCaps_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668561);
+    SystemInfo.NativeMethodInfoPtr_SupportsComputeShaders_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668562);
+    SystemInfo.NativeMethodInfoPtr_SupportsRenderTargetArrayIndexFromVertexShader_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668563);
+    SystemInfo.NativeMethodInfoPtr_SupportsInstancing_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668564);
+    SystemInfo.NativeMethodInfoPtr_SupportedRenderTargetCount_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668565);
+    SystemInfo.NativeMethodInfoPtr_SupportsMultisampleAutoResolve_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668566);
+    SystemInfo.NativeMethodInfoPtr_UsesReversedZBuffer_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668567);
+    SystemInfo.NativeMethodInfoPtr_SupportsTextureFormatNative_Private_Static_Boolean_TextureFormat_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668568);
+    SystemInfo.NativeMethodInfoPtr_GetMaxTextureSize_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668569);
+    SystemInfo.NativeMethodInfoPtr_GetMaxRenderTextureSize_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668570);
+    SystemInfo.NativeMethodInfoPtr_SupportsGPUFence_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668571);
+    SystemInfo.NativeMethodInfoPtr_MaxGraphicsBufferSize_Private_Static_Int64_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668572);
+    SystemInfo.NativeMethodInfoPtr_IsFormatSupported_Public_Static_Boolean_GraphicsFormat_GraphicsFormatUsage_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668573);
+    SystemInfo.NativeMethodInfoPtr_GetCompatibleFormat_Public_Static_GraphicsFormat_GraphicsFormat_GraphicsFormatUsage_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668574);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsFormat_Public_Static_GraphicsFormat_DefaultFormat_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668575);
+    SystemInfo.NativeMethodInfoPtr_GetTiledRenderTargetStorageSize_Public_Static_Int32_GraphicsFormat_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668576);
+    SystemInfo.NativeMethodInfoPtr_SupportsMultiview_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668577);
+    SystemInfo.NativeMethodInfoPtr_SupportsIndirectArgumentsBuffer_Private_Static_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668578);
+    SystemInfo.NativeMethodInfoPtr_MaxTiledPixelStorageSize_Private_Static_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668579);
+    SystemInfo.NativeMethodInfoPtr_GetOperatingSystem_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668580);
+    SystemInfo.NativeMethodInfoPtr_GetProcessorType_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668581);
+    SystemInfo.NativeMethodInfoPtr_GetDeviceName_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668582);
+    SystemInfo.NativeMethodInfoPtr_GetDeviceModel_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668583);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceName_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668584);
+    SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceVersion_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<SystemInfo>.NativeClassPtr, 100668585);
+    SystemInfo.GetBatteryLevelDelegateField = IL2CPP.ResolveICall<SystemInfo.GetBatteryLevelDelegate>("UnityEngine.SystemInfo::GetBatteryLevel");
+    SystemInfo.GetBatteryStatusDelegateField = IL2CPP.ResolveICall<SystemInfo.GetBatteryStatusDelegate>("UnityEngine.SystemInfo::GetBatteryStatus");
+    SystemInfo.GetProcessorFrequencyMHzDelegateField = IL2CPP.ResolveICall<SystemInfo.GetProcessorFrequencyMHzDelegate>("UnityEngine.SystemInfo::GetProcessorFrequencyMHz");
+    SystemInfo.SupportsAccelerometerDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsAccelerometerDelegate>("UnityEngine.SystemInfo::SupportsAccelerometer");
+    SystemInfo.IsGyroAvailableDelegateField = IL2CPP.ResolveICall<SystemInfo.IsGyroAvailableDelegate>("UnityEngine.SystemInfo::IsGyroAvailable");
+    SystemInfo.SupportsLocationServiceDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsLocationServiceDelegate>("UnityEngine.SystemInfo::SupportsLocationService");
+    SystemInfo.SupportsVibrationDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsVibrationDelegate>("UnityEngine.SystemInfo::SupportsVibration");
+    SystemInfo.SupportsAudioDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsAudioDelegate>("UnityEngine.SystemInfo::SupportsAudio");
+    SystemInfo.GetGraphicsDeviceIDDelegateField = IL2CPP.ResolveICall<SystemInfo.GetGraphicsDeviceIDDelegate>("UnityEngine.SystemInfo::GetGraphicsDeviceID");
+    SystemInfo.GetGraphicsMultiThreadedDelegateField = IL2CPP.ResolveICall<SystemInfo.GetGraphicsMultiThreadedDelegate>("UnityEngine.SystemInfo::GetGraphicsMultiThreaded");
+    SystemInfo.GetRenderingThreadingModeDelegateField = IL2CPP.ResolveICall<SystemInfo.GetRenderingThreadingModeDelegate>("UnityEngine.SystemInfo::GetRenderingThreadingMode");
+    SystemInfo.HasHiddenSurfaceRemovalOnGPUDelegateField = IL2CPP.ResolveICall<SystemInfo.HasHiddenSurfaceRemovalOnGPUDelegate>("UnityEngine.SystemInfo::HasHiddenSurfaceRemovalOnGPU");
+    SystemInfo.HasDynamicUniformArrayIndexingInFragmentShadersDelegateField = IL2CPP.ResolveICall<SystemInfo.HasDynamicUniformArrayIndexingInFragmentShadersDelegate>("UnityEngine.SystemInfo::HasDynamicUniformArrayIndexingInFragmentShaders");
+    SystemInfo.SupportsShadowsDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsShadowsDelegate>("UnityEngine.SystemInfo::SupportsShadows");
+    SystemInfo.SupportsRawShadowDepthSamplingDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsRawShadowDepthSamplingDelegate>("UnityEngine.SystemInfo::SupportsRawShadowDepthSampling");
+    SystemInfo.SupportsMotionVectorsDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMotionVectorsDelegate>("UnityEngine.SystemInfo::SupportsMotionVectors");
+    SystemInfo.Supports3DTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.Supports3DTexturesDelegate>("UnityEngine.SystemInfo::Supports3DTextures");
+    SystemInfo.SupportsCompressed3DTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsCompressed3DTexturesDelegate>("UnityEngine.SystemInfo::SupportsCompressed3DTextures");
+    SystemInfo.Supports2DArrayTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.Supports2DArrayTexturesDelegate>("UnityEngine.SystemInfo::Supports2DArrayTextures");
+    SystemInfo.Supports3DRenderTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.Supports3DRenderTexturesDelegate>("UnityEngine.SystemInfo::Supports3DRenderTextures");
+    SystemInfo.SupportsCubemapArrayTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsCubemapArrayTexturesDelegate>("UnityEngine.SystemInfo::SupportsCubemapArrayTextures");
+    SystemInfo.SupportsAnisotropicFilterDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsAnisotropicFilterDelegate>("UnityEngine.SystemInfo::SupportsAnisotropicFilter");
+    SystemInfo.GetCopyTextureSupportDelegateField = IL2CPP.ResolveICall<SystemInfo.GetCopyTextureSupportDelegate>("UnityEngine.SystemInfo::GetCopyTextureSupport");
+    SystemInfo.SupportsGeometryShadersDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsGeometryShadersDelegate>("UnityEngine.SystemInfo::SupportsGeometryShaders");
+    SystemInfo.SupportsTessellationShadersDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsTessellationShadersDelegate>("UnityEngine.SystemInfo::SupportsTessellationShaders");
+    SystemInfo.SupportsHardwareQuadTopologyDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsHardwareQuadTopologyDelegate>("UnityEngine.SystemInfo::SupportsHardwareQuadTopology");
+    SystemInfo.Supports32bitsIndexBufferDelegateField = IL2CPP.ResolveICall<SystemInfo.Supports32bitsIndexBufferDelegate>("UnityEngine.SystemInfo::Supports32bitsIndexBuffer");
+    SystemInfo.SupportsSparseTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsSparseTexturesDelegate>("UnityEngine.SystemInfo::SupportsSparseTextures");
+    SystemInfo.SupportsSeparatedRenderTargetsBlendDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsSeparatedRenderTargetsBlendDelegate>("UnityEngine.SystemInfo::SupportsSeparatedRenderTargetsBlend");
+    SystemInfo.SupportedRandomWriteTargetCountDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportedRandomWriteTargetCountDelegate>("UnityEngine.SystemInfo::SupportedRandomWriteTargetCount");
+    SystemInfo.MaxComputeBufferInputsVertexDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxComputeBufferInputsVertexDelegate>("UnityEngine.SystemInfo::MaxComputeBufferInputsVertex");
+    SystemInfo.MaxComputeBufferInputsFragmentDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxComputeBufferInputsFragmentDelegate>("UnityEngine.SystemInfo::MaxComputeBufferInputsFragment");
+    SystemInfo.MaxComputeBufferInputsGeometryDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxComputeBufferInputsGeometryDelegate>("UnityEngine.SystemInfo::MaxComputeBufferInputsGeometry");
+    SystemInfo.MaxComputeBufferInputsDomainDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxComputeBufferInputsDomainDelegate>("UnityEngine.SystemInfo::MaxComputeBufferInputsDomain");
+    SystemInfo.MaxComputeBufferInputsHullDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxComputeBufferInputsHullDelegate>("UnityEngine.SystemInfo::MaxComputeBufferInputsHull");
+    SystemInfo.MaxComputeBufferInputsComputeDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxComputeBufferInputsComputeDelegate>("UnityEngine.SystemInfo::MaxComputeBufferInputsCompute");
+    SystemInfo.SupportsMultisampledTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMultisampledTexturesDelegate>("UnityEngine.SystemInfo::SupportsMultisampledTextures");
+    SystemInfo.SupportsMultisampled2DArrayTexturesDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMultisampled2DArrayTexturesDelegate>("UnityEngine.SystemInfo::SupportsMultisampled2DArrayTextures");
+    SystemInfo.SupportsMultisampledBackBufferDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMultisampledBackBufferDelegate>("UnityEngine.SystemInfo::SupportsMultisampledBackBuffer");
+    SystemInfo.SupportsTextureWrapMirrorOnceDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsTextureWrapMirrorOnceDelegate>("UnityEngine.SystemInfo::SupportsTextureWrapMirrorOnce");
+    SystemInfo.HasRenderTextureNativeDelegateField = IL2CPP.ResolveICall<SystemInfo.HasRenderTextureNativeDelegate>("UnityEngine.SystemInfo::HasRenderTextureNative");
+    SystemInfo.SupportsBlendingOnRenderTextureFormatNativeDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsBlendingOnRenderTextureFormatNativeDelegate>("UnityEngine.SystemInfo::SupportsBlendingOnRenderTextureFormatNative");
+    SystemInfo.SupportsRandomWriteOnRenderTextureFormatNativeDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsRandomWriteOnRenderTextureFormatNativeDelegate>("UnityEngine.SystemInfo::SupportsRandomWriteOnRenderTextureFormatNative");
+    SystemInfo.SupportsVertexAttributeFormatNativeDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsVertexAttributeFormatNativeDelegate>("UnityEngine.SystemInfo::SupportsVertexAttributeFormatNative");
+    SystemInfo.GetNPOTSupportDelegateField = IL2CPP.ResolveICall<SystemInfo.GetNPOTSupportDelegate>("UnityEngine.SystemInfo::GetNPOTSupport");
+    SystemInfo.GetMaxTexture3DSizeDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxTexture3DSizeDelegate>("UnityEngine.SystemInfo::GetMaxTexture3DSize");
+    SystemInfo.GetMaxTextureArraySlicesDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxTextureArraySlicesDelegate>("UnityEngine.SystemInfo::GetMaxTextureArraySlices");
+    SystemInfo.GetMaxCubemapSizeDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxCubemapSizeDelegate>("UnityEngine.SystemInfo::GetMaxCubemapSize");
+    SystemInfo.GetMaxAnisotropyLevelDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxAnisotropyLevelDelegate>("UnityEngine.SystemInfo::GetMaxAnisotropyLevel");
+    SystemInfo.GetMaxComputeWorkGroupSizeDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxComputeWorkGroupSizeDelegate>("UnityEngine.SystemInfo::GetMaxComputeWorkGroupSize");
+    SystemInfo.GetMaxComputeWorkGroupSizeXDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxComputeWorkGroupSizeXDelegate>("UnityEngine.SystemInfo::GetMaxComputeWorkGroupSizeX");
+    SystemInfo.GetMaxComputeWorkGroupSizeYDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxComputeWorkGroupSizeYDelegate>("UnityEngine.SystemInfo::GetMaxComputeWorkGroupSizeY");
+    SystemInfo.GetMaxComputeWorkGroupSizeZDelegateField = IL2CPP.ResolveICall<SystemInfo.GetMaxComputeWorkGroupSizeZDelegate>("UnityEngine.SystemInfo::GetMaxComputeWorkGroupSizeZ");
+    SystemInfo.GetComputeSubGroupSizeDelegateField = IL2CPP.ResolveICall<SystemInfo.GetComputeSubGroupSizeDelegate>("UnityEngine.SystemInfo::GetComputeSubGroupSize");
+    SystemInfo.SupportsAsyncComputeDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsAsyncComputeDelegate>("UnityEngine.SystemInfo::SupportsAsyncCompute");
+    SystemInfo.SupportsGpuRecorderDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsGpuRecorderDelegate>("UnityEngine.SystemInfo::SupportsGpuRecorder");
+    SystemInfo.SupportsAsyncGPUReadbackDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsAsyncGPUReadbackDelegate>("UnityEngine.SystemInfo::SupportsAsyncGPUReadback");
+    SystemInfo.SupportsParallelPSOCreationDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsParallelPSOCreationDelegate>("UnityEngine.SystemInfo::SupportsParallelPSOCreation");
+    SystemInfo.SupportsRayTracingDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsRayTracingDelegate>("UnityEngine.SystemInfo::SupportsRayTracing");
+    SystemInfo.SupportsRayTracingShadersDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsRayTracingShadersDelegate>("UnityEngine.SystemInfo::SupportsRayTracingShaders");
+    SystemInfo.SupportsInlineRayTracingDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsInlineRayTracingDelegate>("UnityEngine.SystemInfo::SupportsInlineRayTracing");
+    SystemInfo.SupportsIndirectDispatchRaysDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsIndirectDispatchRaysDelegate>("UnityEngine.SystemInfo::SupportsIndirectDispatchRays");
+    SystemInfo.SupportsSetConstantBufferDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsSetConstantBufferDelegate>("UnityEngine.SystemInfo::SupportsSetConstantBuffer");
+    SystemInfo.MinConstantBufferOffsetAlignmentDelegateField = IL2CPP.ResolveICall<SystemInfo.MinConstantBufferOffsetAlignmentDelegate>("UnityEngine.SystemInfo::MinConstantBufferOffsetAlignment");
+    SystemInfo.MaxConstantBufferSizeDelegateField = IL2CPP.ResolveICall<SystemInfo.MaxConstantBufferSizeDelegate>("UnityEngine.SystemInfo::MaxConstantBufferSize");
+    SystemInfo.HasMipMaxLevelDelegateField = IL2CPP.ResolveICall<SystemInfo.HasMipMaxLevelDelegate>("UnityEngine.SystemInfo::HasMipMaxLevel");
+    SystemInfo.SupportsMipStreamingDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMipStreamingDelegate>("UnityEngine.SystemInfo::SupportsMipStreaming");
+    SystemInfo.UsesLoadStoreActionsDelegateField = IL2CPP.ResolveICall<SystemInfo.UsesLoadStoreActionsDelegate>("UnityEngine.SystemInfo::UsesLoadStoreActions");
+    SystemInfo.GetHDRDisplaySupportFlagsDelegateField = IL2CPP.ResolveICall<SystemInfo.GetHDRDisplaySupportFlagsDelegate>("UnityEngine.SystemInfo::GetHDRDisplaySupportFlags");
+    SystemInfo.SupportsConservativeRasterDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsConservativeRasterDelegate>("UnityEngine.SystemInfo::SupportsConservativeRaster");
+    SystemInfo.SupportsStoreAndResolveActionDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsStoreAndResolveActionDelegate>("UnityEngine.SystemInfo::SupportsStoreAndResolveAction");
+    SystemInfo.SupportsMultisampleResolveDepthDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMultisampleResolveDepthDelegate>("UnityEngine.SystemInfo::SupportsMultisampleResolveDepth");
+    SystemInfo.SupportsMultisampleResolveStencilDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsMultisampleResolveStencilDelegate>("UnityEngine.SystemInfo::SupportsMultisampleResolveStencil");
+    SystemInfo.SupportsDepthFetchInRenderPassDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsDepthFetchInRenderPassDelegate>("UnityEngine.SystemInfo::SupportsDepthFetchInRenderPass");
+    SystemInfo.SupportsDynamicResolutionDelegateField = IL2CPP.ResolveICall<SystemInfo.SupportsDynamicResolutionDelegate>("UnityEngine.SystemInfo::SupportsDynamicResolution");
+    SystemInfo.GetProcessorModel_InjectedDelegateField = IL2CPP.ResolveICall<SystemInfo.GetProcessorModel_InjectedDelegate>("UnityEngine.SystemInfo::GetProcessorModel_Injected");
+    SystemInfo.GetProcessorManufacturer_InjectedDelegateField = IL2CPP.ResolveICall<SystemInfo.GetProcessorManufacturer_InjectedDelegate>("UnityEngine.SystemInfo::GetProcessorManufacturer_Injected");
+    SystemInfo.GetDeviceUniqueIdentifier_InjectedDelegateField = IL2CPP.ResolveICall<SystemInfo.GetDeviceUniqueIdentifier_InjectedDelegate>("UnityEngine.SystemInfo::GetDeviceUniqueIdentifier_Injected");
+    SystemInfo.GetGraphicsDeviceVendor_InjectedDelegateField = IL2CPP.ResolveICall<SystemInfo.GetGraphicsDeviceVendor_InjectedDelegate>("UnityEngine.SystemInfo::GetGraphicsDeviceVendor_Injected");
+    SystemInfo.GetRenderTextureSupportedMSAASampleCount_InjectedDelegateField = IL2CPP.ResolveICall<SystemInfo.GetRenderTextureSupportedMSAASampleCount_InjectedDelegate>("UnityEngine.SystemInfo::GetRenderTextureSupportedMSAASampleCount_Injected");
+  }
+
+  public static unsafe string operatingSystem
+  {
+    [CallerCount(3), CachedScanResults(RefRangeStart = 464929, RefRangeEnd = 464932, XrefRangeStart = 464928, XrefRangeEnd = 464929, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_operatingSystem_Public_Static_get_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return IL2CPP.Il2CppStringToManaged(num2);
+    }
+  }
+
+  public static unsafe OperatingSystemFamily operatingSystemFamily
+  {
+    [CallerCount(8), CachedScanResults(RefRangeStart = 464934, RefRangeEnd = 464942, XrefRangeStart = 464932, XrefRangeEnd = 464934, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_operatingSystemFamily_Public_Static_get_OperatingSystemFamily_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(OperatingSystemFamily*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe string processorType
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464943, RefRangeEnd = 464944, XrefRangeStart = 464942, XrefRangeEnd = 464943, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_processorType_Public_Static_get_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return IL2CPP.Il2CppStringToManaged(num2);
+    }
+  }
+
+  public static unsafe int processorCount
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464946, RefRangeEnd = 464947, XrefRangeStart = 464944, XrefRangeEnd = 464946, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_processorCount_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe int systemMemorySize
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464949, RefRangeEnd = 464950, XrefRangeStart = 464947, XrefRangeEnd = 464949, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_systemMemorySize_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe string deviceName
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464951, RefRangeEnd = 464952, XrefRangeStart = 464950, XrefRangeEnd = 464951, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_deviceName_Public_Static_get_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return IL2CPP.Il2CppStringToManaged(num2);
+    }
+  }
+
+  public static unsafe string deviceModel
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464953, RefRangeEnd = 464954, XrefRangeStart = 464952, XrefRangeEnd = 464953, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_deviceModel_Public_Static_get_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return IL2CPP.Il2CppStringToManaged(num2);
+    }
+  }
+
+  public static unsafe DeviceType deviceType
+  {
+    [CallerCount(4), CachedScanResults(RefRangeStart = 464956, RefRangeEnd = 464960, XrefRangeStart = 464954, XrefRangeEnd = 464956, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_deviceType_Public_Static_get_DeviceType_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(DeviceType*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe int graphicsMemorySize
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464962, RefRangeEnd = 464963, XrefRangeStart = 464960, XrefRangeEnd = 464962, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsMemorySize_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe string graphicsDeviceName
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464964, RefRangeEnd = 464965, XrefRangeStart = 464963, XrefRangeEnd = 464964, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceName_Public_Static_get_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return IL2CPP.Il2CppStringToManaged(num2);
+    }
+  }
+
+  public static unsafe int graphicsDeviceVendorID
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 464967, RefRangeEnd = 464968, XrefRangeStart = 464965, XrefRangeEnd = 464967, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceVendorID_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe GraphicsDeviceType graphicsDeviceType
+  {
+    [CallerCount(35), CachedScanResults(RefRangeStart = 464970, RefRangeEnd = 465005, XrefRangeStart = 464968, XrefRangeEnd = 464970, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceType_Public_Static_get_GraphicsDeviceType_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(GraphicsDeviceType*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool graphicsUVStartsAtTop
+  {
+    [CallerCount(7), CachedScanResults(RefRangeStart = 465007, RefRangeEnd = 465014, XrefRangeStart = 465005, XrefRangeEnd = 465007, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsUVStartsAtTop_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe string graphicsDeviceVersion
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 465015, RefRangeEnd = 465016, XrefRangeStart = 465014, XrefRangeEnd = 465015, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsDeviceVersion_Public_Static_get_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return IL2CPP.Il2CppStringToManaged(num2);
+    }
+  }
+
+  public static unsafe int graphicsShaderLevel
+  {
+    [CallerCount(6), CachedScanResults(RefRangeStart = 465018, RefRangeEnd = 465024, XrefRangeStart = 465016, XrefRangeEnd = 465018, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_graphicsShaderLevel_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe FoveatedRenderingCaps foveatedRenderingCaps
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 465026, RefRangeEnd = 465027, XrefRangeStart = 465024, XrefRangeEnd = 465026, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_foveatedRenderingCaps_Public_Static_get_FoveatedRenderingCaps_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(FoveatedRenderingCaps*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsComputeShaders
+  {
+    [CallerCount(10), CachedScanResults(RefRangeStart = 465029, RefRangeEnd = 465039, XrefRangeStart = 465027, XrefRangeEnd = 465029, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsComputeShaders_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsRenderTargetArrayIndexFromVertexShader
+  {
+    [CallerCount(0), CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465039, XrefRangeEnd = 465041, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsRenderTargetArrayIndexFromVertexShader_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsInstancing
+  {
+    [CallerCount(5), CachedScanResults(RefRangeStart = 465043, RefRangeEnd = 465048, XrefRangeStart = 465041, XrefRangeEnd = 465043, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsInstancing_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe int supportedRenderTargetCount
+  {
+    [CallerCount(5), CachedScanResults(RefRangeStart = 465050, RefRangeEnd = 465055, XrefRangeStart = 465048, XrefRangeEnd = 465050, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportedRenderTargetCount_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsMultisampleAutoResolve
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 465057, RefRangeEnd = 465058, XrefRangeStart = 465055, XrefRangeEnd = 465057, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsMultisampleAutoResolve_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool usesReversedZBuffer
+  {
+    [CallerCount(5), CachedScanResults(RefRangeStart = 465060, RefRangeEnd = 465065, XrefRangeStart = 465058, XrefRangeEnd = 465060, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_usesReversedZBuffer_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe int maxTiledPixelStorageSize
+  {
+    [CallerCount(2), CachedScanResults(RefRangeStart = 465067, RefRangeEnd = 465069, XrefRangeStart = 465065, XrefRangeEnd = 465067, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_maxTiledPixelStorageSize_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465069, XrefRangeEnd = 465073, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool IsValidEnumValue(Il2CppSystem.Enum value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &value
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_IsValidEnumValue_Private_Static_Boolean_Enum_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465082, RefRangeEnd = 465083, XrefRangeStart = 465073, XrefRangeEnd = 465082, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsTextureFormat(TextureFormat format)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &format
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsTextureFormat_Public_Static_Boolean_TextureFormat_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  public static unsafe int maxTextureSize
+  {
+    [CallerCount(2), CachedScanResults(RefRangeStart = 465085, RefRangeEnd = 465087, XrefRangeStart = 465083, XrefRangeEnd = 465085, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_maxTextureSize_Public_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe int maxRenderTextureSize
+  {
+    [CallerCount(2), CachedScanResults(RefRangeStart = 465089, RefRangeEnd = 465091, XrefRangeStart = 465087, XrefRangeEnd = 465089, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_maxRenderTextureSize_Internal_Static_get_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsGraphicsFence
+  {
+    [CallerCount(7), CachedScanResults(RefRangeStart = 465093, RefRangeEnd = 465100, XrefRangeStart = 465091, XrefRangeEnd = 465093, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsGraphicsFence_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe long maxGraphicsBufferSize
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 465102, RefRangeEnd = 465103, XrefRangeStart = 465100, XrefRangeEnd = 465102, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_maxGraphicsBufferSize_Public_Static_get_Int64_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(long*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsMultiview
+  {
+    [CallerCount(0), CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465103, XrefRangeEnd = 465105, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsMultiview_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public static unsafe bool supportsIndirectArgumentsBuffer
+  {
+    [CallerCount(8), CachedScanResults(RefRangeStart = 465107, RefRangeEnd = 465115, XrefRangeStart = 465105, XrefRangeEnd = 465107, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_get_supportsIndirectArgumentsBuffer_Public_Static_get_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465120, RefRangeEnd = 465121, XrefRangeStart = 465115, XrefRangeEnd = 465120, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe string GetOperatingSystem()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetOperatingSystem_Private_Static_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return IL2CPP.Il2CppStringToManaged(num2);
+  }
+
+  [CallerCount(8)]
+  [CachedScanResults(RefRangeStart = 464934, RefRangeEnd = 464942, XrefRangeStart = 464934, XrefRangeEnd = 464942, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe OperatingSystemFamily GetOperatingSystemFamily()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetOperatingSystemFamily_Private_Static_OperatingSystemFamily_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(OperatingSystemFamily*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465126, RefRangeEnd = 465127, XrefRangeStart = 465121, XrefRangeEnd = 465126, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe string GetProcessorType()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetProcessorType_Private_Static_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return IL2CPP.Il2CppStringToManaged(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 464946, RefRangeEnd = 464947, XrefRangeStart = 464946, XrefRangeEnd = 464947, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetProcessorCount()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetProcessorCount_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 464949, RefRangeEnd = 464950, XrefRangeStart = 464949, XrefRangeEnd = 464950, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetPhysicalMemoryMB()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetPhysicalMemoryMB_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465132, RefRangeEnd = 465133, XrefRangeStart = 465127, XrefRangeEnd = 465132, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe string GetDeviceName()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetDeviceName_Private_Static_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return IL2CPP.Il2CppStringToManaged(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465138, RefRangeEnd = 465139, XrefRangeStart = 465133, XrefRangeEnd = 465138, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe string GetDeviceModel()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetDeviceModel_Private_Static_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return IL2CPP.Il2CppStringToManaged(num2);
+  }
+
+  [CallerCount(4)]
+  [CachedScanResults(RefRangeStart = 464956, RefRangeEnd = 464960, XrefRangeStart = 464956, XrefRangeEnd = 464960, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe DeviceType GetDeviceType()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetDeviceType_Private_Static_DeviceType_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(DeviceType*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 464962, RefRangeEnd = 464963, XrefRangeStart = 464962, XrefRangeEnd = 464963, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetGraphicsMemorySize()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsMemorySize_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465144, RefRangeEnd = 465145, XrefRangeStart = 465139, XrefRangeEnd = 465144, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe string GetGraphicsDeviceName()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceName_Private_Static_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return IL2CPP.Il2CppStringToManaged(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 464967, RefRangeEnd = 464968, XrefRangeStart = 464967, XrefRangeEnd = 464968, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetGraphicsDeviceVendorID()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceVendorID_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(35)]
+  [CachedScanResults(RefRangeStart = 464970, RefRangeEnd = 465005, XrefRangeStart = 464970, XrefRangeEnd = 465005, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe GraphicsDeviceType GetGraphicsDeviceType()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceType_Private_Static_GraphicsDeviceType_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(GraphicsDeviceType*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(7)]
+  [CachedScanResults(RefRangeStart = 465007, RefRangeEnd = 465014, XrefRangeStart = 465007, XrefRangeEnd = 465014, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool GetGraphicsUVStartsAtTop()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsUVStartsAtTop_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465150, RefRangeEnd = 465151, XrefRangeStart = 465145, XrefRangeEnd = 465150, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe string GetGraphicsDeviceVersion()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceVersion_Private_Static_String_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return IL2CPP.Il2CppStringToManaged(num2);
+  }
+
+  [CallerCount(6)]
+  [CachedScanResults(RefRangeStart = 465018, RefRangeEnd = 465024, XrefRangeStart = 465018, XrefRangeEnd = 465024, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetGraphicsShaderLevel()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsShaderLevel_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465026, RefRangeEnd = 465027, XrefRangeStart = 465026, XrefRangeEnd = 465027, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe FoveatedRenderingCaps GetFoveatedRenderingCaps()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetFoveatedRenderingCaps_Private_Static_FoveatedRenderingCaps_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(FoveatedRenderingCaps*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(10)]
+  [CachedScanResults(RefRangeStart = 465029, RefRangeEnd = 465039, XrefRangeStart = 465029, XrefRangeEnd = 465039, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsComputeShaders()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsComputeShaders_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 0, XrefRangeEnd = 0, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsRenderTargetArrayIndexFromVertexShader()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsRenderTargetArrayIndexFromVertexShader_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(5)]
+  [CachedScanResults(RefRangeStart = 465043, RefRangeEnd = 465048, XrefRangeStart = 465043, XrefRangeEnd = 465048, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsInstancing()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsInstancing_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(5)]
+  [CachedScanResults(RefRangeStart = 465050, RefRangeEnd = 465055, XrefRangeStart = 465050, XrefRangeEnd = 465055, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int SupportedRenderTargetCount()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportedRenderTargetCount_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465057, RefRangeEnd = 465058, XrefRangeStart = 465057, XrefRangeEnd = 465058, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsMultisampleAutoResolve()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsMultisampleAutoResolve_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(5)]
+  [CachedScanResults(RefRangeStart = 465060, RefRangeEnd = 465065, XrefRangeStart = 465060, XrefRangeEnd = 465065, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool UsesReversedZBuffer()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_UsesReversedZBuffer_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465151, XrefRangeEnd = 465153, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsTextureFormatNative(TextureFormat format)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &format
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsTextureFormatNative_Private_Static_Boolean_TextureFormat_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 465085, RefRangeEnd = 465087, XrefRangeStart = 465085, XrefRangeEnd = 465087, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetMaxTextureSize()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetMaxTextureSize_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 465089, RefRangeEnd = 465091, XrefRangeStart = 465089, XrefRangeEnd = 465091, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetMaxRenderTextureSize()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetMaxRenderTextureSize_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(7)]
+  [CachedScanResults(RefRangeStart = 465093, RefRangeEnd = 465100, XrefRangeStart = 465093, XrefRangeEnd = 465100, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsGPUFence()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsGPUFence_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 465102, RefRangeEnd = 465103, XrefRangeStart = 465102, XrefRangeEnd = 465103, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe long MaxGraphicsBufferSize()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_MaxGraphicsBufferSize_Private_Static_Int64_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(long*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(10)]
+  [CachedScanResults(RefRangeStart = 465155, RefRangeEnd = 465165, XrefRangeStart = 465153, XrefRangeEnd = 465155, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool IsFormatSupported(GraphicsFormat format, GraphicsFormatUsage usage)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &format;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &usage;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_IsFormatSupported_Public_Static_Boolean_GraphicsFormat_GraphicsFormatUsage_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 465167, RefRangeEnd = 465169, XrefRangeStart = 465165, XrefRangeEnd = 465167, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe GraphicsFormat GetCompatibleFormat(
+    GraphicsFormat format,
+    GraphicsFormatUsage usage)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &format;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &usage;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetCompatibleFormat_Public_Static_GraphicsFormat_GraphicsFormat_GraphicsFormatUsage_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(GraphicsFormat*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(16 /*0x10*/)]
+  [CachedScanResults(RefRangeStart = 465171, RefRangeEnd = 465187, XrefRangeStart = 465169, XrefRangeEnd = 465171, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe GraphicsFormat GetGraphicsFormat(DefaultFormat format)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &format
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsFormat_Public_Static_GraphicsFormat_DefaultFormat_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(GraphicsFormat*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 465189, RefRangeEnd = 465191, XrefRangeStart = 465187, XrefRangeEnd = 465189, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetTiledRenderTargetStorageSize(GraphicsFormat format, int sampleCount)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &format;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &sampleCount;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetTiledRenderTargetStorageSize_Public_Static_Int32_GraphicsFormat_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 0, XrefRangeEnd = 0, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsMultiview()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsMultiview_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(8)]
+  [CachedScanResults(RefRangeStart = 465107, RefRangeEnd = 465115, XrefRangeStart = 465107, XrefRangeEnd = 465115, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool SupportsIndirectArgumentsBuffer()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_SupportsIndirectArgumentsBuffer_Private_Static_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 465067, RefRangeEnd = 465069, XrefRangeStart = 465067, XrefRangeEnd = 465069, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int MaxTiledPixelStorageSize()
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_MaxTiledPixelStorageSize_Private_Static_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465191, XrefRangeEnd = 465193, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void GetOperatingSystem_Injected(out ManagedSpanWrapper ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) ref ret
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetOperatingSystem_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465193, XrefRangeEnd = 465195, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void GetProcessorType_Injected(out ManagedSpanWrapper ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) ref ret
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetProcessorType_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465195, XrefRangeEnd = 465197, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void GetDeviceName_Injected(out ManagedSpanWrapper ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) ref ret
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetDeviceName_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465197, XrefRangeEnd = 465199, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void GetDeviceModel_Injected(out ManagedSpanWrapper ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) ref ret
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetDeviceModel_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465199, XrefRangeEnd = 465201, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void GetGraphicsDeviceName_Injected(out ManagedSpanWrapper ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) ref ret
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceName_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 465201, XrefRangeEnd = 465203, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void GetGraphicsDeviceVersion_Injected(out ManagedSpanWrapper ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) ref ret
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(SystemInfo.NativeMethodInfoPtr_GetGraphicsDeviceVersion_Injected_Private_Static_Void_byref_ManagedSpanWrapper_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  public static float batteryLevel => SystemInfo.GetBatteryLevel();
+
+  public static BatteryStatus batteryStatus => SystemInfo.GetBatteryStatus();
+
+  public static string processorModel => SystemInfo.GetProcessorModel();
+
+  public static string processorManufacturer => SystemInfo.GetProcessorManufacturer();
+
+  public static int processorFrequency => SystemInfo.GetProcessorFrequencyMHz();
+
+  public static string deviceUniqueIdentifier => SystemInfo.GetDeviceUniqueIdentifier();
+
+  public static bool supportsAccelerometer => SystemInfo.SupportsAccelerometer();
+
+  public static bool supportsGyroscope => SystemInfo.IsGyroAvailable();
+
+  public static bool supportsLocationService => SystemInfo.SupportsLocationService();
+
+  public static bool supportsVibration => SystemInfo.SupportsVibration();
+
+  public static bool supportsAudio => SystemInfo.SupportsAudio();
+
+  public static string graphicsDeviceVendor => SystemInfo.GetGraphicsDeviceVendor();
+
+  public static int graphicsDeviceID => SystemInfo.GetGraphicsDeviceID();
+
+  public static bool graphicsMultiThreaded => SystemInfo.GetGraphicsMultiThreaded();
+
+  public static RenderingThreadingMode renderingThreadingMode
+  {
+    get => SystemInfo.GetRenderingThreadingMode();
+  }
+
+  public static bool hasHiddenSurfaceRemovalOnGPU => SystemInfo.HasHiddenSurfaceRemovalOnGPU();
+
+  public static bool hasDynamicUniformArrayIndexingInFragmentShaders
+  {
+    get => SystemInfo.HasDynamicUniformArrayIndexingInFragmentShaders();
+  }
+
+  public static bool supportsShadows => SystemInfo.SupportsShadows();
+
+  public static bool supportsRawShadowDepthSampling => SystemInfo.SupportsRawShadowDepthSampling();
+
+  public static bool supportsRenderTextures => true;
+
+  public static bool supportsMotionVectors => SystemInfo.SupportsMotionVectors();
+
+  public static bool supportsRenderToCubemap => true;
+
+  public static bool supportsImageEffects => true;
+
+  public static bool supports3DTextures => SystemInfo.Supports3DTextures();
+
+  public static bool supportsCompressed3DTextures => SystemInfo.SupportsCompressed3DTextures();
+
+  public static bool supports2DArrayTextures => SystemInfo.Supports2DArrayTextures();
+
+  public static bool supports3DRenderTextures => SystemInfo.Supports3DRenderTextures();
+
+  public static bool supportsCubemapArrayTextures => SystemInfo.SupportsCubemapArrayTextures();
+
+  public static bool supportsAnisotropicFilter => SystemInfo.SupportsAnisotropicFilter();
+
+  public static CopyTextureSupport copyTextureSupport => SystemInfo.GetCopyTextureSupport();
+
+  public static bool supportsGeometryShaders => SystemInfo.SupportsGeometryShaders();
+
+  public static bool supportsTessellationShaders => SystemInfo.SupportsTessellationShaders();
+
+  public static bool supportsHardwareQuadTopology => SystemInfo.SupportsHardwareQuadTopology();
+
+  public static bool supports32bitsIndexBuffer => SystemInfo.Supports32bitsIndexBuffer();
+
+  public static bool supportsSparseTextures => SystemInfo.SupportsSparseTextures();
+
+  public static bool supportsSeparatedRenderTargetsBlend
+  {
+    get => SystemInfo.SupportsSeparatedRenderTargetsBlend();
+  }
+
+  public static int supportedRandomWriteTargetCount => SystemInfo.SupportedRandomWriteTargetCount();
+
+  public static int supportsMultisampledTextures => SystemInfo.SupportsMultisampledTextures();
+
+  public static bool supportsMultisampled2DArrayTextures
+  {
+    get => SystemInfo.SupportsMultisampled2DArrayTextures();
+  }
+
+  public static bool supportsMultisampledBackBuffer => SystemInfo.SupportsMultisampledBackBuffer();
+
+  public static int supportsTextureWrapMirrorOnce => SystemInfo.SupportsTextureWrapMirrorOnce();
+
+  public static int supportsStencil => 1;
+
+  public static bool supportsDynamicResolution => SystemInfo.SupportsDynamicResolution();
+
+  public static bool SupportsRenderTextureFormat(RenderTextureFormat format)
+  {
+    return SystemInfo.IsValidEnumValue((Il2CppSystem.Enum) (System.Enum) format) ? SystemInfo.HasRenderTextureNative(format) : throw new Il2CppSystem.ArgumentException("Failed SupportsRenderTextureFormat; format is not a valid RenderTextureFormat");
+  }
+
+  public static bool SupportsBlendingOnRenderTextureFormat(RenderTextureFormat format)
+  {
+    return SystemInfo.IsValidEnumValue((Il2CppSystem.Enum) (System.Enum) format) ? SystemInfo.SupportsBlendingOnRenderTextureFormatNative(format) : throw new Il2CppSystem.ArgumentException("Failed SupportsBlendingOnRenderTextureFormat; format is not a valid RenderTextureFormat");
+  }
+
+  public static bool SupportsRandomWriteOnRenderTextureFormat(RenderTextureFormat format)
+  {
+    return SystemInfo.IsValidEnumValue((Il2CppSystem.Enum) (System.Enum) format) ? SystemInfo.SupportsRandomWriteOnRenderTextureFormatNative(format) : throw new Il2CppSystem.ArgumentException("Failed SupportsRandomWriteOnRenderTextureFormat; format is not a valid RenderTextureFormat");
+  }
+
+  public static bool SupportsVertexAttributeFormat(VertexAttributeFormat format, int dimension)
+  {
+    if (!SystemInfo.IsValidEnumValue((Il2CppSystem.Enum) (System.Enum) format))
+      throw new Il2CppSystem.ArgumentException("Failed SupportsVertexAttributeFormat; format is not a valid VertexAttributeFormat");
+    return dimension >= 1 && dimension <= 4 ? SystemInfo.SupportsVertexAttributeFormatNative(format, dimension) : throw new Il2CppSystem.ArgumentException("Failed SupportsVertexAttributeFormat; dimension must be in 1..4 range");
+  }
+
+  public static NPOTSupport npotSupport => SystemInfo.GetNPOTSupport();
+
+  public static int maxTexture3DSize => SystemInfo.GetMaxTexture3DSize();
+
+  public static int maxTextureArraySlices => SystemInfo.GetMaxTextureArraySlices();
+
+  public static int maxCubemapSize => SystemInfo.GetMaxCubemapSize();
+
+  public static int maxAnisotropyLevel => SystemInfo.GetMaxAnisotropyLevel();
+
+  public static int maxComputeBufferInputsVertex => SystemInfo.MaxComputeBufferInputsVertex();
+
+  public static int maxComputeBufferInputsFragment => SystemInfo.MaxComputeBufferInputsFragment();
+
+  public static int maxComputeBufferInputsGeometry => SystemInfo.MaxComputeBufferInputsGeometry();
+
+  public static int maxComputeBufferInputsDomain => SystemInfo.MaxComputeBufferInputsDomain();
+
+  public static int maxComputeBufferInputsHull => SystemInfo.MaxComputeBufferInputsHull();
+
+  public static int maxComputeBufferInputsCompute => SystemInfo.MaxComputeBufferInputsCompute();
+
+  public static int maxComputeWorkGroupSize => SystemInfo.GetMaxComputeWorkGroupSize();
+
+  public static int maxComputeWorkGroupSizeX => SystemInfo.GetMaxComputeWorkGroupSizeX();
+
+  public static int maxComputeWorkGroupSizeY => SystemInfo.GetMaxComputeWorkGroupSizeY();
+
+  public static int maxComputeWorkGroupSizeZ => SystemInfo.GetMaxComputeWorkGroupSizeZ();
+
+  public static int computeSubGroupSize => SystemInfo.GetComputeSubGroupSize();
+
+  public static bool supportsAsyncCompute => SystemInfo.SupportsAsyncCompute();
+
+  public static bool supportsGpuRecorder => SystemInfo.SupportsGpuRecorder();
+
+  public static bool supportsAsyncGPUReadback => SystemInfo.SupportsAsyncGPUReadback();
+
+  public static bool supportsParallelPSOCreation => SystemInfo.SupportsParallelPSOCreation();
+
+  public static bool supportsRayTracingShaders => SystemInfo.SupportsRayTracingShaders();
+
+  public static bool supportsRayTracing => SystemInfo.SupportsRayTracing();
+
+  public static bool supportsInlineRayTracing => SystemInfo.SupportsInlineRayTracing();
+
+  public static bool supportsIndirectDispatchRays => SystemInfo.SupportsIndirectDispatchRays();
+
+  public static bool supportsSetConstantBuffer => SystemInfo.SupportsSetConstantBuffer();
+
+  public static int constantBufferOffsetAlignment => SystemInfo.MinConstantBufferOffsetAlignment();
+
+  public static int maxConstantBufferSize => SystemInfo.MaxConstantBufferSize();
+
+  public static bool minConstantBufferOffsetAlignment => false;
+
+  public static bool hasMipMaxLevel => SystemInfo.HasMipMaxLevel();
+
+  public static bool supportsMipStreaming => SystemInfo.SupportsMipStreaming();
+
+  public static int graphicsPixelFillrate => -1;
+
+  public static bool usesLoadStoreActions => SystemInfo.UsesLoadStoreActions();
+
+  public static HDRDisplaySupportFlags hdrDisplaySupportFlags
+  {
+    get => SystemInfo.GetHDRDisplaySupportFlags();
+  }
+
+  public static bool supportsConservativeRaster => SystemInfo.SupportsConservativeRaster();
+
+  public static bool supportsStoreAndResolveAction => SystemInfo.SupportsStoreAndResolveAction();
+
+  public static bool supportsMultisampleResolveDepth
+  {
+    get => SystemInfo.SupportsMultisampleResolveDepth();
+  }
+
+  public static bool supportsMultisampleResolveStencil
+  {
+    get => SystemInfo.SupportsMultisampleResolveStencil();
+  }
+
+  public static bool supportsDepthFetchInRenderPass => SystemInfo.SupportsDepthFetchInRenderPass();
+
+  public static bool supportsVertexPrograms => true;
+
+  public static float GetBatteryLevel() => SystemInfo.GetBatteryLevelDelegateField();
+
+  public static BatteryStatus GetBatteryStatus() => SystemInfo.GetBatteryStatusDelegateField();
+
+  public static string GetProcessorModel()
+  {
+    ManagedSpanWrapper ret;
+    string stringAndDispose;
+    try
+    {
+      SystemInfo.GetProcessorModel_Injected(out ret);
+    }
+    finally
+    {
+      stringAndDispose = OutStringMarshaller.GetStringAndDispose(ret);
+    }
+    return stringAndDispose;
+  }
+
+  public static string GetProcessorManufacturer()
+  {
+    ManagedSpanWrapper ret;
+    string stringAndDispose;
+    try
+    {
+      SystemInfo.GetProcessorManufacturer_Injected(out ret);
+    }
+    finally
+    {
+      stringAndDispose = OutStringMarshaller.GetStringAndDispose(ret);
+    }
+    return stringAndDispose;
+  }
+
+  public static int GetProcessorFrequencyMHz()
+  {
+    return SystemInfo.GetProcessorFrequencyMHzDelegateField();
+  }
+
+  public static string GetDeviceUniqueIdentifier()
+  {
+    ManagedSpanWrapper ret;
+    string stringAndDispose;
+    try
+    {
+      SystemInfo.GetDeviceUniqueIdentifier_Injected(out ret);
+    }
+    finally
+    {
+      stringAndDispose = OutStringMarshaller.GetStringAndDispose(ret);
+    }
+    return stringAndDispose;
+  }
+
+  public static bool SupportsAccelerometer() => SystemInfo.SupportsAccelerometerDelegateField();
+
+  public static bool IsGyroAvailable() => SystemInfo.IsGyroAvailableDelegateField();
+
+  public static bool SupportsLocationService() => SystemInfo.SupportsLocationServiceDelegateField();
+
+  public static bool SupportsVibration() => SystemInfo.SupportsVibrationDelegateField();
+
+  public static bool SupportsAudio() => SystemInfo.SupportsAudioDelegateField();
+
+  public static string GetGraphicsDeviceVendor()
+  {
+    ManagedSpanWrapper ret;
+    string stringAndDispose;
+    try
+    {
+      SystemInfo.GetGraphicsDeviceVendor_Injected(out ret);
+    }
+    finally
+    {
+      stringAndDispose = OutStringMarshaller.GetStringAndDispose(ret);
+    }
+    return stringAndDispose;
+  }
+
+  public static int GetGraphicsDeviceID() => SystemInfo.GetGraphicsDeviceIDDelegateField();
+
+  public static bool GetGraphicsMultiThreaded()
+  {
+    return SystemInfo.GetGraphicsMultiThreadedDelegateField();
+  }
+
+  public static RenderingThreadingMode GetRenderingThreadingMode()
+  {
+    return SystemInfo.GetRenderingThreadingModeDelegateField();
+  }
+
+  public static bool HasHiddenSurfaceRemovalOnGPU()
+  {
+    return SystemInfo.HasHiddenSurfaceRemovalOnGPUDelegateField();
+  }
+
+  public static bool HasDynamicUniformArrayIndexingInFragmentShaders()
+  {
+    return SystemInfo.HasDynamicUniformArrayIndexingInFragmentShadersDelegateField();
+  }
+
+  public static bool SupportsShadows() => SystemInfo.SupportsShadowsDelegateField();
+
+  public static bool SupportsRawShadowDepthSampling()
+  {
+    return SystemInfo.SupportsRawShadowDepthSamplingDelegateField();
+  }
+
+  public static bool SupportsMotionVectors() => SystemInfo.SupportsMotionVectorsDelegateField();
+
+  public static bool Supports3DTextures() => SystemInfo.Supports3DTexturesDelegateField();
+
+  public static bool SupportsCompressed3DTextures()
+  {
+    return SystemInfo.SupportsCompressed3DTexturesDelegateField();
+  }
+
+  public static bool Supports2DArrayTextures() => SystemInfo.Supports2DArrayTexturesDelegateField();
+
+  public static bool Supports3DRenderTextures()
+  {
+    return SystemInfo.Supports3DRenderTexturesDelegateField();
+  }
+
+  public static bool SupportsCubemapArrayTextures()
+  {
+    return SystemInfo.SupportsCubemapArrayTexturesDelegateField();
+  }
+
+  public static bool SupportsAnisotropicFilter()
+  {
+    return SystemInfo.SupportsAnisotropicFilterDelegateField();
+  }
+
+  public static CopyTextureSupport GetCopyTextureSupport()
+  {
+    return SystemInfo.GetCopyTextureSupportDelegateField();
+  }
+
+  public static bool SupportsGeometryShaders() => SystemInfo.SupportsGeometryShadersDelegateField();
+
+  public static bool SupportsTessellationShaders()
+  {
+    return SystemInfo.SupportsTessellationShadersDelegateField();
+  }
+
+  public static bool SupportsHardwareQuadTopology()
+  {
+    return SystemInfo.SupportsHardwareQuadTopologyDelegateField();
+  }
+
+  public static bool Supports32bitsIndexBuffer()
+  {
+    return SystemInfo.Supports32bitsIndexBufferDelegateField();
+  }
+
+  public static bool SupportsSparseTextures() => SystemInfo.SupportsSparseTexturesDelegateField();
+
+  public static bool SupportsSeparatedRenderTargetsBlend()
+  {
+    return SystemInfo.SupportsSeparatedRenderTargetsBlendDelegateField();
+  }
+
+  public static int SupportedRandomWriteTargetCount()
+  {
+    return SystemInfo.SupportedRandomWriteTargetCountDelegateField();
+  }
+
+  public static int MaxComputeBufferInputsVertex()
+  {
+    return SystemInfo.MaxComputeBufferInputsVertexDelegateField();
+  }
+
+  public static int MaxComputeBufferInputsFragment()
+  {
+    return SystemInfo.MaxComputeBufferInputsFragmentDelegateField();
+  }
+
+  public static int MaxComputeBufferInputsGeometry()
+  {
+    return SystemInfo.MaxComputeBufferInputsGeometryDelegateField();
+  }
+
+  public static int MaxComputeBufferInputsDomain()
+  {
+    return SystemInfo.MaxComputeBufferInputsDomainDelegateField();
+  }
+
+  public static int MaxComputeBufferInputsHull()
+  {
+    return SystemInfo.MaxComputeBufferInputsHullDelegateField();
+  }
+
+  public static int MaxComputeBufferInputsCompute()
+  {
+    return SystemInfo.MaxComputeBufferInputsComputeDelegateField();
+  }
+
+  public static int SupportsMultisampledTextures()
+  {
+    return SystemInfo.SupportsMultisampledTexturesDelegateField();
+  }
+
+  public static bool SupportsMultisampled2DArrayTextures()
+  {
+    return SystemInfo.SupportsMultisampled2DArrayTexturesDelegateField();
+  }
+
+  public static bool SupportsMultisampledBackBuffer()
+  {
+    return SystemInfo.SupportsMultisampledBackBufferDelegateField();
+  }
+
+  public static int SupportsTextureWrapMirrorOnce()
+  {
+    return SystemInfo.SupportsTextureWrapMirrorOnceDelegateField();
+  }
+
+  public static bool HasRenderTextureNative(RenderTextureFormat format)
+  {
+    return SystemInfo.HasRenderTextureNativeDelegateField(format);
+  }
+
+  public static bool SupportsBlendingOnRenderTextureFormatNative(RenderTextureFormat format)
+  {
+    return SystemInfo.SupportsBlendingOnRenderTextureFormatNativeDelegateField(format);
+  }
+
+  public static bool SupportsRandomWriteOnRenderTextureFormatNative(RenderTextureFormat format)
+  {
+    return SystemInfo.SupportsRandomWriteOnRenderTextureFormatNativeDelegateField(format);
+  }
+
+  public static bool SupportsVertexAttributeFormatNative(
+    VertexAttributeFormat format,
+    int dimension)
+  {
+    return SystemInfo.SupportsVertexAttributeFormatNativeDelegateField(format, dimension);
+  }
+
+  public static NPOTSupport GetNPOTSupport() => SystemInfo.GetNPOTSupportDelegateField();
+
+  public static int GetMaxTexture3DSize() => SystemInfo.GetMaxTexture3DSizeDelegateField();
+
+  public static int GetMaxTextureArraySlices()
+  {
+    return SystemInfo.GetMaxTextureArraySlicesDelegateField();
+  }
+
+  public static int GetMaxCubemapSize() => SystemInfo.GetMaxCubemapSizeDelegateField();
+
+  public static int GetMaxAnisotropyLevel() => SystemInfo.GetMaxAnisotropyLevelDelegateField();
+
+  public static int GetMaxComputeWorkGroupSize()
+  {
+    return SystemInfo.GetMaxComputeWorkGroupSizeDelegateField();
+  }
+
+  public static int GetMaxComputeWorkGroupSizeX()
+  {
+    return SystemInfo.GetMaxComputeWorkGroupSizeXDelegateField();
+  }
+
+  public static int GetMaxComputeWorkGroupSizeY()
+  {
+    return SystemInfo.GetMaxComputeWorkGroupSizeYDelegateField();
+  }
+
+  public static int GetMaxComputeWorkGroupSizeZ()
+  {
+    return SystemInfo.GetMaxComputeWorkGroupSizeZDelegateField();
+  }
+
+  public static int GetComputeSubGroupSize() => SystemInfo.GetComputeSubGroupSizeDelegateField();
+
+  public static bool SupportsAsyncCompute() => SystemInfo.SupportsAsyncComputeDelegateField();
+
+  public static bool SupportsGpuRecorder() => SystemInfo.SupportsGpuRecorderDelegateField();
+
+  public static bool SupportsAsyncGPUReadback()
+  {
+    return SystemInfo.SupportsAsyncGPUReadbackDelegateField();
+  }
+
+  public static bool SupportsParallelPSOCreation()
+  {
+    return SystemInfo.SupportsParallelPSOCreationDelegateField();
+  }
+
+  public static bool SupportsRayTracing() => SystemInfo.SupportsRayTracingDelegateField();
+
+  public static bool SupportsRayTracingShaders()
+  {
+    return SystemInfo.SupportsRayTracingShadersDelegateField();
+  }
+
+  public static bool SupportsInlineRayTracing()
+  {
+    return SystemInfo.SupportsInlineRayTracingDelegateField();
+  }
+
+  public static bool SupportsIndirectDispatchRays()
+  {
+    return SystemInfo.SupportsIndirectDispatchRaysDelegateField();
+  }
+
+  public static bool SupportsSetConstantBuffer()
+  {
+    return SystemInfo.SupportsSetConstantBufferDelegateField();
+  }
+
+  public static int MinConstantBufferOffsetAlignment()
+  {
+    return SystemInfo.MinConstantBufferOffsetAlignmentDelegateField();
+  }
+
+  public static int MaxConstantBufferSize() => SystemInfo.MaxConstantBufferSizeDelegateField();
+
+  public static bool HasMipMaxLevel() => SystemInfo.HasMipMaxLevelDelegateField();
+
+  public static bool SupportsMipStreaming() => SystemInfo.SupportsMipStreamingDelegateField();
+
+  public static bool IsFormatSupported(GraphicsFormat format, FormatUsage usage)
+  {
+    GraphicsFormatUsage usage1 = (GraphicsFormatUsage) (1 << (int) (usage & (FormatUsage.SetPixels | FormatUsage.SetPixels32 | FormatUsage.StencilSampling)));
+    return SystemInfo.IsFormatSupported(format, usage1);
+  }
+
+  public static GraphicsFormat GetCompatibleFormat(GraphicsFormat format, FormatUsage usage)
+  {
+    GraphicsFormatUsage usage1 = (GraphicsFormatUsage) (1 << (int) (usage & (FormatUsage.SetPixels | FormatUsage.SetPixels32 | FormatUsage.StencilSampling)));
+    return SystemInfo.GetCompatibleFormat(format, usage1);
+  }
+
+  public static int GetRenderTextureSupportedMSAASampleCount(RenderTextureDescriptor desc)
+  {
+    return SystemInfo.GetRenderTextureSupportedMSAASampleCount_Injected(ref desc);
+  }
+
+  public static bool UsesLoadStoreActions() => SystemInfo.UsesLoadStoreActionsDelegateField();
+
+  public static HDRDisplaySupportFlags GetHDRDisplaySupportFlags()
+  {
+    return SystemInfo.GetHDRDisplaySupportFlagsDelegateField();
+  }
+
+  public static bool SupportsConservativeRaster()
+  {
+    return SystemInfo.SupportsConservativeRasterDelegateField();
+  }
+
+  public static bool SupportsStoreAndResolveAction()
+  {
+    return SystemInfo.SupportsStoreAndResolveActionDelegateField();
+  }
+
+  public static bool SupportsMultisampleResolveDepth()
+  {
+    return SystemInfo.SupportsMultisampleResolveDepthDelegateField();
+  }
+
+  public static bool SupportsMultisampleResolveStencil()
+  {
+    return SystemInfo.SupportsMultisampleResolveStencilDelegateField();
+  }
+
+  public static bool SupportsDepthFetchInRenderPass()
+  {
+    return SystemInfo.SupportsDepthFetchInRenderPassDelegateField();
+  }
+
+  public static bool SupportsDynamicResolution()
+  {
+    return SystemInfo.SupportsDynamicResolutionDelegateField();
+  }
+
+  public static bool supportsGPUFence => false;
+
+  public static void GetProcessorModel_Injected(out ManagedSpanWrapper ret)
+  {
+    SystemInfo.GetProcessorModel_InjectedDelegateField((System.IntPtr) ref ret);
+  }
+
+  public static void GetProcessorManufacturer_Injected(out ManagedSpanWrapper ret)
+  {
+    SystemInfo.GetProcessorManufacturer_InjectedDelegateField((System.IntPtr) ref ret);
+  }
+
+  public static void GetDeviceUniqueIdentifier_Injected(out ManagedSpanWrapper ret)
+  {
+    SystemInfo.GetDeviceUniqueIdentifier_InjectedDelegateField((System.IntPtr) ref ret);
+  }
+
+  public static void GetGraphicsDeviceVendor_Injected(out ManagedSpanWrapper ret)
+  {
+    SystemInfo.GetGraphicsDeviceVendor_InjectedDelegateField((System.IntPtr) ref ret);
+  }
+
+  public static int GetRenderTextureSupportedMSAASampleCount_Injected(
+    [In] ref RenderTextureDescriptor desc)
+  {
+    return SystemInfo.GetRenderTextureSupportedMSAASampleCount_InjectedDelegateField((System.IntPtr) ref desc);
+  }
+
+  private delegate float GetBatteryLevelDelegate();
+
+  private delegate BatteryStatus GetBatteryStatusDelegate();
+
+  private delegate int GetProcessorFrequencyMHzDelegate();
+
+  private delegate bool SupportsAccelerometerDelegate();
+
+  private delegate bool IsGyroAvailableDelegate();
+
+  private delegate bool SupportsLocationServiceDelegate();
+
+  private delegate bool SupportsVibrationDelegate();
+
+  private delegate bool SupportsAudioDelegate();
+
+  private delegate int GetGraphicsDeviceIDDelegate();
+
+  private delegate bool GetGraphicsMultiThreadedDelegate();
+
+  private delegate RenderingThreadingMode GetRenderingThreadingModeDelegate();
+
+  private delegate bool HasHiddenSurfaceRemovalOnGPUDelegate();
+
+  private delegate bool HasDynamicUniformArrayIndexingInFragmentShadersDelegate();
+
+  private delegate bool SupportsShadowsDelegate();
+
+  private delegate bool SupportsRawShadowDepthSamplingDelegate();
+
+  private delegate bool SupportsMotionVectorsDelegate();
+
+  private delegate bool Supports3DTexturesDelegate();
+
+  private delegate bool SupportsCompressed3DTexturesDelegate();
+
+  private delegate bool Supports2DArrayTexturesDelegate();
+
+  private delegate bool Supports3DRenderTexturesDelegate();
+
+  private delegate bool SupportsCubemapArrayTexturesDelegate();
+
+  private delegate bool SupportsAnisotropicFilterDelegate();
+
+  private delegate CopyTextureSupport GetCopyTextureSupportDelegate();
+
+  private delegate bool SupportsGeometryShadersDelegate();
+
+  private delegate bool SupportsTessellationShadersDelegate();
+
+  private delegate bool SupportsHardwareQuadTopologyDelegate();
+
+  private delegate bool Supports32bitsIndexBufferDelegate();
+
+  private delegate bool SupportsSparseTexturesDelegate();
+
+  private delegate bool SupportsSeparatedRenderTargetsBlendDelegate();
+
+  private delegate int SupportedRandomWriteTargetCountDelegate();
+
+  private delegate int MaxComputeBufferInputsVertexDelegate();
+
+  private delegate int MaxComputeBufferInputsFragmentDelegate();
+
+  private delegate int MaxComputeBufferInputsGeometryDelegate();
+
+  private delegate int MaxComputeBufferInputsDomainDelegate();
+
+  private delegate int MaxComputeBufferInputsHullDelegate();
+
+  private delegate int MaxComputeBufferInputsComputeDelegate();
+
+  private delegate int SupportsMultisampledTexturesDelegate();
+
+  private delegate bool SupportsMultisampled2DArrayTexturesDelegate();
+
+  private delegate bool SupportsMultisampledBackBufferDelegate();
+
+  private delegate int SupportsTextureWrapMirrorOnceDelegate();
+
+  private delegate bool HasRenderTextureNativeDelegate(RenderTextureFormat format);
+
+  private delegate bool SupportsBlendingOnRenderTextureFormatNativeDelegate(
+    RenderTextureFormat format);
+
+  private delegate bool SupportsRandomWriteOnRenderTextureFormatNativeDelegate(
+    RenderTextureFormat format);
+
+  private delegate bool SupportsVertexAttributeFormatNativeDelegate(
+    VertexAttributeFormat format,
+    int dimension);
+
+  private delegate NPOTSupport GetNPOTSupportDelegate();
+
+  private delegate int GetMaxTexture3DSizeDelegate();
+
+  private delegate int GetMaxTextureArraySlicesDelegate();
+
+  private delegate int GetMaxCubemapSizeDelegate();
+
+  private delegate int GetMaxAnisotropyLevelDelegate();
+
+  private delegate int GetMaxComputeWorkGroupSizeDelegate();
+
+  private delegate int GetMaxComputeWorkGroupSizeXDelegate();
+
+  private delegate int GetMaxComputeWorkGroupSizeYDelegate();
+
+  private delegate int GetMaxComputeWorkGroupSizeZDelegate();
+
+  private delegate int GetComputeSubGroupSizeDelegate();
+
+  private delegate bool SupportsAsyncComputeDelegate();
+
+  private delegate bool SupportsGpuRecorderDelegate();
+
+  private delegate bool SupportsAsyncGPUReadbackDelegate();
+
+  private delegate bool SupportsParallelPSOCreationDelegate();
+
+  private delegate bool SupportsRayTracingDelegate();
+
+  private delegate bool SupportsRayTracingShadersDelegate();
+
+  private delegate bool SupportsInlineRayTracingDelegate();
+
+  private delegate bool SupportsIndirectDispatchRaysDelegate();
+
+  private delegate bool SupportsSetConstantBufferDelegate();
+
+  private delegate int MinConstantBufferOffsetAlignmentDelegate();
+
+  private delegate int MaxConstantBufferSizeDelegate();
+
+  private delegate bool HasMipMaxLevelDelegate();
+
+  private delegate bool SupportsMipStreamingDelegate();
+
+  private delegate bool UsesLoadStoreActionsDelegate();
+
+  private delegate HDRDisplaySupportFlags GetHDRDisplaySupportFlagsDelegate();
+
+  private delegate bool SupportsConservativeRasterDelegate();
+
+  private delegate bool SupportsStoreAndResolveActionDelegate();
+
+  private delegate bool SupportsMultisampleResolveDepthDelegate();
+
+  private delegate bool SupportsMultisampleResolveStencilDelegate();
+
+  private delegate bool SupportsDepthFetchInRenderPassDelegate();
+
+  private delegate bool SupportsDynamicResolutionDelegate();
+
+  private delegate void GetProcessorModel_InjectedDelegate([Out] System.IntPtr ret);
+
+  private delegate void GetProcessorManufacturer_InjectedDelegate([Out] System.IntPtr ret);
+
+  private delegate void GetDeviceUniqueIdentifier_InjectedDelegate([Out] System.IntPtr ret);
+
+  private delegate void GetGraphicsDeviceVendor_InjectedDelegate([Out] System.IntPtr ret);
+
+  private delegate int GetRenderTextureSupportedMSAASampleCount_InjectedDelegate([In] System.IntPtr desc);
+}

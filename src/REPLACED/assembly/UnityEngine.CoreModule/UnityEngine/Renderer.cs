@@ -1,0 +1,2229 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.Renderer
+// Assembly: UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: E159F43B-803F-461A-9433-870981D20FB6
+// Assembly location: G:\SteamLibrary\steamapps\common\REPLACED Demo\BepInEx\interop\UnityEngine.CoreModule.dll
+
+using Il2CppInterop.Common.Attributes;
+using Il2CppInterop.Runtime;
+using Il2CppInterop.Runtime.InteropTypes;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppInterop.Runtime.Runtime;
+using Il2CppSystem;
+using Il2CppSystem.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine.Bindings;
+using UnityEngine.Experimental.Rendering;
+using UnityEngine.Rendering;
+using UnityEngineInternal;
+
+#nullable disable
+namespace UnityEngine;
+
+public class Renderer(System.IntPtr pointer) : Component(pointer)
+{
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_bounds_Public_get_Bounds_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_localBounds_Public_set_Void_Bounds_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetMaterial_Private_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetSharedMaterial_Private_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SetMaterial_Private_Void_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_CopySharedMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SetMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SetMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_Internal_GetPropertyBlock_Internal_Void_MaterialPropertyBlock_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_Internal_SetPropertyBlockMaterialIndex_Internal_Void_MaterialPropertyBlock_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_Internal_GetPropertyBlockMaterialIndex_Internal_Void_MaterialPropertyBlock_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SetPropertyBlock_Public_Void_MaterialPropertyBlock_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetPropertyBlock_Public_Void_MaterialPropertyBlock_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetPropertyBlock_Public_Void_MaterialPropertyBlock_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_enabled_Public_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_enabled_Public_set_Void_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_isVisible_Public_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_shadowCastingMode_Public_set_Void_ShadowCastingMode_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_receiveShadows_Public_set_Void_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_forceRenderingOff_Public_set_Void_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingLayerID_Public_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_sortingLayerID_Public_set_Void_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingOrder_Public_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_sortingOrder_Public_set_Void_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingGroupID_Internal_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingGroupOrder_Internal_get_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_isPartOfStaticBatch_Public_get_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_localToWorldMatrix_Public_get_Matrix4x4_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetMaterialCount_Private_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetSharedMaterialArray_Private_Il2CppReferenceArray_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_material_Public_get_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_material_Public_set_Void_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sharedMaterial_Public_get_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_sharedMaterial_Public_set_Void_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sharedMaterials_Public_get_Il2CppReferenceArray_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_sharedMaterials_Public_set_Void_Il2CppReferenceArray_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetSharedMaterials_Public_Void_List_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr__ctor_Public_Void_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_localBounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetMaterial_Injected_Private_Static_IntPtr_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetSharedMaterial_Injected_Private_Static_IntPtr_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SetMaterial_Injected_Private_Static_Void_IntPtr_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_CopySharedMaterialArray_Injected_Private_Static_Void_IntPtr_Il2CppReferenceArray_1_Material_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_SetMaterialArray_Injected_Private_Static_Void_IntPtr_Il2CppReferenceArray_1_Material_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_Internal_GetPropertyBlock_Injected_Private_Static_Void_IntPtr_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_Internal_SetPropertyBlockMaterialIndex_Injected_Private_Static_Void_IntPtr_IntPtr_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_Internal_GetPropertyBlockMaterialIndex_Injected_Private_Static_Void_IntPtr_IntPtr_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_enabled_Injected_Private_Static_Boolean_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_enabled_Injected_Private_Static_Void_IntPtr_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_isVisible_Injected_Private_Static_Boolean_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_shadowCastingMode_Injected_Private_Static_Void_IntPtr_ShadowCastingMode_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_receiveShadows_Injected_Private_Static_Void_IntPtr_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_forceRenderingOff_Injected_Private_Static_Void_IntPtr_Boolean_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingLayerID_Injected_Private_Static_Int32_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_sortingLayerID_Injected_Private_Static_Void_IntPtr_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingOrder_Injected_Private_Static_Int32_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_set_sortingOrder_Injected_Private_Static_Void_IntPtr_Int32_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingGroupID_Injected_Private_Static_Int32_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_sortingGroupOrder_Injected_Private_Static_Int32_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_isPartOfStaticBatch_Injected_Private_Static_Boolean_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_get_localToWorldMatrix_Injected_Private_Static_Void_IntPtr_byref_Matrix4x4_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetMaterialCount_Injected_Private_Static_Int32_IntPtr_0;
+  private static readonly System.IntPtr NativeMethodInfoPtr_GetSharedMaterialArray_Injected_Private_Static_Il2CppReferenceArray_1_Material_IntPtr_0;
+  private static readonly Renderer.set_bounds_InjectedDelegate set_bounds_InjectedDelegateField;
+  private static readonly Renderer.get_localBounds_InjectedDelegate get_localBounds_InjectedDelegateField;
+  private static readonly Renderer.ResetBounds_InjectedDelegate ResetBounds_InjectedDelegateField;
+  private static readonly Renderer.ResetLocalBounds_InjectedDelegate ResetLocalBounds_InjectedDelegateField;
+  private static readonly Renderer.Internal_HasCustomBounds_InjectedDelegate Internal_HasCustomBounds_InjectedDelegateField;
+  private static readonly Renderer.Internal_HasCustomLocalBounds_InjectedDelegate Internal_HasCustomLocalBounds_InjectedDelegateField;
+  private static readonly Renderer.SetStaticLightmapST_InjectedDelegate SetStaticLightmapST_InjectedDelegateField;
+  private static readonly Renderer.GetMaterialArray_InjectedDelegate GetMaterialArray_InjectedDelegateField;
+  private static readonly Renderer.CopyMaterialArray_InjectedDelegate CopyMaterialArray_InjectedDelegateField;
+  private static readonly Renderer.Internal_SetPropertyBlock_InjectedDelegate Internal_SetPropertyBlock_InjectedDelegateField;
+  private static readonly Renderer.HasPropertyBlock_InjectedDelegate HasPropertyBlock_InjectedDelegateField;
+  private static readonly Renderer.GetClosestReflectionProbesInternal_InjectedDelegate GetClosestReflectionProbesInternal_InjectedDelegateField;
+  private static readonly Renderer.get_shadowCastingMode_InjectedDelegate get_shadowCastingMode_InjectedDelegateField;
+  private static readonly Renderer.get_receiveShadows_InjectedDelegate get_receiveShadows_InjectedDelegateField;
+  private static readonly Renderer.get_forceRenderingOff_InjectedDelegate get_forceRenderingOff_InjectedDelegateField;
+  private static readonly Renderer.get_allowGPUDrivenRendering_InjectedDelegate get_allowGPUDrivenRendering_InjectedDelegateField;
+  private static readonly Renderer.set_allowGPUDrivenRendering_InjectedDelegate set_allowGPUDrivenRendering_InjectedDelegateField;
+  private static readonly Renderer.get_smallMeshCulling_InjectedDelegate get_smallMeshCulling_InjectedDelegateField;
+  private static readonly Renderer.set_smallMeshCulling_InjectedDelegate set_smallMeshCulling_InjectedDelegateField;
+  private static readonly Renderer.GetIsStaticShadowCaster_InjectedDelegate GetIsStaticShadowCaster_InjectedDelegateField;
+  private static readonly Renderer.SetIsStaticShadowCaster_InjectedDelegate SetIsStaticShadowCaster_InjectedDelegateField;
+  private static readonly Renderer.get_motionVectorGenerationMode_InjectedDelegate get_motionVectorGenerationMode_InjectedDelegateField;
+  private static readonly Renderer.set_motionVectorGenerationMode_InjectedDelegate set_motionVectorGenerationMode_InjectedDelegateField;
+  private static readonly Renderer.get_lightProbeUsage_InjectedDelegate get_lightProbeUsage_InjectedDelegateField;
+  private static readonly Renderer.set_lightProbeUsage_InjectedDelegate set_lightProbeUsage_InjectedDelegateField;
+  private static readonly Renderer.get_reflectionProbeUsage_InjectedDelegate get_reflectionProbeUsage_InjectedDelegateField;
+  private static readonly Renderer.set_reflectionProbeUsage_InjectedDelegate set_reflectionProbeUsage_InjectedDelegateField;
+  private static readonly Renderer.get_renderingLayerMask_InjectedDelegate get_renderingLayerMask_InjectedDelegateField;
+  private static readonly Renderer.set_renderingLayerMask_InjectedDelegate set_renderingLayerMask_InjectedDelegateField;
+  private static readonly Renderer.get_rendererPriority_InjectedDelegate get_rendererPriority_InjectedDelegateField;
+  private static readonly Renderer.set_rendererPriority_InjectedDelegate set_rendererPriority_InjectedDelegateField;
+  private static readonly Renderer.get_rayTracingMode_InjectedDelegate get_rayTracingMode_InjectedDelegateField;
+  private static readonly Renderer.set_rayTracingMode_InjectedDelegate set_rayTracingMode_InjectedDelegateField;
+  private static readonly Renderer.get_rayTracingAccelerationStructureBuildFlags_InjectedDelegate get_rayTracingAccelerationStructureBuildFlags_InjectedDelegateField;
+  private static readonly Renderer.set_rayTracingAccelerationStructureBuildFlags_InjectedDelegate set_rayTracingAccelerationStructureBuildFlags_InjectedDelegateField;
+  private static readonly Renderer.get_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegate get_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegateField;
+  private static readonly Renderer.set_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegate set_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegateField;
+  private static readonly Renderer.get_sortingLayerName_InjectedDelegate get_sortingLayerName_InjectedDelegateField;
+  private static readonly Renderer.set_sortingLayerName_InjectedDelegate set_sortingLayerName_InjectedDelegateField;
+  private static readonly Renderer.get_sortingKey_InjectedDelegate get_sortingKey_InjectedDelegateField;
+  private static readonly Renderer.set_sortingGroupID_InjectedDelegate set_sortingGroupID_InjectedDelegateField;
+  private static readonly Renderer.set_sortingGroupOrder_InjectedDelegate set_sortingGroupOrder_InjectedDelegateField;
+  private static readonly Renderer.get_sortingGroupKey_InjectedDelegate get_sortingGroupKey_InjectedDelegateField;
+  private static readonly Renderer.get_isLOD0_InjectedDelegate get_isLOD0_InjectedDelegateField;
+  private static readonly Renderer.get_allowOcclusionWhenDynamic_InjectedDelegate get_allowOcclusionWhenDynamic_InjectedDelegateField;
+  private static readonly Renderer.set_allowOcclusionWhenDynamic_InjectedDelegate set_allowOcclusionWhenDynamic_InjectedDelegateField;
+  private static readonly Renderer.get_staticBatchRootTransform_InjectedDelegate get_staticBatchRootTransform_InjectedDelegateField;
+  private static readonly Renderer.set_staticBatchRootTransform_InjectedDelegate set_staticBatchRootTransform_InjectedDelegateField;
+  private static readonly Renderer.get_staticBatchIndex_InjectedDelegate get_staticBatchIndex_InjectedDelegateField;
+  private static readonly Renderer.SetStaticBatchInfo_InjectedDelegate SetStaticBatchInfo_InjectedDelegateField;
+  private static readonly Renderer.get_worldToLocalMatrix_InjectedDelegate get_worldToLocalMatrix_InjectedDelegateField;
+  private static readonly Renderer.get_lightProbeProxyVolumeOverride_InjectedDelegate get_lightProbeProxyVolumeOverride_InjectedDelegateField;
+  private static readonly Renderer.set_lightProbeProxyVolumeOverride_InjectedDelegate set_lightProbeProxyVolumeOverride_InjectedDelegateField;
+  private static readonly Renderer.get_probeAnchor_InjectedDelegate get_probeAnchor_InjectedDelegateField;
+  private static readonly Renderer.set_probeAnchor_InjectedDelegate set_probeAnchor_InjectedDelegateField;
+  private static readonly Renderer.GetLightmapIndex_InjectedDelegate GetLightmapIndex_InjectedDelegateField;
+  private static readonly Renderer.SetLightmapIndex_InjectedDelegate SetLightmapIndex_InjectedDelegateField;
+  private static readonly Renderer.GetLightmapST_InjectedDelegate GetLightmapST_InjectedDelegateField;
+  private static readonly Renderer.SetLightmapST_InjectedDelegate SetLightmapST_InjectedDelegateField;
+  private static readonly Renderer.get_LODGroup_InjectedDelegate get_LODGroup_InjectedDelegateField;
+
+  static Renderer()
+  {
+    Il2CppClassPointerStore<Renderer>.NativeClassPtr = IL2CPP.GetIl2CppClass("UnityEngine.CoreModule.dll", "UnityEngine", nameof (Renderer));
+    IL2CPP.il2cpp_runtime_class_init(Il2CppClassPointerStore<Renderer>.NativeClassPtr);
+    Renderer.NativeMethodInfoPtr_get_bounds_Public_get_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665100 /*0x0600070C*/);
+    Renderer.NativeMethodInfoPtr_set_localBounds_Public_set_Void_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665101 /*0x0600070D*/);
+    Renderer.NativeMethodInfoPtr_GetMaterial_Private_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665102 /*0x0600070E*/);
+    Renderer.NativeMethodInfoPtr_GetSharedMaterial_Private_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665103 /*0x0600070F*/);
+    Renderer.NativeMethodInfoPtr_SetMaterial_Private_Void_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665104 /*0x06000710*/);
+    Renderer.NativeMethodInfoPtr_CopySharedMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665105);
+    Renderer.NativeMethodInfoPtr_SetMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665106);
+    Renderer.NativeMethodInfoPtr_SetMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665107);
+    Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlock_Internal_Void_MaterialPropertyBlock_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665108);
+    Renderer.NativeMethodInfoPtr_Internal_SetPropertyBlockMaterialIndex_Internal_Void_MaterialPropertyBlock_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665109);
+    Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlockMaterialIndex_Internal_Void_MaterialPropertyBlock_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665110);
+    Renderer.NativeMethodInfoPtr_SetPropertyBlock_Public_Void_MaterialPropertyBlock_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665111);
+    Renderer.NativeMethodInfoPtr_GetPropertyBlock_Public_Void_MaterialPropertyBlock_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665112);
+    Renderer.NativeMethodInfoPtr_GetPropertyBlock_Public_Void_MaterialPropertyBlock_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665113);
+    Renderer.NativeMethodInfoPtr_get_enabled_Public_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665114);
+    Renderer.NativeMethodInfoPtr_set_enabled_Public_set_Void_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665115);
+    Renderer.NativeMethodInfoPtr_get_isVisible_Public_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665116);
+    Renderer.NativeMethodInfoPtr_set_shadowCastingMode_Public_set_Void_ShadowCastingMode_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665117);
+    Renderer.NativeMethodInfoPtr_set_receiveShadows_Public_set_Void_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665118);
+    Renderer.NativeMethodInfoPtr_set_forceRenderingOff_Public_set_Void_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665119);
+    Renderer.NativeMethodInfoPtr_get_sortingLayerID_Public_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665120 /*0x06000720*/);
+    Renderer.NativeMethodInfoPtr_set_sortingLayerID_Public_set_Void_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665121);
+    Renderer.NativeMethodInfoPtr_get_sortingOrder_Public_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665122);
+    Renderer.NativeMethodInfoPtr_set_sortingOrder_Public_set_Void_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665123);
+    Renderer.NativeMethodInfoPtr_get_sortingGroupID_Internal_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665124);
+    Renderer.NativeMethodInfoPtr_get_sortingGroupOrder_Internal_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665125);
+    Renderer.NativeMethodInfoPtr_get_isPartOfStaticBatch_Public_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665126);
+    Renderer.NativeMethodInfoPtr_get_localToWorldMatrix_Public_get_Matrix4x4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665127);
+    Renderer.NativeMethodInfoPtr_GetMaterialCount_Private_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665128);
+    Renderer.NativeMethodInfoPtr_GetSharedMaterialArray_Private_Il2CppReferenceArray_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665129);
+    Renderer.NativeMethodInfoPtr_get_material_Public_get_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665130);
+    Renderer.NativeMethodInfoPtr_set_material_Public_set_Void_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665131);
+    Renderer.NativeMethodInfoPtr_get_sharedMaterial_Public_get_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665132);
+    Renderer.NativeMethodInfoPtr_set_sharedMaterial_Public_set_Void_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665133);
+    Renderer.NativeMethodInfoPtr_get_sharedMaterials_Public_get_Il2CppReferenceArray_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665134);
+    Renderer.NativeMethodInfoPtr_set_sharedMaterials_Public_set_Void_Il2CppReferenceArray_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665135);
+    Renderer.NativeMethodInfoPtr_GetSharedMaterials_Public_Void_List_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665136 /*0x06000730*/);
+    Renderer.NativeMethodInfoPtr__ctor_Public_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665137);
+    Renderer.NativeMethodInfoPtr_get_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665138);
+    Renderer.NativeMethodInfoPtr_set_localBounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665139);
+    Renderer.NativeMethodInfoPtr_GetMaterial_Injected_Private_Static_IntPtr_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665140);
+    Renderer.NativeMethodInfoPtr_GetSharedMaterial_Injected_Private_Static_IntPtr_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665141);
+    Renderer.NativeMethodInfoPtr_SetMaterial_Injected_Private_Static_Void_IntPtr_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665142);
+    Renderer.NativeMethodInfoPtr_CopySharedMaterialArray_Injected_Private_Static_Void_IntPtr_Il2CppReferenceArray_1_Material_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665143);
+    Renderer.NativeMethodInfoPtr_SetMaterialArray_Injected_Private_Static_Void_IntPtr_Il2CppReferenceArray_1_Material_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665144);
+    Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlock_Injected_Private_Static_Void_IntPtr_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665145);
+    Renderer.NativeMethodInfoPtr_Internal_SetPropertyBlockMaterialIndex_Injected_Private_Static_Void_IntPtr_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665146);
+    Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlockMaterialIndex_Injected_Private_Static_Void_IntPtr_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665147);
+    Renderer.NativeMethodInfoPtr_get_enabled_Injected_Private_Static_Boolean_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665148);
+    Renderer.NativeMethodInfoPtr_set_enabled_Injected_Private_Static_Void_IntPtr_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665149);
+    Renderer.NativeMethodInfoPtr_get_isVisible_Injected_Private_Static_Boolean_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665150);
+    Renderer.NativeMethodInfoPtr_set_shadowCastingMode_Injected_Private_Static_Void_IntPtr_ShadowCastingMode_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665151);
+    Renderer.NativeMethodInfoPtr_set_receiveShadows_Injected_Private_Static_Void_IntPtr_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665152 /*0x06000740*/);
+    Renderer.NativeMethodInfoPtr_set_forceRenderingOff_Injected_Private_Static_Void_IntPtr_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665153);
+    Renderer.NativeMethodInfoPtr_get_sortingLayerID_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665154);
+    Renderer.NativeMethodInfoPtr_set_sortingLayerID_Injected_Private_Static_Void_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665155);
+    Renderer.NativeMethodInfoPtr_get_sortingOrder_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665156);
+    Renderer.NativeMethodInfoPtr_set_sortingOrder_Injected_Private_Static_Void_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665157);
+    Renderer.NativeMethodInfoPtr_get_sortingGroupID_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665158);
+    Renderer.NativeMethodInfoPtr_get_sortingGroupOrder_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665159);
+    Renderer.NativeMethodInfoPtr_get_isPartOfStaticBatch_Injected_Private_Static_Boolean_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665160);
+    Renderer.NativeMethodInfoPtr_get_localToWorldMatrix_Injected_Private_Static_Void_IntPtr_byref_Matrix4x4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665161);
+    Renderer.NativeMethodInfoPtr_GetMaterialCount_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665162);
+    Renderer.NativeMethodInfoPtr_GetSharedMaterialArray_Injected_Private_Static_Il2CppReferenceArray_1_Material_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Renderer>.NativeClassPtr, 100665163);
+    Renderer.set_bounds_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_bounds_InjectedDelegate>("UnityEngine.Renderer::set_bounds_Injected");
+    Renderer.get_localBounds_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_localBounds_InjectedDelegate>("UnityEngine.Renderer::get_localBounds_Injected");
+    Renderer.ResetBounds_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.ResetBounds_InjectedDelegate>("UnityEngine.Renderer::ResetBounds_Injected");
+    Renderer.ResetLocalBounds_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.ResetLocalBounds_InjectedDelegate>("UnityEngine.Renderer::ResetLocalBounds_Injected");
+    Renderer.Internal_HasCustomBounds_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.Internal_HasCustomBounds_InjectedDelegate>("UnityEngine.Renderer::Internal_HasCustomBounds_Injected");
+    Renderer.Internal_HasCustomLocalBounds_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.Internal_HasCustomLocalBounds_InjectedDelegate>("UnityEngine.Renderer::Internal_HasCustomLocalBounds_Injected");
+    Renderer.SetStaticLightmapST_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.SetStaticLightmapST_InjectedDelegate>("UnityEngine.Renderer::SetStaticLightmapST_Injected");
+    Renderer.GetMaterialArray_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.GetMaterialArray_InjectedDelegate>("UnityEngine.Renderer::GetMaterialArray_Injected");
+    Renderer.CopyMaterialArray_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.CopyMaterialArray_InjectedDelegate>("UnityEngine.Renderer::CopyMaterialArray_Injected");
+    Renderer.Internal_SetPropertyBlock_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.Internal_SetPropertyBlock_InjectedDelegate>("UnityEngine.Renderer::Internal_SetPropertyBlock_Injected");
+    Renderer.HasPropertyBlock_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.HasPropertyBlock_InjectedDelegate>("UnityEngine.Renderer::HasPropertyBlock_Injected");
+    Renderer.GetClosestReflectionProbesInternal_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.GetClosestReflectionProbesInternal_InjectedDelegate>("UnityEngine.Renderer::GetClosestReflectionProbesInternal_Injected");
+    Renderer.get_shadowCastingMode_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_shadowCastingMode_InjectedDelegate>("UnityEngine.Renderer::get_shadowCastingMode_Injected");
+    Renderer.get_receiveShadows_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_receiveShadows_InjectedDelegate>("UnityEngine.Renderer::get_receiveShadows_Injected");
+    Renderer.get_forceRenderingOff_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_forceRenderingOff_InjectedDelegate>("UnityEngine.Renderer::get_forceRenderingOff_Injected");
+    Renderer.get_allowGPUDrivenRendering_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_allowGPUDrivenRendering_InjectedDelegate>("UnityEngine.Renderer::get_allowGPUDrivenRendering_Injected");
+    Renderer.set_allowGPUDrivenRendering_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_allowGPUDrivenRendering_InjectedDelegate>("UnityEngine.Renderer::set_allowGPUDrivenRendering_Injected");
+    Renderer.get_smallMeshCulling_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_smallMeshCulling_InjectedDelegate>("UnityEngine.Renderer::get_smallMeshCulling_Injected");
+    Renderer.set_smallMeshCulling_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_smallMeshCulling_InjectedDelegate>("UnityEngine.Renderer::set_smallMeshCulling_Injected");
+    Renderer.GetIsStaticShadowCaster_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.GetIsStaticShadowCaster_InjectedDelegate>("UnityEngine.Renderer::GetIsStaticShadowCaster_Injected");
+    Renderer.SetIsStaticShadowCaster_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.SetIsStaticShadowCaster_InjectedDelegate>("UnityEngine.Renderer::SetIsStaticShadowCaster_Injected");
+    Renderer.get_motionVectorGenerationMode_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_motionVectorGenerationMode_InjectedDelegate>("UnityEngine.Renderer::get_motionVectorGenerationMode_Injected");
+    Renderer.set_motionVectorGenerationMode_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_motionVectorGenerationMode_InjectedDelegate>("UnityEngine.Renderer::set_motionVectorGenerationMode_Injected");
+    Renderer.get_lightProbeUsage_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_lightProbeUsage_InjectedDelegate>("UnityEngine.Renderer::get_lightProbeUsage_Injected");
+    Renderer.set_lightProbeUsage_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_lightProbeUsage_InjectedDelegate>("UnityEngine.Renderer::set_lightProbeUsage_Injected");
+    Renderer.get_reflectionProbeUsage_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_reflectionProbeUsage_InjectedDelegate>("UnityEngine.Renderer::get_reflectionProbeUsage_Injected");
+    Renderer.set_reflectionProbeUsage_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_reflectionProbeUsage_InjectedDelegate>("UnityEngine.Renderer::set_reflectionProbeUsage_Injected");
+    Renderer.get_renderingLayerMask_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_renderingLayerMask_InjectedDelegate>("UnityEngine.Renderer::get_renderingLayerMask_Injected");
+    Renderer.set_renderingLayerMask_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_renderingLayerMask_InjectedDelegate>("UnityEngine.Renderer::set_renderingLayerMask_Injected");
+    Renderer.get_rendererPriority_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_rendererPriority_InjectedDelegate>("UnityEngine.Renderer::get_rendererPriority_Injected");
+    Renderer.set_rendererPriority_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_rendererPriority_InjectedDelegate>("UnityEngine.Renderer::set_rendererPriority_Injected");
+    Renderer.get_rayTracingMode_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_rayTracingMode_InjectedDelegate>("UnityEngine.Renderer::get_rayTracingMode_Injected");
+    Renderer.set_rayTracingMode_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_rayTracingMode_InjectedDelegate>("UnityEngine.Renderer::set_rayTracingMode_Injected");
+    Renderer.get_rayTracingAccelerationStructureBuildFlags_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_rayTracingAccelerationStructureBuildFlags_InjectedDelegate>("UnityEngine.Renderer::get_rayTracingAccelerationStructureBuildFlags_Injected");
+    Renderer.set_rayTracingAccelerationStructureBuildFlags_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_rayTracingAccelerationStructureBuildFlags_InjectedDelegate>("UnityEngine.Renderer::set_rayTracingAccelerationStructureBuildFlags_Injected");
+    Renderer.get_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegate>("UnityEngine.Renderer::get_rayTracingAccelerationStructureBuildFlagsOverride_Injected");
+    Renderer.set_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegate>("UnityEngine.Renderer::set_rayTracingAccelerationStructureBuildFlagsOverride_Injected");
+    Renderer.get_sortingLayerName_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_sortingLayerName_InjectedDelegate>("UnityEngine.Renderer::get_sortingLayerName_Injected");
+    Renderer.set_sortingLayerName_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_sortingLayerName_InjectedDelegate>("UnityEngine.Renderer::set_sortingLayerName_Injected");
+    Renderer.get_sortingKey_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_sortingKey_InjectedDelegate>("UnityEngine.Renderer::get_sortingKey_Injected");
+    Renderer.set_sortingGroupID_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_sortingGroupID_InjectedDelegate>("UnityEngine.Renderer::set_sortingGroupID_Injected");
+    Renderer.set_sortingGroupOrder_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_sortingGroupOrder_InjectedDelegate>("UnityEngine.Renderer::set_sortingGroupOrder_Injected");
+    Renderer.get_sortingGroupKey_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_sortingGroupKey_InjectedDelegate>("UnityEngine.Renderer::get_sortingGroupKey_Injected");
+    Renderer.get_isLOD0_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_isLOD0_InjectedDelegate>("UnityEngine.Renderer::get_isLOD0_Injected");
+    Renderer.get_allowOcclusionWhenDynamic_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_allowOcclusionWhenDynamic_InjectedDelegate>("UnityEngine.Renderer::get_allowOcclusionWhenDynamic_Injected");
+    Renderer.set_allowOcclusionWhenDynamic_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_allowOcclusionWhenDynamic_InjectedDelegate>("UnityEngine.Renderer::set_allowOcclusionWhenDynamic_Injected");
+    Renderer.get_staticBatchRootTransform_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_staticBatchRootTransform_InjectedDelegate>("UnityEngine.Renderer::get_staticBatchRootTransform_Injected");
+    Renderer.set_staticBatchRootTransform_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_staticBatchRootTransform_InjectedDelegate>("UnityEngine.Renderer::set_staticBatchRootTransform_Injected");
+    Renderer.get_staticBatchIndex_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_staticBatchIndex_InjectedDelegate>("UnityEngine.Renderer::get_staticBatchIndex_Injected");
+    Renderer.SetStaticBatchInfo_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.SetStaticBatchInfo_InjectedDelegate>("UnityEngine.Renderer::SetStaticBatchInfo_Injected");
+    Renderer.get_worldToLocalMatrix_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_worldToLocalMatrix_InjectedDelegate>("UnityEngine.Renderer::get_worldToLocalMatrix_Injected");
+    Renderer.get_lightProbeProxyVolumeOverride_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_lightProbeProxyVolumeOverride_InjectedDelegate>("UnityEngine.Renderer::get_lightProbeProxyVolumeOverride_Injected");
+    Renderer.set_lightProbeProxyVolumeOverride_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_lightProbeProxyVolumeOverride_InjectedDelegate>("UnityEngine.Renderer::set_lightProbeProxyVolumeOverride_Injected");
+    Renderer.get_probeAnchor_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_probeAnchor_InjectedDelegate>("UnityEngine.Renderer::get_probeAnchor_Injected");
+    Renderer.set_probeAnchor_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.set_probeAnchor_InjectedDelegate>("UnityEngine.Renderer::set_probeAnchor_Injected");
+    Renderer.GetLightmapIndex_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.GetLightmapIndex_InjectedDelegate>("UnityEngine.Renderer::GetLightmapIndex_Injected");
+    Renderer.SetLightmapIndex_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.SetLightmapIndex_InjectedDelegate>("UnityEngine.Renderer::SetLightmapIndex_Injected");
+    Renderer.GetLightmapST_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.GetLightmapST_InjectedDelegate>("UnityEngine.Renderer::GetLightmapST_Injected");
+    Renderer.SetLightmapST_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.SetLightmapST_InjectedDelegate>("UnityEngine.Renderer::SetLightmapST_Injected");
+    Renderer.get_LODGroup_InjectedDelegateField = IL2CPP.ResolveICall<Renderer.get_LODGroup_InjectedDelegate>("UnityEngine.Renderer::get_LODGroup_Injected");
+  }
+
+  public unsafe Bounds bounds
+  {
+    [CallerCount(12), CachedScanResults(RefRangeStart = 425215, RefRangeEnd = 425227, XrefRangeStart = 425211, XrefRangeEnd = 425215, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_bounds_Public_get_Bounds_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(Bounds*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_bounds_Injected(_unity_self, ref value);
+    }
+  }
+
+  public unsafe Bounds localBounds
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 425231, RefRangeEnd = 425232, XrefRangeStart = 425227, XrefRangeEnd = 425231, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_localBounds_Public_set_Void_Bounds_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Bounds ret;
+      Renderer.get_localBounds_Injected(_unity_self, out ret);
+      return ret;
+    }
+  }
+
+  [CallerCount(32 /*0x20*/)]
+  [CachedScanResults(RefRangeStart = 425240, RefRangeEnd = 425272, XrefRangeStart = 425232, XrefRangeEnd = 425240, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe Material GetMaterial()
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetMaterial_Private_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    System.IntPtr num3 = num2;
+    return num3 == System.IntPtr.Zero ? (Material) null : Il2CppObjectPool.Get<Material>(num3);
+  }
+
+  [CallerCount(18)]
+  [CachedScanResults(RefRangeStart = 425280, RefRangeEnd = 425298, XrefRangeStart = 425272, XrefRangeEnd = 425280, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe Material GetSharedMaterial()
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetSharedMaterial_Private_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    System.IntPtr num3 = num2;
+    return num3 == System.IntPtr.Zero ? (Material) null : Il2CppObjectPool.Get<Material>(num3);
+  }
+
+  [CallerCount(11)]
+  [CachedScanResults(RefRangeStart = 425306, RefRangeEnd = 425317, XrefRangeStart = 425298, XrefRangeEnd = 425306, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void SetMaterial(Material m)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) m)
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_SetMaterial_Private_Void_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425317, XrefRangeEnd = 425322, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public void CopySharedMaterialArray([Out] Il2CppReferenceArray<Material> m)
+  {
+    // ISSUE: unable to decompile the method.
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425322, XrefRangeEnd = 425330, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void SetMaterialArray(Il2CppReferenceArray<Material> m, int length)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) m);
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &length;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_SetMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(4)]
+  [CachedScanResults(RefRangeStart = 425339, RefRangeEnd = 425343, XrefRangeStart = 425330, XrefRangeEnd = 425339, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void SetMaterialArray(Il2CppReferenceArray<Material> m)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) m)
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_SetMaterialArray_Private_Void_Il2CppReferenceArray_1_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 425353, RefRangeEnd = 425354, XrefRangeStart = 425343, XrefRangeEnd = 425353, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void Internal_GetPropertyBlock(MaterialPropertyBlock dest)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) dest)
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlock_Internal_Void_MaterialPropertyBlock_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 425359, RefRangeEnd = 425361, XrefRangeStart = 425354, XrefRangeEnd = 425359, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void Internal_SetPropertyBlockMaterialIndex(
+    MaterialPropertyBlock properties,
+    int materialIndex)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) properties);
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &materialIndex;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_Internal_SetPropertyBlockMaterialIndex_Internal_Void_MaterialPropertyBlock_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(3)]
+  [CachedScanResults(RefRangeStart = 425371, RefRangeEnd = 425374, XrefRangeStart = 425361, XrefRangeEnd = 425371, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void Internal_GetPropertyBlockMaterialIndex(
+    MaterialPropertyBlock dest,
+    int materialIndex)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) dest);
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &materialIndex;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlockMaterialIndex_Internal_Void_MaterialPropertyBlock_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(2)]
+  [CachedScanResults(RefRangeStart = 425359, RefRangeEnd = 425361, XrefRangeStart = 425359, XrefRangeEnd = 425361, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void SetPropertyBlock(MaterialPropertyBlock properties, int materialIndex)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) properties);
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &materialIndex;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_SetPropertyBlock_Public_Void_MaterialPropertyBlock_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(1)]
+  [CachedScanResults(RefRangeStart = 425353, RefRangeEnd = 425354, XrefRangeStart = 425353, XrefRangeEnd = 425354, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void GetPropertyBlock(MaterialPropertyBlock properties)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) properties)
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetPropertyBlock_Public_Void_MaterialPropertyBlock_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(3)]
+  [CachedScanResults(RefRangeStart = 425371, RefRangeEnd = 425374, XrefRangeStart = 425371, XrefRangeEnd = 425374, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void GetPropertyBlock(MaterialPropertyBlock properties, int materialIndex)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) properties);
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &materialIndex;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetPropertyBlock_Public_Void_MaterialPropertyBlock_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  public unsafe bool enabled
+  {
+    [CallerCount(7), CachedScanResults(RefRangeStart = 425379, RefRangeEnd = 425386, XrefRangeStart = 425374, XrefRangeEnd = 425379, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_enabled_Public_get_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+    [CallerCount(18), CachedScanResults(RefRangeStart = 425391, RefRangeEnd = 425409, XrefRangeStart = 425386, XrefRangeEnd = 425391, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_enabled_Public_set_Void_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+  }
+
+  public unsafe bool isVisible
+  {
+    [CallerCount(4), CachedScanResults(RefRangeStart = 425414, RefRangeEnd = 425418, XrefRangeStart = 425409, XrefRangeEnd = 425414, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_isVisible_Public_get_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public unsafe ShadowCastingMode shadowCastingMode
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 425423, RefRangeEnd = 425424, XrefRangeStart = 425418, XrefRangeEnd = 425423, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_shadowCastingMode_Public_set_Void_ShadowCastingMode_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_shadowCastingMode_Injected(_unity_self);
+    }
+  }
+
+  public unsafe bool receiveShadows
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 425429, RefRangeEnd = 425430, XrefRangeStart = 425424, XrefRangeEnd = 425429, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_receiveShadows_Public_set_Void_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_receiveShadows_Injected(_unity_self);
+    }
+  }
+
+  public unsafe bool forceRenderingOff
+  {
+    [CallerCount(5), CachedScanResults(RefRangeStart = 425435, RefRangeEnd = 425440, XrefRangeStart = 425430, XrefRangeEnd = 425435, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_forceRenderingOff_Public_set_Void_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_forceRenderingOff_Injected(_unity_self);
+    }
+  }
+
+  public unsafe int sortingLayerID
+  {
+    [CallerCount(3), CachedScanResults(RefRangeStart = 425445, RefRangeEnd = 425448, XrefRangeStart = 425440, XrefRangeEnd = 425445, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingLayerID_Public_get_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+    [CallerCount(4), CachedScanResults(RefRangeStart = 425453, RefRangeEnd = 425457, XrefRangeStart = 425448, XrefRangeEnd = 425453, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_sortingLayerID_Public_set_Void_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+  }
+
+  public unsafe int sortingOrder
+  {
+    [CallerCount(3), CachedScanResults(RefRangeStart = 425462, RefRangeEnd = 425465, XrefRangeStart = 425457, XrefRangeEnd = 425462, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingOrder_Public_get_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+    [CallerCount(4), CachedScanResults(RefRangeStart = 425470, RefRangeEnd = 425474, XrefRangeStart = 425465, XrefRangeEnd = 425470, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        (System.IntPtr) &value
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_sortingOrder_Public_set_Void_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+  }
+
+  public unsafe int sortingGroupID
+  {
+    [CallerCount(2), CachedScanResults(RefRangeStart = 425479, RefRangeEnd = 425481, XrefRangeStart = 425474, XrefRangeEnd = 425479, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingGroupID_Internal_get_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_sortingGroupID_Injected(_unity_self, value);
+    }
+  }
+
+  public unsafe int sortingGroupOrder
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 425486, RefRangeEnd = 425487, XrefRangeStart = 425481, XrefRangeEnd = 425486, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingGroupOrder_Internal_get_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_sortingGroupOrder_Injected(_unity_self, value);
+    }
+  }
+
+  public unsafe bool isPartOfStaticBatch
+  {
+    [CallerCount(1), CachedScanResults(RefRangeStart = 425492, RefRangeEnd = 425493, XrefRangeStart = 425487, XrefRangeEnd = 425492, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_isPartOfStaticBatch_Public_get_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  public unsafe Matrix4x4 localToWorldMatrix
+  {
+    [CallerCount(2), CachedScanResults(RefRangeStart = 425497, RefRangeEnd = 425499, XrefRangeStart = 425493, XrefRangeEnd = 425497, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_localToWorldMatrix_Public_get_Matrix4x4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      return *(Matrix4x4*) IL2CPP.il2cpp_object_unbox(num2);
+    }
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425499, XrefRangeEnd = 425504, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe int GetMaterialCount()
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetMaterialCount_Private_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(11)]
+  [CachedScanResults(RefRangeStart = 425509, RefRangeEnd = 425520, XrefRangeStart = 425504, XrefRangeEnd = 425509, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe Il2CppReferenceArray<Material> GetSharedMaterialArray()
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetSharedMaterialArray_Private_Il2CppReferenceArray_1_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    System.IntPtr num3 = num2;
+    return num3 == System.IntPtr.Zero ? (Il2CppReferenceArray<Material>) null : Il2CppObjectPool.Get<Il2CppReferenceArray<Material>>(num3);
+  }
+
+  public unsafe Material material
+  {
+    [CallerCount(32 /*0x20*/), CachedScanResults(RefRangeStart = 425240, RefRangeEnd = 425272, XrefRangeStart = 425240, XrefRangeEnd = 425272, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_material_Public_get_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      System.IntPtr num3 = num2;
+      return num3 == System.IntPtr.Zero ? (Material) null : Il2CppObjectPool.Get<Material>(num3);
+    }
+    [CallerCount(11), CachedScanResults(RefRangeStart = 425306, RefRangeEnd = 425317, XrefRangeStart = 425306, XrefRangeEnd = 425317, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) value)
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_material_Public_set_Void_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+  }
+
+  public unsafe Material sharedMaterial
+  {
+    [CallerCount(18), CachedScanResults(RefRangeStart = 425280, RefRangeEnd = 425298, XrefRangeStart = 425280, XrefRangeEnd = 425298, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sharedMaterial_Public_get_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      System.IntPtr num3 = num2;
+      return num3 == System.IntPtr.Zero ? (Material) null : Il2CppObjectPool.Get<Material>(num3);
+    }
+    [CallerCount(11), CachedScanResults(RefRangeStart = 425306, RefRangeEnd = 425317, XrefRangeStart = 425306, XrefRangeEnd = 425317, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) value)
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_sharedMaterial_Public_set_Void_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+  }
+
+  public unsafe Il2CppReferenceArray<Material> sharedMaterials
+  {
+    [CallerCount(11), CachedScanResults(RefRangeStart = 425509, RefRangeEnd = 425520, XrefRangeStart = 425509, XrefRangeEnd = 425520, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] get
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = (System.IntPtr*) null;
+      System.IntPtr num1;
+      System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sharedMaterials_Public_get_Il2CppReferenceArray_1_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num1);
+      Il2CppException.RaiseExceptionIfNecessary(num1);
+      System.IntPtr num3 = num2;
+      return num3 == System.IntPtr.Zero ? (Il2CppReferenceArray<Material>) null : Il2CppObjectPool.Get<Il2CppReferenceArray<Material>>(num3);
+    }
+    [CallerCount(4), CachedScanResults(RefRangeStart = 425339, RefRangeEnd = 425343, XrefRangeStart = 425339, XrefRangeEnd = 425343, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)] set
+    {
+      IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+      System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+      {
+        IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) value)
+      };
+      System.IntPtr num;
+      IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_sharedMaterials_Public_set_Void_Il2CppReferenceArray_1_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+      Il2CppException.RaiseExceptionIfNecessary(num);
+    }
+  }
+
+  [CallerCount(3)]
+  [CachedScanResults(RefRangeStart = 425543, RefRangeEnd = 425546, XrefRangeStart = 425520, XrefRangeEnd = 425543, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe void GetSharedMaterials(List<Material> m)
+  {
+    IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this);
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) m)
+    };
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetSharedMaterials_Public_Void_List_1_Material_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(222)]
+  [CachedScanResults(RefRangeStart = 358, RefRangeEnd = 580, XrefRangeStart = 358, XrefRangeEnd = 580, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public unsafe Renderer()
+    : this(IL2CPP.il2cpp_object_new(Il2CppClassPointerStore<Renderer>.NativeClassPtr))
+  {
+    System.IntPtr* numPtr = (System.IntPtr*) null;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr__ctor_Public_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase) this), (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425546, XrefRangeEnd = 425548, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void get_bounds_Injected(System.IntPtr _unity_self, out Bounds ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) ref ret;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425548, XrefRangeEnd = 425550, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_localBounds_Injected(System.IntPtr _unity_self, [In] ref Bounds value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) ref value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_localBounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425550, XrefRangeEnd = 425552, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe System.IntPtr GetMaterial_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetMaterial_Injected_Private_Static_IntPtr_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(System.IntPtr*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425552, XrefRangeEnd = 425554, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe System.IntPtr GetSharedMaterial_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetSharedMaterial_Injected_Private_Static_IntPtr_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(System.IntPtr*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425554, XrefRangeEnd = 425556, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void SetMaterial_Injected(System.IntPtr _unity_self, System.IntPtr m)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &m;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_SetMaterial_Injected_Private_Static_Void_IntPtr_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425556, XrefRangeEnd = 425558, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static void CopySharedMaterialArray_Injected(
+    System.IntPtr _unity_self,
+    [Out] Il2CppReferenceArray<Material> m)
+  {
+    // ISSUE: unable to decompile the method.
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425558, XrefRangeEnd = 425560, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void SetMaterialArray_Injected(
+    System.IntPtr _unity_self,
+    Il2CppReferenceArray<Material> m,
+    int length)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[3];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) m);
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(2) * sizeof (System.IntPtr))) = (System.IntPtr) &length;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_SetMaterialArray_Injected_Private_Static_Void_IntPtr_Il2CppReferenceArray_1_Material_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425560, XrefRangeEnd = 425562, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void Internal_GetPropertyBlock_Injected(System.IntPtr _unity_self, System.IntPtr dest)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &dest;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlock_Injected_Private_Static_Void_IntPtr_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425562, XrefRangeEnd = 425564, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void Internal_SetPropertyBlockMaterialIndex_Injected(
+    System.IntPtr _unity_self,
+    System.IntPtr properties,
+    int materialIndex)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[3];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &properties;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(2) * sizeof (System.IntPtr))) = (System.IntPtr) &materialIndex;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_Internal_SetPropertyBlockMaterialIndex_Injected_Private_Static_Void_IntPtr_IntPtr_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425564, XrefRangeEnd = 425566, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void Internal_GetPropertyBlockMaterialIndex_Injected(
+    System.IntPtr _unity_self,
+    System.IntPtr dest,
+    int materialIndex)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[3];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &dest;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(2) * sizeof (System.IntPtr))) = (System.IntPtr) &materialIndex;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_Internal_GetPropertyBlockMaterialIndex_Injected_Private_Static_Void_IntPtr_IntPtr_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425566, XrefRangeEnd = 425568, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool get_enabled_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_enabled_Injected_Private_Static_Boolean_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425568, XrefRangeEnd = 425570, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_enabled_Injected(System.IntPtr _unity_self, bool value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_enabled_Injected_Private_Static_Void_IntPtr_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425570, XrefRangeEnd = 425572, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool get_isVisible_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_isVisible_Injected_Private_Static_Boolean_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425572, XrefRangeEnd = 425574, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_shadowCastingMode_Injected(
+    System.IntPtr _unity_self,
+    ShadowCastingMode value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_shadowCastingMode_Injected_Private_Static_Void_IntPtr_ShadowCastingMode_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425574, XrefRangeEnd = 425576, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_receiveShadows_Injected(System.IntPtr _unity_self, bool value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_receiveShadows_Injected_Private_Static_Void_IntPtr_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425576, XrefRangeEnd = 425578, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_forceRenderingOff_Injected(System.IntPtr _unity_self, bool value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_forceRenderingOff_Injected_Private_Static_Void_IntPtr_Boolean_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425578, XrefRangeEnd = 425580, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int get_sortingLayerID_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingLayerID_Injected_Private_Static_Int32_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425580, XrefRangeEnd = 425582, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_sortingLayerID_Injected(System.IntPtr _unity_self, int value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_sortingLayerID_Injected_Private_Static_Void_IntPtr_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425582, XrefRangeEnd = 425584, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int get_sortingOrder_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingOrder_Injected_Private_Static_Int32_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425584, XrefRangeEnd = 425586, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void set_sortingOrder_Injected(System.IntPtr _unity_self, int value)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) &value;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_set_sortingOrder_Injected_Private_Static_Void_IntPtr_Int32_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425586, XrefRangeEnd = 425588, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int get_sortingGroupID_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingGroupID_Injected_Private_Static_Int32_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425588, XrefRangeEnd = 425590, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int get_sortingGroupOrder_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_sortingGroupOrder_Injected_Private_Static_Int32_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425590, XrefRangeEnd = 425592, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe bool get_isPartOfStaticBatch_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_isPartOfStaticBatch_Injected_Private_Static_Boolean_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(bool*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425592, XrefRangeEnd = 425594, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe void get_localToWorldMatrix_Injected(System.IntPtr _unity_self, out Matrix4x4 ret)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[2];
+    numPtr[0] = (System.IntPtr) &_unity_self;
+    *(System.IntPtr*) ((System.IntPtr) numPtr + checked (new System.IntPtr(1) * sizeof (System.IntPtr))) = (System.IntPtr) ref ret;
+    System.IntPtr num;
+    IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_get_localToWorldMatrix_Injected_Private_Static_Void_IntPtr_byref_Matrix4x4_0, System.IntPtr.Zero, (void**) numPtr, ref num);
+    Il2CppException.RaiseExceptionIfNecessary(num);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425594, XrefRangeEnd = 425596, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe int GetMaterialCount_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetMaterialCount_Injected_Private_Static_Int32_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    return *(int*) IL2CPP.il2cpp_object_unbox(num2);
+  }
+
+  [CallerCount(0)]
+  [CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 425596, XrefRangeEnd = 425598, MetadataInitTokenRva = 0, MetadataInitFlagRva = 0)]
+  public static unsafe Il2CppReferenceArray<Material> GetSharedMaterialArray_Injected(
+    System.IntPtr _unity_self)
+  {
+    System.IntPtr* numPtr = stackalloc System.IntPtr[1]
+    {
+      (System.IntPtr) &_unity_self
+    };
+    System.IntPtr num1;
+    System.IntPtr num2 = IL2CPP.il2cpp_runtime_invoke(Renderer.NativeMethodInfoPtr_GetSharedMaterialArray_Injected_Private_Static_Il2CppReferenceArray_1_Material_IntPtr_0, System.IntPtr.Zero, (void**) numPtr, ref num1);
+    Il2CppException.RaiseExceptionIfNecessary(num1);
+    System.IntPtr num3 = num2;
+    return num3 == System.IntPtr.Zero ? (Il2CppReferenceArray<Material>) null : Il2CppObjectPool.Get<Il2CppReferenceArray<Material>>(num3);
+  }
+
+  public bool castShadows
+  {
+    get => this.shadowCastingMode != 0;
+    set => this.shadowCastingMode = value ? ShadowCastingMode.On : ShadowCastingMode.Off;
+  }
+
+  public bool motionVectors
+  {
+    get => this.motionVectorGenerationMode == MotionVectorGenerationMode.Object;
+    set
+    {
+      this.motionVectorGenerationMode = value ? MotionVectorGenerationMode.Object : MotionVectorGenerationMode.Camera;
+    }
+  }
+
+  public bool useLightProbes
+  {
+    get => this.lightProbeUsage != 0;
+    set => this.lightProbeUsage = value ? LightProbeUsage.BlendProbes : LightProbeUsage.Off;
+  }
+
+  public void ResetBounds()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.ResetBounds_Injected(_unity_self);
+  }
+
+  public void ResetLocalBounds()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.ResetLocalBounds_Injected(_unity_self);
+  }
+
+  public bool Internal_HasCustomBounds()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    return Renderer.Internal_HasCustomBounds_Injected(_unity_self);
+  }
+
+  public bool Internal_HasCustomLocalBounds()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    return Renderer.Internal_HasCustomLocalBounds_Injected(_unity_self);
+  }
+
+  public void SetStaticLightmapST(Vector4 st)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.SetStaticLightmapST_Injected(_unity_self, ref st);
+  }
+
+  public Il2CppReferenceArray<Material> GetMaterialArray()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    return Renderer.GetMaterialArray_Injected(_unity_self);
+  }
+
+  public void CopyMaterialArray([Out] Il2CppReferenceArray<Material> m)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.CopyMaterialArray_Injected(_unity_self, m);
+  }
+
+  public void Internal_SetPropertyBlock(MaterialPropertyBlock properties)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.Internal_SetPropertyBlock_Injected(_unity_self, properties == null ? System.IntPtr.Zero : MaterialPropertyBlock.BindingsMarshaller.ConvertToNative(properties));
+  }
+
+  public bool HasPropertyBlock()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    return Renderer.HasPropertyBlock_Injected(_unity_self);
+  }
+
+  public void SetPropertyBlock(MaterialPropertyBlock properties)
+  {
+    this.Internal_SetPropertyBlock(properties);
+  }
+
+  public void GetClosestReflectionProbesInternal(Il2CppSystem.Object result)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.GetClosestReflectionProbesInternal_Injected(_unity_self, result);
+  }
+
+  public bool allowGPUDrivenRendering
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_allowGPUDrivenRendering_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_allowGPUDrivenRendering_Injected(_unity_self, value);
+    }
+  }
+
+  public bool smallMeshCulling
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_smallMeshCulling_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_smallMeshCulling_Injected(_unity_self, value);
+    }
+  }
+
+  public bool GetIsStaticShadowCaster()
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    return Renderer.GetIsStaticShadowCaster_Injected(_unity_self);
+  }
+
+  public void SetIsStaticShadowCaster(bool value)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.SetIsStaticShadowCaster_Injected(_unity_self, value);
+  }
+
+  public bool staticShadowCaster
+  {
+    get => this.GetIsStaticShadowCaster();
+    set => this.SetIsStaticShadowCaster(value);
+  }
+
+  public MotionVectorGenerationMode motionVectorGenerationMode
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_motionVectorGenerationMode_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_motionVectorGenerationMode_Injected(_unity_self, value);
+    }
+  }
+
+  public LightProbeUsage lightProbeUsage
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_lightProbeUsage_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_lightProbeUsage_Injected(_unity_self, value);
+    }
+  }
+
+  public ReflectionProbeUsage reflectionProbeUsage
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_reflectionProbeUsage_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_reflectionProbeUsage_Injected(_unity_self, value);
+    }
+  }
+
+  public uint renderingLayerMask
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_renderingLayerMask_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_renderingLayerMask_Injected(_unity_self, value);
+    }
+  }
+
+  public int rendererPriority
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_rendererPriority_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_rendererPriority_Injected(_unity_self, value);
+    }
+  }
+
+  public RayTracingMode rayTracingMode
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_rayTracingMode_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_rayTracingMode_Injected(_unity_self, value);
+    }
+  }
+
+  public RayTracingAccelerationStructureBuildFlags rayTracingAccelerationStructureBuildFlags
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_rayTracingAccelerationStructureBuildFlags_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_rayTracingAccelerationStructureBuildFlags_Injected(_unity_self, value);
+    }
+  }
+
+  public bool rayTracingAccelerationStructureBuildFlagsOverride
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_rayTracingAccelerationStructureBuildFlagsOverride_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_rayTracingAccelerationStructureBuildFlagsOverride_Injected(_unity_self, value);
+    }
+  }
+
+  public unsafe string sortingLayerName
+  {
+    get
+    {
+      ManagedSpanWrapper ret;
+      string stringAndDispose;
+      try
+      {
+        System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+        if (_unity_self == System.IntPtr.Zero)
+          UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+        Renderer.get_sortingLayerName_Injected(_unity_self, out ret);
+      }
+      finally
+      {
+        stringAndDispose = OutStringMarshaller.GetStringAndDispose(ret);
+      }
+      return stringAndDispose;
+    }
+    set
+    {
+      try
+      {
+        System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+        if (_unity_self == System.IntPtr.Zero)
+          UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+        ManagedSpanWrapper managedSpanWrapper;
+        if (!StringMarshaller.TryMarshalEmptyOrNullString(value, ref managedSpanWrapper))
+        {
+          Il2CppSystem.ReadOnlySpan<char> readOnlySpan = value.AsSpan();
+          fixed (char* begin = &((Il2CppSystem.ReadOnlySpan<char>) ref readOnlySpan).GetPinnableReference())
+            managedSpanWrapper = new ManagedSpanWrapper((void*) begin, ((Il2CppSystem.ReadOnlySpan<char>) ref readOnlySpan).Length);
+        }
+        Renderer.set_sortingLayerName_Injected(_unity_self, ref managedSpanWrapper);
+      }
+      finally
+      {
+        __unpin(begin);
+      }
+    }
+  }
+
+  public uint sortingKey
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_sortingKey_Injected(_unity_self);
+    }
+  }
+
+  public uint sortingGroupKey
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_sortingGroupKey_Injected(_unity_self);
+    }
+  }
+
+  public bool isLOD0
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_isLOD0_Injected(_unity_self);
+    }
+  }
+
+  public bool allowOcclusionWhenDynamic
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_allowOcclusionWhenDynamic_Injected(_unity_self);
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_allowOcclusionWhenDynamic_Injected(_unity_self, value);
+    }
+  }
+
+  public Transform staticBatchRootTransform
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Unmarshal.UnmarshalUnityObject<Transform>(Renderer.get_staticBatchRootTransform_Injected(_unity_self));
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_staticBatchRootTransform_Injected(_unity_self, Object.MarshalledUnityObject.Marshal<Transform>(value));
+    }
+  }
+
+  public int staticBatchIndex
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Renderer.get_staticBatchIndex_Injected(_unity_self);
+    }
+  }
+
+  public void SetStaticBatchInfo(int firstSubMesh, int subMeshCount)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.SetStaticBatchInfo_Injected(_unity_self, firstSubMesh, subMeshCount);
+  }
+
+  public Matrix4x4 worldToLocalMatrix
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Matrix4x4 ret;
+      Renderer.get_worldToLocalMatrix_Injected(_unity_self, out ret);
+      return ret;
+    }
+  }
+
+  public GameObject lightProbeProxyVolumeOverride
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Unmarshal.UnmarshalUnityObject<GameObject>(Renderer.get_lightProbeProxyVolumeOverride_Injected(_unity_self));
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_lightProbeProxyVolumeOverride_Injected(_unity_self, Object.MarshalledUnityObject.Marshal<GameObject>(value));
+    }
+  }
+
+  public Transform probeAnchor
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Unmarshal.UnmarshalUnityObject<Transform>(Renderer.get_probeAnchor_Injected(_unity_self));
+    }
+    set
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      Renderer.set_probeAnchor_Injected(_unity_self, Object.MarshalledUnityObject.Marshal<Transform>(value));
+    }
+  }
+
+  public int GetLightmapIndex(LightmapType lt)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    return Renderer.GetLightmapIndex_Injected(_unity_self, lt);
+  }
+
+  public void SetLightmapIndex(int index, LightmapType lt)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.SetLightmapIndex_Injected(_unity_self, index, lt);
+  }
+
+  public Vector4 GetLightmapST(LightmapType lt)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Vector4 ret;
+    Renderer.GetLightmapST_Injected(_unity_self, lt, out ret);
+    return ret;
+  }
+
+  public void SetLightmapST(Vector4 st, LightmapType lt)
+  {
+    System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+    if (_unity_self == System.IntPtr.Zero)
+      UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+    Renderer.SetLightmapST_Injected(_unity_self, ref st, lt);
+  }
+
+  public int lightmapIndex
+  {
+    get => this.GetLightmapIndex(LightmapType.StaticLightmap);
+    set => this.SetLightmapIndex(value, LightmapType.StaticLightmap);
+  }
+
+  public int realtimeLightmapIndex
+  {
+    get => this.GetLightmapIndex(LightmapType.DynamicLightmap);
+    set => this.SetLightmapIndex(value, LightmapType.DynamicLightmap);
+  }
+
+  public Vector4 lightmapScaleOffset
+  {
+    get => this.GetLightmapST(LightmapType.StaticLightmap);
+    set => this.SetStaticLightmapST(value);
+  }
+
+  public Vector4 realtimeLightmapScaleOffset
+  {
+    get => this.GetLightmapST(LightmapType.DynamicLightmap);
+    set => this.SetLightmapST(value, LightmapType.DynamicLightmap);
+  }
+
+  public Il2CppReferenceArray<Material> materials
+  {
+    get => this.GetMaterialArray();
+    set => this.SetMaterialArray(value);
+  }
+
+  public void GetMaterials(List<Material> m)
+  {
+    if (m == null)
+      throw new Il2CppSystem.ArgumentNullException("The result material list cannot be null.", nameof (m));
+    NoAllocHelpers.EnsureListElemCount<Material>(m, this.GetMaterialCount());
+    this.CopyMaterialArray((Il2CppReferenceArray<Material>) NoAllocHelpers.ExtractArrayFromList<Material>(m));
+  }
+
+  public void SetSharedMaterials(List<Material> materials)
+  {
+    if (materials == null)
+      throw new Il2CppSystem.ArgumentNullException("The material list to set cannot be null.", nameof (materials));
+    this.SetMaterialArray((Il2CppReferenceArray<Material>) NoAllocHelpers.ExtractArrayFromList<Material>(materials), materials.Count);
+  }
+
+  public void SetMaterials(List<Material> materials)
+  {
+    if (materials == null)
+      throw new Il2CppSystem.ArgumentNullException("The material list to set cannot be null.", nameof (materials));
+    this.SetMaterialArray((Il2CppReferenceArray<Material>) NoAllocHelpers.ExtractArrayFromList<Material>(materials), materials.Count);
+  }
+
+  public LODGroup LODGroup
+  {
+    get
+    {
+      System.IntPtr _unity_self = Object.MarshalledUnityObject.MarshalNotNull<Renderer>(this);
+      if (_unity_self == System.IntPtr.Zero)
+        UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException((Il2CppSystem.Object) this);
+      return Unmarshal.UnmarshalUnityObject<LODGroup>(Renderer.get_LODGroup_Injected(_unity_self));
+    }
+  }
+
+  public static void set_bounds_Injected(System.IntPtr _unity_self, [In] ref Bounds value)
+  {
+    Renderer.set_bounds_InjectedDelegateField(_unity_self, (System.IntPtr) ref value);
+  }
+
+  public static void get_localBounds_Injected(System.IntPtr _unity_self, out Bounds ret)
+  {
+    Renderer.get_localBounds_InjectedDelegateField(_unity_self, (System.IntPtr) ref ret);
+  }
+
+  public static void ResetBounds_Injected(System.IntPtr _unity_self)
+  {
+    Renderer.ResetBounds_InjectedDelegateField(_unity_self);
+  }
+
+  public static void ResetLocalBounds_Injected(System.IntPtr _unity_self)
+  {
+    Renderer.ResetLocalBounds_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool Internal_HasCustomBounds_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.Internal_HasCustomBounds_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool Internal_HasCustomLocalBounds_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.Internal_HasCustomLocalBounds_InjectedDelegateField(_unity_self);
+  }
+
+  public static void SetStaticLightmapST_Injected(System.IntPtr _unity_self, [In] ref Vector4 st)
+  {
+    Renderer.SetStaticLightmapST_InjectedDelegateField(_unity_self, (System.IntPtr) ref st);
+  }
+
+  public static Il2CppReferenceArray<Material> GetMaterialArray_Injected(System.IntPtr _unity_self)
+  {
+    System.IntPtr num = Renderer.GetMaterialArray_InjectedDelegateField(_unity_self);
+    return num == System.IntPtr.Zero ? (Il2CppReferenceArray<Material>) null : Il2CppObjectPool.Get<Il2CppReferenceArray<Material>>(num);
+  }
+
+  public static void CopyMaterialArray_Injected(
+    System.IntPtr _unity_self,
+    [Out] Il2CppReferenceArray<Material> m)
+  {
+    Renderer.CopyMaterialArray_InjectedDelegateField(_unity_self, IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) m));
+  }
+
+  public static void Internal_SetPropertyBlock_Injected(System.IntPtr _unity_self, System.IntPtr properties)
+  {
+    Renderer.Internal_SetPropertyBlock_InjectedDelegateField(_unity_self, properties);
+  }
+
+  public static bool HasPropertyBlock_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.HasPropertyBlock_InjectedDelegateField(_unity_self);
+  }
+
+  public static void GetClosestReflectionProbesInternal_Injected(System.IntPtr _unity_self, Il2CppSystem.Object result)
+  {
+    Renderer.GetClosestReflectionProbesInternal_InjectedDelegateField(_unity_self, IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase) result));
+  }
+
+  public static ShadowCastingMode get_shadowCastingMode_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_shadowCastingMode_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool get_receiveShadows_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_receiveShadows_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool get_forceRenderingOff_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_forceRenderingOff_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool get_allowGPUDrivenRendering_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_allowGPUDrivenRendering_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_allowGPUDrivenRendering_Injected(System.IntPtr _unity_self, bool value)
+  {
+    Renderer.set_allowGPUDrivenRendering_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static bool get_smallMeshCulling_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_smallMeshCulling_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_smallMeshCulling_Injected(System.IntPtr _unity_self, bool value)
+  {
+    Renderer.set_smallMeshCulling_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static bool GetIsStaticShadowCaster_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.GetIsStaticShadowCaster_InjectedDelegateField(_unity_self);
+  }
+
+  public static void SetIsStaticShadowCaster_Injected(System.IntPtr _unity_self, bool value)
+  {
+    Renderer.SetIsStaticShadowCaster_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static MotionVectorGenerationMode get_motionVectorGenerationMode_Injected(
+    System.IntPtr _unity_self)
+  {
+    return Renderer.get_motionVectorGenerationMode_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_motionVectorGenerationMode_Injected(
+    System.IntPtr _unity_self,
+    MotionVectorGenerationMode value)
+  {
+    Renderer.set_motionVectorGenerationMode_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static LightProbeUsage get_lightProbeUsage_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_lightProbeUsage_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_lightProbeUsage_Injected(System.IntPtr _unity_self, LightProbeUsage value)
+  {
+    Renderer.set_lightProbeUsage_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static ReflectionProbeUsage get_reflectionProbeUsage_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_reflectionProbeUsage_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_reflectionProbeUsage_Injected(
+    System.IntPtr _unity_self,
+    ReflectionProbeUsage value)
+  {
+    Renderer.set_reflectionProbeUsage_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static uint get_renderingLayerMask_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_renderingLayerMask_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_renderingLayerMask_Injected(System.IntPtr _unity_self, uint value)
+  {
+    Renderer.set_renderingLayerMask_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static int get_rendererPriority_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_rendererPriority_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_rendererPriority_Injected(System.IntPtr _unity_self, int value)
+  {
+    Renderer.set_rendererPriority_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static RayTracingMode get_rayTracingMode_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_rayTracingMode_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_rayTracingMode_Injected(System.IntPtr _unity_self, RayTracingMode value)
+  {
+    Renderer.set_rayTracingMode_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static RayTracingAccelerationStructureBuildFlags get_rayTracingAccelerationStructureBuildFlags_Injected(
+    System.IntPtr _unity_self)
+  {
+    return Renderer.get_rayTracingAccelerationStructureBuildFlags_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_rayTracingAccelerationStructureBuildFlags_Injected(
+    System.IntPtr _unity_self,
+    RayTracingAccelerationStructureBuildFlags value)
+  {
+    Renderer.set_rayTracingAccelerationStructureBuildFlags_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static bool get_rayTracingAccelerationStructureBuildFlagsOverride_Injected(
+    System.IntPtr _unity_self)
+  {
+    return Renderer.get_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_rayTracingAccelerationStructureBuildFlagsOverride_Injected(
+    System.IntPtr _unity_self,
+    bool value)
+  {
+    Renderer.set_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static void get_sortingLayerName_Injected(System.IntPtr _unity_self, out ManagedSpanWrapper ret)
+  {
+    Renderer.get_sortingLayerName_InjectedDelegateField(_unity_self, (System.IntPtr) ref ret);
+  }
+
+  public static void set_sortingLayerName_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper value)
+  {
+    Renderer.set_sortingLayerName_InjectedDelegateField(_unity_self, (System.IntPtr) ref value);
+  }
+
+  public static uint get_sortingKey_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_sortingKey_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_sortingGroupID_Injected(System.IntPtr _unity_self, int value)
+  {
+    Renderer.set_sortingGroupID_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static void set_sortingGroupOrder_Injected(System.IntPtr _unity_self, int value)
+  {
+    Renderer.set_sortingGroupOrder_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static uint get_sortingGroupKey_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_sortingGroupKey_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool get_isLOD0_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_isLOD0_InjectedDelegateField(_unity_self);
+  }
+
+  public static bool get_allowOcclusionWhenDynamic_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_allowOcclusionWhenDynamic_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_allowOcclusionWhenDynamic_Injected(System.IntPtr _unity_self, bool value)
+  {
+    Renderer.set_allowOcclusionWhenDynamic_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static System.IntPtr get_staticBatchRootTransform_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_staticBatchRootTransform_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_staticBatchRootTransform_Injected(System.IntPtr _unity_self, System.IntPtr value)
+  {
+    Renderer.set_staticBatchRootTransform_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static int get_staticBatchIndex_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_staticBatchIndex_InjectedDelegateField(_unity_self);
+  }
+
+  public static void SetStaticBatchInfo_Injected(
+    System.IntPtr _unity_self,
+    int firstSubMesh,
+    int subMeshCount)
+  {
+    Renderer.SetStaticBatchInfo_InjectedDelegateField(_unity_self, firstSubMesh, subMeshCount);
+  }
+
+  public static void get_worldToLocalMatrix_Injected(System.IntPtr _unity_self, out Matrix4x4 ret)
+  {
+    Renderer.get_worldToLocalMatrix_InjectedDelegateField(_unity_self, (System.IntPtr) ref ret);
+  }
+
+  public static System.IntPtr get_lightProbeProxyVolumeOverride_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_lightProbeProxyVolumeOverride_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_lightProbeProxyVolumeOverride_Injected(System.IntPtr _unity_self, System.IntPtr value)
+  {
+    Renderer.set_lightProbeProxyVolumeOverride_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static System.IntPtr get_probeAnchor_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_probeAnchor_InjectedDelegateField(_unity_self);
+  }
+
+  public static void set_probeAnchor_Injected(System.IntPtr _unity_self, System.IntPtr value)
+  {
+    Renderer.set_probeAnchor_InjectedDelegateField(_unity_self, value);
+  }
+
+  public static int GetLightmapIndex_Injected(System.IntPtr _unity_self, LightmapType lt)
+  {
+    return Renderer.GetLightmapIndex_InjectedDelegateField(_unity_self, lt);
+  }
+
+  public static void SetLightmapIndex_Injected(System.IntPtr _unity_self, int index, LightmapType lt)
+  {
+    Renderer.SetLightmapIndex_InjectedDelegateField(_unity_self, index, lt);
+  }
+
+  public static void GetLightmapST_Injected(System.IntPtr _unity_self, LightmapType lt, out Vector4 ret)
+  {
+    Renderer.GetLightmapST_InjectedDelegateField(_unity_self, lt, (System.IntPtr) ref ret);
+  }
+
+  public static void SetLightmapST_Injected(System.IntPtr _unity_self, [In] ref Vector4 st, LightmapType lt)
+  {
+    Renderer.SetLightmapST_InjectedDelegateField(_unity_self, (System.IntPtr) ref st, lt);
+  }
+
+  public static System.IntPtr get_LODGroup_Injected(System.IntPtr _unity_self)
+  {
+    return Renderer.get_LODGroup_InjectedDelegateField(_unity_self);
+  }
+
+  private delegate void set_bounds_InjectedDelegate(System.IntPtr _unity_self, [In] System.IntPtr value);
+
+  private delegate void get_localBounds_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr ret);
+
+  private delegate void ResetBounds_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void ResetLocalBounds_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool Internal_HasCustomBounds_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool Internal_HasCustomLocalBounds_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void SetStaticLightmapST_InjectedDelegate(System.IntPtr _unity_self, [In] System.IntPtr st);
+
+  private delegate System.IntPtr GetMaterialArray_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void CopyMaterialArray_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr m);
+
+  private delegate void Internal_SetPropertyBlock_InjectedDelegate(
+    System.IntPtr _unity_self,
+    System.IntPtr properties);
+
+  private delegate bool HasPropertyBlock_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void GetClosestReflectionProbesInternal_InjectedDelegate(
+    System.IntPtr _unity_self,
+    System.IntPtr result);
+
+  private delegate ShadowCastingMode get_shadowCastingMode_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool get_receiveShadows_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool get_forceRenderingOff_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool get_allowGPUDrivenRendering_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_allowGPUDrivenRendering_InjectedDelegate(System.IntPtr _unity_self, bool value);
+
+  private delegate bool get_smallMeshCulling_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_smallMeshCulling_InjectedDelegate(System.IntPtr _unity_self, bool value);
+
+  private delegate bool GetIsStaticShadowCaster_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void SetIsStaticShadowCaster_InjectedDelegate(System.IntPtr _unity_self, bool value);
+
+  private delegate MotionVectorGenerationMode get_motionVectorGenerationMode_InjectedDelegate(
+    System.IntPtr _unity_self);
+
+  private delegate void set_motionVectorGenerationMode_InjectedDelegate(
+    System.IntPtr _unity_self,
+    MotionVectorGenerationMode value);
+
+  private delegate LightProbeUsage get_lightProbeUsage_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_lightProbeUsage_InjectedDelegate(
+    System.IntPtr _unity_self,
+    LightProbeUsage value);
+
+  private delegate ReflectionProbeUsage get_reflectionProbeUsage_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_reflectionProbeUsage_InjectedDelegate(
+    System.IntPtr _unity_self,
+    ReflectionProbeUsage value);
+
+  private delegate uint get_renderingLayerMask_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_renderingLayerMask_InjectedDelegate(System.IntPtr _unity_self, uint value);
+
+  private delegate int get_rendererPriority_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_rendererPriority_InjectedDelegate(System.IntPtr _unity_self, int value);
+
+  private delegate RayTracingMode get_rayTracingMode_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_rayTracingMode_InjectedDelegate(
+    System.IntPtr _unity_self,
+    RayTracingMode value);
+
+  private delegate RayTracingAccelerationStructureBuildFlags get_rayTracingAccelerationStructureBuildFlags_InjectedDelegate(
+    System.IntPtr _unity_self);
+
+  private delegate void set_rayTracingAccelerationStructureBuildFlags_InjectedDelegate(
+    System.IntPtr _unity_self,
+    RayTracingAccelerationStructureBuildFlags value);
+
+  private delegate bool get_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegate(
+    System.IntPtr _unity_self);
+
+  private delegate void set_rayTracingAccelerationStructureBuildFlagsOverride_InjectedDelegate(
+    System.IntPtr _unity_self,
+    bool value);
+
+  private delegate void get_sortingLayerName_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr ret);
+
+  private delegate void set_sortingLayerName_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr value);
+
+  private delegate uint get_sortingKey_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_sortingGroupID_InjectedDelegate(System.IntPtr _unity_self, int value);
+
+  private delegate void set_sortingGroupOrder_InjectedDelegate(System.IntPtr _unity_self, int value);
+
+  private delegate uint get_sortingGroupKey_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool get_isLOD0_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate bool get_allowOcclusionWhenDynamic_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_allowOcclusionWhenDynamic_InjectedDelegate(
+    System.IntPtr _unity_self,
+    bool value);
+
+  private delegate System.IntPtr get_staticBatchRootTransform_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_staticBatchRootTransform_InjectedDelegate(
+    System.IntPtr _unity_self,
+    System.IntPtr value);
+
+  private delegate int get_staticBatchIndex_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void SetStaticBatchInfo_InjectedDelegate(
+    System.IntPtr _unity_self,
+    int firstSubMesh,
+    int subMeshCount);
+
+  private delegate void get_worldToLocalMatrix_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr ret);
+
+  private delegate System.IntPtr get_lightProbeProxyVolumeOverride_InjectedDelegate(
+    System.IntPtr _unity_self);
+
+  private delegate void set_lightProbeProxyVolumeOverride_InjectedDelegate(
+    System.IntPtr _unity_self,
+    System.IntPtr value);
+
+  private delegate System.IntPtr get_probeAnchor_InjectedDelegate(System.IntPtr _unity_self);
+
+  private delegate void set_probeAnchor_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr value);
+
+  private delegate int GetLightmapIndex_InjectedDelegate(System.IntPtr _unity_self, LightmapType lt);
+
+  private delegate void SetLightmapIndex_InjectedDelegate(
+    System.IntPtr _unity_self,
+    int index,
+    LightmapType lt);
+
+  private delegate void GetLightmapST_InjectedDelegate(
+    System.IntPtr _unity_self,
+    LightmapType lt,
+    [Out] System.IntPtr ret);
+
+  private delegate void SetLightmapST_InjectedDelegate(
+    System.IntPtr _unity_self,
+    [In] System.IntPtr st,
+    LightmapType lt);
+
+  private delegate System.IntPtr get_LODGroup_InjectedDelegate(System.IntPtr _unity_self);
+}
