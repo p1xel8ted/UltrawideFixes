@@ -1,21 +1,6 @@
 namespace TalesOfBerseriaRemastered;
 
 /// <summary>
-/// Controls the physics update rate behavior.
-/// Higher tick rates reduce camera judder at high refresh rates by distributing
-/// FixedUpdate calls more evenly across frames.
-/// </summary>
-public enum PhysicsUpdateRate
-{
-    /// <summary>Keep the game's default physics rate (typically 50Hz). May cause camera judder at high refresh rates.</summary>
-    Off,
-    /// <summary>Use the lowest even divisor of the wmonitor's refresh rate above 50Hz. Best balance of smoothness and CPU usage.</summary>
-    Optimal,
-    /// <summary>Match the monitor's refresh rate exactly. Smoothest but uses the most CPU.</summary>
-    Maximum
-}
-
-/// <summary>
 /// BepInEx 6 IL2CPP plugin entry point for Tales of Berseria Remastered ultrawide support.
 ///
 /// This game uses a single Unity scene ("SampleScene") for everything — the native rendering DLL
@@ -27,7 +12,7 @@ public enum PhysicsUpdateRate
 ///   - Ultrawide aspect ratio correction (via native code cave in TLSampleViewerTO12.dll)
 ///   - UI scaling to prevent horizontal stretching
 ///   - Instant logo skip (zeroing native timing data)
-///   - Framerate, VSync, and physics rate configuration with hot-reload
+///   - Framerate and VSync configuration with hot-reload
 ///   - Resolution enforcement to prevent the game from resetting to 16:9
 /// </summary>
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -58,16 +43,8 @@ public class Plugin : BasePlugin
 
     internal static ManualLogSource Logger;
     internal static ConfigEntry<int> TargetFramerate;
-    internal static ConfigEntry<PhysicsUpdateRate> PhysicsRate;
     internal static ConfigEntry<KeyCode> ReloadConfigKey;
     internal new static ConfigFile Config;
-
-    /// <summary>
-    /// The game's original fixedDeltaTime, captured at startup.
-    /// Restored when PhysicsRate is set to Off, so the game returns to its default
-    /// physics rate rather than keeping whatever rate was last configured.
-    /// </summary>
-    private static float _defaultFixedDeltaTime = 1f / 50f;
 
     /// <summary>
     /// Maps user-friendly VSync setting names to QualitySettings.vSyncCount values.
@@ -94,12 +71,6 @@ public class Plugin : BasePlugin
         // Detect refresh rate safely — Screen.resolutions can be empty/null early in IL2CPP startup
         MaxRefresh = GetSafeMaxRefreshRate();
 
-        // Capture the game's default physics rate so we can restore it when PhysicsRate is Off
-        if (Time.fixedDeltaTime > 0f)
-        {
-            _defaultFixedDeltaTime = Time.fixedDeltaTime;
-        }
-
         ReloadConfigKey = Config.Bind("02. Keybinds", "Reload Config", KeyCode.F5,
             new ConfigDescription(
                 "Press this key in-game to reload the config file and apply changes immediately."
@@ -109,14 +80,6 @@ public class Plugin : BasePlugin
             new ConfigDescription(
                 "Set the maximum frame rate the game will target. This works only when VSync is turned off.",
                 new AcceptableValueList<int>(Extensions.MergeUnityRefreshRates())
-            ));
-
-        PhysicsRate = Config.Bind("01. Display", "Physics Update Rate", PhysicsUpdateRate.Optimal,
-            new ConfigDescription(
-                "Controls the physics tick rate to reduce camera judder.\n" +
-                $"- Optimal: Uses the lowest even divisor of your refresh rate above 50Hz ({Extensions.FindLowestFrameRateMultipleAboveFifty(MaxRefresh):F0}Hz). Best balance of smoothness and performance.\n" +
-                $"- Maximum: Matches your monitor's refresh rate ({MaxRefresh}Hz). Smoothest but uses more CPU.\n" +
-                "- Off: Keeps the game's default 50Hz. May cause camera judder."
             ));
 
         VSyncSetting = Config.Bind("01. Display", "VSync Setting", "Disabled (Higher Performance)",
@@ -153,39 +116,16 @@ public class Plugin : BasePlugin
     internal static int GetVSyncValue() => VSyncOptions.GetValueOrDefault(VSyncSetting.Value, 1);
 
     /// <summary>
-    /// Returns the target physics rate in Hz based on the user's PhysicsRate setting.
-    /// Returns 0 when Off (caller should not apply a physics rate override).
-    /// </summary>
-    internal static float GetPhysicsRate() => PhysicsRate.Value switch
-    {
-        PhysicsUpdateRate.Optimal => Extensions.FindLowestFrameRateMultipleAboveFifty(MaxRefresh),
-        PhysicsUpdateRate.Maximum => MaxRefresh,
-        _ => 0
-    };
-
-    /// <summary>
     /// Applies all display settings. Called on scene load and on config reload (F5 keybind).
-    /// Sets VSync, framerate cap, and physics tick rate based on current config values.
+    /// Sets VSync and framerate cap based on current config values.
     /// </summary>
     internal static void ApplySettings()
     {
         QualitySettings.vSyncCount = GetVSyncValue();
         Application.targetFrameRate = QualitySettings.vSyncCount == 0 ? TargetFramerate.Value : -1;
 
-        if (PhysicsRate.Value != PhysicsUpdateRate.Off)
-        {
-            Time.fixedDeltaTime = 1f / GetPhysicsRate();
-        }
-        else
-        {
-            // Restore the game's original physics rate instead of leaving whatever was last set
-            Time.fixedDeltaTime = _defaultFixedDeltaTime;
-        }
-
         Logger.LogInfo(
-            $"Settings applied - VSync={GetVSyncValue()}, " +
-            $"FPS={Application.targetFrameRate}, " +
-            $"Physics={PhysicsRate.Value} ({(PhysicsRate.Value != PhysicsUpdateRate.Off ? $"{GetPhysicsRate():F0}Hz" : "default")})");
+            $"Settings applied - VSync={GetVSyncValue()}, FPS={Application.targetFrameRate}");
     }
 
     /// <summary>

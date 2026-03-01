@@ -18,8 +18,8 @@ namespace TalesOfBerseriaRemastered.Patches;
 ///   3. Logo timing zeroing — zeros the fade/duration values in the startup logo data table so
 ///      the 3 publisher/middleware logos (Bandai Namco, CriWare, etc.) are skipped instantly.
 ///
-/// Additionally, Harmony prefixes on managed property setters enforce framerate, VSync, and
-/// physics rate settings, preventing the game from overriding user configuration.
+/// Additionally, Harmony prefixes on managed property setters enforce framerate and VSync
+/// settings, preventing the game from overriding user configuration.
 ///
 /// All native patches use signature scanning for resilience against game updates — no hardcoded RVAs.
 /// </summary>
@@ -36,7 +36,6 @@ public static class Patches
     // We only log when the value actually changes to avoid spamming the BepInEx log.
     private static int? _lastLoggedTargetFrameRate;
     private static int? _lastLoggedVsyncCount;
-    private static float? _lastLoggedFixedDeltaTime;
 
     #region P/Invoke — Windows API for native memory manipulation
 
@@ -508,7 +507,7 @@ public static class Patches
     }
 
     // =========================================================================
-    // Harmony patches — managed-side enforcement of display/physics settings
+    // Harmony patches — managed-side enforcement of display settings
     // =========================================================================
 
     /// <summary>
@@ -554,26 +553,6 @@ public static class Patches
         {
             Plugin.Logger.LogInfo($"Setting VSync count to {value} ({(value == 0 ? "disabled" : $"enabled, every {(value == 1 ? "refresh" : "2nd refresh")}")})");
             _lastLoggedVsyncCount = value;
-        }
-    }
-
-    /// <summary>
-    /// Intercepts the game's attempts to set Time.fixedDeltaTime and overrides with
-    /// the user's configured physics update rate. A higher physics rate reduces camera judder
-    /// caused by uneven FixedUpdate distribution across frames at high refresh rates.
-    /// When PhysicsRate is Off, the game's original value passes through unchanged.
-    /// Only logs when the value changes.
-    /// </summary>
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(Time), "set_fixedDeltaTime")]
-    public static void Time_set_fixedDeltaTime_Prefix(ref float value)
-    {
-        if (Plugin.PhysicsRate.Value == PhysicsUpdateRate.Off) return;
-        value = 1f / Plugin.GetPhysicsRate();
-        if (!_lastLoggedFixedDeltaTime.HasValue || !Mathf.Approximately(_lastLoggedFixedDeltaTime.Value, value))
-        {
-            Plugin.Logger.LogInfo($"Setting physics update rate to {Plugin.GetPhysicsRate():F0}Hz ({Plugin.PhysicsRate.Value})");
-            _lastLoggedFixedDeltaTime = value;
         }
     }
 
