@@ -1,3 +1,6 @@
+// ConfigReloader.cs — IL2CPP MonoBehaviour for F5 config hot-reload
+// Originally authored by p1xel8ted (keybind listener, config reload, IL2CPP injection pattern)
+
 namespace TalesOfBerseriaRemastered.MonoBehaviours;
 
 /// <summary>

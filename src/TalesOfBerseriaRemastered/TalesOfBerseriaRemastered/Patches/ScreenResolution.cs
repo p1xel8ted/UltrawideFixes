@@ -1,3 +1,7 @@
+// ScreenResolution.cs — Resolution and fullscreen enforcement via Harmony prefixes
+// Originally authored by p1xel8ted (all SetResolution overload patches, fullscreen setter patches)
+// Modified by Claude (comprehensive comments)
+
 namespace TalesOfBerseriaRemastered.Patches;
 
 /// <summary>

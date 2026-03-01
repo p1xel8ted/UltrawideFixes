@@ -1,3 +1,7 @@
+// Plugin.cs — BepInEx 6 IL2CPP plugin entry point
+// Originally authored by p1xel8ted (plugin structure, config entries, scene lifecycle, ApplySettings)
+// Modified by Claude (comprehensive comments, safe refresh rate detection with cascade fallbacks)
+
 namespace TalesOfBerseriaRemastered;
 
 /// <summary>

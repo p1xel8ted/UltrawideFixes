@@ -1,5 +1,6 @@
-// Global using directives
-// These are implicitly available in all .cs files across the project.
+// GlobalUsings.cs — Global using directives (implicitly available in all .cs files)
+// Originally authored by p1xel8ted
+// Modified by Claude (inline comments)
 
 global using System.Reflection;
 global using System.Runtime.InteropServices;     // DllImport, Marshal (native P/Invoke for code cave patching)

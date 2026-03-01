@@ -1,3 +1,7 @@
+// Patches.cs — Native code patches for TLSampleViewerTO12.dll + managed Harmony prefixes
+// Originally authored by p1xel8ted (Harmony framerate/VSync prefixes)
+// Native code patching by Claude (code cave architecture, signature scanning, all 3 native patches,
+//   PE section parsing, UI width scaling, logo timing zeroing, comprehensive comments)
 
 // ReSharper disable InconsistentNaming
 

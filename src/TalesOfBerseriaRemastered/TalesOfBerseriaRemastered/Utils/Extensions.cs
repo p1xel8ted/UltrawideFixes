@@ -1,3 +1,6 @@
+// Extensions.cs — Shared utility methods
+// Originally authored by p1xel8ted (MergeUnityRefreshRates)
+
 namespace TalesOfBerseriaRemastered.Utils;
 
 public static class Extensions
