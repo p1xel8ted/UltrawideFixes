@@ -1,7 +1,7 @@
-// Patches.cs — Native code patches for TLSampleViewerTO12.dll + managed Harmony prefixes
+// Patches.cs - Native code patches for TLSampleViewerTO12.dll
 // Originally authored by p1xel8ted (Harmony framerate/VSync prefixes)
 // Native code patching by Claude (code cave architecture, signature scanning, all 3 native patches,
-//   PE section parsing, UI width scaling, logo timing zeroing, comprehensive comments)
+//   PE section parsing, UI width scaling, logo timing zeroing)
 
 // ReSharper disable InconsistentNaming
 
@@ -14,16 +14,13 @@ namespace TalesOfBerseriaRemastered.Patches;
 /// not managed IL2CPP. Standard Harmony patches on Unity types (Camera, Canvas, etc.) have no effect
 /// on the native renderer. Instead, we patch the DLL's code and data segments in-memory at runtime.
 ///
-/// Three patches are applied:
+/// Three native patches are applied:
 ///   1. Perspective aspect code cave — redirects the aspect ratio read for perspective cameras
 ///      to use the ultrawide value instead of the game's hardcoded 16:9.
 ///   2. UI coordinate width scaling — patches (1280, 720) float pairs in data sections to prevent
 ///      UI elements from stretching on ultrawide monitors.
 ///   3. Logo timing zeroing — zeros the fade/duration values in the startup logo data table so
 ///      the 3 publisher/middleware logos (Bandai Namco, CriWare, etc.) are skipped instantly.
-///
-/// Additionally, Harmony prefixes on managed property setters enforce framerate and VSync
-/// settings, preventing the game from overriding user configuration.
 ///
 /// All native patches use signature scanning for resilience against game updates — no hardcoded RVAs.
 /// </summary>
@@ -35,11 +32,6 @@ public static class Patches
 
     /// <summary>Pointer to the VirtualAlloc'd code cave memory. Kept alive to prevent deallocation.</summary>
     private static IntPtr _codeCavePtr;
-
-    // Log deduplication: these Harmony prefixes fire on every setter call (potentially every frame).
-    // We only log when the value actually changes to avoid spamming the BepInEx log.
-    private static int? _lastLoggedTargetFrameRate;
-    private static int? _lastLoggedVsyncCount;
 
     #region P/Invoke — Windows API for native memory manipulation
 
@@ -77,7 +69,7 @@ public static class Patches
     //   F3 0F 10 4A 14        — movss xmm1, [rdx+14h]  (reads aspect ratio from camera struct)
     //   F3 0F 10 41 14        — movss xmm0, [rcx+14h]  (reads aspect from another struct)
     // We patch the first movss (at offset 4) to jump to our code cave instead.
-    private static readonly byte[] AspectPatchSig = { 0xCC, 0xCC, 0xCC, 0xCC, 0xF3, 0x0F, 0x10, 0x4A, 0x14, 0xF3, 0x0F, 0x10, 0x41, 0x14 };
+    private static readonly byte[] AspectPatchSig = [0xCC, 0xCC, 0xCC, 0xCC, 0xF3, 0x0F, 0x10, 0x4A, 0x14, 0xF3, 0x0F, 0x10, 0x41, 0x14];
     private const int SigPatchOffset = 4; // target instruction starts 4 bytes into the signature
 
     #endregion
@@ -411,7 +403,7 @@ public static class Patches
             // Falls back to a broad whole-image scan if strict finds nothing.
 
             var scaledWidth = 1280.0f * Plugin.CurrentAspect / (16f / 9f);
-            var patchCount = 0;
+            int patchCount;
             var uiPatchedRvas = new List<long>();
             var strictTargets = CollectUiWidthTargetsStrict(dp, imageSize);
             if (strictTargets.Count > 0)
@@ -491,15 +483,8 @@ public static class Patches
                 Plugin.Logger.LogWarning("Logo timing pattern not found");
             }
 
-            // Opening movie (.usm via CRI Mana) is intentionally NOT patched.
-            // The movie plays during the OPENING native state and serves as a visual loading
-            // indicator. Skipping it leaves the native state machine stuck with white screens
-            // that can't be auto-dismissed (the native input system doesn't read through
-            // managed Unity Input or the Windows message queue).
-
             Plugin.Logger.LogInfo(
                 $"Native patch complete - aspect=ok uiPatched={patchCount} logoPatched={logoPatchCount}");
-
 
             _nativePatchAttempted = true;
         }
@@ -511,13 +496,14 @@ public static class Patches
     }
 
     // =========================================================================
-    // Harmony patches — managed-side enforcement of display settings
+    // Harmony patches
     // =========================================================================
 
     /// <summary>
-    /// Triggers native patching on the first frame. RenderManager.Render is the earliest
-    /// managed callback where TLSampleViewerTO12.dll is guaranteed to be loaded.
-    /// After the first call, TryPatchNative short-circuits via _nativePatchAttempted.
+    /// Triggers native patching on the first frame.
+    /// RenderManager.Render is the earliest managed callback where TLSampleViewerTO12.dll
+    /// is guaranteed to be loaded. After the first call, TryPatchNative short-circuits
+    /// via _nativePatchAttempted.
     /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(RenderManager), nameof(RenderManager.Render))]
@@ -527,37 +513,17 @@ public static class Patches
     }
 
     /// <summary>
-    /// Intercepts the game's attempts to set Application.targetFrameRate and overrides with
-    /// the user's configured value. When VSync is enabled, sets -1 (unlimited, VSync controls pacing).
-    /// Only logs when the value changes to avoid spamming on repeated setter calls.
-    /// </summary>
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(Application), "set_targetFrameRate")]
-    public static void Application_set_targetFrameRate_Prefix(ref int value)
-    {
-        value = Plugin.GetVSyncValue() == 0 ? Plugin.TargetFramerate.Value : -1;
-        if (_lastLoggedTargetFrameRate != value)
-        {
-            Plugin.Logger.LogInfo($"Setting target frame rate to {value} (VSync {(Plugin.GetVSyncValue() == 0 ? "disabled" : "enabled")})");
-            _lastLoggedTargetFrameRate = value;
-        }
-    }
-
-    /// <summary>
-    /// Intercepts the game's attempts to set QualitySettings.vSyncCount and overrides with
-    /// the user's configured value (0=off, 1=every refresh, 2=every 2nd refresh).
-    /// Only logs when the value changes.
+    /// Intercepts ALL calls to QualitySettings.vSyncCount setter from any managed code.
+    /// Forces 0 (VSync off) and logs any attempt to enable VSync.
     /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(QualitySettings), "set_vSyncCount")]
-    public static void QualitySettings_set_vsyncCount_Prefix(ref int value)
+    public static void QualitySettings_set_vSyncCount(ref int value)
     {
-        value = Plugin.GetVSyncValue();
-        if (_lastLoggedVsyncCount != value)
+        if (value != 0)
         {
-            Plugin.Logger.LogInfo($"Setting VSync count to {value} ({(value == 0 ? "disabled" : $"enabled, every {(value == 1 ? "refresh" : "2nd refresh")}")})");
-            _lastLoggedVsyncCount = value;
+            Plugin.Logger.LogInfo($"vSyncCount setter intercepted: {value} -> 0");
+            value = 0;
         }
     }
-
 }
