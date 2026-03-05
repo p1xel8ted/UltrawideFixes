@@ -58,6 +58,5 @@ public class Plugin : BasePlugin
     // {
     //     Time.fixedDeltaTime = 1f / 60f; // Ensure fixed timestep is 60 FPS for consistent physics and animations (optional)
     // }
-    
-     
+
 }

@@ -28,6 +28,7 @@ public static class ScreenResolution
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
         fullscreen = true;
+        preferredRefreshRate = 0; // 0 = highest supported refresh for this mode
     }
 
     [HarmonyPrefix]
@@ -40,7 +41,7 @@ public static class ScreenResolution
     }
 
     // --- SetResolution overloads (FullScreenMode variants) ---
-    // These use FullScreenMode.FullScreenWindow (borderless) instead of ExclusiveFullScreen
+    // These use FullScreenMode.ExclusiveFullScreen (borderless) instead of ExclusiveFullScreen
     // to avoid resolution-switch delays and allow seamless alt-tabbing on ultrawide monitors.
 
     [HarmonyPrefix]
@@ -59,6 +60,7 @@ public static class ScreenResolution
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
         fullscreenMode = FullScreenMode.FullScreenWindow;
+        preferredRefreshRate = 0; // 0 = highest supported refresh for this mode
     }
 
     [HarmonyPrefix]
@@ -68,6 +70,7 @@ public static class ScreenResolution
         width = Plugin.MainWidth;
         height = Plugin.MainHeight;
         fullscreenMode = FullScreenMode.FullScreenWindow;
+        preferredRefreshRate = Screen.currentResolution.refreshRateRatio;
     }
 
     // --- Fullscreen property setters ---
