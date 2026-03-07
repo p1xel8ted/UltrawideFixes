@@ -7,7 +7,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.vampiresurvivors.ultrawide";
     private const string PluginName = "Vampire Survivors Ultra-Wide (BepInEx)";
-    private const string PluginVersion = "0.2.3";
+    private const string PluginVersion = "0.2.4";
 
     internal static ManualLogSource Logger { get; private set; }
     public static ConfigEntry<bool> ExpandSpawnZone { get; private set; }

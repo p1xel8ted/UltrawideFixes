@@ -5,7 +5,9 @@ using static VampireSurvivors.Logger;
 
 namespace VampireSurvivors;
 
+
 [SuppressMessage("ReSharper", "InconsistentNaming")]
+[Harmony]
 public static class Patches
 {
     private static readonly Dictionary<int, StageRectsBackup> StageBackups = new();
@@ -232,10 +234,6 @@ public static class Patches
     {
         __instance._referenceResolution = new Vector2(MainWidth, MainHeight);
         __instance._referenceAspectRatio = MainAspect;
-        __instance.xOffset = 0;
-        __instance.yOffset = 0;
-        __instance.xSize = 0;
-        __instance.ySize = 0;
     }
 
     /// <summary>

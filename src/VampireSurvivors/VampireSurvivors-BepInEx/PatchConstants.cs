@@ -19,9 +19,9 @@ internal static class PatchConstants
 
     /// <summary>
     /// Additional padding multiplier to ensure proper coverage on ultra-wide displays.
-    /// 10% padding (5% on each side) prevents edge artifacts.
+    /// 50% padding (25% on each side) prevents edge artifacts.
     /// </summary>
-    internal const float PaddingMultiplier = 0.1f;
+    internal const float PaddingMultiplier = 0.5f;
 
     /// <summary>
     /// Minimum time in seconds between toggle key presses to prevent accidental double-toggles.

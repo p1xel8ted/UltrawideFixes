@@ -13,9 +13,9 @@ internal static class Logger
     private static void Log(string message, bool warning = false)
     {
         if (warning)
-            Plugin.Logger.LogWarning(message);
+         Console.WriteLine(message);
         else
-            Plugin.Logger.LogInfo(message);
+            Console.WriteLine(message);
     }
 
     /// <summary>
