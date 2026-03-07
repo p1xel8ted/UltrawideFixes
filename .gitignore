@@ -794,4 +794,11 @@ fabric.properties
 /src/SmushiComeHome/libs
 *.jpg
 /src/SmushiComeHome/.idea
+interop_assembly/
+/src/*/assembly/
+/src/*/*/assembly/
+libs/
+Processed/
+*.DotSettings
+*.zip
 .serena/
