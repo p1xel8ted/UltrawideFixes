@@ -389,7 +389,12 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NEOTheWorldEndsWithYou/total?label=downloads&style=for-the-badge)
 
 ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/9b4b064a-1de9-4dcf-a122-3d043763fb23) ![main_dialogue](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/606974be-2735-4091-9133-67f3b8409e47)
- 
+
+## [Never Grave: The Witch and The Curse](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NeverGrave)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NeverGrave/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/550547b0-c9de-4ef9-9ab5-a71b8665cab9) ![main_game](https://github.com/user-attachments/assets/371ed86d-52df-4e33-94d9-41c23e985ae2)
+
 ## [New Super Lucky's Tale](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/NewSuperLuckyTales)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/NewSuperLuckyTales/total?label=downloads&style=for-the-badge)
 
