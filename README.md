@@ -28,7 +28,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="A"/>
-<details><summary>A (9)</summary>
+<details><summary>A (10)</summary>
 
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
@@ -39,6 +39,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
 
 ![main_menu1](https://github.com/user-attachments/assets/be305fbd-f33b-4afe-b2b7-ca0f4fdf2f8a) ![main_game](https://github.com/user-attachments/assets/53c4765f-a876-49a5-8e5e-00d6b6859929)
+
+## [Arkham Horror: Mothers Embrace](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ArkhamHorrorMothersEmbrace)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ArkhamHorrorMothersEmbrace/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/76c87d70-01b1-46b7-8973-ff372c2d2ee7) ![main_game](https://github.com/user-attachments/assets/05b08a69-b416-4805-9efd-03dad29d75fc)
 
 ## [Alex Kidd Miracle World DX](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AlexKiddMiracleWorldDX)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AlexKiddMiracleWorldDX/total?label=downloads&style=for-the-badge)
