@@ -1,0 +1,9 @@
+global using System.Reflection;
+global using BepInEx;
+global using BepInEx.Logging;
+global using BepInEx.Unity.IL2CPP;
+global using HarmonyLib;
+global using PoL.Cameras;
+global using PoL.UI;
+global using UnityEngine;
+global using Wishfully.Cameras;
