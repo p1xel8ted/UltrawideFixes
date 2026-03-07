@@ -426,12 +426,17 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="P"/>
-<details><summary>P (2)</summary>
+<details><summary>P (3)</summary>
 
 ## [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PeaksOfYore/total?label=downloads&style=for-the-badge)
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/814484c8-92f0-4fab-b132-0639b5b51769) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/10751a07-5612-4a57-8ee5-be9d7a6eb93c)
+
+## [Planet of Lana 2](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PlanetOfLana2)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PlanetOfLana2/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/bd058d3c-fe9d-4661-bf31-85cefc274724) ![main_cutscene](https://github.com/user-attachments/assets/113580e4-bf7d-457f-b114-6e52afbb5384)
 
 ## [Prince of Persia: The Lost Crown](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrinceOfPersiaTheLostCrown)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrinceOfPersiaTheLostCrown/total?label=downloads&style=for-the-badge)
