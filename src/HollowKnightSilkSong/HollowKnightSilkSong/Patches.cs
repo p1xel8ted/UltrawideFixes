@@ -414,8 +414,11 @@ public static class Patches
         }
 
         // Control donut light sprite (inner glow effect)
-        // Use null-coalescing assignment to find the sprite renderer only once
-        DonutLightTransform ??= __instance.transform.Find("HeroLight/white_light_donut")?.GetComponent<SpriteRenderer>();
+        // Use Unity-aware null check (not ??=) because destroyed Unity objects are not C# null
+        if (!DonutLightTransform)
+        {
+            DonutLightTransform = __instance.transform.Find("HeroLight/white_light_donut")?.GetComponent<SpriteRenderer>();
+        }
         if (DonutLightTransform)
         {
             // Invert the setting: true = reduce light = disable sprite
