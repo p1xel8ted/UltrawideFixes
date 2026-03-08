@@ -1,17 +1,43 @@
-﻿namespace HollowKnight;
+namespace HollowKnight;
 
 [Harmony]
 public static class Patches
 {
-    private const string StartManager = "StartManager";
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
     private static readonly List<CanvasScaler> CanvasScalers = [];
     private static readonly WriteOnce<float> OriginalBorderSize = new();
     private static readonly WriteOnce<float> OriginalBackboardSize = new();
     private static readonly WriteOnce<float> OriginalMapSize = new();
     private static readonly WriteOnce<float> OriginalHudOffset = new();
+
+    private static bool _cachedHeroLight;
+    private static bool _cachedReduceHeroLight;
+    private static float _cachedFieldOfView;
+    private static float _cachedHudOffset;
+
     private static SpriteRenderer DonutLightTransform { get; set; }
     private static Transform HudTransform { get; set; }
+
+    internal static void UpdateConfigCache()
+    {
+        _cachedHeroLight = Plugin.HeroLight.Value;
+        _cachedReduceHeroLight = Plugin.ReduceHeroLight.Value;
+        _cachedFieldOfView = Plugin.CameraFieldOfView.Value;
+        _cachedHudOffset = Plugin.HudOffset.Value;
+        UpdateHudOffset();
+    }
+
+    internal static void Cleanup()
+    {
+        CanvasScalers.Clear();
+        OriginalScreenMatchModes.Clear();
+        DonutLightTransform = null;
+        HudTransform = null;
+        OriginalBorderSize.ResetValue();
+        OriginalBackboardSize.ResetValue();
+        OriginalMapSize.ResetValue();
+        OriginalHudOffset.ResetValue();
+    }
 
     internal static void UpdateScalers(float aspect)
     {
@@ -27,13 +53,11 @@ public static class Patches
         }
     }
 
-    // Disable startup fade animation by forcing all animator bools to false for StartManager
-    // Note: Patches all Animator.SetBool calls globally for performance, but only affects StartManager instance
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Animator), nameof(Animator.SetBool), typeof(string), typeof(bool))]
     public static void Animator_SetBool(Animator __instance, ref bool value)
     {
-        if (__instance.name == StartManager)
+        if (!Plugin.SplashScreens.Value && __instance.name == "StartManager")
         {
             value = false;
         }
@@ -44,6 +68,8 @@ public static class Patches
     [HarmonyPatch(typeof(StartManager), nameof(global::StartManager.FadeOut))]
     public static void StartManager_FadeIn(StartManager __instance, ref float duration)
     {
+        if (Plugin.SplashScreens.Value) return;
+
         __instance.fadeSpeed = 0;
         duration = 0;
     }
@@ -63,7 +89,7 @@ public static class Patches
     public static void MenuResolutionSetting_RefreshAvailableResolutions(MenuResolutionSetting __instance)
     {
         var refreshRates = Screen.resolutions
-            .Select(r => r.refreshRate)
+            .Select(r => r.refreshRateRatio)
             .Distinct()
             .OrderBy(r => r)
             .ToArray();
@@ -75,13 +101,13 @@ public static class Patches
             resList.AddRange(Screen.resolutions);
         }
 
-        resList.AddRange(refreshRates.Select(refreshRate => new Resolution { width = Display.main.systemWidth, height = Display.main.systemHeight, refreshRate = refreshRate }));
+        resList.AddRange(refreshRates.Select(refreshRate => new Resolution { width = Display.main.systemWidth, height = Display.main.systemHeight, refreshRateRatio = refreshRate }));
 
         var unique = resList
             .Distinct(new ResolutionComparer())
             .OrderBy(r => r.width)
             .ThenBy(r => r.height)
-            .ThenBy(r => r.refreshRate)
+            .ThenBy(r => r.refreshRateRatio.value)
             .ToArray();
 
         __instance.availableResolutions = unique;
@@ -111,26 +137,24 @@ public static class Patches
     [HarmonyPatch(typeof(HeroController), nameof(HeroController.FixedUpdate))]
     public static void HeroController_FixedUpdate(HeroController __instance)
     {
-        __instance.heroLight.enabled = Plugin.HeroLight.Value;
-        DonutLightTransform ??= __instance.transform.Find("white_light_donut")?.GetComponent<SpriteRenderer>();
+        __instance.heroLight.enabled = _cachedHeroLight;
+
+        if (!DonutLightTransform)
+        {
+            DonutLightTransform = __instance.transform.Find("white_light_donut")?.GetComponent<SpriteRenderer>();
+        }
+
         if (DonutLightTransform)
         {
-            DonutLightTransform.enabled = Plugin.HeroLightDonut.Value;
+            DonutLightTransform.enabled = !_cachedReduceHeroLight;
         }
-    }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(XB1CinematicVideoPlayer), nameof(XB1CinematicVideoPlayer.Play))]
-    public static void XB1CinematicVideoPlayer_Play(XB1CinematicVideoPlayer __instance)
-    {
-        __instance.videoPlayer.aspectRatio = VideoAspectRatio.FitVertically;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CinematicSequence), nameof(CinematicSequence.Begin))]
     public static void CinematicSequence_Begin(CinematicSequence __instance)
     {
-        // Stretch cinematic to fill ultrawide screen
+        // Correct cinematic aspect ratio to prevent horizontal squishing on ultrawide
         var ogX = __instance.targetRenderer.transform.localScale.x;
         var newX = ogX * (Plugin.CurrentAspect / Plugin.NativeAspect);
         __instance.targetRenderer.transform.localScale = __instance.targetRenderer.transform.localScale with { x = newX };
@@ -152,22 +176,21 @@ public static class Patches
 
         if (__instance._unityCamera)
         {
-            __instance._unityCamera.fieldOfView *= Plugin.CameraFieldOfView.Value;
+            __instance._unityCamera.fieldOfView *= _cachedFieldOfView;
         }
     }
-    
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(HUDCamera), nameof(HUDCamera.OnEnable))]
     public static void HUDCamera_OnEnable(HUDCamera __instance)
     {
-        var hud = __instance.transform.Find("Hud Canvas");
+        var hud = GameCameras.instance.hudCanvas?.transform;
         if (!HudTransform)
         {
             HudTransform = hud;
         }
 
         UpdateHudOffset();
-
 
         var scaleFactor = Plugin.CurrentAspect / Plugin.NativeAspect;
 
@@ -177,6 +200,10 @@ public static class Patches
             OriginalBorderSize.Value = b1.localScale.x;
             b1.localScale = b1.localScale with { x = b1.localScale.x * scaleFactor };
         }
+        else
+        {
+            Plugin.Log.LogWarning("Could not find Inventory/Border/Menu_Border_Black");
+        }
 
         var b2 = __instance.transform.Find("Inventory/Border/backboard");
         if (b2)
@@ -184,12 +211,20 @@ public static class Patches
             OriginalBackboardSize.Value = b2.localScale.x;
             b2.localScale = b2.localScale with { x = b2.localScale.x * scaleFactor };
         }
+        else
+        {
+            Plugin.Log.LogWarning("Could not find Inventory/Border/backboard");
+        }
 
         var b3 = __instance.transform.Find("Quick Map/BG");
         if (b3)
         {
             OriginalMapSize.Value = b3.localScale.x;
             b3.localScale = b3.localScale with { x = b3.localScale.x * scaleFactor };
+        }
+        else
+        {
+            Plugin.Log.LogWarning("Could not find Quick Map/BG");
         }
     }
 
@@ -207,13 +242,18 @@ public static class Patches
         }
     }
 
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(LogoLanguage), nameof(LogoLanguage.OnEnable))]
-    [HarmonyPatch(typeof(SetVersionNumber), nameof(SetVersionNumber.Start))]
-    public static void LogoLanguage_OnEnable(MonoBehaviour __instance)
+    public static void LogoLanguage_OnEnable(LogoLanguage __instance)
     {
-        __instance.gameObject.SetActive(false);
+        __instance.gameObject.SetActive(Plugin.MenuClutter.Value);
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SetVersionNumber), nameof(SetVersionNumber.Start))]
+    public static void SetVersionNumber_Start(SetVersionNumber __instance)
+    {
+        __instance.gameObject.SetActive(Plugin.MenuClutter.Value);
     }
 
     [HarmonyPostfix]
@@ -255,7 +295,7 @@ public static class Patches
         {
             var pos = HudTransform.localPosition;
             OriginalHudOffset.Value = pos.x;
-            pos.x = OriginalHudOffset.Value + Plugin.HudOffset.Value;
+            pos.x = OriginalHudOffset.Value + _cachedHudOffset;
             HudTransform.localPosition = pos;
         }
         else
@@ -264,12 +304,10 @@ public static class Patches
         }
     }
 
-
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
     {
-        // Skip UnityExplorer UI canvases (by sinai-dev) to avoid interfering with debugging tools
         if (__instance.name.Contains("sinai")) return;
 
         CanvasScalers.Add(__instance);
@@ -282,7 +320,7 @@ public static class Patches
         public bool Equals(Resolution a, Resolution b) =>
             a.width == b.width &&
             a.height == b.height &&
-            a.refreshRate == b.refreshRate;
+            a.refreshRateRatio.Equals(b.refreshRateRatio);
 
         public int GetHashCode(Resolution r)
         {
@@ -291,7 +329,7 @@ public static class Patches
                 var hash = 17;
                 hash = hash * 23 + r.width;
                 hash = hash * 23 + r.height;
-                hash = hash * 23 + r.refreshRate;
+                hash = hash * 23 + r.refreshRateRatio.GetHashCode();
                 return hash;
             }
         }
