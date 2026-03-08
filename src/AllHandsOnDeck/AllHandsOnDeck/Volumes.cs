@@ -49,7 +49,7 @@ public static class Volumes
         }
     }
 
-    internal static void ProcessVolumeUnregister(Volume volume, int layer)
+    internal static void ProcessVolumeUnregister(Volume volume)
     {
         if (!volume || !volume.profile)
         {

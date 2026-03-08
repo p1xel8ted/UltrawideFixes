@@ -24,7 +24,7 @@ public static class Patches
     [HarmonyPatch(typeof(VolumeManager), nameof(VolumeManager.Unregister))]
     public static void VolumeManager_Unregister(Volume volume, int layer)
     {
-        Volumes.ProcessVolumeUnregister(volume, layer);
+        Volumes.ProcessVolumeUnregister(volume);
     }
 
     [HarmonyPostfix]
