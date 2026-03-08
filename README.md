@@ -28,7 +28,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="A"/>
-<details><summary>A (10)</summary>
+<details><summary>A (11)</summary>
 
 ## [Agatha Christie - Murder on the Orient Express](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AgathaChristieMOE)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AgathaChristieMOE/total?label=downloads&style=for-the-badge)
@@ -39,6 +39,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AiLimit/total?label=downloads&style=for-the-badge)
 
 ![main_menu1](https://github.com/user-attachments/assets/be305fbd-f33b-4afe-b2b7-ca0f4fdf2f8a) ![main_game](https://github.com/user-attachments/assets/53c4765f-a876-49a5-8e5e-00d6b6859929)
+
+## [All Hands on Deck](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/AllHandsOnDeck)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/AllHandsOnDeck/total?label=downloads&style=for-the-badge)
+
+![main_menu](https://github.com/user-attachments/assets/4d96f122-a37f-4fa6-beea-754e35d6903e) ![main_game](https://github.com/user-attachments/assets/c39830c7-b094-4aaa-8723-c11d2c5d1856)
 
 ## [Arkham Horror: Mothers Embrace](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/ArkhamHorrorMothersEmbrace)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/ArkhamHorrorMothersEmbrace/total?label=downloads&style=for-the-badge)
