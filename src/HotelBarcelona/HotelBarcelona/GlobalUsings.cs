@@ -1,5 +1,6 @@
 global using System.Reflection;
 global using BepInEx;
+global using BepInEx.Configuration;
 global using BepInEx.Logging;
 global using BepInEx.Unity.IL2CPP;
 global using HarmonyLib;
@@ -10,6 +11,8 @@ global using HotelBarcelona.Scene.Transition.Screen;
 global using HotelBarcelona.UI.GameHUD;
 global using HotelBarcelona.UI.Menu.Announcement;
 global using UnityEngine;
+global using UnityEngine.Rendering;
+global using UnityEngine.Rendering.Universal;
 global using UnityEngine.UI;
 global using HotelBarcelona.UI.Menu.Boot;
 global using HotelBarcelona.UI.Menu.Title.SpecialFeatures;

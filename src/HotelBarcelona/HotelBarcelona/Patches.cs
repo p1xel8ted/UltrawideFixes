@@ -235,6 +235,68 @@ public static class Patches
         __instance._Skip = true;
     }
 
+    // --- Volume Registration ---
+
+    /// <summary>
+    /// Intercepts volume registration to track all post-processing components and create
+    /// dynamic config entries for each unique effect type (atmospheric scattering, volumetric
+    /// light, PCSS, darkness, etc.).
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VolumeManager), nameof(VolumeManager.Register), typeof(Volume), typeof(int))]
+    public static void VolumeManager_Register(Volume volume, int layer)
+    {
+        Volumes.ProcessVolumeRegistration(volume, layer);
+    }
+
+    /// <summary>
+    /// Cleans up tracked component references when a volume is unregistered,
+    /// preventing stale references from accumulating.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VolumeManager), nameof(VolumeManager.Unregister), typeof(Volume), typeof(int))]
+    public static void VolumeManager_Unregister(Volume volume)
+    {
+        Volumes.ProcessVolumeUnregister(volume);
+    }
+
+    /// <summary>
+    /// Applies the current config state to a volume's components whenever the volume
+    /// is enabled, ensuring user preferences are respected for newly activated volumes.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Volume), nameof(Volume.OnEnable))]
+    public static void Volume_OnEnable(Volume __instance)
+    {
+        Volumes.UpdateSingleVolume(__instance);
+    }
+
+    // --- Config Reload (Main Thread) ---
+
+    /// <summary>
+    /// Finalizer on <see cref="SceneManagerEntity.Update"/> that serves two purposes:
+    /// 1. Checks the <see cref="Plugin.ConfigChanged"/> flag each frame and reloads config
+    ///    on the main thread (required because <see cref="System.IO.FileSystemWatcher"/>
+    ///    fires on a thread pool thread where Unity API calls silently fail in IL2CPP).
+    /// 2. Suppresses the game's internal <see cref="NullReferenceException"/> in
+    ///    <c>SoundManager.StopGlobalAudioWhole</c> that spams the log when this method
+    ///    is patched by Harmony's IL2CPP trampoline.
+    /// </summary>
+    [HarmonyFinalizer]
+    [HarmonyPatch(typeof(SceneManagerEntity), nameof(SceneManagerEntity.Update))]
+    public static Exception SceneManagerEntity_Update(Exception __exception)
+    {
+        if (Plugin.ConfigChanged)
+        {
+            Plugin.ConfigChanged = false;
+            Plugin.ConfigFile.Reload();
+            Utils.UpdateAntiAliasing();
+            Plugin.Logger.LogInfo("Config file changed - reloaded.");
+        }
+
+        return null;
+    }
+
     // --- Announcement/News Popup Suppression ---
 
     /// <summary>

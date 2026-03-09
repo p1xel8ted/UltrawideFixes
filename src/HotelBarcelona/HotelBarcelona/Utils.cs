@@ -68,14 +68,16 @@ internal static class Utils
 
     /// <summary>
     /// Runs all global fixups: sets camera backgrounds to black, scales whitelisted
-    /// black background images, and forces all camera viewports to fullscreen.
-    /// Called on plugin load, scene changes, and boot timer setup.
+    /// black background images, forces all camera viewports to fullscreen, and applies
+    /// the configured anti-aliasing mode. Called on plugin load, scene changes, and
+    /// boot timer setup.
     /// </summary>
     internal static void ApplyGlobalFixups()
     {
         SetAllCamerasBlackBackground();
         ResizeAllBlackImages();
         UpdateCameraBehaviors();
+        UpdateAntiAliasing();
     }
 
     /// <summary>
@@ -137,5 +139,23 @@ internal static class Utils
     {
         if (Mathf.Approximately(instance.transform.localScale.x, DisplayMetrics.PositiveScaleFactor)) return;
         instance.transform.localScale = instance.transform.localScale with { x = DisplayMetrics.PositiveScaleFactor };
+    }
+
+    // --- Anti-Aliasing ---
+
+    /// <summary>
+    /// Applies the configured <see cref="AntialiasingMode"/> to all cameras that have a
+    /// <see cref="UniversalAdditionalCameraData"/> component. Sets quality to
+    /// <see cref="AntialiasingQuality.High"/> for best results. Called on plugin load,
+    /// scene changes, and config value changes.
+    /// </summary>
+    internal static void UpdateAntiAliasing()
+    {
+        var mode = Plugin.AntiAliasing.Value;
+        foreach (var data in Resources.FindObjectsOfTypeAll<UniversalAdditionalCameraData>())
+        {
+            data.antialiasing = mode;
+            data.antialiasingQuality = AntialiasingQuality.High;
+        }
     }
 }
