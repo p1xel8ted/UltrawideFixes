@@ -15,6 +15,9 @@ public static class Patches
     // Maximum number of borders to track to prevent memory leaks
     private const int MaxTrackedBorders = 100;
 
+    // Tracks whether the splash screen transpiler found the pattern in any target method
+    private static bool _splashTranspilerApplied;
+
     // Stores the original screen match mode for each CanvasScaler instance, so it can be restored if needed
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScreenMatchModes = new();
 
@@ -126,7 +129,7 @@ public static class Patches
     //rotation 0 0 90 == bottom edge
     //rotation 0 0 270 == top edge
 
-    private static void UpdateAllBorders()
+    internal static void UpdateAllBorders()
     {
         var scaleFactor = Plugin.ShouldScaleBlackEdges ? 5f : 1f;
         var showFeathering = Plugin.ShouldScaleBlackEdges && !Plugin.ShouldRemoveFeathering;
@@ -274,7 +277,11 @@ public static class Patches
     public static bool MenuResolutionSetting_ResetToDefaultResolution(MenuResolutionSetting __instance)
     {
         // Set resolution to native display size in fullscreen windowed mode
+#if DEBUG
+        Screen.SetResolution(Plugin.TestWidth, Plugin.TestHeight, FullScreenMode.Windowed);
+#else
         Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight, FullScreenMode.FullScreenWindow);
+#endif
         // Update the current resolution tracking
         __instance.currentRes = Screen.currentResolution;
         // Refresh the UI on the next frame to reflect changes
@@ -380,6 +387,7 @@ public static class Patches
     /// </summary>
     [HarmonyPostfix]
     [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewport))]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewportShared))]
     public static void ForceCameraAspect_AutoScaleViewport(ref float __result)
     {
         __result = Plugin.CurrentAspect;
@@ -441,8 +449,8 @@ public static class Patches
     /// Searches for the field assignment that enables intro sequence and changes it from true (1) to false (0).
     /// </summary>
     [HarmonyTranspiler]
-    [HarmonyPatch(typeof(StartManager), nameof(StartManager.Start))]
     [HarmonyPatch(typeof(StartManager), nameof(StartManager.Start), MethodType.Enumerator)]
+    [HarmonyPatch(typeof(StartManager), nameof(StartManager.Start))]
     public static IEnumerable<CodeInstruction> StartManager_Start_Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase __originalMethod)
     {
         var originalCode = instructions.ToList();
@@ -467,11 +475,14 @@ public static class Patches
                     // Replace ldc.i4.1 (load constant 1) with ldc.i4.0 (load constant 0)
                     // This changes: this.showIntroSequence = true; to: this.showIntroSequence = false;
                     modifiedCode[i + 1] = new CodeInstruction(OpCodes.Ldc_I4_0);
-                    Plugin.Log.LogInfo("[SKIP SPLASH] Successfully disabled intro sequence.");
-                    break;
+                    Plugin.Log.LogInfo($"[SKIP SPLASH] Successfully disabled intro sequence in {__originalMethod.Name}.");
+                    _splashTranspilerApplied = true;
+                    return modifiedCode.AsEnumerable();
                 }
             }
 
+            if (!_splashTranspilerApplied)
+                Plugin.Log.LogWarning($"[SKIP SPLASH] Could not find showIntroSequence pattern in {__originalMethod.Name}");
             return modifiedCode.AsEnumerable();
         }
         catch (Exception ex)
@@ -603,6 +614,11 @@ public static class Patches
                 i += 4; // Adjust loop counter since we inserted 4 instructions
             }
 
+            if (!modifiedCodes.Any(c => c.Calls(getScaleFactorMethod)))
+                Plugin.Log.LogWarning("[BORDERS] Could not find stloc.0 pattern for border width scaling");
+            if (!modifiedCodes.Any(c => c.Calls(modifyMethod)))
+                Plugin.Log.LogWarning("[BORDERS] Could not find MoveGameObjectToScene pattern for border tracking");
+
             return modifiedCodes;
         }
         catch (Exception ex)
@@ -710,6 +726,7 @@ public static class Patches
     /// </summary>
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewport))]
+    [HarmonyPatch(typeof(ForceCameraAspect), nameof(ForceCameraAspect.AutoScaleViewportShared))]
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase __originalMethod)
     {
         var originalCode = instructions.ToList();
@@ -750,6 +767,9 @@ public static class Patches
                 // Exit early once both values are found and replaced
                 if (foundMin && foundMax) break;
             }
+
+            if (!foundMin) Plugin.Log.LogWarning($"[TRANSPILER] Could not find min aspect {defaultMin} in {__originalMethod.Name} (expected if game version is {(__originalMethod.Name == nameof(ForceCameraAspect.AutoScaleViewport) ? ">=" : "<")} 1.0.29926)");
+            if (!foundMax) Plugin.Log.LogWarning($"[TRANSPILER] Could not find max aspect {defaultMax} in {__originalMethod.Name} (expected if game version is {(__originalMethod.Name == nameof(ForceCameraAspect.AutoScaleViewport) ? ">=" : "<")} 1.0.29926)");
 
             return modifiedCode.AsEnumerable();
         }
