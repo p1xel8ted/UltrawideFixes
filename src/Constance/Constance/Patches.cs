@@ -258,8 +258,8 @@ public static class Patches
     [HarmonyPatch(typeof(ConUiPanel_Snapshot), nameof(ConUiPanel_Snapshot.Awake))]
     public static void ConUiPanel_Snapshot_Awake(ConUiPanel_Snapshot __instance)
     {
-        ConUiPanel_Snapshot.SnapshotResolution = new Vector2Int(Plugin.CurrentWidth, Plugin.CurrentHeight);
-        Plugin.Log.LogInfo($"Set ConUiPanel_Snapshot.SnapshotResolution to {ConUiPanel_Snapshot.SnapshotResolution.x}x{ConUiPanel_Snapshot.SnapshotResolution.y}");
+        CConSnapshotManager.QualityInfo.Resolution = new Vector2Int(Plugin.CurrentWidth, Plugin.CurrentHeight);
+        Plugin.Log.LogInfo($"Set CConSnapshotManager.QualityInfo.Resolution to {CConSnapshotManager.QualityInfo.Resolution.x}x{CConSnapshotManager.QualityInfo.Resolution.y}");
 
         var arf = __instance.rawImage?.GetComponent<AspectRatioFitter>();
         if (arf)
@@ -280,16 +280,6 @@ public static class Patches
         __result = ConMonoBehaviour.SceneRegistry.SnapshotManager._snapshots.Count(s => s.IsUsed).ToString(CultureInfo.CurrentCulture);
 
         Plugin.Log.LogInfo("Removed max snapshot count from UI display");
-    }
-
-    // Allow unlimited snapshots - bypass the Polaroid collectible limit
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CConSnapshotManager), nameof(CConSnapshotManager.IsCreateAllowed))]
-    [HarmonyPatch(typeof(ConUiPanel_Snapshot), nameof(ConUiPanel_Snapshot.IsSaveAllowed))]
-    public static void CConSnapshotManager_IsCreateAllowed(ref bool __result)
-    {
-        if (!Plugin.UnlimitedPolaroids.Value) return;
-        __result = true;
     }
 
     // Loads additional snapshots beyond the default limit when unlimited polaroids is enabled
