@@ -441,7 +441,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="P"/>
-<details><summary>P (3)</summary>
+<details><summary>P (4)</summary>
 
 ## [Peaks of Yore](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PeaksOfYore)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PeaksOfYore/total?label=downloads&style=for-the-badge)
@@ -458,6 +458,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_menu](https://github.com/user-attachments/assets/decbaf21-e737-4bd0-b64a-8677aba2729d)
 ![main_game](https://github.com/user-attachments/assets/1e3b2500-72aa-41ce-9d69-6809bc9a3042)
+
+## [Prison of Husks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrisonOfHusks)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrisonOfHusks/total?label=downloads&style=for-the-badge)
+
+![release_menu](https://github.com/user-attachments/assets/eb87bbba-4b0d-4c23-9e90-2a44083cb2de) ![release_game](https://github.com/user-attachments/assets/ec7fa61c-684b-489d-8f5e-90c65ac419da)
 
 </details>
 <div id="R"/>
@@ -528,7 +533,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (11)</summary>
+<details><summary>T (12)</summary>
   
 ## [Tails of Iron](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TailsOfIron) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TailsOfIron/total?label=downloads&style=for-the-badge)
@@ -540,6 +545,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TerraMemoria/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/441e6c6f-680f-42f4-baef-d73b838dbbcc) ![main_game](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/fff2c21f-f701-4c5c-ab31-4a3678c37e4a)
+
+## [The Eternal Life of Goldman](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheEternalLifeOfGoldman)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheEternalLifeOfGoldman/total?label=downloads&style=for-the-badge)
+
+![release_menu](https://github.com/user-attachments/assets/c75c263a-1e53-4f94-a7dd-d0ecb581e711) ![release_game](https://github.com/user-attachments/assets/0131f142-9bec-44ee-98e6-8a459645b845)
 
 ## [THE HOUSE OF THE DEAD Remake](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheHouseOfTheDeadRemake) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheHouseOfTheDeadRemake/total?label=downloads&style=for-the-badge)
