@@ -462,7 +462,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [Prison of Husks](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/PrisonOfHusks)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/PrisonOfHusks/total?label=downloads&style=for-the-badge)
 
-![release_menu](https://github.com/user-attachments/assets/eb87bbba-4b0d-4c23-9e90-2a44083cb2de) ![release_game](https://github.com/user-attachments/assets/ec7fa61c-684b-489d-8f5e-90c65ac419da)
+![main_menu](https://github.com/user-attachments/assets/269bad4a-f166-41ad-b658-6f1c5ca1435d) ![main_game_default](https://github.com/user-attachments/assets/d1353e83-a054-490c-b5fd-6996570bb489)
 
 </details>
 <div id="R"/>
@@ -549,7 +549,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ## [The Eternal Life of Goldman](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheEternalLifeOfGoldman)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheEternalLifeOfGoldman/total?label=downloads&style=for-the-badge)
 
-![release_menu](https://github.com/user-attachments/assets/c75c263a-1e53-4f94-a7dd-d0ecb581e711) ![release_game](https://github.com/user-attachments/assets/0131f142-9bec-44ee-98e6-8a459645b845)
+![main_menu](https://github.com/user-attachments/assets/a0af40f9-6a1e-472d-9c80-f0feab070cea) ![main_game](https://github.com/user-attachments/assets/bf552a58-0435-4157-bff9-f94d8eeb83b6)
 
 ## [THE HOUSE OF THE DEAD Remake](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheHouseOfTheDeadRemake) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheHouseOfTheDeadRemake/total?label=downloads&style=for-the-badge)
