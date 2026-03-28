@@ -1,0 +1,17 @@
+global using System.Linq;
+global using System.Runtime.CompilerServices;
+global using System.Reflection;
+global using BepInEx;
+global using BepInEx.Configuration;
+global using BepInEx.Logging;
+global using BepInEx.Unity.IL2CPP;
+global using HarmonyLib;
+global using UnityEngine;
+global using UnityEngine.Events;
+global using UnityEngine.SceneManagement;
+global using UnityEngine.UI;
+global using UnityEngine.Rendering;
+global using UnityEngine.Rendering.HighDefinition;
+global using Il2CppInterop.Runtime.InteropTypes.Arrays;
+global using UnityEngine.Video;
+global using IE.RichFX;
