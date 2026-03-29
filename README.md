@@ -688,14 +688,14 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 This project is made possible thanks to the following open-source projects and their contributors:
 
-- [BepInEx](https://github.com/BepInEx/BepInEx) - Unity modding framework
-- [HarmonyX](https://github.com/BepInEx/HarmonyX) - Runtime method patching library
-- [MelonLoader](https://github.com/LavaGang/MelonLoader) - Unity modding framework for IL2CPP games
-- [Unity Explorer](https://github.com/yukieiji/UnityExplorer) / [UniverseLib](https://github.com/yukieiji/UniverseLib) - Runtime Unity inspector and debugging tools (originally by [sinai-dev](https://github.com/sinai-dev))
-- [Il2CppInterop](https://github.com/BepInEx/Il2CppInterop) - IL2CPP interoperability layer
-- [BepInEx.AssemblyPublicizer](https://github.com/BepInEx/BepInEx.AssemblyPublicizer) - Assembly publicizing build tool
-- [Cpp2IL](https://github.com/SamboyCoding/Cpp2IL) - IL2CPP decompilation tool by [Samboy](https://github.com/SamboyCoding)
-- [NStrip](https://github.com/BepInEx/NStrip) - Assembly publicizing and stripping tool
+[BepInEx](https://github.com/BepInEx/BepInEx) - Unity modding framework<br/>
+[HarmonyX](https://github.com/BepInEx/HarmonyX) - Runtime method patching library<br/>
+[MelonLoader](https://github.com/LavaGang/MelonLoader) - Unity modding framework for IL2CPP games<br/>
+[Unity Explorer](https://github.com/yukieiji/UnityExplorer) / [UniverseLib](https://github.com/yukieiji/UniverseLib) - Runtime Unity inspector and debugging tools (originally by [sinai-dev](https://github.com/sinai-dev))<br/>
+[Il2CppInterop](https://github.com/BepInEx/Il2CppInterop) - IL2CPP interoperability layer<br/>
+[BepInEx.AssemblyPublicizer](https://github.com/BepInEx/BepInEx.AssemblyPublicizer) - Assembly publicizing build tool<br/>
+[Cpp2IL](https://github.com/SamboyCoding/Cpp2IL) - IL2CPP decompilation tool by [Samboy](https://github.com/SamboyCoding)<br/>
+[NStrip](https://github.com/BepInEx/NStrip) - Assembly publicizing and stripping tool
 
 Special thanks to the [Widescreen Gaming Forum](https://discord.gg/FcVYWgh) Discord community for their support, knowledge, and passion for ultrawide gaming.
 
