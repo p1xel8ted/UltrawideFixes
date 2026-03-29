@@ -681,4 +681,22 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![main_menu](https://github.com/user-attachments/assets/21b24390-9274-4e2a-ae7a-5296a55bf3d4) ![main_game](https://github.com/user-attachments/assets/fc86c9a3-1183-4ace-a224-0d267739803b)
 
 </details>
+
+<br/>
+
+## Credits
+
+This project is made possible thanks to the following open-source projects and their contributors:
+
+- [BepInEx](https://github.com/BepInEx/BepInEx) - Unity modding framework
+- [HarmonyX](https://github.com/BepInEx/HarmonyX) - Runtime method patching library
+- [MelonLoader](https://github.com/LavaGang/MelonLoader) - Unity modding framework for IL2CPP games
+- [Unity Explorer](https://github.com/yukieiji/UnityExplorer) / [UniverseLib](https://github.com/yukieiji/UniverseLib) - Runtime Unity inspector and debugging tools (originally by [sinai-dev](https://github.com/sinai-dev))
+- [Il2CppInterop](https://github.com/BepInEx/Il2CppInterop) - IL2CPP interoperability layer
+- [BepInEx.AssemblyPublicizer](https://github.com/BepInEx/BepInEx.AssemblyPublicizer) - Assembly publicizing build tool
+- [Cpp2IL](https://github.com/SamboyCoding/Cpp2IL) - IL2CPP decompilation tool by [Samboy](https://github.com/SamboyCoding)
+- [NStrip](https://github.com/BepInEx/NStrip) - Assembly publicizing and stripping tool
+
+Special thanks to the [Widescreen Gaming Forum](https://discord.gg/FcVYWgh) Discord community for their support, knowledge, and passion for ultrawide gaming.
+
 </div>
