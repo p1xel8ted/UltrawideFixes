@@ -73,9 +73,9 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<string> Resolution { get; set; }
     private static ConfigEntry<string> VSyncSetting { get; set; }
 
-    // private static ConfigEntry<bool> SixteenTenTesting { get; set; }
-    // private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
-    // private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
+    private static ConfigEntry<bool> SixteenTenTesting { get; set; }
+    private static ConfigEntry<bool> ThirtyTwoNineTesting { get; set; }
+    private static ConfigEntry<bool> FourtyEightNineTesting { get; set; }
 
     private static readonly Dictionary<string, int> VSyncOptions = new()
     {
@@ -88,26 +88,26 @@ public class Plugin : BaseUnityPlugin
     {
         get
         {
-            // if (SixteenTenTesting.Value)
-            // {
-            //     const int height = 1200;
-            //     var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
-            //     return new Resolution { width = width, height = height };
-            // }
-            //
-            // if (ThirtyTwoNineTesting.Value)
-            // {
-            //     const int height = 900;
-            //     var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
-            //     return new Resolution { width = width, height = height };
-            // }
-            //
-            // if (FourtyEightNineTesting.Value)
-            // {
-            //     const int height = 600;
-            //     var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
-            //     return new Resolution { width = width, height = height };
-            // }
+            if (SixteenTenTesting.Value)
+            {
+                const int height = 1200;
+                var width = Mathf.RoundToInt(height * 1.6f); // 1200 * 1.6f = 1920
+                return new Resolution { width = width, height = height };
+            }
+            
+            if (ThirtyTwoNineTesting.Value)
+            {
+                const int height = 900;
+                var width = Mathf.RoundToInt(height * 3.555555555555556f); // 900 * 3.555555555555556f = 3200
+                return new Resolution { width = width, height = height };
+            }
+            
+            if (FourtyEightNineTesting.Value)
+            {
+                const int height = 600;
+                var width = Mathf.RoundToInt(height * 5.333333333333333f); // 600 * 5.333333333333333f = 3200
+                return new Resolution { width = width, height = height };
+            }
 
             if (Resolution == null) return new Resolution { width = NativeDisplayWidth, height = NativeDisplayHeight };
 
@@ -154,59 +154,59 @@ public class Plugin : BaseUnityPlugin
 
         Log = Logger;
 
-        // SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
-        //     new ConfigDescription(
-        //         "Enable this option to test 16:10 aspect ratio.",
-        //         null,
-        //         new ConfigurationManagerAttributes { IsAdvanced = true, Order = 102 }));
-        // SixteenTenTesting.SettingChanged += (_, _) =>
-        // {
-        //     if (SixteenTenTesting.Value)
-        //     {
-        //         ThirtyTwoNineTesting.Value = false;
-        //         FourtyEightNineTesting.Value = false;
-        //     }
-        //
-        //     RequiresUpdate = true;
-        //     
-        //     UpdateForSteamDeck();
-        //     
-        //     UpdateAll();
-        // };
-        //
-        // ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
-        //     new ConfigDescription(
-        //         "Enable this option to test 32:9 aspect ratio.",
-        //         null,
-        //         new ConfigurationManagerAttributes { IsAdvanced = true, Order = 101 }));
-        // ThirtyTwoNineTesting.SettingChanged += (_, _) =>
-        // {
-        //     if (ThirtyTwoNineTesting.Value)
-        //     {
-        //         SixteenTenTesting.Value = false;
-        //         FourtyEightNineTesting.Value = false;
-        //     }
-        //
-        //     RequiresUpdate = true;
-        //     UpdateAll();
-        // };
-        //
-        // FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
-        //     new ConfigDescription(
-        //         "Enable this option to test 48:9 aspect ratio.",
-        //         null,
-        //         new ConfigurationManagerAttributes { IsAdvanced = true, Order = 100 }));
-        // FourtyEightNineTesting.SettingChanged += (_, _) =>
-        // {
-        //     if (FourtyEightNineTesting.Value)
-        //     {
-        //         SixteenTenTesting.Value = false;
-        //         ThirtyTwoNineTesting.Value = false;
-        //     }
-        //
-        //     RequiresUpdate = true;
-        //     UpdateAll();
-        // };
+        SixteenTenTesting = Config.Bind("00. Testing", "16:10 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 16:10 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 102 }));
+        SixteenTenTesting.SettingChanged += (_, _) =>
+        {
+            if (SixteenTenTesting.Value)
+            {
+                ThirtyTwoNineTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            
+            UpdateForSteamDeck();
+            
+            UpdateAll();
+        };
+        
+        ThirtyTwoNineTesting = Config.Bind("00. Testing", "32:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 32:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 101 }));
+        ThirtyTwoNineTesting.SettingChanged += (_, _) =>
+        {
+            if (ThirtyTwoNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                FourtyEightNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
+        
+        FourtyEightNineTesting = Config.Bind("00. Testing", "48:9 Testing", false,
+            new ConfigDescription(
+                "Enable this option to test 48:9 aspect ratio.",
+                null,
+                new ConfigurationManagerAttributes { IsAdvanced = true, Order = 100 }));
+        FourtyEightNineTesting.SettingChanged += (_, _) =>
+        {
+            if (FourtyEightNineTesting.Value)
+            {
+                SixteenTenTesting.Value = false;
+                ThirtyTwoNineTesting.Value = false;
+            }
+        
+            RequiresUpdate = true;
+            UpdateAll();
+        };
 
         Resolution = Config.Bind("01. Display", "Resolution", $"{MainWidth}x{MainHeight}",
             new ConfigDescription(

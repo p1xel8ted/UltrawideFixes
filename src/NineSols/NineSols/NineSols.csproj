@@ -52,12 +52,12 @@
 
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Steam' ">
-        <OutputPath>E:\SteamLibrary\steamapps\common\Nine Sols\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\SteamLibrary\steamapps\common\Nine Sols\BepInEx\plugins</OutputPath>
         <Optimize Condition=" '$(Optimize)' == '' ">true</Optimize>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'GamePass' ">
-        <OutputPath>F:\Games\GamePass\Nine Sols_1\Content\BepInEx\plugins</OutputPath>
+        <OutputPath>G:\XboxGames\FE24536C-10ED-4D32-AFE5-9BF041C89519\Content\BepInEx\plugins</OutputPath>
         <Optimize Condition=" '$(Optimize)' == '' ">true</Optimize>
     </PropertyGroup>
 

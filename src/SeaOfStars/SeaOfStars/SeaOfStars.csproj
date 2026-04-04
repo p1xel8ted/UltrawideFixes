@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Product>Sea of Stars Ultra-Wide</Product>
+        <Version>0.4.0</Version>
+        <AssemblyName>SeaOfStarsUltraWide</AssemblyName>
+        <AssemblyVersion>$(Version)</AssemblyVersion>
+        <FileVersion>$(Version)</FileVersion>
+        <DefineConstants>TRACE;BepInEx_IL2CPP</DefineConstants>
+        <OutputPath>$(BepInExPluginsPath)</OutputPath>
+        <RestoreAdditionalProjectSources>
+            https://api.nuget.org/v3/index.json;
+            https://nuget.bepinex.dev/v3/index.json;
+            https://nuget.samboy.dev/v3/index.json
+        </RestoreAdditionalProjectSources>
+    </PropertyGroup>
+
+    <Import Project="../../../zip.target"/>
+
+    <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.755" IncludeAssets="compile"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="$(InteropPath)\*.dll">
+        <HintPath>$(InteropPath)\%(Filename)%(Extension)</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="libs\*.dll">
+        <HintPath>libs\%(Filename)%(Extension)</HintPath>
+      </Reference>
+    </ItemGroup>
+</Project>

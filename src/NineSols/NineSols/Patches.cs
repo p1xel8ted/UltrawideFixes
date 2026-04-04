@@ -6,7 +6,7 @@ public static class Patches
     private static readonly WriteOnce<Vector3> OriginalScale = new();
     private static readonly Dictionary<int, CanvasScaler.ScreenMatchMode> OriginalScaleModes = new();
     internal static readonly List<CanvasScaler> Scalers = [];
-    
+
     internal static void ProcessScaler(CanvasScaler scaler)
     {
         var instanceID = scaler.GetInstanceID();
@@ -147,12 +147,31 @@ public static class Patches
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(CameraCore), nameof(CameraCore.UpdateRendertexture))]
-    public static void CameraCore_UpdateRenderTexture(CameraCore __instance)
+    [HarmonyPatch(typeof(CameraManager), nameof(CameraManager.GetProCameraSize))]
+    public static void CameraManager_GetProCameraSize(ref Vector2 __result)
     {
+        __result.x = __result.y * Plugin.MainAspectRatio;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CameraCore), nameof(CameraCore.Update))]
+    public static void CameraCore_Update(CameraCore __instance)
+    {
+        if (Plugin.MainAspectRatio <= Plugin.NativeAspectRatio) return;
+
+        var mainCam = __instance.theRealSceneCamera;
+        if (mainCam == null) return;
+
         foreach (var cam in __instance.LightMaskCameras)
         {
-            cam.aspect = Plugin.NativeAspectRatio;
+            if (cam == null) continue;
+            cam.projectionMatrix = mainCam.projectionMatrix;
+
+            var rt = cam.targetTexture;
+            if (rt != null)
+            {
+                cam.pixelRect = new Rect(0, 0, rt.width, rt.height);
+            }
         }
     }
 }

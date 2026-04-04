@@ -1,4 +1,4 @@
-namespace TheEternalLifeOfGoldman;
+namespace PrisonOfHusks;
 
 /// <summary>
 /// Caches the primary display's native resolution and aspect ratio at startup.

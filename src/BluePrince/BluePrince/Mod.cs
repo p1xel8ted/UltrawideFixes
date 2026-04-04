@@ -1,12 +1,12 @@
-[assembly: MelonInfo(typeof(Mod), "Blue Prince Ultra-Wide", "0.1.0", "p1xel8ted")]
+[assembly: MelonInfo(typeof(Mod), "Blue Prince Ultra-Wide", "0.1.1", "p1xel8ted")]
 
 namespace BluePrince;
 
 public class Mod : MelonMod
 {
 #if DEBUG
-    internal const int NativeDisplayWidth = 3200;
-    internal const int NativeDisplayHeight = 900;
+    internal const int NativeDisplayWidth = 1600;
+    internal const int NativeDisplayHeight = 1000;
 #else
     internal static readonly int NativeDisplayWidth = Display.main.systemWidth; //3440
     internal static readonly int NativeDisplayHeight = Display.main.systemHeight; //1440

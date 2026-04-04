@@ -12,10 +12,10 @@ public class Plugin : BaseUnityPlugin
     internal static readonly int MainWidth = Display.main.systemWidth; //3440
     internal static readonly int MainHeight = Display.main.systemHeight; //1440
 
-    internal static ConfigEntry<bool> CorrectFixedUpdateRate { get; private set; }
-    internal static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; private set; }
+    private static ConfigEntry<bool> CorrectFixedUpdateRate { get; set; }
+    private static ConfigEntry<bool> UseRefreshRateForFixedUpdateRate { get; set; }
     internal static ConfigEntry<bool> Notifications { get; private set; }
-    internal static WriteOnce<float> OriginalFixedUpdateRate { get; } = new();
+    private static WriteOnce<float> OriginalFixedUpdateRate { get; } = new();
     public static ConfigFile ConfigFile { get; private set; }
 
     private void Awake()

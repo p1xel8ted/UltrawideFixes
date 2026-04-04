@@ -18,7 +18,7 @@ public static class Patches
             Scalers.Add(scaler);
         }
 
-        scaler.screenMatchMode = Mod.MainAspect > Mod.NativeAspectRatio ? CanvasScaler.ScreenMatchMode.Expand : mode;
+        scaler.screenMatchMode = Mathf.Approximately(Mod.MainAspect, Mod.NativeAspectRatio) ? mode : CanvasScaler.ScreenMatchMode.Expand;
     }
 
     private static void UpdateCam(Camera cam)
@@ -62,6 +62,14 @@ public static class Patches
         __instance.barTop.enabled = false;
         __instance.barLeft.enabled = false;
         __instance.barRight.enabled = false;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ResolutionSetter), nameof(ResolutionSetter.Start))]
+    [HarmonyPatch(typeof(ResolutionSetter), nameof(ResolutionSetter.Update))]
+    public static void ResolutionSetter_Update(ResolutionSetter __instance)
+    {
+        __instance.TargetAspectRatio = Mod.MainAspect;
     }
 
     [HarmonyPostfix]

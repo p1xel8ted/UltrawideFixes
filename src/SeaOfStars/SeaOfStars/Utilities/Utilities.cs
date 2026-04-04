@@ -1,0 +1,135 @@
+﻿// Utilities.cs
+
+namespace SeaOfStars.Utilities;
+
+public static class Utilities
+{
+    private static T TryAddComponent<T>(this GameObject go) where T : Component
+    {
+        var component = go.GetComponent<T>();
+        if (!component)
+        {
+            component = go.AddComponent<T>();
+        }
+
+        return component;
+    }
+
+    internal static void SortByPixelCount(this List<Resolution> resolutions)
+    {
+        resolutions.Sort((a, b) => (a.width * a.height).CompareTo(b.width * b.height));
+    }
+    internal static void SortByPixelCount(this Il2CppSystem.Collections.Generic.List<Resolution> resolutions)
+    {
+        var tList = resolutions.ToArray().ToList();
+        tList.Sort((a, b) => (a.width * a.height).CompareTo(b.width * b.height));
+        resolutions.Clear();
+        foreach (var res in tList)
+        {
+            resolutions.Add(res);
+        }
+    }
+
+    internal static void UpdateScreenTransform(Transform parent, bool cloneBackground, string name)
+    {
+        var screen = parent.FindChild(name);
+        if (!screen)
+        {
+            Plugin.Logger.LogError($"Screen {name} not found in {parent.name}");
+            return;
+        }
+
+        if (cloneBackground)
+        {
+            ReplaceWithBackgroundImage(screen);
+        }
+        else
+        {
+            screen.localScale = new Vector3(DisplayManager.PositiveScaleFactor, 1f, 1f);
+        }
+    }
+
+    internal static void AddContentSizeFitter(GameObject parent, bool ignore = false)
+    {
+        var width = SoSuiManager.GetPixelPerfectVector();
+        var le = parent.TryAddComponent<LayoutElement>();
+        le.preferredWidth = width.x;
+
+        var csf = parent.TryAddComponent<ContentSizeFitter>();
+        csf.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+        var lc = parent.TryAddComponent<LayoutController>();
+        lc.LayoutElement = le;
+        lc.ContentSizeFitter = csf;
+        lc.OriginalPreferredWidth = width.x;
+        lc.Ignore = ignore;
+
+        if (!SoSuiManager.LayoutControllers.Contains(lc))
+        {
+            SoSuiManager.LayoutControllers.Add(lc);
+        }
+    }
+
+    /// <summary>
+    /// Replaces an existing image component within a child object with a new background image.
+    /// </summary>
+    private static void ReplaceWithBackgroundImage(Transform parentTransform)
+    {
+        // Check if the background image already exists.
+        if (parentTransform.Find("BackgroundImage") != null) return;
+
+        // Get the existing Image component.
+        var existingImage = parentTransform.GetComponent<Image>();
+        if (existingImage == null)
+        {
+            Plugin.Logger.LogWarning($"No Image component found on '{parentTransform}'.");
+            return;
+        }
+
+        // Create a new GameObject for the background image.
+        var backgroundImage = new GameObject("BackgroundImage");
+
+        // Add an Image component and copy properties from the existing image.
+        var newImage = backgroundImage.AddComponent<Image>();
+        newImage.color = existingImage.color;
+        newImage.sprite = existingImage.sprite;
+
+        // Set the new background image as a child of the target child.
+        backgroundImage.transform.SetParent(parentTransform);
+
+        // Configure RectTransform.
+        var rect = backgroundImage.GetComponent<RectTransform>();
+        rect.sizeDelta = new Vector2(DisplayManager.MainWidth, DisplayManager.MainWidth);
+        rect.anchoredPosition = Vector2.zero;
+        rect.SetAsFirstSibling();
+
+        // Remove the old Image component.
+        Object.Destroy(existingImage);
+    }
+
+    public static float FindLowestFrameRateMultipleAboveFifty(float originalRate)
+    {
+        for (var rate = originalRate / 2; rate > 50; rate--)
+        {
+            if (originalRate % rate == 0)
+            {
+                return rate;
+            }
+        }
+
+        return originalRate;
+    }
+
+    public static List<T> FindIl2CppType<T>() where T : Object
+    {
+        var results = Resources.FindObjectsOfTypeAll(Il2CppType.Of<T>());
+        var list = new List<T>(results.Length);
+        foreach (var obj in results)
+        {
+            var cast = obj.TryCast<T>();
+            if (cast != null) list.Add(cast);
+        }
+        return list;
+    }
+
+}
