@@ -468,6 +468,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 <div id="R"/>
 <details><summary>R (2)</summary>
 
+## [REPLACED](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Replaced)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Replaced/total?label=downloads&style=for-the-badge)
+
+Coming
+
 ## [Rogue Flight](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/RogueFlight)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/RogueFlight/total?label=downloads&style=for-the-badge)
 
