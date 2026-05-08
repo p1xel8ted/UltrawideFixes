@@ -26,15 +26,26 @@ public static class Patches
             Plugin.Logger.LogInfo($"CameraARCap ({__instance.name}): Set aspect ratio cap to {DisplayMetrics.MainWidth}x{DisplayMetrics.MainHeight}");
         }
     }
+    
+    /// <summary>
+    /// Disables the pillarbox overlay camera and widens the max aspect to match the display.
+    /// </summary>
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(CameraPillarBox), nameof(CameraPillarBox.SetPillarBoxEnabled))]
+    public static void CameraPillarBox_SetPillarBoxEnabled(ref bool value)
+    {
+        value = false;
+        Plugin.Logger.LogInfo($"CameraPillarBox: Overridden SetPillarBoxEnabled to always disable pillarbox (value set to false)");
+    }
 
     /// <summary>
-    /// Disables the pillarbox overlay camera and updates the target aspect to match the display.
+    /// Disables the pillarbox overlay camera and widens the max aspect to match the display.
     /// </summary>
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CameraPillarBox), nameof(CameraPillarBox.OnEnable))]
     public static void CameraPillarBox_OnEnable(CameraPillarBox __instance)
     {
-        __instance.targetAspect = DisplayMetrics.MainAspect;
+        __instance.maxAspect = DisplayMetrics.MainAspect + 10f;
         __instance.SetPillarBoxEnabled(false);
         Plugin.Logger.LogInfo($"CameraPillarBox ({__instance.name}): Disabled pillarbox");
     }

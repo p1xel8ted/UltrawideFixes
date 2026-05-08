@@ -9,7 +9,7 @@ public class Plugin : BasePlugin
 {
     private const string PluginGuid = "p1xel8ted.planetoflana2.ultrawide";
     private const string PluginName = "Planet of Lana 2 Ultra-Wide";
-    private const string PluginVersion = "0.1.0";
+    private const string PluginVersion = "0.1.1";
 
     /// <summary>
     /// Shared logger instance used by Harmony patches.
