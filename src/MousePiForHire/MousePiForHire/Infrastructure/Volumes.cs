@@ -1,16 +1,15 @@
-namespace MousePiForHire;
+namespace MousePiForHire.Infrastructure;
 
-// URP post-processing controller. Registers a `ConfigEntry<bool>` per distinct VolumeComponent type
-// found in the scene under `02. Post-Processing`, then applies the config-driven active state to
-// every matching component on the loaded Volumes.
+// Post-processing controls. Adds a config toggle for each effect found in the current scene
+// (under "02. Post-Processing") and turns those effects on or off based on the config value.
 public static class Volumes
 {
     private static int _startOrder = 98;
 
     private static readonly Dictionary<string, ConfigEntry<bool>> ConfigEntries = new();
 
-    // Walks every active Volume's profile, registers any new component type as a config entry,
-    // then calls UpdateVolumes to push current values to scene components.
+    // Looks at every Volume in the scene, adds a config toggle for any effect we haven't seen
+    // before, then applies the current values.
     internal static void ScanAndApply()
     {
         var newEntries = 0;
@@ -45,8 +44,8 @@ public static class Volumes
         UpdateVolumes();
     }
 
-    // Pushes config values onto every matching VolumeComponent.active in the scene. Fires from
-    // SettingChanged so config toggles take effect live.
+    // Applies the current config values to every matching effect in the scene. Runs whenever a
+    // config toggle is changed, so changes take effect right away.
     private static void UpdateVolumes()
     {
         var changed = 0;

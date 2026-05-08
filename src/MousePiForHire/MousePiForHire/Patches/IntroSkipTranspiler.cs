@@ -1,8 +1,8 @@
-namespace MousePiForHire;
+namespace MousePiForHire.Patches;
 
-// Skips publisher/engine splash screens by zeroing fade durations and the inter-splash delay in the
-// ShowSplashScreenAsync state machine. Resolved via AsyncStateMachineAttribute -> MoveNext.
+// Skips publisher/engine splash screens by zeroing the fade durations and the wait between splashes.
 [Harmony]
+[HarmonyPriority(Priority.First)]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class IntroSkipTranspiler
 {

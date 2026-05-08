@@ -1,3 +1,5 @@
+using MousePiForHire.Infrastructure;
+
 namespace MousePiForHire;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
@@ -27,16 +29,16 @@ public class Plugin : BaseUnityPlugin
             new ConfigDescription("Lowest FOV the in-game slider can reach.",
                 new AcceptableValueRange<int>(30, 120),
                 new ConfigurationManagerAttributes { Order = 6 }));
-        FovMin.SettingChanged += (_, _) => Patches.ApplyFovBounds();
+        FovMin.SettingChanged += (_, _) => Patches.Patches.ApplyFovBounds();
 
         FovMax = Config.Bind("01. General", "FOV Slider Max", 120,
             new ConfigDescription("Highest FOV the in-game slider can reach.",
                 new AcceptableValueRange<int>(60, 150),
                 new ConfigurationManagerAttributes { Order = 5 }));
-        FovMax.SettingChanged += (_, _) => Patches.ApplyFovBounds();
+        FovMax.SettingChanged += (_, _) => Patches.Patches.ApplyFovBounds();
 
-        // Defensive cache bust: any consumer that read GetAvailableResolutions before our IsUltraWide
-        // postfix is attached would have memoised a list with ultrawide entries already filtered.
+        // Clear any resolution list the game may have already cached before our patch was attached,
+        // since that cached list would have ultrawide entries filtered out.
         DisplayUtility._lastRawResolutions = null;
         DisplayUtility._cachedUnique = null;
 

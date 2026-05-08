@@ -1,20 +1,20 @@
-namespace MousePiForHire;
+namespace MousePiForHire.Infrastructure;
 
-// Cached display info read once at type-load. Used by patches that need the player's actual ultrawide
-// dimensions (e.g. AspectRatioFitter aspect, injected resolution row).
+// Display info, read once on first use. Used wherever a patch needs the player's actual screen
+// size or aspect (resolution list, aspect fitters, etc.).
 internal static class DisplayMetrics
 {
     internal static readonly int NativeSystemWidth = Display.main.systemWidth;
     internal static readonly int NativeSystemHeight = Display.main.systemHeight;
     internal static readonly float NativeSystemAspect = NativeSystemWidth / (float)NativeSystemHeight;
 
-    // Reference 16:9 aspect for "constrain to native" decisions (main menu fitter).
+    // 16:9, used where we want to keep something at the game's intended aspect (e.g. main menu).
     internal const float NativeAspect = 16f / 9f;
 
     internal static float PositiveScaleFactor = NativeSystemAspect / NativeAspect;
     internal static bool IsWiderThanNative => NativeSystemAspect > NativeAspect;
 
-    // Highest refresh rate Unity reports for the active display - used as the synthetic refresh
-    // for the injected native-resolution row in ScreenResolutionsTranspiler.
+    // Highest refresh rate the display reports. Used when we add the player's native resolution
+    // to the in-game list.
     public static readonly RefreshRate MaxRefreshRate = Screen.resolutions.OrderByDescending(r => r.refreshRateRatio.value).First().refreshRateRatio;
 }

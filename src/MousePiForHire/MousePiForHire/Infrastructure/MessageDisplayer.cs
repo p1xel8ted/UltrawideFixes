@@ -1,4 +1,4 @@
-namespace MousePiForHire;
+namespace MousePiForHire.Infrastructure;
 
 /// <summary>
 /// Singleton component for displaying temporary on-screen messages at different corner positions.

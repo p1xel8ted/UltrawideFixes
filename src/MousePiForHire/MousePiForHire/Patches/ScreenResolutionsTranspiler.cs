@@ -1,14 +1,16 @@
-﻿namespace MousePiForHire;
+﻿using MousePiForHire.Infrastructure;
 
-// Transpiler that swaps `Screen.resolutions` calls inside the game's resolution-handling methods
-// with our MyResolutions(), which adds the player's native ultrawide entry, dedupes, and sorts
-// descending so it shows up at the top of the in-game dropdown.
+namespace MousePiForHire.Patches;
+
+// Replaces calls to Screen.resolutions inside the game's resolution code with MyResolutions(),
+// which adds the player's native ultrawide entry so it shows up in the in-game dropdown.
 [Harmony]
+[HarmonyPriority(Priority.First)]
 public static class ScreenResolutionsTranspiler
 {
     private static bool _myResolutionsLogged;
 
-    // Substitute resolution list. Tuple-key GroupBy avoids ValueType.Equals reflection on Resolution.
+    // Builds the resolution list. GroupBy on a tuple key is faster than Distinct() on Resolution.
     public static Resolution[] MyResolutions()
     {
         var newRes = new Resolution
@@ -35,8 +37,7 @@ public static class ScreenResolutionsTranspiler
         return result;
     }
 
-    // Every game method that pulls the resolution list - need to redirect them all to see the
-    // injected native entry consistently.
+    // Every game method that reads the resolution list - all of them need to see our entry.
     [HarmonyTargetMethods]
     [UsedImplicitly]
     private static IEnumerable<MethodBase> TargetMethods()

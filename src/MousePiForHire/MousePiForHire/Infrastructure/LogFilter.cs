@@ -1,8 +1,8 @@
-namespace MousePiForHire;
+namespace MousePiForHire.Infrastructure;
 
-// Suppresses noisy Unity engine warnings (e.g. BoxCollider negative-scale) from both Unity's player
-// log and BepInEx's LogOutput.log. Add prefixes to SuppressedPrefixes to mute more patterns - match
-// is StartsWith so scene-hierarchy-path tails don't matter.
+// Hides noisy Unity engine warnings (e.g. BoxCollider negative-scale) from both Unity's player
+// log and BepInEx's LogOutput.log. Add to SuppressedPrefixes to hide more - matched as a prefix
+// so any trailing path/object name still gets caught.
 internal sealed class LogFilter : ILogHandler
 {
     private static readonly string[] SuppressedPrefixes =
@@ -39,9 +39,8 @@ internal sealed class LogFilter : ILogHandler
         return false;
     }
 
-    // Called from the Harmony prefix on BepInEx.Logging.UnityLogSource.OnUnityLogMessageReceived.
-    // Tracks separate count from the Unity-side filter so a bug-report log shows whether either
-    // path is doing work.
+    // Called from the Harmony patch on BepInEx's UnityLogSource. Counts separately from the
+    // Unity-side filter so a bug-report log shows which path actually caught it.
     internal static bool ShouldSuppressFromBepInEx(string message)
     {
         if (!ShouldSuppress(message)) return false;

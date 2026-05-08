@@ -1,18 +1,21 @@
-namespace MousePiForHire;
+using MousePiForHire.Infrastructure;
+
+namespace MousePiForHire.Patches;
 
 [Harmony]
+[HarmonyPriority(Priority.First)]
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class Patches
 {
     private const string DashIndicator = "DashIndicator";
     private const string Sinai = "sinai";
 
-    // Cached on first GraphicsStateSettings.Get; live UI sliders self-register via SetSetting postfix.
+    // Captured the first time the game reads graphics settings. Sliders add themselves when they bind to it.
     private static MouseSettings.SettingInt _fovSetting;
     private static (int min, int max, int outMin, int outMax)? _originalFovBounds;
     private static readonly List<UI.ValueChangeSelectableSlider> _fovSliders = [];
 
-    // Dedupe sets: hot patches log at most once per unique key so bug-report logs stay readable.
+    // Tracks what's already been logged so frequently-hit patches don't spam the log.
     private static readonly HashSet<(int, int)> _isUltraWideLogged = [];
     private static readonly HashSet<int> _canvasScalerLogged = [];
     private static readonly HashSet<int> _overlayFitterLogged = [];
@@ -21,8 +24,7 @@ public static class Patches
     private static bool _powerUpSkipLogged;
     private static bool _startScreenSkipLogged;
 
-    // Idempotent fitter add. HeightControlsWidth + native aspect makes 16:9 sprite art cover full
-    // ultrawide on overlay rects.
+    // Adds an AspectRatioFitter so the rect fills the given aspect. Safe to call more than once.
     private static void EnsureAspectRatioFitter(GameObject go, float aspectRatio, string context)
     {
         var hadFitter = go.TryGetComponent<AspectRatioFitter>(out _);
@@ -35,12 +37,12 @@ public static class Patches
         }
     }
 
-    // Writes config-driven FOV bounds onto the SettingInt SO and pushes to any live UI sliders.
+    // Applies the config's FOV min/max to the game and to any sliders currently on screen.
     public static void ApplyFovBounds()
     {
         if (!_fovSetting || _originalFovBounds == null)
         {
-            Plugin.Log.LogInfo($"[FOV] ApplyFovBounds called but FOV setting not yet captured (setting={_fovSetting != null}, original={_originalFovBounds != null}); skipping.");
+            Plugin.Log.LogInfo($"[FOV] ApplyFovBounds called but FOV setting not yet captured (setting={_fovSetting}, original={_originalFovBounds != null}); skipping.");
             return;
         }
 
@@ -74,8 +76,8 @@ public static class Patches
         Plugin.Log.LogInfo($"[FOV] Bounds applied: {min}-{max} (config: min={Plugin.FovMin?.Value}, max={Plugin.FovMax?.Value}; original min={_originalFovBounds.Value.min}, max={_originalFovBounds.Value.max}). Pushed to {pushed} live slider(s), pruned {pruned} stale.");
     }
 
-    // Core ultrawide unlock - the same bool gates the resolution dropdown filter, the windowed-mode
-    // fallback, and the ExclusiveFullScreen block.
+    // The main ultrawide unlock. The game uses this to filter the resolution list, force windowed
+    // mode at non-16:9, and block exclusive fullscreen.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(DisplayUtility), nameof(DisplayUtility.IsUltraWide))]
     public static void DisplayUtility_IsUltraWide(int width, int height, ref bool __result)
@@ -88,8 +90,7 @@ public static class Patches
         }
     }
 
-    // Auto-advance past the press-any-key screen by triggering the same MainMenu transition the user
-    // would have on input.
+    // Skip the press-any-key screen by going straight to the main menu.
     [HarmonyPrefix]
     [HarmonyPatch(typeof(StartScreenController), nameof(StartScreenController.EnableInput))]
     public static void StartScreenController_EnableInput(StartScreenController __instance)
@@ -103,7 +104,7 @@ public static class Patches
         }
     }
 
-    // Fullscreen-effect overlays (dash, power-up tints, etc.) - 16:9 art stretched to ultrawide.
+    // Fullscreen effect overlays (dash, power-up tints, etc.) - sized to fill the actual screen.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UiOverlay), nameof(UiOverlay.TryDisplaying))]
     public static void UiOverlay_TryDisplaying(UiOverlay __instance)
@@ -111,7 +112,7 @@ public static class Patches
         EnsureAspectRatioFitter(__instance.gameObject, DisplayMetrics.NativeSystemAspect, "fullscreen overlay");
     }
 
-    // Main menu kept at native 16:9 aspect (menu UI was authored for 16:9; stretching looks wrong).
+    // Main menu stays 16:9 - the menu art was made for 16:9 and looks wrong stretched.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainMenuController), nameof(MainMenuController.Start))]
     public static void MainMenuController_Start(MainMenuController __instance)
@@ -119,7 +120,7 @@ public static class Patches
         EnsureAspectRatioFitter(__instance.gameObject, DisplayMetrics.NativeAspect, "main menu (16:9)");
     }
 
-    // Dash indicator overlay - same fullscreen-cover treatment as UiOverlay.
+    // Dash indicator overlay - filled the same way as the other fullscreen overlays.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UIOneTimeSpritePlayer), nameof(UIOneTimeSpritePlayer.Start))]
     public static void UIOneTimeSpritePlayer_Start(UIOneTimeSpritePlayer __instance)
@@ -128,7 +129,7 @@ public static class Patches
         EnsureAspectRatioFitter(__instance.gameObject, DisplayMetrics.NativeSystemAspect, "dash indicator");
     }
 
-    // Register FOV-bound UI sliders so ApplyFovBounds can push live without scene-wide FindObjects.
+    // Tracks FOV sliders as they appear so config changes can reach them without scanning the scene.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(UI.ValueChangeSelectableSlider), nameof(UI.ValueChangeSelectableSlider.SetSetting))]
     public static void ValueChangeSelectableSlider_SetSetting(UI.ValueChangeSelectableSlider __instance, MouseSettings.BaseSettingAsset settingAsset)
@@ -139,8 +140,8 @@ public static class Patches
         Plugin.Log.LogInfo($"[FOV] Registered live slider '{__instance.gameObject.name}' (now tracking {_fovSliders.Count}). Future bound changes via config will push directly without scene scan.");
     }
 
-    // Earliest universally-reached hook for the FOV SettingInt - captures stock bounds on first
-    // call so we have an "original" to revert to and apply config bounds.
+    // First reliable place to grab the FOV setting. Saves the original min/max so we can restore
+    // or extend them.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Mouse.GraphicsStateSettings), nameof(Mouse.GraphicsStateSettings.Get))]
     public static void GraphicsStateSettings_Get(Mouse.GraphicsStateSettings __result)
@@ -153,8 +154,8 @@ public static class Patches
         ApplyFovBounds();
     }
 
-    // Force MatchWidthOrHeight/1.0 (height-match) so HUD anchors reach actual screen edges instead
-    // of horizontally stretching. UnityExplorer's own canvases are skipped.
+    // Scales the UI off screen height so the HUD stays the right size on ultrawide instead of
+    // getting bigger with the wider screen. Skips UnityExplorer's own canvases.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CanvasScaler), nameof(CanvasScaler.OnEnable))]
     public static void CanvasScaler_OnEnable(CanvasScaler __instance)
@@ -189,8 +190,8 @@ public static class Patches
         }
     }
 
-    // Drops noisy Unity warnings (e.g. BoxCollider negative-scale) from BepInEx's LogOutput.log.
-    // See LogFilter for the suppression list.
+    // Hides noisy Unity warnings (e.g. BoxCollider negative-scale) from BepInEx's LogOutput.log.
+    // The list of what gets hidden lives in LogFilter.
     [HarmonyPrefix]
     [HarmonyPatch(typeof(UnityLogSource), nameof(UnityLogSource.OnUnityLogMessageReceived))]
     public static bool UnityLogSource_OnUnityLogMessageReceived_Prefix(string message)
@@ -198,8 +199,8 @@ public static class Patches
         return !LogFilter.ShouldSuppressFromBepInEx(message);
     }
 
-    // Suppresses the "Tried to Initialize the SteamAPI twice" throw caused by
-    // ApplicationStateWatcher.OnDestroy lazy-recreating SteamManager during shutdown.
+    // Stops the "Tried to Initialize the SteamAPI twice" crash that happens on shutdown when the
+    // game tries to recreate SteamManager.
     [HarmonyPrefix]
     [HarmonyPatch(typeof(SteamManager), nameof(SteamManager.Instance), MethodType.Getter)]
     public static bool SteamManager_Instance_Prefix(ref SteamManager __result)
@@ -215,8 +216,8 @@ public static class Patches
         return false;
     }
 
-    // Skips refresh during Player.OnDestroy teardown when ScriptableObject presets have been
-    // destroyed - avoids NRE from ItemData.GetId reading .name on a fake-null SO.
+    // Skips the refresh while the player is being destroyed and the power-up data is already
+    // gone, otherwise the game crashes trying to read it.
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PowerUpInventory), nameof(PowerUpInventory.RefreshPowerUps))]
     public static bool PowerUpInventory_RefreshPowerUps_Prefix(PowerUpInventory __instance)
@@ -232,8 +233,8 @@ public static class Patches
 
     }
 
-    // Lifts the FPS slider's artificial refresh*2 cap up to maxFPSBeforeUnlimited (500), the
-    // existing ceiling already on the SO.
+    // Raises the FPS slider's max from refresh*2 (180 on a 90Hz screen) up to 500, which is
+    // already the game's own hard ceiling.
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MouseSettings.SettingFPSLimit), nameof(MouseSettings.SettingFPSLimit.CalculateMaxFramerate))]
     public static void SettingFPSLimit_CalculateMaxFramerate(MouseSettings.SettingFPSLimit __instance, ref int __result)
