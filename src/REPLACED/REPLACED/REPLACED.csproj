@@ -25,6 +25,8 @@
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
+    <Import Project="../zip.target"/>
+
     <ItemDefinitionGroup>
         <Reference>
             <Private>False</Private>
@@ -45,11 +47,11 @@
       <Reference Include="Assembly-CSharp">
         <HintPath>$(InteropPath)\Assembly-CSharp.dll</HintPath>
       </Reference>
+      <Reference Include="Cinemachine">
+        <HintPath>$(InteropPath)\Cinemachine.dll</HintPath>
+      </Reference>
       <Reference Include="Il2Cppmscorlib">
         <HintPath>$(InteropPath)\Il2Cppmscorlib.dll</HintPath>
-      </Reference>
-      <Reference Include="Replaced.Rendering">
-        <HintPath>$(InteropPath)\Replaced.Rendering.dll</HintPath>
       </Reference>
       <Reference Include="Unity.Addressables">
         <HintPath>$(InteropPath)\Unity.Addressables.dll</HintPath>
