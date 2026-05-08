@@ -802,3 +802,26 @@ Processed/
 *.DotSettings
 *.zip
 .serena/
+
+# Project-root mockup PNGs (e.g. src/<game>/menu.png).
+# Only matches files exactly two levels deep, so EmbeddedResource PNGs
+# under src/<game>/<project>/assets/, /Buttons/, /Images/ etc. are kept.
+/src/*/*.png
+
+# Decompiled-assembly and disassembler output dirs
+decompiled_assembly/
+decompiled_code/
+/src/*/ghidra/
+/src/*/il2cppdumper/
+
+# Local .NET CLI tool installs (per-project)
+/src/*/.dotnet/
+/src/*/*/.dotnet/
+
+# Reference / scratch source dumps pulled in for inspection (never built)
+/src/*/New folder/
+/src/*/*/New folder/
+
+# ProtonDrive sync conflict / name-clash markers
+*(# Edit conflict *)*
+*(# Name clash *)*
