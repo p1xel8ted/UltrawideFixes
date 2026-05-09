@@ -386,6 +386,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![1](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/7322ecd0-1bd6-476b-9200-318990d213a6) ![2](https://github.com/p1xel8ted/UltrawideFixes/assets/10510767/deaa5ecb-d8fd-4c02-9456-5c76c8f0f059)
 
+## [MOUSE: P.I. For Hire](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/MousePiForHire)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/MousePiForHire/total?label=downloads&style=for-the-badge)
+
+<img width="645" height="270" alt="main_menu" src="https://github.com/user-attachments/assets/74d2bfb6-08fd-4473-9f2d-1ea5b07dcfc4" /> <img width="645" height="270" alt="main_game" src="https://github.com/user-attachments/assets/6eb2afe9-0ebb-4c43-b19d-19188d80062d" />
+
 ## [Moonlighter](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/Moonlighter)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/Moonlighter/total?label=downloads&style=for-the-badge)
 
