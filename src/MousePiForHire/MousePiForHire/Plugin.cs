@@ -1,8 +1,7 @@
-using MousePiForHire.Infrastructure;
-
 namespace MousePiForHire;
 
 [BepInPlugin(PluginGuid, PluginName, PluginVersion)]
+[BepInDependency("com.bepis.bepinex.configurationmanager")]
 public class Plugin : BaseUnityPlugin
 {
     private const string PluginGuid = "p1xel8ted.mousepiforhire.ultrawide";
@@ -14,6 +13,8 @@ public class Plugin : BaseUnityPlugin
     internal static ConfigEntry<bool> Notifications { get; private set; }
     internal static ConfigEntry<int> FovMin { get; private set; }
     internal static ConfigEntry<int> FovMax { get; private set; }
+
+    private InputBlocker _inputBlocker;
 
     private void Awake()
     {
@@ -47,6 +48,8 @@ public class Plugin : BaseUnityPlugin
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), PluginGuid);
+
+        _inputBlocker = new InputBlocker();
 
         Logger.LogInfo($"Plugin {PluginName} initialized. Native display: {DisplayMetrics.NativeSystemWidth}x{DisplayMetrics.NativeSystemHeight}, aspect={DisplayMetrics.NativeSystemAspect:F4}, isWider={DisplayMetrics.IsWiderThanNative}");
     }

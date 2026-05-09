@@ -1,5 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="Environment.props" Condition="Exists('Environment.props')"/>
+    <Import Project="Environment.props" Condition="Exists('Environment.props')" />
     <PropertyGroup>
         <TargetFramework>net481</TargetFramework>
         <Product>MOUSE P.I. For Hire Ultra-Wide</Product>
@@ -22,28 +22,21 @@
         <Deterministic>true</Deterministic>
         <IsPackable>false</IsPackable>
         <NoWarn>$(NoWarn);CS0618</NoWarn>
+        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-    <Import Project="../zip.target"/>
+    <Import Project="../zip.target" />
 
     <ItemGroup>
         <PackageReference Remove="BepInEx.AssemblyPublicizer.MSBuild" />
-<!--        <PackageReference Include="JetBrains.Annotations" Version="2025.2.4">-->
-<!--          <PrivateAssets>all</PrivateAssets>-->
-<!--          <ExcludeAssets>runtime</ExcludeAssets>-->
-<!--        </PackageReference>-->
     </ItemGroup>
-
-    <!-- Local BepInEx libs (replaces the NuGet BepInEx.Core package). Including everything in
-         libs\bepinex pulls Harmony / MonoMod / Mono.Cecil / BepInEx core all from one folder so we
-         build against the exact runtime the player has installed.
-         0Harmony20.dll is excluded because it's the legacy v2.0 compat shim; including it alongside
-         the modern 0Harmony.dll causes CS0433 type-collision errors (both define HarmonyPatch,
-         HarmonyPostfix, etc. in the same namespace). -->
+    
     <ItemGroup>
-        <Reference Include="$(MSBuildProjectDirectory)\..\libs\bepinex\*.dll"
-                   Exclude="$(MSBuildProjectDirectory)\..\libs\bepinex\0Harmony20.dll">
+        <Reference Include="$(MSBuildProjectDirectory)\..\libs\bepinex\*.dll" Exclude="$(MSBuildProjectDirectory)\..\libs\bepinex\0Harmony20.dll">
             <HintPath>$(MSBuildProjectDirectory)\..\libs\bepinex\%(Filename)%(Extension)</HintPath>
+        </Reference>
+        <Reference Include="ConfigurationManager">
+          <HintPath>$(MSBuildProjectDirectory)\..\libs\configmanager\ConfigurationManager.dll</HintPath>
         </Reference>
     </ItemGroup>
 
@@ -52,8 +45,7 @@
       <HintPath>$(StrippedLibs)\%(Filename)%(Extension)</HintPath>
       </Reference>
     </ItemGroup>
-
-   
+    
 
     <!-- Default all references to CopyLocal False -->
     <ItemDefinitionGroup>

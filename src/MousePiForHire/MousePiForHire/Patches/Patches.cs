@@ -1,4 +1,6 @@
-using MousePiForHire.Infrastructure;
+using Mouse;
+using MouseSettings;
+using UI;
 
 namespace MousePiForHire.Patches;
 
@@ -11,9 +13,9 @@ public static class Patches
     private const string Sinai = "sinai";
 
     // Captured the first time the game reads graphics settings. Sliders add themselves when they bind to it.
-    private static MouseSettings.SettingInt _fovSetting;
+    private static SettingInt _fovSetting;
     private static (int min, int max, int outMin, int outMax)? _originalFovBounds;
-    private static readonly List<UI.ValueChangeSelectableSlider> _fovSliders = [];
+    private static readonly List<ValueChangeSelectableSlider> _fovSliders = [];
 
     // Tracks what's already been logged so frequently-hit patches don't spam the log.
     private static readonly HashSet<(int, int)> _isUltraWideLogged = [];
@@ -22,7 +24,8 @@ public static class Patches
     private static bool _fpsCapLifted;
     private static bool _steamSuppressionLogged;
     private static bool _powerUpSkipLogged;
-    private static bool _startScreenSkipLogged;
+    private static bool _userEstablishedLogged;
+    private static bool _footstepsSkipLogged;
 
     // Adds an AspectRatioFitter so the rect fills the given aspect. Safe to call more than once.
     private static void EnsureAspectRatioFitter(GameObject go, float aspectRatio, string context)
@@ -86,21 +89,7 @@ public static class Patches
         __result = false;
         if (wasTrue && _isUltraWideLogged.Add((width, height)))
         {
-            Plugin.Log.LogInfo($"[IsUltraWide] {width}x{height}: forced true->false (game considered this ultrawide; we keep it in the resolution list).");
-        }
-    }
-
-    // Skip the press-any-key screen by going straight to the main menu.
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(StartScreenController), nameof(StartScreenController.EnableInput))]
-    public static void StartScreenController_EnableInput(StartScreenController __instance)
-    {
-        __instance.waitingForInput = false;
-        __instance.StartLoadingMainMenu();
-        if (!_startScreenSkipLogged)
-        {
-            _startScreenSkipLogged = true;
-            Plugin.Log.LogInfo("[StartScreen] Press-any-key skipped, advancing directly to MainMenu.");
+            Plugin.Log.LogInfo($"[IsUltraWide] {width}x{height}: forced true->false.");
         }
     }
 
@@ -131,20 +120,20 @@ public static class Patches
 
     // Tracks FOV sliders as they appear so config changes can reach them without scanning the scene.
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(UI.ValueChangeSelectableSlider), nameof(UI.ValueChangeSelectableSlider.SetSetting))]
-    public static void ValueChangeSelectableSlider_SetSetting(UI.ValueChangeSelectableSlider __instance, MouseSettings.BaseSettingAsset settingAsset)
+    [HarmonyPatch(typeof(ValueChangeSelectableSlider), nameof(ValueChangeSelectableSlider.SetSetting))]
+    public static void ValueChangeSelectableSlider_SetSetting(ValueChangeSelectableSlider __instance, BaseSettingAsset settingAsset)
     {
         if (!settingAsset || settingAsset != _fovSetting) return;
         if (_fovSliders.Contains(__instance)) return;
         _fovSliders.Add(__instance);
-        Plugin.Log.LogInfo($"[FOV] Registered live slider '{__instance.gameObject.name}' (now tracking {_fovSliders.Count}). Future bound changes via config will push directly without scene scan.");
+        Plugin.Log.LogInfo($"[FOV] Registered live slider '{__instance.gameObject.name}' (now tracking {_fovSliders.Count}).");
     }
 
     // First reliable place to grab the FOV setting. Saves the original min/max so we can restore
     // or extend them.
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Mouse.GraphicsStateSettings), nameof(Mouse.GraphicsStateSettings.Get))]
-    public static void GraphicsStateSettings_Get(Mouse.GraphicsStateSettings __result)
+    [HarmonyPatch(typeof(GraphicsStateSettings), nameof(GraphicsStateSettings.Get))]
+    public static void GraphicsStateSettings_Get(GraphicsStateSettings __result)
     {
         var setting = __result?.settingFieldOfView;
         if (!setting || _fovSetting == setting) return;
@@ -164,7 +153,7 @@ public static class Patches
         {
             if (_canvasScalerLogged.Add(__instance.GetInstanceID()))
             {
-                Plugin.Log.LogInfo($"[CanvasScaler] '{__instance.name}': skipped (UnityExplorer-owned, leaving alone).");
+                Plugin.Log.LogInfo($"[CanvasScaler] '{__instance.name}': skipped (UnityExplorer-owned).");
             }
 
             return;
@@ -210,7 +199,7 @@ public static class Patches
         if (!_steamSuppressionLogged)
         {
             _steamSuppressionLogged = true;
-            Plugin.Log.LogInfo("[SteamManager] Suppressed lazy-recreate during shutdown (s_instance fake-null + s_EverInitialized=true). Returning null to avoid 'Tried to Initialize the SteamAPI twice' throw.");
+            Plugin.Log.LogInfo("[SteamManager] Suppressed lazy-recreate during shutdown (s_instance fake-null + s_EverInitialized=true).");
         }
 
         return false;
@@ -227,7 +216,7 @@ public static class Patches
         if (presets.All(preset => preset)) return true;
         if (_powerUpSkipLogged) return false;
         _powerUpSkipLogged = true;
-        Plugin.Log.LogInfo("[PowerUpInventory] Skipping RefreshPowerUps: a powerupPreset SO has been destroyed (Player.OnDestroy teardown cascade). Avoids NRE in ItemData.GetId.");
+        Plugin.Log.LogInfo("[PowerUpInventory] Skipping RefreshPowerUps: a powerupPreset SO has been destroyed.");
 
         return false;
 
@@ -236,8 +225,8 @@ public static class Patches
     // Raises the FPS slider's max from refresh*2 (180 on a 90Hz screen) up to 500, which is
     // already the game's own hard ceiling.
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(MouseSettings.SettingFPSLimit), nameof(MouseSettings.SettingFPSLimit.CalculateMaxFramerate))]
-    public static void SettingFPSLimit_CalculateMaxFramerate(MouseSettings.SettingFPSLimit __instance, ref int __result)
+    [HarmonyPatch(typeof(SettingFPSLimit), nameof(SettingFPSLimit.CalculateMaxFramerate))]
+    public static void SettingFPSLimit_CalculateMaxFramerate(SettingFPSLimit __instance, ref int __result)
     {
         var vanilla = __result;
         if (vanilla >= __instance.maxFPSBeforeUnlimited) return;
@@ -245,5 +234,34 @@ public static class Patches
         if (_fpsCapLifted) return;
         _fpsCapLifted = true;
         Plugin.Log.LogInfo($"[FPSLimit] CalculateMaxFramerate vanilla returned {vanilla} (refresh*2 clamp); lifting to maxFPSBeforeUnlimited={__instance.maxFPSBeforeUnlimited}.");
+    }
+
+    // FootstepsController.Update runs before Initialise() has set _dependencies on the menu-scene
+    // player, dereferencing it inside DetectSurfaceType / PlayFootstepSound and throwing every
+    // frame. Skip the update until the dependencies are wired up.
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(FootstepsController), nameof(FootstepsController.Update))]
+    public static bool FootstepsController_Update_Prefix(FootstepsController __instance)
+    {
+        if (__instance._dependencies != null) return true;
+        if (_footstepsSkipLogged) return false;
+        _footstepsSkipLogged = true;
+        Plugin.Log.LogInfo("[Footsteps] Skipping Update: _dependencies still null.");
+        return false;
+    }
+
+    // Skipping StartScreenScene means the game never runs StartScreenController.LoadMainMenu, which
+    // would normally set UserEstablished=true before loading MainMenu. Set it here instead.
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SceneLoadingManager), nameof(SceneLoadingManager.LoadScene), typeof(string), typeof(Action), typeof(LoadSceneMode))]
+    public static void SceneLoadingManager_LoadScene(string sceneName)
+    {
+        if (sceneName != "MainMenu") return;
+        var service = ServiceManager.Instance?.GetService<ConsoleServiceBase>();
+        if (service == null) return;
+        service.UserEstablished = true;
+        if (_userEstablishedLogged) return;
+        _userEstablishedLogged = true;
+        Plugin.Log.LogInfo("[StartScreenSkip] Set ConsoleServiceBase.UserEstablished=true on MainMenu load.");
     }
 }

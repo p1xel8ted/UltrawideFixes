@@ -1,6 +1,4 @@
-﻿using MousePiForHire.Infrastructure;
-
-namespace MousePiForHire.Patches;
+﻿namespace MousePiForHire.Patches;
 
 // Replaces calls to Screen.resolutions inside the game's resolution code with MyResolutions(),
 // which adds the player's native ultrawide entry so it shows up in the in-game dropdown.
