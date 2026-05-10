@@ -13,11 +13,22 @@ public static class Patches
         __instance.gameObject.AddComponent<FoVController>();
     }
 
+    private static bool _wishlistButtonMissing;
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(InitMenuController), nameof(InitMenuController.OnEnter))]
     public static void InitMenuController_OnEnter(ref InitMenuController __instance)
     {
-        __instance.tormented2WishlistButton.SetActive(false);
+        // The Epic build has no Tormented Souls 2 wishlist button.
+        if (_wishlistButtonMissing) return;
+        try
+        {
+            __instance.tormented2WishlistButton.SetActive(false);
+        }
+        catch (MissingMethodException)
+        {
+            _wishlistButtonMissing = true;
+        }
     }
 
     [HarmonyPostfix]

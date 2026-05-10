@@ -4,7 +4,7 @@ internal static class Const
 {
     internal const string PluginGuid = "p1xel8ted.tormentedsouls.ultrawide";
     internal const string PluginName = "Tormented Souls Ultra-Wide (IL2CPP)";
-    internal const string PluginVersion = "0.1.4";
+    internal const string PluginVersion = "0.1.5";
     internal const string LogosInit = "LogosInit";
     internal const string MenuInit = "MenuInit";
     internal const string Background = "Background";
