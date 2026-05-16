@@ -214,7 +214,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="G"/>
-<details><summary>G (3)</summary>
+<details><summary>G (4)</summary>
 
 ## [Gestalt: Steam & Cinder](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/GestaltSteamCinder)
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/GestaltSteamCinder/total?label=downloads&style=for-the-badge)
@@ -230,6 +230,11 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/GIJoeWoC/total?label=downloads&style=for-the-badge)
 
 ![main_menu](https://github.com/user-attachments/assets/0dde3cee-68ba-4645-9292-f68683d24bb4) ![main_game](https://github.com/user-attachments/assets/a3837273-b272-483c-8f88-15be77c4a61b)
+
+## [Graveyard Keeper](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/GraveyardKeeper)
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/GraveyardKeeper/total?label=downloads&style=for-the-badge)
+
+<img width="645" height="270" alt="main_menu" src="https://github.com/user-attachments/assets/550fa045-8fdf-4dbc-8ba2-3f04fcf20a52" /> <img width="645" height="270" alt="main_game" src="https://github.com/user-attachments/assets/ce1d3030-7ed5-49c5-8902-0f8ef136bbac" />
 
 </details>
 <div id="H"/>
