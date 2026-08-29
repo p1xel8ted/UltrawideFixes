@@ -549,7 +549,7 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 </details>
 <div id="T"/>
-<details><summary>T (12)</summary>
+<details><summary>T (13)</summary>
   
 ## [Tails of Iron](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TailsOfIron) 
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TailsOfIron/total?label=downloads&style=for-the-badge)
@@ -589,6 +589,9 @@ Expand a section, and click on the game title to access the specific fix.<br/><b
 
 ![main_menu](https://github.com/user-attachments/assets/2f8c6d38-a917-43d9-8b20-e3af1ca5f459)
 ![main_game](https://github.com/user-attachments/assets/152db0c3-0db0-4c37-8982-6d42c366ba53)
+
+## [The Walking Dead: Streets of Survival](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheWalkingDeadStreetsOfSurvival)  
+![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheWalkingDeadStreetsOfSurvival/total?label=downloads&style=for-the-badge)
 
 ## [They Always Run](https://github.com/p1xel8ted/UltrawideFixes/releases/tag/TheyAlwaysRun)  
 ![GitHub release (by tag)](https://img.shields.io/github/downloads/p1xel8ted/UltrawideFixes/TheyAlwaysRun/total?label=downloads&style=for-the-badge)
