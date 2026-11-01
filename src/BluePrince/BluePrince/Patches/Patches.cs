@@ -25,6 +25,13 @@ public static class Patches
     {
         if (!cam) return;
 
+        // Cameras that render into a RenderTexture (e.g. the book magnifying glass) must keep the
+        // game's own aspect/rect; forcing the screen rect onto them offsets what the lens samples.
+        if (cam.targetTexture)
+        {
+            return;
+        }
+
         cam.aspect = Mod.MainAspect;
         cam.rect = new Rect(0, 0, 1, 1);
         cam.pixelRect = new Rect(0, 0, Mod.NativeDisplayWidth, Mod.NativeDisplayHeight);
