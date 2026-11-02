@@ -1,4 +1,4 @@
-[assembly: MelonInfo(typeof(Mod), "Blue Prince Ultra-Wide", "0.1.1", "p1xel8ted")]
+[assembly: MelonInfo(typeof(Mod), "Blue Prince Ultra-Wide", "0.1.2", "p1xel8ted")]
 
 namespace BluePrince;
 
@@ -93,7 +93,7 @@ public class Mod : MelonMod
             "Enable or disable the grain post-processing effect.");
         Grain.OnEntryValueChanged.Subscribe((_, _) => { Patches.Patches.UpdatePostProcessing(); });
 
-        MelonLogger.Msg($"Plugin Blue Prince R Ultra-Wide is loaded!");
+        MelonLogger.Msg($"Plugin Blue Prince Ultra-Wide is loaded!");
 
         category.SaveToFile(false);
         MelonPreferences.Save();
